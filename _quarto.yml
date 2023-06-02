@@ -1,0 +1,26 @@
+project:
+  type: website
+
+profile:
+  default: english
+  group: [english, czech]
+
+website:
+  repo-url: https://github.com/martinfleis/sds/
+  sidebar:
+    style: "floating"
+    search: true
+    contents:
+      - section: "Basics"
+        contents:
+          - index.qmd
+          - about.qmd
+      - section: "Layout"
+        contents:
+          - 01_infra_test.qmd
+
+format:
+  html:
+    theme: cosmo
+    css: styles.css
+    toc: true
