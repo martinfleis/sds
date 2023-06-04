@@ -7,17 +7,17 @@
     "text": "This is a Quarto website.\nTo learn more about Quarto websites visit https://quarto.org/docs/websites."
   },
   {
+    "objectID": "01_infra_test.html",
+    "href": "01_infra_test.html",
+    "title": "Numpy basics",
+    "section": "",
+    "text": "For a demonstration of a line plot on a polar axis, see Figure 1.\n\nimport numpy as np\nimport matplotlib.pyplot as plt\n\nr = np.arange(0, 2, 0.01)\ntheta = 2 * np.pi * r\nfig, ax = plt.subplots(\n  subplot_kw = {'projection': 'polar'}\n)\nax.plot(theta, r)\nax.set_rticks([0.5, 1, 1.5, 2])\nax.grid(True)\nplt.show()\n\n\n\n\nFigure 1: Image caption here."
+  },
+  {
     "objectID": "about.html",
     "href": "about.html",
     "title": "About",
     "section": "",
     "text": "About this site"
-  },
-  {
-    "objectID": "01_infra_test.html",
-    "href": "01_infra_test.html",
-    "title": "Numpy basics",
-    "section": "",
-    "text": "For a demonstration of a line plot on a polar axis, see Figure 1.\n\nimport numpy as np\nimport matplotlib.pyplot as plt\n\nr = np.arange(0, 2, 0.01)\ntheta = 2 * np.pi * r\nfig, ax = plt.subplots(\n  subplot_kw = {'projection': 'polar'}\n)\nax.plot(theta, r)\nax.set_rticks([0.5, 1, 1.5, 2])\nax.grid(True)\nplt.show()\n\n\n\n\nFigure 1: Image caption here.\n\n\n\n\nThat is a code cell."
   }
 ]
