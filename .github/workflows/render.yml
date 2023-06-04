@@ -22,10 +22,8 @@ jobs:
                 quarto render --profile english
                 quarto render --profile czech
 
-          - name: Publish HTML book
-            uses: quarto-dev/quarto-actions/publish@v2
+          - name: Deploy
+            uses: peaceiris/actions-gh-pages@v3
             with:
-                target: gh-pages # name of the brunch in GitHub where to deploy the book to
-                render: false
-            env:
-                GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # this secret is always available for github actions
+              github_token: ${{ secrets.GITHUB_TOKEN }}
+              publish_dir: ./_site
