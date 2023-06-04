@@ -1,0 +1,11 @@
+{
+  "hash": "4f606ef73bc43fb390a56a2fc8c482f0",
+  "result": {
+    "markdown": "---\ntoc: true\nformat:\n  html: default\n  ipynb: default\ntitle: Numpy basics\n---\n\n\n\n\n:::  {.content-visible when-profile=\"english\"}\n\nFor a demonstration of a line plot on a polar axis, see @fig-polar.\n:::\n\n::: {.content-visible when-profile=\"czech\"}\n# Základy Numpy\nText k obrazku cesky, hele na @fig-polar.\n:::\n\n\n::: {.cell execution_count=1}\n``` {.python .cell-code}\nimport numpy as np\nimport matplotlib.pyplot as plt\n\nr = np.arange(0, 2, 0.01)\ntheta = 2 * np.pi * r\nfig, ax = plt.subplots(\n  subplot_kw = {'projection': 'polar'}\n)\nax.plot(theta, r)\nax.set_rticks([0.5, 1, 1.5, 2])\nax.grid(True)\nplt.show()\n```\n\n::: {.cell-output .cell-output-display}\n![Image caption here.](01_infra_test_files/figure-html/fig-polar-output-1.png){#fig-polar width=450 height=439}\n:::\n:::\n\n\n",
+    "supporting": [
+      "01_infra_test_files"
+    ],
+    "filters": [],
+    "includes": {}
+  }
+}

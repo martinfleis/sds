@@ -1,0 +1,31 @@
+# https://github.com/quarto-dev/quarto-actions/blob/main/examples/quarto-publish-example.yml
+on:
+  push:
+    branches: main
+
+name: Render and Publish
+
+jobs:
+    build-deploy:
+        runs-on: ubuntu-latest
+        steps:
+          - name: Check out repository
+            uses: actions/checkout@v3
+
+          - name: Set up Quarto
+            uses: quarto-dev/quarto-actions/setup@v2
+            with:
+                tinytex: true
+
+          - name: Render Book project
+            run: |
+                quarto render --profile english
+                quarto render --profile czech
+
+          - name: Publish HTML book
+            uses: quarto-dev/quarto-actions/publish@v2
+            with:
+                target: gh-pages # name of the brunch in GitHub where to deploy the book to
+                render: false
+            env:
+                GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # this secret is always available for github actions

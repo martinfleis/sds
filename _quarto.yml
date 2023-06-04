@@ -5,6 +5,9 @@ profile:
   default: english
   group: [english, czech]
 
+execute:
+  freeze: true
+
 website:
   repo-url: https://github.com/martinfleis/sds/
   sidebar:
