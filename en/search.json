@@ -18,7 +18,7 @@
     "href": "01_infra_test.html",
     "title": "Numpy basics",
     "section": "",
-    "text": "For a demonstration of a line plot on a polar axis, see Figure 1."
+    "text": "For a demonstration of a line plot on a polar axis, see Figure 1.\nimport numpy as np\n1import matplotlib.pyplot as plt\n\n2r = np.arange(0, 2, 0.01)\n3theta = 2 * np.pi * r\nfig, ax = plt.subplots(subplot_kw={\"projection\": \"polar\"})\nax.plot(theta, r)\nax.set_rticks([0.5, 1, 1.5, 2])\nax.grid(True)\nplt.show()\n\n\n1\n\nTake penguins, and then,\n\n2\n\nadd new columns for the bill ratio and bill area.\n\n3\n\nbla bla make a plot\n\n\n\n\n\n\n\nFigure 1: Image caption here."
   },
   {
     "objectID": "01_infra_test.html#subsection-here",
@@ -28,25 +28,11 @@
     "text": "Subsection here\nLorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur tincidunt, dui lobortis interdum blandit, ex dui sollicitudin tortor, ut bibendum nisi erat at est. Cras accumsan ullamcorper posuere. Nunc eleifend dolor auctor mauris auctor pulvinar. Nunc efficitur aliquet facilisis. Quisque ultrices euismod pharetra. Pellentesque finibus neque est. In diam sapien, maximus ut libero sit amet, consequat posuere velit. Praesent a libero arcu. Aliquam volutpat nisi vitae ligula efficitur finibus. Vestibulum eu turpis bibendum, accumsan lectus a, euismod enim. Etiam eu tellus interdum, imperdiet ante ac, euismod nibh. Morbi rhoncus, turpis ac accumsan suscipit, est lorem interdum metus, eu mattis risus lectus rutrum lorem. Curabitur massa tellus, commodo auctor turpis et, finibus auctor urna. Etiam ultricies vulputate felis, in porta ex dictum ut. Nunc ullamcorper suscipit sagittis.\n\nSub sub\nDonec aliquam finibus congue. Sed aliquet elementum eleifend. Aliquam sollicitudin, urna ut sagittis semper, elit ligula dapibus purus, ullamcorper placerat augue lectus et tellus. Suspendisse luctus arcu sed ultricies varius. Aenean eu neque a orci pretium finibus. Proin condimentum diam in risus ornare viverra. Phasellus congue odio sapien, eu tempor leo facilisis nec. Sed ut ex lacinia, faucibus elit eget, pellentesque felis. Vivamus luctus quam vel rhoncus vehicula. Sed et condimentum enim.\nPellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Donec dapibus sed erat a aliquam. Donec eget maximus odio. Aliquam semper et turpis quis ullamcorper. Vivamus et magna rhoncus, lobortis velit et, porttitor augue. Donec id pharetra purus. Sed vulputate faucibus sollicitudin. Aliquam eget urna eget magna commodo facilisis ac eget mauris. Fusce ut dolor felis. Nullam nec nunc lectus. Sed sem est, efficitur id molestie eget, gravida eget mi. Nunc vitae dui aliquet purus dictum ullamcorper eget in sapien. Morbi in dignissim leo, nec euismod enim."
   },
   {
-    "objectID": "01_infra_test.html#another-subsetsion",
-    "href": "01_infra_test.html#another-subsetsion",
+    "objectID": "01_infra_test.html#another-subsection",
+    "href": "01_infra_test.html#another-subsection",
     "title": "Numpy basics",
-    "section": "Another subsetsion",
-    "text": "Another subsetsion\nPellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Donec dapibus sed erat a aliquam. Donec eget maximus odio. Aliquam semper et turpis quis ullamcorper. Vivamus et magna rhoncus, lobortis velit et, porttitor augue. Donec id pharetra purus. Sed vulputate faucibus sollicitudin. Aliquam eget urna eget magna commodo facilisis ac eget mauris. Fusce ut dolor felis. Nullam nec nunc lectus. Sed sem est, efficitur id molestie eget, gravida eget mi. Nunc vitae dui aliquet purus dictum ullamcorper eget in sapien. Morbi in dignissim leo, nec euismod enim.\n\nimport numpy as np\nimport matplotlib.pyplot as plt\n\nr = np.arange(0, 2, 0.01)\ntheta = 2 * np.pi * r\nfig, ax = plt.subplots(subplot_kw={\"projection\": \"polar\"})\nax.plot(theta, r)\nax.set_rticks([0.5, 1, 1.5, 2])\nax.grid(True)\nplt.show()\n\n\n\n\nFigure 1: Image caption here."
-  },
-  {
-    "objectID": "01_infra_test.html#subsection-here-1",
-    "href": "01_infra_test.html#subsection-here-1",
-    "title": "Numpy basics",
-    "section": "Subsection here",
-    "text": "Subsection here\nLorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur tincidunt, dui lobortis interdum blandit, ex dui sollicitudin tortor, ut bibendum nisi erat at est. Cras accumsan ullamcorper posuere. Nunc eleifend dolor auctor mauris auctor pulvinar. Nunc efficitur aliquet facilisis. Quisque ultrices euismod pharetra. Pellentesque finibus neque est. In diam sapien, maximus ut libero sit amet, consequat posuere velit. Praesent a libero arcu. Aliquam volutpat nisi vitae ligula efficitur finibus. Vestibulum eu turpis bibendum, accumsan lectus a, euismod enim. Etiam eu tellus interdum, imperdiet ante ac, euismod nibh. Morbi rhoncus, turpis ac accumsan suscipit, est lorem interdum metus, eu mattis risus lectus rutrum lorem. Curabitur massa tellus, commodo auctor turpis et, finibus auctor urna. Etiam ultricies vulputate felis, in porta ex dictum ut. Nunc ullamcorper suscipit sagittis.\n\nSub sub\nDonec aliquam finibus congue. Sed aliquet elementum eleifend. Aliquam sollicitudin, urna ut sagittis semper, elit ligula dapibus purus, ullamcorper placerat augue lectus et tellus. Suspendisse luctus arcu sed ultricies varius. Aenean eu neque a orci pretium finibus. Proin condimentum diam in risus ornare viverra. Phasellus congue odio sapien, eu tempor leo facilisis nec. Sed ut ex lacinia, faucibus elit eget, pellentesque felis. Vivamus luctus quam vel rhoncus vehicula. Sed et condimentum enim.\nPellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Donec dapibus sed erat a aliquam. Donec eget maximus odio. Aliquam semper et turpis quis ullamcorper. Vivamus et magna rhoncus, lobortis velit et, porttitor augue. Donec id pharetra purus. Sed vulputate faucibus sollicitudin. Aliquam eget urna eget magna commodo facilisis ac eget mauris. Fusce ut dolor felis. Nullam nec nunc lectus. Sed sem est, efficitur id molestie eget, gravida eget mi. Nunc vitae dui aliquet purus dictum ullamcorper eget in sapien. Morbi in dignissim leo, nec euismod enim."
-  },
-  {
-    "objectID": "01_infra_test.html#another-subsetsion-1",
-    "href": "01_infra_test.html#another-subsetsion-1",
-    "title": "Numpy basics",
-    "section": "Another subsetsion",
-    "text": "Another subsetsion\nPellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Donec dapibus sed erat a aliquam. Donec eget maximus odio. Aliquam semper et turpis quis ullamcorper. Vivamus et magna rhoncus, lobortis velit et, porttitor augue. Donec id pharetra purus. Sed vulputate faucibus sollicitudin. Aliquam eget urna eget magna commodo facilisis ac eget mauris. Fusce ut dolor felis. Nullam nec nunc lectus. Sed sem est, efficitur id molestie eget, gravida eget mi. Nunc vitae dui aliquet purus dictum ullamcorper eget in sapien. Morbi in dignissim leo, nec euismod enim."
+    "section": "Another subsection",
+    "text": "Another subsection\nPellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Donec dapibus sed erat a aliquam. Donec eget maximus odio. Aliquam semper et turpis quis ullamcorper. Vivamus et magna rhoncus, lobortis velit et, porttitor augue. Donec id pharetra purus. Sed vulputate faucibus sollicitudin. Aliquam eget urna eget magna commodo facilisis ac eget mauris. Fusce ut dolor felis. Nullam nec nunc lectus. Sed sem est, efficitur id molestie eget, gravida eget mi. Nunc vitae dui aliquet purus dictum ullamcorper eget in sapien. Morbi in dignissim leo, nec euismod enim."
   },
   {
     "objectID": "about.html",
