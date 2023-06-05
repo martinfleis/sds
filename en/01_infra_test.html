@@ -64,21 +64,24 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
+<link href="./about.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
   "collapse-after": 3,
   "panel-placement": "start",
-  "type": "textbox",
+  "type": "overlay",
   "limit": 20,
   "language": {
     "search-no-results-text": "No results",
@@ -93,6 +96,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-label": "Search"
   }
 }</script>
+<style>html{ scroll-behavior: smooth; }</style>
 
 
 <link rel="stylesheet" href="styles.css">
@@ -123,13 +127,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
       <a href="./">Spatial Data Science for Social Geography</a> 
+        <div class="sidebar-tools-main tools-wide">
+    <a href="https://twitter.com/martinfleis" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-twitter"></i></a>
+    <a href="https://github.com/martinfleis/sds" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-github"></i></a>
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+    <div id="quarto-search" class="quarto-navigation-tool px-1" title="Search"></div>
+</div>
     </div>
       </div>
-        <div class="mt-2 flex-shrink-0 align-items-center">
-        <div class="sidebar-search">
-        <div id="quarto-search" class="" title="Search"></div>
-        </div>
-        </div>
     <div class="sidebar-menu-container"> 
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item sidebar-item-section">
@@ -178,8 +183,23 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
-    <div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="01_infra_test.ipynb" download="01_infra_test.ipynb"><i class="bi bi-journal-code"></i>Jupyter</a></li></ul></div></div>
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#subsection-here" id="toc-subsection-here" class="nav-link active" data-scroll-target="#subsection-here">Subsection here</a>
+  <ul class="collapse">
+  <li><a href="#sub-sub" id="toc-sub-sub" class="nav-link" data-scroll-target="#sub-sub">Sub sub</a></li>
+  </ul></li>
+  <li><a href="#another-subsetsion" id="toc-another-subsetsion" class="nav-link" data-scroll-target="#another-subsetsion">Another subsetsion</a></li>
+  <li><a href="#subsection-here-1" id="toc-subsection-here-1" class="nav-link" data-scroll-target="#subsection-here-1">Subsection here</a>
+  <ul class="collapse">
+  <li><a href="#sub-sub-1" id="toc-sub-sub-1" class="nav-link" data-scroll-target="#sub-sub-1">Sub sub</a></li>
+  </ul></li>
+  <li><a href="#another-subsetsion-1" id="toc-another-subsetsion-1" class="nav-link" data-scroll-target="#another-subsetsion-1">Another subsetsion</a></li>
+  </ul>
+<div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/martinfleis/sds/issues/new" class="toc-action">Report an issue</a></p></div></div><div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="01_infra_test.ipynb" download="01_infra_test.ipynb"><i class="bi bi-journal-code"></i>Jupyter</a></li></ul></div></nav>
+    </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
@@ -201,19 +221,29 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 <p>For a demonstration of a line plot on a polar axis, see <a href="#fig-polar">Figure&nbsp;1</a>.</p>
+<section id="subsection-here" class="level2">
+<h2 class="anchored" data-anchor-id="subsection-here">Subsection here</h2>
+<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. <a href="http://google.com">Curabitur</a> tincidunt, dui lobortis interdum blandit, ex dui sollicitudin tortor, ut bibendum nisi erat at est. Cras accumsan ullamcorper posuere. Nunc eleifend dolor auctor mauris auctor pulvinar. Nunc efficitur aliquet facilisis. Quisque ultrices euismod pharetra. Pellentesque finibus neque est. In diam sapien, maximus ut libero sit amet, consequat posuere velit. Praesent a libero arcu. Aliquam volutpat nisi vitae ligula efficitur finibus. Vestibulum eu turpis bibendum, accumsan lectus a, euismod enim. Etiam eu tellus interdum, imperdiet ante ac, euismod nibh. Morbi rhoncus, turpis ac accumsan suscipit, est lorem interdum metus, eu mattis risus lectus rutrum lorem. Curabitur massa tellus, commodo auctor turpis et, finibus auctor urna. Etiam ultricies vulputate felis, in porta ex dictum ut. Nunc ullamcorper suscipit sagittis.</p>
+<section id="sub-sub" class="level3">
+<h3 class="anchored" data-anchor-id="sub-sub">Sub sub</h3>
+<p>Donec aliquam finibus congue. Sed aliquet elementum eleifend. Aliquam sollicitudin, urna ut sagittis semper, elit ligula dapibus purus, ullamcorper placerat augue lectus et tellus. Suspendisse luctus arcu sed ultricies varius. Aenean eu neque a orci pretium finibus. Proin condimentum diam in risus ornare viverra. Phasellus congue odio sapien, eu tempor leo facilisis nec. Sed ut ex lacinia, faucibus elit eget, pellentesque felis. Vivamus luctus quam vel rhoncus vehicula. Sed et condimentum enim.</p>
+<p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Donec dapibus sed erat a aliquam. Donec eget maximus odio. Aliquam semper et turpis quis ullamcorper. Vivamus et magna rhoncus, lobortis velit et, porttitor augue. Donec id pharetra purus. Sed vulputate faucibus sollicitudin. Aliquam eget urna eget magna commodo facilisis ac eget mauris. Fusce ut dolor felis. Nullam nec nunc lectus. Sed sem est, efficitur id molestie eget, gravida eget mi. Nunc vitae dui aliquet purus dictum ullamcorper eget in sapien. Morbi in dignissim leo, nec euismod enim.</p>
+</section>
+</section>
+<section id="another-subsetsion" class="level2">
+<h2 class="anchored" data-anchor-id="another-subsetsion">Another subsetsion</h2>
+<p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Donec dapibus sed erat a aliquam. Donec eget maximus odio. Aliquam semper et turpis quis ullamcorper. Vivamus et magna rhoncus, lobortis velit et, porttitor augue. Donec id pharetra purus. Sed vulputate faucibus sollicitudin. Aliquam eget urna eget magna commodo facilisis ac eget mauris. Fusce ut dolor felis. Nullam nec nunc lectus. Sed sem est, efficitur id molestie eget, gravida eget mi. Nunc vitae dui aliquet purus dictum ullamcorper eget in sapien. Morbi in dignissim leo, nec euismod enim.</p>
 <div class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>r <span class="op">=</span> np.arange(<span class="dv">0</span>, <span class="dv">2</span>, <span class="fl">0.01</span>)</span>
 <span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>theta <span class="op">=</span> <span class="dv">2</span> <span class="op">*</span> np.pi <span class="op">*</span> r</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(</span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>  subplot_kw <span class="op">=</span> {<span class="st">'projection'</span>: <span class="st">'polar'</span>}</span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>ax.plot(theta, r)</span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>ax.set_rticks([<span class="fl">0.5</span>, <span class="dv">1</span>, <span class="fl">1.5</span>, <span class="dv">2</span>])</span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>ax.grid(<span class="va">True</span>)</span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(subplot_kw<span class="op">=</span>{<span class="st">"projection"</span>: <span class="st">"polar"</span>})</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>ax.plot(theta, r)</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>ax.set_rticks([<span class="fl">0.5</span>, <span class="dv">1</span>, <span class="fl">1.5</span>, <span class="dv">2</span>])</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>ax.grid(<span class="va">True</span>)</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div id="fig-polar" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure">
@@ -223,8 +253,22 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
+</section>
+<section id="subsection-here-1" class="level2">
+<h2 class="anchored" data-anchor-id="subsection-here-1">Subsection here</h2>
+<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur tincidunt, dui lobortis interdum blandit, ex dui sollicitudin tortor, ut bibendum nisi erat at est. Cras accumsan ullamcorper posuere. Nunc eleifend dolor auctor mauris auctor pulvinar. Nunc efficitur aliquet facilisis. Quisque ultrices euismod pharetra. Pellentesque finibus neque est. In diam sapien, maximus ut libero sit amet, consequat posuere velit. Praesent a libero arcu. Aliquam volutpat nisi vitae ligula efficitur finibus. Vestibulum eu turpis bibendum, accumsan lectus a, euismod enim. Etiam eu tellus interdum, imperdiet ante ac, euismod nibh. Morbi rhoncus, turpis ac accumsan suscipit, est lorem interdum metus, eu mattis risus lectus rutrum lorem. Curabitur massa tellus, commodo auctor turpis et, finibus auctor urna. Etiam ultricies vulputate felis, in porta ex dictum ut. Nunc ullamcorper suscipit sagittis.</p>
+<section id="sub-sub-1" class="level3">
+<h3 class="anchored" data-anchor-id="sub-sub-1">Sub sub</h3>
+<p>Donec aliquam finibus congue. Sed aliquet elementum eleifend. Aliquam sollicitudin, urna ut sagittis semper, elit ligula dapibus purus, ullamcorper placerat augue lectus et tellus. Suspendisse luctus arcu sed ultricies varius. Aenean eu neque a orci pretium finibus. Proin condimentum diam in risus ornare viverra. Phasellus congue odio sapien, eu tempor leo facilisis nec. Sed ut ex lacinia, faucibus elit eget, pellentesque felis. Vivamus luctus quam vel rhoncus vehicula. Sed et condimentum enim.</p>
+<p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Donec dapibus sed erat a aliquam. Donec eget maximus odio. Aliquam semper et turpis quis ullamcorper. Vivamus et magna rhoncus, lobortis velit et, porttitor augue. Donec id pharetra purus. Sed vulputate faucibus sollicitudin. Aliquam eget urna eget magna commodo facilisis ac eget mauris. Fusce ut dolor felis. Nullam nec nunc lectus. Sed sem est, efficitur id molestie eget, gravida eget mi. Nunc vitae dui aliquet purus dictum ullamcorper eget in sapien. Morbi in dignissim leo, nec euismod enim.</p>
+</section>
+</section>
+<section id="another-subsetsion-1" class="level2">
+<h2 class="anchored" data-anchor-id="another-subsetsion-1">Another subsetsion</h2>
+<p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Donec dapibus sed erat a aliquam. Donec eget maximus odio. Aliquam semper et turpis quis ullamcorper. Vivamus et magna rhoncus, lobortis velit et, porttitor augue. Donec id pharetra purus. Sed vulputate faucibus sollicitudin. Aliquam eget urna eget magna commodo facilisis ac eget mauris. Fusce ut dolor felis. Nullam nec nunc lectus. Sed sem est, efficitur id molestie eget, gravida eget mi. Nunc vitae dui aliquet purus dictum ullamcorper eget in sapien. Morbi in dignissim leo, nec euismod enim.</p>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -247,6 +291,121 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
   }
   toggleBodyColorPrimary();  
+  const disableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'prefetch';
+    }
+  }
+  const enableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'stylesheet';
+    }
+  }
+  const manageTransitions = (selector, allowTransitions) => {
+    const els = window.document.querySelectorAll(selector);
+    for (let i=0; i < els.length; i++) {
+      const el = els[i];
+      if (allowTransitions) {
+        el.classList.remove('notransition');
+      } else {
+        el.classList.add('notransition');
+      }
+    }
+  }
+  const toggleColorMode = (alternate) => {
+    // Switch the stylesheets
+    const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+    manageTransitions('#quarto-margin-sidebar .nav-link', false);
+    if (alternate) {
+      enableStylesheet(alternateStylesheets);
+      for (const sheetNode of alternateStylesheets) {
+        if (sheetNode.id === "quarto-bootstrap") {
+          toggleBodyColorMode(sheetNode);
+        }
+      }
+    } else {
+      disableStylesheet(alternateStylesheets);
+      toggleBodyColorPrimary();
+    }
+    manageTransitions('#quarto-margin-sidebar .nav-link', true);
+    // Switch the toggles
+    const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+    for (let i=0; i < toggles.length; i++) {
+      const toggle = toggles[i];
+      if (toggle) {
+        if (alternate) {
+          toggle.classList.add("alternate");     
+        } else {
+          toggle.classList.remove("alternate");
+        }
+      }
+    }
+    // Hack to workaround the fact that safari doesn't
+    // properly recolor the scrollbar when toggling (#1455)
+    if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+      manageTransitions("body", false);
+      window.scrollTo(0, 1);
+      setTimeout(() => {
+        window.scrollTo(0, 0);
+        manageTransitions("body", true);
+      }, 40);  
+    }
+  }
+  const isFileUrl = () => { 
+    return window.location.protocol === 'file:';
+  }
+  const hasAlternateSentinel = () => {  
+    let styleSentinel = getColorSchemeSentinel();
+    if (styleSentinel !== null) {
+      return styleSentinel === "alternate";
+    } else {
+      return false;
+    }
+  }
+  const setStyleSentinel = (alternate) => {
+    const value = alternate ? "alternate" : "default";
+    if (!isFileUrl()) {
+      window.localStorage.setItem("quarto-color-scheme", value);
+    } else {
+      localAlternateSentinel = value;
+    }
+  }
+  const getColorSchemeSentinel = () => {
+    if (!isFileUrl()) {
+      const storageValue = window.localStorage.getItem("quarto-color-scheme");
+      return storageValue != null ? storageValue : localAlternateSentinel;
+    } else {
+      return localAlternateSentinel;
+    }
+  }
+  let localAlternateSentinel = 'default';
+  // Dark / light mode switch
+  window.quartoToggleColorScheme = () => {
+    // Read the current dark / light value 
+    let toAlternate = !hasAlternateSentinel();
+    toggleColorMode(toAlternate);
+    setStyleSentinel(toAlternate);
+  };
+  // Ensure there is a toggle, if there isn't float one in the top right
+  if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+    const a = window.document.createElement('a');
+    a.classList.add('top-right');
+    a.classList.add('quarto-color-scheme-toggle');
+    a.href = "";
+    a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+    const i = window.document.createElement("i");
+    i.classList.add('bi');
+    a.appendChild(i);
+    window.document.body.appendChild(a);
+  }
+  // Switch to dark mode if need be
+  if (hasAlternateSentinel()) {
+    toggleColorMode(true);
+  } else {
+    toggleColorMode(false);
+  }
   const icon = "";
   const anchorJS = new window.AnchorJS();
   anchorJS.options = {
@@ -460,8 +619,29 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   }
 });
 </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./about.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">About</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+  </div>
+</nav>
 </div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+      &nbsp;
+    </div>   
+    <div class="nav-footer-center">Course material by Martin Fleischmann. Available under CC-BY-SA 4.0.</div>
+    <div class="nav-footer-right">
+      &nbsp;
+    </div>
+  </div>
+</footer>
 
 
 
+<script src="site_libs/quarto-html/zenscroll-min.js"></script>
 </body></html>

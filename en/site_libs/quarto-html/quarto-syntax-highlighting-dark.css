@@ -1,10 +1,10 @@
 /* quarto syntax highlight colors */
 :root {
-  --quarto-hl-kw-color: #3c3836;
+  --quarto-hl-kw-color: #ebdbb2;
   --quarto-hl-fu-color: #689d6a;
   --quarto-hl-va-color: #458588;
   --quarto-hl-cf-color: #cc241d;
-  --quarto-hl-op-color: #3c3836;
+  --quarto-hl-op-color: #ebdbb2;
   --quarto-hl-bu-color: #d65d0e;
   --quarto-hl-ex-color: #689d6a;
   --quarto-hl-pp-color: #d65d0e;
@@ -37,28 +37,28 @@
 }
 
 pre > code.sourceCode > span {
-  color: #3c3836;
+  color: #ebdbb2;
   font-style: inherit;
 }
 
 code span {
-  color: #3c3836;
+  color: #ebdbb2;
   font-style: inherit;
 }
 
 code.sourceCode > span {
-  color: #3c3836;
+  color: #ebdbb2;
   font-style: inherit;
 }
 
 div.sourceCode,
 div.sourceCode pre.sourceCode {
-  color: #3c3836;
+  color: #ebdbb2;
   font-style: inherit;
 }
 
 code span.kw {
-  color: #3c3836;
+  color: #ebdbb2;
   font-weight: bold;
 }
 
@@ -76,7 +76,7 @@ code span.cf {
 }
 
 code span.op {
-  color: #3c3836;
+  color: #ebdbb2;
 }
 
 code span.bu {
@@ -159,7 +159,7 @@ code span.cv {
 
 code span.re {
   color: #928374;
-  background-color: #f9f5d7;
+  background-color: #1d2021;
 }
 
 code span.in {
@@ -187,4 +187,4 @@ code span.er {
   content: "</";
 }
 
-/*# sourceMappingURL=debc5d5d77c3f9108843748ff7464032.css.map */
+/*# sourceMappingURL=935a306eefa94366c21e1a970dddb765.css.map */
