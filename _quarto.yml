@@ -10,9 +10,9 @@ execute:
 
 website:
   repo-url: https://github.com/martinfleis/sds/
+  repo-actions: [issue]
   sidebar:
     style: "floating"
-    search: true
     contents:
       - section: "Basics"
         contents:
@@ -21,9 +21,24 @@ website:
       - section: "Layout"
         contents:
           - 01_infra_test.qmd
+    tools:
+      - icon: twitter
+        href: https://twitter.com/martinfleis
+      - icon: github
+        href: https://github.com/martinfleis/sds
+  page-navigation: true
+  page-footer:
+    center: "Course material by Martin Fleischmann. Available under CC-BY-SA 4.0."
+  search:
+    location: sidebar
+    type: overlay
 
 format:
   html:
-    theme: cosmo
+    theme:
+      light: flatly
+      dark: darkly
     css: styles.css
     toc: true
+    smooth-scroll: true
+    highlight-style: gruvbox

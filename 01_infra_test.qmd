@@ -10,6 +10,19 @@ jupyter: python3
 # Numpy basics
 
 For a demonstration of a line plot on a polar axis, see @fig-polar.
+
+## Subsection here
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. [Curabitur](http://google.com) tincidunt, dui lobortis interdum blandit, ex dui sollicitudin tortor, ut bibendum nisi erat at est. Cras accumsan ullamcorper posuere. Nunc eleifend dolor auctor mauris auctor pulvinar. Nunc efficitur aliquet facilisis. Quisque ultrices euismod pharetra. Pellentesque finibus neque est. In diam sapien, maximus ut libero sit amet, consequat posuere velit. Praesent a libero arcu. Aliquam volutpat nisi vitae ligula efficitur finibus. Vestibulum eu turpis bibendum, accumsan lectus a, euismod enim. Etiam eu tellus interdum, imperdiet ante ac, euismod nibh. Morbi rhoncus, turpis ac accumsan suscipit, est lorem interdum metus, eu mattis risus lectus rutrum lorem. Curabitur massa tellus, commodo auctor turpis et, finibus auctor urna. Etiam ultricies vulputate felis, in porta ex dictum ut. Nunc ullamcorper suscipit sagittis.
+
+### Sub sub
+Donec aliquam finibus congue. Sed aliquet elementum eleifend. Aliquam sollicitudin, urna ut sagittis semper, elit ligula dapibus purus, ullamcorper placerat augue lectus et tellus. Suspendisse luctus arcu sed ultricies varius. Aenean eu neque a orci pretium finibus. Proin condimentum diam in risus ornare viverra. Phasellus congue odio sapien, eu tempor leo facilisis nec. Sed ut ex lacinia, faucibus elit eget, pellentesque felis. Vivamus luctus quam vel rhoncus vehicula. Sed et condimentum enim.
+
+Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Donec dapibus sed erat a aliquam. Donec eget maximus odio. Aliquam semper et turpis quis ullamcorper. Vivamus et magna rhoncus, lobortis velit et, porttitor augue. Donec id pharetra purus. Sed vulputate faucibus sollicitudin. Aliquam eget urna eget magna commodo facilisis ac eget mauris. Fusce ut dolor felis. Nullam nec nunc lectus. Sed sem est, efficitur id molestie eget, gravida eget mi. Nunc vitae dui aliquet purus dictum ullamcorper eget in sapien. Morbi in dignissim leo, nec euismod enim.
+
+## Another subsetsion
+
+Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Donec dapibus sed erat a aliquam. Donec eget maximus odio. Aliquam semper et turpis quis ullamcorper. Vivamus et magna rhoncus, lobortis velit et, porttitor augue. Donec id pharetra purus. Sed vulputate faucibus sollicitudin. Aliquam eget urna eget magna commodo facilisis ac eget mauris. Fusce ut dolor felis. Nullam nec nunc lectus. Sed sem est, efficitur id molestie eget, gravida eget mi. Nunc vitae dui aliquet purus dictum ullamcorper eget in sapien. Morbi in dignissim leo, nec euismod enim.
 :::
 
 ::: {.content-visible when-profile="czech"}
@@ -18,19 +31,30 @@ Text k obrazku cesky, hele na @fig-polar.
 :::
 
 ```{python}
-#| label: fig-polar
-#| fig-cap: "Image caption here."
+# | label: fig-polar
+# | fig-cap: "Image caption here."
 
 import numpy as np
 import matplotlib.pyplot as plt
 
 r = np.arange(0, 2, 0.01)
 theta = 2 * np.pi * r
-fig, ax = plt.subplots(
-  subplot_kw = {'projection': 'polar'}
-)
+fig, ax = plt.subplots(subplot_kw={"projection": "polar"})
 ax.plot(theta, r)
 ax.set_rticks([0.5, 1, 1.5, 2])
 ax.grid(True)
 plt.show()
 ```
+
+## Subsection here
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur tincidunt, dui lobortis interdum blandit, ex dui sollicitudin tortor, ut bibendum nisi erat at est. Cras accumsan ullamcorper posuere. Nunc eleifend dolor auctor mauris auctor pulvinar. Nunc efficitur aliquet facilisis. Quisque ultrices euismod pharetra. Pellentesque finibus neque est. In diam sapien, maximus ut libero sit amet, consequat posuere velit. Praesent a libero arcu. Aliquam volutpat nisi vitae ligula efficitur finibus. Vestibulum eu turpis bibendum, accumsan lectus a, euismod enim. Etiam eu tellus interdum, imperdiet ante ac, euismod nibh. Morbi rhoncus, turpis ac accumsan suscipit, est lorem interdum metus, eu mattis risus lectus rutrum lorem. Curabitur massa tellus, commodo auctor turpis et, finibus auctor urna. Etiam ultricies vulputate felis, in porta ex dictum ut. Nunc ullamcorper suscipit sagittis.
+
+### Sub sub
+Donec aliquam finibus congue. Sed aliquet elementum eleifend. Aliquam sollicitudin, urna ut sagittis semper, elit ligula dapibus purus, ullamcorper placerat augue lectus et tellus. Suspendisse luctus arcu sed ultricies varius. Aenean eu neque a orci pretium finibus. Proin condimentum diam in risus ornare viverra. Phasellus congue odio sapien, eu tempor leo facilisis nec. Sed ut ex lacinia, faucibus elit eget, pellentesque felis. Vivamus luctus quam vel rhoncus vehicula. Sed et condimentum enim.
+
+Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Donec dapibus sed erat a aliquam. Donec eget maximus odio. Aliquam semper et turpis quis ullamcorper. Vivamus et magna rhoncus, lobortis velit et, porttitor augue. Donec id pharetra purus. Sed vulputate faucibus sollicitudin. Aliquam eget urna eget magna commodo facilisis ac eget mauris. Fusce ut dolor felis. Nullam nec nunc lectus. Sed sem est, efficitur id molestie eget, gravida eget mi. Nunc vitae dui aliquet purus dictum ullamcorper eget in sapien. Morbi in dignissim leo, nec euismod enim.
+
+## Another subsetsion
+
+Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Donec dapibus sed erat a aliquam. Donec eget maximus odio. Aliquam semper et turpis quis ullamcorper. Vivamus et magna rhoncus, lobortis velit et, porttitor augue. Donec id pharetra purus. Sed vulputate faucibus sollicitudin. Aliquam eget urna eget magna commodo facilisis ac eget mauris. Fusce ut dolor felis. Nullam nec nunc lectus. Sed sem est, efficitur id molestie eget, gravida eget mi. Nunc vitae dui aliquet purus dictum ullamcorper eget in sapien. Morbi in dignissim leo, nec euismod enim.
