@@ -41,4 +41,4 @@ format:
     css: styles.css
     toc: true
     smooth-scroll: true
-    highlight-style: gruvbox
+    highlight-style: atom-one

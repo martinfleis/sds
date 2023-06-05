@@ -1,1 +1,36 @@
-/* css styles */
+a {
+    color: rgb(250, 148, 165);
+}
+
+a:hover {
+    color:rgb(249, 115, 137)
+}
+
+.sidebar nav[role=doc-toc] ul>li>a.active, .sidebar nav[role=doc-toc] ul>li>ul>li>a.active {
+    border-left: 1px solid rgb(249, 115, 137);
+    color: rgb(249, 115, 137) !important;
+}
+
+.sidebar nav[role=doc-toc] ul>li>a:hover, .sidebar nav[role=doc-toc] ul>li>ul>li>a:hover {
+    color:rgb(249, 115, 137) !important;
+}
+
+.toc-actions a:hover {
+    color:rgb(249, 115, 137)
+}
+
+.quarto-secondary-nav nav.quarto-page-breadcrumbs a:hover {
+    color:rgb(249, 115, 137)
+}
+
+div.sidebar-item-container .active, div.sidebar-item-container .show>.nav-link, div.sidebar-item-container .sidebar-link>code {
+    color: rgb(250, 148, 165);
+}
+
+.nav-page a:hover {
+    color: rgb(250, 148, 165);
+}
+
+code {
+    color:  rgb(37, 180, 151);
+}
