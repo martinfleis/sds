@@ -8,31 +8,6 @@ profile:
 execute:
   freeze: true
 
-website:
-  repo-url: https://github.com/martinfleis/sds/
-  repo-actions: [issue]
-  sidebar:
-    style: "floating"
-    contents:
-      - section: "Basics"
-        contents:
-          - index.qmd
-          - about.qmd
-      - section: "Layout"
-        contents:
-          - 01_infra_test.qmd
-    tools:
-      - icon: twitter
-        href: https://twitter.com/martinfleis
-      - icon: github
-        href: https://github.com/martinfleis/sds
-  page-navigation: true
-  page-footer:
-    center: "Course material by Martin Fleischmann. Available under CC-BY-SA 4.0."
-  search:
-    location: sidebar
-    type: overlay
-
 format:
   html:
     theme:
@@ -42,3 +17,91 @@ format:
     toc: true
     smooth-scroll: true
     highlight-style: atom-one
+
+website:
+  repo-url: https://github.com/martinfleis/sds/
+  repo-actions: [issue]
+  page-navigation: true
+  page-footer:
+    center: "Course material by Martin Fleischmann. Available under CC-BY-SA 4.0."
+  search:
+    location: sidebar
+    type: overlay
+  sidebar:
+    style: "floating"
+    collapse-level: 1
+    tools:
+      - icon: twitter
+        href: https://twitter.com/martinfleis
+      - icon: github
+        href: https://github.com/martinfleis/sds
+    contents:
+      - section: "Course information"
+        contents:
+          - text: "Overview"
+            file: index.qmd
+          - 00_infrastructure.qmd
+          - 00_assignment.qmd
+      - text: "---"
+      - section: "Introduction"
+        contents:
+          - 01_concepts.qmd
+          - 01_hands_on.qmd
+          - 01_exercise.qmd
+      - section: "Open Data Science"
+        contents:
+          - 02_concepts.qmd
+          - 02_hands_on.qmd
+          - 02_exercise.qmd
+      - section: "Spatial data"
+        contents:
+          - 03_concepts.qmd
+          - 03_hands_on.qmd
+          - 03_exercise.qmd
+      - section: "Geovisualisation"
+        contents:
+          - 04_concepts.qmd
+          - 04_hands_on.qmd
+          - 04_exercise.qmd
+      - section: "Spatial weights"
+        contents:
+          - 05_concepts.qmd
+          - 05_hands_on.qmd
+          - 05_exercise.qmd
+      - section: "Exploratory spatial data analysis"
+        contents:
+          - 06_concepts.qmd
+          - 06_hands_on.qmd
+          - 06_exercise.qmd
+      - section: "Clustering"
+        contents:
+          - 07_concepts.qmd
+          - 07_hands_on.qmd
+          - 07_exercise.qmd
+      - section: "Point patterns"
+        contents:
+          - 08_concepts.qmd
+          - 08_hands_on.qmd
+          - 08_exercise.qmd
+      - section: "Raster data"
+        contents:
+          - 09_concepts.qmd
+          - 09_hands_on.qmd
+          - 09_exercise.qmd
+      - section: "Feature engineering"
+        contents:
+          - 10_concepts.qmd
+          - 10_hands_on.qmd
+          - 10_exercise.qmd
+      - section: "Regression"
+        contents:
+          - 11_concepts.qmd
+          - 11_hands_on.qmd
+          - 11_exercise.qmd
+      - section: "Machine learning"
+        contents:
+          - 12_concepts.qmd
+          - 12_hands_on.qmd
+          - 12_exercise.qmd
+
+

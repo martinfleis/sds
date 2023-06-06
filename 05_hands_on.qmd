@@ -1,0 +1,6 @@
+---
+title: "Spatial weights in PySAL"
+format: html
+---
+
+Minim voluptate et adipisicing ipsum minim exercitation officia pariatur cupidatat officia. Voluptate reprehenderit aute tempor sunt. Ex Lorem laboris ad aute ad magna. Lorem labore nostrud aliquip duis reprehenderit nostrud. In adipisicing dolor ex ad tempor dolore culpa. Deserunt aliquip amet sit nostrud enim magna sit veniam velit.

@@ -34,3 +34,7 @@ div.sidebar-item-container .active, div.sidebar-item-container .show>.nav-link, 
 code {
     color:  rgb(37, 180, 151);
 }
+
+div.sidebar-item-container:hover, div.sidebar-item-container:focus {
+    color:rgba(249, 115, 137, 0.8)
+}

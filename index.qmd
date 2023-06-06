@@ -1,7 +1,10 @@
 ---
-title: "sds"
+title: "Spatial Data Science for Social Geography"
+format: "html"
 ---
 
-This is a Quarto website.
+This will be a course on Spatial Data Science for Social Geography.
 
-To learn more about Quarto websites visit <https://quarto.org/docs/websites>.
+The course will be taught in-person at the Charles University in Prague from October 2023.
+
+More information will be shared closer to the starting date.

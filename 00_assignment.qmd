@@ -1,0 +1,6 @@
+---
+title: "Assignment"
+format: "html"
+---
+
+This page will explain the assignment. It will be a computational essay.
