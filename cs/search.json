@@ -1,66 +1,59 @@
 [
   {
-    "objectID": "chapter_3/exercise.html",
-    "href": "chapter_3/exercise.html",
-    "title": "Learning GeoPandas",
+    "objectID": "chapter_00/assignment.html",
+    "href": "chapter_00/assignment.html",
+    "title": "Assignment",
     "section": "",
-    "text": "Dolore est dolor eu ipsum mollit sunt Lorem enim. Ullamco dolore ad proident proident minim qui nostrud. Dolore commodo nulla ea do ipsum elit in nisi ut nostrud velit velit. Pariatur laboris adipisicing amet dolore minim sit laboris commodo eiusmod tempor proident id ad anim."
+    "text": "This page will explain the assignment. It will be a computational essay."
   },
   {
-    "objectID": "chapter_3/hands_on.html",
-    "href": "chapter_3/hands_on.html",
-    "title": "Bring in geography",
+    "objectID": "chapter_00/infrastructure.html",
+    "href": "chapter_00/infrastructure.html",
+    "title": "Infrastructure",
     "section": "",
-    "text": "Dolore est dolor eu ipsum mollit sunt Lorem enim. Ullamco dolore ad proident proident minim qui nostrud. Dolore commodo nulla ea do ipsum elit in nisi ut nostrud velit velit. Pariatur laboris adipisicing amet dolore minim sit laboris commodo eiusmod tempor proident id ad anim."
+    "text": "This page will explain the infrastructure needed to run the course. How to install Python, Jupyter, environments and such."
   },
   {
-    "objectID": "chapter_3/concepts.html",
-    "href": "chapter_3/concepts.html",
-    "title": "Old and new spatial data",
-    "section": "",
-    "text": "Dolore est dolor eu ipsum mollit sunt Lorem enim. Ullamco dolore ad proident proident minim qui nostrud. Dolore commodo nulla ea do ipsum elit in nisi ut nostrud velit velit. Pariatur laboris adipisicing amet dolore minim sit laboris commodo eiusmod tempor proident id ad anim."
-  },
-  {
-    "objectID": "chapter_8/exercise.html",
-    "href": "chapter_8/exercise.html",
-    "title": "Pointy points",
-    "section": "",
-    "text": "Culpa ad aliquip magna do pariatur excepteur cillum exercitation Lorem Lorem Lorem. Veniam voluptate esse ea elit exercitation eu ex incididunt occaecat commodo amet. Eiusmod deserunt fugiat ad reprehenderit eu cupidatat laborum fugiat."
-  },
-  {
-    "objectID": "chapter_8/hands_on.html",
-    "href": "chapter_8/hands_on.html",
-    "title": "Point pattern analysis",
-    "section": "",
-    "text": "Labore laboris elit commodo in amet sit laboris ex. Ipsum qui culpa ex proident sunt irure enim qui id do esse culpa id eiusmod. Mollit adipisicing ad esse aliquip. Laboris id ut eu nisi culpa ullamco cillum culpa ad duis. Eu dolore mollit magna elit occaecat pariatur ipsum do ut. Est magna incididunt cupidatat cillum elit ea fugiat. Reprehenderit Lorem ut irure esse qui sunt reprehenderit."
-  },
-  {
-    "objectID": "chapter_8/concepts.html",
-    "href": "chapter_8/concepts.html",
-    "title": "I need more points",
-    "section": "",
-    "text": "Amet eiusmod non tempor nisi consectetur. In veniam ex voluptate amet fugiat esse. Sint consequat labore reprehenderit reprehenderit eu. Sint consequat quis eiusmod adipisicing aute velit nostrud anim."
-  },
-  {
-    "objectID": "chapter_7/exercise.html",
-    "href": "chapter_7/exercise.html",
+    "objectID": "chapter_07/exercise.html",
+    "href": "chapter_07/exercise.html",
     "title": "Find me a cluster",
     "section": "",
     "text": "Labore eiusmod incididunt elit dolor id aliqua labore laboris commodo. Ex ullamco veniam eu minim proident pariatur ea ea amet adipisicing commodo sit ea. Sunt veniam elit dolore sunt. Laboris consectetur laborum amet cillum quis amet ut veniam id. Culpa qui sit consectetur aliquip ea id reprehenderit."
   },
   {
-    "objectID": "chapter_7/hands_on.html",
-    "href": "chapter_7/hands_on.html",
+    "objectID": "chapter_07/hands_on.html",
+    "href": "chapter_07/hands_on.html",
     "title": "Clustering and regionalisation",
     "section": "",
     "text": "Qui cillum excepteur nisi consectetur aliquip excepteur eiusmod deserunt consequat laborum ullamco proident incididunt velit. Incididunt sunt commodo qui culpa dolore officia sint excepteur. Nulla pariatur in duis consectetur excepteur nostrud eu qui sunt nostrud anim. Dolore nisi et duis commodo consectetur. In elit anim et ipsum pariatur elit exercitation est ut quis occaecat do anim nulla."
   },
   {
-    "objectID": "chapter_7/concepts.html",
-    "href": "chapter_7/concepts.html",
+    "objectID": "chapter_07/concepts.html",
+    "href": "chapter_07/concepts.html",
     "title": "Similar data belong together",
     "section": "",
     "text": "Sint dolor pariatur labore pariatur irure eu ullamco pariatur ullamco esse labore aute eu. Nostrud velit irure amet enim eiusmod excepteur in fugiat et ipsum. Labore exercitation officia ea non est."
+  },
+  {
+    "objectID": "chapter_06/exercise.html",
+    "href": "chapter_06/exercise.html",
+    "title": "Does it correlate?",
+    "section": "",
+    "text": "Ex eiusmod ullamco velit labore et ad et sunt occaecat nostrud dolore incididunt officia commodo. Aute ex in tempor quis sit ex consectetur cillum nulla proident do esse in minim. Cillum quis amet magna ipsum occaecat enim qui. Reprehenderit occaecat commodo quis consectetur ut consectetur. Do ad aute consectetur adipisicing irure deserunt ea culpa."
+  },
+  {
+    "objectID": "chapter_06/hands_on.html",
+    "href": "chapter_06/hands_on.html",
+    "title": "Spatial autocorrelation and other ESDAs",
+    "section": "",
+    "text": "Ea dolor cillum excepteur excepteur. Dolor adipisicing in ea velit excepteur reprehenderit duis culpa sunt. Pariatur officia cupidatat reprehenderit aliqua fugiat est non tempor incididunt do deserunt eu."
+  },
+  {
+    "objectID": "chapter_06/concepts.html",
+    "href": "chapter_06/concepts.html",
+    "title": "Explore space!",
+    "section": "",
+    "text": "Excepteur laboris cillum anim duis laborum. Deserunt esse do mollit consequat id ullamco ad excepteur veniam consequat. Elit qui consectetur excepteur consectetur veniam fugiat mollit exercitation. Nisi magna minim voluptate consectetur nulla ut reprehenderit voluptate consectetur id elit elit duis culpa. Occaecat nulla laborum consectetur exercitation non. Sunt consequat veniam laborum nulla tempor cupidatat anim fugiat laboris incididunt fugiat deserunt."
   },
   {
     "objectID": "LICENSE.html",
@@ -91,46 +84,25 @@
     "text": "Commodo enim esse aliquip eiusmod deserunt sit aliqua. Esse excepteur aliquip ut exercitation fugiat irure ut et. Proident excepteur consectetur officia magna. Deserunt eu non dolor ut labore veniam velit sit pariatur laboris anim incididunt."
   },
   {
-    "objectID": "chapter_2/exercise.html",
-    "href": "chapter_2/exercise.html",
-    "title": "Learning pandas",
+    "objectID": "chapter_05/exercise.html",
+    "href": "chapter_05/exercise.html",
+    "title": "Graph here, graph there",
     "section": "",
-    "text": "Dolore est dolor eu ipsum mollit sunt Lorem enim. Ullamco dolore ad proident proident minim qui nostrud. Dolore commodo nulla ea do ipsum elit in nisi ut nostrud velit velit. Pariatur laboris adipisicing amet dolore minim sit laboris commodo eiusmod tempor proident id ad anim."
+    "text": "Pariatur consequat id dolor magna sunt consectetur aliqua. Fugiat commodo ut exercitation minim aliquip deserunt nisi cillum enim ex irure est fugiat. Sunt fugiat officia ipsum consequat ad ullamco ut sit deserunt irure. Commodo anim voluptate ipsum nulla voluptate reprehenderit consequat. Et enim consectetur nisi consectetur minim exercitation exercitation aute nisi irure irure veniam. Nulla id magna sunt nisi Lorem cillum ad reprehenderit aute quis est labore. Amet ad qui incididunt veniam cillum cupidatat aliquip ea consequat dolore quis qui nisi ut."
   },
   {
-    "objectID": "chapter_2/hands_on.html",
-    "href": "chapter_2/hands_on.html",
-    "title": "Data wrangling",
+    "objectID": "chapter_05/hands_on.html",
+    "href": "chapter_05/hands_on.html",
+    "title": "Spatial weights in PySAL",
     "section": "",
-    "text": "Dolore est dolor eu ipsum mollit sunt Lorem enim. Ullamco dolore ad proident proident minim qui nostrud. Dolore commodo nulla ea do ipsum elit in nisi ut nostrud velit velit. Pariatur laboris adipisicing amet dolore minim sit laboris commodo eiusmod tempor proident id ad anim."
+    "text": "Minim voluptate et adipisicing ipsum minim exercitation officia pariatur cupidatat officia. Voluptate reprehenderit aute tempor sunt. Ex Lorem laboris ad aute ad magna. Lorem labore nostrud aliquip duis reprehenderit nostrud. In adipisicing dolor ex ad tempor dolore culpa. Deserunt aliquip amet sit nostrud enim magna sit veniam velit."
   },
   {
-    "objectID": "chapter_2/concepts.html",
-    "href": "chapter_2/concepts.html",
-    "title": "Open tools and open mindset",
+    "objectID": "chapter_05/concepts.html",
+    "href": "chapter_05/concepts.html",
+    "title": "Space as math",
     "section": "",
-    "text": "Dolore est dolor eu ipsum mollit sunt Lorem enim. Ullamco dolore ad proident proident minim qui nostrud. Dolore commodo nulla ea do ipsum elit in nisi ut nostrud velit velit. Pariatur laboris adipisicing amet dolore minim sit laboris commodo eiusmod tempor proident id ad anim."
-  },
-  {
-    "objectID": "chapter_4/exercise.html",
-    "href": "chapter_4/exercise.html",
-    "title": "Static and interactive maps",
-    "section": "",
-    "text": "Culpa anim quis non magna eiusmod laboris ad aliqua enim elit aute eiusmod. Est velit quis elit cillum voluptate. Consequat esse excepteur enim voluptate anim excepteur esse. Est dolore exercitation id et laboris et duis minim. Tempor ad commodo est adipisicing est deserunt labore consectetur quis reprehenderit elit. Aliquip deserunt mollit laboris anim non sint nulla mollit deserunt laboris nulla reprehenderit fugiat. Ut aute ut consequat ea."
-  },
-  {
-    "objectID": "chapter_4/hands_on.html",
-    "href": "chapter_4/hands_on.html",
-    "title": "Mapping the world",
-    "section": "",
-    "text": "Ut aliqua esse voluptate non id aliqua. Exercitation cillum fugiat cupidatat qui adipisicing aliquip consequat nisi minim minim. Aliquip sunt sint cupidatat magna quis deserunt aliqua duis esse consectetur reprehenderit eu aliquip."
-  },
-  {
-    "objectID": "chapter_4/concepts.html",
-    "href": "chapter_4/concepts.html",
-    "title": "Maps and MAUPs",
-    "section": "",
-    "text": "Commodo voluptate est incididunt anim non minim officia. Fugiat tempor occaecat anim ipsum Lorem esse anim. Cillum ad exercitation anim nostrud occaecat deserunt esse elit elit proident. Irure dolor occaecat labore ipsum non cupidatat. Irure cillum dolor dolore do aute aliqua. Ad ut commodo ipsum ipsum irure in incididunt sint fugiat nulla."
+    "text": "Ipsum excepteur tempor incididunt eiusmod veniam magna occaecat consectetur aliqua nostrud. Exercitation reprehenderit aliqua ullamco tempor. Laborum non commodo irure nostrud incididunt culpa minim occaecat tempor reprehenderit consequat et consectetur est."
   },
   {
     "objectID": "index.html",
@@ -140,81 +112,81 @@
     "text": "This will be a course on Spatial Data Science for Social Geography.\nThe course will be taught in-person at the Charles University in Prague from October 2023.\nMore information will be shared closer to the starting date."
   },
   {
-    "objectID": "chapter_6/exercise.html",
-    "href": "chapter_6/exercise.html",
-    "title": "Does it correlate?",
+    "objectID": "chapter_01/exercise.html",
+    "href": "chapter_01/exercise.html",
+    "title": "Understanding Markdown",
     "section": "",
-    "text": "Ex eiusmod ullamco velit labore et ad et sunt occaecat nostrud dolore incididunt officia commodo. Aute ex in tempor quis sit ex consectetur cillum nulla proident do esse in minim. Cillum quis amet magna ipsum occaecat enim qui. Reprehenderit occaecat commodo quis consectetur ut consectetur. Do ad aute consectetur adipisicing irure deserunt ea culpa."
+    "text": "Dolore est dolor eu ipsum mollit sunt Lorem enim. Ullamco dolore ad proident proident minim qui nostrud. Dolore commodo nulla ea do ipsum elit in nisi ut nostrud velit velit. Pariatur laboris adipisicing amet dolore minim sit laboris commodo eiusmod tempor proident id ad anim."
   },
   {
-    "objectID": "chapter_6/hands_on.html",
-    "href": "chapter_6/hands_on.html",
-    "title": "Spatial autocorrelation and other ESDAs",
+    "objectID": "chapter_01/hands_on.html",
+    "href": "chapter_01/hands_on.html",
+    "title": "Jupyter and Python",
     "section": "",
-    "text": "Ea dolor cillum excepteur excepteur. Dolor adipisicing in ea velit excepteur reprehenderit duis culpa sunt. Pariatur officia cupidatat reprehenderit aliqua fugiat est non tempor incididunt do deserunt eu."
+    "text": "Text k obrazku cesky, hele na Obrázek 1.\n\nimport numpy as np\n1import matplotlib.pyplot as plt\n\n2r = np.arange(0, 2, 0.01)\n3theta = 2 * np.pi * r\nfig, ax = plt.subplots(subplot_kw={\"projection\": \"polar\"})\nax.plot(theta, r)\nax.set_rticks([0.5, 1, 1.5, 2])\nax.grid(True)\nplt.show()\n\n\n1\n\nTake penguins, and then,\n\n2\n\nadd new columns for the bill ratio and bill area.\n\n3\n\nbla bla make a plot\n\n\n\n\n\n\n\nObrázek 1: Image caption here.\n\n\n\n\n\n\nLorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur tincidunt, dui lobortis interdum blandit, ex dui sollicitudin tortor, ut bibendum nisi erat at est. Cras accumsan ullamcorper posuere. Nunc eleifend dolor auctor mauris auctor pulvinar. Nunc efficitur aliquet facilisis. Quisque ultrices euismod pharetra. Pellentesque finibus neque est. In diam sapien, maximus ut libero sit amet, consequat posuere velit. Praesent a libero arcu. Aliquam volutpat nisi vitae ligula efficitur finibus. Vestibulum eu turpis bibendum, accumsan lectus a, euismod enim. Etiam eu tellus interdum, imperdiet ante ac, euismod nibh. Morbi rhoncus, turpis ac accumsan suscipit, est lorem interdum metus, eu mattis risus lectus rutrum lorem. Curabitur massa tellus, commodo auctor turpis et, finibus auctor urna. Etiam ultricies vulputate felis, in porta ex dictum ut. Nunc ullamcorper suscipit sagittis.\n\n\nDonec aliquam finibus congue. Sed aliquet elementum eleifend. Aliquam sollicitudin, urna ut sagittis semper, elit ligula dapibus purus, ullamcorper placerat augue lectus et tellus. Suspendisse luctus arcu sed ultricies varius. Aenean eu neque a orci pretium finibus. Proin condimentum diam in risus ornare viverra. Phasellus congue odio sapien, eu tempor leo facilisis nec. Sed ut ex lacinia, faucibus elit eget, pellentesque felis. Vivamus luctus quam vel rhoncus vehicula. Sed et condimentum enim.\nPellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Donec dapibus sed erat a aliquam. Donec eget maximus odio. Aliquam semper et turpis quis ullamcorper. Vivamus et magna rhoncus, lobortis velit et, porttitor augue. Donec id pharetra purus. Sed vulputate faucibus sollicitudin. Aliquam eget urna eget magna commodo facilisis ac eget mauris. Fusce ut dolor felis. Nullam nec nunc lectus. Sed sem est, efficitur id molestie eget, gravida eget mi. Nunc vitae dui aliquet purus dictum ullamcorper eget in sapien. Morbi in dignissim leo, nec euismod enim.\n\n\n\n\nPellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Donec dapibus sed erat a aliquam. Donec eget maximus odio. Aliquam semper et turpis quis ullamcorper. Vivamus et magna rhoncus, lobortis velit et, porttitor augue. Donec id pharetra purus. Sed vulputate faucibus sollicitudin. Aliquam eget urna eget magna commodo facilisis ac eget mauris. Fusce ut dolor felis. Nullam nec nunc lectus. Sed sem est, efficitur id molestie eget, gravida eget mi. Nunc vitae dui aliquet purus dictum ullamcorper eget in sapien. Morbi in dignissim leo, nec euismod enim."
   },
   {
-    "objectID": "chapter_6/concepts.html",
-    "href": "chapter_6/concepts.html",
-    "title": "Explore space!",
+    "objectID": "chapter_01/hands_on.html#subsection-here",
+    "href": "chapter_01/hands_on.html#subsection-here",
+    "title": "Jupyter and Python",
     "section": "",
-    "text": "Excepteur laboris cillum anim duis laborum. Deserunt esse do mollit consequat id ullamco ad excepteur veniam consequat. Elit qui consectetur excepteur consectetur veniam fugiat mollit exercitation. Nisi magna minim voluptate consectetur nulla ut reprehenderit voluptate consectetur id elit elit duis culpa. Occaecat nulla laborum consectetur exercitation non. Sunt consequat veniam laborum nulla tempor cupidatat anim fugiat laboris incididunt fugiat deserunt."
+    "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur tincidunt, dui lobortis interdum blandit, ex dui sollicitudin tortor, ut bibendum nisi erat at est. Cras accumsan ullamcorper posuere. Nunc eleifend dolor auctor mauris auctor pulvinar. Nunc efficitur aliquet facilisis. Quisque ultrices euismod pharetra. Pellentesque finibus neque est. In diam sapien, maximus ut libero sit amet, consequat posuere velit. Praesent a libero arcu. Aliquam volutpat nisi vitae ligula efficitur finibus. Vestibulum eu turpis bibendum, accumsan lectus a, euismod enim. Etiam eu tellus interdum, imperdiet ante ac, euismod nibh. Morbi rhoncus, turpis ac accumsan suscipit, est lorem interdum metus, eu mattis risus lectus rutrum lorem. Curabitur massa tellus, commodo auctor turpis et, finibus auctor urna. Etiam ultricies vulputate felis, in porta ex dictum ut. Nunc ullamcorper suscipit sagittis.\n\n\nDonec aliquam finibus congue. Sed aliquet elementum eleifend. Aliquam sollicitudin, urna ut sagittis semper, elit ligula dapibus purus, ullamcorper placerat augue lectus et tellus. Suspendisse luctus arcu sed ultricies varius. Aenean eu neque a orci pretium finibus. Proin condimentum diam in risus ornare viverra. Phasellus congue odio sapien, eu tempor leo facilisis nec. Sed ut ex lacinia, faucibus elit eget, pellentesque felis. Vivamus luctus quam vel rhoncus vehicula. Sed et condimentum enim.\nPellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Donec dapibus sed erat a aliquam. Donec eget maximus odio. Aliquam semper et turpis quis ullamcorper. Vivamus et magna rhoncus, lobortis velit et, porttitor augue. Donec id pharetra purus. Sed vulputate faucibus sollicitudin. Aliquam eget urna eget magna commodo facilisis ac eget mauris. Fusce ut dolor felis. Nullam nec nunc lectus. Sed sem est, efficitur id molestie eget, gravida eget mi. Nunc vitae dui aliquet purus dictum ullamcorper eget in sapien. Morbi in dignissim leo, nec euismod enim."
   },
   {
-    "objectID": "chapter_9/exercise.html",
-    "href": "chapter_9/exercise.html",
-    "title": "Learning xarray",
+    "objectID": "chapter_01/hands_on.html#another-subsection",
+    "href": "chapter_01/hands_on.html#another-subsection",
+    "title": "Jupyter and Python",
     "section": "",
-    "text": "Velit esse consectetur id aliquip magna commodo. Magna voluptate culpa culpa qui. Reprehenderit excepteur laborum deserunt velit officia cillum mollit sunt. Ut in aliqua proident fugiat ad duis commodo exercitation aliqua pariatur elit voluptate eiusmod et."
+    "text": "Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Donec dapibus sed erat a aliquam. Donec eget maximus odio. Aliquam semper et turpis quis ullamcorper. Vivamus et magna rhoncus, lobortis velit et, porttitor augue. Donec id pharetra purus. Sed vulputate faucibus sollicitudin. Aliquam eget urna eget magna commodo facilisis ac eget mauris. Fusce ut dolor felis. Nullam nec nunc lectus. Sed sem est, efficitur id molestie eget, gravida eget mi. Nunc vitae dui aliquet purus dictum ullamcorper eget in sapien. Morbi in dignissim leo, nec euismod enim."
   },
   {
-    "objectID": "chapter_9/hands_on.html",
-    "href": "chapter_9/hands_on.html",
-    "title": "Population as a raster grid",
+    "objectID": "chapter_01/concepts.html",
+    "href": "chapter_01/concepts.html",
+    "title": "What is Spatial Data Science?",
     "section": "",
-    "text": "Ex laboris adipisicing ipsum ea quis consectetur quis cillum reprehenderit. Dolor commodo incididunt irure cillum non nostrud culpa est fugiat occaecat non duis. Aute dolore laboris id tempor magna Lorem minim dolore nulla id voluptate cupidatat anim."
+    "text": "Dolore est dolor eu ipsum mollit sunt Lorem enim. Ullamco dolore ad proident proident minim qui nostrud. Dolore commodo nulla ea do ipsum elit in nisi ut nostrud velit velit. Pariatur laboris adipisicing amet dolore minim sit laboris commodo eiusmod tempor proident id ad anim."
   },
   {
-    "objectID": "chapter_9/concepts.html",
-    "href": "chapter_9/concepts.html",
-    "title": "Data as a grid",
+    "objectID": "chapter_04/exercise.html",
+    "href": "chapter_04/exercise.html",
+    "title": "Static and interactive maps",
     "section": "",
-    "text": "Excepteur dolor quis cillum occaecat eiusmod. Aliquip duis eiusmod et tempor voluptate labore adipisicing cupidatat dolore dolore pariatur enim magna commodo. Commodo quis exercitation anim nostrud occaecat enim sint consequat ad dolor enim. Ex pariatur reprehenderit ipsum mollit irure et cillum id mollit adipisicing excepteur reprehenderit dolore. Laborum nisi commodo nisi consectetur est nostrud excepteur. Duis cillum nostrud ea tempor in eu."
+    "text": "Culpa anim quis non magna eiusmod laboris ad aliqua enim elit aute eiusmod. Est velit quis elit cillum voluptate. Consequat esse excepteur enim voluptate anim excepteur esse. Est dolore exercitation id et laboris et duis minim. Tempor ad commodo est adipisicing est deserunt labore consectetur quis reprehenderit elit. Aliquip deserunt mollit laboris anim non sint nulla mollit deserunt laboris nulla reprehenderit fugiat. Ut aute ut consequat ea."
   },
   {
-    "objectID": "chapter_0/assignment.html",
-    "href": "chapter_0/assignment.html",
-    "title": "Assignment",
+    "objectID": "chapter_04/hands_on.html",
+    "href": "chapter_04/hands_on.html",
+    "title": "Mapping the world",
     "section": "",
-    "text": "This page will explain the assignment. It will be a computational essay."
+    "text": "Ut aliqua esse voluptate non id aliqua. Exercitation cillum fugiat cupidatat qui adipisicing aliquip consequat nisi minim minim. Aliquip sunt sint cupidatat magna quis deserunt aliqua duis esse consectetur reprehenderit eu aliquip."
   },
   {
-    "objectID": "chapter_0/infrastructure.html",
-    "href": "chapter_0/infrastructure.html",
-    "title": "Infrastructure",
+    "objectID": "chapter_04/concepts.html",
+    "href": "chapter_04/concepts.html",
+    "title": "Maps and MAUPs",
     "section": "",
-    "text": "This page will explain the infrastructure needed to run the course. How to install Python, Jupyter, environments and such."
+    "text": "Commodo voluptate est incididunt anim non minim officia. Fugiat tempor occaecat anim ipsum Lorem esse anim. Cillum ad exercitation anim nostrud occaecat deserunt esse elit elit proident. Irure dolor occaecat labore ipsum non cupidatat. Irure cillum dolor dolore do aute aliqua. Ad ut commodo ipsum ipsum irure in incididunt sint fugiat nulla."
   },
   {
-    "objectID": "chapter_5/exercise.html",
-    "href": "chapter_5/exercise.html",
-    "title": "Graph here, graph there",
+    "objectID": "chapter_02/exercise.html",
+    "href": "chapter_02/exercise.html",
+    "title": "Learning pandas",
     "section": "",
-    "text": "Pariatur consequat id dolor magna sunt consectetur aliqua. Fugiat commodo ut exercitation minim aliquip deserunt nisi cillum enim ex irure est fugiat. Sunt fugiat officia ipsum consequat ad ullamco ut sit deserunt irure. Commodo anim voluptate ipsum nulla voluptate reprehenderit consequat. Et enim consectetur nisi consectetur minim exercitation exercitation aute nisi irure irure veniam. Nulla id magna sunt nisi Lorem cillum ad reprehenderit aute quis est labore. Amet ad qui incididunt veniam cillum cupidatat aliquip ea consequat dolore quis qui nisi ut."
+    "text": "Dolore est dolor eu ipsum mollit sunt Lorem enim. Ullamco dolore ad proident proident minim qui nostrud. Dolore commodo nulla ea do ipsum elit in nisi ut nostrud velit velit. Pariatur laboris adipisicing amet dolore minim sit laboris commodo eiusmod tempor proident id ad anim."
   },
   {
-    "objectID": "chapter_5/hands_on.html",
-    "href": "chapter_5/hands_on.html",
-    "title": "Spatial weights in PySAL",
+    "objectID": "chapter_02/hands_on.html",
+    "href": "chapter_02/hands_on.html",
+    "title": "Data wrangling",
     "section": "",
-    "text": "Minim voluptate et adipisicing ipsum minim exercitation officia pariatur cupidatat officia. Voluptate reprehenderit aute tempor sunt. Ex Lorem laboris ad aute ad magna. Lorem labore nostrud aliquip duis reprehenderit nostrud. In adipisicing dolor ex ad tempor dolore culpa. Deserunt aliquip amet sit nostrud enim magna sit veniam velit."
+    "text": "Dolore est dolor eu ipsum mollit sunt Lorem enim. Ullamco dolore ad proident proident minim qui nostrud. Dolore commodo nulla ea do ipsum elit in nisi ut nostrud velit velit. Pariatur laboris adipisicing amet dolore minim sit laboris commodo eiusmod tempor proident id ad anim."
   },
   {
-    "objectID": "chapter_5/concepts.html",
-    "href": "chapter_5/concepts.html",
-    "title": "Space as math",
+    "objectID": "chapter_02/concepts.html",
+    "href": "chapter_02/concepts.html",
+    "title": "Open tools and open mindset",
     "section": "",
-    "text": "Ipsum excepteur tempor incididunt eiusmod veniam magna occaecat consectetur aliqua nostrud. Exercitation reprehenderit aliqua ullamco tempor. Laborum non commodo irure nostrud incididunt culpa minim occaecat tempor reprehenderit consequat et consectetur est."
+    "text": "Dolore est dolor eu ipsum mollit sunt Lorem enim. Ullamco dolore ad proident proident minim qui nostrud. Dolore commodo nulla ea do ipsum elit in nisi ut nostrud velit velit. Pariatur laboris adipisicing amet dolore minim sit laboris commodo eiusmod tempor proident id ad anim."
   },
   {
     "objectID": "chapter_11/exercise.html",
@@ -238,6 +210,27 @@
     "text": "Sint occaecat sit officia nostrud duis. Dolore magna ullamco eu irure ad esse qui ullamco Lorem. Quis elit cillum elit laborum ea reprehenderit magna. Et esse officia ullamco tempor. Labore dolore exercitation nulla qui. Laboris et et ad irure pariatur Lorem aute ad consectetur esse deserunt ipsum ea proident."
   },
   {
+    "objectID": "chapter_09/exercise.html",
+    "href": "chapter_09/exercise.html",
+    "title": "Learning xarray",
+    "section": "",
+    "text": "Velit esse consectetur id aliquip magna commodo. Magna voluptate culpa culpa qui. Reprehenderit excepteur laborum deserunt velit officia cillum mollit sunt. Ut in aliqua proident fugiat ad duis commodo exercitation aliqua pariatur elit voluptate eiusmod et."
+  },
+  {
+    "objectID": "chapter_09/hands_on.html",
+    "href": "chapter_09/hands_on.html",
+    "title": "Population as a raster grid",
+    "section": "",
+    "text": "Ex laboris adipisicing ipsum ea quis consectetur quis cillum reprehenderit. Dolor commodo incididunt irure cillum non nostrud culpa est fugiat occaecat non duis. Aute dolore laboris id tempor magna Lorem minim dolore nulla id voluptate cupidatat anim."
+  },
+  {
+    "objectID": "chapter_09/concepts.html",
+    "href": "chapter_09/concepts.html",
+    "title": "Data as a grid",
+    "section": "",
+    "text": "Excepteur dolor quis cillum occaecat eiusmod. Aliquip duis eiusmod et tempor voluptate labore adipisicing cupidatat dolore dolore pariatur enim magna commodo. Commodo quis exercitation anim nostrud occaecat enim sint consequat ad dolor enim. Ex pariatur reprehenderit ipsum mollit irure et cillum id mollit adipisicing excepteur reprehenderit dolore. Laborum nisi commodo nisi consectetur est nostrud excepteur. Duis cillum nostrud ea tempor in eu."
+  },
+  {
     "objectID": "chapter_12/exercise.html",
     "href": "chapter_12/exercise.html",
     "title": "Predict future",
@@ -259,38 +252,45 @@
     "text": "Duis enim nulla qui culpa et ad exercitation ullamco velit. Cupidatat aliquip consectetur pariatur est minim ut ullamco occaecat anim aliquip sunt. Consequat officia sit dolor id incididunt mollit voluptate magna mollit."
   },
   {
-    "objectID": "chapter_1/exercise.html",
-    "href": "chapter_1/exercise.html",
-    "title": "Understanding Markdown",
+    "objectID": "chapter_03/exercise.html",
+    "href": "chapter_03/exercise.html",
+    "title": "Learning GeoPandas",
     "section": "",
     "text": "Dolore est dolor eu ipsum mollit sunt Lorem enim. Ullamco dolore ad proident proident minim qui nostrud. Dolore commodo nulla ea do ipsum elit in nisi ut nostrud velit velit. Pariatur laboris adipisicing amet dolore minim sit laboris commodo eiusmod tempor proident id ad anim."
   },
   {
-    "objectID": "chapter_1/hands_on.html",
-    "href": "chapter_1/hands_on.html",
-    "title": "Jupyter and Python",
-    "section": "",
-    "text": "Text k obrazku cesky, hele na Obrázek 1.\n\nimport numpy as np\n1import matplotlib.pyplot as plt\n\n2r = np.arange(0, 2, 0.01)\n3theta = 2 * np.pi * r\nfig, ax = plt.subplots(subplot_kw={\"projection\": \"polar\"})\nax.plot(theta, r)\nax.set_rticks([0.5, 1, 1.5, 2])\nax.grid(True)\nplt.show()\n\n\n1\n\nTake penguins, and then,\n\n2\n\nadd new columns for the bill ratio and bill area.\n\n3\n\nbla bla make a plot\n\n\n\n\n\n\n\nObrázek 1: Image caption here.\n\n\n\n\n\n\nLorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur tincidunt, dui lobortis interdum blandit, ex dui sollicitudin tortor, ut bibendum nisi erat at est. Cras accumsan ullamcorper posuere. Nunc eleifend dolor auctor mauris auctor pulvinar. Nunc efficitur aliquet facilisis. Quisque ultrices euismod pharetra. Pellentesque finibus neque est. In diam sapien, maximus ut libero sit amet, consequat posuere velit. Praesent a libero arcu. Aliquam volutpat nisi vitae ligula efficitur finibus. Vestibulum eu turpis bibendum, accumsan lectus a, euismod enim. Etiam eu tellus interdum, imperdiet ante ac, euismod nibh. Morbi rhoncus, turpis ac accumsan suscipit, est lorem interdum metus, eu mattis risus lectus rutrum lorem. Curabitur massa tellus, commodo auctor turpis et, finibus auctor urna. Etiam ultricies vulputate felis, in porta ex dictum ut. Nunc ullamcorper suscipit sagittis.\n\n\nDonec aliquam finibus congue. Sed aliquet elementum eleifend. Aliquam sollicitudin, urna ut sagittis semper, elit ligula dapibus purus, ullamcorper placerat augue lectus et tellus. Suspendisse luctus arcu sed ultricies varius. Aenean eu neque a orci pretium finibus. Proin condimentum diam in risus ornare viverra. Phasellus congue odio sapien, eu tempor leo facilisis nec. Sed ut ex lacinia, faucibus elit eget, pellentesque felis. Vivamus luctus quam vel rhoncus vehicula. Sed et condimentum enim.\nPellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Donec dapibus sed erat a aliquam. Donec eget maximus odio. Aliquam semper et turpis quis ullamcorper. Vivamus et magna rhoncus, lobortis velit et, porttitor augue. Donec id pharetra purus. Sed vulputate faucibus sollicitudin. Aliquam eget urna eget magna commodo facilisis ac eget mauris. Fusce ut dolor felis. Nullam nec nunc lectus. Sed sem est, efficitur id molestie eget, gravida eget mi. Nunc vitae dui aliquet purus dictum ullamcorper eget in sapien. Morbi in dignissim leo, nec euismod enim.\n\n\n\n\nPellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Donec dapibus sed erat a aliquam. Donec eget maximus odio. Aliquam semper et turpis quis ullamcorper. Vivamus et magna rhoncus, lobortis velit et, porttitor augue. Donec id pharetra purus. Sed vulputate faucibus sollicitudin. Aliquam eget urna eget magna commodo facilisis ac eget mauris. Fusce ut dolor felis. Nullam nec nunc lectus. Sed sem est, efficitur id molestie eget, gravida eget mi. Nunc vitae dui aliquet purus dictum ullamcorper eget in sapien. Morbi in dignissim leo, nec euismod enim."
-  },
-  {
-    "objectID": "chapter_1/hands_on.html#subsection-here",
-    "href": "chapter_1/hands_on.html#subsection-here",
-    "title": "Jupyter and Python",
-    "section": "",
-    "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur tincidunt, dui lobortis interdum blandit, ex dui sollicitudin tortor, ut bibendum nisi erat at est. Cras accumsan ullamcorper posuere. Nunc eleifend dolor auctor mauris auctor pulvinar. Nunc efficitur aliquet facilisis. Quisque ultrices euismod pharetra. Pellentesque finibus neque est. In diam sapien, maximus ut libero sit amet, consequat posuere velit. Praesent a libero arcu. Aliquam volutpat nisi vitae ligula efficitur finibus. Vestibulum eu turpis bibendum, accumsan lectus a, euismod enim. Etiam eu tellus interdum, imperdiet ante ac, euismod nibh. Morbi rhoncus, turpis ac accumsan suscipit, est lorem interdum metus, eu mattis risus lectus rutrum lorem. Curabitur massa tellus, commodo auctor turpis et, finibus auctor urna. Etiam ultricies vulputate felis, in porta ex dictum ut. Nunc ullamcorper suscipit sagittis.\n\n\nDonec aliquam finibus congue. Sed aliquet elementum eleifend. Aliquam sollicitudin, urna ut sagittis semper, elit ligula dapibus purus, ullamcorper placerat augue lectus et tellus. Suspendisse luctus arcu sed ultricies varius. Aenean eu neque a orci pretium finibus. Proin condimentum diam in risus ornare viverra. Phasellus congue odio sapien, eu tempor leo facilisis nec. Sed ut ex lacinia, faucibus elit eget, pellentesque felis. Vivamus luctus quam vel rhoncus vehicula. Sed et condimentum enim.\nPellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Donec dapibus sed erat a aliquam. Donec eget maximus odio. Aliquam semper et turpis quis ullamcorper. Vivamus et magna rhoncus, lobortis velit et, porttitor augue. Donec id pharetra purus. Sed vulputate faucibus sollicitudin. Aliquam eget urna eget magna commodo facilisis ac eget mauris. Fusce ut dolor felis. Nullam nec nunc lectus. Sed sem est, efficitur id molestie eget, gravida eget mi. Nunc vitae dui aliquet purus dictum ullamcorper eget in sapien. Morbi in dignissim leo, nec euismod enim."
-  },
-  {
-    "objectID": "chapter_1/hands_on.html#another-subsection",
-    "href": "chapter_1/hands_on.html#another-subsection",
-    "title": "Jupyter and Python",
-    "section": "",
-    "text": "Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Donec dapibus sed erat a aliquam. Donec eget maximus odio. Aliquam semper et turpis quis ullamcorper. Vivamus et magna rhoncus, lobortis velit et, porttitor augue. Donec id pharetra purus. Sed vulputate faucibus sollicitudin. Aliquam eget urna eget magna commodo facilisis ac eget mauris. Fusce ut dolor felis. Nullam nec nunc lectus. Sed sem est, efficitur id molestie eget, gravida eget mi. Nunc vitae dui aliquet purus dictum ullamcorper eget in sapien. Morbi in dignissim leo, nec euismod enim."
-  },
-  {
-    "objectID": "chapter_1/concepts.html",
-    "href": "chapter_1/concepts.html",
-    "title": "What is Spatial Data Science?",
+    "objectID": "chapter_03/hands_on.html",
+    "href": "chapter_03/hands_on.html",
+    "title": "Bring in geography",
     "section": "",
     "text": "Dolore est dolor eu ipsum mollit sunt Lorem enim. Ullamco dolore ad proident proident minim qui nostrud. Dolore commodo nulla ea do ipsum elit in nisi ut nostrud velit velit. Pariatur laboris adipisicing amet dolore minim sit laboris commodo eiusmod tempor proident id ad anim."
+  },
+  {
+    "objectID": "chapter_03/concepts.html",
+    "href": "chapter_03/concepts.html",
+    "title": "Old and new spatial data",
+    "section": "",
+    "text": "Dolore est dolor eu ipsum mollit sunt Lorem enim. Ullamco dolore ad proident proident minim qui nostrud. Dolore commodo nulla ea do ipsum elit in nisi ut nostrud velit velit. Pariatur laboris adipisicing amet dolore minim sit laboris commodo eiusmod tempor proident id ad anim."
+  },
+  {
+    "objectID": "chapter_08/exercise.html",
+    "href": "chapter_08/exercise.html",
+    "title": "Pointy points",
+    "section": "",
+    "text": "Culpa ad aliquip magna do pariatur excepteur cillum exercitation Lorem Lorem Lorem. Veniam voluptate esse ea elit exercitation eu ex incididunt occaecat commodo amet. Eiusmod deserunt fugiat ad reprehenderit eu cupidatat laborum fugiat."
+  },
+  {
+    "objectID": "chapter_08/hands_on.html",
+    "href": "chapter_08/hands_on.html",
+    "title": "Point pattern analysis",
+    "section": "",
+    "text": "Labore laboris elit commodo in amet sit laboris ex. Ipsum qui culpa ex proident sunt irure enim qui id do esse culpa id eiusmod. Mollit adipisicing ad esse aliquip. Laboris id ut eu nisi culpa ullamco cillum culpa ad duis. Eu dolore mollit magna elit occaecat pariatur ipsum do ut. Est magna incididunt cupidatat cillum elit ea fugiat. Reprehenderit Lorem ut irure esse qui sunt reprehenderit."
+  },
+  {
+    "objectID": "chapter_08/concepts.html",
+    "href": "chapter_08/concepts.html",
+    "title": "I need more points",
+    "section": "",
+    "text": "Amet eiusmod non tempor nisi consectetur. In veniam ex voluptate amet fugiat esse. Sint consequat labore reprehenderit reprehenderit eu. Sint consequat quis eiusmod adipisicing aute velit nostrud anim."
   }
 ]
