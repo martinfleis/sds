@@ -40,54 +40,54 @@ website:
         contents:
           - text: "Overview"
             file: index.qmd
-          - chapter_0/infrastructure.qmd
-          - chapter_0/assignment.qmd
+          - chapter_00/infrastructure.qmd
+          - chapter_00/assignment.qmd
       - text: "---"
       - section: "Introduction"
         contents:
-          - chapter_1/concepts.qmd
-          - chapter_1/hands_on.qmd
-          - chapter_1/exercise.qmd
+          - chapter_01/concepts.qmd
+          - chapter_01/hands_on.qmd
+          - chapter_01/exercise.qmd
       - section: "Open Data Science"
         contents:
-          - chapter_2/concepts.qmd
-          - chapter_2/hands_on.qmd
-          - chapter_2/exercise.qmd
+          - chapter_02/concepts.qmd
+          - chapter_02/hands_on.qmd
+          - chapter_02/exercise.qmd
       - section: "Spatial data"
         contents:
-          - chapter_3/concepts.qmd
-          - chapter_3/hands_on.qmd
-          - chapter_3/exercise.qmd
+          - chapter_03/concepts.qmd
+          - chapter_03/hands_on.qmd
+          - chapter_03/exercise.qmd
       - section: "Geovisualisation"
         contents:
-          - chapter_4/concepts.qmd
-          - chapter_4/hands_on.qmd
-          - chapter_4/exercise.qmd
+          - chapter_04/concepts.qmd
+          - chapter_04/hands_on.qmd
+          - chapter_04/exercise.qmd
       - section: "Spatial weights"
         contents:
-          - chapter_5/concepts.qmd
-          - chapter_5/hands_on.qmd
-          - chapter_5/exercise.qmd
+          - chapter_05/concepts.qmd
+          - chapter_05/hands_on.qmd
+          - chapter_05/exercise.qmd
       - section: "Exploratory spatial data analysis"
         contents:
-          - chapter_6/concepts.qmd
-          - chapter_6/hands_on.qmd
-          - chapter_6/exercise.qmd
+          - chapter_06/concepts.qmd
+          - chapter_06/hands_on.qmd
+          - chapter_06/exercise.qmd
       - section: "Clustering"
         contents:
-          - chapter_7/concepts.qmd
-          - chapter_7/hands_on.qmd
-          - chapter_7/exercise.qmd
+          - chapter_07/concepts.qmd
+          - chapter_07/hands_on.qmd
+          - chapter_07/exercise.qmd
       - section: "Point patterns"
         contents:
-          - chapter_8/concepts.qmd
-          - chapter_8/hands_on.qmd
-          - chapter_8/exercise.qmd
+          - chapter_08/concepts.qmd
+          - chapter_08/hands_on.qmd
+          - chapter_08/exercise.qmd
       - section: "Raster data"
         contents:
-          - chapter_9/concepts.qmd
-          - chapter_9/hands_on.qmd
-          - chapter_9/exercise.qmd
+          - chapter_09/concepts.qmd
+          - chapter_09/hands_on.qmd
+          - chapter_09/exercise.qmd
       - section: "Feature engineering"
         contents:
           - chapter_10/concepts.qmd
