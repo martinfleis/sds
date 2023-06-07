@@ -20,7 +20,9 @@ format:
 
 website:
   repo-url: https://github.com/martinfleis/sds/
+  favicon: assets/favicon.png
   repo-actions: [issue]
+  twitter-card: true
   page-navigation: true
   page-footer:
     center: "Course material by Martin Fleischmann. Available under CC-BY-SA 4.0."
