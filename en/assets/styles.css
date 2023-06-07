@@ -38,3 +38,7 @@ code {
 div.sidebar-item-container:hover, div.sidebar-item-container:focus {
     color:rgba(249, 115, 137, 0.8)
 }
+
+div.sidebar-header {
+    text-align: center;
+}
