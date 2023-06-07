@@ -13,7 +13,7 @@ format:
     theme:
       light: flatly
       dark: darkly
-    css: styles.css
+    css: assets/styles.css
     toc: true
     smooth-scroll: true
     highlight-style: atom-one
@@ -28,8 +28,9 @@ website:
     location: sidebar
     type: overlay
   sidebar:
-    style: "floating"
+    style: floating
     collapse-level: 1
+    logo: assets/logo.svg
     tools:
       - icon: twitter
         href: https://twitter.com/martinfleis
