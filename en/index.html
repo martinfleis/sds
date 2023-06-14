@@ -20,7 +20,26 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-</style>
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
 
 
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
@@ -227,7 +246,7 @@ ul.task-list li input[type="checkbox"] {
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="false">
- <span class="menu-text">Geovisualisation</span></a>
+ <span class="menu-text">Spatial weights</span></a>
           <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -236,19 +255,19 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./chapter_04/concepts.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Maps and MAUPs</span></a>
+ <span class="menu-text">Space as math</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./chapter_04/hands_on.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Mapping the world</span></a>
+ <span class="menu-text">Spatial weights in PySAL</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./chapter_04/exercise.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Static and interactive maps</span></a>
+ <span class="menu-text">Graph here, graph there</span></a>
   </div>
 </li>
       </ul>
@@ -256,7 +275,7 @@ ul.task-list li input[type="checkbox"] {
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" aria-expanded="false">
- <span class="menu-text">Spatial weights</span></a>
+ <span class="menu-text">Exploratory spatial data analysis</span></a>
           <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -265,19 +284,19 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./chapter_05/concepts.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Space as math</span></a>
+ <span class="menu-text">Explore space!</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./chapter_05/hands_on.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Spatial weights in PySAL</span></a>
+ <span class="menu-text">Spatial autocorrelation and other ESDAs</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./chapter_05/exercise.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Graph here, graph there</span></a>
+ <span class="menu-text">Does it correlate?</span></a>
   </div>
 </li>
       </ul>
@@ -285,7 +304,7 @@ ul.task-list li input[type="checkbox"] {
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" aria-expanded="false">
- <span class="menu-text">Exploratory spatial data analysis</span></a>
+ <span class="menu-text">Point patterns</span></a>
           <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -294,19 +313,19 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./chapter_06/concepts.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Explore space!</span></a>
+ <span class="menu-text">I need more points</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./chapter_06/hands_on.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Spatial autocorrelation and other ESDAs</span></a>
+ <span class="menu-text">Point pattern analysis</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./chapter_06/exercise.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Does it correlate?</span></a>
+ <span class="menu-text">Pointy points</span></a>
   </div>
 </li>
       </ul>
@@ -343,7 +362,7 @@ ul.task-list li input[type="checkbox"] {
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-9" aria-expanded="false">
- <span class="menu-text">Point patterns</span></a>
+ <span class="menu-text">Raster data</span></a>
           <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-9" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -352,19 +371,19 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./chapter_08/concepts.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">I need more points</span></a>
+ <span class="menu-text">Data as a grid</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./chapter_08/hands_on.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Point pattern analysis</span></a>
+ <span class="menu-text">Population as a raster grid</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./chapter_08/exercise.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Pointy points</span></a>
+ <span class="menu-text">Learning xarray</span></a>
   </div>
 </li>
       </ul>
@@ -372,7 +391,7 @@ ul.task-list li input[type="checkbox"] {
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-10" aria-expanded="false">
- <span class="menu-text">Raster data</span></a>
+ <span class="menu-text">Inequality</span></a>
           <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-10" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -381,19 +400,19 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./chapter_09/concepts.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Data as a grid</span></a>
+ <span class="menu-text">Where is equal?</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./chapter_09/hands_on.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Population as a raster grid</span></a>
+ <span class="menu-text">Spatial Inequality Dynamics</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./chapter_09/exercise.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Learning xarray</span></a>
+ <span class="menu-text">Locating inequality</span></a>
   </div>
 </li>
       </ul>
@@ -491,7 +510,17 @@ ul.task-list li input[type="checkbox"] {
 <div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#aims" id="toc-aims" class="nav-link active" data-scroll-target="#aims">Aims</a></li>
+  <li><a href="#learning-outcomes" id="toc-learning-outcomes" class="nav-link" data-scroll-target="#learning-outcomes">Learning outcomes</a></li>
+  <li><a href="#prerequisites" id="toc-prerequisites" class="nav-link" data-scroll-target="#prerequisites">Prerequisites</a></li>
+  <li><a href="#course-structure" id="toc-course-structure" class="nav-link" data-scroll-target="#course-structure">Course structure</a></li>
+  <li><a href="#literature" id="toc-literature" class="nav-link" data-scroll-target="#literature">Literature</a></li>
+  </ul>
+<div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/martinfleis/sds/issues/new" class="toc-action">Report an issue</a></p></div></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -513,13 +542,75 @@ ul.task-list li input[type="checkbox"] {
 
 </header>
 
+<div class="callout callout-style-default callout-caution callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Caution
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>This course material is currently under construction and is likely incomplete. The final version will be released in October 2023.</p>
+</div>
+</div>
 <p>This will be a course on Spatial Data Science for Social Geography.</p>
-<p>The course will be taught in-person at the Charles University in Prague from October 2023.</p>
+<p>The course will be taught in person at Charles University in Prague from October 2023.</p>
 <p>More information will be shared closer to the starting date.</p>
+<section id="aims" class="level2">
+<h2 class="anchored" data-anchor-id="aims">Aims</h2>
+<p>TBD</p>
+<div class="callout callout-style-simple callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Is it only for social geography?
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The course revolves around data typically used in social geography but its applicability is by no means limited to social geography. In practice, you will work more with vector data than rasters (although we cover those a bit as well) and often with data capturing various aspects of human life. The spatial data science concepts, however, are universal.</p>
+</div>
+</div>
+</section>
+<section id="learning-outcomes" class="level2">
+<h2 class="anchored" data-anchor-id="learning-outcomes">Learning outcomes</h2>
+<p>After finishing the course, students will be able to:</p>
+<ul>
+<li>TBD</li>
+</ul>
+</section>
+<section id="prerequisites" class="level2">
+<h2 class="anchored" data-anchor-id="prerequisites">Prerequisites</h2>
+<p>This course assumes an understanding of geography and its key concepts (e.g.&nbsp;coordinate reference systems or the Modifiable Areal Unit Problem <span class="citation" data-cites="openshaw1983modifiable">(<a href="#ref-openshaw1983modifiable" role="doc-biblioref">Openshaw 1983</a>)</span>), at least basic familiarity with GIS (like file formats and basic spatial data manipulation) and a basic understanding of statistics (e.g.&nbsp;understanding the concept of regression), optimally with some spatial component (geographically weighted regression). While the course will briefly explain these topics, it will not cover the theory and statistics behind these concepts in detail.</p>
+<p>No prior experience with programming or computer science is needed, although a positive attitude towards these topics is necessary.</p>
+</section>
+<section id="course-structure" class="level2">
+<h2 class="anchored" data-anchor-id="course-structure">Course structure</h2>
+<p>The material is planned for 12 weeks with one session per week. Each session is divided into three parts - <em>Concepts</em>, <em>Hands-on</em> and <em>Exercise</em>, following the model proposed by <span class="citation" data-cites="darribas_gds_course">Arribas-Bel (<a href="#ref-darribas_gds_course" role="doc-biblioref">2019</a>)</span>. <em>Concepts</em> have a form of a lecture covering conceptual aspects of the topic of the day, providing necessary theoretical background before digging into code. This part can be nicknamed <span class="accent">“I do”</span>. <em>Hands-on</em> contains documented code in a form of a Jupyter notebook which is executed in parallel by a lecturer, providing an additional explanation, and by students. Therefore, we have a part <span class="accent">“We do”</span>. <em>Exercise</em> is a set of tasks that are to be performed by students individually, with an occasional guidance by the lecturer. So we finish the day with <span class="accent">“You do”</span>.</p>
+<p>For enrolled students of Charles University, the course will finish with a written assignment in a form of a computational essay. See the <a href="./chapter_00/assignment.html">Assignment</a> section for details.</p>
+</section>
+<section id="literature" class="level2">
+<h2 class="anchored" data-anchor-id="literature">Literature</h2>
+<p>The course loosely follows the contents of the <strong>Geographic Data Science with Python</strong> by <span class="citation" data-cites="rey2023geographic">Rey, Arribas-Bel, and Wolf (<a href="#ref-rey2023geographic" role="doc-biblioref">2023</a>)</span>. The online version of the book is available under open access from <a href="https://geographicdata.science/book">geographicdata.science/book</a>. It is recommended to use the online version over the printed one, although this is entirely up to you.</p>
 
 
 
-</main> <!-- /main -->
+</section>
+
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" role="list">
+<div id="ref-darribas_gds_course" class="csl-entry" role="listitem">
+Arribas-Bel, Dani. 2019. <span>“A Course on Geographic Data Science.”</span> <em>The Journal of Open Source Education</em> 2 (14). https://doi.org/<a href="https://doi.org/10.21105/jose.00042">https://doi.org/10.21105/jose.00042</a>.
+</div>
+<div id="ref-openshaw1983modifiable" class="csl-entry" role="listitem">
+Openshaw, S. 1983. <em>The Modifiable Areal Unit Problem</em>. Concepts and Techniques in Modern Geography. <span>Geo Books</span>.
+</div>
+<div id="ref-rey2023geographic" class="csl-entry" role="listitem">
+Rey, Sergio, Dani Arribas-Bel, and Levi John Wolf. 2023. <em>Geographic Data Science with Python</em>. Chapman &amp; Hall/CRC Texts in Statistical Science. London, England: Taylor &amp; Francis.
+</div>
+</div></section></div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
@@ -883,7 +974,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     <div class="nav-footer-left">
       &nbsp;
     </div>   
-    <div class="nav-footer-center">Course material by Martin Fleischmann. Available under CC-BY-SA 4.0.<div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/martinfleis/sds/issues/new" class="toc-action">Report an issue</a></p></div></div></div>
+    <div class="nav-footer-center">Course material by Martin Fleischmann. Available under CC-BY-SA 4.0.</div>
     <div class="nav-footer-right">
       &nbsp;
     </div>
