@@ -1,6 +1,9 @@
 ---
-title: "Point pattern analysis"
+title: "Population as a raster grid"
 format: html
 ---
 
-Labore laboris elit commodo in amet sit laboris ex. Ipsum qui culpa ex proident sunt irure enim qui id do esse culpa id eiusmod. Mollit adipisicing ad esse aliquip. Laboris id ut eu nisi culpa ullamco cillum culpa ad duis. Eu dolore mollit magna elit occaecat pariatur ipsum do ut. Est magna incididunt cupidatat cillum elit ea fugiat. Reprehenderit Lorem ut irure esse qui sunt reprehenderit.
+Population grids, aggregations, sampling
+
+Bonus - LISA on raster
+Bonus 2 - Xvec

@@ -3,4 +3,14 @@ title: "Similar data belong together"
 format: html
 ---
 
-Sint dolor pariatur labore pariatur irure eu ullamco pariatur ullamco esse labore aute eu. Nostrud velit irure amet enim eiusmod excepteur in fugiat et ipsum. Labore exercitation officia ea non est.
+Intro to clustering
+
+- benefits of clustering
+- non-spatial clustering methods
+- spatial clustering (regionalisation)
+
+::: {.callout-tip}
+## Related reading
+
+Chapter [_Clustering and Regionalization_](https://geographicdata.science/book/notebooks/10_clustering_and_regionalization.html) from the Geographic Data Science with Python by Rey, Arribas-Bel and Wolf (2023).
+:::

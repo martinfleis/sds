@@ -1,6 +1,6 @@
 ---
-title: "Pointy points"
+title: "Learning xarray"
 format: html
 ---
 
-Culpa ad aliquip magna do pariatur excepteur cillum exercitation Lorem Lorem Lorem. Veniam voluptate esse ea elit exercitation eu ex incididunt occaecat commodo amet. Eiusmod deserunt fugiat ad reprehenderit eu cupidatat laborum fugiat.
+Analysis of a country's population based on WorldPop data.

@@ -1,5 +1,5 @@
 ---
-title: "Learning xarray"
+title: "Locating inequality"
 format: html
 ---
 

@@ -1,6 +1,9 @@
 ---
-title: "Spatial weights in PySAL"
+title: "Spatial autocorrelation and other ESDAs"
 format: html
 ---
 
-Minim voluptate et adipisicing ipsum minim exercitation officia pariatur cupidatat officia. Voluptate reprehenderit aute tempor sunt. Ex Lorem laboris ad aute ad magna. Lorem labore nostrud aliquip duis reprehenderit nostrud. In adipisicing dolor ex ad tempor dolore culpa. Deserunt aliquip amet sit nostrud enim magna sit veniam velit.
+- Global autocorrelation with `esda` (Join counts, Moran [plot and statistics])
+- Local autocorrelation (Local Moran) and an effect of weights creation
+
+- bonus - other stats (Geary, Getis and Ord)

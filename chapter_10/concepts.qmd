@@ -3,4 +3,13 @@ title: "Use space in your favour"
 format: html
 ---
 
-Commodo enim esse aliquip eiusmod deserunt sit aliqua. Esse excepteur aliquip ut exercitation fugiat irure ut et. Proident excepteur consectetur officia magna. Deserunt eu non dolor ut labore veniam velit sit pariatur laboris anim incididunt.
+- Feature engineering intro
+- Non-spatial feature eng
+- Map matching
+- Map synthesis
+
+::: {.callout-tip}
+## Related reading
+
+Chapter [_Spatial Feature Engineering_](https://geographicdata.science/book/notebooks/12_feature_engineering.html) from the Geographic Data Science with Python by Rey, Arribas-Bel and Wolf (2023).
+:::

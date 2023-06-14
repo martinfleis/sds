@@ -3,4 +3,12 @@ title: "Relationship and prediction"
 format: html
 ---
 
-Sint occaecat sit officia nostrud duis. Dolore magna ullamco eu irure ad esse qui ullamco Lorem. Quis elit cillum elit laborum ea reprehenderit magna. Et esse officia ullamco tempor. Labore dolore exercitation nulla qui. Laboris et et ad irure pariatur Lorem aute ad consectetur esse deserunt ipsum ea proident.
+- non-spatial regression
+- GWR
+- MGWR
+
+::: {.callout-tip}
+## Related reading
+
+Chapter [_Spatial Regression_](https://geographicdata.science/book/notebooks/11_regression.html) from the Geographic Data Science with Python by Rey, Arribas-Bel and Wolf (2023).
+:::

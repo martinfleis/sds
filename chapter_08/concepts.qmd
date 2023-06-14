@@ -1,6 +1,15 @@
 ---
-title: "I need more points"
+title: "Data as a grid"
 format: html
 ---
 
-Amet eiusmod non tempor nisi consectetur. In veniam ex voluptate amet fugiat esse. Sint consequat labore reprehenderit reprehenderit eu. Sint consequat quis eiusmod adipisicing aute velit nostrud anim.
+Intro to rasters and xarray
+DataArray and Dataset
+N-Dimensional data structures
+
+::: {.callout-tip}
+## Related reading
+
+Parts of the chapter [_Spatial Data_](https://geographicdata.science/book/notebooks/03_spatial_data.html) dealing with raster data from
+the Geographic Data Science with Python by Rey, Arribas-Bel and Wolf (2023).
+:::

@@ -2,5 +2,16 @@
 title: "What is Spatial Data Science?"
 format: html
 ---
+Conceptual:
 
-Dolore est dolor eu ipsum mollit sunt Lorem enim. Ullamco dolore ad proident proident minim qui nostrud. Dolore commodo nulla ea do ipsum elit in nisi ut nostrud velit velit. Pariatur laboris adipisicing amet dolore minim sit laboris commodo eiusmod tempor proident id ad anim.
+- What is data science?
+- What is spatial data science?
+- What can you do with it?
+
+Practical:
+
+- Python and its infrastructure
+- Environments and containers
+- Jupyter notebook as a file format
+- JupyterLab as an interface
+- Other options if you'd like

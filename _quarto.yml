@@ -61,17 +61,17 @@ website:
           - chapter_03/concepts.qmd
           - chapter_03/hands_on.qmd
           - chapter_03/exercise.qmd
-      - section: "Geovisualisation"
+      - section: "Spatial weights"
         contents:
           - chapter_04/concepts.qmd
           - chapter_04/hands_on.qmd
           - chapter_04/exercise.qmd
-      - section: "Spatial weights"
+      - section: "Exploratory spatial data analysis"
         contents:
           - chapter_05/concepts.qmd
           - chapter_05/hands_on.qmd
           - chapter_05/exercise.qmd
-      - section: "Exploratory spatial data analysis"
+      - section: "Point patterns"
         contents:
           - chapter_06/concepts.qmd
           - chapter_06/hands_on.qmd
@@ -81,12 +81,12 @@ website:
           - chapter_07/concepts.qmd
           - chapter_07/hands_on.qmd
           - chapter_07/exercise.qmd
-      - section: "Point patterns"
+      - section: "Raster data"
         contents:
           - chapter_08/concepts.qmd
           - chapter_08/hands_on.qmd
           - chapter_08/exercise.qmd
-      - section: "Raster data"
+      - section: "Inequality"
         contents:
           - chapter_09/concepts.qmd
           - chapter_09/hands_on.qmd

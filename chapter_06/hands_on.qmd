@@ -1,6 +1,8 @@
 ---
-title: "Spatial autocorrelation and other ESDAs"
+title: "Point pattern analysis"
 format: html
 ---
 
-Ea dolor cillum excepteur excepteur. Dolor adipisicing in ea velit excepteur reprehenderit duis culpa sunt. Pariatur officia cupidatat reprehenderit aliqua fugiat est non tempor incididunt do deserunt eu.
+- Point pattern visualisation
+- Centrography
+- Randomness and Clustering

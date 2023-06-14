@@ -3,4 +3,13 @@ title: "Old and new spatial data"
 format: html
 ---
 
-Dolore est dolor eu ipsum mollit sunt Lorem enim. Ullamco dolore ad proident proident minim qui nostrud. Dolore commodo nulla ea do ipsum elit in nisi ut nostrud velit velit. Pariatur laboris adipisicing amet dolore minim sit laboris commodo eiusmod tempor proident id ad anim.
+- traditional GIS data
+- new forms of data
+- new dimensions of data
+
+::: {.callout-tip}
+## Related reading
+
+Parts of the chapter [_Spatial Data_](https://geographicdata.science/book/notebooks/03_spatial_data.html) dealing with tabular data from
+the Geographic Data Science with Python by Rey, Arribas-Bel and Wolf (2023).
+:::

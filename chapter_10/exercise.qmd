@@ -3,4 +3,4 @@ title: "Interpolation and friends"
 format: html
 ---
 
-Sit aute culpa do ipsum in in. Sit excepteur amet duis proident id voluptate anim culpa nostrud amet ullamco adipisicing Lorem. Lorem dolor do mollit nostrud sint esse anim do ad cupidatat cupidatat.
+Similar tasks on different data

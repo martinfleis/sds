@@ -1,6 +1,13 @@
 ---
-title: "Data as a grid"
+title: "Where is equal?"
 format: html
 ---
 
-Excepteur dolor quis cillum occaecat eiusmod. Aliquip duis eiusmod et tempor voluptate labore adipisicing cupidatat dolore dolore pariatur enim magna commodo. Commodo quis exercitation anim nostrud occaecat enim sint consequat ad dolor enim. Ex pariatur reprehenderit ipsum mollit irure et cillum id mollit adipisicing excepteur reprehenderit dolore. Laborum nisi commodo nisi consectetur est nostrud excepteur. Duis cillum nostrud ea tempor in eu.
+Introduction of inequality
+Global inequality, spaital inequality
+
+::: {.callout-tip}
+## Related reading
+
+Chapter [_Spatial Inequality Dynamics_](https://geographicdata.science/book/notebooks/09_spatial_inequality.html) from the Geographic Data Science with Python by Rey, Arribas-Bel and Wolf (2023).
+:::

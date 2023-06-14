@@ -1,6 +1,9 @@
 ---
-title: "Static and interactive maps"
+title: "Graph here, graph there"
 format: html
 ---
 
-Culpa anim quis non magna eiusmod laboris ad aliqua enim elit aute eiusmod. Est velit quis elit cillum voluptate. Consequat esse excepteur enim voluptate anim excepteur esse. Est dolore exercitation id et laboris et duis minim. Tempor ad commodo est adipisicing est deserunt labore consectetur quis reprehenderit elit. Aliquip deserunt mollit laboris anim non sint nulla mollit deserunt laboris nulla reprehenderit fugiat. Ut aute ut consequat ea.
+Exercise on creation and transformation of weights. Make them understand what is the
+structure and how to work with it.
+
+Inlcude lags.

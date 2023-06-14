@@ -1,6 +1,14 @@
 ---
-title: "Explore space!"
+title: "I need more points"
 format: html
 ---
 
-Excepteur laboris cillum anim duis laborum. Deserunt esse do mollit consequat id ullamco ad excepteur veniam consequat. Elit qui consectetur excepteur consectetur veniam fugiat mollit exercitation. Nisi magna minim voluptate consectetur nulla ut reprehenderit voluptate consectetur id elit elit duis culpa. Occaecat nulla laborum consectetur exercitation non. Sunt consequat veniam laborum nulla tempor cupidatat anim fugiat laboris incididunt fugiat deserunt.
+- What are point patterns
+- how to visualise them
+- how to cluster them
+
+::: {.callout-tip}
+## Related reading
+
+Chapter [_Point Pattern Analysis_](https://geographicdata.science/book/notebooks/08_point_pattern_analysis.html) from the Geographic Data Science with Python by Rey, Arribas-Bel and Wolf (2023).
+:::

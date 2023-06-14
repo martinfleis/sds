@@ -1,5 +1,5 @@
 ---
-title: "Population as a raster grid"
+title: "Spatial Inequality Dynamics"
 format: html
 ---
 

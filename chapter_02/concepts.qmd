@@ -3,4 +3,15 @@ title: "Open tools and open mindset"
 format: html
 ---
 
-Dolore est dolor eu ipsum mollit sunt Lorem enim. Ullamco dolore ad proident proident minim qui nostrud. Dolore commodo nulla ea do ipsum elit in nisi ut nostrud velit velit. Pariatur laboris adipisicing amet dolore minim sit laboris commodo eiusmod tempor proident id ad anim.
+Introduction to open science, reproducibility, open mindset, open culture.
+
+How that translates into tools.
+
+Learn how to ask questions, how to read documentation and how to find help.
+
+::: {.callout-tip}
+## Related reading
+
+Chapter [_Computational Tools for Geographic Data Science_](https://geographicdata.science/book/notebooks/02_geospatial_computational_environment.html) from
+the Geographic Data Science with Python by Rey, Arribas-Bel and Wolf (2023).
+:::

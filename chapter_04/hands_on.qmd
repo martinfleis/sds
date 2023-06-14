@@ -1,6 +1,12 @@
 ---
-title: "Mapping the world"
+title: "Spatial weights in PySAL"
 format: html
 ---
 
-Ut aliqua esse voluptate non id aliqua. Exercitation cillum fugiat cupidatat qui adipisicing aliquip consequat nisi minim minim. Aliquip sunt sint cupidatat magna quis deserunt aliqua duis esse consectetur reprehenderit eu aliquip.
+- `libpysal` and creation of various kinds of weights matrices and operations on them.
+- spatial lag and its relationship to weight value and transformation method.
+
+Need to figure out if I should teach current `W` or the new one from the `experimental`
+namespace. Probably will have to stick to the current one as the rest of PySAL might not
+work with the new one by October. Let's check with the PySAL team. Would be awesome to
+teach the new class.

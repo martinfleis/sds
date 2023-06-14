@@ -6,6 +6,13 @@ format:
 jupyter: python3
 ---
 
+- Computer science 101
+- Command line / Terminal
+- Mamba / Docker / Colab
+- Get your env running
+- IDE (JLab / Colab)
+- Jupyter notebook
+
 :::  {.content-visible when-profile="english"}
 # Numpy basics
 
