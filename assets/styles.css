@@ -42,3 +42,7 @@ div.sidebar-item-container:hover, div.sidebar-item-container:focus {
 div.sidebar-header {
     text-align: center;
 }
+
+.sidebar-navigation li a {
+    cursor: pointer;
+}
