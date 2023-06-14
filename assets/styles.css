@@ -46,3 +46,7 @@ div.sidebar-header {
 .sidebar-navigation li a {
     cursor: pointer;
 }
+
+.accent {
+    color: rgb(37, 180, 151)
+}

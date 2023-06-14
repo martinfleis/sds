@@ -3,3 +3,11 @@ title: "Infrastructure"
 ---
 
 This page will explain the infrastructure needed to run the course. How to install Python, Jupyter, environments and such.
+
+## Communication
+
+We will have Slack? Teams? Google something?
+
+## Tech
+
+Environments...

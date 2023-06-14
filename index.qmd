@@ -1,10 +1,74 @@
 ---
 title: "Spatial Data Science for Social Geography"
 format: "html"
+bibliography: assets/references.bib
 ---
+
+::: {.callout-caution}
+This course material is currently under construction and is likely incomplete. The final
+version will be released in October 2023.
+:::
 
 This will be a course on Spatial Data Science for Social Geography.
 
-The course will be taught in-person at the Charles University in Prague from October 2023.
+The course will be taught in person at Charles University in Prague from October 2023.
 
 More information will be shared closer to the starting date.
+
+## Aims
+
+TBD
+
+::: {.callout-note appearance="simple"}
+
+## Is it only for social geography?
+
+The course revolves around data typically used in social geography but its applicability
+is by no means limited to social geography. In practice, you will work more with vector
+data than rasters (although we cover those a bit as well) and often with data capturing
+various aspects of human life. The spatial data science concepts, however, are universal.
+
+:::
+
+## Learning outcomes
+
+After finishing the course, students will be able to:
+
+- TBD
+
+## Prerequisites
+
+This course assumes an understanding of geography and its key concepts (e.g. coordinate
+reference systems or the Modifiable Areal Unit Problem [@openshaw1983modifiable]), at
+least basic familiarity with GIS (like file formats and basic spatial data manipulation)
+and a basic understanding of statistics (e.g. understanding the concept of regression),
+optimally with some spatial component (geographically weighted regression). While
+the course will briefly explain these topics, it will not cover the theory and
+statistics behind these concepts in detail.
+
+No prior experience with programming or computer science is needed, although a positive
+attitude towards these topics is necessary.
+
+## Course structure
+
+The material is planned for 12 weeks with one session per week. Each session
+is divided into three parts - _Concepts_, _Hands-on_ and _Exercise_, following the model
+proposed by @darribas_gds_course. _Concepts_ have a form of a lecture covering conceptual
+aspects of the topic of the day, providing necessary theoretical background before digging into code. This part can be nicknamed ["I do"]{.accent}.
+_Hands-on_ contains documented code in a form of a Jupyter notebook which is executed in
+parallel by a lecturer, providing an additional explanation, and by students. Therefore, we have a part ["We do"]{.accent}.
+_Exercise_ is a set of tasks that are to be performed by students individually, with an
+occasional guidance by the lecturer. So we finish the day with ["You do"]{.accent}.
+
+For enrolled students of Charles University, the course will finish with a written
+assignment in a form of a computational essay. See the
+[Assignment](chapter_00/assignment.qmd) section for details.
+
+## Literature
+
+The course loosely follows the contents of the **Geographic Data Science with Python**
+by @rey2023geographic. The online version of the book is available under open access
+from [geographicdata.science/book](https://geographicdata.science/book). It is
+recommended to use the online version over the printed one, although this is entirely up
+to you.
+
