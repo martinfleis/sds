@@ -25,7 +25,7 @@ website:
   twitter-card: true
   page-navigation: true
   page-footer:
-    center: "Course material by Martin Fleischmann. Available under CC-BY-SA 4.0."
+    center: "Course material by [Martin Fleischmann](https://martinfleischmann.net). Available under [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)."
   search:
     location: sidebar
     type: overlay
