@@ -519,6 +519,7 @@ div.csl-indent {
   <li><a href="#prerequisites" id="toc-prerequisites" class="nav-link" data-scroll-target="#prerequisites">Prerequisites</a></li>
   <li><a href="#course-structure" id="toc-course-structure" class="nav-link" data-scroll-target="#course-structure">Course structure</a></li>
   <li><a href="#literature" id="toc-literature" class="nav-link" data-scroll-target="#literature">Literature</a></li>
+  <li><a href="#attribution" id="toc-attribution" class="nav-link" data-scroll-target="#attribution">Attribution</a></li>
   </ul>
 <div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/martinfleis/sds/issues/new" class="toc-action">Report an issue</a></p></div></div></nav>
     </div>
@@ -555,12 +556,17 @@ Caution
 <p>This course material is currently under construction and is likely incomplete. The final version will be released in October 2023.</p>
 </div>
 </div>
-<p>This will be a course on Spatial Data Science for Social Geography.</p>
-<p>The course will be taught in person at Charles University in Prague from October 2023.</p>
-<p>More information will be shared closer to the starting date.</p>
+<p>Spatial Data Science for Social Geography course introduces data science and computational analysis using open source tools written in the Python programming language to the curriculum of students of geography.</p>
+<p>The course is taught in person at Charles University in Prague from October 2023.</p>
 <section id="aims" class="level2">
 <h2 class="anchored" data-anchor-id="aims">Aims</h2>
-<p>TBD</p>
+<p>The module provides students with little or no prior knowledge of core competencies in Spatial Data Science (SDS). It includes:</p>
+<ul>
+<li>Advancing their statistical and numerical literacy.</li>
+<li>Introducing basic principles of programming and state-of-the-art computational tools for SDS.</li>
+<li>Presenting a comprehensive overview of the main methodologies available to the Spatial Data Scientist and their intuition on how and when they can be applied.</li>
+<li>Focusing on real-world applications of these techniques in a geographical and applied context.</li>
+</ul>
 <div class="callout callout-style-simple callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -571,7 +577,7 @@ Is it only for social geography?
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>The course revolves around data typically used in social geography but its applicability is by no means limited to social geography. In practice, you will work more with vector data than rasters (although we cover those a bit as well) and often with data capturing various aspects of human life. The spatial data science concepts, however, are universal.</p>
+<p>The course revolves around data typically used in social geography, but its applicability is not limited to social geography. In practice, you will work more with vector data than rasters (although we cover those a bit as well) and often with data capturing various aspects of human life. The spatial data science concepts, however, are universal.</p>
 </div>
 </div>
 </section>
@@ -579,7 +585,11 @@ Is it only for social geography?
 <h2 class="anchored" data-anchor-id="learning-outcomes">Learning outcomes</h2>
 <p>After finishing the course, students will be able to:</p>
 <ul>
-<li>TBD</li>
+<li>Demonstrate understanding of advanced concepts of spatial data science and use the open tools to load and analyze spatial data.</li>
+<li>Understand the motivation and inner logic of the main methodological approaches of open SDS.</li>
+<li>Critically evaluate the suitability of a specific technique, what it can offer, and how it can help answer questions of interest.</li>
+<li>Apply several spatial analysis techniques and explain how to interpret the results in the process of turning data into information.</li>
+<li>Work independently using SDS tools to extract valuable insight when faced with a new dataset.</li>
 </ul>
 </section>
 <section id="prerequisites" class="level2">
@@ -589,12 +599,29 @@ Is it only for social geography?
 </section>
 <section id="course-structure" class="level2">
 <h2 class="anchored" data-anchor-id="course-structure">Course structure</h2>
-<p>The material is planned for 12 weeks with one session per week. Each session is divided into three parts - <em>Concepts</em>, <em>Hands-on</em> and <em>Exercise</em>, following the model proposed by <span class="citation" data-cites="darribas_gds_course">Arribas-Bel (<a href="#ref-darribas_gds_course" role="doc-biblioref">2019</a>)</span>. <em>Concepts</em> have a form of a lecture covering conceptual aspects of the topic of the day, providing necessary theoretical background before digging into code. This part can be nicknamed <span class="accent">“I do”</span>. <em>Hands-on</em> contains documented code in a form of a Jupyter notebook which is executed in parallel by a lecturer, providing an additional explanation, and by students. Therefore, we have a part <span class="accent">“We do”</span>. <em>Exercise</em> is a set of tasks that are to be performed by students individually, with an occasional guidance by the lecturer. So we finish the day with <span class="accent">“You do”</span>.</p>
-<p>For enrolled students of Charles University, the course will finish with a written assignment in a form of a computational essay. See the <a href="./chapter_00/assignment.html">Assignment</a> section for details.</p>
+<p>The material is planned for 12 weeks, with one session per week. Each session is divided into three parts - <em>Concepts</em>, <em>Hands-on</em> and <em>Exercise</em>, following the model proposed by <span class="citation" data-cites="darribas_gds_course">Arribas-Bel (<a href="#ref-darribas_gds_course" role="doc-biblioref">2019</a>)</span>. <em>Concepts</em> have a form of a lecture covering conceptual aspects of the day’s topic, providing necessary theoretical background before digging into code. This part can be nicknamed <span class="accent">“I do”</span>. <em>Hands-on</em> contains documented code in a Jupyter notebook, executed in parallel by a lecturer, providing an additional explanation, and by students. Therefore, we have a part <span class="accent">“We do”</span>. <em>Exercise</em> is a set of tasks to be performed by students individually, with occasional guidance by the lecturer. So we finish the day with <span class="accent">“You do”</span>.</p>
+<p>For enrolled students of Charles University, the course will finish with a written assignment in the form of a computational essay. See the <a href="./chapter_00/assignment.html">Assignment</a> section for details.</p>
 </section>
 <section id="literature" class="level2">
 <h2 class="anchored" data-anchor-id="literature">Literature</h2>
-<p>The course loosely follows the contents of the <strong>Geographic Data Science with Python</strong> by <span class="citation" data-cites="rey2023geographic">Rey, Arribas-Bel, and Wolf (<a href="#ref-rey2023geographic" role="doc-biblioref">2023</a>)</span>. The online version of the book is available under open access from <a href="https://geographicdata.science/book">geographicdata.science/book</a>. It is recommended to use the online version over the printed one, although this is entirely up to you.</p>
+<p>The course loosely follows the contents of the <strong>Geographic Data Science with Python</strong> by <span class="citation" data-cites="rey2023geographic">Rey, Arribas-Bel, and Wolf (<a href="#ref-rey2023geographic" role="doc-biblioref">2023</a>)</span>. The online version of the book is available under open access from <a href="https://geographicdata.science/book">geographicdata.science/book</a>. Using the online version over the printed one is recommended, although this is entirely up to you.</p>
+<div class="callout callout-style-simple callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Spatial or geographic data science?
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Spatial data science and geographic data science are often treated as synonyms. In some interpretations, <em>spatial</em> is broader than <em>geographic</em>. In this case, we do <em>spatial […] for […] geography</em>, which is, in principle, geographic data science. We will treat both terms as equal within the context of this course.</p>
+</div>
+</div>
+</section>
+<section id="attribution" class="level2">
+<h2 class="anchored" data-anchor-id="attribution">Attribution</h2>
+<p>The course material is partially derived from <em>A Course on Geographic Data Science</em> by <span class="citation" data-cites="darribas_gds_course">Arribas-Bel (<a href="#ref-darribas_gds_course" role="doc-biblioref">2019</a>)</span>. Thanks, Dani!</p>
 
 
 
@@ -602,7 +629,7 @@ Is it only for social geography?
 
 <div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" role="list">
 <div id="ref-darribas_gds_course" class="csl-entry" role="listitem">
-Arribas-Bel, Dani. 2019. <span>“A Course on Geographic Data Science.”</span> <em>The Journal of Open Source Education</em> 2 (14). https://doi.org/<a href="https://doi.org/10.21105/jose.00042">https://doi.org/10.21105/jose.00042</a>.
+Arribas-Bel, Dani. 2019. <span>“A Course on Geographic Data Science.”</span> <em>The Journal of Open Source Education</em> 2 (14). <a href="https://doi.org/10.21105/jose.00042">https://doi.org/10.21105/jose.00042</a>.
 </div>
 <div id="ref-openshaw1983modifiable" class="csl-entry" role="listitem">
 Openshaw, S. 1983. <em>The Modifiable Areal Unit Problem</em>. Concepts and Techniques in Modern Geography. <span>Geo Books</span>.
@@ -974,7 +1001,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     <div class="nav-footer-left">
       &nbsp;
     </div>   
-    <div class="nav-footer-center">Course material by Martin Fleischmann. Available under CC-BY-SA 4.0.</div>
+    <div class="nav-footer-center">Course material by <a href="https://martinfleischmann.net">Martin Fleischmann</a>. Available under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a>.</div>
     <div class="nav-footer-right">
       &nbsp;
     </div>
