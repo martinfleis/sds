@@ -1,8 +1,41 @@
 ---
-title: "Understanding Markdown"
+title: "Understanding Notebooks"
 format: html
 ---
 
-- Study markdown syntax
-- Try replicating existing text
-- A bonus: MyST markdown extension
+This is a ["You do"]{.accent} part of the first lesson.
+
+You now know what a Jupyter Notebook is, how to work with it in Jupyter Lab
+(or Google Colab) and how to run Python code in its cells. Let's now move attention to
+cells with text.
+
+## Master Markdown
+
+The text in Jupyter Notebooks is formatted using Markdown, a straightforward syntax allowing you to format text, embed images or tables, and keep everything as plain text.
+
+For this task, you will focus on getting to know Markdown better. To practise its syntax, try to reproduce the following Wikipedia entry:
+
+> [https://en.wikipedia.org/wiki/Waldo_R._Tobler](https://en.wikipedia.org/wiki/Waldo_R._Tobler)
+
+You should be able to figure out the proper Markdown syntax by yourself, with some help from your favourite search engine or AI (yes, usage of AI tools like ChatGPT or Bard is allowed and possible even encouraged in this course).
+
+::: {.callout-tip}
+Do not overthink it. Focus on correctly formatting the bold, italics, links, headlines, and lists, but don’t worry too much about the overall layout. Bonus if you also manage to insert the image (it does not need to be properly placed as on the original page)!
+:::
+
+## Play with the `math` module
+
+Play a bit more with the `math` module you have explored in the previous section.
+
+- Can you figure out how to round numbers?
+- Can you create the natural logarithm of a variable? And can you get the original value back?
+- How would you do the base-10 logarithm?
+- Can you convert an angle from radians to degrees and back?
+- Can you figure out what the `math.nan` constant is for?
+- Which other constants are available in the `math` module?
+
+Don't forget to document your code cells with Markdown cells.
+
+::: {.callout-tip}
+You don't need to answer all of the questions, but try if you have time. A good place to start would be a documentation of the `math` module but that is up to you.
+:::
