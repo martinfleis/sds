@@ -96,3 +96,5 @@ both terms as equal within the context of this course.
 The course material is partially derived from _A Course on Geographic Data Science_ by
 @darribas_gds_course. Thanks, Dani!
 
+Some sections are derived from other sources acknowledged at the bottom of respective pages.
+
