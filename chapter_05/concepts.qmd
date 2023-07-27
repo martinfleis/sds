@@ -3,9 +3,19 @@ title: "Explore space!"
 format: html
 ---
 
-- Intro to ESDA as a concept
+<!-- - Intro to ESDA as a concept
 - Spatial autocorrelation
-    - both global and local
+    - both global and local -->
+
+::: {.callout-note appearance="simple"}
+
+## The contents will appear later
+
+This section will cover the lecture delivered as part of the in-person course. Slides will appear here shortly before the lesson, followed by the summary of the contents in the days after, based on the lecture transcript.
+
+Have a look at the related reading in the meantime.
+
+:::
 
 ::: {.callout-tip}
 ## Related reading

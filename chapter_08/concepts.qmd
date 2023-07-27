@@ -3,9 +3,19 @@ title: "Data as a grid"
 format: html
 ---
 
-Intro to rasters and xarray
+<!-- Intro to rasters and xarray
 DataArray and Dataset
-N-Dimensional data structures
+N-Dimensional data structures -->
+
+::: {.callout-note appearance="simple"}
+
+## The contents will appear later
+
+This section will cover the lecture delivered as part of the in-person course. Slides will appear here shortly before the lesson, followed by the summary of the contents in the days after, based on the lecture transcript.
+
+Have a look at the related reading in the meantime.
+
+:::
 
 ::: {.callout-tip}
 ## Related reading

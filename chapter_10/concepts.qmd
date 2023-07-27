@@ -2,11 +2,21 @@
 title: "Use space in your favour"
 format: html
 ---
-
+<!--
 - Feature engineering intro
 - Non-spatial feature eng
 - Map matching
-- Map synthesis
+- Map synthesis -->
+
+::: {.callout-note appearance="simple"}
+
+## The contents will appear later
+
+This section will cover the lecture delivered as part of the in-person course. Slides will appear here shortly before the lesson, followed by the summary of the contents in the days after, based on the lecture transcript.
+
+Have a look at the related reading in the meantime.
+
+:::
 
 ::: {.callout-tip}
 ## Related reading

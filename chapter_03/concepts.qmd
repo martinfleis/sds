@@ -3,9 +3,19 @@ title: "Old and new spatial data"
 format: html
 ---
 
-- traditional GIS data
+<!-- - traditional GIS data
 - new forms of data
-- new dimensions of data
+- new dimensions of data -->
+
+::: {.callout-note appearance="simple"}
+
+## The contents will appear later
+
+This section will cover the lecture delivered as part of the in-person course. Slides will appear here shortly before the lesson, followed by the summary of the contents in the days after, based on the lecture transcript.
+
+Have a look at the related reading in the meantime.
+
+:::
 
 ::: {.callout-tip}
 ## Related reading

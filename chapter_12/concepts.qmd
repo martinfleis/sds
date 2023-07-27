@@ -3,4 +3,11 @@ title: "Is there space in machine learning?"
 format: html
 ---
 
-- intro to supervised ML
+<!-- - intro to supervised ML -->
+
+::: {.callout-note appearance="simple"}
+
+## The contents will appear later
+
+This section will cover the lecture delivered as part of the in-person course. Slides will appear here shortly before the lesson, followed by the summary of the contents in the days after, based on the lecture transcript.
+:::

@@ -3,11 +3,21 @@ title: "Open tools and open mindset"
 format: html
 ---
 
-Introduction to open science, reproducibility, open mindset, open culture.
+<!-- Introduction to open science, reproducibility, open mindset, open culture.
 
 How that translates into tools.
 
-Learn how to ask questions, how to read documentation and how to find help.
+Learn how to ask questions, how to read documentation and how to find help. -->
+
+::: {.callout-note appearance="simple"}
+
+## The contents will appear later
+
+This section will cover the lecture delivered as part of the in-person course. Slides will appear here shortly before the lesson, followed by the summary of the contents in the days after, based on the lecture transcript.
+
+Have a look at the related reading in the meantime.
+
+:::
 
 ::: {.callout-tip}
 ## Related reading
