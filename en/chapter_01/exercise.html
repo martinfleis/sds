@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Spatial Data Science for Social Geography - Understanding Markdown</title>
+<title>Spatial Data Science for Social Geography - Understanding Notebooks</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -68,7 +68,8 @@ ul.task-list li input[type="checkbox"] {
 
 
 <link rel="stylesheet" href="../assets/styles.css">
-<meta name="twitter:title" content="Spatial Data Science for Social Geography - Understanding Markdown">
+<meta name="twitter:title" content="Spatial Data Science for Social Geography - Understanding Notebooks">
+<meta name="twitter:description" content="">
 <meta name="twitter:card" content="summary">
 </head>
 
@@ -81,7 +82,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../chapter_01/concepts.html">Introduction</a></li><li class="breadcrumb-item"><a href="../chapter_01/exercise.html">Understanding Markdown</a></li></ol></nav>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../chapter_01/concepts.html">Introduction</a></li><li class="breadcrumb-item"><a href="../chapter_01/exercise.html">Understanding Notebooks</a></li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -161,7 +162,7 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapter_01/exercise.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text">Understanding Markdown</span></a>
+ <span class="menu-text">Understanding Notebooks</span></a>
   </div>
 </li>
       </ul>
@@ -491,14 +492,21 @@ ul.task-list li input[type="checkbox"] {
 <div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#master-markdown" id="toc-master-markdown" class="nav-link active" data-scroll-target="#master-markdown">Master Markdown</a></li>
+  <li><a href="#play-with-the-math-module" id="toc-play-with-the-math-module" class="nav-link" data-scroll-target="#play-with-the-math-module">Play with the <code>math</code> module</a></li>
+  </ul>
+<div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/martinfleis/sds/issues/new" class="toc-action">Report an issue</a></p></div></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Understanding Markdown</h1>
+<h1 class="title">Understanding Notebooks</h1>
 </div>
 
 
@@ -513,13 +521,58 @@ ul.task-list li input[type="checkbox"] {
 
 </header>
 
+<p>This is a <span class="accent">“You do”</span> part of the first lesson.</p>
+<p>You now know what a Jupyter Notebook is, how to work with it in Jupyter Lab (or Google Colab) and how to run Python code in its cells. Let’s now move attention to cells with text.</p>
+<section id="master-markdown" class="level2">
+<h2 class="anchored" data-anchor-id="master-markdown">Master Markdown</h2>
+<p>The text in Jupyter Notebooks is formatted using Markdown, a straightforward syntax allowing you to format text, embed images or tables, and keep everything as plain text.</p>
+<p>For this task, you will focus on getting to know Markdown better. To practise its syntax, try to reproduce the following Wikipedia entry:</p>
+<blockquote class="blockquote">
+<p><a href="https://en.wikipedia.org/wiki/Waldo_R._Tobler">https://en.wikipedia.org/wiki/Waldo_R._Tobler</a></p>
+</blockquote>
+<p>You should be able to figure out the proper Markdown syntax by yourself, with some help from your favourite search engine or AI (yes, usage of AI tools like ChatGPT or Bard is allowed and possible even encouraged in this course).</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Do not overthink it. Focus on correctly formatting the bold, italics, links, headlines, and lists, but don’t worry too much about the overall layout. Bonus if you also manage to insert the image (it does not need to be properly placed as on the original page)!</p>
+</div>
+</div>
+</section>
+<section id="play-with-the-math-module" class="level2">
+<h2 class="anchored" data-anchor-id="play-with-the-math-module">Play with the <code>math</code> module</h2>
+<p>Play a bit more with the <code>math</code> module you have explored in the previous section.</p>
 <ul>
-<li>Study markdown syntax</li>
-<li>Try replicating existing text</li>
-<li>A bonus: MyST markdown extension</li>
+<li>Can you figure out how to round numbers?</li>
+<li>Can you create the natural logarithm of a variable? And can you get the original value back?</li>
+<li>How would you do the base-10 logarithm?</li>
+<li>Can you convert an angle from radians to degrees and back?</li>
+<li>Can you figure out what the <code>math.nan</code> constant is for?</li>
+<li>Which other constants are available in the <code>math</code> module?</li>
 </ul>
+<p>Don’t forget to document your code cells with Markdown cells.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>You don’t need to answer all of the questions, but try if you have time. A good place to start would be a documentation of the <code>math</code> module but that is up to you.</p>
+</div>
+</div>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -888,7 +941,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     <div class="nav-footer-left">
       &nbsp;
     </div>   
-    <div class="nav-footer-center">Course material by <a href="https://martinfleischmann.net">Martin Fleischmann</a>. Available under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a>.<div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/martinfleis/sds/issues/new" class="toc-action">Report an issue</a></p></div></div></div>
+    <div class="nav-footer-center">Course material by <a href="https://martinfleischmann.net">Martin Fleischmann</a>. Available under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a>.</div>
     <div class="nav-footer-right">
       &nbsp;
     </div>

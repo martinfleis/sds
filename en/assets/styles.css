@@ -1,7 +1,7 @@
 :root {
     --main-color: rgb(250, 148, 165);
     --main-color-hover: rgb(249, 115, 137);
-    --accent-color: rgb(37, 180, 151)
+    --accent-color: rgb(37, 180, 151);
 }
 
 a {
@@ -55,4 +55,12 @@ div.sidebar-header {
 
 .accent {
     color: var(--accent-color)
+}
+
+.keystroke {
+    color: var(--accent-color);
+    padding: 1px 3px;
+    border: 1px solid var(--accent-color);
+    border-radius: 3px;
+    background-color: rgba(37, 180, 151, .05);
 }
