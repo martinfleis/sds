@@ -19,8 +19,7 @@ jobs:
 
           - name: Render Book project
             run: |
-                quarto render --profile english
-                quarto render --profile czech
+                quarto render
 
           - name: Deploy
             uses: peaceiris/actions-gh-pages@v3

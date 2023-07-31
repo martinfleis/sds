@@ -1,13 +1,14 @@
 project:
   type: website
+  title: "Spatial Data Science for Social Geography"
   resources:
     - "*/data/*"
+  output-dir: ./_site
 
-profile:
-  default: english
-  group: [english, czech]
+lang: en
 
 execute:
+  cache: true
   freeze: true
 
 format:

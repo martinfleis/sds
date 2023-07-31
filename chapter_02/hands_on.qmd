@@ -5,6 +5,7 @@ format:
   ipynb: default
 jupyter: python3
 code-annotations: below
+bibliography: ../assets/references.bib
 ---
 
 You know the basics. What are Jupyter notebooks, how do they work, and how do you run
