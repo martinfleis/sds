@@ -1,0 +1,10 @@
+{
+  "hash": "2165daf60595805b4c58b14af5c271f4",
+  "result": {
+    "markdown": "---\ntitle: Data wrangling\nformat:\n  html: default\n  ipynb: default\ncode-annotations: below\n---\n\nIntroduction to pandas and tabular data analysis. No spatial so far.\n\n- read_csv\n- head, tail, info, describe, Transpose\n- min, max, slicing\n- add and remove columns\n- indexing\n- queries\n- sorting\n- plotting\n- groupby\n\n::: {#c67b2355 .cell execution_count=1}\n``` {.python .cell-code}\nimport pandas as pd # <1>\n```\n:::\n\n\n1. Import the `pandas` package under the shortcut `pd`.\n\nDescribe the data\n\n::: {#2ab25cb4 .cell execution_count=2}\n``` {.python .cell-code}\nchicago_1918 = pd.read_csv(             # <1>\n    \"data/chicago_influenza_1918.csv\",  # <2>\n    index_col=\"geography_code\",         # <3>\n)\n```\n:::\n\n\n1. Use the `read_csv` function from `pandas`.\n2. Specify the path to the file\n3. Use the column `geography_code` as an index of the DataFrame. More on that below.\n\n---\njupyter:\n  kernelspec:\n    display_name: Python 3 (ipykernel)\n    language: python\n    name: python3\n---\n",
+    "supporting": [
+      "hands_on_files/figure-ipynb"
+    ],
+    "filters": []
+  }
+}

@@ -1,6 +1,38 @@
 ---
 title: "Data wrangling"
-format: html
+format:
+  html: default
+  ipynb: default
+jupyter: python3
+code-annotations: below
 ---
 
 Introduction to pandas and tabular data analysis. No spatial so far.
+
+- read_csv
+- head, tail, info, describe, Transpose
+- min, max, slicing
+- add and remove columns
+- indexing
+- queries
+- sorting
+- plotting
+- groupby
+
+```{python}
+import pandas as pd # <1>
+```
+1. Import the `pandas` package under the shortcut `pd`.
+
+Describe the data
+
+```{python}
+chicago_1918 = pd.read_csv(             # <1>
+    "data/chicago_influenza_1918.csv",  # <2>
+    index_col="geography_code",         # <3>
+)
+```
+1. Use the `read_csv` function from `pandas`.
+2. Specify the path to the file
+3. Use the column `geography_code` as an index of the DataFrame.
+
