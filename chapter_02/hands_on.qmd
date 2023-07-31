@@ -67,17 +67,18 @@ The main tool you use is the `pandas` package. As with the `math` you used
 [before](../chapter_01/hands_on.qmd), you must import it first.
 
 ```{python}
-import pandas as pd # <1>
+import pandas as pd  # <1>
 ```
 1. Import the `pandas` package under the alias `pd`. Using the alias is not
 necessary, but it is a convention nearly everyone follows.
 
 The data is stored in a CSV
 
+
 ```{python}
-chicago_1918 = pd.read_csv(             # <1>
-    "data/chicago_influenza_1918.csv",  # <2>
-    index_col="geography_code",         # <3>
+chicago_1918 = pd.read_csv(                                                         # <1>
+    "https://martinfleischmann.net/sds/chapter_02/data/chicago_influenza_1918.csv", # <2>
+    index_col="geography_code",                                                     # <3>
 )
 ```
 1. Use the `read_csv` function from `pandas`.

@@ -8,7 +8,6 @@ project:
 lang: en
 
 execute:
-  cache: true
   freeze: true
 
 format:
