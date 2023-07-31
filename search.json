@@ -1,0 +1,464 @@
+[
+  {
+    "objectID": "chapter_10/concepts.html",
+    "href": "chapter_10/concepts.html",
+    "title": "Use space in your favour",
+    "section": "",
+    "text": "The contents will appear later\n\n\n\nThis section will cover the lecture delivered as part of the in-person course. Slides will appear here shortly before the lesson, followed by the summary of the contents in the days after, based on the lecture transcript.\nHave a look at the related reading in the meantime.\n\n\n\n\n\n\n\n\nRelated reading\n\n\n\nChapter Spatial Feature Engineering from the Geographic Data Science with Python by Rey, Arribas-Bel and Wolf (2023)."
+  },
+  {
+    "objectID": "chapter_10/exercise.html",
+    "href": "chapter_10/exercise.html",
+    "title": "Interpolation and friends",
+    "section": "",
+    "text": "Similar tasks on different data"
+  },
+  {
+    "objectID": "chapter_12/hands_on.html",
+    "href": "chapter_12/hands_on.html",
+    "title": "Classification and regression",
+    "section": "",
+    "text": "scikit-learn classification\nscikit-learn regression\nspatial component"
+  },
+  {
+    "objectID": "LICENSE.html",
+    "href": "LICENSE.html",
+    "title": "Spatial Data Science for Social Geography",
+    "section": "",
+    "text": "Attribution-ShareAlike 4.0 International\n=======================================================================\nCreative Commons Corporation (“Creative Commons”) is not a law firm and does not provide legal services or legal advice. Distribution of Creative Commons public licenses does not create a lawyer-client or other relationship. Creative Commons makes its licenses and related information available on an “as-is” basis. Creative Commons gives no warranties regarding its licenses, any material licensed under their terms and conditions, or any related information. Creative Commons disclaims all liability for damages resulting from their use to the fullest extent possible.\nUsing Creative Commons Public Licenses\nCreative Commons public licenses provide a standard set of terms and conditions that creators and other rights holders may use to share original works of authorship and other material subject to copyright and certain other rights specified in the public license below. The following considerations are for informational purposes only, are not exhaustive, and do not form part of our licenses.\n Considerations for licensors: Our public licenses are\n intended for use by those authorized to give the public\n permission to use material in ways otherwise restricted by\n copyright and certain other rights. Our licenses are\n irrevocable. Licensors should read and understand the terms\n and conditions of the license they choose before applying it.\n Licensors should also secure all rights necessary before\n applying our licenses so that the public can reuse the\n material as expected. Licensors should clearly mark any\n material not subject to the license. This includes other CC-\n licensed material, or material used under an exception or\n limitation to copyright. More considerations for licensors:\nwiki.creativecommons.org/Considerations_for_licensors\n\n Considerations for the public: By using one of our public\n licenses, a licensor grants the public permission to use the\n licensed material under specified terms and conditions. If\n the licensor's permission is not necessary for any reason--for\n example, because of any applicable exception or limitation to\n copyright--then that use is not regulated by the license. Our\n licenses grant only permissions under copyright and certain\n other rights that a licensor has authority to grant. Use of\n the licensed material may still be restricted for other\n reasons, including because others have copyright or other\n rights in the material. A licensor may make special requests,\n such as asking that all changes be marked or described.\n Although not required by our licenses, you are encouraged to\n respect those requests where reasonable. More considerations\n for the public:\nwiki.creativecommons.org/Considerations_for_licensees\n=======================================================================\nCreative Commons Attribution-ShareAlike 4.0 International Public License\nBy exercising the Licensed Rights (defined below), You accept and agree to be bound by the terms and conditions of this Creative Commons Attribution-ShareAlike 4.0 International Public License (“Public License”). To the extent this Public License may be interpreted as a contract, You are granted the Licensed Rights in consideration of Your acceptance of these terms and conditions, and the Licensor grants You such rights in consideration of benefits the Licensor receives from making the Licensed Material available under these terms and conditions.\nSection 1 – Definitions.\n\nAdapted Material means material subject to Copyright and Similar Rights that is derived from or based upon the Licensed Material and in which the Licensed Material is translated, altered, arranged, transformed, or otherwise modified in a manner requiring permission under the Copyright and Similar Rights held by the Licensor. For purposes of this Public License, where the Licensed Material is a musical work, performance, or sound recording, Adapted Material is always produced where the Licensed Material is synched in timed relation with a moving image.\nAdapter’s License means the license You apply to Your Copyright and Similar Rights in Your contributions to Adapted Material in accordance with the terms and conditions of this Public License.\nBY-SA Compatible License means a license listed at creativecommons.org/compatiblelicenses, approved by Creative Commons as essentially the equivalent of this Public License.\nCopyright and Similar Rights means copyright and/or similar rights closely related to copyright including, without limitation, performance, broadcast, sound recording, and Sui Generis Database Rights, without regard to how the rights are labeled or categorized. For purposes of this Public License, the rights specified in Section 2(b)(1)-(2) are not Copyright and Similar Rights.\nEffective Technological Measures means those measures that, in the absence of proper authority, may not be circumvented under laws fulfilling obligations under Article 11 of the WIPO Copyright Treaty adopted on December 20, 1996, and/or similar international agreements.\nExceptions and Limitations means fair use, fair dealing, and/or any other exception or limitation to Copyright and Similar Rights that applies to Your use of the Licensed Material.\nLicense Elements means the license attributes listed in the name of a Creative Commons Public License. The License Elements of this Public License are Attribution and ShareAlike.\nLicensed Material means the artistic or literary work, database, or other material to which the Licensor applied this Public License.\nLicensed Rights means the rights granted to You subject to the terms and conditions of this Public License, which are limited to all Copyright and Similar Rights that apply to Your use of the Licensed Material and that the Licensor has authority to license.\nLicensor means the individual(s) or entity(ies) granting rights under this Public License.\nShare means to provide material to the public by any means or process that requires permission under the Licensed Rights, such as reproduction, public display, public performance, distribution, dissemination, communication, or importation, and to make material available to the public including in ways that members of the public may access the material from a place and at a time individually chosen by them.\nSui Generis Database Rights means rights other than copyright resulting from Directive 96/9/EC of the European Parliament and of the Council of 11 March 1996 on the legal protection of databases, as amended and/or succeeded, as well as other essentially equivalent rights anywhere in the world.\nYou means the individual or entity exercising the Licensed Rights under this Public License. Your has a corresponding meaning.\n\nSection 2 – Scope.\n\nLicense grant.\n\nSubject to the terms and conditions of this Public License, the Licensor hereby grants You a worldwide, royalty-free, non-sublicensable, non-exclusive, irrevocable license to exercise the Licensed Rights in the Licensed Material to:\n\nreproduce and Share the Licensed Material, in whole or in part; and\nproduce, reproduce, and Share Adapted Material.\n\nExceptions and Limitations. For the avoidance of doubt, where Exceptions and Limitations apply to Your use, this Public License does not apply, and You do not need to comply with its terms and conditions.\nTerm. The term of this Public License is specified in Section 6(a).\nMedia and formats; technical modifications allowed. The Licensor authorizes You to exercise the Licensed Rights in all media and formats whether now known or hereafter created, and to make technical modifications necessary to do so. The Licensor waives and/or agrees not to assert any right or authority to forbid You from making technical modifications necessary to exercise the Licensed Rights, including technical modifications necessary to circumvent Effective Technological Measures. For purposes of this Public License, simply making modifications authorized by this Section 2(a)\n\nnever produces Adapted Material.\n\nDownstream recipients.\n\nOffer from the Licensor – Licensed Material. Every recipient of the Licensed Material automatically receives an offer from the Licensor to exercise the Licensed Rights under the terms and conditions of this Public License.\nAdditional offer from the Licensor – Adapted Material. Every recipient of Adapted Material from You automatically receives an offer from the Licensor to exercise the Licensed Rights in the Adapted Material under the conditions of the Adapter’s License You apply.\nNo downstream restrictions. You may not offer or impose any additional or different terms or conditions on, or apply any Effective Technological Measures to, the Licensed Material if doing so restricts exercise of the Licensed Rights by any recipient of the Licensed Material.\n\nNo endorsement. Nothing in this Public License constitutes or may be construed as permission to assert or imply that You are, or that Your use of the Licensed Material is, connected with, or sponsored, endorsed, or granted official status by, the Licensor or others designated to receive attribution as provided in Section 3(a)(1)(A)(i).\n\nOther rights.\n\nMoral rights, such as the right of integrity, are not licensed under this Public License, nor are publicity, privacy, and/or other similar personality rights; however, to the extent possible, the Licensor waives and/or agrees not to assert any such rights held by the Licensor to the limited extent necessary to allow You to exercise the Licensed Rights, but not otherwise.\nPatent and trademark rights are not licensed under this Public License.\nTo the extent possible, the Licensor waives any right to collect royalties from You for the exercise of the Licensed Rights, whether directly or through a collecting society under any voluntary or waivable statutory or compulsory licensing scheme. In all other cases the Licensor expressly reserves any right to collect such royalties.\n\n\nSection 3 – License Conditions.\nYour exercise of the Licensed Rights is expressly made subject to the following conditions.\n\nAttribution.\n\nIf You Share the Licensed Material (including in modified form), You must:\n\nretain the following if it is supplied by the Licensor with the Licensed Material:\n\nidentification of the creator(s) of the Licensed Material and any others designated to receive attribution, in any reasonable manner requested by the Licensor (including by pseudonym if designated);\na copyright notice;\na notice that refers to this Public License;\na notice that refers to the disclaimer of warranties;\na URI or hyperlink to the Licensed Material to the extent reasonably practicable;\n\nindicate if You modified the Licensed Material and retain an indication of any previous modifications; and\nindicate the Licensed Material is licensed under this Public License, and include the text of, or the URI or hyperlink to, this Public License.\n\nYou may satisfy the conditions in Section 3(a)(1) in any reasonable manner based on the medium, means, and context in which You Share the Licensed Material. For example, it may be reasonable to satisfy the conditions by providing a URI or hyperlink to a resource that includes the required information.\nIf requested by the Licensor, You must remove any of the information required by Section 3(a)(1)(A) to the extent reasonably practicable.\n\nShareAlike.\nIn addition to the conditions in Section 3(a), if You Share Adapted Material You produce, the following conditions also apply.\n\nThe Adapter’s License You apply must be a Creative Commons license with the same License Elements, this version or later, or a BY-SA Compatible License.\nYou must include the text of, or the URI or hyperlink to, the Adapter’s License You apply. You may satisfy this condition in any reasonable manner based on the medium, means, and context in which You Share Adapted Material.\nYou may not offer or impose any additional or different terms or conditions on, or apply any Effective Technological Measures to, Adapted Material that restrict exercise of the rights granted under the Adapter’s License You apply.\n\n\nSection 4 – Sui Generis Database Rights.\nWhere the Licensed Rights include Sui Generis Database Rights that apply to Your use of the Licensed Material:\n\nfor the avoidance of doubt, Section 2(a)(1) grants You the right to extract, reuse, reproduce, and Share all or a substantial portion of the contents of the database;\nif You include all or a substantial portion of the database contents in a database in which You have Sui Generis Database Rights, then the database in which You have Sui Generis Database Rights (but not its individual contents) is Adapted Material, including for purposes of Section 3(b); and\nYou must comply with the conditions in Section 3(a) if You Share all or a substantial portion of the contents of the database.\n\nFor the avoidance of doubt, this Section 4 supplements and does not replace Your obligations under this Public License where the Licensed Rights include other Copyright and Similar Rights.\nSection 5 – Disclaimer of Warranties and Limitation of Liability.\n\nUNLESS OTHERWISE SEPARATELY UNDERTAKEN BY THE LICENSOR, TO THE EXTENT POSSIBLE, THE LICENSOR OFFERS THE LICENSED MATERIAL AS-IS AND AS-AVAILABLE, AND MAKES NO REPRESENTATIONS OR WARRANTIES OF ANY KIND CONCERNING THE LICENSED MATERIAL, WHETHER EXPRESS, IMPLIED, STATUTORY, OR OTHER. THIS INCLUDES, WITHOUT LIMITATION, WARRANTIES OF TITLE, MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, NON-INFRINGEMENT, ABSENCE OF LATENT OR OTHER DEFECTS, ACCURACY, OR THE PRESENCE OR ABSENCE OF ERRORS, WHETHER OR NOT KNOWN OR DISCOVERABLE. WHERE DISCLAIMERS OF WARRANTIES ARE NOT ALLOWED IN FULL OR IN PART, THIS DISCLAIMER MAY NOT APPLY TO YOU.\nTO THE EXTENT POSSIBLE, IN NO EVENT WILL THE LICENSOR BE LIABLE TO YOU ON ANY LEGAL THEORY (INCLUDING, WITHOUT LIMITATION, NEGLIGENCE) OR OTHERWISE FOR ANY DIRECT, SPECIAL, INDIRECT, INCIDENTAL, CONSEQUENTIAL, PUNITIVE, EXEMPLARY, OR OTHER LOSSES, COSTS, EXPENSES, OR DAMAGES ARISING OUT OF THIS PUBLIC LICENSE OR USE OF THE LICENSED MATERIAL, EVEN IF THE LICENSOR HAS BEEN ADVISED OF THE POSSIBILITY OF SUCH LOSSES, COSTS, EXPENSES, OR DAMAGES. WHERE A LIMITATION OF LIABILITY IS NOT ALLOWED IN FULL OR IN PART, THIS LIMITATION MAY NOT APPLY TO YOU.\nThe disclaimer of warranties and limitation of liability provided above shall be interpreted in a manner that, to the extent possible, most closely approximates an absolute disclaimer and waiver of all liability.\n\nSection 6 – Term and Termination.\n\nThis Public License applies for the term of the Copyright and Similar Rights licensed here. However, if You fail to comply with this Public License, then Your rights under this Public License terminate automatically.\nWhere Your right to use the Licensed Material has terminated under Section 6(a), it reinstates:\n\nautomatically as of the date the violation is cured, provided it is cured within 30 days of Your discovery of the violation; or\nupon express reinstatement by the Licensor.\n\nFor the avoidance of doubt, this Section 6(b) does not affect any right the Licensor may have to seek remedies for Your violations of this Public License.\nFor the avoidance of doubt, the Licensor may also offer the Licensed Material under separate terms or conditions or stop distributing the Licensed Material at any time; however, doing so will not terminate this Public License.\nSections 1, 5, 6, 7, and 8 survive termination of this Public License.\n\nSection 7 – Other Terms and Conditions.\n\nThe Licensor shall not be bound by any additional or different terms or conditions communicated by You unless expressly agreed.\nAny arrangements, understandings, or agreements regarding the Licensed Material not stated herein are separate from and independent of the terms and conditions of this Public License.\n\nSection 8 – Interpretation.\n\nFor the avoidance of doubt, this Public License does not, and shall not be interpreted to, reduce, limit, restrict, or impose conditions on any use of the Licensed Material that could lawfully be made without permission under this Public License.\nTo the extent possible, if any provision of this Public License is deemed unenforceable, it shall be automatically reformed to the minimum extent necessary to make it enforceable. If the provision cannot be reformed, it shall be severed from this Public License without affecting the enforceability of the remaining terms and conditions.\nNo term or condition of this Public License will be waived and no failure to comply consented to unless expressly agreed to by the Licensor.\nNothing in this Public License constitutes or may be interpreted as a limitation upon, or waiver of, any privileges and immunities that apply to the Licensor or You, including from the legal processes of any jurisdiction or authority.\n\n=======================================================================\nCreative Commons is not a party to its public licenses. Notwithstanding, Creative Commons may elect to apply one of its public licenses to material it publishes and in those instances will be considered the “Licensor.” The text of the Creative Commons public licenses is dedicated to the public domain under the CC0 Public Domain Dedication. Except for the limited purpose of indicating that material is shared under a Creative Commons public license or as otherwise permitted by the Creative Commons policies published at creativecommons.org/policies, Creative Commons does not authorize the use of the trademark “Creative Commons” or any other trademark or logo of Creative Commons without its prior written consent including, without limitation, in connection with any unauthorized modifications to any of its public licenses or any other arrangements, understandings, or agreements concerning use of licensed material. For the avoidance of doubt, this paragraph does not form part of the public licenses.\nCreative Commons may be contacted at creativecommons.org."
+  },
+  {
+    "objectID": "chapter_03/hands_on.html",
+    "href": "chapter_03/hands_on.html",
+    "title": "Bring in geography",
+    "section": "",
+    "text": "Introduction to geopandas."
+  },
+  {
+    "objectID": "chapter_09/concepts.html",
+    "href": "chapter_09/concepts.html",
+    "title": "Where is equal?",
+    "section": "",
+    "text": "The contents will appear later\n\n\n\nThis section will cover the lecture delivered as part of the in-person course. Slides will appear here shortly before the lesson, followed by the summary of the contents in the days after, based on the lecture transcript.\nHave a look at the related reading in the meantime.\n\n\n\n\n\n\n\n\nRelated reading\n\n\n\nChapter Spatial Inequality Dynamics from the Geographic Data Science with Python by Rey, Arribas-Bel and Wolf (2023)."
+  },
+  {
+    "objectID": "chapter_09/exercise.html",
+    "href": "chapter_09/exercise.html",
+    "title": "Locating inequality",
+    "section": "",
+    "text": "Velit esse consectetur id aliquip magna commodo. Magna voluptate culpa culpa qui. Reprehenderit excepteur laborum deserunt velit officia cillum mollit sunt. Ut in aliqua proident fugiat ad duis commodo exercitation aliqua pariatur elit voluptate eiusmod et."
+  },
+  {
+    "objectID": "chapter_00/infrastructure.html",
+    "href": "chapter_00/infrastructure.html",
+    "title": "Infrastructure",
+    "section": "",
+    "text": "This page will explain the infrastructure needed to run the course. How to install Python, Jupyter, environments and such."
+  },
+  {
+    "objectID": "chapter_00/infrastructure.html#communication",
+    "href": "chapter_00/infrastructure.html#communication",
+    "title": "Infrastructure",
+    "section": "Communication",
+    "text": "Communication\nWe will have Slack? Teams? Google something?"
+  },
+  {
+    "objectID": "chapter_00/infrastructure.html#tech",
+    "href": "chapter_00/infrastructure.html#tech",
+    "title": "Infrastructure",
+    "section": "Tech",
+    "text": "Tech\nEnvironments…"
+  },
+  {
+    "objectID": "chapter_06/hands_on.html",
+    "href": "chapter_06/hands_on.html",
+    "title": "Point pattern analysis",
+    "section": "",
+    "text": "Point pattern visualisation\nCentrography\nRandomness and Clustering"
+  },
+  {
+    "objectID": "chapter_02/concepts.html",
+    "href": "chapter_02/concepts.html",
+    "title": "Open tools and open mindset",
+    "section": "",
+    "text": "The contents will appear later\n\n\n\nThis section will cover the lecture delivered as part of the in-person course. Slides will appear here shortly before the lesson, followed by the summary of the contents in the days after, based on the lecture transcript.\nHave a look at the related reading in the meantime.\n\n\n\n\n\n\n\n\nRelated reading\n\n\n\nChapter Computational Tools for Geographic Data Science from the Geographic Data Science with Python by Rey, Arribas-Bel and Wolf (2023)."
+  },
+  {
+    "objectID": "chapter_02/exercise.html",
+    "href": "chapter_02/exercise.html",
+    "title": "Learning pandas",
+    "section": "",
+    "text": "An exercise to do similar tasks as in the hands on but on different data."
+  },
+  {
+    "objectID": "data/chicago_influenza_1918/preprocessing.html",
+    "href": "data/chicago_influenza_1918/preprocessing.html",
+    "title": "Spatial Data Science for Social Geography",
+    "section": "",
+    "text": "import pandas as pd\n\n\nchicago_flu = pd.read_csv(\"tracts.csv\").drop(columns=[\"week\", \"pop\", \"illit.r\", \"den.r\"])\ndeaths_total = chicago_flu.groupby(\"gisjoin\").counts.sum()\nchicago_flu = chicago_flu[~chicago_flu.duplicated(\"gisjoin\")].set_index(\"gisjoin\").drop(columns=\"counts\")\nchicago_flu[\"influenza\"] = deaths_total\nchicago_flu = chicago_flu.rename(columns={c:c.replace(\".\", \"_\").lower() for c in chicago_flu.columns})\nchicago_flu.index.name = \"geography_code\"\nchicago_flu.index = \"G\" + chicago_flu.index.astype('str')\n\n\nchicago_flu.to_csv(\"../../chapter_02/data/chicago_influenza_1918.csv\")\n\n\nchicago_flu\n\n\n\n\n\n\n\n\ngross_acres\nillit\nunemployed_pct\nho_pct\nagecat1\nagecat2\nagecat3\nagecat4\nagecat5\nagecat6\nagecat7\ninfluenza\n\n\ngeography_code\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nG17003100001\n1388.2\n116\n0.376950\n0.124823\n46\n274\n257\n311\n222\n1122\n587\n9\n\n\nG17003100002\n217.7\n14\n0.399571\n0.071647\n35\n320\n441\n624\n276\n1061\n508\n6\n\n\nG17003100003\n401.3\n69\n0.349558\n0.092920\n50\n265\n179\n187\n163\n1020\n392\n8\n\n\nG17003100004\n86.9\n11\n0.422535\n0.030072\n43\n241\n129\n141\n123\n1407\n539\n2\n\n\nG17003100005\n337.1\n20\n0.431822\n0.084703\n65\n464\n369\n464\n328\n2625\n1213\n7\n\n\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n\n\nG17003100492\n2176.6\n136\n0.404430\n0.173351\n85\n606\n520\n705\n439\n2141\n1460\n12\n\n\nG17003100493\n680.0\n271\n0.377207\n0.130158\n243\n1349\n957\n1264\n957\n4653\n2180\n40\n\n\nG17003100494\n1392.8\n1504\n0.336032\n0.072317\n309\n1779\n1252\n1598\n1086\n6235\n2673\n85\n\n\nG17003100495\n640.0\n167\n0.311917\n0.085667\n59\n333\n206\n193\n80\n726\n224\n15\n\n\nG17003100496\n709.8\n340\n0.369765\n0.113549\n157\n979\n761\n959\n594\n2862\n1206\n30\n\n\n\n\n496 rows × 12 columns"
+  },
+  {
+    "objectID": "chapter_07/concepts.html",
+    "href": "chapter_07/concepts.html",
+    "title": "Similar data belong together",
+    "section": "",
+    "text": "The contents will appear later\n\n\n\nThis section will cover the lecture delivered as part of the in-person course. Slides will appear here shortly before the lesson, followed by the summary of the contents in the days after, based on the lecture transcript.\nHave a look at the related reading in the meantime.\n\n\n\n\n\n\n\n\nRelated reading\n\n\n\nChapter Clustering and Regionalization from the Geographic Data Science with Python by Rey, Arribas-Bel and Wolf (2023)."
+  },
+  {
+    "objectID": "chapter_07/exercise.html",
+    "href": "chapter_07/exercise.html",
+    "title": "Find me a cluster",
+    "section": "",
+    "text": "clustering with scikit-learn\n\nK-Means\nWard\nSpatial Ward"
+  },
+  {
+    "objectID": "chapter_05/hands_on.html",
+    "href": "chapter_05/hands_on.html",
+    "title": "Spatial autocorrelation and other ESDAs",
+    "section": "",
+    "text": "Global autocorrelation with esda (Join counts, Moran [plot and statistics])\nLocal autocorrelation (Local Moran) and an effect of weights creation\nbonus - other stats (Geary, Getis and Ord)"
+  },
+  {
+    "objectID": "chapter_11/concepts.html",
+    "href": "chapter_11/concepts.html",
+    "title": "Relationship and prediction",
+    "section": "",
+    "text": "The contents will appear later\n\n\n\nThis section will cover the lecture delivered as part of the in-person course. Slides will appear here shortly before the lesson, followed by the summary of the contents in the days after, based on the lecture transcript.\nHave a look at the related reading in the meantime.\n\n\n\n\n\n\n\n\nRelated reading\n\n\n\nChapter Spatial Regression from the Geographic Data Science with Python by Rey, Arribas-Bel and Wolf (2023)."
+  },
+  {
+    "objectID": "chapter_11/exercise.html",
+    "href": "chapter_11/exercise.html",
+    "title": "Fit that model",
+    "section": "",
+    "text": "different data, similar tasks"
+  },
+  {
+    "objectID": "chapter_08/hands_on.html",
+    "href": "chapter_08/hands_on.html",
+    "title": "Population as a raster grid",
+    "section": "",
+    "text": "Population grids, aggregations, sampling\nBonus - LISA on raster Bonus 2 - Xvec"
+  },
+  {
+    "objectID": "chapter_04/concepts.html",
+    "href": "chapter_04/concepts.html",
+    "title": "Space as math",
+    "section": "",
+    "text": "The contents will appear later\n\n\n\nThis section will cover the lecture delivered as part of the in-person course. Slides will appear here shortly before the lesson, followed by the summary of the contents in the days after, based on the lecture transcript.\nHave a look at the related reading in the meantime.\n\n\n\n\n\n\n\n\nRelated reading\n\n\n\nChapter Spatial Weights from the Geographic Data Science with Python by Rey, Arribas-Bel and Wolf (2023)."
+  },
+  {
+    "objectID": "chapter_04/exercise.html",
+    "href": "chapter_04/exercise.html",
+    "title": "Graph here, graph there",
+    "section": "",
+    "text": "Exercise on creation and transformation of weights. Make them understand what is the structure and how to work with it.\nInlcude lags."
+  },
+  {
+    "objectID": "chapter_01/hands_on.html",
+    "href": "chapter_01/hands_on.html",
+    "title": "Jupyter and Python",
+    "section": "",
+    "text": "Welcome to the first hands-on section of the course. You will familiarise yourself with the tools you will be using, ensure that all works as it should, and prepare for some Python code."
+  },
+  {
+    "objectID": "chapter_01/hands_on.html#computer-science-101",
+    "href": "chapter_01/hands_on.html#computer-science-101",
+    "title": "Jupyter and Python",
+    "section": "Computer Science 101",
+    "text": "Computer Science 101\nSpatial Data Science depends on code, and coding environments can be unfriendly to an average user. People designing the tools are often computer scientists or have a strong knowledge of CS-related environments. It means we sometimes need to deal with the tools that look a bit scary, like a Terminal or a Command line. Below is a brief introduction to the tools you will need for this course.\n\nTerminal and Command line\nDepending on your operating system, you will have either Terminal (macOS, Linux) or Command line application installed. It will look like this:\n\n\n\nTerminal on macOS\n\n\nTerminal (and Command line, but we will refer to both as the terminal for simplicity) is used to interact with applications that do not have any graphic interface or with the apps that do have one, but you want to use them programmatically. The terminal usage is straightforward. Let’s start with a few examples.\nYou want to see a list of files and folders for this course. First, you need to navigate to the correct folder. For that, you can use the cd command, which stands for current directory.\ncd university/sds/\nLet’s assume that you have the folder with course material in the folder called sds in another folder called university. The full command is then composed of the cd part, saying set the current directory to… and waits for the parameter, which is a path to the folder in this case - university/sds/.\nOnce in the correct folder, you can use another command, ls, which stands for list and allows you to list the contents of the current directory.\nls\nThe output would look like this:\n\n\n\nOutput of the ls command.\n\n\nYou can also pass a parameter -l, specifying that you want a long listing including attributes.\nls -l\nThat changes the output to this:\n\n\n\nOutput of the ls -l command.\n\n\nThe syntax is always the same, starting with the app name and then followed by parameters."
+  },
+  {
+    "objectID": "chapter_01/hands_on.html#conda-and-mamba",
+    "href": "chapter_01/hands_on.html#conda-and-mamba",
+    "title": "Jupyter and Python",
+    "section": "Conda and Mamba",
+    "text": "Conda and Mamba\nIf you followed the installation of Python described in the infrastructure section, you have used mamba app, with parameters specifying that you want to use it to create an environment based on an environment.yml file. But what is mamba?\nMamba, and its predecessor, conda, are tools you will use to create “environments” and install Python and Python packages. It is a package manager, ensuring all the necessary parts work together. For example, if you want to create a new environment and install Python in it, you type the following command in your terminal.\nmamba create -n my_environment python\nYou can check more in the documentation of mamba.\n\nOther options\nMamba is not the only way of doing this. If you don’t want to install anything on your local machine, you can use Google Colab, which gives you an environment with Python and an interface to work with Jupyter Notebooks. To use it, refer to the Colab section of the infrastructure documentation for differences. TODO"
+  },
+  {
+    "objectID": "chapter_01/hands_on.html#jupyter-notebook-and-jupyter-lab",
+    "href": "chapter_01/hands_on.html#jupyter-notebook-and-jupyter-lab",
+    "title": "Jupyter and Python",
+    "section": "Jupyter Notebook and Jupyter Lab",
+    "text": "Jupyter Notebook and Jupyter Lab\nWhile you can interact with Python from the terminal, it is inconvenient. Instead, we will use Jypyter Notebooks and Jupyter Lab. Jupyter Notebooks are documents that allow you to mix text and code, execute small pieces of code one at a time and include graphical outputs of your code. Jupyter Lab is a handy interface allowing you to work with multiple notebooks and switch between your Python environments created with mamba.\nIt is time to say goodbye to the terminal and start Jupyter Lab. You should ensure you have your sds environment activated first:\nmamba activate sds\nThen you can start Lab using:\njupyter lab\nThis command should open your browser and load the Jupyter Lab interface.\n\n\n\nJupyter Lab interface\n\n\nIn the launcher, we can create a new Notebook by clicking on the Python logo representing our current environment. If you have more of them, you will see them there, as well as other environments using different programming languages like R or Julia.\nThe notebook is composed of cells. This is a cell:\n\n\n\nJupyter Notebook cell\n\n\nCells can contain either code or text. A typical notebook is then a series of cells where some include text describing what is happening while others contain the code, either waiting for execution or already executed. The cells with the executed code may also contain outputs.\nWe can start with simple math that Python can do natively. Run the following code cell. To do that, you can either click the “play” button on top or hit Shift + Enter:\n\n1 + 1\n\n2\n\n\nYou now have a code cell with the output. Jupyter Lab automatically created a new cell. Change its type to Markdown and write a short text describing what the cell above does."
+  },
+  {
+    "objectID": "chapter_01/hands_on.html#let-the-snake-in",
+    "href": "chapter_01/hands_on.html#let-the-snake-in",
+    "title": "Jupyter and Python",
+    "section": "Let the snake in",
+    "text": "Let the snake in\nYou can start exploring Python.\n\nSimple Python math\nAs shown above, Python can be used as a simple calculator. Remember, you can press Shift + Enter to execute the code in the cells below. Try it out by typing some simple math into new cells and see what you get.\n\n42 * 12\n\n504\n\n\n\n12 / 3\n\n4.0\n\n\nIf you want to edit and re-run some code, change the cell and press Shift + Enter to execute the modified code.\n\n\nFunctions\nYou can use Python for more advanced math by using a function. Functions are pieces of code that perform a single action, such as printing information to the screen (e.g., the print() function). Functions exist for a huge number of operations in Python.\nLet’s try out a few simple examples using functions to find the sine or square root of a value. You can type sin(3) or sqrt(4) into the cells below to test this out.\n\nsin(3)\n\nNameError: name 'sin' is not defined\n\n\n\nsqrt(4)\n\nNameError: name 'sqrt' is not defined\n\n\nWell, that didn’t work. Python can calculate square roots or do basic trigonometry, but we need one more step.\n\nMath operations\nThe table below shows the list of basic arithmetic operations that can be done by default in Python.\n\n\n\nOperation\nSymbol\nExample syntax\nReturned value\n\n\n\n\nAddition\n+\n2 + 2\n4\n\n\nSubtraction\n-\n4 - 2\n2\n\n\nMultiplication\n*\n2 * 3\n6\n\n\nDivision\n/\n4 / 2\n2\n\n\nExponentiation\n**\n2 ** 3\n8\n\n\n\nFor anything more advanced, we need to load a module or a package. For math operations, this module is called math and can be loaded by typing import math.\n\nimport math\n\nNow that we have access to functions in the math module, we can use it by typing the module name, a period (dot), and the name of the function we want to use. For example, math.sin(3). Try this with the sine and square root examples from above.\n\nmath.sin(3)\n\n0.1411200080598672\n\n\n\nmath.sqrt(4)\n\n2.0\n\n\nLet’s summarise what you’ve just done with modules:\n\nA module is a group of code items, such as functions, related to one another. Individual modules are often in a group called a package.\nModules can be loaded using import. Functions that are part of the module modulename can then be used by typing modulename.functionname(). For example, sin() is a function that is part of the math module and is used by typing math.sin() with some number between the parentheses.\nWithin a Jupyter Notebook, the variables you defined earlier in the notebook will be available for use in the following cells as long as you have executed the cells.\nModules may also contain constants such as math.pi (notice no parentheses at the end). Type this in the cell below to see the constant’s math.pi value.\n\n\nmath.pi\n\n3.141592653589793\n\n\n\n\nCheck your understanding\nUse the empty Python cell to calculate the sine of pi. What value do you expect for this calculation? Did you get the desired result?\n\n\nCode\n# Here is an example solution\nmath.sin(math.pi)\n\n\n\n\nCombining functions\nFunctions can also be combined. The print() function returns values within the parentheses as text on the screen. Below, try printing the value of the square root of four.\n\nprint(math.sqrt(4))\n\n2.0\n\n\nYou can also combine text with other calculated values using the print() function. For example, print('Two plus two is', 2+2) would generate the text reading 'Two plus two is 4'. Combine the print() function with the math.sqrt() function in the cell below to produce text that reads 'The square root of 4 is 2.0'.\n\nprint(\"The square root of 4 is\", math.sqrt(4))\n\nThe square root of 4 is 2.0\n\n\n\n\n\nVariables\nA variable can store values calculated in expressions and used for other calculations. Assigning value to variables is straightforward. To assign a value, you type variable_name = value, where variable_name is the name of the variable you wish to define. In the cell below, define a variable called temp_celsius, assign it a value of 10.0, and then print that variable value using the print() function. Note that you should do this on two separate lines.\n\ntemp_celsius = 10.0\nprint(temp_celsius)\n\n10.0\n\n\nAs we did above, you can combine text and even use some math when printing out variable values. The idea is similar to adding 2+2 or calculating the square root of four from the previous section. In the cell below, print out the value of temp_celsius in degrees Fahrenheit by multiplying temp_celsius by 9/5 and adding 32. This should be done within the print() function to produce output that reads 'Temperature in Fahrenheit: 50.0'.\n\nprint(\"Temperature in Fahrenheit:\", 9 / 5 * temp_celsius + 32)\n\nTemperature in Fahrenheit: 50.0\n\n\n\nCheck your understanding\nUse the empty Python cell below to define a variable and print its value to the screen using the print() function. The variable value can be anything you like, and you can even consider defining several variables and printing them out together. Consider using pothole_case_naming for your variable name.\n\n\nCode\n# Here is an example solution\npart1 = \"I like\"\npart2 = \"Python!\"\nprint(part1, part2)\n\n\n\n\n\nUpdating variables\nValues stored in variables can also be updated. Let’s redefine the value of temp_celsius to be equal to 15.0 and print its value in the cells below.\n\ntemp_celsius = 15.0\n\n\nprint(\"temperature in Celsius is now:\", temp_celsius)\n\ntemperature in Celsius is now: 15.0\n\n\n\n\n\n\n\n\nWarning\n\n\n\nIf you try to run some code that accesses a variable that has not yet been defined, you will get a NameError message. Try printing out the value of the variable temp_fahrenheit using the print() function in the cell below.\n\n\n\nprint(\"Temperature in Celsius:\", 5 / 9 * (temp_fahrenheit - 32))\n\nNameError: name 'temp_fahrenheit' is not defined\n\n\n\n\n\n\n\n\nNote\n\n\n\nOne of the interesting things here is that if we define the undefined variable in a cell lower down in the notebook and execute that cell, we can return to the earlier cell, and the code should now work. That was a bit of a complicated sentence, so let’s test this all out. First, let’s define a variable called temp_fahrenheit in the cell below and assign it to be equal to 9/5 * temp_celsius + 32, the conversion factor from temperatures in Celsius to Fahrenheit. Then, return to the cell above this text and run that cell again. See how the error message has gone away? temp_fahrenheit has now been defined, and thus, the cell above no longer generates a NameError when the code is executed.\nAlso, the number beside the cell, for example, In [2], tells you the order in which the Python cells have been executed. This way, you can see a history of the order in which you have run the cells.\n\n\n\ntemp_fahrenheit = 9 / 5 * temp_celsius + 32\n\nTo check their current values, print out the values of temp_celsius and temp_fahrenheit in the cell below.\n\nprint(\"temperature in Celsius:\", temp_celsius, \"and in Fahrenheit:\", temp_fahrenheit)\n\ntemperature in Celsius: 15.0 and in Fahrenheit: 59.0\n\n\n\n\nData types\nA data type determines the characteristics of data in a program. There are four basic data types in Python, as shown in the table below.\n\n\n\nData type name\nData type\nExample\n\n\n\n\nint\nWhole integer values\n4\n\n\nfloat\nDecimal values\n3.1415\n\n\nstr\nCharacter strings\n'Hot'\n\n\nbool\nTrue/false values\nTrue\n\n\n\nThe data type can be found using the type() function. As you will see, the data types are essential because some are incompatible.\nLet’s define a variable weather_forecast and assign it the value 'Hot'. After this, we can check its data type using the type() function.\n\nweather_forecast = \"Hot\"\ntype(weather_forecast)\n\nstr\n\n\nLet’s also check the type of temp_fahrenheit. What happens if you try to combine temp_fahrenheit and weather_forecast in a single math equation such as temp_fahrenheit = temp_fahrenheit + 5.0 * weather_forecast?\n\ntype(temp_fahrenheit)\n\nfloat\n\n\n\ntemp_fahrenheit = temp_fahrenheit + 5.0 * weather_forecast\n\nTypeError: can't multiply sequence by non-int of type 'float'\n\n\nIn this case, we get at TypeError because we are trying to execute a math operation with data types that are not compatible. There is no way in Python to multiply numbers with a character string.\n\nCheck your understanding\nAs it turns out, you can do some math with character strings in Python. Define two variables and assign them character string values in the Python cell below. What happens if you try to add two character strings together? Can you subtract them? Which other math operations work for character strings?\n\n\nCode\n# Here is an example solution\n\nfirst_variable = \"Python\"\nsecond_variable = \" is cool!\"\n\nprint(first_variable + second_variable)\nprint(5 * first_variable)\nprint(first_variable - second_variable)\n\n\n\n\n\n\n\n\nAcknowledgements\n\n\n\nThe ‘Let the snake in’ section is derived from A taste of Python section of the Geo-Python course 2022 by D. Whipp, H. Tenkanen, V. Heikinheimo, H. Aagesen, and C. Fink from the Department of Geosciences and Geography, University of Helsinki, licensed under CC-BY-SA 4.0."
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Spatial Data Science for Social Geography",
+    "section": "",
+    "text": "Caution\n\n\n\nThis course material is currently under construction and is likely incomplete. The final version will be released in October 2023.\nSpatial Data Science for Social Geography course introduces data science and computational analysis using open source tools written in the Python programming language to the curriculum of students of geography.\nThe course is taught in person at Charles University in Prague from October 2023."
+  },
+  {
+    "objectID": "index.html#aims",
+    "href": "index.html#aims",
+    "title": "Spatial Data Science for Social Geography",
+    "section": "Aims",
+    "text": "Aims\nThe module provides students with little or no prior knowledge of core competencies in Spatial Data Science (SDS). It includes:\n\nAdvancing their statistical and numerical literacy.\nIntroducing basic principles of programming and state-of-the-art computational tools for SDS.\nPresenting a comprehensive overview of the main methodologies available to the Spatial Data Scientist and their intuition on how and when they can be applied.\nFocusing on real-world applications of these techniques in a geographical and applied context.\n\n\n\n\n\n\n\nIs it only for social geography?\n\n\n\nThe course revolves around data typically used in social geography, but its applicability is not limited to social geography. In practice, you will work more with vector data than rasters (although we cover those a bit as well) and often with data capturing various aspects of human life. The spatial data science concepts, however, are universal."
+  },
+  {
+    "objectID": "index.html#learning-outcomes",
+    "href": "index.html#learning-outcomes",
+    "title": "Spatial Data Science for Social Geography",
+    "section": "Learning outcomes",
+    "text": "Learning outcomes\nAfter finishing the course, students will be able to:\n\nDemonstrate understanding of advanced concepts of spatial data science and use the open tools to load and analyze spatial data.\nUnderstand the motivation and inner logic of the main methodological approaches of open SDS.\nCritically evaluate the suitability of a specific technique, what it can offer, and how it can help answer questions of interest.\nApply several spatial analysis techniques and explain how to interpret the results in the process of turning data into information.\nWork independently using SDS tools to extract valuable insight when faced with a new dataset."
+  },
+  {
+    "objectID": "index.html#prerequisites",
+    "href": "index.html#prerequisites",
+    "title": "Spatial Data Science for Social Geography",
+    "section": "Prerequisites",
+    "text": "Prerequisites\nThis course assumes an understanding of geography and its key concepts (e.g. coordinate reference systems or the Modifiable Areal Unit Problem (Openshaw 1983)), at least basic familiarity with GIS (like file formats and basic spatial data manipulation) and a basic understanding of statistics (e.g. understanding the concept of regression), optimally with some spatial component (geographically weighted regression). While the course will briefly explain these topics, it will not cover the theory and statistics behind these concepts in detail.\nNo prior experience with programming or computer science is needed, although a positive attitude towards these topics is necessary."
+  },
+  {
+    "objectID": "index.html#course-structure",
+    "href": "index.html#course-structure",
+    "title": "Spatial Data Science for Social Geography",
+    "section": "Course structure",
+    "text": "Course structure\nThe material is planned for 12 weeks, with one session per week. Each session is divided into three parts - Concepts, Hands-on and Exercise, following the model proposed by Arribas-Bel (2019). Concepts have a form of a lecture covering conceptual aspects of the day’s topic, providing necessary theoretical background before digging into code. This part can be nicknamed “I do”. Hands-on contains documented code in a Jupyter notebook, executed in parallel by a lecturer, providing an additional explanation, and by students. Therefore, we have a part “We do”. Exercise is a set of tasks to be performed by students individually, with occasional guidance by the lecturer. So we finish the day with “You do”.\nFor enrolled students of Charles University, the course will finish with a written assignment in the form of a computational essay. See the Assignment section for details."
+  },
+  {
+    "objectID": "index.html#literature",
+    "href": "index.html#literature",
+    "title": "Spatial Data Science for Social Geography",
+    "section": "Literature",
+    "text": "Literature\nThe course loosely follows the contents of the Geographic Data Science with Python by Rey, Arribas-Bel, and Wolf (2023). The online version of the book is available under open access from geographicdata.science/book. Using the online version over the printed one is recommended, although this is entirely up to you.\n\n\n\n\n\n\nSpatial or geographic data science?\n\n\n\nSpatial data science and geographic data science are often treated as synonyms. In some interpretations, spatial is broader than geographic. In this case, we do spatial […] for […] geography, which is, in principle, geographic data science. We will treat both terms as equal within the context of this course."
+  },
+  {
+    "objectID": "index.html#attribution",
+    "href": "index.html#attribution",
+    "title": "Spatial Data Science for Social Geography",
+    "section": "Attribution",
+    "text": "Attribution\nThe course material is partially derived from A Course on Geographic Data Science by Arribas-Bel (2019). Thanks, Dani!\nSome sections are derived from other sources acknowledged at the bottom of respective pages."
+  },
+  {
+    "objectID": "chapter_01/exercise.html",
+    "href": "chapter_01/exercise.html",
+    "title": "Understanding Notebooks",
+    "section": "",
+    "text": "This is a “You do” part of the first lesson.\nYou now know what a Jupyter Notebook is, how to work with it in Jupyter Lab (or Google Colab) and how to run Python code in its cells. Let’s now move attention to cells with text."
+  },
+  {
+    "objectID": "chapter_01/exercise.html#master-markdown",
+    "href": "chapter_01/exercise.html#master-markdown",
+    "title": "Understanding Notebooks",
+    "section": "Master Markdown",
+    "text": "Master Markdown\nThe text in Jupyter Notebooks is formatted using Markdown, a straightforward syntax allowing you to format text, embed images or tables, and keep everything as plain text.\nFor this task, you will focus on getting to know Markdown better. To practise its syntax, try to reproduce the following Wikipedia entry:\n\nhttps://en.wikipedia.org/wiki/Waldo_R._Tobler\n\nYou should be able to figure out the proper Markdown syntax by yourself, with some help from your favourite search engine or AI (yes, usage of AI tools like ChatGPT or Bard is allowed and possible even encouraged in this course).\n\n\n\n\n\n\nTip\n\n\n\nDo not overthink it. Focus on correctly formatting the bold, italics, links, headlines, and lists, but don’t worry too much about the overall layout. Bonus if you also manage to insert the image (it does not need to be properly placed as on the original page)!"
+  },
+  {
+    "objectID": "chapter_01/exercise.html#play-with-the-math-module",
+    "href": "chapter_01/exercise.html#play-with-the-math-module",
+    "title": "Understanding Notebooks",
+    "section": "Play with the math module",
+    "text": "Play with the math module\nPlay a bit more with the math module you have explored in the previous section.\n\nCan you figure out how to round numbers?\nCan you create the natural logarithm of a variable? And can you get the original value back?\nHow would you do the base-10 logarithm?\nCan you convert an angle from radians to degrees and back?\nCan you figure out what the math.nan constant is for?\nWhich other constants are available in the math module?\n\nDon’t forget to document your code cells with Markdown cells.\n\n\n\n\n\n\nTip\n\n\n\nYou don’t need to answer all of the questions, but try if you have time. A good place to start would be a documentation of the math module but that is up to you."
+  },
+  {
+    "objectID": "chapter_01/concepts.html",
+    "href": "chapter_01/concepts.html",
+    "title": "What is Spatial Data Science?",
+    "section": "",
+    "text": "The contents will appear later\n\n\n\nThis section will cover the lecture delivered as part of the in-person course. Slides will appear here shortly before the lesson, followed by the summary of the contents in the days after, based on the lecture transcript."
+  },
+  {
+    "objectID": "chapter_04/hands_on.html",
+    "href": "chapter_04/hands_on.html",
+    "title": "Spatial weights in PySAL",
+    "section": "",
+    "text": "libpysal and creation of various kinds of weights matrices and operations on them.\nspatial lag and its relationship to weight value and transformation method.\n\nNeed to figure out if I should teach current W or the new one from the experimental namespace. Probably will have to stick to the current one as the rest of PySAL might not work with the new one by October. Let’s check with the PySAL team. Would be awesome to teach the new class."
+  },
+  {
+    "objectID": "chapter_08/exercise.html",
+    "href": "chapter_08/exercise.html",
+    "title": "Learning xarray",
+    "section": "",
+    "text": "Analysis of a country’s population based on WorldPop data."
+  },
+  {
+    "objectID": "chapter_08/concepts.html",
+    "href": "chapter_08/concepts.html",
+    "title": "Data as a grid",
+    "section": "",
+    "text": "The contents will appear later\n\n\n\nThis section will cover the lecture delivered as part of the in-person course. Slides will appear here shortly before the lesson, followed by the summary of the contents in the days after, based on the lecture transcript.\nHave a look at the related reading in the meantime.\n\n\n\n\n\n\n\n\nRelated reading\n\n\n\nParts of the chapter Spatial Data dealing with raster data from the Geographic Data Science with Python by Rey, Arribas-Bel and Wolf (2023)."
+  },
+  {
+    "objectID": "chapter_11/hands_on.html",
+    "href": "chapter_11/hands_on.html",
+    "title": "Regression and geography",
+    "section": "",
+    "text": "non-spatial regression\nGWR\nfeature eng\nspatial heterogeneiry\nspatial dependence"
+  },
+  {
+    "objectID": "chapter_05/exercise.html",
+    "href": "chapter_05/exercise.html",
+    "title": "Does it correlate?",
+    "section": "",
+    "text": "Exploring autocorrelation on a different dataset."
+  },
+  {
+    "objectID": "chapter_05/concepts.html",
+    "href": "chapter_05/concepts.html",
+    "title": "Explore space!",
+    "section": "",
+    "text": "The contents will appear later\n\n\n\nThis section will cover the lecture delivered as part of the in-person course. Slides will appear here shortly before the lesson, followed by the summary of the contents in the days after, based on the lecture transcript.\nHave a look at the related reading in the meantime.\n\n\n\n\n\n\n\n\nRelated reading\n\n\n\nChapters Global Spatial Autocorrelation and Local Spatial Autocorrelation from the Geographic Data Science with Python by Rey, Arribas-Bel and Wolf (2023)."
+  },
+  {
+    "objectID": "chapter_07/hands_on.html",
+    "href": "chapter_07/hands_on.html",
+    "title": "Clustering and regionalisation",
+    "section": "",
+    "text": "scikit-learn\nscikit-learn+weights constraint\nbonus - regionalisation (max-p, skater)"
+  },
+  {
+    "objectID": "data/chicago_influenza_1918/ReadMe.html",
+    "href": "data/chicago_influenza_1918/ReadMe.html",
+    "title": "Disparities in influenza mortality and transmission related to sociodemographic factors within Chicago in the pandemic of 1918",
+    "section": "",
+    "text": "CC0 1.0\nGrantz, Kyra H. et al. (2017), Data from: Disparities in influenza mortality and transmission related to sociodemographic factors within Chicago in the pandemic of 1918, Dryad, Dataset, https://doi.org/10.5061/dryad.48nv3\n\n\nPoint location and week of epidemic of 8,031 influenza and pneumonia deaths recorded during the 1918 Spanish flu pandemic within the city of Chicago. Data was digitized from 1920 City of Chicago Department of Health annual report Date last modified: 25-10-2016. Fields include: ID (FID), indicator of pneumonia (0 or 1, 0 indicates an influenza death, 1 an influenza and pneumonia death), x and y coordinates (with units in meters), and week (sequential week of epidemic). See paper for more details.\n\n\n\nSociodemographic data (including population size, illiteracy, unemployment) of 496 census tracts within the City of Chicago. Data was collected from the 1920 national census.\n\n\n\nShapefile of census tract boundaries in Chicago in 1920. File included in zip file include IL_tract_a.dbf, IL_tract_a.prj, IL_tract_a.sbn, IL_tract_a.sbx, IL_tract_a.shp, IL_tract_a.shp.xml, IL_tract_a.shx"
+  },
+  {
+    "objectID": "data/chicago_influenza_1918/ReadMe.html#pandemic-influenza-mortality-chicago-usa-points.csv",
+    "href": "data/chicago_influenza_1918/ReadMe.html#pandemic-influenza-mortality-chicago-usa-points.csv",
+    "title": "Disparities in influenza mortality and transmission related to sociodemographic factors within Chicago in the pandemic of 1918",
+    "section": "",
+    "text": "Point location and week of epidemic of 8,031 influenza and pneumonia deaths recorded during the 1918 Spanish flu pandemic within the city of Chicago. Data was digitized from 1920 City of Chicago Department of Health annual report Date last modified: 25-10-2016. Fields include: ID (FID), indicator of pneumonia (0 or 1, 0 indicates an influenza death, 1 an influenza and pneumonia death), x and y coordinates (with units in meters), and week (sequential week of epidemic). See paper for more details."
+  },
+  {
+    "objectID": "data/chicago_influenza_1918/ReadMe.html#fine-scale-sociodemographics-of-chicago-usa-1920-tracts.csv",
+    "href": "data/chicago_influenza_1918/ReadMe.html#fine-scale-sociodemographics-of-chicago-usa-1920-tracts.csv",
+    "title": "Disparities in influenza mortality and transmission related to sociodemographic factors within Chicago in the pandemic of 1918",
+    "section": "",
+    "text": "Sociodemographic data (including population size, illiteracy, unemployment) of 496 census tracts within the City of Chicago. Data was collected from the 1920 national census."
+  },
+  {
+    "objectID": "data/chicago_influenza_1918/ReadMe.html#shapefile-of-census-tract-boundaries-in-chicago-in-1920-shapefile.zip",
+    "href": "data/chicago_influenza_1918/ReadMe.html#shapefile-of-census-tract-boundaries-in-chicago-in-1920-shapefile.zip",
+    "title": "Disparities in influenza mortality and transmission related to sociodemographic factors within Chicago in the pandemic of 1918",
+    "section": "",
+    "text": "Shapefile of census tract boundaries in Chicago in 1920. File included in zip file include IL_tract_a.dbf, IL_tract_a.prj, IL_tract_a.sbn, IL_tract_a.sbx, IL_tract_a.shp, IL_tract_a.shp.xml, IL_tract_a.shx"
+  },
+  {
+    "objectID": "chapter_02/hands_on.html",
+    "href": "chapter_02/hands_on.html",
+    "title": "Data wrangling",
+    "section": "",
+    "text": "You know the basics. What are Jupyter notebooks, how do they work, and how do you run Python in them. It is time to start using them for data science (no, that simple math you did the last time doesn’t count as data science).\nYou are about to enter the PyData ecosystem. It means that you will start learning how to work with Python from the middle. This course does not explicitly cover the fundamentals of programming. It is expected that those parts you need you’ll be able to pick as you go through the specialised data science stack. If you’re stuck, confused or need further explanation, use Google (or your favourite search engine), ask AI to explain the code or ask in Slack or during the class. Not everything will be told during the course (by design), and the internet is a friend of every programmer, so let’s figure out how to use it efficiently from the beginning.\nLet’s dig in!"
+  },
+  {
+    "objectID": "chapter_02/hands_on.html#munging-and-wrangling",
+    "href": "chapter_02/hands_on.html#munging-and-wrangling",
+    "title": "Data wrangling",
+    "section": "Munging and wrangling",
+    "text": "Munging and wrangling\nReal-world datasets are messy. There is no way around it: datasets have “holes” (missing data), the amount of formats in which data can be stored is endless, and the best structure to share data is not always the optimum to analyse them, hence the need to munge1 them. As has been correctly pointed out in many outlets, much of the time spent in what is called Data Science is related not only to sophisticated modelling and insight but has to do with much more basic and less exotic tasks such as obtaining data, processing, and turning them into a shape that makes analysis possible, and exploring it to get to know their basic properties.\nSurprisingly, very little has been published on patterns, techniques, and best practices for quick and efficient data cleaning, manipulation, and transformation because of how labour-intensive and relevant this aspect is. In this session, you will use a few real-world datasets and learn how to process them into Python so they can be transformed and manipulated, if necessary, and analysed. For this, we will introduce some of the bread and butter of data analysis and scientific computing in Python. These are fundamental tools that are constantly used in almost any task relating to data analysis.\nThis notebook covers the basics and the content that is expected to be learnt by every student. You use a prepared dataset that saves us much of the more intricate processing that goes beyond the introductory level the session is aimed at. If you are interested in how it was done, there is a notebook.\nThis notebook discusses several patterns to clean and structure data properly, including tidying, subsetting, and aggregating. We finish with some basic visualisation. An additional extension presents more advanced tricks to manipulate tabular data."
+  },
+  {
+    "objectID": "chapter_02/hands_on.html#dataset",
+    "href": "chapter_02/hands_on.html#dataset",
+    "title": "Data wrangling",
+    "section": "Dataset",
+    "text": "Dataset\nYou will be exploring demographic characteristics of Chicago in 1918 linked to the influenza mortality during the pandemic that happened back then, coming from the research paper by Grantz et al. (2016). The data are aggregated to census tracts and contain information on unemployment, home ownership, age structure and influenza mortality from a period of 8 weeks.\nThe main tool you use is the pandas package. As with the math you used before, you must import it first.\n\n1import pandas as pd\n\n\n1\n\nImport the pandas package under the alias pd. Using the alias is not necessary, but it is a convention nearly everyone follows.\n\n\n\n\nThe data is stored in a CSV\n\n1chicago_1918 = pd.read_csv(\n2    \"data/chicago_influenza_1918.csv\",\n3    index_col=\"geography_code\",\n)\n\n\n1\n\nUse the read_csv function from pandas.\n\n2\n\nSpecify the path to the file\n\n3\n\nUse the column geography_code as an index of the DataFrame."
+  },
+  {
+    "objectID": "chapter_02/hands_on.html#pandas-101",
+    "href": "chapter_02/hands_on.html#pandas-101",
+    "title": "Data wrangling",
+    "section": "Pandas 101",
+    "text": "Pandas 101\nIntro\n\nData Structures\nDataFrame\n\nchicago_1918\n\n\n\n\n\n\n\n\ngross_acres\nillit\nunemployed_pct\nho_pct\nagecat1\nagecat2\nagecat3\nagecat4\nagecat5\nagecat6\nagecat7\ninfluenza\n\n\ngeography_code\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nG17003100001\n1388.2\n116\n0.376950\n0.124823\n46\n274\n257\n311\n222\n1122\n587\n9\n\n\nG17003100002\n217.7\n14\n0.399571\n0.071647\n35\n320\n441\n624\n276\n1061\n508\n6\n\n\nG17003100003\n401.3\n69\n0.349558\n0.092920\n50\n265\n179\n187\n163\n1020\n392\n8\n\n\nG17003100004\n86.9\n11\n0.422535\n0.030072\n43\n241\n129\n141\n123\n1407\n539\n2\n\n\nG17003100005\n337.1\n20\n0.431822\n0.084703\n65\n464\n369\n464\n328\n2625\n1213\n7\n\n\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n\n\nG17003100492\n2176.6\n136\n0.404430\n0.173351\n85\n606\n520\n705\n439\n2141\n1460\n12\n\n\nG17003100493\n680.0\n271\n0.377207\n0.130158\n243\n1349\n957\n1264\n957\n4653\n2180\n40\n\n\nG17003100494\n1392.8\n1504\n0.336032\n0.072317\n309\n1779\n1252\n1598\n1086\n6235\n2673\n85\n\n\nG17003100495\n640.0\n167\n0.311917\n0.085667\n59\n333\n206\n193\n80\n726\n224\n15\n\n\nG17003100496\n709.8\n340\n0.369765\n0.113549\n157\n979\n761\n959\n594\n2862\n1206\n30\n\n\n\n\n496 rows × 12 columns\n\n\n\nSeries\n\nchicago_1918[\"influenza\"]\n\ngeography_code\nG17003100001     9\nG17003100002     6\nG17003100003     8\nG17003100004     2\nG17003100005     7\n                ..\nG17003100492    12\nG17003100493    40\nG17003100494    85\nG17003100495    15\nG17003100496    30\nName: influenza, Length: 496, dtype: int64\n\n\n\n\nInspect\n\nchicago_1918.head()\n\n\n\n\n\n\n\n\ngross_acres\nillit\nunemployed_pct\nho_pct\nagecat1\nagecat2\nagecat3\nagecat4\nagecat5\nagecat6\nagecat7\ninfluenza\n\n\ngeography_code\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nG17003100001\n1388.2\n116\n0.376950\n0.124823\n46\n274\n257\n311\n222\n1122\n587\n9\n\n\nG17003100002\n217.7\n14\n0.399571\n0.071647\n35\n320\n441\n624\n276\n1061\n508\n6\n\n\nG17003100003\n401.3\n69\n0.349558\n0.092920\n50\n265\n179\n187\n163\n1020\n392\n8\n\n\nG17003100004\n86.9\n11\n0.422535\n0.030072\n43\n241\n129\n141\n123\n1407\n539\n2\n\n\nG17003100005\n337.1\n20\n0.431822\n0.084703\n65\n464\n369\n464\n328\n2625\n1213\n7\n\n\n\n\n\n\n\n\nchicago_1918.tail()\n\n\n\n\n\n\n\n\ngross_acres\nillit\nunemployed_pct\nho_pct\nagecat1\nagecat2\nagecat3\nagecat4\nagecat5\nagecat6\nagecat7\ninfluenza\n\n\ngeography_code\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nG17003100492\n2176.6\n136\n0.404430\n0.173351\n85\n606\n520\n705\n439\n2141\n1460\n12\n\n\nG17003100493\n680.0\n271\n0.377207\n0.130158\n243\n1349\n957\n1264\n957\n4653\n2180\n40\n\n\nG17003100494\n1392.8\n1504\n0.336032\n0.072317\n309\n1779\n1252\n1598\n1086\n6235\n2673\n85\n\n\nG17003100495\n640.0\n167\n0.311917\n0.085667\n59\n333\n206\n193\n80\n726\n224\n15\n\n\nG17003100496\n709.8\n340\n0.369765\n0.113549\n157\n979\n761\n959\n594\n2862\n1206\n30\n\n\n\n\n\n\n\n\nchicago_1918.info()\n\n&lt;class 'pandas.core.frame.DataFrame'&gt;\nIndex: 496 entries, G17003100001 to G17003100496\nData columns (total 12 columns):\n #   Column          Non-Null Count  Dtype  \n---  ------          --------------  -----  \n 0   gross_acres     496 non-null    float64\n 1   illit           496 non-null    int64  \n 2   unemployed_pct  496 non-null    float64\n 3   ho_pct          496 non-null    float64\n 4   agecat1         496 non-null    int64  \n 5   agecat2         496 non-null    int64  \n 6   agecat3         496 non-null    int64  \n 7   agecat4         496 non-null    int64  \n 8   agecat5         496 non-null    int64  \n 9   agecat6         496 non-null    int64  \n 10  agecat7         496 non-null    int64  \n 11  influenza       496 non-null    int64  \ndtypes: float64(3), int64(9)\nmemory usage: 66.5+ KB\n\n\n\n\nSummarise\n\nchicago_1918.describe()\n\n\n\n\n\n\n\n\ngross_acres\nillit\nunemployed_pct\nho_pct\nagecat1\nagecat2\nagecat3\nagecat4\nagecat5\nagecat6\nagecat7\ninfluenza\n\n\n\n\ncount\n496.000000\n496.000000\n496.000000\n496.000000\n496.000000\n496.000000\n496.000000\n496.000000\n496.000000\n496.000000\n496.000000\n496.000000\n\n\nmean\n233.245968\n199.116935\n0.345818\n0.061174\n102.370968\n555.167339\n406.560484\n524.100806\n416.044355\n2361.582661\n1052.681452\n16.070565\n\n\nstd\n391.630857\n297.836201\n0.050498\n0.038189\n78.677423\n423.526444\n301.564896\n369.875444\n281.825682\n1545.469426\n722.955717\n12.252440\n\n\nmin\n6.900000\n0.000000\n0.057800\n0.000000\n0.000000\n3.000000\n1.000000\n4.000000\n0.000000\n8.000000\n6.000000\n0.000000\n\n\n25%\n79.975000\n30.750000\n0.323973\n0.032106\n46.750000\n256.500000\n193.500000\n253.750000\n220.500000\n1169.750000\n519.750000\n8.000000\n\n\n50%\n99.500000\n84.000000\n0.353344\n0.054389\n82.000000\n442.500000\n331.500000\n453.500000\n377.000000\n2102.000000\n918.500000\n13.500000\n\n\n75%\n180.125000\n241.250000\n0.373382\n0.084762\n136.000000\n717.500000\n532.500000\n709.500000\n551.750000\n3191.750000\n1379.250000\n21.000000\n\n\nmax\n3840.000000\n2596.000000\n0.495413\n0.197391\n427.000000\n2512.000000\n1917.000000\n2665.000000\n2454.000000\n9792.000000\n4163.000000\n85.000000\n\n\n\n\n\n\n\n\nchicago_1918.describe().T\n\n\n\n\n\n\n\n\ncount\nmean\nstd\nmin\n25%\n50%\n75%\nmax\n\n\n\n\ngross_acres\n496.0\n233.245968\n391.630857\n6.9000\n79.975000\n99.500000\n180.125000\n3840.000000\n\n\nillit\n496.0\n199.116935\n297.836201\n0.0000\n30.750000\n84.000000\n241.250000\n2596.000000\n\n\nunemployed_pct\n496.0\n0.345818\n0.050498\n0.0578\n0.323973\n0.353344\n0.373382\n0.495413\n\n\nho_pct\n496.0\n0.061174\n0.038189\n0.0000\n0.032106\n0.054389\n0.084762\n0.197391\n\n\nagecat1\n496.0\n102.370968\n78.677423\n0.0000\n46.750000\n82.000000\n136.000000\n427.000000\n\n\nagecat2\n496.0\n555.167339\n423.526444\n3.0000\n256.500000\n442.500000\n717.500000\n2512.000000\n\n\nagecat3\n496.0\n406.560484\n301.564896\n1.0000\n193.500000\n331.500000\n532.500000\n1917.000000\n\n\nagecat4\n496.0\n524.100806\n369.875444\n4.0000\n253.750000\n453.500000\n709.500000\n2665.000000\n\n\nagecat5\n496.0\n416.044355\n281.825682\n0.0000\n220.500000\n377.000000\n551.750000\n2454.000000\n\n\nagecat6\n496.0\n2361.582661\n1545.469426\n8.0000\n1169.750000\n2102.000000\n3191.750000\n9792.000000\n\n\nagecat7\n496.0\n1052.681452\n722.955717\n6.0000\n519.750000\n918.500000\n1379.250000\n4163.000000\n\n\ninfluenza\n496.0\n16.070565\n12.252440\n0.0000\n8.000000\n13.500000\n21.000000\n85.000000\n\n\n\n\n\n\n\n\nchicago_1918.min()\n\ngross_acres       6.9000\nillit             0.0000\nunemployed_pct    0.0578\nho_pct            0.0000\nagecat1           0.0000\nagecat2           3.0000\nagecat3           1.0000\nagecat4           4.0000\nagecat5           0.0000\nagecat6           8.0000\nagecat7           6.0000\ninfluenza         0.0000\ndtype: float64\n\n\n\nchicago_1918.loc[\"G17003100002\"].min()\n\n0.071647275\n\n\n\nchicago_1918.loc[\"G17003100002\", \"agecat1\":\"agecat7\"].min()\n\n35.0\n\n\n\n\nCreate new columns\n\ntotal_population = (\n    chicago_1918[\"agecat1\"]\n    + chicago_1918[\"agecat2\"]\n    + chicago_1918[\"agecat3\"]\n    + chicago_1918[\"agecat4\"]\n    + chicago_1918[\"agecat5\"]\n    + chicago_1918[\"agecat6\"]\n    + chicago_1918[\"agecat7\"]\n)\ntotal_population.head()\n\ngeography_code\nG17003100001    2819\nG17003100002    3265\nG17003100003    2256\nG17003100004    2623\nG17003100005    5528\ndtype: int64\n\n\n\ntotal_population = chicago_1918.loc[:, \"agecat1\":\"agecat7\"].sum(axis=1)\ntotal_population.head()\n\ngeography_code\nG17003100001    2819\nG17003100002    3265\nG17003100003    2256\nG17003100004    2623\nG17003100005    5528\ndtype: int64\n\n\n\nchicago_1918[\"total_population\"] = total_population\nchicago_1918.head()\n\n\n\n\n\n\n\n\ngross_acres\nillit\nunemployed_pct\nho_pct\nagecat1\nagecat2\nagecat3\nagecat4\nagecat5\nagecat6\nagecat7\ninfluenza\ntotal_population\n\n\ngeography_code\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nG17003100001\n1388.2\n116\n0.376950\n0.124823\n46\n274\n257\n311\n222\n1122\n587\n9\n2819\n\n\nG17003100002\n217.7\n14\n0.399571\n0.071647\n35\n320\n441\n624\n276\n1061\n508\n6\n3265\n\n\nG17003100003\n401.3\n69\n0.349558\n0.092920\n50\n265\n179\n187\n163\n1020\n392\n8\n2256\n\n\nG17003100004\n86.9\n11\n0.422535\n0.030072\n43\n241\n129\n141\n123\n1407\n539\n2\n2623\n\n\nG17003100005\n337.1\n20\n0.431822\n0.084703\n65\n464\n369\n464\n328\n2625\n1213\n7\n5528\n\n\n\n\n\n\n\n\nhomeowners = chicago_1918[\"total_population\"] * chicago_1918[\"ho_pct\"]\nhomeowners.head()\n\ngeography_code\nG17003100001    351.875177\nG17003100002    233.928353\nG17003100003    209.628319\nG17003100004     78.879711\nG17003100005    468.237675\ndtype: float64\n\n\n\npop_density = chicago_1918[\"total_population\"] / chicago_1918[\"gross_acres\"]\npop_density.head()\n\ngeography_code\nG17003100001     2.030687\nG17003100002    14.997703\nG17003100003     5.621729\nG17003100004    30.184120\nG17003100005    16.398695\ndtype: float64\n\n\n\nchicago_1918['ones'] = 1\nchicago_1918.head()\n\n\n\n\n\n\n\n\ngross_acres\nillit\nunemployed_pct\nho_pct\nagecat1\nagecat2\nagecat3\nagecat4\nagecat5\nagecat6\nagecat7\ninfluenza\ntotal_population\nones\n\n\ngeography_code\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nG17003100001\n1388.2\n116\n0.376950\n0.124823\n46\n274\n257\n311\n222\n1122\n587\n9\n2819\n1\n\n\nG17003100002\n217.7\n14\n0.399571\n0.071647\n35\n320\n441\n624\n276\n1061\n508\n6\n3265\n1\n\n\nG17003100003\n401.3\n69\n0.349558\n0.092920\n50\n265\n179\n187\n163\n1020\n392\n8\n2256\n1\n\n\nG17003100004\n86.9\n11\n0.422535\n0.030072\n43\n241\n129\n141\n123\n1407\n539\n2\n2623\n1\n\n\nG17003100005\n337.1\n20\n0.431822\n0.084703\n65\n464\n369\n464\n328\n2625\n1213\n7\n5528\n1\n\n\n\n\n\n\n\n\nchicago_1918.loc[\"G17003100001\", \"ones\"] = 3\nchicago_1918.head()\n\n\n\n\n\n\n\n\ngross_acres\nillit\nunemployed_pct\nho_pct\nagecat1\nagecat2\nagecat3\nagecat4\nagecat5\nagecat6\nagecat7\ninfluenza\ntotal_population\nones\n\n\ngeography_code\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nG17003100001\n1388.2\n116\n0.376950\n0.124823\n46\n274\n257\n311\n222\n1122\n587\n9\n2819\n3\n\n\nG17003100002\n217.7\n14\n0.399571\n0.071647\n35\n320\n441\n624\n276\n1061\n508\n6\n3265\n1\n\n\nG17003100003\n401.3\n69\n0.349558\n0.092920\n50\n265\n179\n187\n163\n1020\n392\n8\n2256\n1\n\n\nG17003100004\n86.9\n11\n0.422535\n0.030072\n43\n241\n129\n141\n123\n1407\n539\n2\n2623\n1\n\n\nG17003100005\n337.1\n20\n0.431822\n0.084703\n65\n464\n369\n464\n328\n2625\n1213\n7\n5528\n1\n\n\n\n\n\n\n\n\n\nRemove columns\n\nchicago_1918 = chicago_1918.drop(columns=\"ones\")\nchicago_1918.head()\n\n\n\n\n\n\n\n\ngross_acres\nillit\nunemployed_pct\nho_pct\nagecat1\nagecat2\nagecat3\nagecat4\nagecat5\nagecat6\nagecat7\ninfluenza\ntotal_population\n\n\ngeography_code\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nG17003100001\n1388.2\n116\n0.376950\n0.124823\n46\n274\n257\n311\n222\n1122\n587\n9\n2819\n\n\nG17003100002\n217.7\n14\n0.399571\n0.071647\n35\n320\n441\n624\n276\n1061\n508\n6\n3265\n\n\nG17003100003\n401.3\n69\n0.349558\n0.092920\n50\n265\n179\n187\n163\n1020\n392\n8\n2256\n\n\nG17003100004\n86.9\n11\n0.422535\n0.030072\n43\n241\n129\n141\n123\n1407\n539\n2\n2623\n\n\nG17003100005\n337.1\n20\n0.431822\n0.084703\n65\n464\n369\n464\n328\n2625\n1213\n7\n5528\n\n\n\n\n\n\n\n\n\nIndex-based queries\n\ndeath_pop_first4 = chicago_1918.loc[\n    [\"G17003100001\", \"G17003100002\", \"G17003100003\", \"G17003100004\"],\n    [\"influenza\", \"total_population\"],\n]\n\ndeath_pop_first4\n\n\n\n\n\n\n\n\ninfluenza\ntotal_population\n\n\ngeography_code\n\n\n\n\n\n\nG17003100001\n9\n2819\n\n\nG17003100002\n6\n3265\n\n\nG17003100003\n8\n2256\n\n\nG17003100004\n2\n2623\n\n\n\n\n\n\n\n\nrange_query = chicago_1918.loc[\n    \"G17003100010\":\"G17003100012\",\n    \"influenza\":'total_population',\n]\nrange_query\n\n\n\n\n\n\n\n\ninfluenza\ntotal_population\n\n\ngeography_code\n\n\n\n\n\n\nG17003100010\n18\n11380\n\n\nG17003100011\n16\n8382\n\n\nG17003100012\n8\n5874\n\n\n\n\n\n\n\nmix both together\n\nrange_list_qry = chicago_1918.loc[\n    \"G17003100010\":\"G17003100012\", [\"influenza\", \"total_population\"]\n]\n\nrange_list_qry\n\n\n\n\n\n\n\n\ninfluenza\ntotal_population\n\n\ngeography_code\n\n\n\n\n\n\nG17003100010\n18\n11380\n\n\nG17003100011\n16\n8382\n\n\nG17003100012\n8\n5874\n\n\n\n\n\n\n\n\n\nCondition-based queries\n\nflu_over_60 = chicago_1918.loc[chicago_1918[\"influenza\"] &gt; 60]\nflu_over_60\n\n\n\n\n\n\n\n\ngross_acres\nillit\nunemployed_pct\nho_pct\nagecat1\nagecat2\nagecat3\nagecat4\nagecat5\nagecat6\nagecat7\ninfluenza\ntotal_population\n\n\ngeography_code\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nG17003100196\n80.5\n951\n0.301564\n0.016648\n228\n1504\n925\n998\n608\n3583\n1092\n62\n8938\n\n\nG17003100246\n113.0\n2596\n0.330517\n0.027537\n407\n2090\n1497\n1681\n1063\n4564\n1934\n77\n13236\n\n\nG17003100247\n91.1\n1534\n0.293748\n0.020664\n215\n1136\n770\n775\n530\n2993\n1152\n61\n7571\n\n\nG17003100285\n120.0\n621\n0.318677\n0.047779\n419\n1870\n1190\n1263\n818\n4370\n1335\n82\n11265\n\n\nG17003100352\n600.0\n638\n0.267962\n0.055023\n404\n1962\n1251\n1151\n603\n5261\n1251\n70\n11883\n\n\nG17003100494\n1392.8\n1504\n0.336032\n0.072317\n309\n1779\n1252\n1598\n1086\n6235\n2673\n85\n14932\n\n\n\n\n\n\n\n\npop_under = chicago_1918.loc[chicago_1918[\"total_population\"] &lt; 200]\npop_under\n\n\n\n\n\n\n\n\ngross_acres\nillit\nunemployed_pct\nho_pct\nagecat1\nagecat2\nagecat3\nagecat4\nagecat5\nagecat6\nagecat7\ninfluenza\ntotal_population\n\n\ngeography_code\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nG17003100093\n71.2\n34\n0.268041\n0.025773\n4\n33\n20\n25\n10\n66\n36\n0\n194\n\n\nG17003100293\n40.0\n17\n0.345238\n0.053571\n4\n23\n18\n26\n16\n59\n22\n0\n168\n\n\nG17003100297\n38.1\n4\n0.461538\n0.000000\n0\n3\n1\n4\n0\n8\n10\n0\n26\n\n\nG17003100353\n320.0\n28\n0.193750\n0.018750\n1\n7\n4\n10\n12\n80\n46\n2\n160\n\n\nG17003100488\n1600.1\n3\n0.404762\n0.000000\n2\n5\n4\n7\n1\n17\n6\n0\n42\n\n\n\n\n\n\n\n\nillit_100 = chicago_1918.loc[chicago_1918[\"illit\"] == 100]\nillit_100\n\n\n\n\n\n\n\n\ngross_acres\nillit\nunemployed_pct\nho_pct\nagecat1\nagecat2\nagecat3\nagecat4\nagecat5\nagecat6\nagecat7\ninfluenza\ntotal_population\n\n\ngeography_code\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nG17003100076\n79.4\n100\n0.326936\n0.043691\n140\n791\n562\n666\n520\n3163\n1496\n20\n7338\n\n\nG17003100483\n670.0\n100\n0.379153\n0.142368\n188\n1170\n829\n1132\n763\n3191\n1482\n21\n8755\n\n\n\n\n\n\n\n\nchicago_1918.loc[\n    (chicago_1918[\"agecat7\"] * 100 / chicago_1918[\"total_population\"]) &gt; 50\n]\n\n\n\n\n\n\n\n\ngross_acres\nillit\nunemployed_pct\nho_pct\nagecat1\nagecat2\nagecat3\nagecat4\nagecat5\nagecat6\nagecat7\ninfluenza\ntotal_population\n\n\ngeography_code\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nG17003100227\n146.3\n22\n0.0657\n0.000853\n2\n16\n9\n22\n27\n480\n614\n3\n1170\n\n\n\n\n\n\n\n\nflu_over_60_query = chicago_1918.query(\"influenza &gt; 60\")\nflu_over_60_query\n\n\n\n\n\n\n\n\ngross_acres\nillit\nunemployed_pct\nho_pct\nagecat1\nagecat2\nagecat3\nagecat4\nagecat5\nagecat6\nagecat7\ninfluenza\ntotal_population\n\n\ngeography_code\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nG17003100196\n80.5\n951\n0.301564\n0.016648\n228\n1504\n925\n998\n608\n3583\n1092\n62\n8938\n\n\nG17003100246\n113.0\n2596\n0.330517\n0.027537\n407\n2090\n1497\n1681\n1063\n4564\n1934\n77\n13236\n\n\nG17003100247\n91.1\n1534\n0.293748\n0.020664\n215\n1136\n770\n775\n530\n2993\n1152\n61\n7571\n\n\nG17003100285\n120.0\n621\n0.318677\n0.047779\n419\n1870\n1190\n1263\n818\n4370\n1335\n82\n11265\n\n\nG17003100352\n600.0\n638\n0.267962\n0.055023\n404\n1962\n1251\n1151\n603\n5261\n1251\n70\n11883\n\n\nG17003100494\n1392.8\n1504\n0.336032\n0.072317\n309\n1779\n1252\n1598\n1086\n6235\n2673\n85\n14932\n\n\n\n\n\n\n\n\nflu_query = chicago_1918.query(\"(influenza &gt; 60) & (total_population &lt; 10000)\")\nflu_query\n\n\n\n\n\n\n\n\ngross_acres\nillit\nunemployed_pct\nho_pct\nagecat1\nagecat2\nagecat3\nagecat4\nagecat5\nagecat6\nagecat7\ninfluenza\ntotal_population\n\n\ngeography_code\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nG17003100196\n80.5\n951\n0.301564\n0.016648\n228\n1504\n925\n998\n608\n3583\n1092\n62\n8938\n\n\nG17003100247\n91.1\n1534\n0.293748\n0.020664\n215\n1136\n770\n775\n530\n2993\n1152\n61\n7571\n\n\n\n\n\n\n\n\n\nCombining queries\n\nflu_loc = chicago_1918.loc[\n    (chicago_1918[\"influenza\"] &gt; 60) & (chicago_1918[\"total_population\"] &lt; 10000)\n]\nflu_loc\n\n\n\n\n\n\n\n\ngross_acres\nillit\nunemployed_pct\nho_pct\nagecat1\nagecat2\nagecat3\nagecat4\nagecat5\nagecat6\nagecat7\ninfluenza\ntotal_population\n\n\ngeography_code\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nG17003100196\n80.5\n951\n0.301564\n0.016648\n228\n1504\n925\n998\n608\n3583\n1092\n62\n8938\n\n\nG17003100247\n91.1\n1534\n0.293748\n0.020664\n215\n1136\n770\n775\n530\n2993\n1152\n61\n7571\n\n\n\n\n\n\n\nLet’s unpack it.\n\nchicago_1918[\"influenza\"] &gt; 60\n\ngeography_code\nG17003100001    False\nG17003100002    False\nG17003100003    False\nG17003100004    False\nG17003100005    False\n                ...  \nG17003100492    False\nG17003100493    False\nG17003100494     True\nG17003100495    False\nG17003100496    False\nName: influenza, Length: 496, dtype: bool\n\n\n\nchicago_1918[\"total_population\"] &lt; 10000\n\ngeography_code\nG17003100001     True\nG17003100002     True\nG17003100003     True\nG17003100004     True\nG17003100005     True\n                ...  \nG17003100492     True\nG17003100493    False\nG17003100494    False\nG17003100495     True\nG17003100496     True\nName: total_population, Length: 496, dtype: bool\n\n\n\n(chicago_1918[\"influenza\"] &gt; 60) & (chicago_1918[\"total_population\"] &lt; 10000)\n\ngeography_code\nG17003100001    False\nG17003100002    False\nG17003100003    False\nG17003100004    False\nG17003100005    False\n                ...  \nG17003100492    False\nG17003100493    False\nG17003100494    False\nG17003100495    False\nG17003100496    False\nLength: 496, dtype: bool\n\n\n\n\nSorting\n\nchicago_sorted = chicago_1918.sort_values('influenza', ascending=False)\nchicago_sorted\n\n\n\n\n\n\n\n\ngross_acres\nillit\nunemployed_pct\nho_pct\nagecat1\nagecat2\nagecat3\nagecat4\nagecat5\nagecat6\nagecat7\ninfluenza\ntotal_population\n\n\ngeography_code\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nG17003100494\n1392.8\n1504\n0.336032\n0.072317\n309\n1779\n1252\n1598\n1086\n6235\n2673\n85\n14932\n\n\nG17003100285\n120.0\n621\n0.318677\n0.047779\n419\n1870\n1190\n1263\n818\n4370\n1335\n82\n11265\n\n\nG17003100246\n113.0\n2596\n0.330517\n0.027537\n407\n2090\n1497\n1681\n1063\n4564\n1934\n77\n13236\n\n\nG17003100352\n600.0\n638\n0.267962\n0.055023\n404\n1962\n1251\n1151\n603\n5261\n1251\n70\n11883\n\n\nG17003100196\n80.5\n951\n0.301564\n0.016648\n228\n1504\n925\n998\n608\n3583\n1092\n62\n8938\n\n\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n\n\nG17003100297\n38.1\n4\n0.461538\n0.000000\n0\n3\n1\n4\n0\n8\n10\n0\n26\n\n\nG17003100209\n124.1\n13\n0.438105\n0.062971\n30\n120\n92\n196\n166\n763\n491\n0\n1858\n\n\nG17003100293\n40.0\n17\n0.345238\n0.053571\n4\n23\n18\n26\n16\n59\n22\n0\n168\n\n\nG17003100202\n13.1\n6\n0.323326\n0.027714\n5\n40\n24\n37\n28\n218\n78\n0\n430\n\n\nG17003100396\n26.2\n8\n0.344066\n0.015639\n14\n54\n31\n53\n48\n609\n275\n0\n1084\n\n\n\n\n496 rows × 13 columns\n\n\n\nthose are abs number, sort by relative\n\nchicago_1918[\"flu_rate\"] = chicago_1918[\"influenza\"] / chicago_1918[\"total_population\"]\nchicago_sorted_rel = chicago_1918.sort_values('flu_rate', ascending=False)\nchicago_sorted_rel\n\n\n\n\n\n\n\n\ngross_acres\nillit\nunemployed_pct\nho_pct\nagecat1\nagecat2\nagecat3\nagecat4\nagecat5\nagecat6\nagecat7\ninfluenza\ntotal_population\nflu_rate\n\n\ngeography_code\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nG17003100086\n140.7\n153\n0.331750\n0.034838\n39\n179\n144\n197\n111\n399\n189\n26\n1258\n0.020668\n\n\nG17003100022\n233.2\n20\n0.369973\n0.107239\n6\n28\n35\n48\n28\n151\n77\n7\n373\n0.018767\n\n\nG17003100261\n164.9\n287\n0.307767\n0.031068\n25\n126\n92\n113\n87\n414\n172\n18\n1029\n0.017493\n\n\nG17003100282\n293.5\n97\n0.142330\n0.044248\n15\n70\n67\n74\n198\n758\n173\n20\n1355\n0.014760\n\n\nG17003100249\n137.0\n317\n0.337257\n0.017202\n63\n314\n277\n345\n171\n718\n320\n31\n2208\n0.014040\n\n\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n\n\nG17003100202\n13.1\n6\n0.323326\n0.027714\n5\n40\n24\n37\n28\n218\n78\n0\n430\n0.000000\n\n\nG17003100093\n71.2\n34\n0.268041\n0.025773\n4\n33\n20\n25\n10\n66\n36\n0\n194\n0.000000\n\n\nG17003100293\n40.0\n17\n0.345238\n0.053571\n4\n23\n18\n26\n16\n59\n22\n0\n168\n0.000000\n\n\nG17003100297\n38.1\n4\n0.461538\n0.000000\n0\n3\n1\n4\n0\n8\n10\n0\n26\n0.000000\n\n\nG17003100488\n1600.1\n3\n0.404762\n0.000000\n2\n5\n4\n7\n1\n17\n6\n0\n42\n0.000000\n\n\n\n\n496 rows × 14 columns"
+  },
+  {
+    "objectID": "chapter_02/hands_on.html#visual-exploration",
+    "href": "chapter_02/hands_on.html#visual-exploration",
+    "title": "Data wrangling",
+    "section": "Visual Exploration",
+    "text": "Visual Exploration\n\n_ = chicago_1918[\"influenza\"].plot.hist()\n\n\n\n\n\nimport seaborn as sns\n\n\nsns.displot(chicago_1918[\"influenza\"])\n\n\n\n\n\nsns.displot(chicago_1918[\"influenza\"], kind=\"kde\", fill=True)\n\n\n\n\n\n_ = chicago_1918[\"influenza\"].sort_values(ascending=False).plot()\n\n\n\n\n\n_ = chicago_1918[\"influenza\"].sort_values(ascending=False).head(10).plot.bar()\n\n\n\n\n\n_ = chicago_1918[\"total_population\"].sort_values().head(50).plot.barh(figsize=(6, 20))"
+  },
+  {
+    "objectID": "chapter_02/hands_on.html#tidy-data",
+    "href": "chapter_02/hands_on.html#tidy-data",
+    "title": "Data wrangling",
+    "section": "Tidy data",
+    "text": "Tidy data\n\npopulation = chicago_1918.loc[:, \"agecat1\":\"agecat7\"]\n\n\ntidy_population = population.stack()\ntidy_population.head()\n\ngeography_code         \nG17003100001    agecat1     46\n                agecat2    274\n                agecat3    257\n                agecat4    311\n                agecat5    222\ndtype: int64\n\n\n\ntidy_population_df = tidy_population.reset_index()\ntidy_population_df.head()\n\n\n\n\n\n\n\n\ngeography_code\nlevel_1\n0\n\n\n\n\n0\nG17003100001\nagecat1\n46\n\n\n1\nG17003100001\nagecat2\n274\n\n\n2\nG17003100001\nagecat3\n257\n\n\n3\nG17003100001\nagecat4\n311\n\n\n4\nG17003100001\nagecat5\n222\n\n\n\n\n\n\n\n\ntidy_population_df = tidy_population_df.rename(\n    columns={\"level_1\": \"age_category\", 0: \"count\"}\n)\ntidy_population_df.head()\n\n\n\n\n\n\n\n\ngeography_code\nage_category\ncount\n\n\n\n\n0\nG17003100001\nagecat1\n46\n\n\n1\nG17003100001\nagecat2\n274\n\n\n2\nG17003100001\nagecat3\n257\n\n\n3\nG17003100001\nagecat4\n311\n\n\n4\nG17003100001\nagecat5\n222"
+  },
+  {
+    "objectID": "chapter_02/hands_on.html#grouping-transforming-aggregating",
+    "href": "chapter_02/hands_on.html#grouping-transforming-aggregating",
+    "title": "Data wrangling",
+    "section": "Grouping, transforming, aggregating",
+    "text": "Grouping, transforming, aggregating\n\npop_grouped = tidy_population_df.groupby(\"age_category\")\npop_grouped\n\n&lt;pandas.core.groupby.generic.DataFrameGroupBy object at 0x15b5945e0&gt;\n\n\n\npop_grouped.sum(numeric_only=True)\n\n\n\n\n\n\n\n\ncount\n\n\nage_category\n\n\n\n\n\nagecat1\n50776\n\n\nagecat2\n275363\n\n\nagecat3\n201654\n\n\nagecat4\n259954\n\n\nagecat5\n206358\n\n\nagecat6\n1171345\n\n\nagecat7\n522130\n\n\n\n\n\n\n\n\npop_grouped.describe()\n\n\n\n\n\n\n\n\ncount\n\n\n\ncount\nmean\nstd\nmin\n25%\n50%\n75%\nmax\n\n\nage_category\n\n\n\n\n\n\n\n\n\n\n\n\nagecat1\n496.0\n102.370968\n78.677423\n0.0\n46.75\n82.0\n136.00\n427.0\n\n\nagecat2\n496.0\n555.167339\n423.526444\n3.0\n256.50\n442.5\n717.50\n2512.0\n\n\nagecat3\n496.0\n406.560484\n301.564896\n1.0\n193.50\n331.5\n532.50\n1917.0\n\n\nagecat4\n496.0\n524.100806\n369.875444\n4.0\n253.75\n453.5\n709.50\n2665.0\n\n\nagecat5\n496.0\n416.044355\n281.825682\n0.0\n220.50\n377.0\n551.75\n2454.0\n\n\nagecat6\n496.0\n2361.582661\n1545.469426\n8.0\n1169.75\n2102.0\n3191.75\n9792.0\n\n\nagecat7\n496.0\n1052.681452\n722.955717\n6.0\n519.75\n918.5\n1379.25\n4163.0\n\n\n\n\n\n\n\n\n\n\n\n\n\nAcknowledgements\n\n\n\nThis section is derived from A Course on Geographic Data Science by Arribas-Bel (2019), licensed under CC-BY-SA 4.0. The text was slightly adapted, mostly to accommodate a different dataset used."
+  },
+  {
+    "objectID": "chapter_02/hands_on.html#footnotes",
+    "href": "chapter_02/hands_on.html#footnotes",
+    "title": "Data wrangling",
+    "section": "Footnotes",
+    "text": "Footnotes\n\n\nData munging and data wrangling are used interchangeably. Pick the one you like.↩︎"
+  },
+  {
+    "objectID": "chapter_06/exercise.html",
+    "href": "chapter_06/exercise.html",
+    "title": "Pointy points",
+    "section": "",
+    "text": "Exploring different data."
+  },
+  {
+    "objectID": "chapter_06/concepts.html",
+    "href": "chapter_06/concepts.html",
+    "title": "I need more points",
+    "section": "",
+    "text": "The contents will appear later\n\n\n\nThis section will cover the lecture delivered as part of the in-person course. Slides will appear here shortly before the lesson, followed by the summary of the contents in the days after, based on the lecture transcript.\nHave a look at the related reading in the meantime.\n\n\n\n\n\n\n\n\nRelated reading\n\n\n\nChapter Point Pattern Analysis from the Geographic Data Science with Python by Rey, Arribas-Bel and Wolf (2023)."
+  },
+  {
+    "objectID": "chapter_00/assignment.html",
+    "href": "chapter_00/assignment.html",
+    "title": "Assignment",
+    "section": "",
+    "text": "This page will explain the assignment. It will be a computational essay."
+  },
+  {
+    "objectID": "chapter_09/hands_on.html",
+    "href": "chapter_09/hands_on.html",
+    "title": "Spatial Inequality Dynamics",
+    "section": "",
+    "text": "Ex laboris adipisicing ipsum ea quis consectetur quis cillum reprehenderit. Dolor commodo incididunt irure cillum non nostrud culpa est fugiat occaecat non duis. Aute dolore laboris id tempor magna Lorem minim dolore nulla id voluptate cupidatat anim."
+  },
+  {
+    "objectID": "chapter_03/exercise.html",
+    "href": "chapter_03/exercise.html",
+    "title": "Learning GeoPandas",
+    "section": "",
+    "text": "Basic geopandas exercise, including static and interactive mapping. Include a note on MAUP but don’t bother explaining much."
+  },
+  {
+    "objectID": "chapter_03/concepts.html",
+    "href": "chapter_03/concepts.html",
+    "title": "Old and new spatial data",
+    "section": "",
+    "text": "The contents will appear later\n\n\n\nThis section will cover the lecture delivered as part of the in-person course. Slides will appear here shortly before the lesson, followed by the summary of the contents in the days after, based on the lecture transcript.\nHave a look at the related reading in the meantime.\n\n\n\n\n\n\n\n\nRelated reading\n\n\n\nParts of the chapter Spatial Data dealing with tabular data from the Geographic Data Science with Python by Rey, Arribas-Bel and Wolf (2023)."
+  },
+  {
+    "objectID": "chapter_12/exercise.html",
+    "href": "chapter_12/exercise.html",
+    "title": "Predict future",
+    "section": "",
+    "text": "Playing with scikit-learn."
+  },
+  {
+    "objectID": "chapter_12/concepts.html",
+    "href": "chapter_12/concepts.html",
+    "title": "Is there space in machine learning?",
+    "section": "",
+    "text": "The contents will appear later\n\n\n\nThis section will cover the lecture delivered as part of the in-person course. Slides will appear here shortly before the lesson, followed by the summary of the contents in the days after, based on the lecture transcript."
+  },
+  {
+    "objectID": "chapter_10/hands_on.html",
+    "href": "chapter_10/hands_on.html",
+    "title": "Creating new data",
+    "section": "",
+    "text": "Nearby counts\nSpatial join\nNearest join\nSampling from rasters\nPoint Interpolation\nAreal interpolation\nClustering as feature eng"
+  }
+]
