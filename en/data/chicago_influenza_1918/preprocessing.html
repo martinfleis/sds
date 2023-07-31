@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Spatial Data Science for Social Geography - Data wrangling</title>
+<title>Spatial Data Science for Social Geography – preprocessing</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -57,27 +57,25 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </style>
 
 
-<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="../site_libs/quarto-nav/headroom.min.js"></script>
-<script src="../site_libs/clipboard/clipboard.min.js"></script>
-<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="../site_libs/quarto-search/fuse.min.js"></script>
-<script src="../site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="../">
-<link href="../chapter_02/exercise.html" rel="next">
-<link href="../chapter_02/concepts.html" rel="prev">
-<link href="../assets/favicon.png" rel="icon" type="image/png">
-<script src="../site_libs/quarto-html/quarto.js"></script>
-<script src="../site_libs/quarto-html/popper.min.js"></script>
-<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="../site_libs/quarto-html/anchor.min.js"></script>
-<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
-<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<link href="../../assets/favicon.png" rel="icon" type="image/png">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -101,10 +99,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <style>html{ scroll-behavior: smooth; }</style>
 
 
-<link rel="stylesheet" href="../assets/styles.css">
-<meta name="twitter:title" content="Spatial Data Science for Social Geography - Data wrangling">
-<meta name="twitter:description" content="">
-<meta name="twitter:card" content="summary">
+<link rel="stylesheet" href="../../assets/styles.css">
 </head>
 
 <body class="nav-sidebar floating">
@@ -116,7 +111,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../chapter_02/concepts.html">Open Data Science</a></li><li class="breadcrumb-item"><a href="../chapter_02/hands_on.html">Data wrangling</a></li></ol></nav>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -130,8 +125,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
-      <a href="../index.html" class="sidebar-logo-link">
-      <img src="../assets/logo.svg" alt="" class="sidebar-logo py-0 d-lg-inline d-none">
+      <a href="../../index.html" class="sidebar-logo-link">
+      <img src="../../assets/logo.svg" alt="" class="sidebar-logo py-0 d-lg-inline d-none">
       </a>
       <div class="sidebar-tools-main tools-wide">
     <a href="https://twitter.com/martinfleis" rel="" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-twitter"></i></a>
@@ -153,19 +148,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../index.html" class="sidebar-item-text sidebar-link">
+  <a href="../../index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Overview</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../chapter_00/infrastructure.html" class="sidebar-item-text sidebar-link">
+  <a href="../../chapter_00/infrastructure.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Infrastructure</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../chapter_00/assignment.html" class="sidebar-item-text sidebar-link">
+  <a href="../../chapter_00/assignment.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Assignment</span></a>
   </div>
 </li>
@@ -183,19 +178,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../chapter_01/concepts.html" class="sidebar-item-text sidebar-link">
+  <a href="../../chapter_01/concepts.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">What is Spatial Data Science?</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../chapter_01/hands_on.html" class="sidebar-item-text sidebar-link">
+  <a href="../../chapter_01/hands_on.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Jupyter and Python</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../chapter_01/exercise.html" class="sidebar-item-text sidebar-link">
+  <a href="../../chapter_01/exercise.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Understanding Notebooks</span></a>
   </div>
 </li>
@@ -203,28 +198,28 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="false">
  <span class="menu-text">Open Data Science</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../chapter_02/concepts.html" class="sidebar-item-text sidebar-link">
+  <a href="../../chapter_02/concepts.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Open tools and open mindset</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../chapter_02/hands_on.html" class="sidebar-item-text sidebar-link active">
+  <a href="../../chapter_02/hands_on.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Data wrangling</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../chapter_02/exercise.html" class="sidebar-item-text sidebar-link">
+  <a href="../../chapter_02/exercise.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Learning pandas</span></a>
   </div>
 </li>
@@ -241,19 +236,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../chapter_03/concepts.html" class="sidebar-item-text sidebar-link">
+  <a href="../../chapter_03/concepts.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Old and new spatial data</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../chapter_03/hands_on.html" class="sidebar-item-text sidebar-link">
+  <a href="../../chapter_03/hands_on.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Bring in geography</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../chapter_03/exercise.html" class="sidebar-item-text sidebar-link">
+  <a href="../../chapter_03/exercise.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Learning GeoPandas</span></a>
   </div>
 </li>
@@ -270,19 +265,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../chapter_04/concepts.html" class="sidebar-item-text sidebar-link">
+  <a href="../../chapter_04/concepts.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Space as math</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../chapter_04/hands_on.html" class="sidebar-item-text sidebar-link">
+  <a href="../../chapter_04/hands_on.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Spatial weights in PySAL</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../chapter_04/exercise.html" class="sidebar-item-text sidebar-link">
+  <a href="../../chapter_04/exercise.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Graph here, graph there</span></a>
   </div>
 </li>
@@ -299,19 +294,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../chapter_05/concepts.html" class="sidebar-item-text sidebar-link">
+  <a href="../../chapter_05/concepts.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Explore space!</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../chapter_05/hands_on.html" class="sidebar-item-text sidebar-link">
+  <a href="../../chapter_05/hands_on.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Spatial autocorrelation and other ESDAs</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../chapter_05/exercise.html" class="sidebar-item-text sidebar-link">
+  <a href="../../chapter_05/exercise.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Does it correlate?</span></a>
   </div>
 </li>
@@ -328,19 +323,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../chapter_06/concepts.html" class="sidebar-item-text sidebar-link">
+  <a href="../../chapter_06/concepts.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">I need more points</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../chapter_06/hands_on.html" class="sidebar-item-text sidebar-link">
+  <a href="../../chapter_06/hands_on.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Point pattern analysis</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../chapter_06/exercise.html" class="sidebar-item-text sidebar-link">
+  <a href="../../chapter_06/exercise.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Pointy points</span></a>
   </div>
 </li>
@@ -357,19 +352,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-8" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../chapter_07/concepts.html" class="sidebar-item-text sidebar-link">
+  <a href="../../chapter_07/concepts.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Similar data belong together</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../chapter_07/hands_on.html" class="sidebar-item-text sidebar-link">
+  <a href="../../chapter_07/hands_on.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Clustering and regionalisation</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../chapter_07/exercise.html" class="sidebar-item-text sidebar-link">
+  <a href="../../chapter_07/exercise.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Find me a cluster</span></a>
   </div>
 </li>
@@ -386,19 +381,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-9" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../chapter_08/concepts.html" class="sidebar-item-text sidebar-link">
+  <a href="../../chapter_08/concepts.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Data as a grid</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../chapter_08/hands_on.html" class="sidebar-item-text sidebar-link">
+  <a href="../../chapter_08/hands_on.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Population as a raster grid</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../chapter_08/exercise.html" class="sidebar-item-text sidebar-link">
+  <a href="../../chapter_08/exercise.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Learning xarray</span></a>
   </div>
 </li>
@@ -415,19 +410,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-10" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../chapter_09/concepts.html" class="sidebar-item-text sidebar-link">
+  <a href="../../chapter_09/concepts.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Where is equal?</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../chapter_09/hands_on.html" class="sidebar-item-text sidebar-link">
+  <a href="../../chapter_09/hands_on.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Spatial Inequality Dynamics</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../chapter_09/exercise.html" class="sidebar-item-text sidebar-link">
+  <a href="../../chapter_09/exercise.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Locating inequality</span></a>
   </div>
 </li>
@@ -444,19 +439,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-11" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../chapter_10/concepts.html" class="sidebar-item-text sidebar-link">
+  <a href="../../chapter_10/concepts.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Use space in your favour</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../chapter_10/hands_on.html" class="sidebar-item-text sidebar-link">
+  <a href="../../chapter_10/hands_on.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Creating new data</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../chapter_10/exercise.html" class="sidebar-item-text sidebar-link">
+  <a href="../../chapter_10/exercise.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Interpolation and friends</span></a>
   </div>
 </li>
@@ -473,19 +468,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-12" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../chapter_11/concepts.html" class="sidebar-item-text sidebar-link">
+  <a href="../../chapter_11/concepts.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Relationship and prediction</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../chapter_11/hands_on.html" class="sidebar-item-text sidebar-link">
+  <a href="../../chapter_11/hands_on.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Regression and geography</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../chapter_11/exercise.html" class="sidebar-item-text sidebar-link">
+  <a href="../../chapter_11/exercise.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Fit that model</span></a>
   </div>
 </li>
@@ -502,19 +497,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-13" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../chapter_12/concepts.html" class="sidebar-item-text sidebar-link">
+  <a href="../../chapter_12/concepts.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Is there space in machine learning?</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../chapter_12/hands_on.html" class="sidebar-item-text sidebar-link">
+  <a href="../../chapter_12/hands_on.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Classification and regression</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../chapter_12/exercise.html" class="sidebar-item-text sidebar-link">
+  <a href="../../chapter_12/exercise.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Predict future</span></a>
   </div>
 </li>
@@ -527,72 +522,25 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         
-    <div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="hands_on.ipynb" download="hands_on.ipynb"><i class="bi bi-journal-code"></i>Jupyter</a></li></ul></div></div>
+    </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default">
-<div class="quarto-title">
-<h1 class="title">Data wrangling</h1>
+
+
+<div class="cell" data-execution_count="11">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-
-
-
-<div class="quarto-title-meta">
-
-    
-  
-    
-  </div>
-  
-
-</header>
-
-<p>Introduction to pandas and tabular data analysis. No spatial so far.</p>
-<ul>
-<li>read_csv</li>
-<li>head, tail, info, describe, Transpose</li>
-<li>min, max, slicing</li>
-<li>add and remove columns</li>
-<li>indexing</li>
-<li>queries</li>
-<li>sorting</li>
-<li>plotting</li>
-<li>groupby</li>
-</ul>
-<div class="cell" data-execution_count="1">
-<div class="sourceCode cell-code" id="annotated-cell-1"><pre class="sourceCode python code-annotation-code code-with-copy code-annotated"><code class="sourceCode python"><a class="code-annotation-anchor" data-target-cell="annotated-cell-1" data-target-annotation="1" onclick="event.preventDefault();">1</a><span id="annotated-cell-1-1" class="code-annotation-target"><a href="#annotated-cell-1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-annotation">
-<dl class="code-annotation-container-grid">
-<dt data-target-cell="annotated-cell-1" data-target-annotation="1">1</dt>
-<dd>
-<span data-code-cell="annotated-cell-1" data-code-annotation="1" data-code-lines="1">Import the <code>pandas</code> package under the shortcut <code>pd</code>.</span>
-</dd>
-</dl>
+<div class="cell" data-execution_count="32">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>chicago_flu <span class="op">=</span> pd.read_csv(<span class="st">"tracts.csv"</span>).drop(columns<span class="op">=</span>[<span class="st">"week"</span>, <span class="st">"pop"</span>, <span class="st">"illit.r"</span>, <span class="st">"den.r"</span>])</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>deaths_total <span class="op">=</span> chicago_flu.groupby(<span class="st">"gisjoin"</span>).counts.<span class="bu">sum</span>()</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>chicago_flu <span class="op">=</span> chicago_flu[<span class="op">~</span>chicago_flu.duplicated(<span class="st">"gisjoin"</span>)].set_index(<span class="st">"gisjoin"</span>).drop(columns<span class="op">=</span><span class="st">"counts"</span>)</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>chicago_flu[<span class="st">"death_count"</span>] <span class="op">=</span> deaths_total</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>chicago_flu <span class="op">=</span> chicago_flu.rename(columns<span class="op">=</span>{c:c.replace(<span class="st">"."</span>, <span class="st">"_"</span>).lower() <span class="cf">for</span> c <span class="kw">in</span> chicago_flu.columns})</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>chicago_flu.index.name <span class="op">=</span> <span class="st">"geography_code"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</div>
-<p>Describe the data</p>
-<div class="cell" data-execution_count="2">
-<div class="sourceCode cell-code" id="annotated-cell-2"><pre class="sourceCode python code-annotation-code code-with-copy code-annotated"><code class="sourceCode python"><a class="code-annotation-anchor" data-target-cell="annotated-cell-2" data-target-annotation="1" onclick="event.preventDefault();">1</a><span id="annotated-cell-2-1" class="code-annotation-target"><a href="#annotated-cell-2-1" aria-hidden="true" tabindex="-1"></a>chicago_1918 <span class="op">=</span> pd.read_csv(</span>
-<a class="code-annotation-anchor" data-target-cell="annotated-cell-2" data-target-annotation="2" onclick="event.preventDefault();">2</a><span id="annotated-cell-2-2" class="code-annotation-target"><a href="#annotated-cell-2-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">"data/chicago_influenza_1918.csv"</span>,</span>
-<a class="code-annotation-anchor" data-target-cell="annotated-cell-2" data-target-annotation="3" onclick="event.preventDefault();">3</a><span id="annotated-cell-2-3" class="code-annotation-target"><a href="#annotated-cell-2-3" aria-hidden="true" tabindex="-1"></a>    index_col<span class="op">=</span><span class="st">"geography_code"</span>,</span>
-<span id="annotated-cell-2-4"><a href="#annotated-cell-2-4" aria-hidden="true" tabindex="-1"></a>)</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-annotation">
-<dl class="code-annotation-container-grid">
-<dt data-target-cell="annotated-cell-2" data-target-annotation="1">1</dt>
-<dd>
-<span data-code-cell="annotated-cell-2" data-code-annotation="1" data-code-lines="1">Use the <code>read_csv</code> function from <code>pandas</code>.</span>
-</dd>
-<dt data-target-cell="annotated-cell-2" data-target-annotation="2">2</dt>
-<dd>
-<span data-code-cell="annotated-cell-2" data-code-annotation="2" data-code-lines="2">Specify the path to the file</span>
-</dd>
-<dt data-target-cell="annotated-cell-2" data-target-annotation="3">3</dt>
-<dd>
-<span data-code-cell="annotated-cell-2" data-code-annotation="3" data-code-lines="3">Use the column <code>geography_code</code> as an index of the DataFrame. More on that below.</span>
-</dd>
-</dl>
-</div>
+<div class="cell" data-execution_count="34">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>chicago_flu.to_csv(<span class="st">"../../chapter_02/data/chicago_influenza_1918.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 
 
@@ -946,18 +894,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   }
 });
 </script>
-<nav class="page-navigation">
-  <div class="nav-page nav-page-previous">
-      <a href="../chapter_02/concepts.html" class="pagination-link">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Open tools and open mindset</span>
-      </a>          
-  </div>
-  <div class="nav-page nav-page-next">
-      <a href="../chapter_02/exercise.html" class="pagination-link">
-        <span class="nav-page-text">Learning pandas</span> <i class="bi bi-arrow-right-short"></i>
-      </a>
-  </div>
-</nav>
 </div> <!-- /content -->
 <footer class="footer">
   <div class="nav-footer">
@@ -973,5 +909,5 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 
 
 
-<script src="../site_libs/quarto-html/zenscroll-min.js"></script>
+<script src="../../site_libs/quarto-html/zenscroll-min.js"></script>
 </body></html>

@@ -91,6 +91,13 @@
     "text": "An exercise to do similar tasks as in the hands on but on different data."
   },
   {
+    "objectID": "data/chicago_influenza_1918/preprocessing.html",
+    "href": "data/chicago_influenza_1918/preprocessing.html",
+    "title": "Spatial Data Science pro sociální geografii",
+    "section": "",
+    "text": "import pandas as pd\n\n\nchicago_flu = pd.read_csv(\"tracts.csv\").drop(columns=[\"week\", \"pop\", \"illit.r\", \"den.r\"])\ndeaths_total = chicago_flu.groupby(\"gisjoin\").counts.sum()\nchicago_flu = chicago_flu[~chicago_flu.duplicated(\"gisjoin\")].set_index(\"gisjoin\").drop(columns=\"counts\")\nchicago_flu[\"death_count\"] = deaths_total\nchicago_flu = chicago_flu.rename(columns={c:c.replace(\".\", \"_\").lower() for c in chicago_flu.columns})\nchicago_flu.index.name = \"geography_code\"\n\n\nchicago_flu.to_csv(\"../../chapter_02/data/chicago_influenza_1918.csv\")"
+  },
+  {
     "objectID": "chapter_07/concepts.html",
     "href": "chapter_07/concepts.html",
     "title": "Similar data belong together",
@@ -308,11 +315,39 @@
     "text": "scikit-learn\nscikit-learn+weights constraint\nbonus - regionalisation (max-p, skater)"
   },
   {
+    "objectID": "data/chicago_influenza_1918/ReadMe.html",
+    "href": "data/chicago_influenza_1918/ReadMe.html",
+    "title": "Disparities in influenza mortality and transmission related to sociodemographic factors within Chicago in the pandemic of 1918",
+    "section": "",
+    "text": "CC0 1.0\nGrantz, Kyra H. et al. (2017), Data from: Disparities in influenza mortality and transmission related to sociodemographic factors within Chicago in the pandemic of 1918, Dryad, Dataset, https://doi.org/10.5061/dryad.48nv3\n\n\nPoint location and week of epidemic of 8,031 influenza and pneumonia deaths recorded during the 1918 Spanish flu pandemic within the city of Chicago. Data was digitized from 1920 City of Chicago Department of Health annual report Date last modified: 25-10-2016. Fields include: ID (FID), indicator of pneumonia (0 or 1, 0 indicates an influenza death, 1 an influenza and pneumonia death), x and y coordinates (with units in meters), and week (sequential week of epidemic). See paper for more details.\n\n\n\nSociodemographic data (including population size, illiteracy, unemployment) of 496 census tracts within the City of Chicago. Data was collected from the 1920 national census.\n\n\n\nShapefile of census tract boundaries in Chicago in 1920. File included in zip file include IL_tract_a.dbf, IL_tract_a.prj, IL_tract_a.sbn, IL_tract_a.sbx, IL_tract_a.shp, IL_tract_a.shp.xml, IL_tract_a.shx"
+  },
+  {
+    "objectID": "data/chicago_influenza_1918/ReadMe.html#pandemic-influenza-mortality-chicago-usa-points.csv",
+    "href": "data/chicago_influenza_1918/ReadMe.html#pandemic-influenza-mortality-chicago-usa-points.csv",
+    "title": "Disparities in influenza mortality and transmission related to sociodemographic factors within Chicago in the pandemic of 1918",
+    "section": "",
+    "text": "Point location and week of epidemic of 8,031 influenza and pneumonia deaths recorded during the 1918 Spanish flu pandemic within the city of Chicago. Data was digitized from 1920 City of Chicago Department of Health annual report Date last modified: 25-10-2016. Fields include: ID (FID), indicator of pneumonia (0 or 1, 0 indicates an influenza death, 1 an influenza and pneumonia death), x and y coordinates (with units in meters), and week (sequential week of epidemic). See paper for more details."
+  },
+  {
+    "objectID": "data/chicago_influenza_1918/ReadMe.html#fine-scale-sociodemographics-of-chicago-usa-1920-tracts.csv",
+    "href": "data/chicago_influenza_1918/ReadMe.html#fine-scale-sociodemographics-of-chicago-usa-1920-tracts.csv",
+    "title": "Disparities in influenza mortality and transmission related to sociodemographic factors within Chicago in the pandemic of 1918",
+    "section": "",
+    "text": "Sociodemographic data (including population size, illiteracy, unemployment) of 496 census tracts within the City of Chicago. Data was collected from the 1920 national census."
+  },
+  {
+    "objectID": "data/chicago_influenza_1918/ReadMe.html#shapefile-of-census-tract-boundaries-in-chicago-in-1920-shapefile.zip",
+    "href": "data/chicago_influenza_1918/ReadMe.html#shapefile-of-census-tract-boundaries-in-chicago-in-1920-shapefile.zip",
+    "title": "Disparities in influenza mortality and transmission related to sociodemographic factors within Chicago in the pandemic of 1918",
+    "section": "",
+    "text": "Shapefile of census tract boundaries in Chicago in 1920. File included in zip file include IL_tract_a.dbf, IL_tract_a.prj, IL_tract_a.sbn, IL_tract_a.sbx, IL_tract_a.shp, IL_tract_a.shp.xml, IL_tract_a.shx"
+  },
+  {
     "objectID": "chapter_02/hands_on.html",
     "href": "chapter_02/hands_on.html",
     "title": "Data wrangling",
     "section": "",
-    "text": "Introduction to pandas and tabular data analysis. No spatial so far."
+    "text": "Introduction to pandas and tabular data analysis. No spatial so far.\n\nread_csv\nhead, tail, info, describe, Transpose\nmin, max, slicing\nadd and remove columns\nindexing\nqueries\nsorting\nplotting\ngroupby\n\n\n1import pandas as pd\n\n\n1\n\nImport the pandas package under the shortcut pd.\n\n\n\n\nDescribe the data\n\n1chicago_1918 = pd.read_csv(\n2    \"data/chicago_influenza_1918.csv\",\n3    index_col=\"geography_code\",\n)\n\n\n1\n\nUse the read_csv function from pandas.\n\n2\n\nSpecify the path to the file\n\n3\n\nUse the column geography_code as an index of the DataFrame. More on that below."
   },
   {
     "objectID": "chapter_06/exercise.html",
