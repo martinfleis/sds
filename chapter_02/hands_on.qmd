@@ -72,8 +72,8 @@ import pandas as pd  # <1>
 1. Import the `pandas` package under the alias `pd`. Using the alias is not
 necessary, but it is a convention nearly everyone follows.
 
-The data is stored in a CSV
-
+The data is stored in a CSV file. To make things easier, you can read data from a file
+posted online so, for now, you do not need to download any dataset:
 
 ```{python}
 chicago_1918 = pd.read_csv(                                                         # <1>
@@ -81,29 +81,87 @@ chicago_1918 = pd.read_csv(                                                     
     index_col="geography_code",                                                     # <3>
 )
 ```
-1. Use the `read_csv` function from `pandas`.
-2. Specify the path to the file
-3. Use the column `geography_code` as an index of the DataFrame.
+1. Use the `read_csv` function from `pandas`. Remember that you have imported `pandas` as `pd`.
+2. Specify the path to the file. It could be a web address like here or a local file path.
+3. Use the column `geography_code` as an index of the table by passing its name to the
+`index_col` keyword argument. It is not strictly necessary but allows us to choose and index
+on read instead of specifying it later. More on indices below.
 
+::: {.callout-tip}
+We are using `read_csv` because the file we want to read is in the CSV format. However,
+`pandas` allows for many more formats to be read and write. A full list of formats
+supported may be found in [the documentation](https://pandas.pydata.org/docs/user_guide/io.html).
+:::
+
+::: {.callout-note}
+## Alternative
+Instead of reading the file directly off the web, it is possible to download it manually,
+ store it on your computer, and read it locally. To do that, you can follow these steps:
+
+1. Download the file by right-clicking on
+[this link](https://martinfleischmann.net/sds/chapter_02/data/chicago_influenza_1918.csv)
+and saving the file
+2. Place the file in the same folder as the notebook where you intend to read it
+3. Replace the code in the cell above with:
+
+```python
+chicago_1918 = pd.read_csv(
+    "chicago_influenza_1918.csv",
+    index_col="geography_code",
+)
+```
+:::
 ## Pandas 101
 
-Intro
+Now, you are ready to start playing and interrogating the dataset! What you have at your
+fingertips is a table summarising, for each of the census tracts in Chicago more than
+a century ago, how many people lived in each by age, accompanied by some other
+socioeconomic data and influenza mortality. These tables are called `DataFrame` objects,
+and they have a lot of functionality built-in to explore and manipulate the data they
+contain. Let’s explore a few of those cool tricks!
 
 ### Data Structures
 
-DataFrame
+The first aspect worth spending a bit of time on is the structure of a `DataFrame`. You
+can print it by simply typing its name:
 
 ```{python}
 chicago_1918
 ```
 
-Series
+Note the printing is cut to keep a nice and compact view but enough to see its
+structure. Since they represent a table of data, `DataFrame` objects have two dimensions:
+rows and columns. Each of these is automatically assigned a name in what we will call
+its _index_. When printing, the index of each dimension is rendered in bold, as opposed
+to the standard rendering for the content. The example above shows how the
+column index is automatically picked up from the `.csv` file’s column names. For rows,
+we have specified when reading the file we wanted the column `geography_code`, so that is
+used. If we hadn’t set any, `pandas` would automatically generate a sequence starting
+in `0` and going all the way to the number of rows minus one. This is the standard
+structure of a `DataFrame` object, so you will come to it over and over. Importantly, even
+when you move to spatial data, your datasets will have a similar structure.
+
+One final feature that is worth mentioning about these tables is that they can hold
+columns with different types of data. In this example, you have
+counts (or `int` for integer types) and ratios (or 'float' for floating point numbers
+ - a number with decimals) for each column. But it is useful to keep in mind that
+you can combine this with columns that hold other types of data such as categories, text
+(`str`, for string), dates or, as we will see later in the course, geographic features.
+
+To extract a single column from this `DataFrame`, specify its name
+in the square brackets (`[]`). Note that the name, in this case, is a `string`. A piece
+of text. As such, it needs to be within single (`'`) or double quotes (`"`). The resulting
+data structure is no longer a `DataFrame`, but we have a `Series` because we deal with a
+single column.
 
 ```{python}
 chicago_1918["influenza"]
 ```
 
 ### Inspect
+
+Inspecting what it looks like. You can check the table's top (or bottom) X lines by
+passing X to the method `head` (`tail`). For example, for the top/bottom five lines:
 
 ```{python}
 chicago_1918.head()
@@ -113,71 +171,121 @@ chicago_1918.head()
 chicago_1918.tail()
 ```
 
+Or get an overview of the table:
+
 ```{python}
 chicago_1918.info()
 ```
 
 ### Summarise
 
+Or of the _values_ of the table:
+
 ```{python}
 chicago_1918.describe()
 ```
+
+Note how the output is also a `DataFrame` object, so you can do with it the same things
+you would with the original table (e.g. writing it to a file).
+
+In this case, the summary might be better presented if the table is “transposed”:
 
 ```{python}
 chicago_1918.describe().T
 ```
 
+Equally, common descriptive statistics are also available. To obtain minimum values for
+each column, you can use `.min()`.
+
 ```{python}
 chicago_1918.min()
 ```
 
-```{python}
-chicago_1918.loc["G17003100002"].min()
-```
+Or to obtain a minimum for a single column only.
 
 ```{python}
-chicago_1918.loc["G17003100002", "agecat1":"agecat7"].min()
+chicago_1918["influenza"].min()
+```
+
+Note here how we have restricted the calculation of the minimum value to one column only
+by getting the `Series` and calling `.min()` on that.
+
+Similarly, we can restrict the calculations to a single row using `.loc[]` indexer:
+
+```{python}
+chicago_1918.loc["G17003100492"].max()
 ```
 
 ### Create new columns
 
+You can generate new variables by applying operations to existing ones. For example, you
+can calculate the total population by area. Here are a couple of ways to do it:
+
 ```{python}
-total_population = (
-    chicago_1918["agecat1"]
-    + chicago_1918["agecat2"]
-    + chicago_1918["agecat3"]
-    + chicago_1918["agecat4"]
-    + chicago_1918["agecat5"]
-    + chicago_1918["agecat6"]
-    + chicago_1918["agecat7"]
+# This one is longer, hardcoded
+total_population = (            # <1>
+    chicago_1918["agecat1"]     # <2>
+    + chicago_1918["agecat2"]   # <2>
+    + chicago_1918["agecat3"]   # <2>
+    + chicago_1918["agecat4"]   # <2>
+    + chicago_1918["agecat5"]   # <2>
+    + chicago_1918["agecat6"]   # <2>
+    + chicago_1918["agecat7"]   # <2>
 )
-total_population.head()
+total_population.head()         # <3>
 ```
+1. Create a new variable called `total_population` to store the result.
+2. Select all the columns and add them together
+3. Print the top of the variable
 
 ```{python}
-total_population = chicago_1918.loc[:, "agecat1":"agecat7"].sum(axis=1)
+# This one is shorted, using a range of columns and sum
+total_population = chicago_1918.loc[:, "agecat1":"agecat7"].sum(axis=1)  # <1>
 total_population.head()
 ```
+1. This line is simple, but a lot happens here. Using `.loc[]`, you select all the rows
+(`:` part) and all the columns between `"agecat1"` and `"agecat7"`. Then you apply
+`.sum()` over `axis=1`, which means along rows, to get a sum per each row.
+
+Once you have created the variable, you can make it part of the table:
 
 ```{python}
-chicago_1918["total_population"] = total_population
+chicago_1918["total_population"] = total_population  # <1>
 chicago_1918.head()
 ```
+1. Assing a variable `total_population` that contains a `Series` as a column
+`"total_population"`. `pandas` creates that column automatically. If it existed, it would
+get overridden.
+
+You can also do other mathematical operations on columns. These are always automatically
+applied to individual values in corresponding rows.
 
 ```{python}
-homeowners = chicago_1918["total_population"] * chicago_1918["ho_pct"]
+homeowners = chicago_1918["total_population"] * chicago_1918["ho_pct"]  # <1>
 homeowners.head()
 ```
+1. A product of the total population and home ownership percentage provides an estimation
+of the number of homeowners per census tract.
 
 ```{python}
-pop_density = chicago_1918["total_population"] / chicago_1918["gross_acres"]
+pop_density = chicago_1918["total_population"] / chicago_1918["gross_acres"]  # <1>
 pop_density.head()
 ```
+1. A division of the total population by the area results in an estimation
+of the population density.
+
+A different spin on this is assigning new values: you can generate new variables with
+scalars[^scalar], and modify those:
+
+[^scalar]: Scalar is a single value, like a number (`42`) or a string (`towel`).
 
 ```{python}
-chicago_1918['ones'] = 1
+chicago_1918["ones"] = 1  # <1>
 chicago_1918.head()
 ```
+1. Create a new column named `"ones"` with all ones.
+
+And you can modify specific values too:
 
 ```{python}
 chicago_1918.loc["G17003100001", "ones"] = 3
@@ -186,6 +294,8 @@ chicago_1918.head()
 
 ### Remove columns
 
+Permanently deleting variables is also within reach of one command:
+
 ```{python}
 chicago_1918 = chicago_1918.drop(columns="ones")
 chicago_1918.head()
@@ -193,14 +303,31 @@ chicago_1918.head()
 
 ### Index-based queries
 
-```{python}
-death_pop_first4 = chicago_1918.loc[
-    ["G17003100001", "G17003100002", "G17003100003", "G17003100004"],
-    ["influenza", "total_population"],
-]
+Here, you explore how to subset parts of a `DataFrame` if you know exactly which bits
+you want. For example, if you want to extract the influenza mortality and total population of the
+first four areas in the table, you use `loc` with lists:
 
+```{python}
+death_pop_first4 = chicago_1918.loc[                                   # <1>
+    ["G17003100001", "G17003100002", "G17003100003", "G17003100004"],  # <2>
+    ["influenza", "total_population"],                                 # <3>
+]
 death_pop_first4
 ```
+1. `loc` takes two inputs. Selection of rows and selection of columns. If the latter is
+not present, it is assumed that all the columns are selected. The same could be achieved by using `:`.
+2. A `list` of index values. Note that you use squared brackets (`[]`) to delineate the
+index of the items you want to subset. In Python, this sequence of items is called a list.
+3. A `list` of columns.
+
+You can see how you can create a list with the names (index IDs) along each of the two
+dimensions of a `DataFrame` (rows and columns), and `loc` will return a subset of the
+original table only with the elements queried for.
+
+An alternative to list-based queries is what is called “range-based” queries. These work
+on the indices of the table, but instead of requiring the ID of each item you want to
+retrieve, they operate by requiring only two IDs: the first and last element in a range
+of items. Range queries are expressed with a colon (`:`). For example:
 
 ```{python}
 range_query = chicago_1918.loc[
@@ -210,7 +337,11 @@ range_query = chicago_1918.loc[
 range_query
 ```
 
-mix both together
+The range query picks up all the elements between the specified IDs. Note that for this
+to work, the first ID in the range needs to be placed before the second one in the table’s index.
+
+Once you know about list and range-based queries, you can combine them! For example, you
+can specify a range of rows and a list of columns:
 
 ```{python}
 range_list_qry = chicago_1918.loc[
@@ -222,47 +353,94 @@ range_list_qry
 
 ### Condition-based queries
 
+However, sometimes, we do not know exactly which observations we want, but we do know
+what conditions they need to satisfy (e.g. areas with more than 2,000 inhabitants). For
+these cases, `DataFrames` support selection based on conditions. Let us see a few examples.
+Suppose we want to select...
+
+_... areas with more than 60 cases of influenza deaths:_
+
 ```{python}
 flu_over_60 = chicago_1918.loc[chicago_1918["influenza"] > 60]
 flu_over_60
 ```
+
+_... areas with less than 200 inhabitants:_
 
 ```{python}
 pop_under = chicago_1918.loc[chicago_1918["total_population"] < 200]
 pop_under
 ```
 
+_... areas with exactly a hundred illiterate persons:_
+
 ```{python}
 illit_100 = chicago_1918.loc[chicago_1918["illit"] == 100]
 illit_100
 ```
+
+::: {.callout-note}
+These queries can grow in sophistication with almost no limits. For example, here is a
+case where we want to find out the areas where the oldest age group is more than half the
+population:
 
 ```{python}
 chicago_1918.loc[
     (chicago_1918["agecat7"] * 100 / chicago_1918["total_population"]) > 50
 ]
 ```
+:::
+
+All the condition-based queries above are expressed using the `loc` operator. This is a
+powerful way, and since it shares syntax with index-based queries, it is also easier to
+remember. However, sometimes querying using `loc` involves a lot of quotation marks,
+parenthesis, etc. A more streamlined approach for condition-based queries of rows is
+provided by the `query` engine. Using this approach, we express everything in our query
+on a single string, or piece of text, and that is evaluated in the table at once. For
+example, we can run the same operation as in the first query above with the following
+syntax:
 
 ```{python}
 flu_over_60_query = chicago_1918.query("influenza > 60")
 flu_over_60_query
 ```
 
+If we want to combine operations, this is also possible:
+
 ```{python}
 flu_query = chicago_1918.query("(influenza > 60) & (total_population < 10000)")
 flu_query
 ```
 
+Note that, in these cases, using query results in code that is much more streamlined and
+easier to read. However, `query` is not perfect and, particularly for more sophisticated
+queries, it does not afford the same degree of flexibility. For example, the last `query`
+we had using loc would not be possible using `query`.
+
+::: {.callout-tip}
+If you are interested, more detail about `query` is available on the
+[pandas documentation](https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#the-query-method).
+:::
+
 ### Combining queries
+
+Now, all of these queries can be combined with each other for further flexibility. For
+example, imagine we want areas with more than 60 cases of influenza from areas with less than 10,000 inhabitants:
 
 ```{python}
 flu_loc = chicago_1918.loc[
-    (chicago_1918["influenza"] > 60) & (chicago_1918["total_population"] < 10000)
+    (chicago_1918["influenza"] > 60) & (chicago_1918["total_population"] < 10000)  # <1>
 ]
 flu_loc
 ```
+1. The `&` operator combines both conditions together.
 
-Let's unpack it.
+::: {.callout-note collapse="true"}
+## How the `loc` queries work?
+
+Let's unpack how these queries work. Each part of the query above creates a single
+`Series` with boolean (`True` or `False`) values, encoding whether the row fulfils the condition
+or not.
 
 ```{python}
 chicago_1918["influenza"] > 60
@@ -272,22 +450,42 @@ chicago_1918["influenza"] > 60
 chicago_1918["total_population"] < 10000
 ```
 
+You then combine two of these Series with `&`, asking for a new `Series` where values in
+both the first and the second `Series` are `True`.
+
 ```{python}
 (chicago_1918["influenza"] > 60) & (chicago_1918["total_population"] < 10000)
 ```
 
+Such a `Series` is then essentially used as a mask, and `loc` returns only those columns
+that contain `True` in that mask.
+:::
+
 ### Sorting
 
+Among the many operations `DataFrame` objects support, one of the most useful ones is to
+sort a table based on a given column. For example, imagine we want to sort the table by
+the influenza cases:
+
 ```{python}
-chicago_sorted = chicago_1918.sort_values('influenza', ascending=False)
+chicago_sorted = chicago_1918.sort_values('influenza', ascending=False)  # <1>
 chicago_sorted
 ```
-those are abs number, sort by relative
+1. By default, `pandas` is sorting from the smallest to the largest values (ascending).
+By specifying `ascending=False`, you switch the order.
+
+Given the areas of each census tract differ, it may be better to sort by the mortality rate
+rather than raw counts.
+
 ```{python}
 chicago_1918["flu_rate"] = chicago_1918["influenza"] / chicago_1918["total_population"]
 chicago_sorted_rel = chicago_1918.sort_values('flu_rate', ascending=False)
 chicago_sorted_rel
 ```
+
+If you inspect the help of `chicago_1918.sort_values`, you will find that you can pass
+more than one column to sort the table by. This allows you to do so-called hierarchical
+sorting: sort first based on one column, if equal, then based on another column, etc.
 
 ## Visual Exploration
 

@@ -91,10 +91,11 @@ both terms as equal within the context of this course.
 
 :::
 
-## Attribution
+## Acknowledgements {.appendix}
 
-The course material is partially derived from _A Course on Geographic Data Science_ by
-@darribas_gds_course. Thanks, Dani!
-
-Some sections are derived from other sources acknowledged at the bottom of respective pages.
+The course material is partially derived from
+[_A Course on Geographic Data Science_](https://darribas.org/gds_course/) by
+@darribas_gds_course and follows its structure, main learning logic, and some
+hands-on materials. Thanks, [Dani](https://darribas.org)! A few sections are derived
+from other sources acknowledged at the bottom of respective pages. Thank you all!
 

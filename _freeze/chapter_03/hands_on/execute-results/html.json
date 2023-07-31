@@ -1,0 +1,11 @@
+{
+  "hash": "4467a01a49637b2b36cca68dabb235c4",
+  "result": {
+    "markdown": "---\ntitle: \"Bring in geography\"\nformat: html\n---\n\nIntroduction to `geopandas`.\n\n::: {#cbd10c9f .cell execution_count=1}\n``` {.python .cell-code}\na = 1 + 1 # <1>\nb = \"foo\"  # <2>\nc = \"bar\"  # <3>\nd = \"baz\"  # <4>\n```\n:::\n\n\n1. It is two.\n2. foo\n3. bar\n4. baz\n\n",
+    "supporting": [
+      "hands_on_files"
+    ],
+    "filters": [],
+    "includes": {}
+  }
+}

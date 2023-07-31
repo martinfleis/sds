@@ -373,9 +373,8 @@ print(5 * first_variable)
 print(first_variable - second_variable)
 ```
 
-::: {.callout}
-# Acknowledgements
+
+## Acknowledgements {.appendix}
 
 The 'Let the snake in' section is derived from _[A taste of Python](https://geo-python-site.readthedocs.io/en/latest/notebooks/L1/a-taste-of-python.html)_ section of the _[Geo-Python](https://geo-python-site.readthedocs.io) course 2022_ by
 D. Whipp, H. Tenkanen, V. Heikinheimo, H. Aagesen, and C. Fink from the Department of Geosciences and Geography, University of Helsinki, licensed under CC-BY-SA 4.0.
-:::
