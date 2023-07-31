@@ -99,12 +99,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   }
 }</script>
 <style>html{ scroll-behavior: smooth; }</style>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" integrity="sha512-c3Nl8+7g4LMSTdrm621y7kf9v3SDPnhxLNhcjFJbKECVnmZHTdo+IRO05sNLTH/D3vA6u1X32ehoLC7WFVdheg==" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script>
+<script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
 
 
 <link rel="stylesheet" href="../assets/styles.css">
 <meta name="twitter:title" content="Spatial Data Science for Social Geography - Data wrangling">
 <meta name="twitter:description" content="">
-<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="hands_on_files/figure-html/cell-37-output-1.png">
+<meta name="twitter:card" content="summary_large_image">
 </head>
 
 <body class="nav-sidebar floating">
@@ -526,8 +530,30 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
-    <div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="hands_on.ipynb" download="hands_on.ipynb"><i class="bi bi-journal-code"></i>Jupyter</a></li></ul></div></div>
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#munging-and-wrangling" id="toc-munging-and-wrangling" class="nav-link active" data-scroll-target="#munging-and-wrangling">Munging and wrangling</a></li>
+  <li><a href="#dataset" id="toc-dataset" class="nav-link" data-scroll-target="#dataset">Dataset</a></li>
+  <li><a href="#pandas-101" id="toc-pandas-101" class="nav-link" data-scroll-target="#pandas-101">Pandas 101</a>
+  <ul class="collapse">
+  <li><a href="#data-structures" id="toc-data-structures" class="nav-link" data-scroll-target="#data-structures">Data Structures</a></li>
+  <li><a href="#inspect" id="toc-inspect" class="nav-link" data-scroll-target="#inspect">Inspect</a></li>
+  <li><a href="#summarise" id="toc-summarise" class="nav-link" data-scroll-target="#summarise">Summarise</a></li>
+  <li><a href="#create-new-columns" id="toc-create-new-columns" class="nav-link" data-scroll-target="#create-new-columns">Create new columns</a></li>
+  <li><a href="#remove-columns" id="toc-remove-columns" class="nav-link" data-scroll-target="#remove-columns">Remove columns</a></li>
+  <li><a href="#index-based-queries" id="toc-index-based-queries" class="nav-link" data-scroll-target="#index-based-queries">Index-based queries</a></li>
+  <li><a href="#condition-based-queries" id="toc-condition-based-queries" class="nav-link" data-scroll-target="#condition-based-queries">Condition-based queries</a></li>
+  <li><a href="#combining-queries" id="toc-combining-queries" class="nav-link" data-scroll-target="#combining-queries">Combining queries</a></li>
+  <li><a href="#sorting" id="toc-sorting" class="nav-link" data-scroll-target="#sorting">Sorting</a></li>
+  </ul></li>
+  <li><a href="#visual-exploration" id="toc-visual-exploration" class="nav-link" data-scroll-target="#visual-exploration">Visual Exploration</a></li>
+  <li><a href="#tidy-data" id="toc-tidy-data" class="nav-link" data-scroll-target="#tidy-data">Tidy data</a></li>
+  <li><a href="#grouping-transforming-aggregating" id="toc-grouping-transforming-aggregating" class="nav-link" data-scroll-target="#grouping-transforming-aggregating">Grouping, transforming, aggregating</a></li>
+  </ul>
+<div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/martinfleis/sds/issues/new" class="toc-action">Report an issue</a></p></div></div><div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="hands_on.ipynb" download="hands_on.ipynb"><i class="bi bi-journal-code"></i>Jupyter</a></li></ul></div></nav>
+    </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
@@ -548,30 +574,32 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 </header>
 
-<p>Introduction to pandas and tabular data analysis. No spatial so far.</p>
-<ul>
-<li>read_csv</li>
-<li>head, tail, info, describe, Transpose</li>
-<li>min, max, slicing</li>
-<li>add and remove columns</li>
-<li>indexing</li>
-<li>queries</li>
-<li>sorting</li>
-<li>plotting</li>
-<li>groupby</li>
-</ul>
+<p>You know the basics. What are Jupyter notebooks, how do they work, and how do you run Python in them. It is time to start using them for data science (no, that simple math you did the last time doesn’t count as data science).</p>
+<p>You are about to enter the PyData ecosystem. It means that you will start learning how to work with Python from the middle. This course does not explicitly cover the fundamentals of programming. It is expected that those parts you need you’ll be able to pick as you go through the specialised data science stack. If you’re stuck, confused or need further explanation, use Google (or your favourite search engine), ask AI to explain the code or ask in Slack or during the class. Not everything will be told during the course (by design), and the internet is a friend of every programmer, so let’s figure out how to use it efficiently from the beginning.</p>
+<p>Let’s dig in!</p>
+<section id="munging-and-wrangling" class="level2">
+<h2 class="anchored" data-anchor-id="munging-and-wrangling">Munging and wrangling</h2>
+<p>Real-world datasets are messy. There is no way around it: datasets have “holes” (missing data), the amount of formats in which data can be stored is endless, and the best structure to share data is not always the optimum to analyse them, hence the need to <a href="http://dictionary.reference.com/browse/munge">munge</a><a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> them. As has been correctly pointed out in many outlets, much of the time spent in what is called Data Science is related not only to sophisticated modelling and insight but has to do with much more basic and less exotic tasks such as obtaining data, processing, and turning them into a shape that makes analysis possible, and exploring it to get to know their basic properties.</p>
+<p>Surprisingly, very little has been published on patterns, techniques, and best practices for quick and efficient data cleaning, manipulation, and transformation because of how labour-intensive and relevant this aspect is. In this session, you will use a few real-world datasets and learn how to process them into Python so they can be transformed and manipulated, if necessary, and analysed. For this, we will introduce some of the bread and butter of data analysis and scientific computing in Python. These are fundamental tools that are constantly used in almost any task relating to data analysis.</p>
+<p>This notebook covers the basics and the content that is expected to be learnt by every student. You use a prepared dataset that saves us much of the more intricate processing that goes beyond the introductory level the session is aimed at. If you are interested in how it was done, there is a <a href="https://github.com/martinfleis/sds/blob/main/data/chicago_influenza_1918/preprocessing.ipynb">notebook</a>.</p>
+<p>This notebook discusses several patterns to clean and structure data properly, including tidying, subsetting, and aggregating. We finish with some basic visualisation. An additional extension presents more advanced tricks to manipulate tabular data.</p>
+</section>
+<section id="dataset" class="level2">
+<h2 class="anchored" data-anchor-id="dataset">Dataset</h2>
+<p>You will be exploring demographic characteristics of Chicago in 1918 linked to the influenza mortality during the pandemic that happened back then, coming from the research paper by <span class="citation" data-cites="grantz2016disparities">@grantz2016disparities</span>. The data are aggregated to census tracts and contain information on unemployment, home ownership, age structure and influenza mortality from a period of 8 weeks.</p>
+<p>The main tool you use is the <code>pandas</code> package. As with the <code>math</code> you used <a href="../chapter_01/hands_on.html">before</a>, you must import it first.</p>
 <div class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="annotated-cell-1"><pre class="sourceCode python code-annotation-code code-with-copy code-annotated"><code class="sourceCode python"><a class="code-annotation-anchor" data-target-cell="annotated-cell-1" data-target-annotation="1" onclick="event.preventDefault();">1</a><span id="annotated-cell-1-1" class="code-annotation-target"><a href="#annotated-cell-1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-annotation">
 <dl class="code-annotation-container-grid">
 <dt data-target-cell="annotated-cell-1" data-target-annotation="1">1</dt>
 <dd>
-<span data-code-cell="annotated-cell-1" data-code-annotation="1" data-code-lines="1">Import the <code>pandas</code> package under the shortcut <code>pd</code>.</span>
+<span data-code-cell="annotated-cell-1" data-code-annotation="1" data-code-lines="1">Import the <code>pandas</code> package under the alias <code>pd</code>. Using the alias is not necessary, but it is a convention nearly everyone follows.</span>
 </dd>
 </dl>
 </div>
 </div>
-<p>Describe the data</p>
+<p>The data is stored in a CSV</p>
 <div class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="annotated-cell-2"><pre class="sourceCode python code-annotation-code code-with-copy code-annotated"><code class="sourceCode python"><a class="code-annotation-anchor" data-target-cell="annotated-cell-2" data-target-annotation="1" onclick="event.preventDefault();">1</a><span id="annotated-cell-2-1" class="code-annotation-target"><a href="#annotated-cell-2-1" aria-hidden="true" tabindex="-1"></a>chicago_1918 <span class="op">=</span> pd.read_csv(</span>
 <a class="code-annotation-anchor" data-target-cell="annotated-cell-2" data-target-annotation="2" onclick="event.preventDefault();">2</a><span id="annotated-cell-2-2" class="code-annotation-target"><a href="#annotated-cell-2-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">"data/chicago_influenza_1918.csv"</span>,</span>
@@ -589,15 +617,3238 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </dd>
 <dt data-target-cell="annotated-cell-2" data-target-annotation="3">3</dt>
 <dd>
-<span data-code-cell="annotated-cell-2" data-code-annotation="3" data-code-lines="3">Use the column <code>geography_code</code> as an index of the DataFrame. More on that below.</span>
+<span data-code-cell="annotated-cell-2" data-code-annotation="3" data-code-lines="3">Use the column <code>geography_code</code> as an index of the DataFrame.</span>
 </dd>
 </dl>
 </div>
 </div>
+</section>
+<section id="pandas-101" class="level2">
+<h2 class="anchored" data-anchor-id="pandas-101">Pandas 101</h2>
+<p>Intro</p>
+<section id="data-structures" class="level3">
+<h3 class="anchored" data-anchor-id="data-structures">Data Structures</h3>
+<p>DataFrame</p>
+<div class="cell" data-execution_count="3">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>chicago_1918</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="3">
+<div>
 
 
+<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">gross_acres</th>
+<th data-quarto-table-cell-role="th">illit</th>
+<th data-quarto-table-cell-role="th">unemployed_pct</th>
+<th data-quarto-table-cell-role="th">ho_pct</th>
+<th data-quarto-table-cell-role="th">agecat1</th>
+<th data-quarto-table-cell-role="th">agecat2</th>
+<th data-quarto-table-cell-role="th">agecat3</th>
+<th data-quarto-table-cell-role="th">agecat4</th>
+<th data-quarto-table-cell-role="th">agecat5</th>
+<th data-quarto-table-cell-role="th">agecat6</th>
+<th data-quarto-table-cell-role="th">agecat7</th>
+<th data-quarto-table-cell-role="th">influenza</th>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">geography_code</th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">G17003100001</td>
+<td>1388.2</td>
+<td>116</td>
+<td>0.376950</td>
+<td>0.124823</td>
+<td>46</td>
+<td>274</td>
+<td>257</td>
+<td>311</td>
+<td>222</td>
+<td>1122</td>
+<td>587</td>
+<td>9</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">G17003100002</td>
+<td>217.7</td>
+<td>14</td>
+<td>0.399571</td>
+<td>0.071647</td>
+<td>35</td>
+<td>320</td>
+<td>441</td>
+<td>624</td>
+<td>276</td>
+<td>1061</td>
+<td>508</td>
+<td>6</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">G17003100003</td>
+<td>401.3</td>
+<td>69</td>
+<td>0.349558</td>
+<td>0.092920</td>
+<td>50</td>
+<td>265</td>
+<td>179</td>
+<td>187</td>
+<td>163</td>
+<td>1020</td>
+<td>392</td>
+<td>8</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">G17003100004</td>
+<td>86.9</td>
+<td>11</td>
+<td>0.422535</td>
+<td>0.030072</td>
+<td>43</td>
+<td>241</td>
+<td>129</td>
+<td>141</td>
+<td>123</td>
+<td>1407</td>
+<td>539</td>
+<td>2</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">G17003100005</td>
+<td>337.1</td>
+<td>20</td>
+<td>0.431822</td>
+<td>0.084703</td>
+<td>65</td>
+<td>464</td>
+<td>369</td>
+<td>464</td>
+<td>328</td>
+<td>2625</td>
+<td>1213</td>
+<td>7</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">G17003100492</td>
+<td>2176.6</td>
+<td>136</td>
+<td>0.404430</td>
+<td>0.173351</td>
+<td>85</td>
+<td>606</td>
+<td>520</td>
+<td>705</td>
+<td>439</td>
+<td>2141</td>
+<td>1460</td>
+<td>12</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">G17003100493</td>
+<td>680.0</td>
+<td>271</td>
+<td>0.377207</td>
+<td>0.130158</td>
+<td>243</td>
+<td>1349</td>
+<td>957</td>
+<td>1264</td>
+<td>957</td>
+<td>4653</td>
+<td>2180</td>
+<td>40</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">G17003100494</td>
+<td>1392.8</td>
+<td>1504</td>
+<td>0.336032</td>
+<td>0.072317</td>
+<td>309</td>
+<td>1779</td>
+<td>1252</td>
+<td>1598</td>
+<td>1086</td>
+<td>6235</td>
+<td>2673</td>
+<td>85</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">G17003100495</td>
+<td>640.0</td>
+<td>167</td>
+<td>0.311917</td>
+<td>0.085667</td>
+<td>59</td>
+<td>333</td>
+<td>206</td>
+<td>193</td>
+<td>80</td>
+<td>726</td>
+<td>224</td>
+<td>15</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">G17003100496</td>
+<td>709.8</td>
+<td>340</td>
+<td>0.369765</td>
+<td>0.113549</td>
+<td>157</td>
+<td>979</td>
+<td>761</td>
+<td>959</td>
+<td>594</td>
+<td>2862</td>
+<td>1206</td>
+<td>30</td>
+</tr>
+</tbody>
+</table>
 
-</main> <!-- /main -->
+<p>496 rows × 12 columns</p>
+</div>
+</div>
+</div>
+<p>Series</p>
+<div class="cell" data-execution_count="4">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>chicago_1918[<span class="st">"influenza"</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="4">
+<pre><code>geography_code
+G17003100001     9
+G17003100002     6
+G17003100003     8
+G17003100004     2
+G17003100005     7
+                ..
+G17003100492    12
+G17003100493    40
+G17003100494    85
+G17003100495    15
+G17003100496    30
+Name: influenza, Length: 496, dtype: int64</code></pre>
+</div>
+</div>
+</section>
+<section id="inspect" class="level3">
+<h3 class="anchored" data-anchor-id="inspect">Inspect</h3>
+<div class="cell" data-execution_count="5">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>chicago_1918.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="5">
+<div>
+
+
+<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">gross_acres</th>
+<th data-quarto-table-cell-role="th">illit</th>
+<th data-quarto-table-cell-role="th">unemployed_pct</th>
+<th data-quarto-table-cell-role="th">ho_pct</th>
+<th data-quarto-table-cell-role="th">agecat1</th>
+<th data-quarto-table-cell-role="th">agecat2</th>
+<th data-quarto-table-cell-role="th">agecat3</th>
+<th data-quarto-table-cell-role="th">agecat4</th>
+<th data-quarto-table-cell-role="th">agecat5</th>
+<th data-quarto-table-cell-role="th">agecat6</th>
+<th data-quarto-table-cell-role="th">agecat7</th>
+<th data-quarto-table-cell-role="th">influenza</th>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">geography_code</th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">G17003100001</td>
+<td>1388.2</td>
+<td>116</td>
+<td>0.376950</td>
+<td>0.124823</td>
+<td>46</td>
+<td>274</td>
+<td>257</td>
+<td>311</td>
+<td>222</td>
+<td>1122</td>
+<td>587</td>
+<td>9</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">G17003100002</td>
+<td>217.7</td>
+<td>14</td>
+<td>0.399571</td>
+<td>0.071647</td>
+<td>35</td>
+<td>320</td>
+<td>441</td>
+<td>624</td>
+<td>276</td>
+<td>1061</td>
+<td>508</td>
+<td>6</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">G17003100003</td>
+<td>401.3</td>
+<td>69</td>
+<td>0.349558</td>
+<td>0.092920</td>
+<td>50</td>
+<td>265</td>
+<td>179</td>
+<td>187</td>
+<td>163</td>
+<td>1020</td>
+<td>392</td>
+<td>8</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">G17003100004</td>
+<td>86.9</td>
+<td>11</td>
+<td>0.422535</td>
+<td>0.030072</td>
+<td>43</td>
+<td>241</td>
+<td>129</td>
+<td>141</td>
+<td>123</td>
+<td>1407</td>
+<td>539</td>
+<td>2</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">G17003100005</td>
+<td>337.1</td>
+<td>20</td>
+<td>0.431822</td>
+<td>0.084703</td>
+<td>65</td>
+<td>464</td>
+<td>369</td>
+<td>464</td>
+<td>328</td>
+<td>2625</td>
+<td>1213</td>
+<td>7</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<div class="cell" data-execution_count="6">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>chicago_1918.tail()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="6">
+<div>
+
+
+<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">gross_acres</th>
+<th data-quarto-table-cell-role="th">illit</th>
+<th data-quarto-table-cell-role="th">unemployed_pct</th>
+<th data-quarto-table-cell-role="th">ho_pct</th>
+<th data-quarto-table-cell-role="th">agecat1</th>
+<th data-quarto-table-cell-role="th">agecat2</th>
+<th data-quarto-table-cell-role="th">agecat3</th>
+<th data-quarto-table-cell-role="th">agecat4</th>
+<th data-quarto-table-cell-role="th">agecat5</th>
+<th data-quarto-table-cell-role="th">agecat6</th>
+<th data-quarto-table-cell-role="th">agecat7</th>
+<th data-quarto-table-cell-role="th">influenza</th>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">geography_code</th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">G17003100492</td>
+<td>2176.6</td>
+<td>136</td>
+<td>0.404430</td>
+<td>0.173351</td>
+<td>85</td>
+<td>606</td>
+<td>520</td>
+<td>705</td>
+<td>439</td>
+<td>2141</td>
+<td>1460</td>
+<td>12</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">G17003100493</td>
+<td>680.0</td>
+<td>271</td>
+<td>0.377207</td>
+<td>0.130158</td>
+<td>243</td>
+<td>1349</td>
+<td>957</td>
+<td>1264</td>
+<td>957</td>
+<td>4653</td>
+<td>2180</td>
+<td>40</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">G17003100494</td>
+<td>1392.8</td>
+<td>1504</td>
+<td>0.336032</td>
+<td>0.072317</td>
+<td>309</td>
+<td>1779</td>
+<td>1252</td>
+<td>1598</td>
+<td>1086</td>
+<td>6235</td>
+<td>2673</td>
+<td>85</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">G17003100495</td>
+<td>640.0</td>
+<td>167</td>
+<td>0.311917</td>
+<td>0.085667</td>
+<td>59</td>
+<td>333</td>
+<td>206</td>
+<td>193</td>
+<td>80</td>
+<td>726</td>
+<td>224</td>
+<td>15</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">G17003100496</td>
+<td>709.8</td>
+<td>340</td>
+<td>0.369765</td>
+<td>0.113549</td>
+<td>157</td>
+<td>979</td>
+<td>761</td>
+<td>959</td>
+<td>594</td>
+<td>2862</td>
+<td>1206</td>
+<td>30</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<div class="cell" data-execution_count="7">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>chicago_1918.info()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>&lt;class 'pandas.core.frame.DataFrame'&gt;
+Index: 496 entries, G17003100001 to G17003100496
+Data columns (total 12 columns):
+ #   Column          Non-Null Count  Dtype  
+---  ------          --------------  -----  
+ 0   gross_acres     496 non-null    float64
+ 1   illit           496 non-null    int64  
+ 2   unemployed_pct  496 non-null    float64
+ 3   ho_pct          496 non-null    float64
+ 4   agecat1         496 non-null    int64  
+ 5   agecat2         496 non-null    int64  
+ 6   agecat3         496 non-null    int64  
+ 7   agecat4         496 non-null    int64  
+ 8   agecat5         496 non-null    int64  
+ 9   agecat6         496 non-null    int64  
+ 10  agecat7         496 non-null    int64  
+ 11  influenza       496 non-null    int64  
+dtypes: float64(3), int64(9)
+memory usage: 66.5+ KB</code></pre>
+</div>
+</div>
+</section>
+<section id="summarise" class="level3">
+<h3 class="anchored" data-anchor-id="summarise">Summarise</h3>
+<div class="cell" data-execution_count="8">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>chicago_1918.describe()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="8">
+<div>
+
+
+<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">gross_acres</th>
+<th data-quarto-table-cell-role="th">illit</th>
+<th data-quarto-table-cell-role="th">unemployed_pct</th>
+<th data-quarto-table-cell-role="th">ho_pct</th>
+<th data-quarto-table-cell-role="th">agecat1</th>
+<th data-quarto-table-cell-role="th">agecat2</th>
+<th data-quarto-table-cell-role="th">agecat3</th>
+<th data-quarto-table-cell-role="th">agecat4</th>
+<th data-quarto-table-cell-role="th">agecat5</th>
+<th data-quarto-table-cell-role="th">agecat6</th>
+<th data-quarto-table-cell-role="th">agecat7</th>
+<th data-quarto-table-cell-role="th">influenza</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">count</td>
+<td>496.000000</td>
+<td>496.000000</td>
+<td>496.000000</td>
+<td>496.000000</td>
+<td>496.000000</td>
+<td>496.000000</td>
+<td>496.000000</td>
+<td>496.000000</td>
+<td>496.000000</td>
+<td>496.000000</td>
+<td>496.000000</td>
+<td>496.000000</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">mean</td>
+<td>233.245968</td>
+<td>199.116935</td>
+<td>0.345818</td>
+<td>0.061174</td>
+<td>102.370968</td>
+<td>555.167339</td>
+<td>406.560484</td>
+<td>524.100806</td>
+<td>416.044355</td>
+<td>2361.582661</td>
+<td>1052.681452</td>
+<td>16.070565</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">std</td>
+<td>391.630857</td>
+<td>297.836201</td>
+<td>0.050498</td>
+<td>0.038189</td>
+<td>78.677423</td>
+<td>423.526444</td>
+<td>301.564896</td>
+<td>369.875444</td>
+<td>281.825682</td>
+<td>1545.469426</td>
+<td>722.955717</td>
+<td>12.252440</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">min</td>
+<td>6.900000</td>
+<td>0.000000</td>
+<td>0.057800</td>
+<td>0.000000</td>
+<td>0.000000</td>
+<td>3.000000</td>
+<td>1.000000</td>
+<td>4.000000</td>
+<td>0.000000</td>
+<td>8.000000</td>
+<td>6.000000</td>
+<td>0.000000</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">25%</td>
+<td>79.975000</td>
+<td>30.750000</td>
+<td>0.323973</td>
+<td>0.032106</td>
+<td>46.750000</td>
+<td>256.500000</td>
+<td>193.500000</td>
+<td>253.750000</td>
+<td>220.500000</td>
+<td>1169.750000</td>
+<td>519.750000</td>
+<td>8.000000</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">50%</td>
+<td>99.500000</td>
+<td>84.000000</td>
+<td>0.353344</td>
+<td>0.054389</td>
+<td>82.000000</td>
+<td>442.500000</td>
+<td>331.500000</td>
+<td>453.500000</td>
+<td>377.000000</td>
+<td>2102.000000</td>
+<td>918.500000</td>
+<td>13.500000</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">75%</td>
+<td>180.125000</td>
+<td>241.250000</td>
+<td>0.373382</td>
+<td>0.084762</td>
+<td>136.000000</td>
+<td>717.500000</td>
+<td>532.500000</td>
+<td>709.500000</td>
+<td>551.750000</td>
+<td>3191.750000</td>
+<td>1379.250000</td>
+<td>21.000000</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">max</td>
+<td>3840.000000</td>
+<td>2596.000000</td>
+<td>0.495413</td>
+<td>0.197391</td>
+<td>427.000000</td>
+<td>2512.000000</td>
+<td>1917.000000</td>
+<td>2665.000000</td>
+<td>2454.000000</td>
+<td>9792.000000</td>
+<td>4163.000000</td>
+<td>85.000000</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<div class="cell" data-execution_count="9">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>chicago_1918.describe().T</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="9">
+<div>
+
+
+<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">count</th>
+<th data-quarto-table-cell-role="th">mean</th>
+<th data-quarto-table-cell-role="th">std</th>
+<th data-quarto-table-cell-role="th">min</th>
+<th data-quarto-table-cell-role="th">25%</th>
+<th data-quarto-table-cell-role="th">50%</th>
+<th data-quarto-table-cell-role="th">75%</th>
+<th data-quarto-table-cell-role="th">max</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">gross_acres</td>
+<td>496.0</td>
+<td>233.245968</td>
+<td>391.630857</td>
+<td>6.9000</td>
+<td>79.975000</td>
+<td>99.500000</td>
+<td>180.125000</td>
+<td>3840.000000</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">illit</td>
+<td>496.0</td>
+<td>199.116935</td>
+<td>297.836201</td>
+<td>0.0000</td>
+<td>30.750000</td>
+<td>84.000000</td>
+<td>241.250000</td>
+<td>2596.000000</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">unemployed_pct</td>
+<td>496.0</td>
+<td>0.345818</td>
+<td>0.050498</td>
+<td>0.0578</td>
+<td>0.323973</td>
+<td>0.353344</td>
+<td>0.373382</td>
+<td>0.495413</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">ho_pct</td>
+<td>496.0</td>
+<td>0.061174</td>
+<td>0.038189</td>
+<td>0.0000</td>
+<td>0.032106</td>
+<td>0.054389</td>
+<td>0.084762</td>
+<td>0.197391</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">agecat1</td>
+<td>496.0</td>
+<td>102.370968</td>
+<td>78.677423</td>
+<td>0.0000</td>
+<td>46.750000</td>
+<td>82.000000</td>
+<td>136.000000</td>
+<td>427.000000</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">agecat2</td>
+<td>496.0</td>
+<td>555.167339</td>
+<td>423.526444</td>
+<td>3.0000</td>
+<td>256.500000</td>
+<td>442.500000</td>
+<td>717.500000</td>
+<td>2512.000000</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">agecat3</td>
+<td>496.0</td>
+<td>406.560484</td>
+<td>301.564896</td>
+<td>1.0000</td>
+<td>193.500000</td>
+<td>331.500000</td>
+<td>532.500000</td>
+<td>1917.000000</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">agecat4</td>
+<td>496.0</td>
+<td>524.100806</td>
+<td>369.875444</td>
+<td>4.0000</td>
+<td>253.750000</td>
+<td>453.500000</td>
+<td>709.500000</td>
+<td>2665.000000</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">agecat5</td>
+<td>496.0</td>
+<td>416.044355</td>
+<td>281.825682</td>
+<td>0.0000</td>
+<td>220.500000</td>
+<td>377.000000</td>
+<td>551.750000</td>
+<td>2454.000000</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">agecat6</td>
+<td>496.0</td>
+<td>2361.582661</td>
+<td>1545.469426</td>
+<td>8.0000</td>
+<td>1169.750000</td>
+<td>2102.000000</td>
+<td>3191.750000</td>
+<td>9792.000000</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">agecat7</td>
+<td>496.0</td>
+<td>1052.681452</td>
+<td>722.955717</td>
+<td>6.0000</td>
+<td>519.750000</td>
+<td>918.500000</td>
+<td>1379.250000</td>
+<td>4163.000000</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">influenza</td>
+<td>496.0</td>
+<td>16.070565</td>
+<td>12.252440</td>
+<td>0.0000</td>
+<td>8.000000</td>
+<td>13.500000</td>
+<td>21.000000</td>
+<td>85.000000</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<div class="cell" data-execution_count="10">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>chicago_1918.<span class="bu">min</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="10">
+<pre><code>gross_acres       6.9000
+illit             0.0000
+unemployed_pct    0.0578
+ho_pct            0.0000
+agecat1           0.0000
+agecat2           3.0000
+agecat3           1.0000
+agecat4           4.0000
+agecat5           0.0000
+agecat6           8.0000
+agecat7           6.0000
+influenza         0.0000
+dtype: float64</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="11">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>chicago_1918.loc[<span class="st">"G17003100002"</span>].<span class="bu">min</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="11">
+<pre><code>0.071647275</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="12">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>chicago_1918.loc[<span class="st">"G17003100002"</span>, <span class="st">"agecat1"</span>:<span class="st">"agecat7"</span>].<span class="bu">min</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="12">
+<pre><code>35.0</code></pre>
+</div>
+</div>
+</section>
+<section id="create-new-columns" class="level3">
+<h3 class="anchored" data-anchor-id="create-new-columns">Create new columns</h3>
+<div class="cell" data-execution_count="13">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>total_population <span class="op">=</span> (</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>    chicago_1918[<span class="st">"agecat1"</span>]</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>    <span class="op">+</span> chicago_1918[<span class="st">"agecat2"</span>]</span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>    <span class="op">+</span> chicago_1918[<span class="st">"agecat3"</span>]</span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>    <span class="op">+</span> chicago_1918[<span class="st">"agecat4"</span>]</span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>    <span class="op">+</span> chicago_1918[<span class="st">"agecat5"</span>]</span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>    <span class="op">+</span> chicago_1918[<span class="st">"agecat6"</span>]</span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a>    <span class="op">+</span> chicago_1918[<span class="st">"agecat7"</span>]</span>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a>total_population.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="13">
+<pre><code>geography_code
+G17003100001    2819
+G17003100002    3265
+G17003100003    2256
+G17003100004    2623
+G17003100005    5528
+dtype: int64</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="14">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>total_population <span class="op">=</span> chicago_1918.loc[:, <span class="st">"agecat1"</span>:<span class="st">"agecat7"</span>].<span class="bu">sum</span>(axis<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>total_population.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="14">
+<pre><code>geography_code
+G17003100001    2819
+G17003100002    3265
+G17003100003    2256
+G17003100004    2623
+G17003100005    5528
+dtype: int64</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="15">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>chicago_1918[<span class="st">"total_population"</span>] <span class="op">=</span> total_population</span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>chicago_1918.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="15">
+<div>
+
+
+<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">gross_acres</th>
+<th data-quarto-table-cell-role="th">illit</th>
+<th data-quarto-table-cell-role="th">unemployed_pct</th>
+<th data-quarto-table-cell-role="th">ho_pct</th>
+<th data-quarto-table-cell-role="th">agecat1</th>
+<th data-quarto-table-cell-role="th">agecat2</th>
+<th data-quarto-table-cell-role="th">agecat3</th>
+<th data-quarto-table-cell-role="th">agecat4</th>
+<th data-quarto-table-cell-role="th">agecat5</th>
+<th data-quarto-table-cell-role="th">agecat6</th>
+<th data-quarto-table-cell-role="th">agecat7</th>
+<th data-quarto-table-cell-role="th">influenza</th>
+<th data-quarto-table-cell-role="th">total_population</th>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">geography_code</th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">G17003100001</td>
+<td>1388.2</td>
+<td>116</td>
+<td>0.376950</td>
+<td>0.124823</td>
+<td>46</td>
+<td>274</td>
+<td>257</td>
+<td>311</td>
+<td>222</td>
+<td>1122</td>
+<td>587</td>
+<td>9</td>
+<td>2819</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">G17003100002</td>
+<td>217.7</td>
+<td>14</td>
+<td>0.399571</td>
+<td>0.071647</td>
+<td>35</td>
+<td>320</td>
+<td>441</td>
+<td>624</td>
+<td>276</td>
+<td>1061</td>
+<td>508</td>
+<td>6</td>
+<td>3265</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">G17003100003</td>
+<td>401.3</td>
+<td>69</td>
+<td>0.349558</td>
+<td>0.092920</td>
+<td>50</td>
+<td>265</td>
+<td>179</td>
+<td>187</td>
+<td>163</td>
+<td>1020</td>
+<td>392</td>
+<td>8</td>
+<td>2256</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">G17003100004</td>
+<td>86.9</td>
+<td>11</td>
+<td>0.422535</td>
+<td>0.030072</td>
+<td>43</td>
+<td>241</td>
+<td>129</td>
+<td>141</td>
+<td>123</td>
+<td>1407</td>
+<td>539</td>
+<td>2</td>
+<td>2623</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">G17003100005</td>
+<td>337.1</td>
+<td>20</td>
+<td>0.431822</td>
+<td>0.084703</td>
+<td>65</td>
+<td>464</td>
+<td>369</td>
+<td>464</td>
+<td>328</td>
+<td>2625</td>
+<td>1213</td>
+<td>7</td>
+<td>5528</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<div class="cell" data-execution_count="16">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>homeowners <span class="op">=</span> chicago_1918[<span class="st">"total_population"</span>] <span class="op">*</span> chicago_1918[<span class="st">"ho_pct"</span>]</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>homeowners.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="16">
+<pre><code>geography_code
+G17003100001    351.875177
+G17003100002    233.928353
+G17003100003    209.628319
+G17003100004     78.879711
+G17003100005    468.237675
+dtype: float64</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="17">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>pop_density <span class="op">=</span> chicago_1918[<span class="st">"total_population"</span>] <span class="op">/</span> chicago_1918[<span class="st">"gross_acres"</span>]</span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>pop_density.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="17">
+<pre><code>geography_code
+G17003100001     2.030687
+G17003100002    14.997703
+G17003100003     5.621729
+G17003100004    30.184120
+G17003100005    16.398695
+dtype: float64</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="18">
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>chicago_1918[<span class="st">'ones'</span>] <span class="op">=</span> <span class="dv">1</span></span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>chicago_1918.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="18">
+<div>
+
+
+<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">gross_acres</th>
+<th data-quarto-table-cell-role="th">illit</th>
+<th data-quarto-table-cell-role="th">unemployed_pct</th>
+<th data-quarto-table-cell-role="th">ho_pct</th>
+<th data-quarto-table-cell-role="th">agecat1</th>
+<th data-quarto-table-cell-role="th">agecat2</th>
+<th data-quarto-table-cell-role="th">agecat3</th>
+<th data-quarto-table-cell-role="th">agecat4</th>
+<th data-quarto-table-cell-role="th">agecat5</th>
+<th data-quarto-table-cell-role="th">agecat6</th>
+<th data-quarto-table-cell-role="th">agecat7</th>
+<th data-quarto-table-cell-role="th">influenza</th>
+<th data-quarto-table-cell-role="th">total_population</th>
+<th data-quarto-table-cell-role="th">ones</th>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">geography_code</th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">G17003100001</td>
+<td>1388.2</td>
+<td>116</td>
+<td>0.376950</td>
+<td>0.124823</td>
+<td>46</td>
+<td>274</td>
+<td>257</td>
+<td>311</td>
+<td>222</td>
+<td>1122</td>
+<td>587</td>
+<td>9</td>
+<td>2819</td>
+<td>1</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">G17003100002</td>
+<td>217.7</td>
+<td>14</td>
+<td>0.399571</td>
+<td>0.071647</td>
+<td>35</td>
+<td>320</td>
+<td>441</td>
+<td>624</td>
+<td>276</td>
+<td>1061</td>
+<td>508</td>
+<td>6</td>
+<td>3265</td>
+<td>1</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">G17003100003</td>
+<td>401.3</td>
+<td>69</td>
+<td>0.349558</td>
+<td>0.092920</td>
+<td>50</td>
+<td>265</td>
+<td>179</td>
+<td>187</td>
+<td>163</td>
+<td>1020</td>
+<td>392</td>
+<td>8</td>
+<td>2256</td>
+<td>1</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">G17003100004</td>
+<td>86.9</td>
+<td>11</td>
+<td>0.422535</td>
+<td>0.030072</td>
+<td>43</td>
+<td>241</td>
+<td>129</td>
+<td>141</td>
+<td>123</td>
+<td>1407</td>
+<td>539</td>
+<td>2</td>
+<td>2623</td>
+<td>1</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">G17003100005</td>
+<td>337.1</td>
+<td>20</td>
+<td>0.431822</td>
+<td>0.084703</td>
+<td>65</td>
+<td>464</td>
+<td>369</td>
+<td>464</td>
+<td>328</td>
+<td>2625</td>
+<td>1213</td>
+<td>7</td>
+<td>5528</td>
+<td>1</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<div class="cell" data-execution_count="19">
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>chicago_1918.loc[<span class="st">"G17003100001"</span>, <span class="st">"ones"</span>] <span class="op">=</span> <span class="dv">3</span></span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>chicago_1918.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="19">
+<div>
+
+
+<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">gross_acres</th>
+<th data-quarto-table-cell-role="th">illit</th>
+<th data-quarto-table-cell-role="th">unemployed_pct</th>
+<th data-quarto-table-cell-role="th">ho_pct</th>
+<th data-quarto-table-cell-role="th">agecat1</th>
+<th data-quarto-table-cell-role="th">agecat2</th>
+<th data-quarto-table-cell-role="th">agecat3</th>
+<th data-quarto-table-cell-role="th">agecat4</th>
+<th data-quarto-table-cell-role="th">agecat5</th>
+<th data-quarto-table-cell-role="th">agecat6</th>
+<th data-quarto-table-cell-role="th">agecat7</th>
+<th data-quarto-table-cell-role="th">influenza</th>
+<th data-quarto-table-cell-role="th">total_population</th>
+<th data-quarto-table-cell-role="th">ones</th>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">geography_code</th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">G17003100001</td>
+<td>1388.2</td>
+<td>116</td>
+<td>0.376950</td>
+<td>0.124823</td>
+<td>46</td>
+<td>274</td>
+<td>257</td>
+<td>311</td>
+<td>222</td>
+<td>1122</td>
+<td>587</td>
+<td>9</td>
+<td>2819</td>
+<td>3</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">G17003100002</td>
+<td>217.7</td>
+<td>14</td>
+<td>0.399571</td>
+<td>0.071647</td>
+<td>35</td>
+<td>320</td>
+<td>441</td>
+<td>624</td>
+<td>276</td>
+<td>1061</td>
+<td>508</td>
+<td>6</td>
+<td>3265</td>
+<td>1</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">G17003100003</td>
+<td>401.3</td>
+<td>69</td>
+<td>0.349558</td>
+<td>0.092920</td>
+<td>50</td>
+<td>265</td>
+<td>179</td>
+<td>187</td>
+<td>163</td>
+<td>1020</td>
+<td>392</td>
+<td>8</td>
+<td>2256</td>
+<td>1</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">G17003100004</td>
+<td>86.9</td>
+<td>11</td>
+<td>0.422535</td>
+<td>0.030072</td>
+<td>43</td>
+<td>241</td>
+<td>129</td>
+<td>141</td>
+<td>123</td>
+<td>1407</td>
+<td>539</td>
+<td>2</td>
+<td>2623</td>
+<td>1</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">G17003100005</td>
+<td>337.1</td>
+<td>20</td>
+<td>0.431822</td>
+<td>0.084703</td>
+<td>65</td>
+<td>464</td>
+<td>369</td>
+<td>464</td>
+<td>328</td>
+<td>2625</td>
+<td>1213</td>
+<td>7</td>
+<td>5528</td>
+<td>1</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+</section>
+<section id="remove-columns" class="level3">
+<h3 class="anchored" data-anchor-id="remove-columns">Remove columns</h3>
+<div class="cell" data-execution_count="20">
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>chicago_1918 <span class="op">=</span> chicago_1918.drop(columns<span class="op">=</span><span class="st">"ones"</span>)</span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>chicago_1918.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="20">
+<div>
+
+
+<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">gross_acres</th>
+<th data-quarto-table-cell-role="th">illit</th>
+<th data-quarto-table-cell-role="th">unemployed_pct</th>
+<th data-quarto-table-cell-role="th">ho_pct</th>
+<th data-quarto-table-cell-role="th">agecat1</th>
+<th data-quarto-table-cell-role="th">agecat2</th>
+<th data-quarto-table-cell-role="th">agecat3</th>
+<th data-quarto-table-cell-role="th">agecat4</th>
+<th data-quarto-table-cell-role="th">agecat5</th>
+<th data-quarto-table-cell-role="th">agecat6</th>
+<th data-quarto-table-cell-role="th">agecat7</th>
+<th data-quarto-table-cell-role="th">influenza</th>
+<th data-quarto-table-cell-role="th">total_population</th>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">geography_code</th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">G17003100001</td>
+<td>1388.2</td>
+<td>116</td>
+<td>0.376950</td>
+<td>0.124823</td>
+<td>46</td>
+<td>274</td>
+<td>257</td>
+<td>311</td>
+<td>222</td>
+<td>1122</td>
+<td>587</td>
+<td>9</td>
+<td>2819</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">G17003100002</td>
+<td>217.7</td>
+<td>14</td>
+<td>0.399571</td>
+<td>0.071647</td>
+<td>35</td>
+<td>320</td>
+<td>441</td>
+<td>624</td>
+<td>276</td>
+<td>1061</td>
+<td>508</td>
+<td>6</td>
+<td>3265</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">G17003100003</td>
+<td>401.3</td>
+<td>69</td>
+<td>0.349558</td>
+<td>0.092920</td>
+<td>50</td>
+<td>265</td>
+<td>179</td>
+<td>187</td>
+<td>163</td>
+<td>1020</td>
+<td>392</td>
+<td>8</td>
+<td>2256</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">G17003100004</td>
+<td>86.9</td>
+<td>11</td>
+<td>0.422535</td>
+<td>0.030072</td>
+<td>43</td>
+<td>241</td>
+<td>129</td>
+<td>141</td>
+<td>123</td>
+<td>1407</td>
+<td>539</td>
+<td>2</td>
+<td>2623</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">G17003100005</td>
+<td>337.1</td>
+<td>20</td>
+<td>0.431822</td>
+<td>0.084703</td>
+<td>65</td>
+<td>464</td>
+<td>369</td>
+<td>464</td>
+<td>328</td>
+<td>2625</td>
+<td>1213</td>
+<td>7</td>
+<td>5528</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+</section>
+<section id="index-based-queries" class="level3">
+<h3 class="anchored" data-anchor-id="index-based-queries">Index-based queries</h3>
+<div class="cell" data-execution_count="21">
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>death_pop_first4 <span class="op">=</span> chicago_1918.loc[</span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>    [<span class="st">"G17003100001"</span>, <span class="st">"G17003100002"</span>, <span class="st">"G17003100003"</span>, <span class="st">"G17003100004"</span>],</span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>    [<span class="st">"influenza"</span>, <span class="st">"total_population"</span>],</span>
+<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a>]</span>
+<span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-6"><a href="#cb28-6" aria-hidden="true" tabindex="-1"></a>death_pop_first4</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="21">
+<div>
+
+
+<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">influenza</th>
+<th data-quarto-table-cell-role="th">total_population</th>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">geography_code</th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">G17003100001</td>
+<td>9</td>
+<td>2819</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">G17003100002</td>
+<td>6</td>
+<td>3265</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">G17003100003</td>
+<td>8</td>
+<td>2256</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">G17003100004</td>
+<td>2</td>
+<td>2623</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<div class="cell" data-execution_count="22">
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>range_query <span class="op">=</span> chicago_1918.loc[</span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">"G17003100010"</span>:<span class="st">"G17003100012"</span>,</span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">"influenza"</span>:<span class="st">'total_population'</span>,</span>
+<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a>]</span>
+<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a>range_query</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="22">
+<div>
+
+
+<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">influenza</th>
+<th data-quarto-table-cell-role="th">total_population</th>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">geography_code</th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">G17003100010</td>
+<td>18</td>
+<td>11380</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">G17003100011</td>
+<td>16</td>
+<td>8382</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">G17003100012</td>
+<td>8</td>
+<td>5874</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<p>mix both together</p>
+<div class="cell" data-execution_count="23">
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>range_list_qry <span class="op">=</span> chicago_1918.loc[</span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">"G17003100010"</span>:<span class="st">"G17003100012"</span>, [<span class="st">"influenza"</span>, <span class="st">"total_population"</span>]</span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>]</span>
+<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a>range_list_qry</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="23">
+<div>
+
+
+<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">influenza</th>
+<th data-quarto-table-cell-role="th">total_population</th>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">geography_code</th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">G17003100010</td>
+<td>18</td>
+<td>11380</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">G17003100011</td>
+<td>16</td>
+<td>8382</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">G17003100012</td>
+<td>8</td>
+<td>5874</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+</section>
+<section id="condition-based-queries" class="level3">
+<h3 class="anchored" data-anchor-id="condition-based-queries">Condition-based queries</h3>
+<div class="cell" data-execution_count="24">
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>flu_over_60 <span class="op">=</span> chicago_1918.loc[chicago_1918[<span class="st">"influenza"</span>] <span class="op">&gt;</span> <span class="dv">60</span>]</span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>flu_over_60</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="24">
+<div>
+
+
+<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">gross_acres</th>
+<th data-quarto-table-cell-role="th">illit</th>
+<th data-quarto-table-cell-role="th">unemployed_pct</th>
+<th data-quarto-table-cell-role="th">ho_pct</th>
+<th data-quarto-table-cell-role="th">agecat1</th>
+<th data-quarto-table-cell-role="th">agecat2</th>
+<th data-quarto-table-cell-role="th">agecat3</th>
+<th data-quarto-table-cell-role="th">agecat4</th>
+<th data-quarto-table-cell-role="th">agecat5</th>
+<th data-quarto-table-cell-role="th">agecat6</th>
+<th data-quarto-table-cell-role="th">agecat7</th>
+<th data-quarto-table-cell-role="th">influenza</th>
+<th data-quarto-table-cell-role="th">total_population</th>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">geography_code</th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">G17003100196</td>
+<td>80.5</td>
+<td>951</td>
+<td>0.301564</td>
+<td>0.016648</td>
+<td>228</td>
+<td>1504</td>
+<td>925</td>
+<td>998</td>
+<td>608</td>
+<td>3583</td>
+<td>1092</td>
+<td>62</td>
+<td>8938</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">G17003100246</td>
+<td>113.0</td>
+<td>2596</td>
+<td>0.330517</td>
+<td>0.027537</td>
+<td>407</td>
+<td>2090</td>
+<td>1497</td>
+<td>1681</td>
+<td>1063</td>
+<td>4564</td>
+<td>1934</td>
+<td>77</td>
+<td>13236</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">G17003100247</td>
+<td>91.1</td>
+<td>1534</td>
+<td>0.293748</td>
+<td>0.020664</td>
+<td>215</td>
+<td>1136</td>
+<td>770</td>
+<td>775</td>
+<td>530</td>
+<td>2993</td>
+<td>1152</td>
+<td>61</td>
+<td>7571</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">G17003100285</td>
+<td>120.0</td>
+<td>621</td>
+<td>0.318677</td>
+<td>0.047779</td>
+<td>419</td>
+<td>1870</td>
+<td>1190</td>
+<td>1263</td>
+<td>818</td>
+<td>4370</td>
+<td>1335</td>
+<td>82</td>
+<td>11265</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">G17003100352</td>
+<td>600.0</td>
+<td>638</td>
+<td>0.267962</td>
+<td>0.055023</td>
+<td>404</td>
+<td>1962</td>
+<td>1251</td>
+<td>1151</td>
+<td>603</td>
+<td>5261</td>
+<td>1251</td>
+<td>70</td>
+<td>11883</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">G17003100494</td>
+<td>1392.8</td>
+<td>1504</td>
+<td>0.336032</td>
+<td>0.072317</td>
+<td>309</td>
+<td>1779</td>
+<td>1252</td>
+<td>1598</td>
+<td>1086</td>
+<td>6235</td>
+<td>2673</td>
+<td>85</td>
+<td>14932</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<div class="cell" data-execution_count="25">
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>pop_under <span class="op">=</span> chicago_1918.loc[chicago_1918[<span class="st">"total_population"</span>] <span class="op">&lt;</span> <span class="dv">200</span>]</span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>pop_under</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="25">
+<div>
+
+
+<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">gross_acres</th>
+<th data-quarto-table-cell-role="th">illit</th>
+<th data-quarto-table-cell-role="th">unemployed_pct</th>
+<th data-quarto-table-cell-role="th">ho_pct</th>
+<th data-quarto-table-cell-role="th">agecat1</th>
+<th data-quarto-table-cell-role="th">agecat2</th>
+<th data-quarto-table-cell-role="th">agecat3</th>
+<th data-quarto-table-cell-role="th">agecat4</th>
+<th data-quarto-table-cell-role="th">agecat5</th>
+<th data-quarto-table-cell-role="th">agecat6</th>
+<th data-quarto-table-cell-role="th">agecat7</th>
+<th data-quarto-table-cell-role="th">influenza</th>
+<th data-quarto-table-cell-role="th">total_population</th>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">geography_code</th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">G17003100093</td>
+<td>71.2</td>
+<td>34</td>
+<td>0.268041</td>
+<td>0.025773</td>
+<td>4</td>
+<td>33</td>
+<td>20</td>
+<td>25</td>
+<td>10</td>
+<td>66</td>
+<td>36</td>
+<td>0</td>
+<td>194</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">G17003100293</td>
+<td>40.0</td>
+<td>17</td>
+<td>0.345238</td>
+<td>0.053571</td>
+<td>4</td>
+<td>23</td>
+<td>18</td>
+<td>26</td>
+<td>16</td>
+<td>59</td>
+<td>22</td>
+<td>0</td>
+<td>168</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">G17003100297</td>
+<td>38.1</td>
+<td>4</td>
+<td>0.461538</td>
+<td>0.000000</td>
+<td>0</td>
+<td>3</td>
+<td>1</td>
+<td>4</td>
+<td>0</td>
+<td>8</td>
+<td>10</td>
+<td>0</td>
+<td>26</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">G17003100353</td>
+<td>320.0</td>
+<td>28</td>
+<td>0.193750</td>
+<td>0.018750</td>
+<td>1</td>
+<td>7</td>
+<td>4</td>
+<td>10</td>
+<td>12</td>
+<td>80</td>
+<td>46</td>
+<td>2</td>
+<td>160</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">G17003100488</td>
+<td>1600.1</td>
+<td>3</td>
+<td>0.404762</td>
+<td>0.000000</td>
+<td>2</td>
+<td>5</td>
+<td>4</td>
+<td>7</td>
+<td>1</td>
+<td>17</td>
+<td>6</td>
+<td>0</td>
+<td>42</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<div class="cell" data-execution_count="26">
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>illit_100 <span class="op">=</span> chicago_1918.loc[chicago_1918[<span class="st">"illit"</span>] <span class="op">==</span> <span class="dv">100</span>]</span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>illit_100</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="26">
+<div>
+
+
+<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">gross_acres</th>
+<th data-quarto-table-cell-role="th">illit</th>
+<th data-quarto-table-cell-role="th">unemployed_pct</th>
+<th data-quarto-table-cell-role="th">ho_pct</th>
+<th data-quarto-table-cell-role="th">agecat1</th>
+<th data-quarto-table-cell-role="th">agecat2</th>
+<th data-quarto-table-cell-role="th">agecat3</th>
+<th data-quarto-table-cell-role="th">agecat4</th>
+<th data-quarto-table-cell-role="th">agecat5</th>
+<th data-quarto-table-cell-role="th">agecat6</th>
+<th data-quarto-table-cell-role="th">agecat7</th>
+<th data-quarto-table-cell-role="th">influenza</th>
+<th data-quarto-table-cell-role="th">total_population</th>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">geography_code</th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">G17003100076</td>
+<td>79.4</td>
+<td>100</td>
+<td>0.326936</td>
+<td>0.043691</td>
+<td>140</td>
+<td>791</td>
+<td>562</td>
+<td>666</td>
+<td>520</td>
+<td>3163</td>
+<td>1496</td>
+<td>20</td>
+<td>7338</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">G17003100483</td>
+<td>670.0</td>
+<td>100</td>
+<td>0.379153</td>
+<td>0.142368</td>
+<td>188</td>
+<td>1170</td>
+<td>829</td>
+<td>1132</td>
+<td>763</td>
+<td>3191</td>
+<td>1482</td>
+<td>21</td>
+<td>8755</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<div class="cell" data-execution_count="27">
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>chicago_1918.loc[</span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>    (chicago_1918[<span class="st">"agecat7"</span>] <span class="op">*</span> <span class="dv">100</span> <span class="op">/</span> chicago_1918[<span class="st">"total_population"</span>]) <span class="op">&gt;</span> <span class="dv">50</span></span>
+<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="27">
+<div>
+
+
+<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">gross_acres</th>
+<th data-quarto-table-cell-role="th">illit</th>
+<th data-quarto-table-cell-role="th">unemployed_pct</th>
+<th data-quarto-table-cell-role="th">ho_pct</th>
+<th data-quarto-table-cell-role="th">agecat1</th>
+<th data-quarto-table-cell-role="th">agecat2</th>
+<th data-quarto-table-cell-role="th">agecat3</th>
+<th data-quarto-table-cell-role="th">agecat4</th>
+<th data-quarto-table-cell-role="th">agecat5</th>
+<th data-quarto-table-cell-role="th">agecat6</th>
+<th data-quarto-table-cell-role="th">agecat7</th>
+<th data-quarto-table-cell-role="th">influenza</th>
+<th data-quarto-table-cell-role="th">total_population</th>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">geography_code</th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">G17003100227</td>
+<td>146.3</td>
+<td>22</td>
+<td>0.0657</td>
+<td>0.000853</td>
+<td>2</td>
+<td>16</td>
+<td>9</td>
+<td>22</td>
+<td>27</td>
+<td>480</td>
+<td>614</td>
+<td>3</td>
+<td>1170</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<div class="cell" data-execution_count="28">
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>flu_over_60_query <span class="op">=</span> chicago_1918.query(<span class="st">"influenza &gt; 60"</span>)</span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>flu_over_60_query</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="28">
+<div>
+
+
+<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">gross_acres</th>
+<th data-quarto-table-cell-role="th">illit</th>
+<th data-quarto-table-cell-role="th">unemployed_pct</th>
+<th data-quarto-table-cell-role="th">ho_pct</th>
+<th data-quarto-table-cell-role="th">agecat1</th>
+<th data-quarto-table-cell-role="th">agecat2</th>
+<th data-quarto-table-cell-role="th">agecat3</th>
+<th data-quarto-table-cell-role="th">agecat4</th>
+<th data-quarto-table-cell-role="th">agecat5</th>
+<th data-quarto-table-cell-role="th">agecat6</th>
+<th data-quarto-table-cell-role="th">agecat7</th>
+<th data-quarto-table-cell-role="th">influenza</th>
+<th data-quarto-table-cell-role="th">total_population</th>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">geography_code</th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">G17003100196</td>
+<td>80.5</td>
+<td>951</td>
+<td>0.301564</td>
+<td>0.016648</td>
+<td>228</td>
+<td>1504</td>
+<td>925</td>
+<td>998</td>
+<td>608</td>
+<td>3583</td>
+<td>1092</td>
+<td>62</td>
+<td>8938</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">G17003100246</td>
+<td>113.0</td>
+<td>2596</td>
+<td>0.330517</td>
+<td>0.027537</td>
+<td>407</td>
+<td>2090</td>
+<td>1497</td>
+<td>1681</td>
+<td>1063</td>
+<td>4564</td>
+<td>1934</td>
+<td>77</td>
+<td>13236</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">G17003100247</td>
+<td>91.1</td>
+<td>1534</td>
+<td>0.293748</td>
+<td>0.020664</td>
+<td>215</td>
+<td>1136</td>
+<td>770</td>
+<td>775</td>
+<td>530</td>
+<td>2993</td>
+<td>1152</td>
+<td>61</td>
+<td>7571</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">G17003100285</td>
+<td>120.0</td>
+<td>621</td>
+<td>0.318677</td>
+<td>0.047779</td>
+<td>419</td>
+<td>1870</td>
+<td>1190</td>
+<td>1263</td>
+<td>818</td>
+<td>4370</td>
+<td>1335</td>
+<td>82</td>
+<td>11265</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">G17003100352</td>
+<td>600.0</td>
+<td>638</td>
+<td>0.267962</td>
+<td>0.055023</td>
+<td>404</td>
+<td>1962</td>
+<td>1251</td>
+<td>1151</td>
+<td>603</td>
+<td>5261</td>
+<td>1251</td>
+<td>70</td>
+<td>11883</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">G17003100494</td>
+<td>1392.8</td>
+<td>1504</td>
+<td>0.336032</td>
+<td>0.072317</td>
+<td>309</td>
+<td>1779</td>
+<td>1252</td>
+<td>1598</td>
+<td>1086</td>
+<td>6235</td>
+<td>2673</td>
+<td>85</td>
+<td>14932</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<div class="cell" data-execution_count="29">
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>flu_query <span class="op">=</span> chicago_1918.query(<span class="st">"(influenza &gt; 60) &amp; (total_population &lt; 10000)"</span>)</span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>flu_query</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="29">
+<div>
+
+
+<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">gross_acres</th>
+<th data-quarto-table-cell-role="th">illit</th>
+<th data-quarto-table-cell-role="th">unemployed_pct</th>
+<th data-quarto-table-cell-role="th">ho_pct</th>
+<th data-quarto-table-cell-role="th">agecat1</th>
+<th data-quarto-table-cell-role="th">agecat2</th>
+<th data-quarto-table-cell-role="th">agecat3</th>
+<th data-quarto-table-cell-role="th">agecat4</th>
+<th data-quarto-table-cell-role="th">agecat5</th>
+<th data-quarto-table-cell-role="th">agecat6</th>
+<th data-quarto-table-cell-role="th">agecat7</th>
+<th data-quarto-table-cell-role="th">influenza</th>
+<th data-quarto-table-cell-role="th">total_population</th>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">geography_code</th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">G17003100196</td>
+<td>80.5</td>
+<td>951</td>
+<td>0.301564</td>
+<td>0.016648</td>
+<td>228</td>
+<td>1504</td>
+<td>925</td>
+<td>998</td>
+<td>608</td>
+<td>3583</td>
+<td>1092</td>
+<td>62</td>
+<td>8938</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">G17003100247</td>
+<td>91.1</td>
+<td>1534</td>
+<td>0.293748</td>
+<td>0.020664</td>
+<td>215</td>
+<td>1136</td>
+<td>770</td>
+<td>775</td>
+<td>530</td>
+<td>2993</td>
+<td>1152</td>
+<td>61</td>
+<td>7571</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+</section>
+<section id="combining-queries" class="level3">
+<h3 class="anchored" data-anchor-id="combining-queries">Combining queries</h3>
+<div class="cell" data-execution_count="30">
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>flu_loc <span class="op">=</span> chicago_1918.loc[</span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>    (chicago_1918[<span class="st">"influenza"</span>] <span class="op">&gt;</span> <span class="dv">60</span>) <span class="op">&amp;</span> (chicago_1918[<span class="st">"total_population"</span>] <span class="op">&lt;</span> <span class="dv">10000</span>)</span>
+<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a>]</span>
+<span id="cb37-4"><a href="#cb37-4" aria-hidden="true" tabindex="-1"></a>flu_loc</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="30">
+<div>
+
+
+<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">gross_acres</th>
+<th data-quarto-table-cell-role="th">illit</th>
+<th data-quarto-table-cell-role="th">unemployed_pct</th>
+<th data-quarto-table-cell-role="th">ho_pct</th>
+<th data-quarto-table-cell-role="th">agecat1</th>
+<th data-quarto-table-cell-role="th">agecat2</th>
+<th data-quarto-table-cell-role="th">agecat3</th>
+<th data-quarto-table-cell-role="th">agecat4</th>
+<th data-quarto-table-cell-role="th">agecat5</th>
+<th data-quarto-table-cell-role="th">agecat6</th>
+<th data-quarto-table-cell-role="th">agecat7</th>
+<th data-quarto-table-cell-role="th">influenza</th>
+<th data-quarto-table-cell-role="th">total_population</th>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">geography_code</th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">G17003100196</td>
+<td>80.5</td>
+<td>951</td>
+<td>0.301564</td>
+<td>0.016648</td>
+<td>228</td>
+<td>1504</td>
+<td>925</td>
+<td>998</td>
+<td>608</td>
+<td>3583</td>
+<td>1092</td>
+<td>62</td>
+<td>8938</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">G17003100247</td>
+<td>91.1</td>
+<td>1534</td>
+<td>0.293748</td>
+<td>0.020664</td>
+<td>215</td>
+<td>1136</td>
+<td>770</td>
+<td>775</td>
+<td>530</td>
+<td>2993</td>
+<td>1152</td>
+<td>61</td>
+<td>7571</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<p>Let’s unpack it.</p>
+<div class="cell" data-execution_count="31">
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>chicago_1918[<span class="st">"influenza"</span>] <span class="op">&gt;</span> <span class="dv">60</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="31">
+<pre><code>geography_code
+G17003100001    False
+G17003100002    False
+G17003100003    False
+G17003100004    False
+G17003100005    False
+                ...  
+G17003100492    False
+G17003100493    False
+G17003100494     True
+G17003100495    False
+G17003100496    False
+Name: influenza, Length: 496, dtype: bool</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="32">
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>chicago_1918[<span class="st">"total_population"</span>] <span class="op">&lt;</span> <span class="dv">10000</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="32">
+<pre><code>geography_code
+G17003100001     True
+G17003100002     True
+G17003100003     True
+G17003100004     True
+G17003100005     True
+                ...  
+G17003100492     True
+G17003100493    False
+G17003100494    False
+G17003100495     True
+G17003100496     True
+Name: total_population, Length: 496, dtype: bool</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="33">
+<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a>(chicago_1918[<span class="st">"influenza"</span>] <span class="op">&gt;</span> <span class="dv">60</span>) <span class="op">&amp;</span> (chicago_1918[<span class="st">"total_population"</span>] <span class="op">&lt;</span> <span class="dv">10000</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="33">
+<pre><code>geography_code
+G17003100001    False
+G17003100002    False
+G17003100003    False
+G17003100004    False
+G17003100005    False
+                ...  
+G17003100492    False
+G17003100493    False
+G17003100494    False
+G17003100495    False
+G17003100496    False
+Length: 496, dtype: bool</code></pre>
+</div>
+</div>
+</section>
+<section id="sorting" class="level3">
+<h3 class="anchored" data-anchor-id="sorting">Sorting</h3>
+<div class="cell" data-execution_count="34">
+<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a>chicago_sorted <span class="op">=</span> chicago_1918.sort_values(<span class="st">'influenza'</span>, ascending<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a>chicago_sorted</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="34">
+<div>
+
+
+<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">gross_acres</th>
+<th data-quarto-table-cell-role="th">illit</th>
+<th data-quarto-table-cell-role="th">unemployed_pct</th>
+<th data-quarto-table-cell-role="th">ho_pct</th>
+<th data-quarto-table-cell-role="th">agecat1</th>
+<th data-quarto-table-cell-role="th">agecat2</th>
+<th data-quarto-table-cell-role="th">agecat3</th>
+<th data-quarto-table-cell-role="th">agecat4</th>
+<th data-quarto-table-cell-role="th">agecat5</th>
+<th data-quarto-table-cell-role="th">agecat6</th>
+<th data-quarto-table-cell-role="th">agecat7</th>
+<th data-quarto-table-cell-role="th">influenza</th>
+<th data-quarto-table-cell-role="th">total_population</th>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">geography_code</th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">G17003100494</td>
+<td>1392.8</td>
+<td>1504</td>
+<td>0.336032</td>
+<td>0.072317</td>
+<td>309</td>
+<td>1779</td>
+<td>1252</td>
+<td>1598</td>
+<td>1086</td>
+<td>6235</td>
+<td>2673</td>
+<td>85</td>
+<td>14932</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">G17003100285</td>
+<td>120.0</td>
+<td>621</td>
+<td>0.318677</td>
+<td>0.047779</td>
+<td>419</td>
+<td>1870</td>
+<td>1190</td>
+<td>1263</td>
+<td>818</td>
+<td>4370</td>
+<td>1335</td>
+<td>82</td>
+<td>11265</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">G17003100246</td>
+<td>113.0</td>
+<td>2596</td>
+<td>0.330517</td>
+<td>0.027537</td>
+<td>407</td>
+<td>2090</td>
+<td>1497</td>
+<td>1681</td>
+<td>1063</td>
+<td>4564</td>
+<td>1934</td>
+<td>77</td>
+<td>13236</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">G17003100352</td>
+<td>600.0</td>
+<td>638</td>
+<td>0.267962</td>
+<td>0.055023</td>
+<td>404</td>
+<td>1962</td>
+<td>1251</td>
+<td>1151</td>
+<td>603</td>
+<td>5261</td>
+<td>1251</td>
+<td>70</td>
+<td>11883</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">G17003100196</td>
+<td>80.5</td>
+<td>951</td>
+<td>0.301564</td>
+<td>0.016648</td>
+<td>228</td>
+<td>1504</td>
+<td>925</td>
+<td>998</td>
+<td>608</td>
+<td>3583</td>
+<td>1092</td>
+<td>62</td>
+<td>8938</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">G17003100297</td>
+<td>38.1</td>
+<td>4</td>
+<td>0.461538</td>
+<td>0.000000</td>
+<td>0</td>
+<td>3</td>
+<td>1</td>
+<td>4</td>
+<td>0</td>
+<td>8</td>
+<td>10</td>
+<td>0</td>
+<td>26</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">G17003100209</td>
+<td>124.1</td>
+<td>13</td>
+<td>0.438105</td>
+<td>0.062971</td>
+<td>30</td>
+<td>120</td>
+<td>92</td>
+<td>196</td>
+<td>166</td>
+<td>763</td>
+<td>491</td>
+<td>0</td>
+<td>1858</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">G17003100293</td>
+<td>40.0</td>
+<td>17</td>
+<td>0.345238</td>
+<td>0.053571</td>
+<td>4</td>
+<td>23</td>
+<td>18</td>
+<td>26</td>
+<td>16</td>
+<td>59</td>
+<td>22</td>
+<td>0</td>
+<td>168</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">G17003100202</td>
+<td>13.1</td>
+<td>6</td>
+<td>0.323326</td>
+<td>0.027714</td>
+<td>5</td>
+<td>40</td>
+<td>24</td>
+<td>37</td>
+<td>28</td>
+<td>218</td>
+<td>78</td>
+<td>0</td>
+<td>430</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">G17003100396</td>
+<td>26.2</td>
+<td>8</td>
+<td>0.344066</td>
+<td>0.015639</td>
+<td>14</td>
+<td>54</td>
+<td>31</td>
+<td>53</td>
+<td>48</td>
+<td>609</td>
+<td>275</td>
+<td>0</td>
+<td>1084</td>
+</tr>
+</tbody>
+</table>
+
+<p>496 rows × 13 columns</p>
+</div>
+</div>
+</div>
+<p>those are abs number, sort by relative</p>
+<div class="cell" data-execution_count="35">
+<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a>chicago_1918[<span class="st">"flu_rate"</span>] <span class="op">=</span> chicago_1918[<span class="st">"influenza"</span>] <span class="op">/</span> chicago_1918[<span class="st">"total_population"</span>]</span>
+<span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a>chicago_sorted_rel <span class="op">=</span> chicago_1918.sort_values(<span class="st">'flu_rate'</span>, ascending<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb45-3"><a href="#cb45-3" aria-hidden="true" tabindex="-1"></a>chicago_sorted_rel</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="35">
+<div>
+
+
+<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">gross_acres</th>
+<th data-quarto-table-cell-role="th">illit</th>
+<th data-quarto-table-cell-role="th">unemployed_pct</th>
+<th data-quarto-table-cell-role="th">ho_pct</th>
+<th data-quarto-table-cell-role="th">agecat1</th>
+<th data-quarto-table-cell-role="th">agecat2</th>
+<th data-quarto-table-cell-role="th">agecat3</th>
+<th data-quarto-table-cell-role="th">agecat4</th>
+<th data-quarto-table-cell-role="th">agecat5</th>
+<th data-quarto-table-cell-role="th">agecat6</th>
+<th data-quarto-table-cell-role="th">agecat7</th>
+<th data-quarto-table-cell-role="th">influenza</th>
+<th data-quarto-table-cell-role="th">total_population</th>
+<th data-quarto-table-cell-role="th">flu_rate</th>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">geography_code</th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">G17003100086</td>
+<td>140.7</td>
+<td>153</td>
+<td>0.331750</td>
+<td>0.034838</td>
+<td>39</td>
+<td>179</td>
+<td>144</td>
+<td>197</td>
+<td>111</td>
+<td>399</td>
+<td>189</td>
+<td>26</td>
+<td>1258</td>
+<td>0.020668</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">G17003100022</td>
+<td>233.2</td>
+<td>20</td>
+<td>0.369973</td>
+<td>0.107239</td>
+<td>6</td>
+<td>28</td>
+<td>35</td>
+<td>48</td>
+<td>28</td>
+<td>151</td>
+<td>77</td>
+<td>7</td>
+<td>373</td>
+<td>0.018767</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">G17003100261</td>
+<td>164.9</td>
+<td>287</td>
+<td>0.307767</td>
+<td>0.031068</td>
+<td>25</td>
+<td>126</td>
+<td>92</td>
+<td>113</td>
+<td>87</td>
+<td>414</td>
+<td>172</td>
+<td>18</td>
+<td>1029</td>
+<td>0.017493</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">G17003100282</td>
+<td>293.5</td>
+<td>97</td>
+<td>0.142330</td>
+<td>0.044248</td>
+<td>15</td>
+<td>70</td>
+<td>67</td>
+<td>74</td>
+<td>198</td>
+<td>758</td>
+<td>173</td>
+<td>20</td>
+<td>1355</td>
+<td>0.014760</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">G17003100249</td>
+<td>137.0</td>
+<td>317</td>
+<td>0.337257</td>
+<td>0.017202</td>
+<td>63</td>
+<td>314</td>
+<td>277</td>
+<td>345</td>
+<td>171</td>
+<td>718</td>
+<td>320</td>
+<td>31</td>
+<td>2208</td>
+<td>0.014040</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">G17003100202</td>
+<td>13.1</td>
+<td>6</td>
+<td>0.323326</td>
+<td>0.027714</td>
+<td>5</td>
+<td>40</td>
+<td>24</td>
+<td>37</td>
+<td>28</td>
+<td>218</td>
+<td>78</td>
+<td>0</td>
+<td>430</td>
+<td>0.000000</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">G17003100093</td>
+<td>71.2</td>
+<td>34</td>
+<td>0.268041</td>
+<td>0.025773</td>
+<td>4</td>
+<td>33</td>
+<td>20</td>
+<td>25</td>
+<td>10</td>
+<td>66</td>
+<td>36</td>
+<td>0</td>
+<td>194</td>
+<td>0.000000</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">G17003100293</td>
+<td>40.0</td>
+<td>17</td>
+<td>0.345238</td>
+<td>0.053571</td>
+<td>4</td>
+<td>23</td>
+<td>18</td>
+<td>26</td>
+<td>16</td>
+<td>59</td>
+<td>22</td>
+<td>0</td>
+<td>168</td>
+<td>0.000000</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">G17003100297</td>
+<td>38.1</td>
+<td>4</td>
+<td>0.461538</td>
+<td>0.000000</td>
+<td>0</td>
+<td>3</td>
+<td>1</td>
+<td>4</td>
+<td>0</td>
+<td>8</td>
+<td>10</td>
+<td>0</td>
+<td>26</td>
+<td>0.000000</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">G17003100488</td>
+<td>1600.1</td>
+<td>3</td>
+<td>0.404762</td>
+<td>0.000000</td>
+<td>2</td>
+<td>5</td>
+<td>4</td>
+<td>7</td>
+<td>1</td>
+<td>17</td>
+<td>6</td>
+<td>0</td>
+<td>42</td>
+<td>0.000000</td>
+</tr>
+</tbody>
+</table>
+
+<p>496 rows × 14 columns</p>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="visual-exploration" class="level2">
+<h2 class="anchored" data-anchor-id="visual-exploration">Visual Exploration</h2>
+<div class="cell" data-execution_count="36">
+<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a>_ <span class="op">=</span> chicago_1918[<span class="st">"influenza"</span>].plot.hist()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<p><img src="hands_on_files/figure-html/cell-37-output-1.png" width="593" height="411"></p>
+</div>
+</div>
+<div class="cell" data-execution_count="37">
+<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-execution_count="38">
+<div class="sourceCode cell-code" id="cb48"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a>sns.displot(chicago_1918[<span class="st">"influenza"</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<p><img src="hands_on_files/figure-html/cell-39-output-1.png" width="469" height="468"></p>
+</div>
+</div>
+<div class="cell" data-execution_count="39">
+<div class="sourceCode cell-code" id="cb49"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a>sns.displot(chicago_1918[<span class="st">"influenza"</span>], kind<span class="op">=</span><span class="st">"kde"</span>, fill<span class="op">=</span><span class="va">True</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<p><img src="hands_on_files/figure-html/cell-40-output-1.png" width="470" height="468"></p>
+</div>
+</div>
+<div class="cell" data-execution_count="40">
+<div class="sourceCode cell-code" id="cb50"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a>_ <span class="op">=</span> chicago_1918[<span class="st">"influenza"</span>].sort_values(ascending<span class="op">=</span><span class="va">False</span>).plot()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<p><img src="hands_on_files/figure-html/cell-41-output-1.png" width="568" height="429"></p>
+</div>
+</div>
+<div class="cell" data-execution_count="41">
+<div class="sourceCode cell-code" id="cb51"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a>_ <span class="op">=</span> chicago_1918[<span class="st">"influenza"</span>].sort_values(ascending<span class="op">=</span><span class="va">False</span>).head(<span class="dv">10</span>).plot.bar()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<p><img src="hands_on_files/figure-html/cell-42-output-1.png" width="566" height="520"></p>
+</div>
+</div>
+<div class="cell" data-execution_count="42">
+<div class="sourceCode cell-code" id="cb52"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a>_ <span class="op">=</span> chicago_1918[<span class="st">"total_population"</span>].sort_values().head(<span class="dv">50</span>).plot.barh(figsize<span class="op">=</span>(<span class="dv">6</span>, <span class="dv">20</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<p><img src="hands_on_files/figure-html/cell-43-output-1.png" width="597" height="1520"></p>
+</div>
+</div>
+</section>
+<section id="tidy-data" class="level2">
+<h2 class="anchored" data-anchor-id="tidy-data">Tidy data</h2>
+<div class="cell" data-execution_count="43">
+<div class="sourceCode cell-code" id="cb53"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a>population <span class="op">=</span> chicago_1918.loc[:, <span class="st">"agecat1"</span>:<span class="st">"agecat7"</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-execution_count="44">
+<div class="sourceCode cell-code" id="cb54"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a>tidy_population <span class="op">=</span> population.stack()</span>
+<span id="cb54-2"><a href="#cb54-2" aria-hidden="true" tabindex="-1"></a>tidy_population.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="44">
+<pre><code>geography_code         
+G17003100001    agecat1     46
+                agecat2    274
+                agecat3    257
+                agecat4    311
+                agecat5    222
+dtype: int64</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="45">
+<div class="sourceCode cell-code" id="cb56"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a>tidy_population_df <span class="op">=</span> tidy_population.reset_index()</span>
+<span id="cb56-2"><a href="#cb56-2" aria-hidden="true" tabindex="-1"></a>tidy_population_df.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="45">
+<div>
+
+
+<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">geography_code</th>
+<th data-quarto-table-cell-role="th">level_1</th>
+<th data-quarto-table-cell-role="th">0</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">0</td>
+<td>G17003100001</td>
+<td>agecat1</td>
+<td>46</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1</td>
+<td>G17003100001</td>
+<td>agecat2</td>
+<td>274</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2</td>
+<td>G17003100001</td>
+<td>agecat3</td>
+<td>257</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">3</td>
+<td>G17003100001</td>
+<td>agecat4</td>
+<td>311</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">4</td>
+<td>G17003100001</td>
+<td>agecat5</td>
+<td>222</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<div class="cell" data-execution_count="46">
+<div class="sourceCode cell-code" id="cb57"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a>tidy_population_df <span class="op">=</span> tidy_population_df.rename(</span>
+<span id="cb57-2"><a href="#cb57-2" aria-hidden="true" tabindex="-1"></a>    columns<span class="op">=</span>{<span class="st">"level_1"</span>: <span class="st">"age_category"</span>, <span class="dv">0</span>: <span class="st">"count"</span>}</span>
+<span id="cb57-3"><a href="#cb57-3" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb57-4"><a href="#cb57-4" aria-hidden="true" tabindex="-1"></a>tidy_population_df.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="46">
+<div>
+
+
+<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">geography_code</th>
+<th data-quarto-table-cell-role="th">age_category</th>
+<th data-quarto-table-cell-role="th">count</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">0</td>
+<td>G17003100001</td>
+<td>agecat1</td>
+<td>46</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1</td>
+<td>G17003100001</td>
+<td>agecat2</td>
+<td>274</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2</td>
+<td>G17003100001</td>
+<td>agecat3</td>
+<td>257</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">3</td>
+<td>G17003100001</td>
+<td>agecat4</td>
+<td>311</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">4</td>
+<td>G17003100001</td>
+<td>agecat5</td>
+<td>222</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+</section>
+<section id="grouping-transforming-aggregating" class="level2">
+<h2 class="anchored" data-anchor-id="grouping-transforming-aggregating">Grouping, transforming, aggregating</h2>
+<div class="cell" data-execution_count="47">
+<div class="sourceCode cell-code" id="cb58"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a>pop_grouped <span class="op">=</span> tidy_population_df.groupby(<span class="st">"age_category"</span>)</span>
+<span id="cb58-2"><a href="#cb58-2" aria-hidden="true" tabindex="-1"></a>pop_grouped</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="47">
+<pre><code>&lt;pandas.core.groupby.generic.DataFrameGroupBy object at 0x150732140&gt;</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="48">
+<div class="sourceCode cell-code" id="cb60"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb60-1"><a href="#cb60-1" aria-hidden="true" tabindex="-1"></a>pop_grouped.<span class="bu">sum</span>(numeric_only<span class="op">=</span><span class="va">True</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="48">
+<div>
+
+
+<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">count</th>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">age_category</th>
+<th data-quarto-table-cell-role="th"></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">agecat1</td>
+<td>50776</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">agecat2</td>
+<td>275363</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">agecat3</td>
+<td>201654</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">agecat4</td>
+<td>259954</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">agecat5</td>
+<td>206358</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">agecat6</td>
+<td>1171345</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">agecat7</td>
+<td>522130</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<div class="cell" data-execution_count="49">
+<div class="sourceCode cell-code" id="cb61"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb61-1"><a href="#cb61-1" aria-hidden="true" tabindex="-1"></a>pop_grouped.describe()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="49">
+<div>
+
+
+<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th colspan="8" data-quarto-table-cell-role="th" data-halign="left">count</th>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">count</th>
+<th data-quarto-table-cell-role="th">mean</th>
+<th data-quarto-table-cell-role="th">std</th>
+<th data-quarto-table-cell-role="th">min</th>
+<th data-quarto-table-cell-role="th">25%</th>
+<th data-quarto-table-cell-role="th">50%</th>
+<th data-quarto-table-cell-role="th">75%</th>
+<th data-quarto-table-cell-role="th">max</th>
+</tr>
+<tr class="header">
+<th data-quarto-table-cell-role="th">age_category</th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">agecat1</td>
+<td>496.0</td>
+<td>102.370968</td>
+<td>78.677423</td>
+<td>0.0</td>
+<td>46.75</td>
+<td>82.0</td>
+<td>136.00</td>
+<td>427.0</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">agecat2</td>
+<td>496.0</td>
+<td>555.167339</td>
+<td>423.526444</td>
+<td>3.0</td>
+<td>256.50</td>
+<td>442.5</td>
+<td>717.50</td>
+<td>2512.0</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">agecat3</td>
+<td>496.0</td>
+<td>406.560484</td>
+<td>301.564896</td>
+<td>1.0</td>
+<td>193.50</td>
+<td>331.5</td>
+<td>532.50</td>
+<td>1917.0</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">agecat4</td>
+<td>496.0</td>
+<td>524.100806</td>
+<td>369.875444</td>
+<td>4.0</td>
+<td>253.75</td>
+<td>453.5</td>
+<td>709.50</td>
+<td>2665.0</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">agecat5</td>
+<td>496.0</td>
+<td>416.044355</td>
+<td>281.825682</td>
+<td>0.0</td>
+<td>220.50</td>
+<td>377.0</td>
+<td>551.75</td>
+<td>2454.0</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">agecat6</td>
+<td>496.0</td>
+<td>2361.582661</td>
+<td>1545.469426</td>
+<td>8.0</td>
+<td>1169.75</td>
+<td>2102.0</td>
+<td>3191.75</td>
+<td>9792.0</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">agecat7</td>
+<td>496.0</td>
+<td>1052.681452</td>
+<td>722.955717</td>
+<td>6.0</td>
+<td>519.75</td>
+<td>918.5</td>
+<td>1379.25</td>
+<td>4163.0</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<div class="callout callout-style-simple callout-none no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Acknowledgements
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>This section is derived from <em>A Course on Geographic Data Science</em> by <span class="citation" data-cites="darribas_gds_course">@darribas_gds_course</span>, licensed under CC-BY-SA 4.0. The text was slightly adapted, mostly to accommodate a different dataset used.</p>
+</div>
+</div>
+
+
+</section>
+
+
+<div id="quarto-appendix" class="default"><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
+
+<ol>
+<li id="fn1"><p>Data munging and data wrangling are used interchangeably. Pick the one you like.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section></div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
@@ -964,7 +4215,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     <div class="nav-footer-left">
       &nbsp;
     </div>   
-    <div class="nav-footer-center">Course material by <a href="https://martinfleischmann.net">Martin Fleischmann</a>. Available under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a>.<div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/martinfleis/sds/issues/new" class="toc-action">Report an issue</a></p></div></div></div>
+    <div class="nav-footer-center">Course material by <a href="https://martinfleischmann.net">Martin Fleischmann</a>. Available under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a>.</div>
     <div class="nav-footer-right">
       &nbsp;
     </div>
