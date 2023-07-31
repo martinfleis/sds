@@ -7,24 +7,71 @@ jupyter: python3
 code-annotations: below
 ---
 
-Introduction to pandas and tabular data analysis. No spatial so far.
+You know the basics. What are Jupyter notebooks, how do they work, and how do you run
+Python in them. It is time to start using them for data science (no, that simple math
+you did the last time doesn't count as data science).
 
-- read_csv
-- head, tail, info, describe, Transpose
-- min, max, slicing
-- add and remove columns
-- indexing
-- queries
-- sorting
-- plotting
-- groupby
+You are about to enter the PyData ecosystem. It means that you will start learning
+how to work with Python from the middle. This course does not explicitly cover the
+fundamentals of programming. It is expected that those parts you need you'll be able to
+pick as you go through the specialised data science stack. If you're stuck,
+confused or need further explanation, use Google (or your favourite
+search engine), ask AI to explain the code or ask in Slack or during the class. Not
+everything will be told during the course (by design), and the internet is a friend of
+every programmer, so let's figure out how to use it efficiently from the beginning.
+
+Let's dig in!
+
+## Munging and wrangling
+
+Real-world datasets are messy. There is no way around it: datasets have “holes” (missing
+data), the amount of formats in which data can be stored is endless, and the best
+structure to share data is not always the optimum to analyse them, hence the need to
+[munge](http://dictionary.reference.com/browse/munge)[^1] them. As has been correctly
+pointed out in many outlets, much of the time spent in what is called Data Science is
+related not only to sophisticated modelling and insight but has to do with much more
+basic and less exotic tasks such as obtaining data, processing, and turning them into a
+shape that makes analysis possible, and exploring it to get to know their basic
+properties.
+
+[^1]: Data munging and data wrangling are used interchangeably. Pick the one you like.
+
+Surprisingly, very little has been published on patterns, techniques, and best practices
+for quick and efficient data cleaning, manipulation, and transformation because of how
+labour-intensive and relevant this aspect is. In this session, you will use a few
+real-world datasets and learn how to process them into Python so they can be transformed
+and manipulated, if necessary, and analysed. For this, we will introduce some of the
+bread and butter of data analysis and scientific computing in Python. These are
+fundamental tools that are constantly used in almost any task relating to data analysis.
+
+This notebook covers the basics and the content that is expected to be learnt by every
+student. You use a prepared dataset that saves us much of the more intricate processing
+that goes beyond the introductory level the session is aimed at. If you are interested
+in how it was done, there is a
+[notebook](https://github.com/martinfleis/sds/blob/main/data/chicago_influenza_1918/preprocessing.ipynb).
+
+This notebook discusses several patterns to clean and structure data properly,
+including tidying, subsetting, and aggregating. We finish with some basic visualisation.
+An additional extension presents more advanced tricks to manipulate tabular data.
+
+## Dataset
+
+You will be exploring demographic characteristics of Chicago in 1918 linked to the
+influenza mortality during the pandemic that happened back then, coming from the
+research paper by @grantz2016disparities. The data are aggregated to census tracts and
+contain information on unemployment, home ownership, age structure and influenza
+mortality from a period of 8 weeks.
+
+The main tool you use is the `pandas` package. As with the `math` you used
+[before](../chapter_01/hands_on.qmd), you must import it first.
 
 ```{python}
 import pandas as pd # <1>
 ```
-1. Import the `pandas` package under the shortcut `pd`.
+1. Import the `pandas` package under the alias `pd`. Using the alias is not
+necessary, but it is a convention nearly everyone follows.
 
-Describe the data
+The data is stored in a CSV
 
 ```{python}
 chicago_1918 = pd.read_csv(             # <1>
@@ -36,3 +83,282 @@ chicago_1918 = pd.read_csv(             # <1>
 2. Specify the path to the file
 3. Use the column `geography_code` as an index of the DataFrame.
 
+## Pandas 101
+
+Intro
+
+### Data Structures
+
+DataFrame
+
+```{python}
+chicago_1918
+```
+
+Series
+
+```{python}
+chicago_1918["influenza"]
+```
+
+### Inspect
+
+```{python}
+chicago_1918.head()
+```
+
+```{python}
+chicago_1918.tail()
+```
+
+```{python}
+chicago_1918.info()
+```
+
+### Summarise
+
+```{python}
+chicago_1918.describe()
+```
+
+```{python}
+chicago_1918.describe().T
+```
+
+```{python}
+chicago_1918.min()
+```
+
+```{python}
+chicago_1918.loc["G17003100002"].min()
+```
+
+```{python}
+chicago_1918.loc["G17003100002", "agecat1":"agecat7"].min()
+```
+
+### Create new columns
+
+```{python}
+total_population = (
+    chicago_1918["agecat1"]
+    + chicago_1918["agecat2"]
+    + chicago_1918["agecat3"]
+    + chicago_1918["agecat4"]
+    + chicago_1918["agecat5"]
+    + chicago_1918["agecat6"]
+    + chicago_1918["agecat7"]
+)
+total_population.head()
+```
+
+```{python}
+total_population = chicago_1918.loc[:, "agecat1":"agecat7"].sum(axis=1)
+total_population.head()
+```
+
+```{python}
+chicago_1918["total_population"] = total_population
+chicago_1918.head()
+```
+
+```{python}
+homeowners = chicago_1918["total_population"] * chicago_1918["ho_pct"]
+homeowners.head()
+```
+
+```{python}
+pop_density = chicago_1918["total_population"] / chicago_1918["gross_acres"]
+pop_density.head()
+```
+
+```{python}
+chicago_1918['ones'] = 1
+chicago_1918.head()
+```
+
+```{python}
+chicago_1918.loc["G17003100001", "ones"] = 3
+chicago_1918.head()
+```
+
+### Remove columns
+
+```{python}
+chicago_1918 = chicago_1918.drop(columns="ones")
+chicago_1918.head()
+```
+
+### Index-based queries
+
+```{python}
+death_pop_first4 = chicago_1918.loc[
+    ["G17003100001", "G17003100002", "G17003100003", "G17003100004"],
+    ["influenza", "total_population"],
+]
+
+death_pop_first4
+```
+
+```{python}
+range_query = chicago_1918.loc[
+    "G17003100010":"G17003100012",
+    "influenza":'total_population',
+]
+range_query
+```
+
+mix both together
+
+```{python}
+range_list_qry = chicago_1918.loc[
+    "G17003100010":"G17003100012", ["influenza", "total_population"]
+]
+
+range_list_qry
+```
+
+### Condition-based queries
+
+```{python}
+flu_over_60 = chicago_1918.loc[chicago_1918["influenza"] > 60]
+flu_over_60
+```
+
+```{python}
+pop_under = chicago_1918.loc[chicago_1918["total_population"] < 200]
+pop_under
+```
+
+```{python}
+illit_100 = chicago_1918.loc[chicago_1918["illit"] == 100]
+illit_100
+```
+
+```{python}
+chicago_1918.loc[
+    (chicago_1918["agecat7"] * 100 / chicago_1918["total_population"]) > 50
+]
+```
+
+```{python}
+flu_over_60_query = chicago_1918.query("influenza > 60")
+flu_over_60_query
+```
+
+```{python}
+flu_query = chicago_1918.query("(influenza > 60) & (total_population < 10000)")
+flu_query
+```
+
+### Combining queries
+
+```{python}
+flu_loc = chicago_1918.loc[
+    (chicago_1918["influenza"] > 60) & (chicago_1918["total_population"] < 10000)
+]
+flu_loc
+```
+
+Let's unpack it.
+
+```{python}
+chicago_1918["influenza"] > 60
+```
+
+```{python}
+chicago_1918["total_population"] < 10000
+```
+
+```{python}
+(chicago_1918["influenza"] > 60) & (chicago_1918["total_population"] < 10000)
+```
+
+### Sorting
+
+```{python}
+chicago_sorted = chicago_1918.sort_values('influenza', ascending=False)
+chicago_sorted
+```
+those are abs number, sort by relative
+```{python}
+chicago_1918["flu_rate"] = chicago_1918["influenza"] / chicago_1918["total_population"]
+chicago_sorted_rel = chicago_1918.sort_values('flu_rate', ascending=False)
+chicago_sorted_rel
+```
+
+## Visual Exploration
+
+```{python}
+_ = chicago_1918["influenza"].plot.hist()
+```
+
+```{python}
+import seaborn as sns
+```
+
+```{python}
+sns.displot(chicago_1918["influenza"])
+```
+
+```{python}
+sns.displot(chicago_1918["influenza"], kind="kde", fill=True)
+```
+
+```{python}
+_ = chicago_1918["influenza"].sort_values(ascending=False).plot()
+```
+
+```{python}
+_ = chicago_1918["influenza"].sort_values(ascending=False).head(10).plot.bar()
+```
+
+```{python}
+_ = chicago_1918["total_population"].sort_values().head(50).plot.barh(figsize=(6, 20))
+```
+
+## Tidy data
+
+```{python}
+population = chicago_1918.loc[:, "agecat1":"agecat7"]
+```
+
+```{python}
+tidy_population = population.stack()
+tidy_population.head()
+```
+
+```{python}
+tidy_population_df = tidy_population.reset_index()
+tidy_population_df.head()
+```
+
+```{python}
+tidy_population_df = tidy_population_df.rename(
+    columns={"level_1": "age_category", 0: "count"}
+)
+tidy_population_df.head()
+```
+
+## Grouping, transforming, aggregating
+
+```{python}
+pop_grouped = tidy_population_df.groupby("age_category")
+pop_grouped
+```
+
+```{python}
+pop_grouped.sum(numeric_only=True)
+```
+
+```{python}
+pop_grouped.describe()
+```
+
+::: {.callout}
+# Acknowledgements
+
+This section is derived from _A Course on Geographic Data Science_ by
+@darribas_gds_course, licensed under CC-BY-SA 4.0. The text was slightly adapted, mostly
+to accommodate a different dataset used.
+:::

@@ -1,5 +1,7 @@
 project:
   type: website
+  resources:
+    - "*/data/*"
 
 profile:
   default: english
