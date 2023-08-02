@@ -4,21 +4,21 @@
     "href": "chapter_10/concepts.html",
     "title": "Use space in your favour",
     "section": "",
-    "text": "The contents will appear later\n\n\n\nThis section will cover the lecture delivered as part of the in-person course. Slides will appear here shortly before the lesson, followed by the summary of the contents in the days after, based on the lecture transcript.\nHave a look at the related reading in the meantime.\n\n\n\n\n\n\n\n\nRelated reading\n\n\n\nChapter Spatial Feature Engineering from the Geographic Data Science with Python by Rey, Arribas-Bel and Wolf (2023)."
+    "text": "The contents will appear later\n\n\n\nThis section will cover the lecture delivered as part of the in-person course. Slides will appear here shortly before the lesson, followed by the summary of the contents in the days after, based on the lecture transcript.\nHave a look at the related reading in the meantime.\n\n\n\n\n\n\n\n\nRelated reading\n\n\n\nChapter Spatial Feature Engineering from the Geographic Data Science with Python by Rey, Arribas-Bel, and Wolf (2023).\n\n\n\n\n\n\nReferences\n\nRey, Sergio, Dani Arribas-Bel, and Levi John Wolf. 2023. Geographic Data Science with Python. Chapman & Hall/CRC Texts in Statistical Science. London, England: Taylor & Francis."
   },
   {
     "objectID": "chapter_10/exercise.html",
     "href": "chapter_10/exercise.html",
     "title": "Interpolation and friends",
     "section": "",
-    "text": "Similar tasks on different data"
+    "text": "The contents will appear later\n\n\n\nThis section will contain exercise material that will appear later."
   },
   {
     "objectID": "chapter_12/hands_on.html",
     "href": "chapter_12/hands_on.html",
     "title": "Classification and regression",
     "section": "",
-    "text": "scikit-learn classification\nscikit-learn regression\nspatial component"
+    "text": "The contents will appear later\n\n\n\nThis section will contain hands-on material that will appear later."
   },
   {
     "objectID": "LICENSE.html",
@@ -32,63 +32,49 @@
     "href": "chapter_03/hands_on.html",
     "title": "Bring in geography",
     "section": "",
-    "text": "Introduction to geopandas."
+    "text": "The contents will appear later\n\n\n\nThis section will contain hands-on material that will appear later."
   },
   {
     "objectID": "chapter_09/concepts.html",
     "href": "chapter_09/concepts.html",
     "title": "Where is equal?",
     "section": "",
-    "text": "The contents will appear later\n\n\n\nThis section will cover the lecture delivered as part of the in-person course. Slides will appear here shortly before the lesson, followed by the summary of the contents in the days after, based on the lecture transcript.\nHave a look at the related reading in the meantime.\n\n\n\n\n\n\n\n\nRelated reading\n\n\n\nChapter Spatial Inequality Dynamics from the Geographic Data Science with Python by Rey, Arribas-Bel and Wolf (2023)."
+    "text": "The contents will appear later\n\n\n\nThis section will cover the lecture delivered as part of the in-person course. Slides will appear here shortly before the lesson, followed by the summary of the contents in the days after, based on the lecture transcript.\nHave a look at the related reading in the meantime.\n\n\n\n\n\n\n\n\nRelated reading\n\n\n\nChapter Spatial Inequality Dynamics from the Geographic Data Science with Python by Rey, Arribas-Bel, and Wolf (2023).\n\n\n\n\n\n\nReferences\n\nRey, Sergio, Dani Arribas-Bel, and Levi John Wolf. 2023. Geographic Data Science with Python. Chapman & Hall/CRC Texts in Statistical Science. London, England: Taylor & Francis."
   },
   {
     "objectID": "chapter_09/exercise.html",
     "href": "chapter_09/exercise.html",
     "title": "Locating inequality",
     "section": "",
-    "text": "Velit esse consectetur id aliquip magna commodo. Magna voluptate culpa culpa qui. Reprehenderit excepteur laborum deserunt velit officia cillum mollit sunt. Ut in aliqua proident fugiat ad duis commodo exercitation aliqua pariatur elit voluptate eiusmod et."
+    "text": "The contents will appear later\n\n\n\nThis section will contain exercise material that will appear later."
   },
   {
     "objectID": "chapter_00/infrastructure.html",
     "href": "chapter_00/infrastructure.html",
     "title": "Infrastructure",
     "section": "",
-    "text": "This page will explain the infrastructure needed to run the course. How to install Python, Jupyter, environments and such."
-  },
-  {
-    "objectID": "chapter_00/infrastructure.html#communication",
-    "href": "chapter_00/infrastructure.html#communication",
-    "title": "Infrastructure",
-    "section": "Communication",
-    "text": "Communication\nWe will have Slack? Teams? Google something?"
-  },
-  {
-    "objectID": "chapter_00/infrastructure.html#tech",
-    "href": "chapter_00/infrastructure.html#tech",
-    "title": "Infrastructure",
-    "section": "Tech",
-    "text": "Tech\nEnvironments…"
+    "text": "The contents will appear later\n\n\n\nThis section will explain the infrastructure needed to run the course. Details will be included later."
   },
   {
     "objectID": "chapter_06/hands_on.html",
     "href": "chapter_06/hands_on.html",
     "title": "Point pattern analysis",
     "section": "",
-    "text": "Point pattern visualisation\nCentrography\nRandomness and Clustering"
+    "text": "The contents will appear later\n\n\n\nThis section will contain hands-on material that will appear later."
   },
   {
     "objectID": "chapter_02/concepts.html",
     "href": "chapter_02/concepts.html",
     "title": "Open tools and open mindset",
     "section": "",
-    "text": "The contents will appear later\n\n\n\nThis section will cover the lecture delivered as part of the in-person course. Slides will appear here shortly before the lesson, followed by the summary of the contents in the days after, based on the lecture transcript.\nHave a look at the related reading in the meantime.\n\n\n\n\n\n\n\n\nRelated reading\n\n\n\nChapter Computational Tools for Geographic Data Science from the Geographic Data Science with Python by Rey, Arribas-Bel and Wolf (2023)."
+    "text": "The contents will appear later\n\n\n\nThis section will cover the lecture delivered as part of the in-person course. Slides will appear here shortly before the lesson, followed by the summary of the contents in the days after, based on the lecture transcript.\nHave a look at the related reading in the meantime.\n\n\n\n\n\n\n\n\nRelated reading\n\n\n\nChapter Computational Tools for Geographic Data Science from the Geographic Data Science with Python by Rey, Arribas-Bel, and Wolf (2023).\n\n\n\n\n\n\nReferences\n\nRey, Sergio, Dani Arribas-Bel, and Levi John Wolf. 2023. Geographic Data Science with Python. Chapman & Hall/CRC Texts in Statistical Science. London, England: Taylor & Francis."
   },
   {
     "objectID": "chapter_02/exercise.html",
     "href": "chapter_02/exercise.html",
     "title": "Learning pandas",
     "section": "",
-    "text": "An exercise to do similar tasks as in the hands on but on different data."
+    "text": "The contents will appear later\n\n\n\nThis section will contain exercise material that will appear later."
   },
   {
     "objectID": "data/chicago_influenza_1918/preprocessing.html",
@@ -102,63 +88,63 @@
     "href": "chapter_07/concepts.html",
     "title": "Similar data belong together",
     "section": "",
-    "text": "The contents will appear later\n\n\n\nThis section will cover the lecture delivered as part of the in-person course. Slides will appear here shortly before the lesson, followed by the summary of the contents in the days after, based on the lecture transcript.\nHave a look at the related reading in the meantime.\n\n\n\n\n\n\n\n\nRelated reading\n\n\n\nChapter Clustering and Regionalization from the Geographic Data Science with Python by Rey, Arribas-Bel and Wolf (2023)."
+    "text": "The contents will appear later\n\n\n\nThis section will cover the lecture delivered as part of the in-person course. Slides will appear here shortly before the lesson, followed by the summary of the contents in the days after, based on the lecture transcript.\nHave a look at the related reading in the meantime.\n\n\n\n\n\n\n\n\nRelated reading\n\n\n\nChapter Clustering and Regionalization from the Geographic Data Science with Python by Rey, Arribas-Bel, and Wolf (2023).\n\n\n\n\n\n\nReferences\n\nRey, Sergio, Dani Arribas-Bel, and Levi John Wolf. 2023. Geographic Data Science with Python. Chapman & Hall/CRC Texts in Statistical Science. London, England: Taylor & Francis."
   },
   {
     "objectID": "chapter_07/exercise.html",
     "href": "chapter_07/exercise.html",
     "title": "Find me a cluster",
     "section": "",
-    "text": "clustering with scikit-learn\n\nK-Means\nWard\nSpatial Ward"
+    "text": "The contents will appear later\n\n\n\nThis section will contain exercise material that will appear later."
   },
   {
     "objectID": "chapter_05/hands_on.html",
     "href": "chapter_05/hands_on.html",
     "title": "Spatial autocorrelation and other ESDAs",
     "section": "",
-    "text": "Global autocorrelation with esda (Join counts, Moran [plot and statistics])\nLocal autocorrelation (Local Moran) and an effect of weights creation\nbonus - other stats (Geary, Getis and Ord)"
+    "text": "The contents will appear later\n\n\n\nThis section will contain hands-on material that will appear later."
   },
   {
     "objectID": "chapter_11/concepts.html",
     "href": "chapter_11/concepts.html",
     "title": "Relationship and prediction",
     "section": "",
-    "text": "The contents will appear later\n\n\n\nThis section will cover the lecture delivered as part of the in-person course. Slides will appear here shortly before the lesson, followed by the summary of the contents in the days after, based on the lecture transcript.\nHave a look at the related reading in the meantime.\n\n\n\n\n\n\n\n\nRelated reading\n\n\n\nChapter Spatial Regression from the Geographic Data Science with Python by Rey, Arribas-Bel and Wolf (2023)."
+    "text": "The contents will appear later\n\n\n\nThis section will cover the lecture delivered as part of the in-person course. Slides will appear here shortly before the lesson, followed by the summary of the contents in the days after, based on the lecture transcript.\nHave a look at the related reading in the meantime.\n\n\n\n\n\n\n\n\nRelated reading\n\n\n\nChapter Spatial Regression from the Geographic Data Science with Python by Rey, Arribas-Bel, and Wolf (2023).\n\n\n\n\n\n\nReferences\n\nRey, Sergio, Dani Arribas-Bel, and Levi John Wolf. 2023. Geographic Data Science with Python. Chapman & Hall/CRC Texts in Statistical Science. London, England: Taylor & Francis."
   },
   {
     "objectID": "chapter_11/exercise.html",
     "href": "chapter_11/exercise.html",
     "title": "Fit that model",
     "section": "",
-    "text": "different data, similar tasks"
+    "text": "The contents will appear later\n\n\n\nThis section will contain exercise material that will appear later."
   },
   {
     "objectID": "chapter_08/hands_on.html",
     "href": "chapter_08/hands_on.html",
     "title": "Population as a raster grid",
     "section": "",
-    "text": "Population grids, aggregations, sampling\nBonus - LISA on raster Bonus 2 - Xvec"
+    "text": "The contents will appear later\n\n\n\nThis section will contain hands-on material that will appear later."
   },
   {
     "objectID": "chapter_04/concepts.html",
     "href": "chapter_04/concepts.html",
     "title": "Space as math",
     "section": "",
-    "text": "The contents will appear later\n\n\n\nThis section will cover the lecture delivered as part of the in-person course. Slides will appear here shortly before the lesson, followed by the summary of the contents in the days after, based on the lecture transcript.\nHave a look at the related reading in the meantime.\n\n\n\n\n\n\n\n\nRelated reading\n\n\n\nChapter Spatial Weights from the Geographic Data Science with Python by Rey, Arribas-Bel and Wolf (2023)."
+    "text": "The contents will appear later\n\n\n\nThis section will cover the lecture delivered as part of the in-person course. Slides will appear here shortly before the lesson, followed by the summary of the contents in the days after, based on the lecture transcript.\nHave a look at the related reading in the meantime.\n\n\n\n\n\n\n\n\nRelated reading\n\n\n\nChapter Spatial Weights from the Geographic Data Science with Python by Rey, Arribas-Bel, and Wolf (2023).\n\n\n\n\n\n\nReferences\n\nRey, Sergio, Dani Arribas-Bel, and Levi John Wolf. 2023. Geographic Data Science with Python. Chapman & Hall/CRC Texts in Statistical Science. London, England: Taylor & Francis."
   },
   {
     "objectID": "chapter_04/exercise.html",
     "href": "chapter_04/exercise.html",
     "title": "Graph here, graph there",
     "section": "",
-    "text": "Exercise on creation and transformation of weights. Make them understand what is the structure and how to work with it.\nInlcude lags."
+    "text": "The contents will appear later\n\n\n\nThis section will contain exercise material that will appear later."
   },
   {
     "objectID": "chapter_01/hands_on.html",
     "href": "chapter_01/hands_on.html",
     "title": "Jupyter and Python",
     "section": "",
-    "text": "Welcome to the first hands-on section of the course. You will familiarise yourself with the tools you will be using, ensure that all works as it should, and prepare for some Python code."
+    "text": "Caution\n\n\n\nThis course material is currently under construction and is likely incomplete. The final version will be released in October 2023.\nWelcome to the first hands-on section of the course. You will familiarise yourself with the tools you will be using, ensure that all works as it should, and prepare for some Python code."
   },
   {
     "objectID": "chapter_01/hands_on.html#computer-science-101",
@@ -249,7 +235,7 @@
     "href": "chapter_01/exercise.html",
     "title": "Understanding Notebooks",
     "section": "",
-    "text": "This is a “You do” part of the first lesson.\nYou now know what a Jupyter Notebook is, how to work with it in Jupyter Lab (or Google Colab) and how to run Python code in its cells. Let’s now move attention to cells with text."
+    "text": "Caution\n\n\n\nThis course material is currently under construction and is likely incomplete. The final version will be released in October 2023.\nThis is a “You do” part of the first lesson.\nYou now know what a Jupyter Notebook is, how to work with it in Jupyter Lab (or Google Colab) and how to run Python code in its cells. Let’s now move attention to cells with text."
   },
   {
     "objectID": "chapter_01/exercise.html#master-markdown",
@@ -277,49 +263,49 @@
     "href": "chapter_04/hands_on.html",
     "title": "Spatial weights in PySAL",
     "section": "",
-    "text": "libpysal and creation of various kinds of weights matrices and operations on them.\nspatial lag and its relationship to weight value and transformation method.\n\nNeed to figure out if I should teach current W or the new one from the experimental namespace. Probably will have to stick to the current one as the rest of PySAL might not work with the new one by October. Let’s check with the PySAL team. Would be awesome to teach the new class."
+    "text": "The contents will appear later\n\n\n\nThis section will contain hands-on material that will appear later."
   },
   {
     "objectID": "chapter_08/exercise.html",
     "href": "chapter_08/exercise.html",
     "title": "Learning xarray",
     "section": "",
-    "text": "Analysis of a country’s population based on WorldPop data."
+    "text": "The contents will appear later\n\n\n\nThis section will contain exercise material that will appear later."
   },
   {
     "objectID": "chapter_08/concepts.html",
     "href": "chapter_08/concepts.html",
     "title": "Data as a grid",
     "section": "",
-    "text": "The contents will appear later\n\n\n\nThis section will cover the lecture delivered as part of the in-person course. Slides will appear here shortly before the lesson, followed by the summary of the contents in the days after, based on the lecture transcript.\nHave a look at the related reading in the meantime.\n\n\n\n\n\n\n\n\nRelated reading\n\n\n\nParts of the chapter Spatial Data dealing with raster data from the Geographic Data Science with Python by Rey, Arribas-Bel and Wolf (2023)."
+    "text": "The contents will appear later\n\n\n\nThis section will cover the lecture delivered as part of the in-person course. Slides will appear here shortly before the lesson, followed by the summary of the contents in the days after, based on the lecture transcript.\nHave a look at the related reading in the meantime.\n\n\n\n\n\n\n\n\nRelated reading\n\n\n\nParts of the chapter Spatial Data dealing with raster data from the Geographic Data Science with Python by Rey, Arribas-Bel, and Wolf (2023).\n\n\n\n\n\n\nReferences\n\nRey, Sergio, Dani Arribas-Bel, and Levi John Wolf. 2023. Geographic Data Science with Python. Chapman & Hall/CRC Texts in Statistical Science. London, England: Taylor & Francis."
   },
   {
     "objectID": "chapter_11/hands_on.html",
     "href": "chapter_11/hands_on.html",
     "title": "Regression and geography",
     "section": "",
-    "text": "non-spatial regression\nGWR\nfeature eng\nspatial heterogeneiry\nspatial dependence"
+    "text": "The contents will appear later\n\n\n\nThis section will contain hands-on material that will appear later."
   },
   {
     "objectID": "chapter_05/exercise.html",
     "href": "chapter_05/exercise.html",
     "title": "Does it correlate?",
     "section": "",
-    "text": "Exploring autocorrelation on a different dataset."
+    "text": "The contents will appear later\n\n\n\nThis section will contain exercise material that will appear later."
   },
   {
     "objectID": "chapter_05/concepts.html",
     "href": "chapter_05/concepts.html",
     "title": "Explore space!",
     "section": "",
-    "text": "The contents will appear later\n\n\n\nThis section will cover the lecture delivered as part of the in-person course. Slides will appear here shortly before the lesson, followed by the summary of the contents in the days after, based on the lecture transcript.\nHave a look at the related reading in the meantime.\n\n\n\n\n\n\n\n\nRelated reading\n\n\n\nChapters Global Spatial Autocorrelation and Local Spatial Autocorrelation from the Geographic Data Science with Python by Rey, Arribas-Bel and Wolf (2023)."
+    "text": "The contents will appear later\n\n\n\nThis section will cover the lecture delivered as part of the in-person course. Slides will appear here shortly before the lesson, followed by the summary of the contents in the days after, based on the lecture transcript.\nHave a look at the related reading in the meantime.\n\n\n\n\n\n\n\n\nRelated reading\n\n\n\nChapters Global Spatial Autocorrelation and Local Spatial Autocorrelation from the Geographic Data Science with Python by Rey, Arribas-Bel, and Wolf (2023).\n\n\n\n\n\n\nReferences\n\nRey, Sergio, Dani Arribas-Bel, and Levi John Wolf. 2023. Geographic Data Science with Python. Chapman & Hall/CRC Texts in Statistical Science. London, England: Taylor & Francis."
   },
   {
     "objectID": "chapter_07/hands_on.html",
     "href": "chapter_07/hands_on.html",
     "title": "Clustering and regionalisation",
     "section": "",
-    "text": "scikit-learn\nscikit-learn+weights constraint\nbonus - regionalisation (max-p, skater)"
+    "text": "The contents will appear later\n\n\n\nThis section will contain hands-on material that will appear later."
   },
   {
     "objectID": "data/chicago_influenza_1918/ReadMe.html",
@@ -354,7 +340,7 @@
     "href": "chapter_02/hands_on.html",
     "title": "Data wrangling",
     "section": "",
-    "text": "You know the basics. What are Jupyter notebooks, how do they work, and how do you run Python in them. It is time to start using them for data science (no, that simple math you did the last time doesn’t count as data science).\nYou are about to enter the PyData ecosystem. It means that you will start learning how to work with Python from the middle. This course does not explicitly cover the fundamentals of programming. It is expected that those parts you need you’ll be able to pick as you go through the specialised data science stack. If you’re stuck, confused or need further explanation, use Google (or your favourite search engine), ask AI to explain the code or ask in Slack or during the class. Not everything will be told during the course (by design), and the internet is a friend of every programmer, so let’s figure out how to use it efficiently from the beginning.\nLet’s dig in!"
+    "text": "Caution\n\n\n\nThis course material is currently under construction and is likely incomplete. The final version will be released in October 2023.\nYou know the basics. What are Jupyter notebooks, how do they work, and how do you run Python in them. It is time to start using them for data science (no, that simple math you did the last time doesn’t count as data science).\nYou are about to enter the PyData ecosystem. It means that you will start learning how to work with Python from the middle. This course does not explicitly cover the fundamentals of programming. It is expected that those parts you need you’ll be able to pick as you go through the specialised data science stack. If you’re stuck, confused or need further explanation, use Google (or your favourite search engine), ask AI to explain the code or ask in Slack or during the class. Not everything will be told during the course (by design), and the internet is a friend of every programmer, so let’s figure out how to use it efficiently from the beginning.\nLet’s dig in!"
   },
   {
     "objectID": "chapter_02/hands_on.html#munging-and-wrangling",
@@ -396,63 +382,63 @@
     "href": "chapter_02/hands_on.html#grouping-transforming-aggregating",
     "title": "Data wrangling",
     "section": "Grouping, transforming, aggregating",
-    "text": "Grouping, transforming, aggregating\n\npop_grouped = tidy_population_df.groupby(\"age_category\")\npop_grouped\n\n&lt;pandas.core.groupby.generic.DataFrameGroupBy object at 0x13979c850&gt;\n\n\n\npop_grouped.sum(numeric_only=True)\n\n\n\n\n\n\n\n\ncount\n\n\nage_category\n\n\n\n\n\nagecat1\n50776\n\n\nagecat2\n275363\n\n\nagecat3\n201654\n\n\nagecat4\n259954\n\n\nagecat5\n206358\n\n\nagecat6\n1171345\n\n\nagecat7\n522130\n\n\n\n\n\n\n\n\npop_grouped.describe()\n\n\n\n\n\n\n\n\ncount\n\n\n\ncount\nmean\nstd\nmin\n25%\n50%\n75%\nmax\n\n\nage_category\n\n\n\n\n\n\n\n\n\n\n\n\nagecat1\n496.0\n102.370968\n78.677423\n0.0\n46.75\n82.0\n136.00\n427.0\n\n\nagecat2\n496.0\n555.167339\n423.526444\n3.0\n256.50\n442.5\n717.50\n2512.0\n\n\nagecat3\n496.0\n406.560484\n301.564896\n1.0\n193.50\n331.5\n532.50\n1917.0\n\n\nagecat4\n496.0\n524.100806\n369.875444\n4.0\n253.75\n453.5\n709.50\n2665.0\n\n\nagecat5\n496.0\n416.044355\n281.825682\n0.0\n220.50\n377.0\n551.75\n2454.0\n\n\nagecat6\n496.0\n2361.582661\n1545.469426\n8.0\n1169.75\n2102.0\n3191.75\n9792.0\n\n\nagecat7\n496.0\n1052.681452\n722.955717\n6.0\n519.75\n918.5\n1379.25\n4163.0\n\n\n\n\n\n\n\n\n\n\n\n\n\nAcknowledgements\n\n\n\nThis section is derived from A Course on Geographic Data Science by Arribas-Bel (2019), licensed under CC-BY-SA 4.0. The text was slightly adapted, mostly to accommodate a different dataset used."
+    "text": "Grouping, transforming, aggregating\n\npop_grouped = tidy_population_df.groupby(\"age_category\")\npop_grouped\n\n&lt;pandas.core.groupby.generic.DataFrameGroupBy object at 0x143d95360&gt;\n\n\n\npop_grouped.sum(numeric_only=True)\n\n\n\n\n\n\n\n\ncount\n\n\nage_category\n\n\n\n\n\nagecat1\n50776\n\n\nagecat2\n275363\n\n\nagecat3\n201654\n\n\nagecat4\n259954\n\n\nagecat5\n206358\n\n\nagecat6\n1171345\n\n\nagecat7\n522130\n\n\n\n\n\n\n\n\npop_grouped.describe()\n\n\n\n\n\n\n\n\ncount\n\n\n\ncount\nmean\nstd\nmin\n25%\n50%\n75%\nmax\n\n\nage_category\n\n\n\n\n\n\n\n\n\n\n\n\nagecat1\n496.0\n102.370968\n78.677423\n0.0\n46.75\n82.0\n136.00\n427.0\n\n\nagecat2\n496.0\n555.167339\n423.526444\n3.0\n256.50\n442.5\n717.50\n2512.0\n\n\nagecat3\n496.0\n406.560484\n301.564896\n1.0\n193.50\n331.5\n532.50\n1917.0\n\n\nagecat4\n496.0\n524.100806\n369.875444\n4.0\n253.75\n453.5\n709.50\n2665.0\n\n\nagecat5\n496.0\n416.044355\n281.825682\n0.0\n220.50\n377.0\n551.75\n2454.0\n\n\nagecat6\n496.0\n2361.582661\n1545.469426\n8.0\n1169.75\n2102.0\n3191.75\n9792.0\n\n\nagecat7\n496.0\n1052.681452\n722.955717\n6.0\n519.75\n918.5\n1379.25\n4163.0\n\n\n\n\n\n\n\n\n\n\n\n\n\nAcknowledgements\n\n\n\nThis section is derived from A Course on Geographic Data Science by Arribas-Bel (2019), licensed under CC-BY-SA 4.0. The text was slightly adapted, mostly to accommodate a different dataset used."
   },
   {
     "objectID": "chapter_02/hands_on.html#footnotes",
     "href": "chapter_02/hands_on.html#footnotes",
     "title": "Data wrangling",
     "section": "Footnotes",
-    "text": "Footnotes\n\n\nData munging and data wrangling are used interchangeably. Pick the one you like.↩︎\nScalar is a single value, like a number (42) or a string (towel).↩︎"
+    "text": "Footnotes\n\n\nData munging and data wrangling are used interchangeably. Pick the one you like.↩︎\nScalar is a single value, like a number (42) or a string (\"towel\").↩︎"
   },
   {
     "objectID": "chapter_06/exercise.html",
     "href": "chapter_06/exercise.html",
     "title": "Pointy points",
     "section": "",
-    "text": "Exploring different data."
+    "text": "The contents will appear later\n\n\n\nThis section will contain exercise material that will appear later."
   },
   {
     "objectID": "chapter_06/concepts.html",
     "href": "chapter_06/concepts.html",
     "title": "I need more points",
     "section": "",
-    "text": "The contents will appear later\n\n\n\nThis section will cover the lecture delivered as part of the in-person course. Slides will appear here shortly before the lesson, followed by the summary of the contents in the days after, based on the lecture transcript.\nHave a look at the related reading in the meantime.\n\n\n\n\n\n\n\n\nRelated reading\n\n\n\nChapter Point Pattern Analysis from the Geographic Data Science with Python by Rey, Arribas-Bel and Wolf (2023)."
+    "text": "The contents will appear later\n\n\n\nThis section will cover the lecture delivered as part of the in-person course. Slides will appear here shortly before the lesson, followed by the summary of the contents in the days after, based on the lecture transcript.\nHave a look at the related reading in the meantime.\n\n\n\n\n\n\n\n\nRelated reading\n\n\n\nChapter Point Pattern Analysis from the Geographic Data Science with Python by Rey, Arribas-Bel, and Wolf (2023).\n\n\n\n\n\n\nReferences\n\nRey, Sergio, Dani Arribas-Bel, and Levi John Wolf. 2023. Geographic Data Science with Python. Chapman & Hall/CRC Texts in Statistical Science. London, England: Taylor & Francis."
   },
   {
     "objectID": "chapter_00/assignment.html",
     "href": "chapter_00/assignment.html",
     "title": "Assignment",
     "section": "",
-    "text": "This page will explain the assignment. It will be a computational essay."
+    "text": "The contents will appear later\n\n\n\nThis section will cover the assignment. Details will be included later."
   },
   {
     "objectID": "chapter_09/hands_on.html",
     "href": "chapter_09/hands_on.html",
     "title": "Spatial Inequality Dynamics",
     "section": "",
-    "text": "Ex laboris adipisicing ipsum ea quis consectetur quis cillum reprehenderit. Dolor commodo incididunt irure cillum non nostrud culpa est fugiat occaecat non duis. Aute dolore laboris id tempor magna Lorem minim dolore nulla id voluptate cupidatat anim."
+    "text": "The contents will appear later\n\n\n\nThis section will contain hands-on material that will appear later."
   },
   {
     "objectID": "chapter_03/exercise.html",
     "href": "chapter_03/exercise.html",
     "title": "Learning GeoPandas",
     "section": "",
-    "text": "Basic geopandas exercise, including static and interactive mapping. Include a note on MAUP but don’t bother explaining much."
+    "text": "The contents will appear later\n\n\n\nThis section will contain exercise material that will appear later."
   },
   {
     "objectID": "chapter_03/concepts.html",
     "href": "chapter_03/concepts.html",
     "title": "Old and new spatial data",
     "section": "",
-    "text": "The contents will appear later\n\n\n\nThis section will cover the lecture delivered as part of the in-person course. Slides will appear here shortly before the lesson, followed by the summary of the contents in the days after, based on the lecture transcript.\nHave a look at the related reading in the meantime.\n\n\n\n\n\n\n\n\nRelated reading\n\n\n\nParts of the chapter Spatial Data dealing with tabular data from the Geographic Data Science with Python by Rey, Arribas-Bel and Wolf (2023)."
+    "text": "The contents will appear later\n\n\n\nThis section will cover the lecture delivered as part of the in-person course. Slides will appear here shortly before the lesson, followed by the summary of the contents in the days after, based on the lecture transcript.\nHave a look at the related reading in the meantime.\n\n\n\n\n\n\n\n\nRelated reading\n\n\n\nParts of the chapter Spatial Data dealing with tabular data from the Geographic Data Science with Python by Rey, Arribas-Bel, and Wolf (2023).\n\n\n\n\n\n\nReferences\n\nRey, Sergio, Dani Arribas-Bel, and Levi John Wolf. 2023. Geographic Data Science with Python. Chapman & Hall/CRC Texts in Statistical Science. London, England: Taylor & Francis."
   },
   {
     "objectID": "chapter_12/exercise.html",
     "href": "chapter_12/exercise.html",
     "title": "Predict future",
     "section": "",
-    "text": "Playing with scikit-learn."
+    "text": "The contents will appear later\n\n\n\nThis section will contain exercise material that will appear later."
   },
   {
     "objectID": "chapter_12/concepts.html",
@@ -466,6 +452,6 @@
     "href": "chapter_10/hands_on.html",
     "title": "Creating new data",
     "section": "",
-    "text": "Nearby counts\nSpatial join\nNearest join\nSampling from rasters\nPoint Interpolation\nAreal interpolation\nClustering as feature eng"
+    "text": "The contents will appear later\n\n\n\nThis section will contain hands-on material that will appear later."
   }
 ]
