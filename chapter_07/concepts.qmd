@@ -22,5 +22,5 @@ Have a look at the related reading in the meantime.
 ::: {.callout-tip}
 ## Related reading
 
-Chapter [_Clustering and Regionalization_](https://geographicdata.science/book/notebooks/10_clustering_and_regionalization.html) from the Geographic Data Science with Python by Rey, Arribas-Bel and Wolf (2023).
+Chapter [_Clustering and Regionalization_](https://geographicdata.science/book/notebooks/10_clustering_and_regionalization.html) from the Geographic Data Science with Python by @rey2023geographic.
 :::

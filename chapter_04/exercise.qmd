@@ -3,7 +3,15 @@ title: "Graph here, graph there"
 format: html
 ---
 
-Exercise on creation and transformation of weights. Make them understand what is the
+<!-- Exercise on creation and transformation of weights. Make them understand what is the
 structure and how to work with it.
 
-Inlcude lags.
+Inlcude lags. -->
+
+::: {.callout-note appearance="simple"}
+
+## The contents will appear later
+
+This section will contain exercise material that will appear later.
+
+:::

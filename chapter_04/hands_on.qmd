@@ -3,10 +3,18 @@ title: "Spatial weights in PySAL"
 format: html
 ---
 
-- `libpysal` and creation of various kinds of weights matrices and operations on them.
+<!-- - `libpysal` and creation of various kinds of weights matrices and operations on them.
 - spatial lag and its relationship to weight value and transformation method.
 
 Need to figure out if I should teach current `W` or the new one from the `experimental`
 namespace. Probably will have to stick to the current one as the rest of PySAL might not
 work with the new one by October. Let's check with the PySAL team. Would be awesome to
-teach the new class.
+teach the new class. -->
+
+::: {.callout-note appearance="simple"}
+
+## The contents will appear later
+
+This section will contain hands-on material that will appear later.
+
+:::

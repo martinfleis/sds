@@ -3,4 +3,12 @@ title: "Assignment"
 format: "html"
 ---
 
-This page will explain the assignment. It will be a computational essay.
+<!-- This page will explain the assignment. It will be a computational essay. -->
+
+::: {.callout-note appearance="simple"}
+
+## The contents will appear later
+
+This section will cover the assignment. Details will be included later.
+
+:::

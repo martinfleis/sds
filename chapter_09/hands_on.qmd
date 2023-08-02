@@ -3,4 +3,10 @@ title: "Spatial Inequality Dynamics"
 format: html
 ---
 
-Ex laboris adipisicing ipsum ea quis consectetur quis cillum reprehenderit. Dolor commodo incididunt irure cillum non nostrud culpa est fugiat occaecat non duis. Aute dolore laboris id tempor magna Lorem minim dolore nulla id voluptate cupidatat anim.
+::: {.callout-note appearance="simple"}
+
+## The contents will appear later
+
+This section will contain hands-on material that will appear later.
+
+:::

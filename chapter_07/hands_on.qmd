@@ -2,8 +2,16 @@
 title: "Clustering and regionalisation"
 format: html
 ---
-
+<!--
 - scikit-learn
 - scikit-learn+weights constraint
 
-- bonus - regionalisation (max-p, skater)
+- bonus - regionalisation (max-p, skater) -->
+
+::: {.callout-note appearance="simple"}
+
+## The contents will appear later
+
+This section will contain hands-on material that will appear later.
+
+:::

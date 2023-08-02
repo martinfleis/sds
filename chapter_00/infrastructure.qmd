@@ -2,7 +2,15 @@
 title: "Infrastructure"
 ---
 
-This page will explain the infrastructure needed to run the course. How to install Python, Jupyter, environments and such.
+::: {.callout-note appearance="simple"}
+
+## The contents will appear later
+
+This section will explain the infrastructure needed to run the course. Details will be included later.
+
+:::
+
+<!-- This page will explain the infrastructure needed to run the course. How to install Python, Jupyter, environments and such.
 
 ## Communication
 
@@ -10,4 +18,4 @@ We will have Slack? Teams? Google something?
 
 ## Tech
 
-Environments...
+Environments... -->

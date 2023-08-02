@@ -3,4 +3,12 @@ title: "Bring in geography"
 format: html
 ---
 
-Introduction to `geopandas`.
+<!-- Introduction to `geopandas`. -->
+
+::: {.callout-note appearance="simple"}
+
+## The contents will appear later
+
+This section will contain hands-on material that will appear later.
+
+:::

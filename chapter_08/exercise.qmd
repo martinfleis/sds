@@ -3,4 +3,12 @@ title: "Learning xarray"
 format: html
 ---
 
-Analysis of a country's population based on WorldPop data.
+<!-- Analysis of a country's population based on WorldPop data. -->
+
+::: {.callout-note appearance="simple"}
+
+## The contents will appear later
+
+This section will contain exercise material that will appear later.
+
+:::

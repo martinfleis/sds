@@ -3,4 +3,10 @@ title: "Learning pandas"
 format: html
 ---
 
-An exercise to do similar tasks as in the hands on but on different data.
+::: {.callout-note appearance="simple"}
+
+## The contents will appear later
+
+This section will contain exercise material that will appear later.
+
+:::

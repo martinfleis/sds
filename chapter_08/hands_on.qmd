@@ -3,7 +3,15 @@ title: "Population as a raster grid"
 format: html
 ---
 
-Population grids, aggregations, sampling
+<!-- Population grids, aggregations, sampling
 
 Bonus - LISA on raster
-Bonus 2 - Xvec
+Bonus 2 - Xvec -->
+
+::: {.callout-note appearance="simple"}
+
+## The contents will appear later
+
+This section will contain hands-on material that will appear later.
+
+:::

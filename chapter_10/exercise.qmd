@@ -3,4 +3,12 @@ title: "Interpolation and friends"
 format: html
 ---
 
-Similar tasks on different data
+<!-- Similar tasks on different data -->
+
+::: {.callout-note appearance="simple"}
+
+## The contents will appear later
+
+This section will contain exercise material that will appear later.
+
+:::

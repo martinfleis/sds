@@ -19,5 +19,5 @@ Have a look at the related reading in the meantime.
 ## Related reading
 
 Chapter [_Spatial Weights_](https://geographicdata.science/book/notebooks/04_spatial_weights.html) from
-the Geographic Data Science with Python by Rey, Arribas-Bel and Wolf (2023).
+the Geographic Data Science with Python by @rey2023geographic.
 :::

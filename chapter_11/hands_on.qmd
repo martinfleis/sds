@@ -3,8 +3,16 @@ title: "Regression and geography"
 format: html
 ---
 
-- non-spatial regression
+<!-- - non-spatial regression
 - GWR
 - feature eng
 - spatial heterogeneiry
-- spatial dependence
+- spatial dependence -->
+
+::: {.callout-note appearance="simple"}
+
+## The contents will appear later
+
+This section will contain hands-on material that will appear later.
+
+:::

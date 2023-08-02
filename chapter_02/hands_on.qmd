@@ -5,8 +5,12 @@ format:
   ipynb: default
 jupyter: python3
 code-annotations: below
-bibliography: ../assets/references.bib
 ---
+
+::: {.callout-caution}
+This course material is currently under construction and is likely incomplete. The final
+version will be released in October 2023.
+:::
 
 You know the basics. What are Jupyter notebooks, how do they work, and how do you run
 Python in them. It is time to start using them for data science (no, that simple math
@@ -277,7 +281,7 @@ of the population density.
 A different spin on this is assigning new values: you can generate new variables with
 scalars[^scalar], and modify those:
 
-[^scalar]: Scalar is a single value, like a number (`42`) or a string (`towel`).
+[^scalar]: Scalar is a single value, like a number (`42`) or a string (`"towel"`).
 
 ```{python}
 chicago_1918["ones"] = 1  # <1>

@@ -3,4 +3,12 @@ title: "Does it correlate?"
 format: html
 ---
 
-Exploring autocorrelation on a different dataset.
+<!-- Exploring autocorrelation on a different dataset. -->
+
+::: {.callout-note appearance="simple"}
+
+## The contents will appear later
+
+This section will contain exercise material that will appear later.
+
+:::

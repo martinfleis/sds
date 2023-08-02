@@ -21,5 +21,5 @@ Have a look at the related reading in the meantime.
 ## Related reading
 
 Parts of the chapter [_Spatial Data_](https://geographicdata.science/book/notebooks/03_spatial_data.html) dealing with tabular data from
-the Geographic Data Science with Python by Rey, Arribas-Bel and Wolf (2023).
+the Geographic Data Science with Python by @rey2023geographic.
 :::

@@ -8,7 +8,8 @@ project:
 lang: en
 
 execute:
-  freeze: true
+  freeze: auto
+  cache: true
 
 format:
   html:
@@ -19,6 +20,7 @@ format:
     toc: true
     smooth-scroll: true
     highlight-style: atom-one
+    bibliography: assets/references.bib
 
 website:
   repo-url: https://github.com/martinfleis/sds/

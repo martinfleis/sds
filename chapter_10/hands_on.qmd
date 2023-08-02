@@ -3,10 +3,18 @@ title: "Creating new data"
 format: html
 ---
 
-- Nearby counts
+<!-- - Nearby counts
 - Spatial join
 - Nearest join
 - Sampling from rasters
 - Point Interpolation
 - Areal interpolation
-- Clustering as feature eng
+- Clustering as feature eng -->
+
+::: {.callout-note appearance="simple"}
+
+## The contents will appear later
+
+This section will contain hands-on material that will appear later.
+
+:::

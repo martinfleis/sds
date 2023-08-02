@@ -21,5 +21,5 @@ Have a look at the related reading in the meantime.
 ::: {.callout-tip}
 ## Related reading
 
-Chapter [_Spatial Feature Engineering_](https://geographicdata.science/book/notebooks/12_feature_engineering.html) from the Geographic Data Science with Python by Rey, Arribas-Bel and Wolf (2023).
+Chapter [_Spatial Feature Engineering_](https://geographicdata.science/book/notebooks/12_feature_engineering.html) from the Geographic Data Science with Python by @rey2023geographic.
 :::

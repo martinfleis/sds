@@ -1,7 +1,6 @@
 ---
 title: "Spatial Data Science for Social Geography"
 format: "html"
-bibliography: assets/references.bib
 ---
 
 ::: {.callout-caution}

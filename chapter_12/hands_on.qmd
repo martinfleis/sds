@@ -3,6 +3,14 @@ title: "Classification and regression"
 format: html
 ---
 
-- scikit-learn classification
+<!-- - scikit-learn classification
 - scikit-learn regression
-- spatial component
+- spatial component -->
+
+::: {.callout-note appearance="simple"}
+
+## The contents will appear later
+
+This section will contain hands-on material that will appear later.
+
+:::

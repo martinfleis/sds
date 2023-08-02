@@ -3,6 +3,13 @@ title: "Learning GeoPandas"
 format: html
 ---
 
-Basic geopandas exercise, including static and interactive mapping.
-Include a note on MAUP but don't bother explaining much.
+<!-- Basic geopandas exercise, including static and interactive mapping.
+Include a note on MAUP but don't bother explaining much. -->
 
+::: {.callout-note appearance="simple"}
+
+## The contents will appear later
+
+This section will contain exercise material that will appear later.
+
+:::

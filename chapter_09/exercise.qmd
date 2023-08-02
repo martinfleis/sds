@@ -3,4 +3,10 @@ title: "Locating inequality"
 format: html
 ---
 
-Velit esse consectetur id aliquip magna commodo. Magna voluptate culpa culpa qui. Reprehenderit excepteur laborum deserunt velit officia cillum mollit sunt. Ut in aliqua proident fugiat ad duis commodo exercitation aliqua pariatur elit voluptate eiusmod et.
+::: {.callout-note appearance="simple"}
+
+## The contents will appear later
+
+This section will contain exercise material that will appear later.
+
+:::
