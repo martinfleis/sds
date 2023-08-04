@@ -17,7 +17,8 @@ on:
 name: Test execution
 
 jobs:
-    build-deploy:
+    build:
+        name: "Build the site"
         runs-on: ubuntu-latest
         defaults:
           run:
