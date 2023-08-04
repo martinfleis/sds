@@ -1,0 +1,10 @@
+name: sds
+channels:
+  - conda-forge
+dependencies:
+  - python
+  # to run the code
+  - pandas
+  - seaborn
+  # infrastructure
+  - ipykernel

@@ -17,6 +17,16 @@ jobs:
             with:
                 tinytex: true
 
+          - name: Setup micromamba
+            uses: mamba-org/setup-micromamba@v1
+            with:
+              environment-file: environment.yml
+              micromamba-version: "latest"
+
+          - name: Register kernel
+            run: |
+              python -m ipykernel install --user --name sds
+
           - name: Render Book project
             run: |
                 quarto render
