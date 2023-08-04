@@ -3,8 +3,7 @@ title: "Data wrangling"
 format:
   html: default
   ipynb: default
-jupyter: python3
-code-annotations: below
+jupyter: sds
 ---
 
 ::: {.callout-caution}
@@ -45,7 +44,7 @@ Surprisingly, very little has been published on patterns, techniques, and best p
 for quick and efficient data cleaning, manipulation, and transformation because of how
 labour-intensive and relevant this aspect is. In this session, you will use a few
 real-world datasets and learn how to process them into Python so they can be transformed
-and manipulated, if necessary, and analysed. For this, we will introduce some of the
+and manipulated, if necessary, and analysed. For this, you will introduce some of the
 bread and butter of data analysis and scientific computing in Python. These are
 fundamental tools that are constantly used in almost any task relating to data analysis.
 
@@ -56,7 +55,7 @@ in how it was done, there is a
 [notebook](https://github.com/martinfleis/sds/blob/main/data/chicago_influenza_1918/preprocessing.ipynb).
 
 This notebook discusses several patterns to clean and structure data properly,
-including tidying, subsetting, and aggregating. We finish with some basic visualisation.
+including tidying, subsetting, and aggregating. You finish with some basic visualisation.
 An additional extension presents more advanced tricks to manipulate tabular data.
 
 ## Dataset
@@ -89,10 +88,10 @@ chicago_1918 = pd.read_csv(                                                     
 2. Specify the path to the file. It could be a web address like here or a local file path.
 3. Use the column `geography_code` as an index of the table by passing its name to the
 `index_col` keyword argument. It is not strictly necessary but allows us to choose and index
-on read instead of specifying it later. More on indices below.
+on reading instead of specifying it later. More on indices below.
 
 ::: {.callout-tip}
-We are using `read_csv` because the file we want to read is in the CSV format. However,
+You are using `read_csv` because the file you want to read is in CSV format. However,
 `pandas` allows for many more formats to be read and write. A full list of formats
 supported may be found in [the documentation](https://pandas.pydata.org/docs/user_guide/io.html).
 :::
@@ -135,12 +134,12 @@ chicago_1918
 
 Note the printing is cut to keep a nice and compact view but enough to see its
 structure. Since they represent a table of data, `DataFrame` objects have two dimensions:
-rows and columns. Each of these is automatically assigned a name in what we will call
+rows and columns. Each of these is automatically assigned a name in what you will call
 its _index_. When printing, the index of each dimension is rendered in bold, as opposed
 to the standard rendering for the content. The example above shows how the
 column index is automatically picked up from the `.csv` file’s column names. For rows,
-we have specified when reading the file we wanted the column `geography_code`, so that is
-used. If we hadn’t set any, `pandas` would automatically generate a sequence starting
+we have specified when reading the file you wanted the column `geography_code`, so that is
+used. If you hadn’t set any, `pandas` would automatically generate a sequence starting
 in `0` and going all the way to the number of rows minus one. This is the standard
 structure of a `DataFrame` object, so you will come to it over and over. Importantly, even
 when you move to spatial data, your datasets will have a similar structure.
@@ -150,12 +149,12 @@ columns with different types of data. In this example, you have
 counts (or `int` for integer types) and ratios (or 'float' for floating point numbers
  - a number with decimals) for each column. But it is useful to keep in mind that
 you can combine this with columns that hold other types of data such as categories, text
-(`str`, for string), dates or, as we will see later in the course, geographic features.
+(`str`, for string), dates or, as you will see later in the course, geographic features.
 
 To extract a single column from this `DataFrame`, specify its name
 in the square brackets (`[]`). Note that the name, in this case, is a `string`. A piece
 of text. As such, it needs to be within single (`'`) or double quotes (`"`). The resulting
-data structure is no longer a `DataFrame`, but we have a `Series` because we deal with a
+data structure is no longer a `DataFrame`, but you have a `Series` because you deal with a
 single column.
 
 ```{python}
@@ -211,10 +210,10 @@ Or to obtain a minimum for a single column only.
 chicago_1918["influenza"].min()
 ```
 
-Note here how we have restricted the calculation of the minimum value to one column only
+Note here how you have restricted the calculation of the minimum value to one column only
 by getting the `Series` and calling `.min()` on that.
 
-Similarly, we can restrict the calculations to a single row using `.loc[]` indexer:
+Similarly, you can restrict the calculations to a single row using `.loc[]` indexer:
 
 ```{python}
 chicago_1918.loc["G17003100492"].max()
@@ -357,10 +356,10 @@ range_list_qry
 
 ### Condition-based queries
 
-However, sometimes, we do not know exactly which observations we want, but we do know
+However, sometimes, you do not know exactly which observations you want, but you do know
 what conditions they need to satisfy (e.g. areas with more than 2,000 inhabitants). For
 these cases, `DataFrames` support selection based on conditions. Let us see a few examples.
-Suppose we want to select...
+Suppose you want to select...
 
 _... areas with more than 60 cases of influenza deaths:_
 
@@ -384,8 +383,10 @@ illit_100
 ```
 
 ::: {.callout-note}
+# Unlimited power
+
 These queries can grow in sophistication with almost no limits. For example, here is a
-case where we want to find out the areas where the oldest age group is more than half the
+case where you want to find out the areas where the oldest age group is more than half the
 population:
 
 ```{python}
@@ -399,9 +400,9 @@ All the condition-based queries above are expressed using the `loc` operator. Th
 powerful way, and since it shares syntax with index-based queries, it is also easier to
 remember. However, sometimes querying using `loc` involves a lot of quotation marks,
 parenthesis, etc. A more streamlined approach for condition-based queries of rows is
-provided by the `query` engine. Using this approach, we express everything in our query
+provided by the `query` engine. Using this approach, you express everything in our query
 on a single string, or piece of text, and that is evaluated in the table at once. For
-example, we can run the same operation as in the first query above with the following
+example, you can run the same operation as in the first query above with the following
 syntax:
 
 ```{python}
@@ -409,7 +410,7 @@ flu_over_60_query = chicago_1918.query("influenza > 60")
 flu_over_60_query
 ```
 
-If we want to combine operations, this is also possible:
+If you want to combine operations, this is also possible:
 
 ```{python}
 flu_query = chicago_1918.query("(influenza > 60) & (total_population < 10000)")
@@ -422,25 +423,26 @@ queries, it does not afford the same degree of flexibility. For example, the las
 we had using loc would not be possible using `query`.
 
 ::: {.callout-tip}
-If you are interested, more detail about `query` is available on the
+If you are interested, more detail about `query` is available in the
 [pandas documentation](https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#the-query-method).
 :::
 
 ### Combining queries
 
 Now, all of these queries can be combined with each other for further flexibility. For
-example, imagine we want areas with more than 60 cases of influenza from areas with less than 10,000 inhabitants:
+example, imagine you want areas with more than 60 cases of influenza from areas with less than 10,000 inhabitants:
 
 ```{python}
 flu_loc = chicago_1918.loc[
-    (chicago_1918["influenza"] > 60) & (chicago_1918["total_population"] < 10000)  # <1>
+    (chicago_1918["influenza"] > 60)
+    & (chicago_1918["total_population"] < 10000)  # <1>
 ]
 flu_loc
 ```
 1. The `&` operator combines both conditions together.
 
 ::: {.callout-note collapse="true"}
-## How the `loc` queries work?
+## How do the `loc` queries work?
 
 Let's unpack how these queries work. Each part of the query above creates a single
 `Series` with boolean (`True` or `False`) values, encoding whether the row fulfils the condition
@@ -468,7 +470,7 @@ that contain `True` in that mask.
 ### Sorting
 
 Among the many operations `DataFrame` objects support, one of the most useful ones is to
-sort a table based on a given column. For example, imagine we want to sort the table by
+sort a table based on a given column. For example, imagine you want to sort the table by
 the influenza cases:
 
 ```{python}
@@ -482,10 +484,14 @@ Given the areas of each census tract differ, it may be better to sort by the mor
 rather than raw counts.
 
 ```{python}
-chicago_1918["flu_rate"] = chicago_1918["influenza"] / chicago_1918["total_population"]
-chicago_sorted_rel = chicago_1918.sort_values('flu_rate', ascending=False)
+chicago_1918["flu_rate"] = (                                                # <1>
+    chicago_1918["influenza"] / chicago_1918["total_population"]            # <1>
+)                                                                           # <1>
+chicago_sorted_rel = chicago_1918.sort_values('flu_rate', ascending=False)  # <2>
 chicago_sorted_rel
 ```
+1. Compute the relative rate and assign it as a new column.
+2. Sort values by this new column.
 
 If you inspect the help of `chicago_1918.sort_values`, you will find that you can pass
 more than one column to sort the table by. This allows you to do so-called hierarchical
@@ -493,49 +499,166 @@ sorting: sort first based on one column, if equal, then based on another column,
 
 ## Visual Exploration
 
+The next step to continue exploring a dataset is to get a feel for what it looks like, visually. You have already learnt how to unconver and inspect specific parts of the data, to check for particular cases you might be interested in. Now, you will see how to plot the data to get a sense of the overall distribution of values. For that, you can use the plotting capabilities of `pandas`.
+
+### Histograms
+
+One of the most common graphical devices to display the distribution of values in a variable is a histogram. Values are assigned into groups of equal intervals, and the groups are plotted as bars rising as high as the number of values into the group.
+
+A histogram is easily created with the following command. In this case, let us have a look at the shape of the overall influenza rates:
+
 ```{python}
 _ = chicago_1918["influenza"].plot.hist()
 ```
+
+::: {.callout-note collapse="true"}
+# Assigning to `_`
+
+`pandas` returns an object with the drawing from its plotting methods. Since you are in
+Jupyter environment, and you don't need to work further with that object; you can assign
+it to `_`, a convention for an unused variable.
+:::
+
+However, the default `pandas` plots can be a bit dull. A better option is to use another
+package, called [`seaborn`](https://seaborn.pydata.org).
 
 ```{python}
 import seaborn as sns
 ```
 
+::: {.callout-note collapse="true"}
+# Why `sns`?
+
+`seaborn` is, by convention, imported as `sns`. That came as a joke after
+[Samuel Normal Seaborn](https://en.wikipedia.org/wiki/Sam_Seaborn),
+a fictional character The West Wing show.
+:::
+
+The same plot using `seaborn` has a more pleasant default style and more customisability.
+
 ```{python}
 sns.displot(chicago_1918["influenza"])
 ```
 
+Note you are using `sns` instead of `pd`, as the function belongs to `seaborn` instead of `pandas`.
+
+ You can quickly see most of the areas have seen somewhere between 0 and 60 cases, approx. However, there are a few areas that have more, up to more than 80 cases.
+
+### Kernel Density Plots
+
+Histograms are useful, but they are artificial in the sense that a continuous variable is made discrete by turning the values into discrete groups. An alternative is kernel density estimation (KDE), which produces an empirical density function:
+
 ```{python}
-sns.displot(chicago_1918["influenza"], kind="kde", fill=True)
+sns.displot(chicago_1918["influenza"], kind="kde", fill=True)  # <1>
 ```
+1. `kind="kde"` specifies which type of a distribution plot should `seaborn` use and
+`fill=True` tells it to colour the area under the KDE curve.
+
+### Line and bar plots
+
+Another very common way of visually displaying a variable is with a line or a bar chart. For example, if you want to generate a line plot of the (sorted) total cases by area:
 
 ```{python}
 _ = chicago_1918["influenza"].sort_values(ascending=False).plot()
 ```
 
+For a bar plot all you need to do is to change from `plot` to `plot.bar`. Since there are many census tracts, let us plot only the ten largest ones (which you can retrieve with `head`):
+
 ```{python}
 _ = chicago_1918["influenza"].sort_values(ascending=False).head(10).plot.bar()
 ```
 
+ You can turn the plot around by displaying the bars horizontally (see how it's just changing `bar` for `barh`). Let's display now the top 50 areas and, to make it more readable, let us expand the plot's height:
+
 ```{python}
-_ = chicago_1918["total_population"].sort_values().head(50).plot.barh(figsize=(6, 20))
+_ = (
+    chicago_1918["total_population"]
+    .sort_values()
+    .head(50)
+    .plot.barh(figsize=(6, 20))
+)
 ```
+
+::: {.callout-note}
+# One line or multiple lines?
+
+You may have noticed that in some cases, the code is on a single line, but longer code
+is split into multiple lines. Python requires you to follow the [indentation rules](https://peps.python.org/pep-0008/), but
+apart from that, there are not a lot of other limits.
+:::
 
 ## Tidy data
 
+::: {.callout-caution}
+This section is a bit more advanced and hence considered optional. Feel free to skip it, move to the next, and return later when you feel more confident.
+:::
+
+Once you can read your data in, explore specific cases, and have a first visual approach to the entire set, the next step can be preparing it for more sophisticated analysis. Maybe you are thinking of modeling it through regression, or on creating subgroups in the dataset with particular characteristics, or maybe you simply need to present summary measures that relate to a slightly different arrangement of the data than you have been presented with.
+
+For all these cases, you first need what statistician, and general R wizard, Hadley Wickham calls *"tidy data"*. The general idea to "tidy" your data is to convert them from whatever structure they were handed in to you into one that allows convenient and standardized manipulation, and that supports directly inputting the data into what he calls "*tidy*" analysis tools. But, at a more practical level, what is exactly *"tidy data"*? In Wickham's own words:
+
+> *Tidy data is a standard way of mapping the meaning of a dataset to its structure. A dataset is
+messy or tidy depending on how rows, columns and tables are matched up with observations,
+variables and types.*
+
+He then goes on to list the three fundamental characteristics of *"tidy data"*:
+
+1. Each variable forms a column.
+1. Each observation forms a row.
+1. Each type of observational unit forms a table.
+
+If you are further interested in the concept of *"tidy data"*, I recommend you check out the [original paper](http://www.jstatsoft.org/v59/i10/) (open access) and the [public repository](https://github.com/hadley/tidy-data) associated with it.
+
+Let us bring in the concept of "*tidy data*" to our own Chicago dataset. First, remember its structure:
+
+```{python}
+chicago_1918.head()
+```
+
+Thinking through *tidy* lenses, this is not a tidy dataset. It is not so for each of the three conditions:
+
+* Starting by the last one (*each type of observational unit forms a table*), this dataset actually contains not one but many observational units: the different areas of Chicago, captured by `geography_code`; *and* different observatoins for each area. To *tidy* up this aspect, you can create separate tables. You will probably want population groups divided by age as one tidy table and flu rates as another.
+Start by extracting relevant columns.
+
+```{python}
+influenza_rates = chicago_1918[["influenza"]]  # <1>
+influenza_rates.head()
+```
+1. You are not selecting a single columns with `chicago_1918["influenza"]` but a subset
+of columns. Just that the subset contains only one column, so you pass a list with a single
+column name as `chicago_1918[["influenza"]]`. Notice the double brackets.
+
 ```{python}
 population = chicago_1918.loc[:, "agecat1":"agecat7"]
+population.head()
 ```
+
+At this point, the table `influenza_rates` is tidy: every row is an observation, every table is a variable, and there is only one observational unit in the table.
+
+The other table (`population`), however, is not entirely tidied up yet: there is only one observational unit in the table, true; but every row is not an observation, and there are variable values as the names of columns (in other words, every column is not a variable). To obtain a fully tidy version of the table, you need to re-arrange it in a way that every row is an age category in an area, and there are three variables: `geography_code`, age category, and population count (or frequency).
+
+Because this is actually a fairly common pattern, there is a direct way to solve it in `pandas`:
 
 ```{python}
 tidy_population = population.stack()
 tidy_population.head()
 ```
 
+The method `stack`, well, "stacks" the different columns into rows. This fixes our "tidiness" problems but the type of object that is returning is not a `DataFrame`:
+
+```{python}
+type(tidy_population)
+```
+
+It is a `Series`, which really is like a `DataFrame`, but with only one column. The additional information (`geography_code` and age category) are stored in what is called an multi-index. You will skip these for now, so you would really just want to get a `DataFrame` as you know it out of the `Series`. This is also one line of code away:
+
+
 ```{python}
 tidy_population_df = tidy_population.reset_index()
 tidy_population_df.head()
 ```
+
+To which you can apply to renaming to make it look better:
 
 ```{python}
 tidy_population_df = tidy_population_df.rename(
@@ -544,25 +667,49 @@ tidy_population_df = tidy_population_df.rename(
 tidy_population_df.head()
 ```
 
+Now our table is fully tidied up!
+
 ## Grouping, transforming, aggregating
+
+One of the advantage of tidy datasets is they allow to perform advanced transformations in a more direct way. One of the most common ones is what is called "group-by" operations. Originated in the world of databases, these operations allow you to group observations in a table by one of its labels, index, or category, and apply operations on the data group by group.
+
+For example, given our tidy table with age categories, you might want to compute the total sum of the population by each category. This task can be split into two different ones:
+
+* Group the table in each of the different subgroups.
+* Compute the sum of `count` for each of them.
+
+To do this in `pandas`, meet one of its workhorses, and also one of the reasons why the library has become so popular: the `groupby` operator.
 
 ```{python}
 pop_grouped = tidy_population_df.groupby("age_category")
 pop_grouped
 ```
 
+The object `pop_grouped` still hasn't computed anything. It is only a convenient way of specifying the grouping. But this allows us then to perform a multitude of operations on it. For our example, the sum is calculated as follows:
+
 ```{python}
-pop_grouped.sum(numeric_only=True)
+pop_grouped.sum(numeric_only=True)  # <1>
 ```
+1. You want a sum of numeric values, not strings. Try it with `numeric_only=False` to see the difference.
+
+Similarly, you can also obtain a summary of each group:
 
 ```{python}
 pop_grouped.describe()
 ```
 
-::: {.callout}
-# Acknowledgements
+You will not get into it today as it goes beyond the basics this chapter wants to cover, but keep in mind that `groupby` allows you to not only call generic functions (like `sum` or `describe`), but also your own functions. This opens the door for virtually any kind of transformation and aggregation possible.
+
+::: {.callout-tip}
+# Additional reading
+
+- A good introduction to data manipulation in Python is Wes McKinney's "[Python for Data Analysis](https://wesmckinney.com/book/pandas-basics)" [@mckinney2012python].
+- To explore further some of the visualization capabilities in at your fingertips, the Python library `seaborn` is an excellent choice. Its online [tutorial](https://seaborn.pydata.org/tutorial.html) is a fantastic place to start.
+-  A good extension is Hadley Wickham's "Tidy data" paper [@wickham2014tidy], which presents a very popular way of organising tabular data for efficient manipulation.
+:::
+
+## Acknowledgements {.appendix}
 
 This section is derived from _A Course on Geographic Data Science_ by
 @darribas_gds_course, licensed under CC-BY-SA 4.0. The text was slightly adapted, mostly
 to accommodate a different dataset used.
-:::

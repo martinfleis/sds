@@ -3,7 +3,7 @@ title: "Jupyter and Python"
 format:
   html: default
   ipynb: default
-jupyter: python3
+jupyter: sds
 ---
 
 ::: {.callout-caution}
