@@ -8,7 +8,7 @@ project:
 lang: en
 
 execute:
-  freeze: auto
+  freeze: false
   cache: true
 
 format:
