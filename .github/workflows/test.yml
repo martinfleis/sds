@@ -1,0 +1,46 @@
+on:
+  push:
+    branches:
+    - '*'
+  pull_request:
+    branches:
+    - '*'
+  schedule:
+    - cron: '59 8 * * 1,4'
+  workflow_dispatch:
+    inputs:
+      version:
+        description: Manual test execution
+        default: Test
+        required: false
+
+name: Test execution
+
+jobs:
+    build-deploy:
+        runs-on: ubuntu-latest
+        defaults:
+          run:
+            shell: bash -l {0}
+        steps:
+          - name: Check out repository
+            uses: actions/checkout@v3
+
+          - name: Set up Quarto
+            uses: quarto-dev/quarto-actions/setup@v2
+            with:
+                tinytex: true
+
+          - name: Setup micromamba
+            uses: mamba-org/setup-micromamba@v1
+            with:
+              environment-file: environment.yml
+              micromamba-version: "latest"
+
+          - name: Register kernel
+            run: |
+              python -m ipykernel install --user --name sds
+
+          - name: Render Book project
+            run: |
+                quarto render
