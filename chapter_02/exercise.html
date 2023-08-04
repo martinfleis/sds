@@ -20,6 +20,40 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -65,10 +99,14 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 <style>html{ scroll-behavior: smooth; }</style>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" integrity="sha512-c3Nl8+7g4LMSTdrm621y7kf9v3SDPnhxLNhcjFJbKECVnmZHTdo+IRO05sNLTH/D3vA6u1X32ehoLC7WFVdheg==" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script>
+<script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
 
 
 <link rel="stylesheet" href="../assets/styles.css">
 <meta name="twitter:title" content="Spatial Data Science for Social Geography - Learning pandas">
+<meta name="twitter:description" content="">
 <meta name="twitter:card" content="summary">
 </head>
 
@@ -491,7 +529,14 @@ ul.task-list li input[type="checkbox"] {
 <div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#data-preparation" id="toc-data-preparation" class="nav-link active" data-scroll-target="#data-preparation">Data Preparation</a></li>
+  <li><a href="#learn-about-scotland" id="toc-learn-about-scotland" class="nav-link" data-scroll-target="#learn-about-scotland">Learn about Scotland</a></li>
+  </ul>
+<div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/martinfleis/sds/issues/new" class="toc-action">Report an issue</a></p></div></div><div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="exercise.ipynb" download="exercise.ipynb"><i class="bi bi-journal-code"></i>Jupyter</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -513,21 +558,167 @@ ul.task-list li input[type="checkbox"] {
 
 </header>
 
-<div class="callout callout-style-simple callout-note callout-titled">
+<div class="callout callout-style-default callout-caution callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-The contents will appear later
+Caution
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>This section will contain exercise material that will appear later.</p>
+<p>This course material is currently under construction and is likely incomplete. The final version will be released in October 2023.</p>
 </div>
 </div>
+<p>This section is about learning how to work with <code>pandas</code> by using it without much guidance. You will play with the <a href="https://www.gov.scot/publications/scottish-index-of-multiple-deprivation-2020v2-ranks/">dataset</a> of the <a href="https://www.gov.scot/collections/scottish-index-of-multiple-deprivation-2020/#lookupfiles">Scottish Index of Multiple Deprivation</a> (SIMD). Specifically, you will load a table containing the rank of each data zone according to the overall SIMD and according to its subdomains (check the links above if you would like to learn more).</p>
+<section id="data-preparation" class="level2">
+<h2 class="anchored" data-anchor-id="data-preparation">Data Preparation</h2>
+<p>Before you start playing with the data, you need to figure out how to read the data. It is not a CSV file this time, but XLSX. <code>pandas</code> is capable of reading Excel files like this one. Instead of the <code>read_csv</code> you used before, you just need to use <code>read_excel</code> this time.</p>
+<p>Take a second to download the <a href="https://www.gov.scot/publications/scottish-index-of-multiple-deprivation-2020v2-ranks/">dataset</a> and check its structure in Excel before moving forward.</p>
+<p>You have probably figured out that there are two sheets in this file, and you need to read the second one, called <code>"SIMD 2020v2 ranks"</code>.</p>
+<p>Let’s start by importing <code>pandas</code>.</p>
+<div class="cell" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Since you have the file in your Downloads folder now, you can read it from there. Or you can read it directly from <code>gov.scot</code>.</p>
+<div class="cell" data-execution_count="2">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>url <span class="op">=</span> <span class="st">"https://www.gov.scot/binaries/content/documents/govscot/publications/statistics/2020/01/scottish-index-of-multiple-deprivation-2020-ranks-and-domain-ranks/documents/scottish-index-of-multiple-deprivation-2020-ranks-and-domain-ranks/scottish-index-of-multiple-deprivation-2020-ranks-and-domain-ranks/govscot%3Adocument/SIMD%2B2020v2%2B-%2Branks.xlsx"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>To read the proper sheet, you need to specify <code>sheet_name</code> to <code>read_excel</code>. <code>pandas</code> will download the file for you and open it as a <code>DataFrame</code>.</p>
+<div class="cell" data-execution_count="3">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>simd <span class="op">=</span> pd.read_excel(url, sheet_name<span class="op">=</span><span class="st">"SIMD 2020v2 ranks"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>And you should be good to go!</p>
+<div class="cell" data-execution_count="4">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>simd.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="4">
+<div>
 
 
+<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">Data_Zone</th>
+<th data-quarto-table-cell-role="th">Intermediate_Zone</th>
+<th data-quarto-table-cell-role="th">Council_area</th>
+<th data-quarto-table-cell-role="th">Total_population</th>
+<th data-quarto-table-cell-role="th">Working_age_population</th>
+<th data-quarto-table-cell-role="th">SIMD2020v2_Rank</th>
+<th data-quarto-table-cell-role="th">SIMD2020v2_Income_Domain_Rank</th>
+<th data-quarto-table-cell-role="th">SIMD2020_Employment_Domain_Rank</th>
+<th data-quarto-table-cell-role="th">SIMD2020_Health_Domain_Rank</th>
+<th data-quarto-table-cell-role="th">SIMD2020_Education_Domain_Rank</th>
+<th data-quarto-table-cell-role="th">SIMD2020_Access_Domain_Rank</th>
+<th data-quarto-table-cell-role="th">SIMD2020_Crime_Domain_Rank</th>
+<th data-quarto-table-cell-role="th">SIMD2020_Housing_Domain_Rank</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">0</td>
+<td>S01006506</td>
+<td>Culter</td>
+<td>Aberdeen City</td>
+<td>894</td>
+<td>580</td>
+<td>4691</td>
+<td>3936.0</td>
+<td>3220.0</td>
+<td>5174</td>
+<td>5887</td>
+<td>4724</td>
+<td>4664.0</td>
+<td>3248.0</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1</td>
+<td>S01006507</td>
+<td>Culter</td>
+<td>Aberdeen City</td>
+<td>793</td>
+<td>470</td>
+<td>4862</td>
+<td>4829.0</td>
+<td>4481.0</td>
+<td>5051</td>
+<td>4384</td>
+<td>2148</td>
+<td>4602.0</td>
+<td>3486.0</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2</td>
+<td>S01006508</td>
+<td>Culter</td>
+<td>Aberdeen City</td>
+<td>624</td>
+<td>461</td>
+<td>5686</td>
+<td>4460.0</td>
+<td>5110.0</td>
+<td>5942</td>
+<td>5915</td>
+<td>4200</td>
+<td>4563.5</td>
+<td>5342.0</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">3</td>
+<td>S01006509</td>
+<td>Culter</td>
+<td>Aberdeen City</td>
+<td>537</td>
+<td>307</td>
+<td>4332</td>
+<td>3481.0</td>
+<td>3229.0</td>
+<td>3871</td>
+<td>6401</td>
+<td>3982</td>
+<td>5626.0</td>
+<td>4394.5</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">4</td>
+<td>S01006510</td>
+<td>Culter</td>
+<td>Aberdeen City</td>
+<td>663</td>
+<td>415</td>
+<td>3913</td>
+<td>3344.0</td>
+<td>3448.0</td>
+<td>3049</td>
+<td>4092</td>
+<td>5588</td>
+<td>3885.0</td>
+<td>3736.0</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+</section>
+<section id="learn-about-scotland" class="level2">
+<h2 class="anchored" data-anchor-id="learn-about-scotland">Learn about Scotland</h2>
+<p>In the previous chapter, you learned the basics of <code>pandas</code>. Now is the time to use this knowledge and learn something about Scotland. The SIMD rankings are similar in structure to Chicago Influenza rates you have seen before, but not too much. Each row is allocated to a single area, but the table does not follow the “tidy” principles.</p>
+<p>Try answering the following questions about the dataset:</p>
+<ul>
+<li>Which data zone is the most deprived (lowest ranking?) Which council area is it?</li>
+<li>Can you add a column with a proportion of the working age population in each data zone?</li>
+<li>Which council area is, on average, the least deprived based on the Income domain?</li>
+<li>What is the total population of the “Glasgow City” council?</li>
+<li>Can you plot the ranking distribution in “Glasgow City”? How does it compare to the “City of Edinburgh”?</li>
+<li>Can you figure out how to create a scatter plot of a relationship between the education and health domain rankings?</li>
+<li>What else can you derive from the data?</li>
+</ul>
+
+
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -896,7 +1087,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     <div class="nav-footer-left">
       &nbsp;
     </div>   
-    <div class="nav-footer-center">Course material by <a href="https://martinfleischmann.net">Martin Fleischmann</a>. Available under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a>.<div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/martinfleis/sds/issues/new" class="toc-action">Report an issue</a></p></div></div></div>
+    <div class="nav-footer-center">Course material by <a href="https://martinfleischmann.net">Martin Fleischmann</a>. Available under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a>.</div>
     <div class="nav-footer-right">
       &nbsp;
     </div>
