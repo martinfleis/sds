@@ -24,8 +24,7 @@ The module provides students with little or no prior knowledge of core competenc
 - Focusing on real-world applications of these techniques in a geographical and applied context.
 
 > [!NOTE]
->
-> ## Is it only for social geography?
+> **Is it only for social geography?**
 >
 > The course revolves around data typically used in social geography, but its applicability
 > is not limited to social geography. In practice, you will work more with vector
@@ -78,8 +77,7 @@ from [geographicdata.science/book](https://geographicdata.science/book). Using t
 version over the printed one is recommended, although this is entirely up to you.
 
 > [!NOTE]
->
-> ## Spatial or geographic data science?
+> **Spatial or geographic data science?**
 >
 > Spatial data science and geographic data science are often treated as synonyms. In some
 > interpretations, _spatial_ is broader than _geographic_. In this case, we do _spatial [...]
