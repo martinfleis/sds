@@ -43,6 +43,39 @@ the file for you and open it as a `DataFrame`.
 simd = pd.read_excel(url, sheet_name="SIMD 2020v2 ranks")
 ```
 
+::: {.callout-note collapse="true"}
+# Reading a local file
+
+If you want to read the file from your downloads folder, you will need
+to pass its location. That can look like this if you are on macOS:
+
+```py
+simd = pd.read_excel(
+    "/Users/martin/Downloads/SIMD+2020v2+-+ranks.xlsx",
+    sheet_name="SIMD 2020v2 ranks",
+)
+```
+
+Or like this if you are on Windows. Note the `r` in front of the string,
+ensuring that the backlashes (`\`), common in Windows file paths, are properly interpreted. Or you can replace them with `/`:
+
+```py
+simd = pd.read_excel(
+    r"C:\Users\martin\Downloads\SIMD+2020v2+-+ranks.xlsx",
+    sheet_name="SIMD 2020v2 ranks",
+)
+```
+
+Alternatively, you can read the file from the `data` folder attached to this lecture. In that case, you can use a relative path.
+
+```py
+simd = pd.read_excel(
+    "data/SIMD+2020v2+-+ranks.xlsx",
+    sheet_name="SIMD 2020v2 ranks",
+)
+```
+:::
+
 And you should be good to go!
 
 ```{python}
