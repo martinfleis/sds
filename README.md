@@ -44,7 +44,7 @@ After finishing the course, students will be able to:
 ## Prerequisites
 
 This course assumes an understanding of geography and its key concepts (e.g. coordinate
-reference systems or the Modifiable Areal Unit Problem [@openshaw1983modifiable]), at
+reference systems or the Modifiable Areal Unit Problem), at
 least basic familiarity with GIS (like file formats and basic spatial data manipulation)
 and a basic understanding of statistics (e.g. understanding the concept of regression),
 optimally with some spatial component (geographically weighted regression).
@@ -58,12 +58,12 @@ attitude towards these topics is necessary.
 
 The material is planned for 12 weeks, with one session per week. Each session
 is divided into three parts - _Concepts_, _Hands-on_ and _Exercise_, following the model
-proposed by @darribas_gds_course. _Concepts_ have a form of a lecture covering conceptual
-aspects of the day's topic, providing necessary theoretical background before digging into code. This part can be nicknamed ["I do"]{.accent}.
+proposed by Arribas-Bel ([2019](https://doi.org/10.21105/jose.00042)). _Concepts_ have a form of a lecture covering conceptual
+aspects of the day's topic, providing necessary theoretical background before digging into code. This part can be nicknamed "I do".
 _Hands-on_ contains documented code in a Jupyter notebook, executed in
-parallel by a lecturer, providing an additional explanation, and by students. Therefore, we have a part ["We do"]{.accent}.
+parallel by a lecturer, providing an additional explanation, and by students. Therefore, we have a part "We do".
 _Exercise_ is a set of tasks to be performed by students individually, with
-occasional guidance by the lecturer. So we finish the day with ["You do"]{.accent}.
+occasional guidance by the lecturer. So we finish the day with "You do".
 
 For enrolled students of Charles University, the course will finish with a written
 assignment in the form of a computational essay. See the
