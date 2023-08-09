@@ -1,10 +1,5 @@
 on:
   push:
-    branches:
-    - '*'
-  pull_request:
-    branches:
-    - '*'
   schedule:
     - cron: '59 8 * * 1,4'
   workflow_dispatch:
