@@ -272,7 +272,7 @@ import matplotlib.pyplot as plt  # <1>
 
 If you now create the plot and use the `plt.savefig()` function in the same cell, a PNG will appear on your disk.
 
-```{python}
+```py
 buildings.plot("distance_to_arc", legend=True)
 plt.savefig("distance_to_arc.png", dpi=150)
 ```
