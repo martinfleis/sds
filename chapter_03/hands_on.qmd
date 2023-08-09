@@ -333,8 +333,26 @@ Spatial predicates tell you the spatial relation between two geometries. Are the
 Let's leave Paris and load a map of countries provided by @runfola2020geoboundaries and simplified for this course.
 
 ```{python}
-world_countries = gpd.read_file("data/geoboundaries_cgaz.gpkg")
+world_countries = gpd.read_file(
+    "https://martinfleischmann.net/sds/chapter_03/data/geoboundaries_cgaz.gpkg",
+)
 ```
+
+::: {.callout-note collapse="true"}
+## Alternative
+Instead of reading the file directly off the web, it is possible to download it manually,
+store it on your computer, and read it locally. To do that, you can follow these steps:
+
+1. Download the file by right-clicking on
+[this link](https://martinfleischmann.net/sds/chapter_03/data/geoboundaries_cgaz.gpkg)
+and saving the file
+2. Place the file in the same folder as the notebook where you intend to read it
+3. Replace the code in the cell above with:
+
+```python
+world_countries = gpd.read_file("geoboundaries_cgaz.gpkg")
+```
+:::
 
 Since you'll be exploring spatial predicates, you need a second layer. Let's load a data set of populated places from [Natural Earth](https://www.naturalearthdata.com).
 
@@ -465,12 +483,30 @@ One of the typical geospatial tasks is a spatial join. Let's change the data set
 
 You can try to figure out which of these cities fall into Catalonia region and which province they belong to.
 
-First, you need data representing Catalonia. You can download it from [ICGC](https://www.icgc.cat/en/Downloads/Vector-maps/Administrative-boundaries) website or use the `data/catalonia.gpkg` saved in this repository.
+First, you need data representing Catalonia. You can download it from [ICGC](https://www.icgc.cat/en/Downloads/Vector-maps/Administrative-boundaries) website or use the `catalonia.gpkg` saved in this repository.
 
 ```{python}
-catalonia = gpd.read_file("data/catalonia.gpkg")
+catalonia = gpd.read_file(
+    "https://martinfleischmann.net/sds/chapter_03/data/catalonia.gpkg",
+)
 catalonia.head()
 ```
+
+::: {.callout-note collapse="true"}
+## Alternative
+Instead of reading the file directly off the web, it is possible to download it manually,
+store it on your computer, and read it locally. To do that, you can follow these steps:
+
+1. Download the file by right-clicking on
+[this link](https://martinfleischmann.net/sds/chapter_03/data/catalonia.gpkg)
+and saving the file
+2. Place the file in the same folder as the notebook where you intend to read it
+3. Replace the code in the cell above with:
+
+```python
+catalonia = gpd.read_file("catalonia.gpkg")
+```
+:::
 
 Then, you can load the boundaries of Spanish cities from the data repository linked to the paper.
 
