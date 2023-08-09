@@ -192,16 +192,25 @@ buildings["centroid"].head()
 Measuring distance is similarly straightforward. The building data are from central Paris, so you can try to
 figure out how far is each of them from the [Arc de Triomphe](https://en.wikipedia.org/wiki/Arc_de_Triomphe).
 
-You can use the built-in geocoding capabilities in `geopandas`.
+Use the coordinates of the Arc de Triomphe to generate a Point geometry.
 
 ```{python}
-arc = gpd.tools.geocode(        # <1>
-    "Arc de Triomphe, Paris",   # <2>
-)
-arc
+arc = gpd.GeoSeries.from_xy(x=[2.29503], y=[48.87377], crs="EPSG:4326") # <1>
 ```
-1. You can use the `geopandas.tools.geocode()` function, which gives you access to a wide range of geocoding providers.
-2. Specify the location you want to geocode.
+1. `GeoSeries.from_xy()` is a handy way of creating point geometries if you know their
+coordinates. You pass an array of x coordinates (longitude is always x in `geopandas`), an
+array of y coordinates and a CRS. `"EPSG:4326"` represents WGS 84 CRS.
+
+::: {.callout-tip collapse="true"}
+# Use geocoding to get the geometry
+
+The code above uses known coordinates. If you don't know them but know the address and a name
+of a place, you can use the built-in geocoding capabilities in `geopandas`:
+
+```py
+arc = gpd.tools.geocode("Arc de Triomphe, Paris")
+```
+:::
 
 Now you have the Arc de Triomphe as a Point. However, that point is in latitude and longitude coordinates, which is a different CRS than the one `buildings` use. They must use the same CRS to measure the distance between geometries.
 
