@@ -197,15 +197,11 @@ You can use the built-in geocoding capabilities in `geopandas`.
 ```{python}
 arc = gpd.tools.geocode(        # <1>
     "Arc de Triomphe, Paris",   # <2>
-    provider="nominatim",       # <3>
-    user_agent="sdg4sg",        # <4>
 )
 arc
 ```
 1. You can use the `geopandas.tools.geocode()` function, which gives you access to a wide range of geocoding providers.
 2. Specify the location you want to geocode.
-3. Specify the provider. Nominatim is free, using the data from OpenStreetMap.
-4. Nominatim requires the identification of a user using the service. That can be practically any string.
 
 Now you have the Arc de Triomphe as a Point. However, that point is in latitude and longitude coordinates, which is a different CRS than the one `buildings` use. They must use the same CRS to measure the distance between geometries.
 
