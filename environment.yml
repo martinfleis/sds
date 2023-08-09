@@ -7,6 +7,9 @@ dependencies:
   - pandas
   - seaborn
   - openpyxl
+  - geopandas
+  - pyogrio
+  - geopy
   # infrastructure
   - ipykernel
   - jupyter-cache

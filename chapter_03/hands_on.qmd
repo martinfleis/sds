@@ -1,14 +1,626 @@
 ---
 title: "Bring in geography"
-format: html
+format:
+  html: default
+  ipynb: default
+jupyter: sds
 ---
 
-<!-- Introduction to `geopandas`. -->
-
-::: {.callout-note appearance="simple"}
-
-## The contents will appear later
-
-This section will contain hands-on material that will appear later.
-
+::: {.callout-caution}
+This course material is currently under construction and is likely incomplete. The final
+version will be released in October 2023.
 :::
+
+It is time to get your hands on some spatial data. You will not go far from your `pandas`
+experience, you'll just expand it a bit. This section covers an introduction to `geopandas`,
+a Python package extending the capabilities of `pandas` by providing support for geometries,
+projections and geospatial file formats. Let's start with importing `geopandas`.
+
+```{python}
+import geopandas as gpd  # <1>
+```
+1. As you import `pandas` as `pd`, you can import `geopandas` as `gpd` to keep things shorter.
+
+## Datasets
+
+You will be using a few different datasets in this notebook. The first one contains data
+on buildings, streets and street junctions of a small part of Paris from @fleischmann2021Evolution.
+The data contain some information on urban morphology derived from these geometries, but
+today, you will be mostly interested in geometries, not so much in attributes.
+
+## Reading files
+
+Assuming you have a file containing both data and geometry (e.g. GeoPackage, GeoJSON,
+Shapefile), you can read it using `geopandas.read_file()`, which automatically detects
+the file type and creates a `geopandas.GeoDataFrame`. A `geopandas.GeoDataFrame` is just
+like `pandas.DataFrame` but with additional column(s) containing geometry.
+
+```{python}
+paris_url = "https://github.com/martinfleis/evolution-gean/raw/main/data/Paris.gpkg"    # <1>
+buildings = gpd.read_file(paris_url, layer="buildings")                                 # <2>
+buildings.head()
+```
+1. You can load the data directly from the GitHub repository associated with the paper.
+2. The file is a GPKG with more layers. To read the layer called `"buildings"`, you need to pass
+`layer="buildings"`. Otherwise, `geopandas` will read the first available layer.
+
+::: {.callout-tip}
+# Explore available layers
+
+You can quickly check which layers are available in the GPKG file using a lower-level package
+called `pyogrio`.
+
+```{python}
+import pyogrio
+
+pyogrio.list_layers(paris_url)
+```
+:::
+
+Let's have a quick look at the `"geometry"` column. This is the special one enabled by `geopandas`.
+You can notice that the objects stored in this column are not `float` or `string` but Polygons
+of a `geometry` data type instead. The column is also a `geopandas.GeoSeries` instead of
+a `pandas.Series`.
+
+```{python}
+buildings["geometry"].head()
+```
+
+Polygons are not the only geometry types you can work with. The same GPKG that contains buildings
+data also includes street network geometries of a LineString geometry type.
+
+```{python}
+street_edges = gpd.read_file(paris_url, layer="edges")  # <1>
+street_edges.head(2)
+```
+1. The layer with street network edges is called `"edges"`.
+
+You can also load another layer, this time with Point geometries representing street network
+junctions.
+
+```{python}
+street_nodes = gpd.read_file(paris_url, layer="nodes")  # <1>
+street_nodes.head(2)
+```
+1. When representing a street as a graph, junctions are usually `"nodes"`. But more on that
+later.
+
+## Writing files
+
+To write a `GeoDataFrame` back to a file, use `GeoDataFrame.to_file()`. The file is format automatically inferred from the suffix, but you can specify your own with the `driver=` keyword. When no suffix is given, GeoPandas expects that you want to create a folder with an ESRI Shapefile.
+
+```{python}
+buildings.to_file("buildings.geojson")
+```
+
+## Geometries
+
+Geometries within the *geometry* column are `shapely` objects. GeoPandas itself is not creating the object but leverages the existing ecosystem (note that there is a significant overlap of the team writing both packages to ensure synergy). A typical `GeoDataFrame`
+contains a single geometry column, as you know from traditional GIS software. If you read it from a file, it will most likely be
+called `"geometry"`, but that is not always the case. Furthermore, a `GeoDataFrame` can contain multiple geometry columns (e.g., one with polygons, another with their centroids and another with bounding boxes), of which one is considered *active*. You can always get this active column, no matter its name, by using `.geometry` property.
+
+```{python}
+buildings.geometry.head()
+```
+
+::: {.callout-caution}
+# Property vs indexing
+
+In data frames, you can usually access a column via indexer (`df["column_name"]`) or a property (`df.column_name`). However, the
+property is not available when there is either a method (e.g. `.plot`) or a built-in property (e.g. `.crs` or `.geometry`) overriding this option.
+:::
+
+You can quickly check that the geometry is a data type indeed coming from `shapely`. You will use `shapely` directly in some occasions
+but in most cases, any interaction with `shapely` will be handled by `geopandas`.
+
+```{python}
+type(buildings.geometry.loc[0])
+```
+
+There is also a handy SVG representation if you are in a Jupyter Notebook.
+
+```{python}
+buildings.geometry.loc[0]
+```
+
+If you'd rather see a text representation, you can retrieve a Well-Known Text using `.wkt` property.
+
+```{python}
+buildings.geometry.loc[0].wkt
+```
+
+## Projections
+
+But without an assigned coordinate reference system (CRS), you don't know where this shape lies on Earth. Therefore, each geometry column has (optionally) assigned a CRS. That is always available via `.crs`.
+
+```{python}
+buildings.crs
+```
+
+If you check the type, you'll notice it comes from the `pyproj` package. Note that you will likely never interact with that
+yourself.
+
+```{python}
+type(buildings.crs)
+```
+
+The object with the CRS information has plenty of useful tricks. You can, for example, quickly check if it is a geographic (coordinates are latitude and longitude in degrees) or a projected CRS (x and y in meters, feet or similar).
+
+```{python}
+buildings.crs.is_geographic
+```
+
+`geopandas` is like a glue that brings different pieces of the Python ecosystem together. `pandas` for tabular data, `shapely` for geometries, `pyogrio` for interaction with GIS file formats or `pyproj` for CRS management.
+
+## Simple accessors and methods
+
+Now you have a `GeoDataFrame` and can start working with its geometry.
+
+Since there was only one geometry column in the buildings dataset, this column automatically becomes the _active_ geometry and spatial methods used on the `GeoDataFrame` will be applied to the `"geometry"` column.
+
+### Measuring area
+
+To measure the area of each polygon, access the `GeoDataFrame.area` attribute, which returns a `pandas.Series`. Note that `GeoDataFrame.area` is just `GeoSeries.area` applied to the _active_ geometry column.
+
+```{python}
+buildings["area"] = buildings.area  # <1>
+buildings["area"].head()
+```
+1. `.area` is a property that always triggers a new area measurement. If you want to access an existing column
+called `"area"`, use `buildings["area"]`. Especially if you don't want to re-run the computation repeatedly.
+
+### Getting polygon boundary and centroid
+
+`geopandas` allows you a quick manipulation of geometries. For example, to get the boundary of each polygon (of a LineString geometry type), access the `GeoDataFrame.boundary` property:
+
+```{python}
+buildings["boundary"] = buildings.boundary
+buildings["boundary"].head()
+```
+
+Since you have saved the boundary as a new column, you now have two geometry columns in the same `GeoDataFrame`.
+
+You can also create new geometries, which could be, for example, a buffered version of the original one (i.e., `GeoDataFrame.buffer(10)` to buffer by 10 meters if your CRS is in meters) or its centroid:
+
+```{python}
+buildings["centroid"] = buildings.centroid
+buildings["centroid"].head()
+```
+
+### Measuring distance
+
+Measuring distance is similarly straightforward. The building data are from central Paris, so you can try to
+figure out how far is each of them from the [Arc de Triomphe](https://en.wikipedia.org/wiki/Arc_de_Triomphe).
+
+You can use the built-in geocoding capabilities in `geopandas`.
+
+```{python}
+arc = gpd.tools.geocode(        # <1>
+    "Arc de Triomphe, Paris",   # <2>
+    provider="nominatim",       # <3>
+    user_agent="sdg4sg",        # <4>
+)
+arc
+```
+1. You can use the `geopandas.tools.geocode()` function, which gives you access to a wide range of geocoding providers.
+2. Specify the location you want to geocode.
+3. Specify the provider. Nominatim is free, using the data from OpenStreetMap.
+4. Nominatim requires the identification of a user using the service. That can be practically any string.
+
+Now you have the Arc de Triomphe as a Point. However, that point is in latitude and longitude coordinates, which is a different CRS than the one `buildings` use. They must use the same CRS to measure the distance between geometries.
+
+```{python}
+arc = arc.to_crs(buildings.crs)  # <1>
+arc
+```
+1. `.to_crs` projects coordinates from one CRS to another.
+
+With a Point based on the correct CRS, you can measure the distance from each building to the Arc.
+
+```{python}
+arc_location = arc.geometry.item()                                  # <1>
+buildings["distance_to_arc"] = buildings.distance(arc_location)     # <2>
+buildings["distance_to_arc"].head()
+```
+1. Extract the Point geometry from a single-item GeoDataFrame. Use `.item()` to extract the scalar geometry object from the GeoSeries of length 1.
+2. Measure the distance from every geometry in `buildings` to the Point and assign the result as a new column.
+
+Using `buildings.distance(arc_location)` measures the distance from geometries in the active geometry column, which are Polygons
+in this case. But you can also measure distance from geometries in any other column.
+
+```{python}
+buildings["centroid"].distance(arc_location).head()
+```
+
+Note that `geopandas.GeoDataFrame` is a subclass of `pandas.DataFrame`, so you have all the `pandas` functionality available to use on the geospatial dataset — you can even perform data manipulations with the attributes and geometry information together.
+
+For example, to calculate the average of the distances measured above, access the `"distance"` column and call the `.mean()` method on it:
+
+```{python}
+buildings["distance_to_arc"].mean()
+```
+
+Similarly, you can plot the distribution of distances as a histogram.
+
+```{python}
+buildings["distance_to_arc"].plot.hist(bins=50)
+```
+
+## Making maps
+
+Maps in GeoPandas are of two kinds. Static images and interactive maps based on [leaflet.js](http://leafletjs.com).
+
+### Static maps
+
+GeoPandas can also plot maps to check how the geometries appear in space. Call `GeoDataFrame.plot()` to plot the active geometry. To colour code by another column, pass in that column as the first argument. In the example below, you can plot the active geometry column and colour code by the `"distance_to_arc"` column. You may also want to show a legend (`legend=True`).
+
+```{python}
+buildings.plot("distance_to_arc", legend=True)
+```
+
+The map is created using the `matplotlib` package. It's the same that was used under the hood for all the plots you have done before. You can use it directly to save the resulting plot to a PNG file.
+
+```{python}
+import matplotlib.pyplot as plt  # <1>
+```
+1. Import the `pyplot` module of the `matplotlib` package as the `plt` alias.
+
+If you now create the plot and use the `plt.savefig()` function in the same cell, a PNG will appear on your disk.
+
+```{python}
+buildings.plot("distance_to_arc", legend=True)
+plt.savefig("distance_to_arc.png", dpi=150)
+```
+
+::: {.callout-tip}
+# Other resources for static plotting
+
+Want to know more about static plots? Check [this chapter](https://darribas.org/gds_course/content/bC/lab_C.html#styling-plots) of _A Course on Geographic Data Science_ by @darribas_gds_course or [the GeoPandas documentation](https://geopandas.org/en/stable/docs/user_guide/mapping.html).
+:::
+
+### Interactive maps
+
+You can also explore your data interactively using `GeoDataFrame.explore()`, which behaves in the same way `.plot()` does but returns an interactive HTML map instead.
+
+```{python}
+#| classes: explore
+buildings.explore("distance_to_arc", legend=True)
+```
+
+Using the `GeoSeries` of centroids, you can create a similar plot, but since you access only a single column, it has no values to show.
+
+```{python}
+#| classes: explore
+buildings["centroid"].explore()
+```
+
+::: {.callout-tip}
+# Keeping data around
+If you want to use centroids on a map but keep the data around to have them available in the tooltip, you can assign it as
+an active geometry and then use `.explore()`.
+
+```python
+buildings.set_geometry("centroid").explore()
+```
+:::
+
+You can also layer multiple geometry layers on top of each other. You just need to use one plot as a map (`m`) object for the others.
+
+```{python}
+#| classes: explore
+m = buildings.explore(tiles="CartoDB Positron", popup=True, tooltip=False)  # <1>
+street_edges.explore(m=m, color="black")                                    # <2>
+street_nodes.explore(m=m, color="pink")                                     # <3>
+arc.explore(m=m, marker_type="marker")                                      # <4>
+m.save("paris-map.html")                                                    # <5>
+m
+```
+1. Create a base map (`m`) based on `buildings`. `tiles="CartoDB Positron` specifies which background tiles shall be used, `popup=True` enables pop-up (shows data on click) and `tooltip=False` disables tooltip (shows data on hover).
+2. Passing `m=m` ensures that both `GeoDataFrames` are shown on the same map.
+3. `color="pink"` specifies the geometries' colour if no data is shown.
+4. `marker_type="marker"` specifies how points are shown on the map. Here, you want to use `"marker"`.
+5. Save the map to a file. If you add `m` on the next line, the map will also be shown in the Notebook.
+
+## Spatial predicates
+
+Spatial predicates tell you the spatial relation between two geometries. Are they equal, intersect, overlap, or are they within another?
+
+Let's leave Paris and load a map of countries provided by @runfola2020geoboundaries and simplified for this course.
+
+```{python}
+world_countries = gpd.read_file("data/geoboundaries_cgaz.gpkg")
+```
+
+Since you'll be exploring spatial predicates, you need a second layer. Let's load a data set of populated places from [Natural Earth](https://www.naturalearthdata.com).
+
+```{python}
+world_cities = gpd.read_file(
+    "https://naciscdn.org/naturalearth/110m/cultural/ne_110m_populated_places_simple.zip"
+)
+```
+
+A quick map with both shows how the data look and relate.
+
+```{python}
+ax = world_countries.plot()                         # <1>
+world_cities.plot(ax=ax, color="pink", alpha=0.7)   # <2>
+```
+1. Multi-layer static map works the same as interactive. You just need to replace `m` with `ax`.
+2. `alpha=0.7` sets partial transparency for easier visibility of denser clusters of points.
+
+Let's first create some small toy spatial objects. First, extract a polygon representing Belgium.
+
+```{python}
+belgium = world_countries.loc[
+    world_countries["shapeGroup"] == "BEL", "geometry"
+].item()
+belgium
+```
+
+Second, get points representing Paris and Brussels.
+
+```{python}
+paris = world_cities.loc[world_cities["name"] == "Paris", "geometry"].item()
+brussels = world_cities.loc[world_cities["name"] == "Brussels", "geometry"].item()
+```
+
+And create a line connecting both cities. Here comes one of those cases when you use
+`shapely` directly.
+
+```{python}
+import shapely                                      # <1>
+
+line = shapely.LineString([paris, brussels])        # <2>
+```
+1. Import `shapely`.
+2. Create a `shapely.LineString` geometry object with `paris` as a starting point and `brussels` as an ending point.
+
+Let's visualise those four geometry objects together. To do that, you can create a single `GeoSeries` with all of them. Notice that
+such a `GeoSeries` contains mixed geometry types (Polygon, two Points, LineString). That may be an issue with some
+traditional GIS software, but is no problem with `geopandas`.
+
+```{python}
+#| classes: explore
+gpd.GeoSeries([belgium, paris, brussels, line], crs=world_cities.crs).explore(
+    marker_type="marker"
+)
+```
+
+You can recognise the shape of Belgium, two markers locating Paris and Brussels and the line connecting them.
+
+Brussels, the capital of Belgium, is thus located within Belgium. This is a spatial relationship, and we can test this using the individual shapely geometry objects as follow:
+
+```{python}
+brussels.within(belgium)
+```
+
+And using the reverse, Belgium contains Brussels:
+
+```{python}
+belgium.contains(brussels)
+```
+
+On the other hand, Belgium does not contain Paris:
+
+```{python}
+belgium.contains(paris)
+```
+
+Nor Paris is located in Belgium:
+
+```{python}
+paris.within(belgium)
+```
+
+The straight line you draw from Paris to Brussels is not fully located within Belgium.
+
+```{python}
+belgium.contains(line)
+```
+
+But it does intersect with it.
+
+```{python}
+line.intersects(belgium)
+```
+
+### Spatial relationships with GeoDataFrames
+
+The same methods available on individual `shapely` geometries are also available as methods on `GeoSeries` and `GeoDataFrame` objects.
+
+For example, if you call the `.contains()` method on the `world_countries` dataset with the `paris` point, it will do this spatial check for each country in the `world_countries` `GeoDataFrame`.
+
+```{python}
+world_countries.contains(paris).sum()
+```
+
+Because the above gives us a boolean result, we can use that to filter the dataframe:
+
+```{python}
+#| classes: explore
+world_countries[world_countries.contains(paris)].explore()
+```
+
+::: {.callout-note}
+# Making use of spatial index
+
+You could also do the same based on a query over the spatial index. Custom queries on
+a spatial index using `GeoDataFrame.sindex.query()` are often much faster but are also
+considered advanced usage. Since GeoPandas wraps them in spatial joins covering most
+cases, you may not even need to access `sindex` directly.
+
+```python
+world_countries.iloc[world_countries.sindex.query(paris, "within")]
+```
+:::
+
+## Spatial join
+
+One of the typical geospatial tasks is a spatial join. Let's change the data set again and load boundaries of Spanish cities derived from @arribas2019building, which proposes a machine learning algorithm to delineate city boundaries from building footprints.
+
+You can try to figure out which of these cities fall into Catalonia region and which province they belong to.
+
+First, you need data representing Catalonia. You can download it from [ICGC](https://www.icgc.cat/en/Downloads/Vector-maps/Administrative-boundaries) website or use the `data/catalonia.gpkg` saved in this repository.
+
+```{python}
+catalonia = gpd.read_file("data/catalonia.gpkg")
+catalonia.head()
+```
+
+Then, you can load the boundaries of Spanish cities from the data repository linked to the paper.
+
+```{python}
+cities = gpd.read_file("https://ndownloader.figshare.com/files/20232174")
+cities.head()
+```
+
+A quick exploration to better understand what you have just opened might help.
+
+```{python}
+#| classes: explore
+m = catalonia.explore()
+cities.explore(m=m, color="red")
+```
+
+You should check the CRS, because for spatial join, you need to be sure that both `GeoDataFrames` are using the same (but don't worry, `geopandas` would warn you in case of a CRS mismatch).
+
+```{python}
+catalonia.crs.equals(cities.crs)
+```
+
+Since these two differ, you can re-project the geometries of `catalonia` to the CRS of `cities`.
+
+```{python}
+catalonia = catalonia.to_crs(cities.crs)
+catalonia.crs.equals(cities.crs)
+```
+
+Now, you can do the spatial join using the `.sjoin()` method. That uses the `intersects` predicate by default, but you can use any predicates you used above (plus a couple more).
+
+```{python}
+cities_within_catalonia = cities.sjoin(catalonia)  # <1>
+```
+1. This joins the data from `catalonia` to `cities` for every geometry that intersects between the `GeoDataFrames`.
+
+Let's see the result.
+
+```{python}
+print(                                                                      # <1>
+    f"Length of cities: {len(cities)}\n"                                    # <2>
+    f"Length of cities_within_catalonia: {len(cities_within_catalonia)}"    # <3>
+)
+```
+1. This showcases a more advanced use of `print()` with multi-line string.
+2. A string starting with `f` is an f-string that can contain Python code embedded in `{}`. Such a code is executed and printed. The `\n` part of the string stands for a line break.
+3. `len(cities_within_catalonia)` gives you the length of a `GeoDataFrame`, i.e. a number of rows.
+
+You can check that the resulting subset of cities has additional columns.
+```{python}
+cities_within_catalonia.head(2)
+```
+
+You can now plot cities based on the province they belong to, captured by the `"NOMPROV"` column.
+
+```{python}
+#| classes: explore
+cities_within_catalonia.explore(
+    "NOMPROV",                          # <1>
+    tiles="CartoDB Positron",
+)
+```
+1. `geopandas` automatically switches from the continuous colour map to categorical when it encounters a categorical variable.
+
+Since `GeoDataFrames` are still based on `pandas.ataFrames`, we can readily use `pandas` functionality, like `.groupby()`, on the result.
+
+```{python}
+cities_within_catalonia.groupby("NOMPROV")["n_buildings"].sum()  # <1>
+```
+1. Group by the `"NOMPROV"` column and get a sum of the `"n_buildings"` column by province.
+
+## Overlay
+
+Sometimes, you may want to create new geometries based on the spatial relationships between existing geometries. These are called _overlay_ operations.
+
+Let's assume that you are interested in areas that are 10 kilometres around a centroid of each city.
+
+```{python}
+#| classes: explore
+buffered_centroids = cities_within_catalonia.centroid.buffer(10_000)  # <1>
+buffered_centroids.explore()
+```
+1. Get centroids and directly buffer them to get polygons capturing areas within 10 km.
+
+With that, you can ask for an intersection between the buffer and city boundaries.
+
+![A diagram illustrating the `instersection` overlay operation.](https://geopandas.org/en/stable/_images/binary_geo-intersection.svg)
+
+```{python}
+#| classes: explore
+cities_within_catalonia.overlay(                        # <1>
+    buffered_centroids.to_frame(), how="intersection"   # <2>
+).explore()
+```
+1. The `.overlay()` method has a similar signature to `.sjoin()`. It should look familiar now.
+2. `geopandas` allows you to overlay only two GeoDataFrames, not GeoSeries. A quick way of
+converting a `GeoSeries` to a `GeoDataFrame` is to use the `.to_frame()` method. `how="intersection"`
+specifies the overlay operation.
+
+Or you may want to do the union of the two to get the areas that are either within the city boundary or within 10 km of a city centroid.
+
+![A diagram illustrating the `union` overlay operation.](https://geopandas.org/en/stable/_images/binary_geo-union.svg)
+
+```{python}
+#| classes: explore
+cities_within_catalonia.overlay(
+    buffered_centroids.to_frame(), how="union"
+).explore()
+```
+
+Or find all parts of city boundaries that are further away than 10km from each centroid.
+
+![A diagram illustrating the `difference` overlay operation.](https://geopandas.org/en/stable/_images/binary_geo-difference.svg)
+
+```{python}
+#| classes: explore
+cities_within_catalonia.overlay(
+    buffered_centroids.to_frame(), how="difference"
+).explore()
+```
+
+Finally, you may ask which parts of areas are within 10 km or a boundary but not in both.
+
+![A diagram illustrating `symmetric difference` overlay operation.](https://geopandas.org/en/stable/_images/binary_geo-symm_diff.svg)
+
+```{python}
+#| classes: explore
+cities_within_catalonia.overlay(
+    buffered_centroids.to_frame(), how="symmetric_difference"
+).explore()
+```
+
+If you remember the spatial join between the provinces of Catalonia and Spanish cities, you may remember that some geometries
+in the result were duplicated because those cities intersect with more than one province. In that case, `.overlay()` may be a
+better solution. See if you can find the difference.
+
+```{python}
+#| classes: explore
+catalonia.overlay(cities).explore(
+    "NOMPROV",
+    tiles="CartoDB Positron",
+)
+```
+
+::: {.callout-tip}
+# Additional reading
+
+- Check the similar introduction by @darribas_gds_course in his part [_Spatial data_](https://darribas.org/gds_course/content/bC/lab_C.html) to learn more about static plots and how to get a background map with those.
+- Have a look at the chapter [_Choropleth Mapping_](https://geographicdata.science/book/notebooks/05_choropleth.html) explaining how to get choropleth maps from the Geographic Data Science with Python by @rey2023geographic.
+:::
+
+## Acknowledgements {.appendix}
+
+Delineation of Spanish cities is used following the _A Course on Geographic Data Science_ by
+@darribas_gds_course, licensed under CC-BY-SA 4.0. The section on basic overlay predicates
+is adapted from the _Introduction to geospatial data analysis with GeoPandas and the
+PyData stack_ by [Joris van den Bossche](https://github.com/jorisvandenbossche/geopandas-tutorial).
+Illustrations are taken from the [GeoPandas documentation](https://geopandas.org), drawn by Martin Fleischmann.
