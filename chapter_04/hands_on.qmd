@@ -64,13 +64,31 @@ you do not need to download any dataset:
 ```{python}
 #| classes: explore
 prague = gpd.read_file(
-    "data/zsj_prague_2021.gpkg"
+    "https://martinfleischmann.net/sds/chapter_04/data/zsj_prague_2021.gpkg"
 )
 prague = prague.set_index("NAZ_ZSJ") # <1>
 prague.explore()
 ```
 1. Use the name of each observation as an index. It will help you matching linking them
 to the weights matrix.
+
+::: {.callout-note collapse="true"}
+## Alternative
+Instead of reading the file directly off the web, it is possible to download it manually,
+store it on your computer, and read it locally. To do that, you can follow these steps:
+
+1. Download the file by right-clicking on
+[this link](https://martinfleischmann.net/sds/chapter_04/data/zsj_prague_2021.gpkg)
+and saving the file
+2. Place the file in the same folder as the notebook where you intend to read it
+3. Replace the code in the cell above with:
+
+```python
+prague = gpd.read_file(
+    "zsj_prague_2021.gpkg",
+)
+```
+:::
 
 ## Building spatial weights in `PySAL`
 
