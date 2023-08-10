@@ -11,6 +11,10 @@ dependencies:
   - pyogrio
   - geopy
   - contextily
+  - pyarrow
   # infrastructure
   - ipykernel
   - jupyter-cache
+  - pip
+  - pip:
+    - git+https://github.com/martinfleis/libpysal.git@more_constructors
