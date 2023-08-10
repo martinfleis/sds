@@ -395,7 +395,7 @@ To build a block spatial weights matrix that connects as neighbours all the ZSJ 
 same KU, you only require the mapping of codes. Using `PySAL`, this is a one-line task:
 
 ```{python}
-block = graph.Graph.build_block(prague['NAZ_KU'])
+block = graph.Graph.build_block_contiguity(prague['NAZ_KU'])
 ```
 
 If you query for the neighbors of observation by its name, it will work as usual:
