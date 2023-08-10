@@ -1,7 +1,7 @@
 :root {
-    --main-color: rgb(250, 148, 165);
-    --main-color-hover: rgb(249, 115, 137);
-    --accent-color: rgb(37, 180, 151);
+    --main-color: #fa94a5;
+    --main-color-hover: #f97389;
+    --accent-color: #25b497;
 }
 
 a {
