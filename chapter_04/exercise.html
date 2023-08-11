@@ -20,7 +20,60 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-</style>
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
 
 
 <script src="../site_libs/quarto-nav/quarto-nav.js"></script>
@@ -69,6 +122,7 @@ ul.task-list li input[type="checkbox"] {
 
 <link rel="stylesheet" href="../assets/styles.css">
 <meta name="twitter:title" content="Spatial Data Science for Social Geography - Graph here, graph there">
+<meta name="twitter:description" content="">
 <meta name="twitter:card" content="summary">
 </head>
 
@@ -491,7 +545,17 @@ ul.task-list li input[type="checkbox"] {
 <div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#zones-of-suburbanisation" id="toc-zones-of-suburbanisation" class="nav-link active" data-scroll-target="#zones-of-suburbanisation">Zones of suburbanisation</a>
+  <ul class="collapse">
+  <li><a href="#interaction-with-graphs" id="toc-interaction-with-graphs" class="nav-link" data-scroll-target="#interaction-with-graphs">Interaction with Graphs</a></li>
+  <li><a href="#spatial-lag" id="toc-spatial-lag" class="nav-link" data-scroll-target="#spatial-lag">Spatial lag</a></li>
+  </ul></li>
+  </ul>
+<div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/martinfleis/sds/issues/new" class="toc-action">Report an issue</a></p></div></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -513,27 +577,56 @@ ul.task-list li input[type="checkbox"] {
 
 </header>
 
-<!-- Exercise on creation and transformation of weights. Make them understand what is the
-structure and how to work with it.
-
-Inlcude lags. -->
-<div class="callout callout-style-simple callout-note callout-titled">
+<div class="callout callout-style-default callout-caution callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-The contents will appear later
+Caution
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>This section will contain exercise material that will appear later.</p>
+<p>This course material is currently under construction and is likely incomplete. The final version will be released in October 2023.</p>
 </div>
 </div>
+<p>It is time to work with spatial weights matrices by yourself.</p>
+<section id="zones-of-suburbanisation" class="level2">
+<h2 class="anchored" data-anchor-id="zones-of-suburbanisation">Zones of suburbanisation</h2>
+<p>You are familiar with Prague from the last section, so let’s zoom out to zones of suburbanisation around Prague and other Czech cities. Head over to the <a href="https://datahub.natur.cuni.cz">DataHub</a> of the Faculty of Science and download the dataset called <a href="https://datahub.natur.cuni.cz/datasets/zóny-rezidenční-suburbanizace-2008-2016/explore">“Zóny rezidenční suburbanizace 2008-2016”</a> containing the zones of residential suburbanisation outlined by <span class="citation" data-cites="ouvrednivcek2019between">Ouřednı́ček, Klsák, and Špačková (<a href="#ref-ouvrednivcek2019between" role="doc-biblioref">2019</a>)</span>. Download the dataset and open it with <code>geopandas</code>. Use <code>"OBJECTID"</code> column as an index.</p>
+<section id="interaction-with-graphs" class="level3">
+<h3 class="anchored" data-anchor-id="interaction-with-graphs">Interaction with Graphs</h3>
+<ol type="1">
+<li>Create a contiguity matrix using the queen criterion</li>
+<li>Let’s focus on Prague (ID <code>891</code> in the table). How many neighbours does it have?</li>
+<li>Reproduce the previous section’s zoom plot with Prague and its neighbours. Can you make that plot as both static and interactive maps?</li>
+<li>Create a block spatial weights matrix where every geometry is connected to other geometries in the NUTS2 region. For that, use the <code>NUTS2_kod</code> column of the table.</li>
+<li>Create KNN weights with 5 neighbours. Remember that KNN expects point geometry.</li>
+<li>Compare the number of neighbours by geometry for the three weights matrices. Which one has more? Why?</li>
+</ol>
+</section>
+<section id="spatial-lag" class="level3">
+<h3 class="anchored" data-anchor-id="spatial-lag">Spatial lag</h3>
+<p>Let’s have a look at spatial lag. Before proceeding, you will probably need to pre-process the column with the population (<code>"obyv_31122"</code>) since it comes as <code>string</code>. Assuming the <code>GeoDataFrame</code> is called <code>suburbanisation</code>, you can do the following to cast it to <code>float</code>.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>suburbanisation[<span class="st">"obyv_31122"</span>] <span class="op">=</span> (</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    suburbanisation[<span class="st">"obyv_31122"</span>].replace(<span class="st">"?"</span>, <span class="va">None</span>).astype(<span class="bu">float</span>)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ol type="1">
+<li>Measure spatial lag (as mean, so don’t forget to standardise your weights) of the <code>"obyv_31122"</code> column using all weights matrices you have created.</li>
+<li>What is the difference in results for Prague? Do you know why?</li>
+<li>Compare Moran Plots based on spatial lags from your two matrices. What is causing the difference? Which one would you use in a study of population density and why?</li>
+</ol>
 
 
 
-</main> <!-- /main -->
+</section>
+</section>
+
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" role="list">
+<div id="ref-ouvrednivcek2019between" class="csl-entry" role="listitem">
+Ouřednı́ček, Martin, Adam Klsák, and Petra Špačková. 2019. <span>“In Between City and Village: The Development of Spatial Patterns of Czech Suburbanisation 1997–2016.”</span> <em>Demografie</em> 61 (4): 299–308.
+</div>
+</div></section></div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
@@ -900,7 +993,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     <div class="nav-footer-left">
       &nbsp;
     </div>   
-    <div class="nav-footer-center">Course material by <a href="https://martinfleischmann.net">Martin Fleischmann</a>. Available under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a>.<div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/martinfleis/sds/issues/new" class="toc-action">Report an issue</a></p></div></div></div>
+    <div class="nav-footer-center">Course material by <a href="https://martinfleischmann.net">Martin Fleischmann</a>. Available under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a>.</div>
     <div class="nav-footer-right">
       &nbsp;
     </div>
