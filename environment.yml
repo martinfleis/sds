@@ -17,4 +17,4 @@ dependencies:
   - jupyter-cache
   - pip
   - pip:
-    - git+https://github.com/martinfleis/libpysal.git@more_constructors
+      - git+https://github.com/pysal/libpysal.git@geographs
