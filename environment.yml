@@ -13,6 +13,7 @@ dependencies:
   - contextily
   - pyarrow
   - esda
+  - splot
   # infrastructure
   - ipykernel
   - jupyter-cache

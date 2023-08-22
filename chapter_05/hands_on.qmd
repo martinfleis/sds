@@ -71,6 +71,8 @@ Local Indicators of Spatial Association (LISA).
 ```{python}
 import geopandas as gpd
 import esda
+import matplotlib.pyplot as plt
+import seaborn as sns
 
 from libpysal import graph
 ```
@@ -270,10 +272,75 @@ jc.p_sim_bw
 ### Moran Plot
 - Moran plot refresh
 
+```{python}
+f, ax = plt.subplots(1, figsize=(6, 6))                     # <1>
+sns.regplot(x="PP_std", y="PP_std_lag", data=elections, ci=None, ax=ax, marker=".", scatter_kws={"alpha":.2})
+plt.axvline(0, c='k', alpha=0.5)                                # <3>
+plt.axhline(0, c='k', alpha=0.5);
+```
+
 ### Moran's I
-- Moran's I
+
+```{python}
+mi = esda.Moran(elections['Petr Pavel'], contiguity_r.to_W())
+```
+
+
+```{python}
+mi.I
+```
+
+```{python}
+mi.p_sim
+```
 
 ## Local Spatial autocorrelation
-- Local Moran's I
+
+
+```{python}
+lisa = esda.Moran_Local(elections['Petr Pavel'], contiguity_r.to_W())
+```
+
+
+```{python}
+from splot.esda import lisa_cluster, moran_scatterplot
+
+_ = lisa_cluster(lisa, elections)
+```
+
+
+```{python}
+_ = moran_scatterplot(lisa, p=0.05, scatter_kwds={"s": 5, "alpha":.2})
+```
+
+
+```{python}
+# Store the quadrant they belong to
+elections.loc[lisa.p_sim < 0.05, 'cluster'] = lisa.q[lisa.p_sim < 0.05]
+elections["cluster"] = elections["cluster"].fillna(0)
+elections["cluster"] = elections["cluster"].map(
+    {
+        0: "Not significant",
+        1: "High-high",
+        2: "Low-high",
+        3: "Low-low",
+        4: "High-low",
+    }
+)
+elections.head()
+```
+
+
+::: {.callout-tip collapse="true"}
+# Plotting LISA manually
+```{python}
+f, ax = plt.subplots(1, figsize=(6, 6))
+elections.loc[elections["cluster"] == "Not significant"].plot(ax=ax, color="lightgrey")
+elections.loc[(elections["cluster"] == "High-high")].plot(ax=ax, color="#d7191c")
+elections.loc[(elections["cluster"] == "Low-low")].plot(ax=ax, color="#2c7bb6")
+elections.loc[(elections["cluster"] == "Low-high")].plot(ax=ax, color="#abd9e9")
+elections.loc[(elections["cluster"] == "High-low")].plot(ax=ax, color="#fdae61");
+```
+:::
 
 - point to other options
