@@ -11,12 +11,9 @@ jupyter: sds
 
 - bonus - other stats (Geary, Getis and Ord) -->
 
-::: {.callout-note appearance="simple"}
-
-## The contents will appear later
-
-This section will contain hands-on material that will appear later.
-
+::: {.callout-caution}
+This course material is currently under construction and is likely incomplete. The final
+version will be released in October 2023.
 :::
 
 In the last section, you have learnt how to encode spatial relationships between geometries
