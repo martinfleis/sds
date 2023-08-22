@@ -1,6 +1,9 @@
 ---
-title: "Spatial autocorrelation and other ESDAs"
-format: html
+title: "Spatial autocorrelation"
+format:
+  html: default
+  ipynb: default
+jupyter: sds
 ---
 
 <!-- - Global autocorrelation with `esda` (Join counts, Moran [plot and statistics])
@@ -15,3 +18,265 @@ format: html
 This section will contain hands-on material that will appear later.
 
 :::
+
+In the last section, you have learnt how to encode spatial relationships between geometries
+into weights matrices represented by `Graph` objects and started touching on the topic of
+spatial autocorrelation with spatial lag and Moran plot. This section explores spatial
+autocorrelation further in its global and local variants.
+
+Spatial autocorrelation has to do with the degree to which the similarity in values
+between observations in a dataset is related to the similarity in locations of such
+observations. Not completely unlike the traditional correlation between two variables
+-which informs us about how the values in one variable change as a function of those in
+the other- and analogous to its time-series counterpart -which relates the value of a
+variable at a given point in time with those in previous periods-, spatial
+autocorrelation relates the value of the variable of interest in a given location, with
+values of the same variable in surrounding locations.
+
+A key idea in this context is that of spatial randomness: a situation in which the
+location of observation gives no information whatsoever about its value. In other
+words, a variable is spatially random if it is distributed following no discernible
+pattern over space. Spatial autocorrelation can thus be formally defined as the "absence
+of spatial randomness", which gives room for two main classes of autocorrelation,
+similar to the traditional case: *positive* spatial autocorrelation, when similar values
+tend to group together in similar locations; and *negative* spatial autocorrelation, in
+cases where similar values tend to be dispersed and further apart from each other.
+
+In this session we will learn how to explore spatial autocorrelation in a given dataset,
+interrogating the data about its presence, nature, and strength. To do this, we will use
+a set of tools collectively known as Exploratory Spatial Data Analysis (ESDA),
+specifically designed for this purpose. The range of ESDA methods is very wide and spans
+from less sophisticated approaches like choropleths and general table querying, to more
+advanced and robust methodologies that include statistical inference and an explicit
+recognition of the geographical dimension of the data. The purpose of this session is to
+dip your toes into the latter group.
+
+ESDA techniques are usually divided into two main groups: tools to analyze *global*, and
+*local* spatial autocorrelation. The former considers the overall trend that the location
+of values follows, and makes possible statements about the degree of *clustering* in the
+dataset. *Do values generally follow a particular pattern in their geographical
+distribution*? *Are similar values closer to other similar values than we would expect
+from pure chance?* These are some of the questions that tools for global spatial
+autocorrelation allow to answer. We will practice with global spatial autocorrelation on
+Join Counts statistic and Moran's I statistic.
+
+Tools for *local* spatial autocorrelation instead focus on spatial instability: the
+departure of parts of a map from the general trend. The idea here is that, even though
+there is a given trend for the data in terms of the nature and strength of spatial
+association, some particular areas can diverge quite substantially from the general
+pattern. Regardless of the overall degree of concentration in the values, we can observe
+pockets of unusually high (low) values close to other high (low) values in what we will
+call hot (cold) spots. Additionally, it is also possible to observe some high (low) values
+surrounded by low (high) values, and we will name these "spatial outliers". The main
+technique we will review in this session to explore local spatial autocorrelation is the
+Local Indicators of Spatial Association (LISA).
+
+```{python}
+import geopandas as gpd
+import esda
+
+from libpysal import graph
+```
+
+## Data
+
+For this session, you will look at the election data. In particular, the results of the
+second round of the presidential elections in Czechia in 2023, between Petr Pavel and
+Andrej Babiš, on a level of municipalities. Each polygon has a percentage of votes for
+either of the candidates attached, as well as some additional information. Election data
+are provided by the [Czech Statistical Office](https://www.volby.cz), and geometries are retrieved from [ČÚZK](https://www.cuzk.cz) The dataset is preprocessed for the purpose of this course. If you want to see how the table was created,
+a notebook is available [here](../data/cz_elections_2023/preprocessing.ipynb).
+
+To make things easier, you will read data from a file posted online so
+you do not need to download any dataset:
+
+```{python}
+#| classes: explore
+elections = gpd.read_file(
+    # "https://martinfleischmann.net/sds/chapter_05/data/cz_elections_2023.gpkg"
+    "data/cz_elections_2023.gpkg"
+)
+elections = elections.set_index("name") # <1>
+elections.explore(                      # <2>
+    "Petr Pavel",                       # <3>
+    cmap="coolwarm",                    # <4>
+    vmin=0,                             # <5>
+    vmax=100,                           # <5>
+    prefer_canvas=True,                 # <6>
+    tiles="CartoDB Positron",           # <7>
+)
+```
+1. Use the name of each municipality as an index. It will help you link them
+to the weights matrix.
+2. Create a plot to explore the data.
+3. `"Petr Pavel"` is the name of the column with the proportions of votes for Petr Pavel.
+4. Use `"coolwarm"` divergent colormap.
+5. Normalise the colormap between 0 and 100.
+6. With larger tables, using Canvas rendering instead of the default one is helpful.
+7. Use less intense background tiles than the default OpenStreetMap.
+
+::: {.callout-note collapse="true"}
+## Alternative
+Instead of reading the file directly off the web, it is possible to download it manually,
+store it on your computer, and read it locally. To do that, you can follow these steps:
+
+1. Download the file by right-clicking on
+[this link](https://martinfleischmann.net/sds/chapter_05/data/cz_elections_2023.gpkg)
+and saving the file
+2. Place the file in the same folder as the notebook where you intend to read it
+3. Replace the code in the cell above with:
+
+```python
+elections = gpd.read_file(
+    "cz_elections_2023.gpkg",
+)
+```
+:::
+
+## Spatial weights refresher
+
+You already know how to work with the spatial weights matrices from the previous session. In this case, you will need to create queen contiguity weights, which consider two observations as neighbours if they share at least one point of their boundary. In other words, for a pair of municipalities in the dataset to be considered neighbours under this $W$, they must be sharing borders or "touching" each other to some degree.
+
+Technically speaking, we will approach building the contiguity matrix in the same way we did before. We will begin with a `GeoDataFrame` and pass it on to the queen contiguity weights builder in `libpysal`. We will also make sure our table of data is previously indexed on the municipality name, so the $W$ is also indexed on that form.
+
+```{python}
+contiguity = graph.Graph.build_contiguity(elections, rook=False) # <1>
+```
+1. Since the default would be Rook contiguity, we set `rook=False`.
+
+Now, the `w` object we have just is of the same type of any other one we have created in the past. As such, we can inspect it in the same way. For example, we can check who is a neighbor of observation `Milevsko`:
+
+```{python}
+contiguity["Hrazany"]
+```
+
+Since you will be dealing with spatial lags, it may be wise to row- standardise the matrix.
+
+```{python}
+contiguity_r = contiguity.transform("r")
+```
+
+Now, because we have row-standardize them, the weight given to each of the five neighbors is 0.2 which sum up to one.
+
+```{python}
+contiguity_r["Hrazany"]
+```
+
+## Spatial lag refresher
+
+You also know what a spatial lag is. Once we have the data and the spatial weights matrix ready, we can start by computing the spatial lag of the percentage of votes that went to the winning candidate Petr Pavel. Remember the spatial lag is the product of the spatial weights matrix and a given variable and that, if $W$ is row-standardized, the result amounts to the average value of the variable in the neighborhood of each observation.
+
+We can calculate the spatial lag for the variable `"Petr Pavel"` and store it directly in the main table with the following line of code:
+
+```{python}
+elections['PP_lag'] = contiguity_r.lag(elections["Petr Pavel"])
+elections.head()
+```
+
+The way to interpret the spatial lag (`PP_lag`) for say the first observation is as follow: Abertamy, where Petr Pavel received 62.98% is surrounded by neighbouring municipalities where, on average, more than 65% of the electorate also voted for him. For the purpose of illustration, we can in fact check this is correct by querying the spatial weights matrix to find out Abertamy's neighbors:
+
+```{python}
+contiguity_r.get_neighbors('Abertamy')
+```
+
+And then checking their values:
+
+```{python}
+neis = elections.loc[contiguity_r.get_neighbors('Abertamy'), "Petr Pavel"]
+neis
+```
+
+And the average value, which we saw in the spatial lag is 65.56, can be calculated as follows:
+
+```{python}
+neis.mean()
+```
+
+For some of the techniques we will be seeing below, it makes more sense to operate with the standardized version of a variable, rather than with the raw one. Standardizing means to substract the average value and divide by the standard deviation each observation of the column. This can be done easily with a bit of basic algebra in Python:
+
+```{python}
+elections["PP_std"] = (
+    elections["Petr Pavel"] - elections["Petr Pavel"].mean()
+) / elections["Petr Pavel"].std()
+```
+
+Finally, to be able to explore the spatial patterns of the standardized values, also called sometimes $z$ values, we need to create its spatial lag:
+
+```{python}
+elections["PP_std_lag"] = contiguity_r.lag(elections["PP_std"])
+```
+
+## Global spatial autocorrelation
+
+Spatial autocorrelation is measured differently depending on the type of data. For boolean (True or False) variables, you can use the Join Counts statistic, while for continuous variables, you can use Moran's I. Let's start with the boolean case.
+
+### Join Counts for boolean variables
+
+The `elections` dataset does not contain any boolean variable, but it is easy to create one representing whether Petr Pavel lost in a municipality or not.
+
+```{python}
+elections["PP_winner"] = (elections["Petr Pavel"] < 50).astype(int)  # <1>
+elections.head()
+```
+1. Get a mask with True and False values (`elections["Petr Pavel"] > 50`) and convert it to 1 and 0, which is what Join Counts expect.
+
+You will be dealing with data that looks something like this now:
+
+```{python}
+elections.plot("PP_winner", cmap="binary", linewidth=.1, edgecolor="grey")
+```
+
+Since you are looking for spatial autocorrelation, you can already guess this will be a clear case since there are large clusters of black and white municipalities. However, your (even educated) guess is not enough. Instead, you can use Join Count statistic. Its principle is simple. Given a checkboard with black (0) and white (1) cells, you can count how many times black is next to another black (BB), how many times white is next to white (WW) and how many times there are black-white relationships (BW). The prevalence of BB and WW indicates positive autocorrelation, while the prevalence of BW indicates a negative one. The significance is then derived from a comparison of how many BB, WW and BW occurrences you could expect under complete spatial randomness.
+
+The weights for Join Counts are expected to be binary. So you could either use the original `contiguity` weights, which are binary by default, or transform `contiguity_r` to binary. You can then measure the statistics using the `Join_Counts` class from `esda`.
+
+```{python}
+jc = esda.join_counts.Join_Counts(  # <1>
+    elections["PP_winner"],         # <2>
+    contiguity.to_W(),              # <3>
+)
+```
+
+
+```{python}
+jc.bb
+```
+
+```{python}
+jc.ww
+```
+
+```{python}
+jc.bw
+```
+
+```{python}
+jc.J
+```
+
+```{python}
+jc.mean_bb
+```
+
+```{python}
+jc.mean_bw
+```
+
+```{python}
+jc.p_sim_bb
+```
+
+```{python}
+jc.p_sim_bw
+```
+
+### Moran Plot
+- Moran plot refresh
+
+### Moran's I
+- Moran's I
+
+## Local Spatial autocorrelation
+- Local Moran's I
+
+- point to other options

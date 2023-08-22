@@ -69,7 +69,7 @@ prague = gpd.read_file(
 prague = prague.set_index("NAZ_ZSJ") # <1>
 prague.explore()
 ```
-1. Use the name of each observation as an index. It will help you matching linking them
+1. Use the name of each observation as an index. It will help you link them
 to the weights matrix.
 
 ::: {.callout-note collapse="true"}
