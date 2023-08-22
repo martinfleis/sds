@@ -12,6 +12,7 @@ dependencies:
   - geopy
   - contextily
   - pyarrow
+  - esda
   # infrastructure
   - ipykernel
   - jupyter-cache
