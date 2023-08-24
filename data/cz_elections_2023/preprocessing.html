@@ -531,7 +531,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 
-<div class="cell" data-execution_count="2">
+<div class="cell" data-execution_count="22">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> geopandas <span class="im">as</span> gpd</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pyogrio</span>
@@ -541,26 +541,30 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>results <span class="op">=</span> pd.read_csv(<span class="st">"export.csv"</span>, sep<span class="op">=</span><span class="st">";"</span>, skiprows<span class="op">=</span>[<span class="dv">1</span>, <span class="dv">2</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell" data-execution_count="4">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>admin_units <span class="op">=</span> pyogrio.read_dataframe(<span class="st">"https://services.cuzk.cz/gml/inspire/au/epsg-5514/1.zip"</span>, layer<span class="op">=</span><span class="st">"AdministrativeUnit"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Download the <code>1.zip</code> file from https://services.cuzk.cz/gml/inspire/au/epsg-5514/</p>
+<div class="cell" data-execution_count="25">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>admin_units <span class="op">=</span> gpd.read_file(<span class="st">"1.zip"</span>, layer<span class="op">=</span><span class="st">"AdministrativeUnit"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-error">
+<pre><code>DriverError: '/vsizip/vsicurl/https://services.cuzk.cz/gml/inspire/au/epsg-5514/1.zip' does not exist in the file system, and is not recognized as a supported dataset name.</code></pre>
+</div>
 </div>
 <div class="cell" data-execution_count="5">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>obce <span class="op">=</span> admin_units.query(<span class="st">"LocalisedCharacterString == 'Obec'"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>obce <span class="op">=</span> admin_units.query(<span class="st">"LocalisedCharacterString == 'Obec'"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell" data-execution_count="6">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>r_with_code <span class="op">=</span> results.merge(obce[[<span class="st">"nationalCode"</span>, <span class="st">"text"</span>]], how<span class="op">=</span><span class="st">"left"</span>, left_on<span class="op">=</span><span class="st">"Obec / Kandidát (2023-2)"</span>, right_on<span class="op">=</span><span class="st">"text"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>r_with_code <span class="op">=</span> results.merge(obce[[<span class="st">"nationalCode"</span>, <span class="st">"text"</span>]], how<span class="op">=</span><span class="st">"left"</span>, left_on<span class="op">=</span><span class="st">"Obec / Kandidát (2023-2)"</span>, right_on<span class="op">=</span><span class="st">"text"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell" data-execution_count="7">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>extracted_code <span class="op">=</span> r_with_code[<span class="st">"Obec / Kandidát (2023-2)"</span>].<span class="bu">str</span>.extract(<span class="vs">r',\s*(\d+)\)$'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>extracted_code <span class="op">=</span> r_with_code[<span class="st">"Obec / Kandidát (2023-2)"</span>].<span class="bu">str</span>.extract(<span class="vs">r',\s*(\d+)\)$'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell" data-execution_count="8">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>r_with_code.loc[extracted_code[<span class="dv">0</span>].notna(), <span class="st">"nationalCode"</span>] <span class="op">=</span> extracted_code[<span class="dv">0</span>][extracted_code[<span class="dv">0</span>].notna()]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>r_with_code.loc[extracted_code[<span class="dv">0</span>].notna(), <span class="st">"nationalCode"</span>] <span class="op">=</span> extracted_code[<span class="dv">0</span>][extracted_code[<span class="dv">0</span>].notna()]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell" data-execution_count="9">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>r_with_code[<span class="st">"nationalCode"</span>] <span class="op">=</span> r_with_code[<span class="st">"nationalCode"</span>].astype(obce.nationalCode.dtype)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>r_with_code[<span class="st">"nationalCode"</span>] <span class="op">=</span> r_with_code[<span class="st">"nationalCode"</span>].astype(obce.nationalCode.dtype)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell" data-execution_count="10">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>obce</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>obce</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="10">
 <div>
 
@@ -805,18 +809,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <div class="cell" data-execution_count="11">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> r_with_code.drop(columns<span class="op">=</span><span class="st">"text"</span>).merge(obce[[<span class="st">"nationalCode"</span>, <span class="st">"sourceOfName"</span>, <span class="st">"geometry"</span>]], on<span class="op">=</span><span class="st">'nationalCode'</span>).set_geometry(<span class="st">"geometry"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> r_with_code.drop(columns<span class="op">=</span><span class="st">"text"</span>).merge(obce[[<span class="st">"nationalCode"</span>, <span class="st">"sourceOfName"</span>, <span class="st">"geometry"</span>]], on<span class="op">=</span><span class="st">'nationalCode'</span>).set_geometry(<span class="st">"geometry"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell" data-execution_count="12">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>topo <span class="op">=</span> tp.Topology(data, prequantize<span class="op">=</span><span class="va">False</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>topo <span class="op">=</span> tp.Topology(data, prequantize<span class="op">=</span><span class="va">False</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>/Users/martin/mambaforge/envs/sds/lib/python3.11/site-packages/topojson/core/dedup.py:107: RuntimeWarning: invalid value encountered in cast
   data["bookkeeping_shared_arcs"] = array_bk_sarcs.astype(np.int64).tolist()</code></pre>
 </div>
 </div>
 <div class="cell" data-execution_count="13">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>simplified <span class="op">=</span> topo.toposimplify(<span class="dv">50</span>).to_gdf()</span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>simplified.geometry <span class="op">=</span> simplified.geometry.make_valid()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>simplified <span class="op">=</span> topo.toposimplify(<span class="dv">50</span>).to_gdf()</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>simplified.geometry <span class="op">=</span> simplified.geometry.make_valid()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>/Users/martin/mambaforge/envs/sds/lib/python3.11/site-packages/shapely/constructive.py:881: RuntimeWarning: invalid value encountered in simplify_preserve_topology
   return lib.simplify_preserve_topology(geometry, tolerance, **kwargs)
@@ -825,14 +829,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <div class="cell" data-execution_count="16">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>simplified <span class="op">=</span> simplified.rename(columns<span class="op">=</span>{<span class="st">"Obec / Kandidát (2023-2)"</span>: <span class="st">"name"</span>})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>simplified <span class="op">=</span> simplified.rename(columns<span class="op">=</span>{<span class="st">"Obec / Kandidát (2023-2)"</span>: <span class="st">"name"</span>})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell" data-execution_count="20">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>simplified[<span class="st">"Petr Pavel"</span>] <span class="op">=</span> simplified[<span class="st">"Petr Pavel"</span>].<span class="bu">str</span>.replace(<span class="st">","</span>, <span class="st">"."</span>).astype(<span class="bu">float</span>)</span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>simplified[<span class="st">"Andrej Babiš"</span>] <span class="op">=</span> simplified[<span class="st">"Andrej Babiš"</span>].<span class="bu">str</span>.replace(<span class="st">","</span>, <span class="st">"."</span>).astype(<span class="bu">float</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>simplified[<span class="st">"Petr Pavel"</span>] <span class="op">=</span> simplified[<span class="st">"Petr Pavel"</span>].<span class="bu">str</span>.replace(<span class="st">","</span>, <span class="st">"."</span>).astype(<span class="bu">float</span>)</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>simplified[<span class="st">"Andrej Babiš"</span>] <span class="op">=</span> simplified[<span class="st">"Andrej Babiš"</span>].<span class="bu">str</span>.replace(<span class="st">","</span>, <span class="st">"."</span>).astype(<span class="bu">float</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell" data-execution_count="17">
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>simplified.to_file(<span class="st">"../../chapter_05/data/cz_elections_2023.gpkg"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-execution_count="21">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>simplified.to_file(<span class="st">"../../chapter_05/data/cz_elections_2023.gpkg"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 
 
