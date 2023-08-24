@@ -240,7 +240,8 @@ contextily.add_basemap(
     ax=ax,
     crs=accidents.crs,
     source="CartoDB Positron No Labels",
-);
+)
+plt.xticks(rotation=90);
 ```
 1. Plot 3 scatters, each with one point only to mark centres of mass.
 2. Plot ellipse using dedicated patch class from `matplotlib.patches`.
@@ -293,35 +294,65 @@ point pattern is unlikely to be random. A helpful visual illustration of how the
 
 ```{python}
 # | fig-cap: Quadrat statistic plot
-qstat.plot()
+ax = qstat.plot()
+# contextily.add_basemap(
+#     ax=ax,
+#     crs=accidents.crs,
+#     source="CartoDB Positron No Labels",
+# )
+# plt.xticks(rotation=90);
 ```
 
 You can see that there are cells with more than 800 observations, while some others have tens or even zeros.
 
 ### Ripley's functions
 
+A better option for the assessment of the randomness of a point pattern is a family of statistical methods called Ripley's alphabet. These functions tend to work with the concept of nearest neighbours and aim to capture the co-location of points in the pattern.
+
+Before working with any of those, let's quickly look at the Quadrat statistic plot above. Some of the cells contain 0 points simply because the extent of the point pattern is smaller than the bounding box of the area. Since Ripley's functions are based on the generation of random point patterns within the extent of the analysed one, a situation like this might unnecessarily skew the results. To minise this effect, you want to perform the test only within the area of the existing point pattern.
+
+While you can define such an extent in many way, a simple and often very suitable method is to define a convex hull of the point pattern. You can do that directly with `geopandas`.
+
 ```{python}
-convex_hull = accidents.unary_union.convex_hull
+convex_hull = accidents.unary_union.convex_hull  # <1>
 ```
+1. First, create a union of all points into a single MultiPoint and then get a convex hull of that.
+
+The resulting object is a `shapely.Polygon`. If you wrap it in a `geopandas.GeoSeries`, you can easily plot it:
 
 ```{python}
 # | fig-cap: Convex hull around the point pattern
 ax = accidents.plot(markersize=0.05)
 gpd.GeoSeries([convex_hull]).plot(
-    ax=ax, facecolor="none", edgecolor="k", linestyle="--"
+    ax=ax, facecolor="none", edgecolor="k", linestyle="--"  # <1>
 )
 plt.xticks(rotation=90);
 ```
+1. To show just the boundary of a polygon, you can either pass `facecolor="none"` or extract the `.boundary` and plot that.
+
+This allows us to limit the test to the area where something already happens.
+
+#### $G$
+
+Ripley's $G$ is an iterative algorithm. It measures how many points have the nearest point within a threshold distance while repeatedly increasing such a threshold. A series of thresholds and counts then results in a specific curve that is compared to the curve coming from the purely random point pattern.
+
+`pointpats` allows you to compute Ripley's $G$ using the `g_test` function.
 
 ```{python}
 g_test = pointpats.distance_statistics.g_test(
     accidents[["x", "y"]].values,
-    support=50,
-    keep_simulations=True,
-    hull=convex_hull,
-    n_simulations=99,
+    support=200,                    # <1>
+    keep_simulations=True,          # <2>
+    hull=convex_hull,               # <3>
+    n_simulations=99,               # <4>
 )
 ```
+1. Practically the number of bins of the distance between neighbours. More ensures better precision of resulting curves.
+2. Keep simulated data so you can plot them later.
+3. Limit the test only to the `convex_hull`.
+4. Number of simulations used as a baseline.
+
+The intuition behind the statistic can be built based on the plot of the $G$ values per each distance threshold, comparing the observed results with those based on simulated random point pattern.
 
 ```{python}
 # | label: fig-ripley-g
@@ -343,7 +374,10 @@ ax.plot(g_test.support, g_test.statistic, label="observed", color="red")
 
 # clean up labels and axes
 ax.set_xlabel("distance")
-ax.set_ylabel("% of nearest neighbor\ndistances shorter")
+ax.set_ylabel(
+    "ratio of nearest neighbor\n"
+    "distances shorter than distance"
+)
 ax.legend()
 ax.set_xlim(0, 500);
 ```
@@ -355,7 +389,7 @@ np.mean(g_test.pvalue)
 ```{python}
 f_test = pointpats.distance_statistics.f_test(
     accidents[["x", "y"]].values,
-    support=50,
+    support=200,
     keep_simulations=True,
     hull=convex_hull,
     n_simulations=99,
