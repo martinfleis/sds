@@ -1,16 +1,430 @@
 ---
 title: "Point pattern analysis"
-format: html
+format:
+  html: default
+  ipynb: default
+jupyter: sds
 ---
-<!--
-- Point pattern visualisation
-- Centrography
-- Randomness and Clustering -->
+<!-- Requires pointpats from sjsrey@knox-->
 
-::: {.callout-note appearance="simple"}
-
-## The contents will appear later
-
-This section will contain hands-on material that will appear later.
-
+::: {.callout-caution}
+This course material is currently under construction and is likely incomplete. The final
+version will be released in October 2023.
 :::
+
+When you need to deal with point data, you will likely be interested in the spatial patterns
+they form. For that, you can use point pattern analysis techniques. This session will walk
+you through some basic ways of approaching the analysis based primarily on geometries and their
+locations rather than variables associated with them.
+
+
+```{python}
+import contextily
+import geopandas as gpd
+import matplotlib.pyplot as plt
+import numpy as np
+import pandas as pd
+import pointpats
+import seaborn as sns
+import shapely
+from matplotlib import patches
+```
+
+## Data
+
+In this session, you will be using data on pedestrian accidents in Brno that happened since 2010. Every accident is marked with point geometry and assigned a range of relevant variables you are free to explore by yourself. The dataset is [released](https://data.brno.cz/datasets/mestobrno::nehody-s-účastí-chodců-pedestrian-accidents/about) by Brno municipality under CC-BY 4.0 license. It has been preprocessed for the purpose
+of this course. If you want to see how the table was created, a notebook is available
+[here](../data/brno_pedestrian_accidents/preprocessing.ipynb).
+
+
+As always, you can read data from a file posted online, so you do not need
+to download any dataset:
+
+```{python}
+# | classes: explore
+accidents = gpd.read_file("data/brno_pedestrian_accidents.gpkg")
+accidents.explore("rok", tiles="CartoDB Positron", cmap="magma_r")  # <1>
+```
+1. `"rok"` is a column with the year in which an accident occurred. The variables are in Czech.
+
+::: {.callout-note collapse="true"}
+## Alternative
+Instead of reading the file directly off the web, it is possible to download it manually,
+store it on your computer, and read it locally. To do that, you can follow these steps:
+
+1. Download the file by right-clicking on
+[this link](https://martinfleischmann.net/sds/chapter_06/data/brno_pedestrian_accidents.gpkg)
+and saving the file
+2. Place the file in the same folder as the notebook where you intend to read it
+3. Replace the code in the cell above with:
+
+```python
+accidents = gpd.read_file(
+    "brno_pedestrian_accidents.gpkg",
+)
+```
+:::
+
+## Visualisation
+
+The first step you will likely do is some form of visualisation. Either as an interactive
+map like the one above or using one of the more advanced methods. Most of the methods you
+will be using today do not necessarily depend on geometries but on their coordinates.
+Let's start by extracting coordinates from geometries and assigning them as columns.
+
+```{python}
+accidents[["x", "y"]] = accidents.get_coordinates()
+accidents.head(2)
+```
+
+### Scatter plots and distributions
+
+Any geographical plot of points is essentially a scatter plot based on their x and y coordinates. You can use this to your advantage and directly apply visualisation methods
+made for scatterplots. `seaborn` is able to give you a scatter plot with histograms per each axis.
+
+```{python}
+# | fig-cap: Enhanced scatter plot
+axs = sns.jointplot(x="x", y="y", data=accidents, s=1)                      # <1>
+contextily.add_basemap(                                                     # <2>
+    ax=axs.ax_joint, crs=accidents.crs, source="CartoDB Positron No Labels" # <2>
+)                                                                           # <2>
+plt.xticks(rotation=90);                                                    # <3>
+```
+1. `jointplot` takes `accidents` as a source DataFrame and plots column `"x"` on x-axis and column `"y"` on y-axis. `s=1` sets the size of each point to one.
+2. Use `contextily` to add a basemap for a bit of geographic context.
+3. Rotate labels of ticks on x-axis to avoid overlaps.
+
+This plot is useful as it indicates that the point pattern has a tendency to be organised
+around a single centre (both histograms resemble normal distribution). From the map, you
+can see that the majority of incidents happened along main roads (as one would expect), but showing raw points on a map is not the best visualisation method. You can conclude
+that the pattern is not random (more on that later).
+
+Showing all the points on a map is not that terrible in this case as there's not that many
+of them. However, even in this case, you face the issue of clusters of points being hidden
+behind a single _dot_ and similar legibility drawbacks. You can overcome it it many ways, so
+let's showcase two of them - binning and density estimation.
+
+### Hexagonal binning
+
+Binning is, in principle, a spatial join between the point pattern and an arbitrary grid
+overlaid on top. What you are interested is the number of points that fall into each grid cell. An example can be hexagonal binning, when the arbitrary grid is composed of hexagons. You could
+do it using geospatial operations in `geopandas` but since you have just points and all
+you now want is a plot, you can use `hexbin()` method from `matplotlib`.
+
+```{python}
+# | fig-cap: Point pattern transferred into a hexagonal grid
+f, ax = plt.subplots()                  # <1>
+accidents.plot(ax=ax, markersize=0.05)  # <2>
+hb = ax.hexbin(                         # <3>
+    accidents["x"],                     # <3>
+    accidents["y"],                     # <3>
+    gridsize=25,                        # <3>
+    linewidths=0,                       # <3>
+    alpha=0.5,                          # <3>
+    cmap="magma_r",                     # <3>
+)
+# Add basemap
+contextily.add_basemap(
+    ax=ax,
+    crs=accidents.crs,
+    source="CartoDB Positron No Labels",
+)
+# Add colorbar
+plt.colorbar(hb)                        # <4>
+plt.xticks(rotation=90);
+```
+1. Create an empty `matplotlib` figure.
+2. Add points.
+3. Create a `hexbin` layer with 25 cells in x-direction.
+4. Add colour bar legend to the side.
+
+Hexbin gives you a better sense of the density of accidents across the city. There seems to be a large hotspot in the central areas and a few other places that seem to be more dangerous.
+
+### Kernel density estimation
+
+Density can be estimated by binning, but that will always result in abrupt changes when two
+cells meet, like with a histogram. The other option is to use 2-dimensional kernel density estimation to generate contours of different (interpolated) levels of density. If you are interested in a plot and not geometry of contour lines, `seaborn` offers a handy function called `kdeplot()`.
+
+```{python}
+# | fig-cap: Kernel density estimation of the point pattern
+f, ax = plt.subplots()
+accidents.plot(ax=ax, markersize=0.05)
+sns.kdeplot(
+    x="x",
+    y="y",
+    data=accidents,
+    n_levels=25,            # <1>
+    alpha=0.55,
+    cmap="magma_r",
+)
+contextily.add_basemap(
+    ax=ax,
+    crs=accidents.crs,
+    source="CartoDB Positron No Labels",
+)
+```
+1. `n_levels` specifies the number of contour lines to show.
+
+The intuition about a dominance of city centre in the dataset shows here very clearly. What have all of these visualisations in common is that they can be used to build intution and a first insight into the pattern but as data scientists, you will probably need some numbers characterising your data.
+
+## Centrography
+
+Centrography aims to provide a summary of the pattern. What is the general location of the pattern, how dispersed is it, or where are its limits. You can imagine it as what `pandas.DataFrame.describe()` returns but for the point pattern. @rey2023geographic cover assessments
+of _tendency_, _dispersion_ and _extent_.
+
+Tendency can be reflected by the centre of mass represented usually as mean or median of point
+coordinates. PySAL has a module dedicated to point patterns called `pointpats`, that allows you to measure these easily, just based on an array of X and Y coordinates.
+
+```{python}
+mean_center = pointpats.centrography.mean_center(accidents[["x", "y"]])   # <1>
+med_center = pointpats.centrography.euclidean_median(accidents[["x", "y"]])
+```
+1. Passing a subset with two columns qualifies as an array of coordinates.
+
+In some occasions, you may want to take into the account some external variable apart from
+geographical location of each point. Simply because not every accident is as serious as the other. You can use `weighted_mean_center` to measure mean weighted by any arbitrary value. In the case of accidents, you may be interested in mean weighted by the number of injured people.
+
+```{python}
+weighted_mean = pointpats.centrography.weighted_mean_center(
+    accidents[["x", "y"]], accidents["lehce_zran_os"]           # <1>
+)
+```
+1. Column `"lehce_zran_os"` represents the number of people with minor injuries resulting from each accident.
+
+What you get back for each of these are coordinates of a single point that is, to some degree,
+representative of the pattern.
+
+```{python}
+weighted_mean
+```
+
+Dispersion can be reflected by the standard deviation or, better, by the ellipse based on the standard deviations in both directions since you are dealing with two-dimensional data. The `pointpats.centrography` can also do that, giving you back the semi-major and semi-minor axes and their rotation.
+
+```{python}
+major, minor, rotation = pointpats.centrography.ellipse(accidents[["x", "y"]])
+```
+
+You can then use the information in any way you like, but it is likely that you will want
+to plot the results of centrography on a map. The plot is a bit more complicated than those before, but it is just because there are more layers. However, do not feel the need to reproduce it.
+
+```{python}
+# | fig-cap: Results of the centrographic analysis
+# | code-fold: true
+f, ax = plt.subplots()
+accidents.plot(ax=ax, markersize=0.05)
+
+ax.scatter(*mean_center, color="k", marker="o", label="Mean Center", alpha=0.8) # <1>
+ax.scatter(*med_center, color="r", marker="o", label="Median Center", alpha=0.8) # <1>
+ax.scatter(                                 # <1>
+    *weighted_mean,                         # <1>
+    color="pink",                           # <1>
+    marker="o",                             # <1>
+    label="Weighted Mean Center",           # <1>
+    alpha=0.8                               # <1>
+)                                           # <1>
+
+ellipse = patches.Ellipse(  # <2>
+    xy=mean_center,  # <3>
+    width=major * 2,  # <4>
+    height=minor * 2, # <4>
+    angle=np.rad2deg(rotation),  # <5>
+    facecolor="none",
+    edgecolor="red",
+    linestyle="--",
+    label="Std. Ellipse",
+)
+ax.add_patch(ellipse)   # <6>
+ax.legend(loc="upper left")             # <7>
+
+contextily.add_basemap(
+    ax=ax,
+    crs=accidents.crs,
+    source="CartoDB Positron No Labels",
+);
+```
+1. Plot 3 scatters, each with one point only to mark centres of mass.
+2. Plot ellipse using dedicated patch class from `matplotlib.patches`.
+3. Use mean centre as the centre of the ellipse.
+4. `major` represent half of the width, while `minor`, half of the height.
+5. `angle` is required in degrees. You have radians now, so use `np.rad2deg` to convert.
+6. Add `ellipse` to the plot axis.
+7. Add legend to the upper left corner.
+
+You can see that in this specific case, all three ways of computing centre of the mass are within a short distance from each other, suggesting the dataset is pretty balanced. A similar conclusion can be made based on the shape of the ellipse, which nearly resembles a circle.
+
+::: {.callout-tip}
+# Extent
+
+The last part of centrography worth mentioning here are ways of characterisation of pattern's extent. This is not covered in this material but feel free to jump directly to the [relevant section](https://geographicdata.science/book/notebooks/08_point_pattern_analysis.html#extent) of the _Point Patterns_ chapter by @rey2023geographic.
+:::
+
+All centrography measures are crude simplifications of the pattern like summary statistics is a for non-spatial data. Let's move towards some more profound methods of analysis.
+
+## Randomness and clustering
+
+Point patterns can be random but more often then not, they are not random. You main question when looking at the observations can be targetting specifically this distinction. _Is, whatever I am looking at, following some underlying logic or is it random?_ The first method that helps answering such questions is quadrat statistic.
+
+### Quadrat statistic
+
+Imagine a grid overlaid over the map, similar to those you can use for visualisation. Each of them contains a certain number of points of the pattern. Quadrat statistics "examine the evenness of the distribution over cells using a $\chi^2$ statistical test common in the analysis of contingency tables." [@rey2023geographic]. It compares the actual distribution of points in cells to that, that would be present if the points were allocated randomly.
+
+`pointpats` allows you to compute the statistics using the `QStatistic` class,  which takes
+the array of coordinates and some optional parameters specifying the details.
+
+```{python}
+qstat = pointpats.QStatistic(accidents[["x", "y"]].values, nx=6, ny=6)  # <1>
+```
+1. `nx` and `ny` specify the number of cells along the x and y axis, respectively. The default is 3.
+
+The class then offers a range of statistical values in a similar way you know from those in `esda`, you used last time. For example, the observed $\chi^2$ statistics can be accessed using `.chi2`.
+
+```{python}
+qstat.chi2
+```
+
+And it's $p$-value, indicating significance using `chi2_pvalue`.
+
+```{python}
+qstat.chi2_pvalue
+```
+
+In our case, it is clear that the points are not evenly distributed across the cells, hence the
+point pattern is unlikely to be random. A helpful visual illustration of how the quadrat overlay works is when you plot the grid on top of the underlying point pattern.
+
+```{python}
+# | fig-cap: Quadrat statistic plot
+qstat.plot()
+```
+
+You can see that there are cells with more than 800 observations, while some others have tens or even zeros.
+
+### Ripley's functions
+
+```{python}
+convex_hull = accidents.unary_union.convex_hull
+```
+
+```{python}
+# | fig-cap: Convex hull around the point pattern
+ax = accidents.plot(markersize=0.05)
+gpd.GeoSeries([convex_hull]).plot(
+    ax=ax, facecolor="none", edgecolor="k", linestyle="--"
+)
+plt.xticks(rotation=90);
+```
+
+```{python}
+g_test = pointpats.distance_statistics.g_test(
+    accidents[["x", "y"]].values,
+    support=50,
+    keep_simulations=True,
+    hull=convex_hull,
+    n_simulations=99,
+)
+```
+
+```{python}
+# | label: fig-ripley-g
+# | fig-cap: Ripley's $G(d)$ function
+f, ax = plt.subplots()
+# plot all the simulations with very fine lines
+ax.plot(g_test.support, g_test.simulations.T, alpha=0.1, color="lightgrey")
+# and show the average of simulations
+ax.plot(
+    g_test.support,
+    np.median(g_test.simulations, axis=0),
+    color="k",
+    label="median simulation",
+    linestyle="--",
+)
+
+# and the observed pattern's G function
+ax.plot(g_test.support, g_test.statistic, label="observed", color="red")
+
+# clean up labels and axes
+ax.set_xlabel("distance")
+ax.set_ylabel("% of nearest neighbor\ndistances shorter")
+ax.legend()
+ax.set_xlim(0, 500);
+```
+
+```{python}
+np.mean(g_test.pvalue)
+```
+
+```{python}
+f_test = pointpats.distance_statistics.f_test(
+    accidents[["x", "y"]].values,
+    support=50,
+    keep_simulations=True,
+    hull=convex_hull,
+    n_simulations=99,
+)
+```
+
+
+```{python}
+# | label: fig-ripley-f
+# | fig-cap: Ripley's $F(d)$ function
+f, ax = plt.subplots()
+# plot all the simulations with very fine lines
+ax.plot(f_test.support, f_test.simulations.T, alpha=0.1, color="lightgrey")
+# and show the average of simulations
+ax.plot(
+    f_test.support,
+    np.median(f_test.simulations, axis=0),
+    color="k",
+    label="median simulation",
+    linestyle="--",
+)
+
+# and the observed pattern's G function
+ax.plot(f_test.support, f_test.statistic, label="observed", color="red")
+
+# clean up labels and axes
+ax.set_xlabel("distance")
+ax.set_ylabel("% of nearest neighbor\ndistances shorter")
+ax.legend()
+ax.set_xlim(0, 500);
+```
+
+```{python}
+np.mean(f_test.pvalue)
+```
+
+## Space-time interactions
+
+```{python}
+timestamp = pd.to_datetime(
+    accidents[["rok", "mesic", "den"]].rename(
+        columns={"rok": "year", "mesic": "month", "den": "day"}
+    )
+)
+days_since_first = (timestamp - timestamp.min()).dt.days
+days_since_first.head()
+```
+
+```{python}
+time_coords = days_since_first.values.reshape(-1, 1)
+time_coords
+```
+
+It should look like an array of spatial coordinates does:
+
+```{python}
+accidents[["x", "y"]].values
+```
+
+
+```{python}
+knox = pointpats.Knox(accidents[["x", "y"]], time_coords, delta=500, tau=100)
+```
+
+
+```{python}
+knox.statistic_
+```
+
+```{python}
+knox.p_sim
+```
