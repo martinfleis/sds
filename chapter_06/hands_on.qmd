@@ -332,7 +332,7 @@ plt.xticks(rotation=90);
 
 This allows us to limit the test to the area where something already happens.
 
-#### $G$
+#### $G$ function
 
 Ripley's $G$ is an iterative algorithm. It measures how many points have the nearest point within a threshold distance while repeatedly increasing such a threshold. A series of thresholds and counts then results in a specific curve that is compared to the curve coming from the purely random point pattern.
 
@@ -347,44 +347,51 @@ g_test = pointpats.distance_statistics.g_test(
     n_simulations=99,               # <4>
 )
 ```
-1. Practically the number of bins of the distance between neighbours. More ensures better precision of resulting curves.
+1. Practically, the number of bins of the distance between neighbours. More ensures better precision of resulting curves.
 2. Keep simulated data so you can plot them later.
 3. Limit the test only to the `convex_hull`.
 4. Number of simulations used as a baseline.
 
-The intuition behind the statistic can be built based on the plot of the $G$ values per each distance threshold, comparing the observed results with those based on simulated random point pattern.
+The intuition behind the statistic can be built based on the plot of the $G$ values per distance threshold, comparing the observed results with those based on simulated random point patterns.
 
 ```{python}
 # | label: fig-ripley-g
 # | fig-cap: Ripley's $G(d)$ function
 f, ax = plt.subplots()
-# plot all the simulations with very fine lines
-ax.plot(g_test.support, g_test.simulations.T, alpha=0.1, color="lightgrey")
-# and show the average of simulations
-ax.plot(
-    g_test.support,
-    np.median(g_test.simulations, axis=0),
-    color="k",
-    label="median simulation",
-    linestyle="--",
-)
-
-# and the observed pattern's G function
-ax.plot(g_test.support, g_test.statistic, label="observed", color="red")
-
-# clean up labels and axes
-ax.set_xlabel("distance")
-ax.set_ylabel(
-    "ratio of nearest neighbor\n"
-    "distances shorter than distance"
-)
+ax.plot(g_test.support, g_test.simulations.T, color="lightgrey")  # <1>
+ax.plot(                                    # <2>
+    g_test.support,                         # <2>
+    np.median(g_test.simulations, axis=0),  # <2>
+    color="k",                              # <2>
+    label="median simulation",              # <2>
+    linestyle="--",                         # <2>
+)                                           # <2>
+ax.plot(g_test.support, g_test.statistic, label="observed", color="red") # <3>
+ax.set_xlabel("distance [m]")               # <4>
+ax.set_ylabel(                          # <4>
+    "ratio of nearest neighbor\n"       # <4>
+    "distances shorter than distance"   # <4>
+)                                       # <4>
 ax.legend()
-ax.set_xlim(0, 500);
+ax.set_xlim(0, 500);        # <5>
 ```
+1. Plot all simulations as light grey lines. They will merge into a thicker one, indicating a range of possible random solutions.
+2. Plot the median of simulations on top.
+3. Plot the observed $G$ statistic.
+4. Label the x-axis and y-axis.
+5. Limit plot to show only distances between 0 and 500m. The rest is not interesting.
+
+The x-axis shows the distance threshold, while the y-axis shows the ratio of points whose nearest neighbour is closer than the distance. This curve resembles a sigmoid function in its shape when the point pattern is random, as illustrated by the simulations. For non-random patterns, the ratio tends to grow much quicker as points are more clustered in space, making the nearest neighbours closer than the random ones would be. Since we see this distinction clearly, we can assume that the point pattern of pedestrian accidents is spatially clustered. The available $p$-value can also back the significance of this observation.
 
 ```{python}
 np.mean(g_test.pvalue)
 ```
+
+#### $F$ function
+
+Another part of the Ripley's alphabet is the $F$ function. It is similar as $G$ in its iterative nature based on a distance threshold but instead of focusing on distances between points within a pattern, if looks at the distance to points from locations in empty space. It captures how many points can be reached within a distance from a random point pattern generated within the same extent (that is why passing the `hull` is essential).
+
+`pointpats` allows you to compute Ripley's $F$ using the `f_test` function.
 
 ```{python}
 f_test = pointpats.distance_statistics.f_test(
@@ -396,14 +403,15 @@ f_test = pointpats.distance_statistics.f_test(
 )
 ```
 
+Again, it is easier to understand the function from the plot. Patterns clustered in space tend to have larger empty spaces between their clusters, leading to a slower increase of $F$ than what would happen for a random point pattern.
+That is precisely what you can see in the figure below.
+
 
 ```{python}
 # | label: fig-ripley-f
 # | fig-cap: Ripley's $F(d)$ function
 f, ax = plt.subplots()
-# plot all the simulations with very fine lines
-ax.plot(f_test.support, f_test.simulations.T, alpha=0.1, color="lightgrey")
-# and show the average of simulations
+ax.plot(f_test.support, f_test.simulations.T, color="lightgrey")
 ax.plot(
     f_test.support,
     np.median(f_test.simulations, axis=0),
@@ -411,54 +419,89 @@ ax.plot(
     label="median simulation",
     linestyle="--",
 )
-
-# and the observed pattern's G function
 ax.plot(f_test.support, f_test.statistic, label="observed", color="red")
-
-# clean up labels and axes
 ax.set_xlabel("distance")
-ax.set_ylabel("% of nearest neighbor\ndistances shorter")
+ax.set_ylabel("ratio of points within a distance threshold")
 ax.legend()
 ax.set_xlim(0, 500);
 ```
+
+The observed curve of the $F$ function is clearly below the simulated, meaning that it increases more slowly than it should if it were a random pattern. You can conclude the same as above: the pattern is clustered. For completeness, you can check the $p$-value.
 
 ```{python}
 np.mean(f_test.pvalue)
 ```
 
+::: {.callout-caution}
+# Advanced topic
+
+The part below is optional and may not be covered in the class. It contains a slightly more advanced topic of space-time interaction, which is another type of analysis you may want to do with a point pattern that has a time dimension. Feel free
+to skip it if you don't feel it is for you.
+:::
+
 ## Space-time interactions
 
+You have now tested that the point pattern is clustered in space, i.e., that there is a spatial interaction between the points. If you have your points allocated in space **and** time, you can extend this by testing spatio-temporal interaction.
+
+You will need to derive _time coordinates_ from the three columns containing the date of the incident.
+
 ```{python}
-timestamp = pd.to_datetime(
-    accidents[["rok", "mesic", "den"]].rename(
-        columns={"rok": "year", "mesic": "month", "den": "day"}
-    )
-)
-days_since_first = (timestamp - timestamp.min()).dt.days
+timestamp = pd.to_datetime(                                         # <1>
+    accidents[["rok", "mesic", "den"]].rename(                      # <1>
+        columns={"rok": "year", "mesic": "month", "den": "day"}     # <1>
+    )                                                               # <1>
+)                                                                   # <1>
+days_since_first = (timestamp - timestamp.min()).dt.days            # <2>
 days_since_first.head()
 ```
+1. `pandas` can create a `datetime` object based on columns named `"year"`, `"month"` and `"day"`.
+2. You can then do time-based algebra on `datetime` columns and use the `.dt` accessor to retrieve the number of days since the first observations as integers.
 
-```{python}
-time_coords = days_since_first.values.reshape(-1, 1)
-time_coords
-```
-
-It should look like an array of spatial coordinates does:
+The array of time coordinates should look like an array of spatial coordinates does, just with one column:
 
 ```{python}
 accidents[["x", "y"]].values
 ```
 
+Getting `days_since_first.values` results in an incorrect shape (check it for yourself), so you need to use `numpy` to reshape it to an expected form.
+
+```{python}
+time_coords = days_since_first.values.reshape(-1, 1)  # <1>
+time_coords
+```
+1. Reshape the array from its current shape `(n,)` (1-dimensional array) to `(n, 1)` (2-dimensional array with 1 column).
+
+
+With the time coordinates ready, you can use the Knox test for spatiotemporal interaction.
 
 ```{python}
 knox = pointpats.Knox(accidents[["x", "y"]], time_coords, delta=500, tau=100)
 ```
 
+The test takes spatial coordinates, time coordinates and two parameters. `delta` is a threshold for proximity in space (use 500m), while `tau` is a threshold for proximity in time (use 100 days). Knox test then counts a number of events that are closer than `delta` in space and `tau` in time. This count is available as `.statistic_`.
 
 ```{python}
 knox.statistic_
 ```
 
+Finally, look at the pseudo-significance of this value, calculated by permuting the timestamps and re-running the statistics. In this case, the results indicate there is likely some space-time interaction between the events.
+
 ```{python}
 knox.p_sim
 ```
+
+However, be careful. Combining multiple tests (like you did with Ripley's alphabet and Quadrat statistic) before making any conclusions is always recommended.
+
+::: {.callout-tip}
+# Additional reading
+
+Have a look at the chapter
+[_Point Pattern Analysis_](https://geographicdata.science/book/notebooks/08_point_pattern_analysis.html#)
+from the Geographic Data Science with Python by @rey2023geographic for more details
+and some other extensions.
+:::
+
+## Acknowledgements {.appendix}
+
+This section loosely follows the _Point Pattern Analysis_ chapter from
+the _Geographic Data Science with Python_ by @rey2023geographic.
