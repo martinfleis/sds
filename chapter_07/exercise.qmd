@@ -15,3 +15,6 @@ format: html
 This section will contain exercise material that will appear later.
 
 :::
+
+
+- advanced = use other data from glasgow simd, standardize them and see the clusters

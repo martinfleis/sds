@@ -16,7 +16,7 @@ In the [exercise on `pandas`](../chapter_02/exercise.qmd), you have worked with 
 Scottish Index of Multiple Deprivation (SIMD). Since you learned how to work with spatial
 data later, there was no geometry assigned. That will change today.
 
-1. Download the ESRI Shapefile version of Scottish Index of Multiple Deprivation 2020 from [this link](https://spatialdata.gov.scot/geonetwork/srv/eng/catalog.search#/metadata/02866b0b-66e5-46ab-9b1c-d433dc3c2fae).
+1. Download the ESRI Shapefile version of the Scottish Index of Multiple Deprivation 2020 from [this link](https://spatialdata.gov.scot/geonetwork/srv/eng/catalog.search#/metadata/02866b0b-66e5-46ab-9b1c-d433dc3c2fae).
 2. Read it as a `GeoDataFrame` and assign a column you think would be the best as an index.
 
 Now, here's a tricky part. The dataset contains isolates. Those are geometries that do not
