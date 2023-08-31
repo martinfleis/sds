@@ -14,6 +14,10 @@ dependencies:
   - pyarrow
   - esda
   - splot
+  - xarray
+  - rioxarray
+  - datashader
+  - geocube
   # infrastructure
   - ipykernel
   - jupyter-cache

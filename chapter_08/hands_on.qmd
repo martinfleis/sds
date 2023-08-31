@@ -1,17 +1,184 @@
 ---
 title: "Population as a raster grid"
-format: html
+format:
+  html: default
+  ipynb: default
+jupyter: sds
 ---
 
-<!-- Population grids, aggregations, sampling
-
-Bonus - LISA on raster
-Bonus 2 - Xvec -->
-
-::: {.callout-note appearance="simple"}
-
-## The contents will appear later
-
-This section will contain hands-on material that will appear later.
-
+::: {.callout-caution}
+This course material is currently under construction and is likely incomplete. The final
+version will be released in October 2023.
 :::
+
+```{python}
+import datashader as ds
+import geopandas as gpd
+import rioxarray
+import xarray as xr
+import osmnx as ox
+import matplotlib.pyplot as plt
+
+from geocube.api.core import make_geocube
+```
+
+```{python}
+url = (
+    "https://jeodpp.jrc.ec.europa.eu/ftp/jrc-opendata/GHSL/"
+    "GHS_POP_GLOBE_R2023A/GHS_POP_E2030_GLOBE_R2023A_54009_100/"
+    "V1-0/tiles/GHS_POP_E2030_GLOBE_R2023A_54009_100_V1_0_R4_C20.zip"
+      )
+url
+```
+
+```{python}
+p = f"zip+{url}!GHS_POP_E2030_GLOBE_R2023A_54009_100_V1_0_R4_C20.tif"
+population = rioxarray.open_rasterio(p, masked=True)
+population
+```
+
+```{python}
+population.rio.crs
+```
+
+```{python}
+population.rio.bounds()
+```
+
+```{python}
+population.rio.nodata
+```
+
+```{python}
+canvas = ds.Canvas(plot_width=600, plot_height=600)
+agg = canvas.raster(population.where(population>0).sel(band=1))
+agg
+```
+
+```{python}
+_ = agg.plot()
+```
+
+```{python}
+url = ("https://jeodpp.jrc.ec.europa.eu/ftp/"\
+       "jrc-opendata/GHSL/"\
+       "GHS_FUA_UCDB2015_GLOBE_R2019A/V1-0/"\
+       "GHS_FUA_UCDB2015_GLOBE_R2019A_54009_1K_V1_0.zip"
+      )
+p = f"zip+{url}!GHS_FUA_UCDB2015_GLOBE_R2019A_54009_1K_V1_0.gpkg"
+fuas = gpd.read_file(p)
+budapest = fuas.query("eFUA_name == 'Budapest'").to_crs("EPSG:4326")
+```
+
+```{python}
+population_bud = population.rio.clip(budapest.to_crs(population.rio.crs).geometry)
+population_bud
+```
+
+```{python}
+population_bud.plot()
+```
+
+```{python}
+population_bud.sel(band=1)
+```
+
+```{python}
+population_bud = population_bud.squeeze()
+population_bud
+```
+
+```{python}
+population_bud.min()
+```
+
+```{python}
+population_bud.max()
+```
+
+```{python}
+population_bud.mean()
+```
+
+```{python}
+population_bud.median()
+```
+
+```{python}
+population_bud.plot.hist(bins=100)
+```
+
+```{python}
+population_bud.where(population_bud>0).plot.hist(bins=100)
+```
+
+```{python}
+url = "https://jeodpp.jrc.ec.europa.eu/ftp/jrc-opendata/GHSL/GHS_BUILT_V_GLOBE_R2023A/GHS_BUILT_V_E2030_GLOBE_R2023A_54009_100/V1-0/tiles/GHS_BUILT_V_E2030_GLOBE_R2023A_54009_100_V1_0_R4_C20.zip"
+```
+
+```{python}
+p = f"zip+{url}!GHS_BUILT_V_E2030_GLOBE_R2023A_54009_100_V1_0_R4_C20.tif"
+built_up = rioxarray.open_rasterio(p, masked=True)
+built_up
+```
+
+```{python}
+built_up_bud = built_up.rio.clip(budapest.to_crs(built_up.rio.crs).geometry)
+built_up_bud
+```
+
+```{python}
+built_up_bud.plot(cmap="magma_r")
+```
+
+```{python}
+pop_density = population_bud /  built_up_bud.squeeze()
+pop_density
+```
+
+```{python}
+pop_density.plot(cmap="cividis_r")
+```
+
+```{python}
+pop_density.rio.to_raster("population_density.tif")
+```
+
+```{python}
+admin_level_9 = ox.features_from_place("Budapest", {"admin_level":"9"})
+districts = admin_level_9[admin_level_9.geom_type == "Polygon"][["name", "name:en", "geometry"]].reset_index()
+districts["key"] = range(len(districts))
+```
+
+```{python}
+f, ax = plt.subplots()
+pop_density.plot(ax=ax)
+districts.to_crs(pop_density.rio.crs).plot(ax=ax, facecolor="none", edgecolor="red", linewidth=1, aspect=None)
+```
+
+```{python}
+districts_grid = make_geocube(
+    vector_data=districts,
+    measurements=["key"],
+    like=pop_density, # ensure the data are on the same grid
+)
+districts_grid
+```
+
+```{python}
+districts_grid.key.plot.imshow(cmap="tab20")
+```
+
+```{python}
+grouped_density = pop_density.groupby(districts_grid.key)
+```
+
+```{python}
+districts["mean_density"] = grouped_density.mean()
+```
+
+```{python}
+districts.explore("mean_density")
+```
+
+- check how to do LISA on raster https://geographicdata.science/book/notebooks/07_local_autocorrelation.html#bonus-local-statistics-on-surfaces
