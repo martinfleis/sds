@@ -531,24 +531,35 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 
-<div class="cell" data-execution_count="11">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> geopandas <span class="im">as</span> gpd</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>/var/folders/2f/fhks6w_d0k556plcv3rfmshw0000gn/T/ipykernel_94787/1259499560.py:2: DeprecationWarning: Shapely 2.0 is installed, but because PyGEOS is also installed, GeoPandas still uses PyGEOS by default. However, starting with version 0.14, the default will switch to Shapely. To force to use Shapely 2.0 now, you can either uninstall PyGEOS or set the environment variable USE_PYGEOS=0. You can do this before starting the Python process, or in your code before importing geopandas:
+
+import os
+os.environ['USE_PYGEOS'] = '0'
+import geopandas
+
+In the next release, GeoPandas will switch to using Shapely by default, even if PyGEOS is installed. If you only have PyGEOS installed to get speed-ups, this switch should be smooth. However, if you are using PyGEOS directly (calling PyGEOS functions on geometries from GeoPandas), this will then stop working and you are encouraged to migrate from PyGEOS to Shapely 2.0 (https://shapely.readthedocs.io/en/latest/migration_pygeos.html).
+  import geopandas as gpd</code></pre>
 </div>
-<div class="cell" data-execution_count="41">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>chicago_flu <span class="op">=</span> pd.read_csv(<span class="st">"tracts.csv"</span>).drop(columns<span class="op">=</span>[<span class="st">"week"</span>, <span class="st">"pop"</span>, <span class="st">"illit.r"</span>, <span class="st">"den.r"</span>])</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>deaths_total <span class="op">=</span> chicago_flu.groupby(<span class="st">"gisjoin"</span>).counts.<span class="bu">sum</span>()</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>chicago_flu <span class="op">=</span> chicago_flu[<span class="op">~</span>chicago_flu.duplicated(<span class="st">"gisjoin"</span>)].set_index(<span class="st">"gisjoin"</span>).drop(columns<span class="op">=</span><span class="st">"counts"</span>)</span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>chicago_flu[<span class="st">"influenza"</span>] <span class="op">=</span> deaths_total</span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>chicago_flu <span class="op">=</span> chicago_flu.rename(columns<span class="op">=</span>{c:c.replace(<span class="st">"."</span>, <span class="st">"_"</span>).lower() <span class="cf">for</span> c <span class="kw">in</span> chicago_flu.columns})</span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>chicago_flu.index.name <span class="op">=</span> <span class="st">"geography_code"</span></span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>chicago_flu.index <span class="op">=</span> <span class="st">"G"</span> <span class="op">+</span> chicago_flu.index.astype(<span class="st">'str'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-execution_count="2">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>chicago_flu <span class="op">=</span> pd.read_csv(<span class="st">"tracts.csv"</span>).drop(columns<span class="op">=</span>[<span class="st">"week"</span>, <span class="st">"pop"</span>, <span class="st">"illit.r"</span>, <span class="st">"den.r"</span>])</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>deaths_total <span class="op">=</span> chicago_flu.groupby(<span class="st">"gisjoin"</span>).counts.<span class="bu">sum</span>()</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>chicago_flu <span class="op">=</span> chicago_flu[<span class="op">~</span>chicago_flu.duplicated(<span class="st">"gisjoin"</span>)].set_index(<span class="st">"gisjoin"</span>).drop(columns<span class="op">=</span><span class="st">"counts"</span>)</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>chicago_flu[<span class="st">"influenza"</span>] <span class="op">=</span> deaths_total</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>chicago_flu <span class="op">=</span> chicago_flu.rename(columns<span class="op">=</span>{c:c.replace(<span class="st">"."</span>, <span class="st">"_"</span>).lower() <span class="cf">for</span> c <span class="kw">in</span> chicago_flu.columns})</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>chicago_flu.index.name <span class="op">=</span> <span class="st">"geography_code"</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>chicago_flu.index <span class="op">=</span> <span class="st">"G"</span> <span class="op">+</span> chicago_flu.index.astype(<span class="st">'str'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell" data-execution_count="36">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>chicago_flu.to_csv(<span class="st">"../../chapter_02/data/chicago_influenza_1918.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>chicago_flu.to_csv(<span class="st">"../../chapter_02/data/chicago_influenza_1918.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell" data-execution_count="42">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>chicago_flu</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="42">
+<div class="cell" data-execution_count="3">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>chicago_flu</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="3">
 <div>
 
 
@@ -757,6 +768,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>496 rows × 12 columns</p>
 </div>
 </div>
+</div>
+<div class="cell" data-execution_count="16">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>gdf <span class="op">=</span> gpd.read_file(<span class="st">"shapefile.zip"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-execution_count="17">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>gdf[<span class="st">"GISJOIN"</span>] <span class="op">=</span> <span class="st">"G"</span> <span class="op">+</span> gdf[<span class="st">"GISJOIN"</span>].astype(<span class="st">'str'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-execution_count="18">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>gdf <span class="op">=</span> gdf[[<span class="st">"GISJOIN"</span>, <span class="st">"geometry"</span>]].merge(chicago_flu, left_on<span class="op">=</span><span class="st">"GISJOIN"</span>, right_index<span class="op">=</span><span class="va">True</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-execution_count="22">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>gdf.rename(columns<span class="op">=</span>{<span class="st">"GISJOIN"</span>: <span class="st">"geography_code"</span>}).to_file(<span class="st">"../../chapter_07/data/chicago_influenza_1918.geojson"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 
 
