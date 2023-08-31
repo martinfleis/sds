@@ -15,7 +15,7 @@ This session is all about finding groups of similar observations in data using c
 techniques.
 
 Many questions and topics are complex phenomena that involve several dimensions and are
-hard to summarise into a single variable. In statistical terms, we call this family of
+hard to summarise into a single variable. In statistical terms, you call this family of
 problems *multivariate*, as opposed to *univariate* cases where only a single variable is
 considered in the analysis. Clustering tackles this kind of questions by reducing their
 dimensionality -the number of relevant variables the analyst needs to look at - and
@@ -47,11 +47,11 @@ what makes each of them particularly well suited for specific problems or types 
 
 In the case of analysing spatial data, there is a subset of methods that are of
 particular interest for many common cases in Spatial Data Science. These are the
-so-called *regionalisation* techniques. Regionalisation methods can take also many forms
+so-called *regionalisation* techniques. Regionalisation methods can also take many forms
 and faces but, at their core, they all involve statistical clustering of observations
-with the additional constraint that observations need to be geographical neighbors to be
-in the same category. Because of this, rather than category, we will use the term *area*
-for each observation and *region* for each category, hence regionalization, the
+with the additional constraint that observations need to be geographical neighbours to be
+in the same category. Because of this, rather than category, you will use the term *area*
+for each observation and *region* for each category, hence regionalisation, the
 construction of regions from smaller areas.
 
 The Python package you will use for clustering today is called `scikit-learn` and can
@@ -69,7 +69,7 @@ from sklearn import cluster
 
 In this session, you will be working with another dataset you should already
 be familiar with - the Scottish Index of Multiple Deprivation. This time, you will focus
-only on the area of Glasgow City, prepared for this course.
+only on the area of Glasgow City prepared for this course.
 
 ### Scottish Index of Multiple Deprivation
 
@@ -103,7 +103,11 @@ Inspect the structure of the table:
 simd.info()
 ```
 
-Before we jump into exploring the data, one additional step that will come in handy down the line. Not every variable in the table is an attribute that we will want for the clustering. In particular, we are interested in sub-ranks based on individual SIMD domains, so we will only consider those. Hence, let us first manually write them so they are easier to subset:
+Before you jump into exploring the data, one additional step that will come in handy
+down the line. Not every variable in the table is an attribute that you will want for
+the clustering. In particular, you are interested in sub-ranks based on individual SIMD
+domains, so you will only consider those. Hence, first manually write them so
+they are easier to subset:
 
 ```{python}
 subranks = [
@@ -117,78 +121,152 @@ subranks = [
 ]
 ```
 
-You can quickly familiarise yourself with those variables by plotting a few maps like the one below to build your intuition about what is going to happen.
+You can quickly familiarise yourself with those variables by plotting a few maps like
+the one below to build your intuition about what is going to happen.
+
 ```{python}
+#| classes: explore
 simd[["IncRankv2", "geometry"]].explore("IncRankv2", tiles="CartoDB Positron", tooltip=False)
 ```
 
-You can see a decent degree of spatial variation between different sub-ranks. Even though we only have seven variables, it is very hard to "mentally overlay" all of them to come up with an overall assessment of the nature of each part of Glasgow. For bivariate correlations, a useful tool is the correlation matrix plot, available in `seaborn`:
+You can see a decent degree of spatial variation between different sub-ranks. Even
+though you only have seven variables, it is very hard to "mentally overlay" all of them
+to come up with an overall assessment of the nature of each part of Glasgow. For
+bivariate correlations, a useful tool is the correlation matrix plot, available in
+`seaborn`:
 
 
 ```{python}
-# | fig-cap: pairplot
+# | fig-cap: Pair plot of sub-ranks
 _ = sns.pairplot(simd[subranks],height=1, plot_kws={"s":1})
 ```
 
-This is helpful to consider uni and bivariate questions such as: *what is the relationship between the ranks?* *Is health correlated with income?* However, sometimes, this is not enough and we are interested in more sophisticated questions that are truly multivariate and, in these cases, the figure above cannot help us. For example, it is not straightforward to answer questions like: *what are the main characteristics of the South of Glasgow?* *What areas are similar to the core of the city?* *Are the East and West of Glasgow similar in terms of deprivation levels?* For these kinds of multi-dimensional questions -involving multiple variables at the same time- we require a truly multidimensional method like statistical clustering.
+This is helpful to consider uni and bivariate questions such as: *what is the
+relationship between the ranks?* *Is health correlated with income?* However, sometimes,
+this is not enough and you are interested in more sophisticated questions that are truly
+multivariate and, in these cases, the figure above cannot help us. For example, it is
+not straightforward to answer questions like: *what are the main characteristics of the
+South of Glasgow?* *What areas are similar to the core of the city?* *Are the East and
+West of Glasgow similar in terms of deprivation levels?* For these kinds of
+multi-dimensional questions -involving multiple variables at the same time- you require
+a truly multidimensional method like statistical clustering.
 
 ### K-Means
 
-A cluster analysis involves the classification of the areas that make up a greographical map into groups or categories of observations that are similar within each other but different between them. The classification is carried out using a statistical clustering algorithm that takes as input a set of attributes and returns the group ("labels" in the terminology) each observation belongs to. Depending on the particular algorithm employed, additional parameters, such as the desired number of clusters employed or more advanced tuning parameters (e.g. bandwith, radius, etc.), also need to be entered as inputs. For our  classification of SIMD in Glasgow, we will start with one of the most popular clustering algorithms: K-means. This technique only requires as input the observation attributes and the final number of groups that we want it to cluster the observations into. In our case, we will use five to begin with as this will allow us to have a closer look into each of them.
+A cluster analysis involves the classification of the areas that make up a geographical
+map into groups or categories of observations that are similar within each other but
+different between them. The classification is carried out using a statistical clustering
+algorithm that takes as input a set of attributes and returns the group ("labels" in the
+terminology) each observation belongs to. Depending on the particular algorithm
+employed, additional parameters, such as the desired number of clusters employed or more
+advanced tuning parameters (e.g. bandwith, radius, etc.), also need to be entered as
+inputs. For your classification of SIMD in Glasgow, you will start with one of the most
+popular clustering algorithms: K-means. This technique only requires as input the
+observation attributes and the final number of groups that you want it to cluster the
+observations into. In your case, you will use five to begin with as this will allow us
+to have a closer look into each of them.
 
-Although the underlying algorithm is not trivial, running K-means in Python is streamlined thanks to `scikit-learn`. Similar to the extensive set of available algorithms in the library, its computation is a matter of two lines of code. First, we need to specify the parameters in the `KMeans` method (which is part of `scikit-learn`'s `cluster` submodule). Note that, at this point, we do not even need to pass the data:
+Although the underlying algorithm is not trivial, running K-means in Python is
+streamlined thanks to `scikit-learn`. Similar to the extensive set of available
+algorithms in the library, its computation is a matter of two lines of code. First, you
+need to specify the parameters in the `KMeans` method (which is part of `scikit-learn`'s
+`cluster` submodule). Note that, at this point, you do not even need to pass the data:
 
 ```{python}
 kmeans5 = cluster.KMeans(n_clusters=5, random_state=42) # <1>
 ```
 1. `n_clusters` specifies the number of clusters you want to get and `random_state` sets the random generator to a known state, ensuring that the result is always the same.
 
-This sets up an object that holds all the parameters required to run the algorithm. To actually run the algorithm on the attributes, we need to call the `fit` method in `kmeans5`:
+This sets up an object that holds all the parameters required to run the algorithm. To
+actually run the algorithm on the attributes, you need to call the `fit` method in
+`kmeans5`:
 
 ```{python}
 kmeans5.fit(simd[subranks])  # <1>
 ```
-1. `fit()` takes an array of data, therefore pass the columns of `simd` with sub-ranks and run the clustering algorithm on that.
+1. `fit()` takes an array of data; therefore, pass the columns of `simd` with sub-ranks and run the clustering algorithm on that.
 
-The `kmeans5` object now contains several components that can be useful for an analysis. For now, we will use the labels, which represent the different categories in which we have grouped the data. Remember, in Python, life starts at zero, so the group labels go from zero to four. Labels can be  extracted as follows:
+The `kmeans5` object now contains several components that can be useful for an analysis.
+For now, you will use the labels, which represent the different categories in which you
+have grouped the data. Remember, in Python, life starts at zero, so the group labels go
+from zero to four. Labels can be extracted as follows:
 
 ```{python}
 kmeans5.labels_
 ```
 
-Each number represents a different category, so two observations with the same number belong to same group. The labels are returned in the same order as the input attributes were passed in, which means we can append them to the original table of data as an additional column:
+Each number represents a different category, so two observations with the same number
+belong to the same group. The labels are returned in the same order as the input attributes
+were passed in, which means you can append them to the original table of data as an
+additional column:
 
 ```{python}
 simd["kmeans_5"] = kmeans5.labels_
 simd["kmeans_5"].head()
 ```
 
-To get a better understanding of the classification we have just performed, it is useful to display the categories created on a map. For this, we will use a unique values choropleth, which will automatically assign a different color to each category:
+It is useful to display the categories created on a map to better understand the
+classification you have just performed. For this, you will use a unique values
+choropleth, which will automatically assign a different colour to each category:
 
 ```{python}
 simd[["kmeans_5", 'geometry']].explore("kmeans_5", categorical=True, tiles="CartoDB Positron")
 ```
 
-The map above represents the geographical distribution of the five categories created by the K-means algorithm. A quick glance shows a strong spatial structure in the distribution of the colours: group 3 (grey) is mostly in central areas and towards the west, group 1 (green) covers peripheries and so on, but not all clusters are equally represented.
+The map above represents the geographical distribution of the five categories created by
+the K-means algorithm. A quick glance shows a strong spatial structure in the
+distribution of the colours: group 3 (grey) is mostly in central areas and towards the
+west, group 1 (green) covers peripheries and so on, but not all clusters are equally
+represented.
+
+::: {.callout-warning}
+# Not all data can go to clustering in their raw form
+
+Clustering, as well as many other statistical methods, often depends on pairwise distances
+between observations based on the variables passed. That has, in practice, serious implications
+on what can be used. For example, you cannot use one variable that is limited to a range between
+0 and 1 and another that stretches from 0 to 100 000. The latter would dominate the distance
+and the former would have negligible effect on the results. For these reasons, the data
+usually need to be standardised in some way. See the [_Data_ section](https://geographicdata.science/book/notebooks/10_clustering_and_regionalization.html#data) of
+the chapter
+[_Clustering and Regionalization_](https://geographicdata.science/book/notebooks/10_clustering_and_regionalization.html)
+from the Geographic Data Science with Python by @rey2023geographic for more details.
+
+In this case, all the sub-ranks are defined the same way so you don't need any standardisation.
+:::
 
 ### Exploring the nature of the categories
 
-Once we have a sense of where and how the categories are distributed over space, it is also useful to explore them statistically. This will allow us to characterize them, giving us an idea of the kind of observations subsumed into each of them. As a first step, let us find how many observations are in each category. To do that, we will make use of the `groupby` operator introduced before, combined with the function `size`, which returns the number of elements in a subgroup:
+Once you have a sense of where and how the categories are distributed over space, it is
+also useful to explore them statistically. This will allow you to characterise them,
+giving you an idea of the kind of observations subsumed into each of them. As a first
+step, find how many observations are in each category. To do that, you will make
+use of the `groupby` operator introduced before, combined with the function `size`,
+which returns the number of elements in a subgroup:
 
 ```{python}
 k5sizes = simd.groupby('kmeans_5').size()
 k5sizes
 ```
 
-The `groupby` operator groups a table (`DataFrame`) using the values in the column provided (`kmeans_5`) and passes them onto the function provided aftwerards, which in this case is `size`. Effectively, what this does is to groupby the observations by the categories created and count how many of them each contains. For a more visual representation of the output, a bar plot is a good alternative:
+The `groupby` operator groups a table (`DataFrame`) using the values in the column
+provided (`kmeans_5`) and passes them onto the function provided aftwerards, which in
+this case is `size`. Effectively, what this does is to groupby the observations by the
+categories created and count how many of them each contains. For a more visual
+representation of the output, a bar plot is a good alternative:
 
 ```{python}
 _ = k5sizes.plot.bar()
 ```
 
-As we suspected from the map, groups vary in sizes, with group 2 having over 200 observations, groups 0, 1 and 4 over 100 and a group 3 having 74 observations.
+As you suspected from the map, groups vary in size, with group 2 having over 200
+observations, groups 0, 1 and 4 over 100 and a group 3 having 74 observations.
 
-In order to describe the nature of each category, we can look at the values of each of the attributes we have used to create them in the first place. Remember we used the sub-ranks on many aspects of deprivation to create the classification, so we can begin by checking the average value of each. To do that in Python, we will rely on the `groupby` operator which we will combine it with the function `mean`:
+In order to describe the nature of each category, you can look at the values of each of
+the attributes you have used to create them in the first place. Remember you used the
+sub-ranks on many aspects of deprivation to create the classification, so you can begin
+by checking the average value of each. To do that in Python, you will rely on the
+`groupby` operator which you will combine with the function `mean`:
 
 ```{python}
 k5_means = simd.groupby('kmeans_5')[subranks].mean()  # <1>
@@ -197,78 +275,201 @@ k5_means.T  # <2>
 1. Use `groupby` to calculate mean per each sub-rank.
 2. Transpose the table so it is not too wide
 
-When interpreting the values, remember that lower value represents higher deprivation. While the results seem plausible and there are ways of interpreting them, we haven't used any spatial methods.
+When interpreting the values, remember that a lower value represents higher deprivation.
+While the results seem plausible and there are ways of interpreting them, you haven't
+used any spatial methods.
 
 ## Spatially-lagged clustering
-- K-Means + lag
+
+K-means (in its standard implementation) does not have a way of including of spatial
+restriction. However, it is still a very powerful and efficient algorithm and it would
+be a shame not to make a use of it when dealing with spatial data. To include spatial
+dimension in (nearly any) non-spatial model, you can use spatially lagged variables.
+Instead of passing in only the variables observed in each data zone, you also pass in
+their spatial lags. Due to the nature of the spatial lag, this encodes a certain degree
+of spatial contiguity into data that are being clustered, often resulting in spatially
+more homogenous areas.
+
+Start with building a queen contiguity weights matrix.
 
 ```{python}
 queen = graph.Graph.build_contiguity(simd)
 ```
 
+As always, you will need a row-standardised matrix.
+
 ```{python}
 queen_row = queen.transform("R")
 ```
 
+You need a lagged version of each of the sub-ranks as its own, new column. You can loop
+through the `subranks` list and create them one by one, using a basic _for loop_.
+
 ```{python}
-for column in subranks:
-    simd[column + "_lag"] = queen_row.lag(simd[column])
+for column in subranks:                                 # <1>
+    simd[column + "_lag"] = queen_row.lag(simd[column]) # <2>
 ```
+1. For loop picks an item form `subranks`, assigns it to a `column` variable and runs the code inside the loop. Then it picks the second item from the list and runs the code again, with the second item as `column`. And so on until it covers the whole _iterable_ item.
+2. In the first pass, `column` contains `"IncRankv2"`, so create a column called `"IncRankv2_lag"` with a spatial lag.
+
+You can check that the `simd` table now has new columns.
 
 ```{python}
 simd.info()
 ```
 
-```{python}
-subranks_lag = [column + "_lag" for column in subranks]
-subranks_lag
-```
+Let's create a list of these new columns.
 
 ```{python}
-subranks_spatial = subranks + subranks_lag
+subranks_lag = [column + "_lag" for column in subranks]  # <1>
+subranks_lag
+```
+1. This is also a for loop but in the form of a list comprehension. The whole loop is there to fill the values of the list.
+
+Now, combine the list of original variables and those with a lag to make it easier to
+pass the data to K-means.
+
+```{python}
+subranks_spatial = subranks + subranks_lag  # <1>
 subranks_spatial
 ```
+1. With arrays like `pandas.Series`, this would perform element-wise addition. With `list`s, this combines them together.
+
+Initialise a new clustering model.
 
 ```{python}
 kmeans5_lag = cluster.KMeans(n_clusters=5, random_state=42)
 ```
 
+And run it using the new subset, adding lagged variables on top of the original ones.
+
 ```{python}
 kmeans5_lag.fit(simd[subranks_spatial])
 ```
+
+Assing the result as a column.
 
 ```{python}
 simd["kmeans_5_lagged"] = kmeans5_lag.labels_
 ```
 
+And explore as a map.
+
 ```{python}
 simd[["kmeans_5_lagged", 'geometry']].explore("kmeans_5_lagged", categorical=True, tiles="CartoDB Positron")
 ```
 
+Comparing the spatially-lagged clusters with the original results shows that the new
+clusters are much more homogenous spatially, delineating relatively compact regions of
+data zones.
+
+As you have seen, the essence of this approach is to group areas based on a purely
+statistical basis: *where* each area is located is irrelevant for the label it receives
+from the clustering algorithm. In many contexts, this is not only permissible but even
+desirable, as the interest is to see if particular combinations of values are
+distributed over space in any discernible way. However, in other contexts, you may be
+interested in creating groups of observations that follow certain spatial constraints.
+For that, you now turn to regionalisation techniques.
+
 ## Spatially-constrained clustering (regionalisation)
-- Agglomerative - weights constraint
+
+Regionalisation is the subset of clustering techniques that impose a spatial constraint
+on the classification. In other words, the result of a regionalisation algorithm
+contains areas that are spatially contiguous. While spatially lagged clustering may
+result in contiguous areas, it does not enforce them. Regionalisation does. Effectively,
+what this means is that these techniques aggregate areas into a smaller set of larger
+ones, called regions. In this context, then, areas are *nested* within regions.
+Real-world examples of this phenomenon include counties within states or, in Scotland,
+data zones (`DZName`) into Local Authorities (`LAName`). The difference between those
+examples and the output of a regionalisation algorithm is that while the former are
+aggregated based on administrative principles, the latter follows a statistical
+technique that, very much the same as in the standard statistical clustering, groups
+together areas that are similar on the basis of a set of attributes. Only now, such
+statistical clustering is spatially constrained.
+
+As in the non-spatial case, there are many different algorithms to perform
+regionalization, and they all differ on details relating to the way they measure
+(dis)similarity, the process to regionalize, etc. However, same as above too, they all
+share a few common aspects. In particular, they all take a set of input attributes *and*
+a representation of space in the form of a binary spatial weights matrix. Depending on
+the algorithm, they also require the desired number of output regions into which the
+areas are aggregated.
+
+To illustrate these concepts, you will run a regionalisation algorithm on the SIMD data
+you have been using. In this case, the goal will be to delineate regions of similar
+levels of deprivation. In this way, the resulting regions will represent a consistent
+set of areas that are similar to each other in terms of the SIMD sub-ranks received.
+
+At this point, you have all the pieces needed to run a regionalisation algorithm since
+you have already created a queen contiguity matrix above. For this example, you will use
+a spatially-constrained version of the agglomerative algorithm. This is a similar
+approach to that used above (the inner workings of the algorithm are different, however)
+with the difference that, in this case, observations can only be labelled in the same
+group if they are spatial neighbours, as defined by your spatial weights matrix `queen`.
+The way to interact with the algorithm is very similar to that above. You first set the
+parameters:
 
 ```{python}
-agg5 = cluster.AgglomerativeClustering(n_clusters=5, connectivity=queen.sparse)
+agg5 = cluster.AgglomerativeClustering(n_clusters=5, connectivity=queen.sparse)  # <1>
 ```
+1. `scikit-learn` expects the connectivity graph as a sparse array, rather than a `libpysal.Graph`.
+
+And you can run the algorithm by calling `fit`:
 
 ```{python}
 agg5.fit(simd[subranks])
 ```
 
-```{python}
-simd["agg_5_lagged"] = agg5.labels_
-```
+And then you append the labels to the table in the same way as before:
 
 ```{python}
-simd[["agg_5_lagged", 'geometry']].explore("agg_5_lagged", categorical=True, tiles="CartoDB Positron")
+simd["agg_5"] = agg5.labels_
 ```
 
+At this point, the column `agg_5` is no different than `kmeans_5`: a categorical
+variable that can be mapped into a unique values choropleth. In fact, the following code
+snippet is exactly the same as before, only replacing the name of the variable to be
+mapped and the title:
+
 ```{python}
-simd_regions = simd[["agg_5_lagged", "geometry"]].dissolve("agg_5_lagged")
+simd[["agg_5", 'geometry']].explore("agg_5", categorical=True, tiles="CartoDB Positron")
+```
+
+### Extracting the region boundaries
+
+With this result, you may want to extract the boundaries of the regions, rather than
+labels of individual data zones. To create the new boundaries "properly", you need to
+dissolve all the polygons in each category into a single one. This is a standard GIS
+operation that is supported by `geopandas`.
+
+```{python}
+simd_regions = simd[["agg_5", "geometry"]].dissolve("agg_5")    # <1>
 simd_regions
 ```
+1. If you are interested only in the boundaries, you can select just the two relevant
+   colunms and dissolve geoemtries by values in the `"agg_5"` column. This uses
+   `groubpy` under the hood, so you can potentially also aggregate other variables. See
+   the
+   [documentation](https://geopandas.org/en/stable/docs/user_guide/aggregation_with_dissolve.html)
+   on how.
+
 
 ```{python}
-simd_regions.reset_index().explore("agg_5_lagged", categorical=True, tiles="CartoDB Positron")
+simd_regions.reset_index().explore("agg_5", categorical=True, tiles="CartoDB Positron")
 ```
+
+::: {.callout-tip}
+# Additional reading
+
+Have a look at the chapter
+[_Clustering and Regionalization_](https://geographicdata.science/book/notebooks/10_clustering_and_regionalization.html)
+from the Geographic Data Science with Python by @rey2023geographic for more details
+and some other extensions.
+
+:::
+
+## Acknowledgements {.appendix}
+
+This section is derived from _A Course on Geographic Data Science_ by
+@darribas_gds_course, licensed under CC-BY-SA 4.0. The code was updated. The text was slightly adapted
+to accommodate a different dataset, the module change, and the inclusion of spatially lagged K-means.
