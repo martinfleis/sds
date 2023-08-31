@@ -18,6 +18,7 @@ dependencies:
   - rioxarray
   - datashader
   - geocube
+  - osmnx
   # infrastructure
   - ipykernel
   - jupyter-cache
