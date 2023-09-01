@@ -58,7 +58,7 @@ aligned_b = b.rio.reproject_match(a)
 
 # Optional extension
 
-If you have time, you can additionally figure out the average population per district in Mombasa. Those are in OpenStreetMap as admin_level==6.
+If you have time, you can also figure out how many buildings are per district in Mombasa. Those are in OpenStreetMap as admin_level==6.
 
 :::
 
