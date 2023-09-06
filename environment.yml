@@ -19,6 +19,9 @@ dependencies:
   - datashader
   - geocube
   - osmnx
+  - xvec
+  - tobler
+  - h3-py
   # infrastructure
   - ipykernel
   - jupyter-cache

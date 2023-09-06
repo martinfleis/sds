@@ -1,15 +1,10 @@
 ---
 title: "Creating new data"
-format: html
+format:
+  html: default
+  ipynb: default
+jupyter: sds
 ---
-
-<!-- - Nearby counts
-- Spatial join
-- Nearest join
-- Sampling from rasters
-- Point Interpolation
-- Areal interpolation
-- Clustering as feature eng -->
 
 ::: {.callout-note appearance="simple"}
 
@@ -18,3 +13,280 @@ format: html
 This section will contain hands-on material that will appear later.
 
 :::
+
+
+```{python}
+import geopandas as gpd
+import osmnx
+import rioxarray
+import tobler
+import xarray as xr
+import xvec
+
+from libpysal import graph
+from sklearn import neighbors
+```
+
+## Map matching
+
+### Nearest join
+
+```{python}
+simd = gpd.read_file("data/edinburgh_simd_2020.gpkg")
+simd.geometry.explore()
+```
+```{python}
+extent = simd.to_crs(4326).unary_union
+pois = osmnx.features_from_polygon(extent, tags={"amenity": ["restaurant", "bar"]})
+pois.head(2)
+```
+
+```{python}
+pois = pois.reset_index()[
+    [
+        "osmid",
+        "amenity",
+        "name",
+        "geometry",
+    ]
+].to_crs(simd.crs)
+pois.head(2)
+```
+
+```{python}
+pois.explore("amenity", tiles="CartoDB Positron")
+```
+
+```{python}
+airbnb = gpd.read_file("data/edinburgh_airbnb_2023.gpkg")
+```
+
+```{python}
+airbnb.price.head()
+```
+
+```{python}
+airbnb["price_float"] = airbnb.price.str.strip("$").str.replace(",", "").astype(float)
+```
+
+```{python}
+two_bed_homes = airbnb[
+    (airbnb["bedrooms"] == 2)
+    & (airbnb["property_type"] == "Entire rental unit")
+    & (airbnb["price_float"] < 300)
+].copy()
+two_bed_homes.head()
+```
+
+```{python}
+airbnb_pubs = two_bed_homes.sjoin_nearest(pois, how="left", max_distance=100)
+airbnb_pubs.head()
+```
+
+```{python}
+airbnb_pubs_unlimited = two_bed_homes.sjoin_nearest(
+    pois, how="left", max_distance=None, distance_col="distance"
+)
+airbnb_pubs_unlimited.head()
+```
+
+```{python}
+airbnb_pubs_unlimited.explore("distance", tiles="CartoDB Positron", scheme="naturalbreaks")
+```
+
+### Count nearby features
+
+```{python}
+pois_buffered = pois.set_geometry(pois.buffer(500))
+pois_buffered.head()
+```
+
+```{python}
+within_buffer = two_bed_homes.sjoin(pois_buffered)
+```
+
+```{python}
+counts = within_buffer.groupby("id")["osmid"].count()
+counts.head()
+```
+
+```{python}
+airbnb_w_count = two_bed_homes.merge(counts, on="id")
+airbnb_w_count.head()
+```
+
+```{python}
+airbnb_w_count.explore("osmid", tiles="CartoDB Positron")
+```
+
+### Extract from a raster
+
+```{python}
+population = rioxarray.open_rasterio("data/edinburgh_population.tif", masked=True).squeeze()
+population
+```
+
+```{python}
+population.plot()
+```
+
+```{python}
+pop_cube = population.drop_vars(["band", "spatial_ref"]).xvec.extract_points(
+    two_bed_homes.geometry, "x", "y"
+)
+pop_cube.name = "population"
+pop_cube
+```
+
+```{python}
+pop = pop_cube.xvec.to_geodataframe()
+pop.head()
+```
+
+```{python}
+pop.explore("population", tiles="CartoDB Positron")
+```
+
+```{python}
+two_bed_homes["population"] = pop.population
+```
+
+### Area interpolation
+
+```{python}
+simd = gpd.read_file("data/edinburgh_simd_2020.gpkg")
+```
+
+```{python}
+grid = tobler.util.h3fy(simd, resolution=8)
+grid.head(2)
+```
+
+```{python}
+ax = simd.boundary.plot(linewidth=.5)
+grid.boundary.plot(ax=ax, color="red", linewidth=.5)
+```
+
+```{python}
+interpolated = tobler.area_weighted.area_interpolate(
+    simd,
+    grid,
+    extensive_variables=["EmpNumDep", "IncNumDep"],
+    intensive_variables=["EmpRate", "IncRate"],
+)
+```
+
+```{python}
+interpolated.explore("EmpRate", tiles="CartoDB Positron")
+```
+
+```{python}
+simd[["EmpRate", "geometry"]].explore("EmpRate", tiles="CartoDB Positron")
+```
+
+### Point interpolation
+
+```{python}
+two_bed_homes.explore("price_float", tiles="CartoDB Positron")
+```
+
+```{python}
+interrpolation_model = neighbors.KNeighborsRegressor(n_neighbors=10, weights="distance")
+```
+
+```{python}
+coords = two_bed_homes.get_coordinates()
+coords.head()
+```
+
+```{python}
+interrpolation_model.fit(
+    coords, two_bed_homes.price_float
+)
+```
+
+```{python}
+grid_coordinates = grid.centroid.get_coordinates()
+grid_coordinates.head()
+```
+
+```{python}
+price_on_grid = interrpolation_model.predict(grid_coordinates)
+```
+
+```{python}
+grid["price"] = price_on_grid
+```
+
+```{python}
+grid.explore("price", tiles="CartoDB Positron")
+```
+
+::: {.callout-tip}
+
+https://docs.scipy.org/doc/scipy/reference/generated/scipy.interpolate.griddata.html
+
+https://pyinterpolate.readthedocs.io/en/stable/index.html
+:::
+
+text here
+
+## Map synthesis
+
+### Count neighbours
+
+```{python}
+distance_500 = graph.Graph.build_distance_band(two_bed_homes, 500)
+```
+
+```{python}
+distance_500.cardinalities.head()
+```
+
+```{python}
+two_bed_homes["within 500m"] = distance_500.cardinalities
+```
+
+```{python}
+two_bed_homes.explore("within 500m", tiles="CartoDB Positron")
+```
+
+### Lagged variables
+
+```{python}
+distance_500_row = distance_500.transform("r")
+```
+
+```{python}
+two_bed_homes["price_lag"] = distance_500_row.lag(two_bed_homes.price_float)
+```
+
+```{python}
+two_bed_homes.explore("price_lag", tiles="CartoDB Positron")
+```
+
+```{python}
+distance_500_row[3].head()
+```
+
+```{python}
+distance_500_gaussian = graph.Graph.build_distance_band(two_bed_homes, 500, binary=False)
+```
+
+```{python}
+distance_500_gaussian[3].head()
+```
+
+```{python}
+distance_500_gaussian.transform("r")[3].head()
+```
+
+```{python}
+two_bed_homes["price_lag_w"] = distance_500_gaussian.transform("r").lag(
+    two_bed_homes.price_float
+)
+```
+
+```{python}
+two_bed_homes.head()
+```
