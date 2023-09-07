@@ -144,18 +144,6 @@ of a specific neighbour, `Zderaz` for example, you can do recursive querying:
 queen['Albertov']['Zderaz']
 ```
 
-`Graph` objects also have a direct way to provide a list of all the neighbors or their
-weights for a given observation. This is thanks to the `get_neighbors` and `get_weights`
-methods:
-
-```{python}
-queen.get_neighbors('Albertov')
-```
-
-```{python}
-queen.get_weights('Albertov')
-```
-
 Once created, `Graph` objects can provide much information about the matrix beyond the
 basic attributes one would expect. You have direct access to the number of neighbours each
 observation has via the attribute `cardinalities`. For example, to find out how many
@@ -216,7 +204,7 @@ its polygon as well as those of its neighbours:
 
 ```{python}
 #| classes: explore
-m = prague.loc[queen.get_neighbors('Albertov')].explore(color="#25b497")
+m = prague.loc[queen['Albertov'].index].explore(color="#25b497")
 prague.loc[['Albertov']].explore(m=m, color="#fa94a5")
 ```
 

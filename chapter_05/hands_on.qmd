@@ -190,13 +190,13 @@ For the purpose of illustration, you can, in fact, check this is correct by quer
 spatial weights matrix to find out Abertamy's neighbours:
 
 ```{python}
-contiguity_r.get_neighbors('Abertamy')
+contiguity_r['Abertamy']
 ```
 
 And then checking their values:
 
 ```{python}
-neis = elections.loc[contiguity_r.get_neighbors('Abertamy'), "Petr Pavel"]
+neis = elections.loc[contiguity_r['Abertamy'].index, "Petr Pavel"]
 neis
 ```
 
