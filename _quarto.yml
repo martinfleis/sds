@@ -9,7 +9,7 @@ lang: en
 
 execute:
   freeze: false
-  cache: false
+  cache: true
 
 format:
   html:
