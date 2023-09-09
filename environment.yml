@@ -27,5 +27,5 @@ dependencies:
   - jupyter-cache
   - pip
   - pip:
-      - git+https://github.com/pysal/libpysal.git@geographs
+      - git+https://github.com/pysal/libpysal.git@main
       - git+https://github.com/sjsrey/pointpats.git@knox
