@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Spatial Data Science for Social Geography - Regression and geography</title>
+<title>Spatial Data Science for Social Geography - Classification and regression</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -68,7 +68,7 @@ ul.task-list li input[type="checkbox"] {
 
 
 <link rel="stylesheet" href="../assets/styles.css">
-<meta name="twitter:title" content="Spatial Data Science for Social Geography - Regression and geography">
+<meta name="twitter:title" content="Spatial Data Science for Social Geography - Classification and regression">
 <meta name="twitter:card" content="summary">
 </head>
 
@@ -81,7 +81,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../chapter_11/concepts.html">Regression</a></li><li class="breadcrumb-item"><a href="../chapter_11/hands_on.html">Regression and geography</a></li></ol></nav>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../chapter_11/concepts.html">Machine learning</a></li><li class="breadcrumb-item"><a href="../chapter_11/hands_on.html">Classification and regression</a></li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -372,7 +372,7 @@ ul.task-list li input[type="checkbox"] {
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-10" aria-expanded="false">
- <span class="menu-text">Inequality</span></a>
+ <span class="menu-text">Interpolation</span></a>
           <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-10" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -381,19 +381,19 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapter_09/concepts.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Where is equal?</span></a>
+ <span class="menu-text">Use space in your favour</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapter_09/hands_on.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Spatial Inequality Dynamics</span></a>
+ <span class="menu-text">Spatial interpolation</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapter_09/exercise.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Locating inequality</span></a>
+ <span class="menu-text">What is in between?</span></a>
   </div>
 </li>
       </ul>
@@ -401,7 +401,7 @@ ul.task-list li input[type="checkbox"] {
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-11" aria-expanded="false">
- <span class="menu-text">Feature engineering</span></a>
+ <span class="menu-text">Regression</span></a>
           <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-11" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -410,19 +410,19 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapter_10/concepts.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Use space in your favour</span></a>
+ <span class="menu-text">Relationship and prediction</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapter_10/hands_on.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Creating new data</span></a>
+ <span class="menu-text">Regression and geography</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapter_10/exercise.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Interpolation and friends</span></a>
+ <span class="menu-text">Fit that model</span></a>
   </div>
 </li>
       </ul>
@@ -430,7 +430,7 @@ ul.task-list li input[type="checkbox"] {
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-12" aria-expanded="true">
- <span class="menu-text">Regression</span></a>
+ <span class="menu-text">Machine learning</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-12" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -439,47 +439,18 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapter_11/concepts.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Relationship and prediction</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../chapter_11/hands_on.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text">Regression and geography</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../chapter_11/exercise.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Fit that model</span></a>
-  </div>
-</li>
-      </ul>
-  </li>
-        <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-13" aria-expanded="false">
- <span class="menu-text">Machine learning</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-13" aria-expanded="false" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-13" class="collapse list-unstyled sidebar-section depth1 ">  
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../chapter_12/concepts.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Is there space in machine learning?</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../chapter_12/hands_on.html" class="sidebar-item-text sidebar-link">
+  <a href="../chapter_11/hands_on.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Classification and regression</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../chapter_12/exercise.html" class="sidebar-item-text sidebar-link">
+  <a href="../chapter_11/exercise.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Predict future</span></a>
   </div>
 </li>
@@ -498,7 +469,7 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Regression and geography</h1>
+<h1 class="title">Classification and regression</h1>
 </div>
 
 
@@ -513,11 +484,9 @@ ul.task-list li input[type="checkbox"] {
 
 </header>
 
-<!-- - non-spatial regression
-- GWR
-- feature eng
-- spatial heterogeneiry
-- spatial dependence -->
+<!-- - scikit-learn classification
+- scikit-learn regression
+- spatial component -->
 <div class="callout callout-style-simple callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -886,12 +855,12 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
       <a href="../chapter_11/concepts.html" class="pagination-link">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Relationship and prediction</span>
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Is there space in machine learning?</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
       <a href="../chapter_11/exercise.html" class="pagination-link">
-        <span class="nav-page-text">Fit that model</span> <i class="bi bi-arrow-right-short"></i>
+        <span class="nav-page-text">Predict future</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
