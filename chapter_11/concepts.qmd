@@ -1,24 +1,13 @@
 ---
-title: "Relationship and prediction"
+title: "Is there space in machine learning?"
 format: html
 ---
 
-<!-- - non-spatial regression
-- GWR
-- MGWR -->
+<!-- - intro to supervised ML -->
 
 ::: {.callout-note appearance="simple"}
 
 ## The contents will appear later
 
 This section will cover the lecture delivered as part of the in-person course. Slides will appear here shortly before the lesson, followed by the summary of the contents in the days after, based on the lecture transcript.
-
-Have a look at the related reading in the meantime.
-
-:::
-
-::: {.callout-tip}
-## Related reading
-
-Chapter [_Spatial Regression_](https://geographicdata.science/book/notebooks/11_regression.html) from the Geographic Data Science with Python by @rey2023geographic.
 :::

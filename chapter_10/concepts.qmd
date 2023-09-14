@@ -1,12 +1,11 @@
 ---
-title: "Use space in your favour"
+title: "Relationship and prediction"
 format: html
 ---
-<!--
-- Feature engineering intro
-- Non-spatial feature eng
-- Map matching
-- Map synthesis -->
+
+<!-- - non-spatial regression
+- GWR
+- MGWR -->
 
 ::: {.callout-note appearance="simple"}
 
@@ -21,5 +20,5 @@ Have a look at the related reading in the meantime.
 ::: {.callout-tip}
 ## Related reading
 
-Chapter [_Spatial Feature Engineering_](https://geographicdata.science/book/notebooks/12_feature_engineering.html) from the Geographic Data Science with Python by @rey2023geographic.
+Chapter [_Spatial Regression_](https://geographicdata.science/book/notebooks/11_regression.html) from the Geographic Data Science with Python by @rey2023geographic.
 :::

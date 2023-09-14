@@ -22,6 +22,7 @@ dependencies:
   - xvec
   - tobler
   - h3-py
+  - pyinterpolate
   # infrastructure
   - ipykernel
   - jupyter-cache

@@ -1,10 +1,12 @@
 ---
-title: "Where is equal?"
+title: "Use space in your favour"
 format: html
 ---
-
-<!-- Introduction of inequality
-Global inequality, spaital inequality -->
+<!--
+- Feature engineering intro
+- Non-spatial feature eng
+- Map matching
+- Map synthesis -->
 
 ::: {.callout-note appearance="simple"}
 
@@ -19,5 +21,5 @@ Have a look at the related reading in the meantime.
 ::: {.callout-tip}
 ## Related reading
 
-Chapter [_Spatial Inequality Dynamics_](https://geographicdata.science/book/notebooks/09_spatial_inequality.html) from the Geographic Data Science with Python by @rey2023geographic.
+Chapter [_Spatial Feature Engineering_](https://geographicdata.science/book/notebooks/12_feature_engineering.html) from the Geographic Data Science with Python by @rey2023geographic.
 :::

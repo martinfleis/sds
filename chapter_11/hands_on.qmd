@@ -1,13 +1,11 @@
 ---
-title: "Regression and geography"
+title: "Classification and regression"
 format: html
 ---
 
-<!-- - non-spatial regression
-- GWR
-- feature eng
-- spatial heterogeneiry
-- spatial dependence -->
+<!-- - scikit-learn classification
+- scikit-learn regression
+- spatial component -->
 
 ::: {.callout-note appearance="simple"}
 

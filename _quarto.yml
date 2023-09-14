@@ -90,25 +90,19 @@ website:
           - chapter_08/concepts.qmd
           - chapter_08/hands_on.qmd
           - chapter_08/exercise.qmd
-      - section: "Inequality"
+      - section: "Interpolation"
         contents:
           - chapter_09/concepts.qmd
           - chapter_09/hands_on.qmd
           - chapter_09/exercise.qmd
-      - section: "Feature engineering"
+      - section: "Regression"
         contents:
           - chapter_10/concepts.qmd
           - chapter_10/hands_on.qmd
           - chapter_10/exercise.qmd
-      - section: "Regression"
+      - section: "Machine learning"
         contents:
           - chapter_11/concepts.qmd
           - chapter_11/hands_on.qmd
           - chapter_11/exercise.qmd
-      - section: "Machine learning"
-        contents:
-          - chapter_12/concepts.qmd
-          - chapter_12/hands_on.qmd
-          - chapter_12/exercise.qmd
-
 

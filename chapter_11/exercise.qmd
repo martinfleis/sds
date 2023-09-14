@@ -1,9 +1,9 @@
 ---
-title: "Fit that model"
+title: "Predict future"
 format: html
 ---
 
-<!-- different data, similar tasks -->
+<!-- Playing with scikit-learn. -->
 
 ::: {.callout-note appearance="simple"}
 

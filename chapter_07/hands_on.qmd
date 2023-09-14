@@ -76,7 +76,9 @@ only on the area of Glasgow City prepared for this course.
 As always, the table can be read from the site:
 
 ```{python}
-simd = gpd.read_file("data/glasgow_simd_2020.gpkg")
+simd = gpd.read_file(
+    "https://martinfleischmann.net/sds/chapter_07/data/glasgow_simd_2020.gpkg"
+)
 ```
 
 ::: {.callout-note collapse="true"}

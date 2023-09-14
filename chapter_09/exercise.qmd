@@ -1,7 +1,9 @@
 ---
-title: "Locating inequality"
+title: "What is in between?"
 format: html
 ---
+
+<!-- Similar tasks on different data -->
 
 ::: {.callout-note appearance="simple"}
 
@@ -10,3 +12,5 @@ format: html
 This section will contain exercise material that will appear later.
 
 :::
+
+<!-- test how KNeighborsRegressor differs when changing K -->

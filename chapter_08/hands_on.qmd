@@ -55,7 +55,9 @@ import geopandas as gpd
 import rioxarray
 import xarray as xr
 import osmnx as ox
+import pandas as pd
 import matplotlib.pyplot as plt
+import xvec
 
 from geocube.api.core import make_geocube
 ```
@@ -166,12 +168,12 @@ geometries.
 
 ```{python}
 #| classes: explore
-pop_url = (
+fua_url = (
     "https://jeodpp.jrc.ec.europa.eu/ftp/jrc-opendata/GHSL/" # <1>
     "GHS_FUA_UCDB2015_GLOBE_R2019A/V1-0/" # <1>
     "GHS_FUA_UCDB2015_GLOBE_R2019A_54009_1K_V1_0.zip" # <1>
 ) # <1>
-p = f"zip+{pop_url}!GHS_FUA_UCDB2015_GLOBE_R2019A_54009_1K_V1_0.gpkg" # <2>
+p = f"zip+{fua_url}!GHS_FUA_UCDB2015_GLOBE_R2019A_54009_1K_V1_0.gpkg" # <2>
 fuas = gpd.read_file(p) # <3>
 budapest = fuas.query("eFUA_name == 'Budapest'") # <4>
 budapest.explore()
@@ -215,7 +217,7 @@ But if you have only one band, you can _squeeze_ the array and get rid of that d
 that is not needed.
 
 ```{python}
-population_bud = population_bud.squeeze()
+population_bud = population_bud.drop_vars("band").squeeze()
 population_bud
 ```
 
@@ -243,7 +245,7 @@ Mean is, however, only below 7.
 population_bud.median()
 ```
 
-While the median is 0. There are a lot of cells with 0.
+While the median is 0, there are a lot of cells with 0.
 
 ::: {.callout-tip}
 # DataArray vs scalar
@@ -291,7 +293,7 @@ All work the same as before. You read the GeoTIFF as a `DataArray`.
 
 ```{python}
 p = f"zip+{volume_url}!GHS_BUILT_V_E2030_GLOBE_R2023A_54009_100_V1_0_R4_C20.tif"
-built_up = rioxarray.open_rasterio(p, masked=True)
+built_up = rioxarray.open_rasterio(p, masked=True).drop_vars("band").squeeze()
 built_up
 ```
 
@@ -302,7 +304,7 @@ built_up_bud = built_up.rio.clip(budapest.to_crs(built_up.rio.crs).geometry)
 built_up_bud
 ```
 
-You can quickly check how does it look like.
+You can quickly check what it looks like.
 
 ```{python}
 # | fig-cap: Built-up volume
@@ -314,7 +316,7 @@ same area. This allows us to directly perform array algebra. Again, you know thi
 `pandas`.
 
 ```{python}
-pop_density = population_bud /  built_up_bud.squeeze()  # <1>
+pop_density = population_bud /  built_up_bud  # <1>
 pop_density
 ```
 1. Divide the population by built-up volume to get a normalised value.
@@ -327,10 +329,49 @@ newly computed values.
 _ = pop_density.plot(cmap="cividis_r")
 ```
 
-The resulting array can be then saved to a GeoTIFF using `rioxarray`.
+The resulting array can then be saved to a GeoTIFF using `rioxarray`.
 
 ```{python}
 pop_density.rio.to_raster("population_density.tif")
+```
+
+### Extracting values for locations with `xvec`
+
+```{python}
+locations = budapest.sample_points(1000).explode(ignore_index=True)
+locations.head()
+```
+
+```{python}
+locations.explore()
+```
+
+```{python}
+bud_cube = xr.concat(
+    [pop_density, population_bud, built_up_bud],
+    dim=pd.Index(["density", "population", "built-up volume"], name="measurement")
+)
+bud_cube
+```
+
+```{python}
+bud_cube.sel(measurement="density")
+```
+
+```{python}
+vector_cube = bud_cube.drop_vars("spatial_ref").xvec.extract_points(
+    locations.geometry, "x", "y"
+)
+vector_cube
+```
+
+```{python}
+location_data = vector_cube.xvec.to_geopandas()
+location_data.head()
+```
+
+```{python}
+location_data.explore("density", cmap="cividis_r", tiles="CartoDB Positron")
 ```
 
 ## Zonal statistics with `geocube`
@@ -431,6 +472,7 @@ Check the result!
 #| classes: explore
 districts.explore("mean_density", cmap="cividis_r", tiles="CartoDB Positron")
 ```
+
 
 ::: {.callout-tip}
 # Additional reading

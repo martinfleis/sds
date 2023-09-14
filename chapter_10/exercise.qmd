@@ -1,9 +1,9 @@
 ---
-title: "Interpolation and friends"
+title: "Fit that model"
 format: html
 ---
 
-<!-- Similar tasks on different data -->
+<!-- different data, similar tasks -->
 
 ::: {.callout-note appearance="simple"}
 

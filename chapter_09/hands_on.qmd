@@ -1,6 +1,9 @@
 ---
-title: "Spatial Inequality Dynamics"
-format: html
+title: "Spatial interpolation"
+format:
+  html: default
+  ipynb: default
+jupyter: sds
 ---
 
 ::: {.callout-note appearance="simple"}
@@ -10,3 +13,315 @@ format: html
 This section will contain hands-on material that will appear later.
 
 :::
+
+
+```{python}
+import geopandas as gpd
+import tobler
+import pyinterpolate
+import numpy as np
+
+from libpysal import graph
+from sklearn import neighbors
+from scipy import interpolate
+```
+
+
+## Area interpolation
+
+```{python}
+simd = gpd.read_file("data/edinburgh_simd_2020.gpkg")
+simd.head(2)
+```
+
+```{python}
+# | classes: explore
+simd[["EmpRate", "geometry"]].explore("EmpRate", tiles="CartoDB Positron")
+```
+
+
+```{python}
+grid_8 = tobler.util.h3fy(simd, resolution=8)
+grid_8.head(2)
+```
+
+```{python}
+# | fig-cap: overlay
+m = simd.boundary.explore(tiles="CartoDB Positron")
+grid_8.boundary.explore(m=m, color="red")
+```
+
+```{python}
+interpolated = tobler.area_weighted.area_interpolate(
+    simd,
+    grid_8,
+    extensive_variables=["EmpNumDep", "IncNumDep"],
+    intensive_variables=["EmpRate", "IncRate"],
+)
+```
+
+```{python}
+interpolated.explore("EmpRate", tiles="CartoDB Positron")
+```
+
+<!-- TODO: include note on raster masking example-->
+
+## Point interpolation
+
+```{python}
+airbnb = gpd.read_file("data/edinburgh_airbnb_2023.gpkg")
+airbnb.head()
+```
+
+```{python}
+airbnb.price.head()
+```
+
+```{python}
+airbnb["price_float"] = airbnb.price.str.strip("$").str.replace(",", "").astype(float)
+```
+
+```{python}
+two_bed_homes = airbnb[
+    (airbnb["bedrooms"] == 2)
+    & (airbnb["property_type"] == "Entire rental unit")
+    & (airbnb["price_float"] < 300)
+].copy()
+two_bed_homes.head()
+```
+
+```{python}
+two_bed_homes.geometry.duplicated().any()
+```
+
+```{python}
+two_bed_homes = two_bed_homes.drop_duplicates("geometry")
+```
+
+```{python}
+two_bed_homes.explore("price_float", tiles="CartoDB Positron")
+```
+
+
+```{python}
+from libpysal import graph
+
+knn = graph.Graph.build_kernel(two_bed_homes, k=10).transform("r")
+two_bed_homes["price_lag"] = knn.lag(two_bed_homes.price_float)
+two_bed_homes.explore("price_lag", tiles="CartoDB Positron")
+```
+
+
+### Nearest
+
+```{python}
+grid_10 = tobler.util.h3fy(simd, resolution=10)
+len(grid_10)
+```
+
+```{python}
+grid_coordinates = grid_10.centroid.get_coordinates()
+grid_coordinates.head()
+```
+
+```{python}
+coords = two_bed_homes.get_coordinates()
+coords.head()
+```
+
+```{python}
+nearest = interpolate.griddata(
+    coords,
+    two_bed_homes.price_lag,
+    grid_coordinates,
+    method="nearest",
+)
+nearest
+```
+
+```{python}
+grid_10["nearest"] = nearest
+```
+
+```{python}
+# | fig-cap: caption here
+_ = grid_10.plot('nearest', legend=True)
+```
+
+```{python}
+# | fig-cap: caption here
+ax = grid_10.plot('nearest', legend=True)
+two_bed_homes.plot(ax=ax, color="red", markersize=1)
+```
+
+### K-Nearest neighbours regression
+
+#### Uniform
+
+
+```{python}
+interpolation_uniform = neighbors.KNeighborsRegressor(n_neighbors=10, weights="uniform")
+```
+
+```{python}
+interpolation_uniform.fit(
+    coords, two_bed_homes.price_lag
+)
+```
+
+```{python}
+price_on_grid = interpolation_uniform.predict(grid_coordinates)
+price_on_grid
+```
+
+```{python}
+grid_10["knn_uniform"] = price_on_grid
+```
+
+```{python}
+# | fig-cap: caption here
+_ = grid_10.plot("knn_uniform", legend=True)
+```
+
+
+#### Distance-weighted
+
+```{python}
+interpolation_distance = neighbors.KNeighborsRegressor(n_neighbors=10, weights="distance")
+```
+
+```{python}
+interpolation_distance.fit(
+    coords, two_bed_homes.price_lag
+)
+```
+```{python}
+grid_10["knn_distance"] = interpolation_distance.predict(grid_coordinates)
+```
+
+```{python}
+# | fig-cap: caption here
+_ = grid_10.plot("knn_distance", legend=True)
+```
+
+### Distance band regression
+
+```{python}
+interpolation_radius = neighbors.RadiusNeighborsRegressor(radius=1000, weights="distance")
+interpolation_radius.fit(
+    coords, two_bed_homes.price_lag
+)
+```
+
+```{python}
+grid_10["radius"] = interpolation_radius.predict(grid_coordinates)
+```
+
+```{python}
+# | fig-cap: caption here
+_ = grid_10.plot("radius", legend=True, missing_kwds={'color': 'lightgrey'})
+```
+
+
+### Ordinary Kriging
+
+```{python}
+input_data = np.hstack([coords, two_bed_homes.price_lag.values.reshape(-1, 1)])
+input_data
+```
+
+```{python}
+step_radius = 100  # meters
+max_range = 5000  # meters
+
+exp_semivar = pyinterpolate.build_experimental_variogram(
+    input_array=input_data,
+    step_size=step_radius,
+    max_range=max_range,
+)
+```
+
+```{python}
+# | fig-cap: caption here
+# | classes: variogram
+exp_semivar.plot()
+```
+
+```{python}
+semivar = pyinterpolate.build_theoretical_variogram(
+    experimental_variogram=exp_semivar,
+    model_name='linear',
+    sill=exp_semivar.variance,
+    rang=5000
+)
+```
+
+```{python}
+# | fig-cap: caption here
+# | classes: variogram
+semivar.plot()
+```
+
+```{python}
+ordinary_kriging = pyinterpolate.kriging(
+    observations=input_data,
+    theoretical_model=semivar,
+    points=grid_coordinates.values,
+    no_neighbors=10,
+    how="ok",
+    show_progress_bar=False,
+)
+```
+
+```{python}
+grid_10["ordinary_kriging"] = ordinary_kriging[:, 0]
+```
+
+```{python}
+# | fig-cap: caption here
+_ = grid_10.plot("ordinary_kriging", legend=True)
+```
+
+
+
+```{python}
+# | fig-cap: caption here
+grid_10["variance_error"] = ordinary_kriging[:, 1]
+_ = grid_10.plot("variance_error", legend=True)
+```
+
+Use larger distance
+
+```{python}
+semivar_larger = pyinterpolate.build_theoretical_variogram(
+    experimental_variogram=exp_semivar,
+    model_name='linear',
+    sill=exp_semivar.variance,
+    rang=15000,
+)
+```
+```{python}
+ordinary_kriging_l = pyinterpolate.kriging(
+    observations=input_data,
+    theoretical_model=semivar_larger,
+    points=grid_coordinates.values,
+    no_neighbors=10,
+    how="ok",
+    show_progress_bar=False,
+)
+```
+
+```{python}
+grid_10["ok_larger"] = ordinary_kriging_l[:, 0]
+```
+
+```{python}
+# | fig-cap: caption here
+_ = grid_10.plot("ok_larger", legend=True)
+```
+
+```{python}
+# | fig-cap: caption here
+grid_10["variance_error_l"] = ordinary_kriging_l[:, 1]
+_ = grid_10.plot("variance_error_l", legend=True)
+```

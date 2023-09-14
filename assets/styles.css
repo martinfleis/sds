@@ -68,3 +68,8 @@ div.sidebar-header {
 .explore {
     margin-bottom: 1em;
 }
+
+.variogram>div.cell-output>div.quarto-figure>figure>p>img {
+    max-width: 100%;
+    height: auto;
+}
