@@ -565,6 +565,26 @@ Tip
 </div>
 </div>
 </div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Backup data
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-3" class="callout-3-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>If the links do not work, please <a href="https://github.com/martinfleis/sds/issues/new">report it</a> and use the backup:</p>
+<ul>
+<li><a href="https://martinfleischmann.net/sds/chapter_03/data/MAP_MESTSKECASTI_P_shp.zip">price dataset</a></li>
+<li><a href="https://martinfleischmann.net/sds/chapter_03/data/MAP_MESTSKECASTI_P_shp.zip">districts dataset</a></li>
+</ul>
+</div>
+</div>
+</div>
 <p>Once you have your <code>price</code> dataset loaded, there is one cleaning step you need to do. The column with the price called <code>"CENA"</code> is encoded as strings, not numbers. You need to replace the <code>"N"</code> string with <code>None</code> and convert the column to <code>float</code> numbers.</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>price[<span class="st">"CENA"</span>] <span class="op">=</span> price[<span class="st">"CENA"</span>].replace(<span class="st">"N"</span>, <span class="va">None</span>).astype(<span class="st">'float'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>The rest is up to you!</p>
@@ -581,7 +601,7 @@ Tip
 <li>Can you change the transparency of polygons?</li>
 </ul>
 <div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -590,7 +610,7 @@ Tip
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-3" class="callout-3-contents callout-collapse collapse">
+<div id="callout-4" class="callout-4-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <ul>
 <li>Colormap is controlled via the <code>cmap=</code> keyword.</li>
@@ -621,7 +641,7 @@ Tip
 <li>What is the difference between the cheapest and the most expensive one?</li>
 </ul>
 <div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-5-contents" aria-controls="callout-5" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -630,7 +650,7 @@ Tip
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-4" class="callout-4-contents callout-collapse collapse">
+<div id="callout-5" class="callout-5-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>You may need to use <code>.groupby()</code> after joining.</p>
 <p>For those of you who don’t speak Czech, the district names are encoded in the <code>"NAZEV_1"</code> column.</p>
