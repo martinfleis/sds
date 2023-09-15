@@ -42,7 +42,9 @@ to download any dataset:
 
 ```{python}
 # | classes: explore
-accidents = gpd.read_file("https://martinfleischmann.net/sds/chapter_06/data/brno_pedestrian_accidents.gpkg")
+accidents = gpd.read_file(
+    "https://martinfleischmann.net/sds/chapter_06/data/brno_pedestrian_accidents.gpkg"
+)
 accidents.explore("rok", tiles="CartoDB Positron", cmap="magma_r")  # <1>
 ```
 1. `"rok"` is a column with the year in which an accident occurred. The variables are in Czech.

@@ -66,11 +66,11 @@ simd = pd.read_excel(
 )
 ```
 
-Alternatively, you can read the file from the `data` folder attached to this lecture. In that case, you can use a relative path.
+Alternatively, you can read the file from the `data` folder attached to this lecture.
 
 ```py
 simd = pd.read_excel(
-    "data/SIMD+2020v2+-+ranks.xlsx",
+    "https://martinfleischmann.net/sds/chapter_02/data/SIMD+2020v2+-+ranks.xlsx",
     sheet_name="SIMD 2020v2 ranks",
 )
 ```

@@ -19,6 +19,12 @@ Your task is to explore the locations of Airbnb listings in Prague, downloaded f
 url = "http://data.insideairbnb.com/czech-republic/prague/prague/2023-06-24/data/listings.csv.gz"
 ```
 
+::: {.callout-note collapse="true"}
+# Backup data
+
+If the link does not work, please [report it](https://github.com/martinfleis/sds/issues/new) and use the [backup](https://martinfleischmann.net/sds/chapter_06/data/listings.csv.gz).
+:::
+
 It needs some pre-processing, but it is up to you to figure it out this time. Below are some tips if you get stuck.
 
 1. Read the data and create a `GeoDataFrame` projected to S-JTSK / Krovak East North (EPSG:5514).

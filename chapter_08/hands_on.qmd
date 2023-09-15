@@ -86,6 +86,16 @@ pop_url
 ```
 1. The URL is long. It may be better to write it as a multi-line string to avoid a long line.
 
+::: {.callout-note collapse="true"}
+# Backup data
+
+If the link does not work, please [report it](https://github.com/martinfleis/sds/issues/new) and use the backup:
+
+```py
+pop_url = "https://martinfleischmann.net/sds/chapter_08/data/GHS_POP_E2030_GLOBE_R2023A_54009_100_V1_0_R4_C20.zip"
+```
+:::
+
 The `pop_url` points to a ZIP file. Within that ZIP file is a
 [GeoTIFF](https://en.wikipedia.org/wiki/GeoTIFF) containing the actual raster. There is
 often no need to download and unzip the file as there's a good chance you can read it
@@ -182,6 +192,16 @@ budapest.explore()
 2. Specify the path to read the file from the ZIP.
 3. Read the table with `geopandas`.
 4. Filter only Budapest.
+
+::: {.callout-note collapse="true"}
+# Backup data
+
+If the link does not work, please [report it](https://github.com/martinfleis/sds/issues/new) and use the backup:
+
+```py
+fua_url = "https://martinfleischmann.net/sds/chapter_08/data/GHS_FUA_UCDB2015_GLOBE_R2019A_54009_1K_V1_0.zip"
+```
+:::
 
 If you want to clip the `population` raster to the extent of Budapest FUA, you can use
 the `clip` method from the `rioxarray` extension of `xarray`.
@@ -288,6 +308,16 @@ volume_url = (
 )
 volume_url
 ```
+
+::: {.callout-note collapse="true"}
+# Backup data
+
+If the link does not work, please [report it](https://github.com/martinfleis/sds/issues/new) and use the backup:
+
+```py
+volume_url = "https://martinfleischmann.net/sds/chapter_08/data/GHS_BUILT_V_E2030_GLOBE_R2023A_54009_100_V1_0_R4_C20.zip"
+```
+:::
 
 All work the same as before. You read the GeoTIFF as a `DataArray`.
 

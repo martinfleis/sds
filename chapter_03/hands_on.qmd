@@ -36,7 +36,9 @@ the file type and creates a `geopandas.GeoDataFrame`. A `geopandas.GeoDataFrame`
 like `pandas.DataFrame` but with additional column(s) containing geometry.
 
 ```{python}
-paris_url = "https://github.com/martinfleis/evolution-gean/raw/main/data/Paris.gpkg"    # <1>
+paris_url = ( # <1>
+    "https://github.com/martinfleis/evolution-gean/raw/main/data/Paris.gpkg" # <1>
+)    # <1>
 buildings = gpd.read_file(paris_url, layer="buildings")                                 # <2>
 buildings.head()
 ```

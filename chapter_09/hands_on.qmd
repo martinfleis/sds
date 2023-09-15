@@ -30,7 +30,9 @@ from scipy import interpolate
 ## Area interpolation
 
 ```{python}
-simd = gpd.read_file("data/edinburgh_simd_2020.gpkg")
+simd = gpd.read_file(
+    "https://martinfleischmann.net/sds/chapter_09/data/edinburgh_simd_2020.gpkg"
+)
 simd.head(2)
 ```
 
@@ -69,7 +71,9 @@ interpolated.explore("EmpRate", tiles="CartoDB Positron")
 ## Point interpolation
 
 ```{python}
-airbnb = gpd.read_file("data/edinburgh_airbnb_2023.gpkg")
+airbnb = gpd.read_file(
+    "https://martinfleischmann.net/sds/chapter_09/data/edinburgh_airbnb_2023.gpkg"
+)
 airbnb.head()
 ```
 

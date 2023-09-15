@@ -19,6 +19,12 @@ data later, there was no geometry assigned. That will change today.
 1. Download the ESRI Shapefile version of the Scottish Index of Multiple Deprivation 2020 from [this link](https://spatialdata.gov.scot/geonetwork/srv/eng/catalog.search#/metadata/02866b0b-66e5-46ab-9b1c-d433dc3c2fae).
 2. Read it as a `GeoDataFrame` and assign a column you think would be the best as an index.
 
+::: {.callout-note collapse="true"}
+# Backup data
+
+If the link does not work, please [report it](https://github.com/martinfleis/sds/issues/new) and use the [backup](https://martinfleischmann.net/sds/chapter_05/data/SG_SIMD_2020.zip).
+:::
+
 Now, here's a tricky part. The dataset contains isolates. Those are geometries that do not
 share any piece of the border with any other - typically islands.
 

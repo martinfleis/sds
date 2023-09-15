@@ -14,6 +14,15 @@ Try to reproduce the similar with different population grids.
 
 Go to [wopr.worldpop.org](https://wopr.worldpop.org/) and download a _Gridded population estimates (~100m) for Kenya_ and a _Kenya 100m Building class_. Each is an archive, so unzip (reading from the zipped archive doesn't seem to work in this case.)
 
+::: {.callout-note collapse="true"}
+# Backup data
+
+If the link does not work, please [report it](https://github.com/martinfleis/sds/issues/new) and use the backup:
+
+- [Gridded population estimates](https://martinfleischmann.net/sds/chapter_08/data/KEN_population_v2_0_gridded.zip)
+- [Kenya 100m Building](https://martinfleischmann.net/sds/chapter_08/data/KEN_building_class_metrics_v1_0_rasters.7z)
+:::
+
 1. Load `KEN_population_v2_0_gridded.tif` and `KEN_building_class_metrics_v1_0_residential_count.tif` files.
 2. Plot at least one of them in their full extent.
 3. Clip them both to the extent of the `"Mombasa"` functional urban area from GHSL.

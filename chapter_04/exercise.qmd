@@ -16,6 +16,12 @@ You are familiar with Prague from the last section, so let's zoom out to zones o
 around Prague and other Czech cities. Head over to the [DataHub](https://datahub.natur.cuni.cz) of the Faculty of Science and
 download the dataset called ["Zóny rezidenční suburbanizace 2008-2016"](https://datahub.natur.cuni.cz/datasets/zóny-rezidenční-suburbanizace-2008-2016/explore) containing the zones of residential suburbanisation outlined by @ouvrednivcek2019between. Download the dataset and open it with `geopandas`. Use `"OBJECTID"` column as an index.
 
+::: {.callout-note collapse="true"}
+# Backup data
+
+If the link does not work, please [report it](https://github.com/martinfleis/sds/issues/new) and use the [backup](https://martinfleischmann.net/sds/chapter_04/data/zony_suburbanizace_2008_2016.zip).
+:::
+
 ### Interaction with Graphs
 
 1. Create a contiguity matrix using the queen criterion
