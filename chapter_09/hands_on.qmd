@@ -108,8 +108,6 @@ two_bed_homes.explore("price_float", tiles="CartoDB Positron")
 
 
 ```{python}
-from libpysal import graph
-
 knn = graph.Graph.build_kernel(two_bed_homes, k=10).transform("r")
 two_bed_homes["price_lag"] = knn.lag(two_bed_homes.price_float)
 two_bed_homes.explore("price_lag", tiles="CartoDB Positron")

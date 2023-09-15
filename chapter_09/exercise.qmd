@@ -3,14 +3,55 @@ title: "What is in between?"
 format: html
 ---
 
-<!-- Similar tasks on different data -->
+::: {.callout-caution}
+This course material is currently under construction and is likely incomplete. The final
+version will be released in October 2023.
+:::
 
-::: {.callout-note appearance="simple"}
+Going through this exercise is even more up to you than usual.
 
-## The contents will appear later
+## Areal interpolation
 
-This section will contain exercise material that will appear later.
+Pick any dataset linked to polygon geometries used in previous chapters of the
+course. Or any of your own, if you wish.
+
+- Create a hexagonal grid of a reasonable resolution covering the area of your data.
+- Interpolate data to the grid. Make sure to use extensive and intensive variables correctly.
+- Do you understand the difference in how the intensive variables are interpolated vs. the extensive?
+- If you don't have a categorical column in your data, create one. Interpolate this categorical
+  column to the grid. What is different when dealing with categorical data?
+
+## Point interpolation
+
+When dealing with point patterns, you [have worked](../chapter_06/exercise.qmd) with Airbnb listings in Prague.
+Use the same data to interpolate the price of a single-bedroom flat to a hexagonal grid of resolution 10.
+
+::: {.callout-tip}
+# Generating H3 polygons
+
+You will need to pass a GeoSeries of polygons to the `h3fy` function. You can either get those
+from the [Spatial weights](../chapter_04/hands_on.qmd) chapter or creating a GeoSeries on-the-fly.
+
+::: {.callout-tip collapse="true"}
+# Creating geometry on-the-fly
+
+This would be one option:
+
+```py
+extent = gpd.GeoSeries([airbnb.unary_union.convex_hull], crs=airbnb.crs)
+```
+:::
 
 :::
 
-<!-- test how KNeighborsRegressor differs when changing K -->
+::: {.callout-tip}
+# Data cleaning
+
+Don't forget to remove outliers. Note that the price is now in CZK, not in GBP, as it
+was in the case of Edinburgh.
+:::
+
+- Play with different interpolation methods and try to understand the differences.
+- Test how `KNeighborsRegressor` results differ when changing the number of neighbours.
+- Do you understand the optimal parameters of Kriging?
+- Can you figure out how to do Simple Kriging instead of Ordinary Kriging covered in the hands-on section?
