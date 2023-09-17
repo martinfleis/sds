@@ -431,7 +431,7 @@ be done using the `.xvec` accessor and its `extract_points` method.
 vector_cube = bud_cube.drop_vars("spatial_ref").xvec.extract_points( # <1>
     points=locations.geometry, # <2>
     x_coords="x", # <3>
-    y_coords"y", # <3>
+    y_coords="y", # <3>
 )
 vector_cube
 ```
