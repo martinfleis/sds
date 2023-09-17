@@ -23,6 +23,7 @@ dependencies:
   - tobler
   - h3-py
   - pyinterpolate
+  - astropy
   # infrastructure
   - ipykernel
   - jupyter-cache
