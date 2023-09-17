@@ -367,47 +367,112 @@ pop_density.rio.to_raster("population_density.tif")
 
 ### Extracting values for locations with `xvec`
 
+A common need is to extract values from raster data for a specific location of interest.
+That is a first type of interaction between raster and vector data (points in this case).
+To illustrate the use case, create a set of random points covering the area of `budapest`.
+
 ```{python}
-locations = budapest.sample_points(1000).explode(ignore_index=True)
+locations = budapest.sample_points(1000).explode(ignore_index=True) # <1>
 locations.head()
 ```
+1. `sample_points()` method creates a random sample of the selected size within each
+geometry in a `GeoSeries`. Each sample set is a `MultiPoint` but in this case, you want
+individual points. That is when `explode()` is useful, since it _explodes_ each multi-part
+geometry into individual points. Because you are not interested in the original index,
+you can use `ignore_index=True` to get the default `pd.RangeIndex`.
+
+Check how the sample looks on a map.
 
 ```{python}
 locations.explore()
 ```
 
+::: {.callout-note}
+# Random sampling and reproducibility
+
+The points sampled from `budapest` will be different every time you run the `sample_points()`
+method. If you want to fix the result, you can pass a _seed_ value to a random number generator
+as `rng=42`. With the same seed value, the result will be always the same. This is useful,
+especially if you are interested in the reproducibility of your code.
+:::
+
+The `xarray` ecosystem offers many ways of extracting point values. Below, you will
+use the implementation from the `xvec` package. Create a new `xarray.DataArray` with all three
+arrays you created so far to see the benefits of using `xvec` below.
+
 ```{python}
-bud_cube = xr.concat(
-    [pop_density, population_bud, built_up_bud],
-    dim=pd.Index(["density", "population", "built-up volume"], name="measurement")
+bud_cube = xr.concat(   # <1>
+    [pop_density, population_bud, built_up_bud],    # <2>
+    dim=pd.Index( # <3>
+        ["density", "population", "built-up volume"], # <4>
+        name="measurement", # <5>
+    )
 )
 bud_cube
 ```
+1. Use `xr.concat` function to _concatenate_ all arrays together.
+2. Specify which arrays shall be concatenated.
+3. Define a new dimension created along the axis of concatenation. Use the `pd.Index` to create a new index along this dimension.
+4. Specify coordinates along the new dimension.
+5. Give the dimension a name.
+
+The resulting `DataArray` is 3-dimensional, compared to 2-dimensional arrays used before.
+Apart from `x` and `y`, you now have `measurement` as well. Using the new index created
+above, you can use the `sel()` method to get the original arrays.
 
 ```{python}
 bud_cube.sel(measurement="density")
 ```
 
+Now it is time to take this _cube_ and create another based on your points. That can
+be done using the `.xvec` accessor and its `extract_points` method.
+
 ```{python}
-vector_cube = bud_cube.drop_vars("spatial_ref").xvec.extract_points(
-    locations.geometry, "x", "y"
+vector_cube = bud_cube.drop_vars("spatial_ref").xvec.extract_points( # <1>
+    points=locations.geometry, # <2>
+    x_coords="x", # <3>
+    y_coords"y", # <3>
 )
 vector_cube
 ```
+1. Drop `spatial_ref` because it is not interesting for point extraction and use
+`.xvec.extract_points()`
+2. Specify the points for which you want to extract the values.
+3. Specify which dimension of the `bud_cube` `DataArray` represents x-coordinate
+dimension of geometries and which represents the y-coordinate dimension to match points to
+the array.
+
+The resulting object is still a `DataArray` but a bit different. It is no longer 3-dimensional,
+although all dimensions of interest (`'density', 'population', 'built-up volume'`) are
+still there, but 2-dimensional. One dimension is `measurement`, and the other is `geometry`, containing
+the points of interest. With `xvec`, the spatial dimension is reduced, but the remaining dimensionality
+of the original array is preserved.
+
+You can then convert the data into a `geopandas.GeoDataFrame` and work with it as usual.
 
 ```{python}
 location_data = vector_cube.xvec.to_geopandas()
 location_data.head()
 ```
 
+Check the result on a map to verify that all worked as expected.
+
 ```{python}
 location_data.explore("density", cmap="cividis_r", tiles="CartoDB Positron")
 ```
 
+::: {.callout-note}
+# Vector data cubes
+
+The data structure `vector_cube` represents is called a vector data cube. It is a special
+case of an `xarray` N-dimensional object, where at least one dimension is indexed by
+geometries. See more in the [Xvec documentation](https://xvec.readthedocs.io/en/stable/intro.html).
+:::
+
 ## Zonal statistics with `geocube`
 
-A typical operation when working with rasters is the transfer of values from an array
-to a set of vector geometries. This is called _zonal statistics_ and can be done in many
+Another operation when working with rasters is the transfer of values from an array
+to a set of polygons. This is called _zonal statistics_ and can be done in many
 ways, depending on the use case. When your polygons are large compared to cells of the array,
 a good option is to use a `geocube` package.
 
