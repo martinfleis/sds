@@ -31,3 +31,4 @@ dependencies:
   - pip:
       - git+https://github.com/pysal/libpysal.git@main
       - git+https://github.com/sjsrey/pointpats.git@knox
+      - git+https://github.com/martinfleis/tobler.git@pycno_align
