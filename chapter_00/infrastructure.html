@@ -103,6 +103,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <link rel="stylesheet" href="../assets/styles.css">
 <meta name="twitter:title" content="Spatial Data Science for Social Geography - Infrastructure">
+<meta name="twitter:description" content="">
 <meta name="twitter:card" content="summary">
 </head>
 
@@ -496,7 +497,20 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#communication" id="toc-communication" class="nav-link active" data-scroll-target="#communication">Communication</a></li>
+  <li><a href="#software-stack" id="toc-software-stack" class="nav-link" data-scroll-target="#software-stack">Software stack</a>
+  <ul class="collapse">
+  <li><a href="#create-an-environment" id="toc-create-an-environment" class="nav-link" data-scroll-target="#create-an-environment">Create an environment</a></li>
+  <li><a href="#plan-b-with-google-colab" id="toc-plan-b-with-google-colab" class="nav-link" data-scroll-target="#plan-b-with-google-colab">Plan B with Google Colab</a></li>
+  </ul></li>
+  <li><a href="#website" id="toc-website" class="nav-link" data-scroll-target="#website">Website</a></li>
+  <li><a href="#license" id="toc-license" class="nav-link" data-scroll-target="#license">License</a></li>
+  </ul>
+<div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/martinfleis/sds/issues/new" class="toc-action">Report an issue</a></p></div></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -518,34 +532,38 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 </header>
 
-<div class="callout callout-style-simple callout-note callout-titled">
+<p>The course does not use any university-specific resources. It is designed to run entirely on students’ machines using solely open-source software.</p>
+<section id="communication" class="level2">
+<h2 class="anchored" data-anchor-id="communication">Communication</h2>
+<p>Students enrolled in the MZ340V17 course at Charles University will be invited to a dedicated Discord server for online discussion. Students are encouraged to use the platform to seek help from peers, share thoughts and tips, and other meaningful contributions the rest of the group can benefit from. Learn from the mistakes of the others.</p>
+<p>The tutor will be part of the discussion forum but the priority is to help each other, rather than seek guidance outside of class.</p>
+</section>
+<section id="software-stack" class="level2">
+<h2 class="anchored" data-anchor-id="software-stack">Software stack</h2>
+<p>There are many options on how to run Python. You may already have a copy on your machine, you can run it in the browser and install it in a myriad ways. This course uses what is considered a standard for <strong>scientific</strong> computing based on two key components - a package manager (you will be using <code>mamba</code>, built on top <code>conda</code>) and an interface (Jupyter Lab).</p>
+<p>The basics will be explained in the first lesson but it would be beneficial if you could create an environment before the class.</p>
+<section id="create-an-environment" class="level3">
+<h3 class="anchored" data-anchor-id="create-an-environment">Create an environment</h3>
+<p>To run the course material, you will need a Python environment with all the packages for spatial data science installed. Unless you already know how to work with <code>conda</code> or <code>mamba</code>, follow the instructions below.</p>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true" aria-current="page">Windows</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false">macOS &amp; Linux</a></li></ul>
+<div class="tab-content">
+<div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
+<div class="callout callout-style-default callout-caution callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-The contents will appear later
+Caution
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>This section will explain the infrastructure needed to run the course. Details will be included later.</p>
+<p>Windows may complain that the app is not recognised. Click <em>More information</em> and you will be able to run the installer.</p>
 </div>
 </div>
-<!-- This page will explain the infrastructure needed to run the course. How to install Python, Jupyter, environments and such.
-
-## Communication
-
-We will have Slack? Teams? Google something?
-
-## Tech
-
-Environments... -->
-<div class="tabset-margin-container"></div><div class="panel-tabset">
-<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true" aria-current="page">Windows</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false">macOS &amp; Linux</a></li></ul>
-<div class="tab-content">
-<div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
 <ol type="1">
-<li>Download <code>miniforge</code> package manager from <a href="https://github.com/conda-forge/miniforge#download">Github</a> for your operating system.</li>
+<li>Download <code>miniforge</code> package manager from <a href="https://github.com/conda-forge/miniforge#download" class="external" target="_blank">Github</a> for your operating system.</li>
 <li>Execute the installer and make sure to create start menu shortcuts (there’s a tick box during installation).</li>
 <li>Open the installed <code>Miniforge Prompt</code> application.</li>
 <li>Create a Python environment using the following command:</li>
@@ -559,10 +577,23 @@ Environments... -->
 <li>Start JupyterLab interface:</li>
 </ol>
 <div class="sourceCode" id="cb3"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">jupyter</span> lab</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Important
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Ensure that you install <code>miniforge</code> in a directory without any special characters in the name. It may occasionally break things.</p>
+</div>
+</div>
 </div>
 <div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
 <ol type="1">
-<li>Download <code>miniforge</code> package manager from <a href="https://github.com/conda-forge/miniforge#download">Github</a> for your operating system and install it.</li>
+<li>Download <code>miniforge</code> package manager from <a href="https://github.com/conda-forge/miniforge#download" class="external" target="_blank">Github</a> for your operating system and install it.</li>
 <li>Open <code>Terminal</code> application.</li>
 <li>Create a Python environment using the following command:</li>
 </ol>
@@ -578,8 +609,23 @@ Environments... -->
 </div>
 </div>
 </div>
+<p>A Jupyter Lab interface will show up in your browser. If it hasn’t opened automatically, copy the link printed in your command line/terminal.</p>
+</section>
+<section id="plan-b-with-google-colab" class="level3">
+<h3 class="anchored" data-anchor-id="plan-b-with-google-colab">Plan B with Google Colab</h3>
+<p>If you are unable to install an environment using the instructions above, you can follow the course using <a href="https://colab.research.google.com">Google Colab</a>. You will just need to install the required packages to your Colab environment. Reach out in class or via Discord if you need to set it up.</p>
+</section>
+</section>
+<section id="website" class="level2">
+<h2 class="anchored" data-anchor-id="website">Website</h2>
+<p>The website for the course is available from http://martinfleischmann.net/sds/. The source is available at https://github.com/martinfleis/sds.</p>
+</section>
+<section id="license" class="level2">
+<h2 class="anchored" data-anchor-id="license">License</h2>
+<p>The course material was created by <a href="https://martinfleischmann.net/">Martin Fleischmann</a> and is available under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a> license.</p>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -928,6 +974,20 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       });
     }
   }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+          // default icon
+          link.classList.add("external");
+      }
+    }
 });
 </script>
 <nav class="page-navigation">
@@ -948,7 +1008,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     <div class="nav-footer-left">
       &nbsp;
     </div>   
-    <div class="nav-footer-center">Course material by <a href="https://martinfleischmann.net">Martin Fleischmann</a>. Available under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a>.<div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/martinfleis/sds/issues/new" class="toc-action">Report an issue</a></p></div></div></div>
+    <div class="nav-footer-center">Course material by <a href="https://martinfleischmann.net">Martin Fleischmann</a>. Available under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a>.</div>
     <div class="nav-footer-right">
       &nbsp;
     </div>
