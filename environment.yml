@@ -1,0 +1,37 @@
+name: sds
+channels:
+  - conda-forge
+dependencies:
+  - python
+  # to run the code
+  - pandas
+  - seaborn
+  - openpyxl
+  - geopandas
+  - pyogrio
+  - geopy
+  - contextily
+  - pyarrow
+  - esda
+  - splot
+  - xarray
+  - rioxarray
+  - datashader
+  - geocube
+  - osmnx
+  - xvec
+  - tobler
+  - h3-py
+  - pyinterpolate
+  - astropy
+  - statsmodels
+  - scikit-learn
+  # infrastructure
+  - ipykernel
+  - jupyter-cache
+  - jupyterlab
+  - pip
+  - pip:
+      - git+https://github.com/pysal/libpysal.git@main
+      - git+https://github.com/pysal/pointpats.git@360677e4041ffd693d4b31ba2d2eed1b70c9e29d
+      - git+https://github.com/pysal/tobler.git@main
