@@ -89,7 +89,7 @@ pop_url
 ::: {.callout-note collapse="true"}
 # Backup data
 
-If the link does not work, please [report it](https://github.com/martinfleis/sds/issues/new) and use the backup:
+If the link does not work, please use the backup:
 
 ```py
 pop_url = "https://martinfleischmann.net/sds/chapter_08/data/GHS_POP_E2030_GLOBE_R2023A_54009_100_V1_0_R4_C20.zip"
@@ -196,7 +196,7 @@ budapest.explore()
 ::: {.callout-note collapse="true"}
 # Backup data
 
-If the link does not work, please [report it](https://github.com/martinfleis/sds/issues/new) and use the backup:
+If the link does not work, please use the backup:
 
 ```py
 fua_url = "https://martinfleischmann.net/sds/chapter_08/data/GHS_FUA_UCDB2015_GLOBE_R2019A_54009_1K_V1_0.zip"
@@ -306,13 +306,13 @@ volume_url = (
     "GHS_BUILT_V_GLOBE_R2023A/GHS_BUILT_V_E2030_GLOBE_R2023A_54009_100/V1-0/tiles/"
     "GHS_BUILT_V_E2030_GLOBE_R2023A_54009_100_V1_0_R4_C20.zip"
 )
-             volume_url
+volume_url
 ```
 
 ::: {.callout-note collapse="true"}
 # Backup data
 
-If the link does not work, please [report it](https://github.com/martinfleis/sds/issues/new) and use the backup:
+If the link does not work, please use the backup:
 
 ```py
 volume_url = "https://martinfleischmann.net/sds/chapter_08/data/GHS_BUILT_V_E2030_GLOBE_R2023A_54009_100_V1_0_R4_C20.zip"
