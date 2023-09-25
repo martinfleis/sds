@@ -67,8 +67,9 @@ from geocube.api.core import make_geocube
 Today, you will be working with the data from the
 [Global Human Settlement Layer](https://ghsl.jrc.ec.europa.eu/datasets.php) (GHSL)
 developed by the Joint Research Centre of the European Commission. Unlike in all previous
-hands-on sessions, the data is not pre-processed and you will read it directly from the
-open data repository.
+hands-on sessions, the data is not pre-processed and you could read it directly from the
+open data repository. However, since that seems to be a bit unstable lately, use the
+copy stored as part of this course.
 
 The first layer you will open is a population grid. GHSL covers the whole world divided into
 a set of tiles, each covering an area of 1,000 by 1,000 km at a resolution of 100m per pixel.
@@ -78,21 +79,24 @@ The link below points to a single tile[^1] covering most of Eastern Europe.
 
 ```{python}
 pop_url = (  # <1>
-    "https://jeodpp.jrc.ec.europa.eu/ftp/jrc-opendata/GHSL/"
-    "GHS_POP_GLOBE_R2023A/GHS_POP_E2030_GLOBE_R2023A_54009_100/"
-    "V1-0/tiles/GHS_POP_E2030_GLOBE_R2023A_54009_100_V1_0_R4_C20.zip"
+    "https://martinfleischmann.net/sds/chapter_08/data/"
+    "GHS_POP_E2030_GLOBE_R2023A_54009_100_V1_0_R4_C20.zip"
       )
 pop_url
 ```
 1. The URL is long. It may be better to write it as a multi-line string to avoid a long line.
 
 ::: {.callout-note collapse="true"}
-# Backup data
+# Original data
 
-If the link does not work, please use the backup:
+You can, alternatively, try reading the original data directly using this URL:
 
 ```py
-pop_url = "https://martinfleischmann.net/sds/chapter_08/data/GHS_POP_E2030_GLOBE_R2023A_54009_100_V1_0_R4_C20.zip"
+pop_url = (
+    "https://jeodpp.jrc.ec.europa.eu/ftp/jrc-opendata/GHSL/"
+    "GHS_POP_GLOBE_R2023A/GHS_POP_E2030_GLOBE_R2023A_54009_100/"
+    "V1-0/tiles/GHS_POP_E2030_GLOBE_R2023A_54009_100_V1_0_R4_C20.zip"
+      )
 ```
 :::
 
@@ -178,10 +182,9 @@ geometries.
 
 ```{python}
 #| classes: explore
-fua_url = (
-    "https://jeodpp.jrc.ec.europa.eu/ftp/jrc-opendata/GHSL/" # <1>
-    "GHS_FUA_UCDB2015_GLOBE_R2019A/V1-0/" # <1>
-    "GHS_FUA_UCDB2015_GLOBE_R2019A_54009_1K_V1_0.zip" # <1>
+fua_url = ( # <1>
+    "https://martinfleischmann.net/sds/chapter_08/data/"    # <1>
+    "GHS_FUA_UCDB2015_GLOBE_R2019A_54009_1K_V1_0.zip"   # <1>
 ) # <1>
 p = f"zip+{fua_url}!GHS_FUA_UCDB2015_GLOBE_R2019A_54009_1K_V1_0.gpkg" # <2>
 fuas = gpd.read_file(p) # <3>
@@ -194,12 +197,16 @@ budapest.explore()
 4. Filter only Budapest.
 
 ::: {.callout-note collapse="true"}
-# Backup data
+# Original data
 
-If the link does not work, please use the backup:
+You can, alternatively, try reading the original data directly using this URL:
 
 ```py
-fua_url = "https://martinfleischmann.net/sds/chapter_08/data/GHS_FUA_UCDB2015_GLOBE_R2019A_54009_1K_V1_0.zip"
+fua_url = (
+    "https://jeodpp.jrc.ec.europa.eu/ftp/jrc-opendata/GHSL/"
+    "GHS_FUA_UCDB2015_GLOBE_R2019A/V1-0/"
+    "GHS_FUA_UCDB2015_GLOBE_R2019A_54009_1K_V1_0.zip"
+)
 ```
 :::
 
@@ -302,8 +309,7 @@ is available as another GHSL product. This time, on a grid again.
 
 ```{python}
 volume_url = (
-    "https://jeodpp.jrc.ec.europa.eu/ftp/jrc-opendata/GHSL/"
-    "GHS_BUILT_V_GLOBE_R2023A/GHS_BUILT_V_E2030_GLOBE_R2023A_54009_100/V1-0/tiles/"
+    "https://martinfleischmann.net/sds/chapter_08/data/"
     "GHS_BUILT_V_E2030_GLOBE_R2023A_54009_100_V1_0_R4_C20.zip"
 )
 volume_url
@@ -312,10 +318,14 @@ volume_url
 ::: {.callout-note collapse="true"}
 # Backup data
 
-If the link does not work, please use the backup:
+You can, alternatively, try reading the original data directly using this URL:
 
 ```py
-volume_url = "https://martinfleischmann.net/sds/chapter_08/data/GHS_BUILT_V_E2030_GLOBE_R2023A_54009_100_V1_0_R4_C20.zip"
+volume_url = (
+    "https://jeodpp.jrc.ec.europa.eu/ftp/jrc-opendata/GHSL/"
+    "GHS_BUILT_V_GLOBE_R2023A/GHS_BUILT_V_E2030_GLOBE_R2023A_54009_100/V1-0/tiles/"
+    "GHS_BUILT_V_E2030_GLOBE_R2023A_54009_100_V1_0_R4_C20.zip"
+)
 ```
 :::
 
