@@ -24,11 +24,13 @@ dependencies:
   - h3-py
   - pyinterpolate
   - astropy
+  - statsmodels
+  - scikit-learn
   # infrastructure
   - ipykernel
   - jupyter-cache
   - pip
   - pip:
       - git+https://github.com/pysal/libpysal.git@main
-      - git+https://github.com/sjsrey/pointpats.git@knox
+      - git+https://github.com/pysal/pointpats.git@main
       - git+https://github.com/pysal/tobler.git@main

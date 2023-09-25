@@ -145,19 +145,19 @@ Hexbin gives you a better sense of the density of accidents across the city. The
 ### Kernel density estimation
 
 Density can be estimated by binning, but that will always result in abrupt changes when two
-cells meet, like with a histogram. The other option is to use 2-dimensional kernel density estimation to generate contours of different (interpolated) levels of density. If you are interested in a plot and not geometry of contour lines, `seaborn` offers a handy function called `kdeplot()`.
+cells meet, like with a histogram. The other option is to use 2-dimensional kernel density estimation to generate contours of different (interpolated) levels of density. If you are interested in a plot and not geometry of contour lines, `pointpats` offers a handy function called `plot_density()`.
 
 ```{python}
 # | fig-cap: Kernel density estimation of the point pattern
 f, ax = plt.subplots()
 accidents.plot(ax=ax, markersize=0.05)
-sns.kdeplot(
-    x="x",
-    y="y",
-    data=accidents,
-    n_levels=25,            # <1>
+pointpats.plot_density(
+    accidents,
+    bandwidth=500,
+    levels=25,  # <1>
     alpha=0.55,
     cmap="magma_r",
+    linewidths=1,
 )
 contextily.add_basemap(
     ax=ax,
@@ -167,14 +167,14 @@ contextily.add_basemap(
 ```
 1. `n_levels` specifies the number of contour lines to show.
 
-The intuition about a dominance of city centre in the dataset shows here very clearly. What have all of these visualisations in common is that they can be used to build intution and a first insight into the pattern but as data scientists, you will probably need some numbers characterising your data.
+The intuition about the dominance of the city centre in the dataset is shown here very clearly. What have all of these visualisations in common is that they can be used to build intuition and a first insight into the pattern but as data scientists, you will probably need some numbers characterising your data.
 
 ## Centrography
 
 Centrography aims to provide a summary of the pattern. What is the general location of the pattern, how dispersed is it, or where are its limits. You can imagine it as what `pandas.DataFrame.describe()` returns but for the point pattern. @rey2023geographic cover assessments
 of _tendency_, _dispersion_ and _extent_.
 
-Tendency can be reflected by the centre of mass represented usually as mean or median of point
+The tendency can be reflected by the centre of mass represented usually as the mean or median of point
 coordinates. PySAL has a module dedicated to point patterns called `pointpats`, that allows you to measure these easily, just based on an array of X and Y coordinates.
 
 ```{python}
@@ -183,8 +183,8 @@ med_center = pointpats.centrography.euclidean_median(accidents[["x", "y"]])
 ```
 1. Passing a subset with two columns qualifies as an array of coordinates.
 
-In some occasions, you may want to take into the account some external variable apart from
-geographical location of each point. Simply because not every accident is as serious as the other. You can use `weighted_mean_center` to measure mean weighted by any arbitrary value. In the case of accidents, you may be interested in mean weighted by the number of injured people.
+On some occasions, you may want to take into account some external variables apart from
+the geographical location of each point. Simply because not every accident is as serious as the other. You can use `weighted_mean_center` to measure mean weighted by any arbitrary value. In the case of accidents, you may be interested in mean weighted by the number of injured people.
 
 ```{python}
 weighted_mean = pointpats.centrography.weighted_mean_center(
