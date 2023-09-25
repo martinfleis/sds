@@ -3,6 +3,7 @@ project:
   title: "Spatial Data Science for Social Geography"
   resources:
     - "*/data/*"
+    - environment.yml
   output-dir: ./_site
 
 lang: en

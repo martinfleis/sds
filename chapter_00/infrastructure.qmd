@@ -19,3 +19,51 @@ We will have Slack? Teams? Google something?
 ## Tech
 
 Environments... -->
+
+::: {.panel-tabset}
+
+### Windows
+
+1. Download `miniforge` package manager from [Github](https://github.com/conda-forge/miniforge#download) for your operating system.
+2. Execute the installer and make sure to create start menu shortcuts (there's a tick box during installation).
+3. Open the installed `Miniforge Prompt` application.
+4. Create a Python environment using the following command:
+
+```sh
+mamba env create -f https://martinfleischmann.net/sds/environment.yml
+```
+
+5. Activate the environment using:
+
+```sh
+mamba activate sds
+```
+
+6. Start JupyterLab interface:
+
+```sh
+jupyter lab
+```
+
+### macOS & Linux
+
+1. Download `miniforge` package manager from [Github](https://github.com/conda-forge/miniforge#download) for your operating system and install it.
+3. Open `Terminal` application.
+4. Create a Python environment using the following command:
+
+```sh
+mamba env create -f https://martinfleischmann.net/sds/environment.yml
+```
+
+5. Activate the environment using:
+
+```sh
+mamba activate sds
+```
+
+6. Start JupyterLab interface:
+
+```sh
+jupyter lab
+```
+:::

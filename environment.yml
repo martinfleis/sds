@@ -29,8 +29,9 @@ dependencies:
   # infrastructure
   - ipykernel
   - jupyter-cache
+  - jupyterlab
   - pip
   - pip:
       - git+https://github.com/pysal/libpysal.git@main
-      - git+https://github.com/pysal/pointpats.git@main
+      - git+https://github.com/pysal/pointpats.git@8ebd6a9eac34463c4491d20fd99466547b656aec
       - git+https://github.com/pysal/tobler.git@main
