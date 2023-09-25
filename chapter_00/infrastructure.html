@@ -506,9 +506,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <ul class="collapse">
   <li><a href="#create-an-environment" id="toc-create-an-environment" class="nav-link" data-scroll-target="#create-an-environment">Create an environment</a></li>
   <li><a href="#plan-b-with-google-colab" id="toc-plan-b-with-google-colab" class="nav-link" data-scroll-target="#plan-b-with-google-colab">Plan B with Google Colab</a></li>
+  <li><a href="#troubleshooting" id="toc-troubleshooting" class="nav-link" data-scroll-target="#troubleshooting">Troubleshooting</a></li>
   </ul></li>
-  <li><a href="#website" id="toc-website" class="nav-link" data-scroll-target="#website">Website</a></li>
-  <li><a href="#license" id="toc-license" class="nav-link" data-scroll-target="#license">License</a></li>
   </ul>
 <div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/martinfleis/sds/issues/new" class="toc-action">Report an issue</a></p></div></div></nav>
     </div>
@@ -615,16 +614,12 @@ Important
 <h3 class="anchored" data-anchor-id="plan-b-with-google-colab">Plan B with Google Colab</h3>
 <p>If you are unable to install an environment using the instructions above, you can follow the course using <a href="https://colab.research.google.com">Google Colab</a>. You will just need to install the required packages to your Colab environment. Reach out in class or via Discord if you need to set it up.</p>
 </section>
-</section>
-<section id="website" class="level2">
-<h2 class="anchored" data-anchor-id="website">Website</h2>
-<p>The website for the course is available from http://martinfleischmann.net/sds/. The source is available at https://github.com/martinfleis/sds.</p>
-</section>
-<section id="license" class="level2">
-<h2 class="anchored" data-anchor-id="license">License</h2>
-<p>The course material was created by <a href="https://martinfleischmann.net/">Martin Fleischmann</a> and is available under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a> license.</p>
+<section id="troubleshooting" class="level3">
+<h3 class="anchored" data-anchor-id="troubleshooting">Troubleshooting</h3>
+<p>In case of any issues related to environment creation, reach out in the class or via Discord.</p>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->
@@ -974,20 +969,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       });
     }
   }
-    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
-      var filterRegex = new RegExp('/' + window.location.host + '/');
-    var isInternal = (href) => {
-        return filterRegex.test(href) || localhostRegex.test(href);
-    }
-    // Inspect non-navigation links and adorn them if external
- 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item)');
-    for (var i=0; i<links.length; i++) {
-      const link = links[i];
-      if (!isInternal(link.href)) {
-          // default icon
-          link.classList.add("external");
-      }
-    }
 });
 </script>
 <nav class="page-navigation">
