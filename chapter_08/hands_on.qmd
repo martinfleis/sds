@@ -82,7 +82,6 @@ pop_url = (  # <1>
     "GHS_POP_GLOBE_R2023A/GHS_POP_E2030_GLOBE_R2023A_54009_100/"
     "V1-0/tiles/GHS_POP_E2030_GLOBE_R2023A_54009_100_V1_0_R4_C20.zip"
       )
-pop_url = "https://martinfleischmann.net/sds/chapter_08/data/GHS_POP_E2030_GLOBE_R2023A_54009_100_V1_0_R4_C20.zip"
 pop_url
 ```
 1. The URL is long. It may be better to write it as a multi-line string to avoid a long line.
@@ -184,7 +183,6 @@ fua_url = (
     "GHS_FUA_UCDB2015_GLOBE_R2019A/V1-0/" # <1>
     "GHS_FUA_UCDB2015_GLOBE_R2019A_54009_1K_V1_0.zip" # <1>
 ) # <1>
-fua_url = "https://martinfleischmann.net/sds/chapter_08/data/GHS_FUA_UCDB2015_GLOBE_R2019A_54009_1K_V1_0.zip"
 p = f"zip+{fua_url}!GHS_FUA_UCDB2015_GLOBE_R2019A_54009_1K_V1_0.gpkg" # <2>
 fuas = gpd.read_file(p) # <3>
 budapest = fuas.query("eFUA_name == 'Budapest'") # <4>
@@ -308,8 +306,7 @@ volume_url = (
     "GHS_BUILT_V_GLOBE_R2023A/GHS_BUILT_V_E2030_GLOBE_R2023A_54009_100/V1-0/tiles/"
     "GHS_BUILT_V_E2030_GLOBE_R2023A_54009_100_V1_0_R4_C20.zip"
 )
-volume_url = "https://martinfleischmann.net/sds/chapter_08/data/GHS_BUILT_V_E2030_GLOBE_R2023A_54009_100_V1_0_R4_C20.zip"
-volume_url
+             volume_url
 ```
 
 ::: {.callout-note collapse="true"}

@@ -47,8 +47,7 @@ as an example of areal interpolation. Load the subset of SIMD 2020 for the City 
 
 ```{python}
 simd = gpd.read_file(
-    # "https://martinfleischmann.net/sds/chapter_09/
-    "data/edinburgh_simd_2020.gpkg"
+    "https://martinfleischmann.net/sds/chapter_09/data/edinburgh_simd_2020.gpkg"
 )
 simd.head(2)
 ```
@@ -238,8 +237,7 @@ section, it is pre-processed to create geometry and remove unnecessary columns.
 
 ```{python}
 airbnb = gpd.read_file(
-    # "https://martinfleischmann.net/sds/chapter_09/"
-    "data/edinburgh_airbnb_2023.gpkg"
+    "https://martinfleischmann.net/sds/chapter_09/data/edinburgh_airbnb_2023.gpkg"
 )
 airbnb.head()
 ```
