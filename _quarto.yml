@@ -22,6 +22,7 @@ format:
     smooth-scroll: true
     highlight-style: atom-one
     bibliography: assets/references.bib
+    link-external-icon: true
 
 website:
   repo-url: https://github.com/martinfleis/sds/
