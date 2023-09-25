@@ -95,11 +95,6 @@ If you are unable to install an environment using the instructions above, you ca
 the course using [Google Colab](https://colab.research.google.com). You will just need to install the required packages to
 your Colab environment. Reach out in class or via Discord if you need to set it up.
 
-## Website
+### Troubleshooting
 
-The website for the course is available from http://martinfleischmann.net/sds/. The source
-is available at https://github.com/martinfleis/sds.
-
-## License
-
-The course material was created by [Martin Fleischmann](https://martinfleischmann.net/) and is available under [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/) license.
+In case of any issues related to environment creation, reach out in the class or via Discord.
