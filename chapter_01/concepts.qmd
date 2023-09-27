@@ -1,6 +1,6 @@
 ---
 title: "What is Spatial Data Science?"
-format: html
+slide-format: revealjs
 ---
 <!-- Conceptual:
 
@@ -23,3 +23,7 @@ Practical:
 This section will cover the lecture delivered as part of the in-person course. Slides will appear here shortly before the lesson, followed by the summary of the contents in the days after, based on the lecture transcript.
 
 :::
+
+```{=html}
+<iframe class="slide-deck" src="slides/presentation.htm"></iframe>
+```

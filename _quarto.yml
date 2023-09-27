@@ -4,6 +4,9 @@ project:
   resources:
     - "*/data/*"
     - environment.yml
+    - "*/slides/*"
+    - "*/slides/*/*"
+    - "*/slides/*/*/*"
   output-dir: ./_site
 
 lang: en

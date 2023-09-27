@@ -1,0 +1,854 @@
+/**
+ * iA Writer core.css:
+ * Base styles for all templates
+ *
+ * - Generic
+ * - Base
+ * - Objects
+ *
+ * Notes:
+ * - CSS load order: normalize.css, core.css (base styles), style.css (theme styles)
+ * - Margins are in %s (of viewport or container width) via calc() to scale fluidly
+ * - Margin/padding scaling is declared in calc() for container width: 1080px, then stopped via @media
+ * - font-size is set on body using px for breakpoints, then rems or ems per element to scale
+ */
+
+/* TOOLS */
+
+/* box-sizing */
+
+* {
+  box-sizing: border-box;
+}
+
+/* GENERIC */
+
+/* Fonts: iA Writer Mono used for code across templates */
+
+@font-face {
+  font-family: "iAWriterMono5";
+  font-weight: 400;
+  font-style: normal;
+  src: local("iAWriterMono-Regular5");
+}
+
+@font-face {
+  font-family: "iAWriterMono5";
+  font-weight: 400;
+  font-style: italic;
+  src: local("iAWriterMono-Italic5");
+}
+
+@font-face {
+  font-family: "iAWriterMono5";
+  font-weight: 450;
+  font-style: normal;
+  src: local("iAWriterMono-Text5");
+}
+
+@font-face {
+  font-family: "iAWriterMono5";
+  font-weight: 450;
+  font-style: italic;
+  src: local("iAWriterMono-TextItalic5");
+}
+
+@font-face {
+  font-family: "iAWriterMono5";
+  font-weight: 600;
+  font-style: normal;
+  src: local("iAWriterMono-Semibold5");
+}
+
+@font-face {
+  font-family: "iAWriterMono5";
+  font-weight: 600;
+  font-style: italic;
+  src: local("iAWriterMono-SemiboldItalic5");
+}
+
+@font-face {
+  font-family: "iAWriterMono5";
+  font-weight: 700;
+  font-style: normal;
+  src: local("iAWriterMono-Bold5");
+}
+
+@font-face {
+  font-family: "iAWriterMono5";
+  font-weight: 700;
+  font-style: italic;
+  src: local("iAWriterMono-BoldItalic5");
+}
+
+
+/* BASE */
+
+html,
+a {
+  color: #1a1a1a;
+}
+
+html {
+  background-color: #f9f9f9; /* iOS background color */
+}
+
+body {
+  box-sizing: content-box; /* So measure calculations don’t need to include gutters */
+  margin: 0 auto;
+  padding: 0 12px; /* 12px gutters to match iPhone 5 Title bar UI */
+  word-wrap: break-word;
+  text-rendering: optimizeLegibility; /* NOTE May cause performance issues */
+  /* font-kerning is enabled by default in OS X Safari 7+ */
+  -webkit-font-kerning: normal;
+  font-kerning: normal;
+}
+
+/* Accessibility sizing for iOS phones */
+.content-size-4xs > body {
+  font-size: 50%;
+}
+
+.content-size-3xs > body {
+  font-size: 66%;
+}
+
+.content-size-2xs > body {
+  font-size: 73%;
+}
+
+.content-size-xs > body {
+  font-size: 80%;
+}
+
+.content-size-s > body {
+  font-size: 87%;
+}
+
+.content-size-m > body {
+  font-size: 93%;
+}
+
+.content-size-xl > body {
+  font-size: 113%;
+}
+
+.content-size-2xl > body {
+  font-size: 127%;
+}
+
+.content-size-3xl > body {
+  font-size: 140%;
+}
+
+.content-size-4xl > body {
+  font-size: 153%;
+}
+
+.content-size-5xl > body {
+  font-size: 167%;
+}
+
+.content-size-6xl > body {
+  font-size: 180%;
+}
+
+.content-size-7xl > body {
+  font-size: 193%;
+}
+
+.content-size-8xl > body {
+  font-size: 207%;
+}
+
+.content-size-9xl > body {
+  font-size: 217%;
+}
+
+.content-size-10xl > body {
+  font-size: 224%;
+}
+
+body > *:first-child {
+   margin-top: 0;
+}
+
+/* iOS gutters responsive adjustments */
+
+body {
+    --padding: 10px;
+    padding-left: var(--padding);
+    padding-right: var(--padding);
+}
+
+@supports (padding: constant(safe-area-inset-left)) and (padding: constant(safe-area-inset-right)) {
+    body {
+        padding-left: calc(var(--padding) + constant(safe-area-inset-left));
+        padding-right: calc(var(--padding) + constant(safe-area-inset-right));
+    }
+}
+
+@supports (padding: env(safe-area-inset-left)) and (padding: env(safe-area-inset-right)) {
+    body {
+        padding-left: calc(var(--padding) + env(safe-area-inset-left));
+        padding-right: calc(var(--padding) + env(safe-area-inset-right));
+    }
+}
+
+/* iPhone 6 */
+@media screen and (min-width: 375px) {
+  body {
+    --padding: 22px;
+  }
+}
+
+/* iPhone 6+ */
+@media screen and (min-width: 414px) {
+  body {
+    --padding: 24px;
+  }
+}
+
+@media screen and (min-width: 480px) {
+  body {
+    --padding: 32px;
+  }
+}
+
+@media screen and (min-width: 600px) {
+  body {
+    --padding: 48px;
+  }
+}
+
+/* iPad triggered on 760 not 768 to work with fonts */
+@media screen and (min-width: 760px) and (max-device-width: 1024px) {
+  body {
+    --padding: 70px;
+  }
+}
+
+/* Responsive adjustments for OS X */
+@media screen and (min-device-width: 1152px) {
+  html {
+    background-color: #fcfcfc;
+  }
+
+  body {
+    --padding: 24px;
+  }
+}
+
+@media screen and (min-width: 480px) and (min-device-width: 1152px) {
+  body {
+    --padding: 48px;
+  }
+}
+
+@media screen and (min-width: 640px) and (min-device-width: 1152px) {
+  body {
+    --padding: 72px;
+  }
+}
+
+
+/* Headings */
+
+body > h1:first-child {
+  margin-top: 0; /* Controlled via body padding-top */
+}
+
+/* Unify space above initial heading in blockquotes (based on 31px line-height) */
+blockquote > :-webkit-any(h1, h2, h3, h4, h5):first-child {
+  margin-top: calc((21 / 1080) * 100%); /* 20px when width: 1080px */
+  padding-top: calc((10 / 1080) * 100%);/* 10px when width: 1080px */
+}
+
+@media screen and (min-width: 1080px) {
+  blockquote > :-webkit-any(h1, h2, h3, h4, h5):first-child {
+    margin-top: 21px;
+    padding-top: 10px;
+  }
+}
+
+/* Display h6 as run-in by default when followed by p
+   (h6 is no longer run-in if content is greater than one line long. Display can break if consecutive h6s are used before a <1 line p)
+   Note: Specced ways to do this display:run-in and :has() are not implemented at time of writing */
+h6 {
+  float: left;
+  margin: 0 0.5em 0 0; /* 9px @ font-size: 18px */
+}
+
+  /* Clear all siblings after floated h6… */
+h6 ~ * {
+  clear: both;
+}
+
+  /* …except immediately following paragraph */
+h6 + p {
+  clear: none;
+}
+
+/* Responsive list padding (default used by Sans, overridden for Mono and Serif) */
+ul,
+ol {
+  padding-left: 1.5rem; /* 22.5px for font-size: 15px @320px. rem works better for RWD than % */
+}
+
+@media screen and (min-width: 760px) {
+  /* Left padding based on 40px browser default */
+  ul,
+  ol {
+    padding-left: 2.2222rem; /* ~40px for font-size: 18px. rem works better for RWD than % */
+  }
+}
+
+/* HACK: Prevent empty list items collapsing
+   Note this doesn’t work for paragraph lists, although we can fix via class or once has() is supported with: `ul li:not:has(p)::after` */
+ul li:empty::after,
+.task-list-item:last-child::after {
+  content: "";
+  display: inline-block;
+}
+
+dd {
+  -webkit-margin-start: 2.2222rem; /* ~40px for font-size: 18px. rem works better for RWD than % */
+  margin-start: 2.2222rem;
+}
+
+/* Remove vertical margins on nested lists */
+:-webkit-any(li, dt, dd, th, td) > :-webkit-any(ul, ol, dl) {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+/* Override vertical margin above paragraph list items */
+:-webkit-any(li) > :-webkit-any(p, pre, figure, img) {
+    margin-top: 0;
+}
+
+/* img is wrapped in p on export by default, so leave as inline */
+img {
+  max-width: 100%;
+  vertical-align: top;
+}
+
+figure img {
+  display: block;
+}
+
+figcaption {
+    text-align: center;
+    font-style: italic;
+}
+
+hr {
+  clear: both;
+  margin: 3rem auto 3rem; /* Extra-large for visibility in mini-map (<100px wide) */
+  border: 0;
+  border-bottom: 1px #e6e6e6 solid;
+}
+
+/* More reasonable default to override per template */
+@media screen and (min-width: 100px) {
+  hr {
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+  }
+}
+
+/* Horizontal rule responsive adjustments */
+@media screen and (min-width: 1080px) {
+  hr {
+    margin-top: 46px;
+    margin-bottom: 46px;
+  }
+}
+
+
+/* table-layout: fixed; produces equal-width columns, which is generally a better result */
+table {
+  table-layout: fixed;
+  width: 100%;
+  border-top: 1px #e6e6e6 solid;
+  border-bottom: 1px #e6e6e6 solid;
+  border-collapse: collapse;
+  font-size: calc((15 / 18) * 1rem); /* 0.8333rem = 15px @ font-size: 18px */
+  line-height: calc(24 / 15); /* 1.6 = 24px @ font-size: 15px */
+  font-variant-numeric: tabular-nums;
+  -moz-font-feature-settings: "tnum";
+  -webkit-font-feature-settings: "tnum";
+  font-feature-settings: "tnum";
+}
+
+caption {
+  caption-side: bottom;
+  font-style: italic;
+  font-size: 1rem;
+}
+
+caption, figcaption {
+    padding-top: calc((20 / 1080) * 100%); /* 10px when width: 1080px */
+    padding-bottom: calc((10 / 1080) * 100%); /* 10px when width: 1080px */
+}
+
+tbody {
+  border-top: 1px #e6e6e6 solid;
+}
+
+th,
+td {
+  margin-right: calc((30 / 1080) * 100%); /* 30px when width: 1080px */
+  padding: calc((10 / 1080) * 100%) calc((10 / 1080) * 100%) calc((10 / 1080) * 100%) calc((10 / 1080) * 100%); /* 10px 0 10px when width: 1080px */
+  vertical-align: top;
+  text-align: left;
+}
+
+/* Table cell responsive adjustments */
+@media screen and (min-width: 1080px) {
+  caption,
+  th,
+  td {
+    padding-top: 10px;
+    padding-bottom: 10px;
+  }
+
+  th,
+  td {
+    margin-right: 30px;
+  }
+}
+
+th:last-of-type,
+td:last-of-type {
+  margin-right: 0;
+}
+
+/* Code */
+
+pre,
+code,
+kbd {
+  border-radius: 2px;
+  white-space: pre-wrap;
+  background-color: rgba(36, 36, 36, 0.055);
+}
+
+pre code {
+  background-color: transparent;
+}
+
+figure pre {
+  margin-top: 0;
+}
+
+pre {
+  padding: 1rem;
+  overflow: hidden;
+}
+
+pre code {
+  padding: 0;
+}
+
+code,
+samp,
+kbd {
+  font-family: "iAWriterMono5", "Keyboard", monospace;
+  font-size: calc((15 / 19) * 1em); /* 0.7895em = 15px @ font-size: 19px (based on 12/16px @640 = 15.2px). Values for Serif (smallest), others need overrides */
+  font-weight: 400; /* Regular weight for non-Retina (@1x) */
+}
+
+/* Text weight for Retina (@2x) */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi), print {
+  code,
+  samp,
+  kbd {
+    font-weight: 450;
+  }
+}
+
+code,
+kbd {
+  padding: 0.08333em 0.1667em 0.1667em; /* ~1px 2px 2px when font-size: 12px, taking 1px border into account */
+}
+
+/* Prevent code line-height increasing heading line-height */
+:-webkit-any(h1, h2, h3, h4, h5, h6) > code, kbd {
+  line-height: normal;
+}
+
+/* Print styles */
+@media print {
+
+  *,
+  *:before,
+  *:after {
+    color: #000 !important; /* black prints faster */
+    box-shadow: none !important;
+    text-shadow: none !important;
+  }
+
+  html {
+    margin: 0; /* Override for safety */
+    padding: 0; /* Override for safety */
+    font-size: 9pt; /* ← needs to be set per template to counter responsive typography */
+    background: transparent !important; /* Only on html due to checkboxes */
+  }
+
+  body {
+    margin: 0 auto; /* Set all values for safety */
+    padding: 12pt 50pt; /* Set all values for safety */
+  }
+
+  /* Make sure there’s no margin-top on first element */
+  body > :first-child {
+    margin-top: 0;
+  }
+
+  /* h6 excluded as the page-break-inside rule conflicts with page-initial inline h6 when printed */
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  img,
+  figure {
+    page-break-inside: avoid;
+    page-break-after: avoid; /* Not supported by Webkit at time of writing, ref: https://bugs.webkit.org/show_bug.cgi?id=5097 */
+  }
+
+  p {
+    /* Not supported by Webkit at time of writing, ref: https://bugs.webkit.org/show_bug.cgi?id=39735 */
+    widows: 3;
+    orphans: 3;
+  }
+
+  hr {
+    border-bottom-color: #000 !important;
+  }
+
+  /* Underline on superscript footnote number, which when clicked shows an error */
+  .footnote {
+    text-decoration: none;
+  }
+
+  /* Underline for table of contents on printed pages */
+  .TOC a {
+    text-decoration: none;
+  }
+
+  /* Link which allows you to go back to the text from footnote—useless on a printed page */
+  .reversefootnote {
+    display: none;
+  }
+
+  .tooltip:after {
+    display: none;
+  }
+}
+
+
+/* OBJECTS */
+
+/* Center Headings
+   Center h1-h5 headings, via the Centered Headings setting */
+.center-headings :-webkit-any(h1, h2, h3, h4, h5) {
+  text-align: center;
+}
+
+/* Indent Paragraphs
+   Indent the first line of sequential paragraphs, via the Indent Paragraph setting */
+.indent-paragraphs p + p {
+  margin-top: 0;
+  text-indent: 1.2em; /* Tweaked per template */
+}
+
+/* Night Mode */
+
+.night-mode,
+.night-mode a {
+  color: #dedede; /* iOS text color */
+}
+
+.night-mode {
+  background-color: #101010; /* iOS background color */
+}
+
+.night-mode pre,
+.night-mode code,
+.night-mode kbd {
+  background-color: rgba(245, 245, 245, 0.06);
+}
+
+.night-mode pre code {
+  background-color: transparent;
+}
+
+/* Colors for OS X */
+@media screen and (min-device-width: 1152px) {
+  .night-mode,
+  .night-mode a {
+    color: #cccccc; /* OS X text color */
+  }
+
+  .night-mode {
+    background-color: #101010;
+  }
+}
+
+/* Fake sub-pixel lines */
+.night-mode hr,
+.night-mode caption,
+.night-mode tbody th,
+.night-mode td {
+  border-bottom-color: #666;
+}
+
+.night-mode tbody th,
+.night-mode td {
+  border-top-color: #666;
+}
+
+/* Footnotes */
+
+.footnotes {
+  margin-top: calc((45 / 1080) * 100%); /* 45px when width: 1080px (excluding padding) */
+  page-break-before: avoid;
+  font-size: calc((16 / 18) * 1rem); /* 0.8889rem, 16/18px @1080px wide, default for Monospace */
+  line-height: calc(27 / 16); /* 1.6875, 27px @1080px wide, default for Monospace */
+}
+
+.footnotes hr {
+  margin-top: calc((60 / 760) * 100%); /* 60px when width: 1080px */
+  page-break-after: avoid;
+}
+
+.footnotes p {
+  margin: 0 auto;
+}
+
+/* Remove underline on .reversefootnote arrow for iOS, as it’s turned into an emoji */
+@media screen and (max-device-width: 1024px) {
+  .reversefootnote {
+    text-decoration: none;
+  }
+}
+
+/* Footnotes responsive adjustments when width: 1080px */
+@media screen and (min-width: 1080px) {
+  .footnotes {
+    margin-top: 45px;
+  }
+
+  /* Hanging footnote ordinals */
+  .footnotes ol {
+    padding-left: 0;
+  }
+
+  .footnotes hr {
+    margin-top: 60px;
+  }
+}
+
+/* Task Lists
+   Left padding based on 40px default */
+
+/* Position ordinal counters so 1-9 left-align with left content edge. Subsequent counters will begin in gutter. */
+ol .task-list-item {
+  margin-left: -0.6667rem; /* ~-10px @ font-size: 15px */
+  padding-left: 0.6667rem; /* ~10px @ font-size: 15px */
+}
+
+/* Hide default bullets for unordered task lists. */
+ul .task-list-item {
+  list-style-type: none;
+}
+
+/* Hide gen-content bullets for unordered task lists. */
+ul .task-list-item:before {
+  display: none;
+}
+
+.task-list-item-checkbox {
+  float: left; /* Removes from flow in case of paragraph list items */
+  width: 1.6rem; /* Same as p line-height (changing width/height affects svg size) */
+  height: 1.6rem; /* Same as width */
+  margin: 0 0 0 -1.6rem; /* 0s to overwrite user agent styles */
+  border: none; /* Otherwise iPhone draws a border */
+  font-size: 1rem; /* Required to overwrite user agent styles, set to same as p */
+  background-image: url('box.svg');
+  background-repeat: no-repeat;
+  background-position: 40% 40%; /* x=roughly align with bullets and between ordinal and text, y=4px down to roughly align to baseline. */
+  background-size: 50% 50%; /* Desired size 12px / 21px line-height for Preview */
+  background-color: transparent;
+  -webkit-print-color-adjust: exact; /* Prevents from hiding when printed */
+  -webkit-appearance: none; /* Disables system checkbox image */
+  opacity: 1.0; /* Otherwise they are 0.4 on iPhone, where it applies disabled effect even with above */
+}
+
+.task-list-item-checkbox:checked {
+  background-image: url('check.svg');
+}
+
+/* Checkbox color in Night Mode (=text color) */
+.night-mode .task-list-item-checkbox {
+  background-image: url('box-night-mode-ios.svg');
+}
+
+.night-mode .task-list-item-checkbox:checked {
+  background-image: url('check-night-mode-ios.svg');
+}
+
+/* OS X color */
+@media screen and (min-device-width: 1152px) {
+  .night-mode .task-list-item-checkbox {
+    background-image: url('box-night-mode-osx.svg');
+  }
+
+  .night-mode .task-list-item-checkbox:checked {
+    background-image: url('check-night-mode-osx.svg');
+  }
+}
+
+.header, .footer {
+  margin-top: 30px;
+  margin-bottom: 30px;
+  text-align: center;
+}
+
+#title {
+  height: 100%;
+}
+
+.title {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+address {
+    text-align: right;
+    white-space: pre;
+}
+
+
+/* Smart Table ToolTips */
+
+.tooltip {
+    position: relative;
+}
+
+table .tooltip:after {
+    font-size: 10px;
+    font-weight: bold;
+    background: rgba(0, 0, 0, 0);
+    color: rgba(0, 0, 0, 0);
+    border-radius: 2px;
+    top: calc(50% - 10px);
+    left: 0%;
+    content: attr(id);
+    padding: 2px 4px;
+    position: absolute;
+    z-index: 98;
+    -webkit-user-select: none;
+    user-select: none;
+}
+
+table:hover .tooltip:after {
+    /* Tooltips are always visible, and use transparent background and text color unless table is hovered because WebKit has a bug where table caption jumps around if table cells get a new abolutely positioned element inside. */
+    color: #fff;
+    background-color: #000;
+}
+
+/* Automatic Heading Numbering */
+
+/* Thanks to Phil Archer. http://philarcher.org/diary/2013/headingnumbers/ */
+
+.number-headings body {counter-reset: h2}
+.number-headings h2 {counter-reset: h3}
+.number-headings h3 {counter-reset: h4}
+.number-headings h4 {counter-reset: h5}
+/* .number-headings h5 {counter-reset: h6} */ /* Omitted H6. Inline headings are useful in non-hierarchical contexts */
+.number-headings h2:before {counter-increment: h2; content: counter(h2) ". "}
+.number-headings h3:before {counter-increment: h3; content: counter(h2) "." counter(h3) ". "}
+.number-headings h4:before {counter-increment: h4; content: counter(h2) "." counter(h3) "." counter(h4) ". "}
+.number-headings h5:before {counter-increment: h5; content: counter(h2) "." counter(h3) "." counter(h4) "." counter(h5) ". "}
+/* .number-headings h6:before {counter-increment: h6; content: counter(h2) "." counter(h3) "." counter(h4) "." counter(h5) "." counter(h6) ". "} */ /* H6 omitted as above */
+.number-headings h2.nocount:before, h3.nocount:before, h4.nocount:before, h5.nocount:before, h6.nocount:before {content: ""; counter-increment: none}
+
+/* Don't number author H2 on title page */
+.title > h2:before {content: ""}
+
+span.hashtag {
+  font-family: -apple-system;
+  font-weight: 400;
+  line-height: 1rem;
+  font-size: 0.85rem;
+  color: hsl(0, 0%, 55%);
+  padding: 0.2rem 0.5rem;
+  display: inline-block;
+  vertical-align: top;
+  border-radius: 1rem;
+  border-width: 1pt;
+  border-style: solid;
+  border-color: hsl(0, 0%, 90%);
+  background-color: hsl(0, 0%, 100%);
+}
+
+
+html.night-mode span.hashtag {
+  border-color: hsl(0, 0%, 18%);
+  background-color: hsl(0, 0%, 5%)
+}
+
+mark {
+    color: inherit;
+    background-color: rgb(253, 229, 102);
+    padding: 0.04167em 0.08333em 0.1667em 0.08333em;
+}
+
+html.night-mode mark {
+    color: inherit;
+    background-color: rgb(121, 76, 14);
+}
+
+h1, h2, h3, h4 {margin-bottom: 0.5em;
+margin-top:2em !important;}
+
+h3+h2, h2+h1, h4+h3, h5+h4, h6+h5 {margin-top:0 !important;}
+
+h1+p, h2+p, h3+p, h4+p, h5+p, h6+p {margin-top:0 !important;}
+
+p {margin: 0 !important;
+  margin-block-start: 0;
+  margin-block-end: 0;}
+
+p+p {margin-top: 0.5em !important;}
+
+img+p, p+img, p.image-grid  {margin: 1em 0 !important;}
+
+.image-grid.single-image {
+  max-width: 50% !important;
+  max-height: 100% !important;
+  object-fit: cover !important; 
+  margin-right: 1em !important;}
+
+
+    div.slide {margin: 0;
+    padding: 0;
+  float: left;}
+
+  .two-rows { 
+    grid-template-columns: minmax(0,1fr) minmax(0,1fr) minmax(0,1fr) !important;
+    grid-row-gap: 0.5em;
+  }
+
+  .single-image img { 
+    max-width: 100% !important;
+    max-height: 20em;
+    object-fit: cover !important;
+    margin-top: 0em;
+    margin-bottom: 0em;
+  }

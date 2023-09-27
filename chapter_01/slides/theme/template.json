@@ -1,0 +1,11 @@
+{
+  "Name": "San Francisco",
+  "Version": 0.1,
+  "Author": "iA",
+  "ShortDescription": "Be sure to wear some...",
+  "LongDescription": "...flowers in your hair.\n- Colorful, bold, different\n- Different sizes for headlines\n- Simple color background\n- Default white on black\n- Default font: System Font",
+  "Css": "sanfrancisco.css",
+  "TitleFont": "San Francisco",
+  "BodyFont": "SF Mono",
+  "CssClasses": "variable-size-headings",
+}
