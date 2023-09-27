@@ -7,7 +7,7 @@ on students' machines using solely open-source software.
 
 ## Communication
 
-Students enrolled in the MZ340V17 course at Charles University will be invited to a dedicated
+Students enrolled in the `MZ340V17` course at Charles University will be invited to a dedicated
 Discord server for online discussion. Students are encouraged to use the platform to seek
 help from peers, share thoughts and tips, and other meaningful contributions the rest of the
 group can benefit from. Learn from the mistakes of the others.
