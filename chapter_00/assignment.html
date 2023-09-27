@@ -20,7 +20,26 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-</style>
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
 
 
 <script src="../site_libs/quarto-nav/quarto-nav.js"></script>
@@ -68,6 +87,7 @@ ul.task-list li input[type="checkbox"] {
 
 <link rel="stylesheet" href="../assets/styles.css">
 <meta name="twitter:title" content="Spatial Data Science for Social Geography - Assignment">
+<meta name="twitter:description" content="">
 <meta name="twitter:card" content="summary">
 </head>
 
@@ -461,7 +481,20 @@ ul.task-list li input[type="checkbox"] {
 <div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#computational-essay" id="toc-computational-essay" class="nav-link active" data-scroll-target="#computational-essay">Computational essay</a>
+  <ul class="collapse">
+  <li><a href="#define-your-task" id="toc-define-your-task" class="nav-link" data-scroll-target="#define-your-task">Define your task</a></li>
+  <li><a href="#a-barcelona-case" id="toc-a-barcelona-case" class="nav-link" data-scroll-target="#a-barcelona-case">A Barcelona case</a></li>
+  </ul></li>
+  <li><a href="#submission" id="toc-submission" class="nav-link" data-scroll-target="#submission">Submission</a></li>
+  <li><a href="#evalutation-criteria" id="toc-evalutation-criteria" class="nav-link" data-scroll-target="#evalutation-criteria">Evalutation criteria</a></li>
+  
+  </ul>
+<div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/martinfleis/sds/issues/new" class="toc-action">Report an issue</a></p></div></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -483,24 +516,149 @@ ul.task-list li input[type="checkbox"] {
 
 </header>
 
-<!-- This page will explain the assignment. It will be a computational essay. -->
-<div class="callout callout-style-simple callout-note callout-titled">
+<p>This course is assessed based on a single final assignment - a computational essay.</p>
+<section id="computational-essay" class="level2">
+<h2 class="anchored" data-anchor-id="computational-essay">Computational essay</h2>
+<p>A computational essay is an essay whose narrative is supported by code and its results, which are part of the essay. Think of a Jupyter Notebook with cells corresponding to text explaining the process and its results and cells with executed code doing the computation.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-The contents will appear later
+An example of a computational essay
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>This section will cover the assignment. Details will be included later.</p>
+<p>One nice example of a computational essay is the <a href="https://urbangrammarai.xyz/age_capsule/">Age Capsule</a> by Dani Arribas-Bel. The code in there is a bit more advanced than what you are asked to do and you will need to include some maps and possibly tables, but you get the gist.</p>
 </div>
 </div>
+<p>The essay corresponds to a range of 2,500-5,000 words. That does not mean that you have to write that many words. Since you will have to produce not only text (in Czech or English) but also code and its outputs, the following requirements are specified:</p>
+<ul>
+<li>The maximum number of words in Markdown cells is 1,500 (the bibliography, if provided, does not count towards the word count).</li>
+<li>A maximum of 5 maps or other graphic outputs (one output may contain more than one map and will only count as one, but it must be included in the same <code>matplotlib</code> object).</li>
+<li>A maximum of 2 tables.</li>
+</ul>
+<p>The rest of the word count is assumed to be consumed by code.</p>
+<p>You have two options regarding topics. The first one is to work on your data on the topic of your choice, while the second is a semi-defined task if you prefer that.</p>
+<section id="define-your-task" class="level3">
+<h3 class="anchored" data-anchor-id="define-your-task">Define your task</h3>
+<p>Option one is to come up with your own idea for an essay, supported by data you either already have or can gather from openly available sources.</p>
+<p>The requirement is to cover:</p>
+<ol type="1">
+<li>Initial data exploration and visualisation<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a></li>
+<li>Exploration of a degree of randomness of data (e.g.&nbsp;spatial autocorrelation, point pattern analysis)<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a></li>
+<li>At least one other technique of your choice (clustering, interpolation, regression, prediction)<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a></li>
+</ol>
+<p>Consult the second option to get a better sense of the extent.</p>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Every topic needs to be approved
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>If you decide to define your own task, the topic and the extent need to be approved by the tutor. Essays on custom topics without prior approval will not be accepted and will be marked with 0%. Reach out via Discord or email to get approval.</p>
+</div>
+</div>
+<p>This option is recommended for students of Master’s and Postgraduate courses enrolled in <code>MZ340V17</code>.</p>
+</section>
+<section id="a-barcelona-case" class="level3">
+<h3 class="anchored" data-anchor-id="a-barcelona-case">A Barcelona case</h3>
+<p>The second option is more defined but still leaves some space for your creativity.</p>
+<p>You will take the role of a real-world data scientist tasked to explore a dataset on the city of Barcelona (Spain) and find useful insights for a variety of decision-makers. It does not matter if you have never been to Barcelona. In fact, this will help you focus on what you can learn about the city through the data, without the influence of prior knowledge. Furthermore, the assessment will not be marked based on how much you know about Barcelona but instead on how much you can show you have learned through analysing data.</p>
+<section id="part-one" class="level4">
+<h4 class="anchored" data-anchor-id="part-one">Part one</h4>
+<p>In the first part, you are asked to provide an overview of the socio-economic structure of Barcelona.</p>
+<section id="data" class="level5">
+<h5 class="anchored" data-anchor-id="data">Data</h5>
+<p>Head to the <a href="https://opendata-ajuntament.barcelona.cat/data/en/dataset">Open Data BCN</a> data service of Barcelona’s City Hall and download data reflecting two aspects (two variables) of the population structure of the city at the level of census areas (<em>Secció censal</em> in Spanish), find relevant geometry, and link them together.</p>
+<ol type="1">
+<li>Explore the spatial distribution of the data using choropleths. Comment on the details of your maps and interpret the results.</li>
+<li>Explore the degree of spatial autocorrelation. Describe the concepts behind your approach and interpret your results.</li>
+</ol>
+</section>
+</section>
+<section id="part-two" class="level4">
+<h4 class="anchored" data-anchor-id="part-two">Part two</h4>
+<p>For this one, you need to pick <em>one</em> of the following three options.</p>
+<ol type="1">
+<li>Create a classification (clustering) of Barcelona based on your socioeconomic data and interpret the results. In the process, answer the following questions:
+<ul>
+<li>What are the main types of neighbourhoods you identify?</li>
+<li>Which characteristics help you delineate this typology?</li>
+<li>If you had to use this classification to target areas in most need, how would you use it? Why?</li>
+<li>How is the city partitioned by your data?</li>
+</ul></li>
+</ol>
+<p>The other two options share the basics:</p>
+<ul>
+<li>Download listings for Barcelona from <a href="http://insideairbnb.com/get-the-data">Inside Airbnb</a>. You have already used Airbnb data before in the course, so you can refer to the code used there.</li>
+<li>Barcelona is known for its issue with Airbnb density. Visualise the data appropriately and discuss why you have taken your specific approach.</li>
+</ul>
+<ol start="2" type="1">
+<li>Asses the distribution of Airbnbs in Barcelona
+<ul>
+<li>Are the Airbnb listings distributed equally across the city? Does it depend on the type of listing or its price?</li>
+<li>Can you create a regionalisation of Barcelona census areas based on the presence of Airbnbs? What does it say about the city?</li>
+</ul></li>
+<li>Asses the relationship between the socio-economic profile of Barcelona and the presence of Airbnb.
+<ul>
+<li>Use regression techniques to asses a link between the socio-economic data from part one and the variable of your choice from the Airbnb dataset. Think of a density of listings or an average price.</li>
+<li>Discuss the implications of the results. What does it mean for policy?</li>
+</ul></li>
+</ol>
+</section>
+</section>
+</section>
+<section id="submission" class="level2">
+<h2 class="anchored" data-anchor-id="submission">Submission</h2>
+<p>The submission will contain an executed Jupyter Notebook and a PDF version of the same. The code needs to be reproducible. That means that all the data used in the essay need to be available online (and ideally fetched directly from the notebook but a link to a download page is also fine, although data manipulation outside of the Notebook is not allowed) or shared as part of the submission. Any additional Python packages apart from those available in the provided <code>sds</code> environment need to be explicitly specified on top of the notebook. However, it is not expected that you will need it.</p>
+</section>
+<section id="evalutation-criteria" class="level2">
+<h2 class="anchored" data-anchor-id="evalutation-criteria">Evalutation criteria</h2>
+<p>The essay is primarily evaluated on a percentage scale of 0-100. To successfully complete the class, a minimum of 40% is required:</p>
+<ul>
+<li><span class="accent">0-15</span>: the code does not work and there is no documentation for it.</li>
+<li><span class="accent">16-39</span>: the code does not work or works but does not lead to the expected result. There is some documentation explaining its logic.</li>
+<li><span class="accent">40-49</span>: the code runs and produces the expected output. There is some documentation explaining its logic.</li>
+<li><span class="accent">50-59</span>: the code runs and produces the expected output. There is extensive documentation explaining its logic.</li>
+<li><span class="accent">60-69</span>: the code runs and produces the expected output. There is extensive documentation, properly formatted, explaining its logic.</li>
+<li><span class="accent">70-79</span>: everything as above, plus the code design includes clear evidence of skills presented in advanced parts of the course (e.g., custom methods, list comprehension, etc.).</li>
+<li><span class="accent">80-100</span>: everything as above, plus the code includes new knowledge that extends/improves the functionality provided to the student (e.g., algorithm optimization, new methods to perform the task, etc.).</li>
+</ul>
+<p>The expected relationship between the score and a final mark (potential change will be discussed ahead):</p>
+<ul>
+<li><span class="accent">0-39</span>: 4</li>
+<li><span class="accent">40-49</span>: 3</li>
+<li><span class="accent">50-69</span>: 2</li>
+<li><span class="accent">70-100</span>: 1</li>
+</ul>
+</section>
 
 
 
-</main> <!-- /main -->
+<div id="quarto-appendix" class="default"><section id="acknowledgements" class="level2 appendix"><h2 class="anchored quarto-appendix-heading">Acknowledgements</h2><div class="quarto-appendix-contents">
+
+<p>The assignment structure is partially derived from <em>A Course on Geographic Data Science</em> by <span class="citation" data-cites="darribas_gds_course">Arribas-Bel (<a href="#ref-darribas_gds_course" role="doc-biblioref">2019</a>)</span>, licensed under CC-BY-SA 4.0.</p>
+
+
+
+</div></section><section class="quarto-appendix-contents" role="doc-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" role="list">
+<div id="ref-darribas_gds_course" class="csl-entry" role="listitem">
+Arribas-Bel, Dani. 2019. <span>“A Course on Geographic Data Science.”</span> <em>The Journal of Open Source Education</em> 2 (14). <a href="https://doi.org/10.21105/jose.00042">https://doi.org/10.21105/jose.00042</a>.
+</div>
+</div></section><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
+
+<ol>
+<li id="fn1"><p>Based on chapters 1 (<a href="../chapter_01/hands_on.html">Introduction</a>) - 3 (<a href="../chapter_03/hands_on.html">Spatial data</a>).<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2"><p>Based on chapters 4 (<a href="../chapter_04/hands_on.html">Spatial weights</a>) - 6 (<a href="../chapter_06/hands_on.html">Point patterns</a>).<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn3"><p>Based on chapters 7 (<a href="../chapter_07/hands_on.html">Clustering</a>) - 11 (<a href="../chapter_11/hands_on.html">Machine learning</a>).<a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section></div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
@@ -864,7 +1022,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     <div class="nav-footer-left">
       &nbsp;
     </div>   
-    <div class="nav-footer-center">Course material by <a href="https://martinfleischmann.net">Martin Fleischmann</a>. Available under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a>.<div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/martinfleis/sds/issues/new" class="toc-action">Report an issue</a></p></div></div></div>
+    <div class="nav-footer-center">Course material by <a href="https://martinfleischmann.net">Martin Fleischmann</a>. Available under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a>.</div>
     <div class="nav-footer-right">
       &nbsp;
     </div>
