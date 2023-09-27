@@ -34,4 +34,3 @@ dependencies:
   - pip:
       - git+https://github.com/pysal/libpysal.git@main
       - git+https://github.com/pysal/pointpats.git@360677e4041ffd693d4b31ba2d2eed1b70c9e29d
-      - git+https://github.com/pysal/tobler.git@main
