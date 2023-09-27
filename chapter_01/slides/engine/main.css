@@ -1,0 +1,5041 @@
+/**
+ * reveal.js
+ * http://revealjs.com
+ * MIT licensed
+ *
+ * Copyright (C) Hakim El Hattab, https://hakim.se
+ */
+/**
+ * Layout helpers.
+ */
+.reveal .stretch,
+.reveal .r-stretch {
+  max-width: none;
+  max-height: none;
+}
+.reveal pre.stretch code,
+.reveal pre.r-stretch code {
+  height: 100%;
+  max-height: 100%;
+  box-sizing: border-box;
+}
+.reveal .r-fit-text {
+  display: inline-block;
+  white-space: nowrap;
+}
+.reveal .r-stack {
+  display: grid;
+}
+.reveal .r-stack > * {
+  grid-area: 1/1;
+  margin: auto;
+}
+.reveal .r-vstack,
+.reveal .r-hstack {
+  display: flex;
+}
+.reveal .r-vstack img, .reveal .r-vstack video,
+.reveal .r-hstack img,
+.reveal .r-hstack video {
+  min-width: 0;
+  min-height: 0;
+  -o-object-fit: contain;
+     object-fit: contain;
+}
+.reveal .r-vstack {
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.reveal .r-hstack {
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+.reveal .items-stretch {
+  align-items: stretch;
+}
+.reveal .items-start {
+  align-items: flex-start;
+}
+.reveal .items-center {
+  align-items: center;
+}
+.reveal .items-end {
+  align-items: flex-end;
+}
+.reveal .justify-between {
+  justify-content: space-between;
+}
+.reveal .justify-around {
+  justify-content: space-around;
+}
+.reveal .justify-start {
+  justify-content: flex-start;
+}
+.reveal .justify-center {
+  justify-content: center;
+}
+.reveal .justify-end {
+  justify-content: flex-end;
+}
+/*********************************************
+ * GLOBAL STYLES
+ *********************************************/
+html.reveal-full-page {
+  width: 100%;
+  height: 100%;
+  height: 100vh;
+  height: calc( var(--vh, 1vh) * 100 );
+  overflow: hidden;
+}
+.reveal-viewport {
+  height: 100vh;
+  height: calc( var(--vh, 1vh) * 100 );
+  overflow: hidden;
+  position: relative;
+  line-height: 1;
+  margin: 0;
+  background-color: #fff;
+
+}
+/*********************************************
+ * VIEW FRAGMENTS
+ *********************************************/
+.reveal .slides section .fragment {
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.2s ease;
+  will-change: opacity;
+}
+.reveal .slides section .fragment.visible {
+  opacity: 1;
+  visibility: inherit;
+}
+.reveal .slides section .fragment.disabled {
+  transition: none;
+}
+.reveal .slides section .fragment.grow {
+  opacity: 1;
+  visibility: inherit;
+}
+.reveal .slides section .fragment.grow.visible {
+  transform: scale(1.3);
+}
+.reveal .slides section .fragment.shrink {
+  opacity: 1;
+  visibility: inherit;
+}
+.reveal .slides section .fragment.shrink.visible {
+  transform: scale(0.7);
+}
+.reveal .slides section .fragment.zoom-in {
+  transform: scale(0.1);
+}
+.reveal .slides section .fragment.zoom-in.visible {
+  transform: none;
+}
+.reveal .slides section .fragment.fade-out {
+  opacity: 1;
+  visibility: inherit;
+}
+.reveal .slides section .fragment.fade-out.visible {
+  opacity: 0;
+  visibility: hidden;
+}
+.reveal .slides section .fragment.semi-fade-out {
+  opacity: 1;
+  visibility: inherit;
+}
+.reveal .slides section .fragment.semi-fade-out.visible {
+  opacity: 0.5;
+  visibility: inherit;
+}
+.reveal .slides section .fragment.strike {
+  opacity: 1;
+  visibility: inherit;
+}
+.reveal .slides section .fragment.strike.visible {
+  text-decoration: line-through;
+}
+.reveal .slides section .fragment.fade-up {
+  transform: translate(0, 40px);
+}
+.reveal .slides section .fragment.fade-up.visible {
+  transform: translate(0, 0);
+}
+.reveal .slides section .fragment.fade-down {
+  transform: translate(0, -40px);
+}
+.reveal .slides section .fragment.fade-down.visible {
+  transform: translate(0, 0);
+}
+.reveal .slides section .fragment.fade-right {
+  transform: translate(-40px, 0);
+}
+.reveal .slides section .fragment.fade-right.visible {
+  transform: translate(0, 0);
+}
+.reveal .slides section .fragment.fade-left {
+  transform: translate(40px, 0);
+}
+.reveal .slides section .fragment.fade-left.visible {
+  transform: translate(0, 0);
+}
+.reveal .slides section .fragment.fade-in-then-out,
+.reveal .slides section .fragment.current-visible {
+  opacity: 0;
+  visibility: hidden;
+}
+.reveal .slides section .fragment.fade-in-then-out.current-fragment,
+.reveal .slides section .fragment.current-visible.current-fragment {
+  opacity: 1;
+  visibility: inherit;
+}
+.reveal .slides section .fragment.fade-in-then-semi-out {
+  opacity: 0;
+  visibility: hidden;
+}
+.reveal .slides section .fragment.fade-in-then-semi-out.visible {
+  opacity: 0.5;
+  visibility: inherit;
+}
+.reveal .slides section .fragment.fade-in-then-semi-out.current-fragment {
+  opacity: 1;
+  visibility: inherit;
+}
+.reveal .slides section .fragment.highlight-red,
+.reveal .slides section .fragment.highlight-current-red,
+.reveal .slides section .fragment.highlight-green,
+.reveal .slides section .fragment.highlight-current-green,
+.reveal .slides section .fragment.highlight-blue,
+.reveal .slides section .fragment.highlight-current-blue {
+  opacity: 1;
+  visibility: inherit;
+}
+.reveal .slides section .fragment.highlight-red.visible {
+  color: #ff2c2d;
+}
+.reveal .slides section .fragment.highlight-green.visible {
+  color: #17ff2e;
+}
+.reveal .slides section .fragment.highlight-blue.visible {
+  color: #1b91ff;
+}
+.reveal .slides section .fragment.highlight-current-red.current-fragment {
+  color: #ff2c2d;
+}
+.reveal .slides section .fragment.highlight-current-green.current-fragment {
+  color: #17ff2e;
+}
+.reveal .slides section .fragment.highlight-current-blue.current-fragment {
+  color: #1b91ff;
+}
+/*********************************************
+ * DEFAULT ELEMENT STYLES
+ *********************************************/
+/* Fixes issue in Chrome where italic fonts did not appear when printing to PDF */
+.reveal:after {
+  content: "";
+  font-style: italic;
+}
+.reveal iframe {
+  z-index: 1;
+}
+/** Prevents layering issues in certain browser/transition combinations */
+.reveal a {
+  position: relative;
+}
+/*********************************************
+ * CONTROLS
+ *********************************************/
+@-webkit-keyframes bounce-right {
+  0%, 10%, 25%, 40%, 50% {
+    transform: translateX(0);
+  }
+  20% {
+    transform: translateX(10px);
+  }
+  30% {
+    transform: translateX(-5px);
+  }
+}
+@keyframes bounce-right {
+  0%, 10%, 25%, 40%, 50% {
+    transform: translateX(0);
+  }
+  20% {
+    transform: translateX(10px);
+  }
+  30% {
+    transform: translateX(-5px);
+  }
+}
+@-webkit-keyframes bounce-left {
+  0%, 10%, 25%, 40%, 50% {
+    transform: translateX(0);
+  }
+  20% {
+    transform: translateX(-10px);
+  }
+  30% {
+    transform: translateX(5px);
+  }
+}
+@keyframes bounce-left {
+  0%, 10%, 25%, 40%, 50% {
+    transform: translateX(0);
+  }
+  20% {
+    transform: translateX(-10px);
+  }
+  30% {
+    transform: translateX(5px);
+  }
+}
+@-webkit-keyframes bounce-down {
+  0%, 10%, 25%, 40%, 50% {
+    transform: translateY(0);
+  }
+  20% {
+    transform: translateY(10px);
+  }
+  30% {
+    transform: translateY(-5px);
+  }
+}
+@keyframes bounce-down {
+  0%, 10%, 25%, 40%, 50% {
+    transform: translateY(0);
+  }
+  20% {
+    transform: translateY(10px);
+  }
+  30% {
+    transform: translateY(-5px);
+  }
+}
+.reveal .controls {
+  display: none;
+  position: absolute;
+  top: auto;
+  bottom: 12px;
+  right: 12px;
+  left: auto;
+  z-index: 11;
+  color: #000;
+  pointer-events: none;
+  font-size: 10px;
+}
+.reveal .controls button {
+  position: absolute;
+  padding: 0;
+  background-color: transparent;
+  border: 0;
+  outline: 0;
+  cursor: pointer;
+  color: currentColor;
+  transform: scale(0.9999);
+  transition: color 0.2s ease, opacity 0.2s ease, transform 0.2s ease;
+  z-index: 2;
+  pointer-events: auto;
+  font-size: inherit;
+  visibility: hidden;
+  opacity: 0;
+  -webkit-appearance: none;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+.reveal .controls .controls-arrow:before,
+.reveal .controls .controls-arrow:after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 2.6em;
+  height: 0.5em;
+  border-radius: 0.25em;
+  background-color: currentColor;
+  transition: all 0.15s ease, background-color 0.8s ease;
+  transform-origin: 0.2em 50%;
+  will-change: transform;
+}
+.reveal .controls .controls-arrow {
+  position: relative;
+  width: 3.6em;
+  height: 3.6em;
+}
+.reveal .controls .controls-arrow:before {
+  transform: translateX(0.5em) translateY(1.55em) rotate(45deg);
+}
+.reveal .controls .controls-arrow:after {
+  transform: translateX(0.5em) translateY(1.55em) rotate(-45deg);
+}
+.reveal .controls .controls-arrow:hover:before {
+  transform: translateX(0.5em) translateY(1.55em) rotate(40deg);
+}
+.reveal .controls .controls-arrow:hover:after {
+  transform: translateX(0.5em) translateY(1.55em) rotate(-40deg);
+}
+.reveal .controls .controls-arrow:active:before {
+  transform: translateX(0.5em) translateY(1.55em) rotate(36deg);
+}
+.reveal .controls .controls-arrow:active:after {
+  transform: translateX(0.5em) translateY(1.55em) rotate(-36deg);
+}
+.reveal .controls .navigate-left {
+  right: 6.4em;
+  bottom: 3.2em;
+  transform: translateX(-10px);
+}
+.reveal .controls .navigate-left.highlight {
+  -webkit-animation: bounce-left 2s 50 both ease-out;
+          animation: bounce-left 2s 50 both ease-out;
+}
+.reveal .controls .navigate-right {
+  right: 0;
+  bottom: 3.2em;
+  transform: translateX(10px);
+}
+.reveal .controls .navigate-right .controls-arrow {
+  transform: rotate(180deg);
+}
+.reveal .controls .navigate-right.highlight {
+  -webkit-animation: bounce-right 2s 50 both ease-out;
+          animation: bounce-right 2s 50 both ease-out;
+}
+.reveal .controls .navigate-up {
+  right: 3.2em;
+  bottom: 6.4em;
+  transform: translateY(-10px);
+}
+.reveal .controls .navigate-up .controls-arrow {
+  transform: rotate(90deg);
+}
+.reveal .controls .navigate-down {
+  right: 3.2em;
+  bottom: -1.4em;
+  padding-bottom: 1.4em;
+  transform: translateY(10px);
+}
+.reveal .controls .navigate-down .controls-arrow {
+  transform: rotate(-90deg);
+}
+.reveal .controls .navigate-down.highlight {
+  -webkit-animation: bounce-down 2s 50 both ease-out;
+          animation: bounce-down 2s 50 both ease-out;
+}
+.reveal .controls[data-controls-back-arrows=faded] .navigate-up.enabled {
+  opacity: 0.3;
+}
+.reveal .controls[data-controls-back-arrows=faded] .navigate-up.enabled:hover {
+  opacity: 1;
+}
+.reveal .controls[data-controls-back-arrows=hidden] .navigate-up.enabled {
+  opacity: 0;
+  visibility: hidden;
+}
+.reveal .controls .enabled {
+  visibility: visible;
+  opacity: 0.9;
+  cursor: pointer;
+  transform: none;
+}
+.reveal .controls .enabled.fragmented {
+  opacity: 0.5;
+}
+.reveal .controls .enabled:hover,
+.reveal .controls .enabled.fragmented:hover {
+  opacity: 1;
+}
+.reveal:not(.rtl) .controls[data-controls-back-arrows=faded] .navigate-left.enabled {
+  opacity: 0.3;
+}
+.reveal:not(.rtl) .controls[data-controls-back-arrows=faded] .navigate-left.enabled:hover {
+  opacity: 1;
+}
+.reveal:not(.rtl) .controls[data-controls-back-arrows=hidden] .navigate-left.enabled {
+  opacity: 0;
+  visibility: hidden;
+}
+.reveal.rtl .controls[data-controls-back-arrows=faded] .navigate-right.enabled {
+  opacity: 0.3;
+}
+.reveal.rtl .controls[data-controls-back-arrows=faded] .navigate-right.enabled:hover {
+  opacity: 1;
+}
+.reveal.rtl .controls[data-controls-back-arrows=hidden] .navigate-right.enabled {
+  opacity: 0;
+  visibility: hidden;
+}
+.reveal[data-navigation-mode=linear].has-horizontal-slides .navigate-up,
+.reveal[data-navigation-mode=linear].has-horizontal-slides .navigate-down {
+  display: none;
+}
+.reveal[data-navigation-mode=linear].has-horizontal-slides .navigate-left,
+.reveal:not(.has-vertical-slides) .controls .navigate-left {
+  bottom: 1.4em;
+  right: 5.5em;
+}
+.reveal[data-navigation-mode=linear].has-horizontal-slides .navigate-right,
+.reveal:not(.has-vertical-slides) .controls .navigate-right {
+  bottom: 1.4em;
+  right: 0.5em;
+}
+.reveal:not(.has-horizontal-slides) .controls .navigate-up {
+  right: 1.4em;
+  bottom: 5em;
+}
+.reveal:not(.has-horizontal-slides) .controls .navigate-down {
+  right: 1.4em;
+  bottom: 0.5em;
+}
+.reveal.has-dark-background .controls {
+  color: #fff;
+}
+.reveal.has-light-background .controls {
+  color: #000;
+}
+.reveal.no-hover .controls .controls-arrow:hover:before,
+.reveal.no-hover .controls .controls-arrow:active:before {
+  transform: translateX(0.5em) translateY(1.55em) rotate(45deg);
+}
+.reveal.no-hover .controls .controls-arrow:hover:after,
+.reveal.no-hover .controls .controls-arrow:active:after {
+  transform: translateX(0.5em) translateY(1.55em) rotate(-45deg);
+}
+@media screen and (min-width: 500px) {
+  .reveal .controls[data-controls-layout=edges] {
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+  }
+  .reveal .controls[data-controls-layout=edges] .navigate-left,
+.reveal .controls[data-controls-layout=edges] .navigate-right,
+.reveal .controls[data-controls-layout=edges] .navigate-up,
+.reveal .controls[data-controls-layout=edges] .navigate-down {
+    bottom: auto;
+    right: auto;
+  }
+  .reveal .controls[data-controls-layout=edges] .navigate-left {
+    top: 50%;
+    left: 0.8em;
+    margin-top: -1.8em;
+  }
+  .reveal .controls[data-controls-layout=edges] .navigate-right {
+    top: 50%;
+    right: 0.8em;
+    margin-top: -1.8em;
+  }
+  .reveal .controls[data-controls-layout=edges] .navigate-up {
+    top: 0.8em;
+    left: 50%;
+    margin-left: -1.8em;
+  }
+  .reveal .controls[data-controls-layout=edges] .navigate-down {
+    bottom: -0.3em;
+    left: 50%;
+    margin-left: -1.8em;
+  }
+}
+/*********************************************
+ * PROGRESS BAR
+ *********************************************/
+.reveal .progress {
+  position: absolute;
+  display: none;
+  height: 3px;
+  width: 100%;
+  bottom: 0;
+  left: 0;
+  z-index: 10;
+  background-color: rgba(0, 0, 0, 0.2);
+  color: #fff;
+}
+.reveal .progress:after {
+  content: "";
+  display: block;
+  position: absolute;
+  height: 10px;
+  width: 100%;
+  top: -10px;
+}
+.reveal .progress span {
+  display: block;
+  height: 100%;
+  width: 100%;
+  background-color: currentColor;
+  transition: transform 800ms cubic-bezier(0.26, 0.86, 0.44, 0.985);
+  transform-origin: 0 0;
+  transform: scaleX(0);
+}
+/*********************************************
+ * SLIDE NUMBER
+ *********************************************/
+.reveal .slide-number {
+  position: absolute;
+  display: block;
+  right: 8px;
+  bottom: 8px;
+  z-index: 31;
+  font-family: Helvetica, sans-serif;
+  font-size: 12px;
+  line-height: 1;
+  color: #fff;
+  background-color: rgba(0, 0, 0, 0.4);
+  padding: 5px;
+}
+.reveal .slide-number a {
+  color: currentColor;
+}
+.reveal .slide-number-delimiter {
+  margin: 0 3px;
+}
+/*********************************************
+ * SLIDES
+ *********************************************/
+.reveal {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  touch-action: pinch-zoom;
+}
+.reveal.embedded {
+  touch-action: pan-y;
+}
+.reveal .slides {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  margin: auto;
+  pointer-events: none;
+  overflow: visible;
+  z-index: 1;
+  text-align: center;
+  perspective: 600px;
+  perspective-origin: 50% 40%;
+}
+.reveal .slides > section {
+  perspective: 600px;
+}
+.reveal .slides > section,
+.reveal .slides > section > section {
+  display: none;
+  position: absolute;
+  width: 100%;
+  pointer-events: auto;
+  z-index: 10;
+  transform-style: flat;
+  transition: transform-origin 800ms cubic-bezier(0.26, 0.86, 0.44, 0.985), transform 800ms cubic-bezier(0.26, 0.86, 0.44, 0.985), visibility 800ms cubic-bezier(0.26, 0.86, 0.44, 0.985), opacity 800ms cubic-bezier(0.26, 0.86, 0.44, 0.985);
+}
+/* Global transition speed settings */
+.reveal[data-transition-speed=fast] .slides section {
+  transition-duration: 400ms;
+}
+.reveal[data-transition-speed=slow] .slides section {
+  transition-duration: 1200ms;
+}
+/* Slide-specific transition speed overrides */
+.reveal .slides section[data-transition-speed=fast] {
+  transition-duration: 400ms;
+}
+.reveal .slides section[data-transition-speed=slow] {
+  transition-duration: 1200ms;
+}
+.reveal .slides > section.stack {
+  padding-top: 0;
+  padding-bottom: 0;
+  pointer-events: none;
+  height: 100%;
+}
+.reveal .slides > section.present,
+.reveal .slides > section > section.present {
+  display: block;
+  z-index: 11;
+  opacity: 1;
+}
+.reveal .slides > section:empty,
+.reveal .slides > section > section:empty,
+.reveal .slides > section[data-background-interactive],
+.reveal .slides > section > section[data-background-interactive] {
+  pointer-events: none;
+}
+.reveal.center,
+.reveal.center .slides,
+.reveal.center .slides section {
+  min-height: 0 !important;
+}
+/* Don't allow interaction with invisible slides */
+.reveal .slides > section:not(.present),
+.reveal .slides > section > section:not(.present) {
+  pointer-events: none;
+}
+.reveal.overview .slides > section,
+.reveal.overview .slides > section > section {
+  pointer-events: auto;
+}
+.reveal .slides > section.past,
+.reveal .slides > section.future,
+.reveal .slides > section > section.past,
+.reveal .slides > section > section.future {
+  opacity: 0;
+}
+/*********************************************
+ * Mixins for readability of transitions
+ *********************************************/
+/*********************************************
+ * SLIDE TRANSITION
+ * Aliased 'linear' for backwards compatibility
+ *********************************************/
+.reveal.slide section {
+  -webkit-backface-visibility: hidden;
+          backface-visibility: hidden;
+}
+.reveal .slides > section[data-transition=slide].past,
+.reveal .slides > section[data-transition~=slide-out].past,
+.reveal.slide .slides > section:not([data-transition]).past {
+  transform: translate(-150%, 0);
+}
+.reveal .slides > section[data-transition=slide].future,
+.reveal .slides > section[data-transition~=slide-in].future,
+.reveal.slide .slides > section:not([data-transition]).future {
+  transform: translate(150%, 0);
+}
+.reveal .slides > section > section[data-transition=slide].past,
+.reveal .slides > section > section[data-transition~=slide-out].past,
+.reveal.slide .slides > section > section:not([data-transition]).past {
+  transform: translate(0, -150%);
+}
+.reveal .slides > section > section[data-transition=slide].future,
+.reveal .slides > section > section[data-transition~=slide-in].future,
+.reveal.slide .slides > section > section:not([data-transition]).future {
+  transform: translate(0, 150%);
+}
+.reveal.linear section {
+  -webkit-backface-visibility: hidden;
+          backface-visibility: hidden;
+}
+.reveal .slides > section[data-transition=linear].past,
+.reveal .slides > section[data-transition~=linear-out].past,
+.reveal.linear .slides > section:not([data-transition]).past {
+  transform: translate(-150%, 0);
+}
+.reveal .slides > section[data-transition=linear].future,
+.reveal .slides > section[data-transition~=linear-in].future,
+.reveal.linear .slides > section:not([data-transition]).future {
+  transform: translate(150%, 0);
+}
+.reveal .slides > section > section[data-transition=linear].past,
+.reveal .slides > section > section[data-transition~=linear-out].past,
+.reveal.linear .slides > section > section:not([data-transition]).past {
+  transform: translate(0, -150%);
+}
+.reveal .slides > section > section[data-transition=linear].future,
+.reveal .slides > section > section[data-transition~=linear-in].future,
+.reveal.linear .slides > section > section:not([data-transition]).future {
+  transform: translate(0, 150%);
+}
+/*********************************************
+ * CONVEX TRANSITION
+ * Aliased 'default' for backwards compatibility
+ *********************************************/
+.reveal .slides section[data-transition=default].stack,
+.reveal.default .slides section.stack {
+  transform-style: preserve-3d;
+}
+.reveal .slides > section[data-transition=default].past,
+.reveal .slides > section[data-transition~=default-out].past,
+.reveal.default .slides > section:not([data-transition]).past {
+  transform: translate3d(-100%, 0, 0) rotateY(-90deg) translate3d(-100%, 0, 0);
+}
+.reveal .slides > section[data-transition=default].future,
+.reveal .slides > section[data-transition~=default-in].future,
+.reveal.default .slides > section:not([data-transition]).future {
+  transform: translate3d(100%, 0, 0) rotateY(90deg) translate3d(100%, 0, 0);
+}
+.reveal .slides > section > section[data-transition=default].past,
+.reveal .slides > section > section[data-transition~=default-out].past,
+.reveal.default .slides > section > section:not([data-transition]).past {
+  transform: translate3d(0, -300px, 0) rotateX(70deg) translate3d(0, -300px, 0);
+}
+.reveal .slides > section > section[data-transition=default].future,
+.reveal .slides > section > section[data-transition~=default-in].future,
+.reveal.default .slides > section > section:not([data-transition]).future {
+  transform: translate3d(0, 300px, 0) rotateX(-70deg) translate3d(0, 300px, 0);
+}
+.reveal .slides section[data-transition=convex].stack,
+.reveal.convex .slides section.stack {
+  transform-style: preserve-3d;
+}
+.reveal .slides > section[data-transition=convex].past,
+.reveal .slides > section[data-transition~=convex-out].past,
+.reveal.convex .slides > section:not([data-transition]).past {
+  transform: translate3d(-100%, 0, 0) rotateY(-90deg) translate3d(-100%, 0, 0);
+}
+.reveal .slides > section[data-transition=convex].future,
+.reveal .slides > section[data-transition~=convex-in].future,
+.reveal.convex .slides > section:not([data-transition]).future {
+  transform: translate3d(100%, 0, 0) rotateY(90deg) translate3d(100%, 0, 0);
+}
+.reveal .slides > section > section[data-transition=convex].past,
+.reveal .slides > section > section[data-transition~=convex-out].past,
+.reveal.convex .slides > section > section:not([data-transition]).past {
+  transform: translate3d(0, -300px, 0) rotateX(70deg) translate3d(0, -300px, 0);
+}
+.reveal .slides > section > section[data-transition=convex].future,
+.reveal .slides > section > section[data-transition~=convex-in].future,
+.reveal.convex .slides > section > section:not([data-transition]).future {
+  transform: translate3d(0, 300px, 0) rotateX(-70deg) translate3d(0, 300px, 0);
+}
+/*********************************************
+ * CONCAVE TRANSITION
+ *********************************************/
+.reveal .slides section[data-transition=concave].stack,
+.reveal.concave .slides section.stack {
+  transform-style: preserve-3d;
+}
+.reveal .slides > section[data-transition=concave].past,
+.reveal .slides > section[data-transition~=concave-out].past,
+.reveal.concave .slides > section:not([data-transition]).past {
+  transform: translate3d(-100%, 0, 0) rotateY(90deg) translate3d(-100%, 0, 0);
+}
+.reveal .slides > section[data-transition=concave].future,
+.reveal .slides > section[data-transition~=concave-in].future,
+.reveal.concave .slides > section:not([data-transition]).future {
+  transform: translate3d(100%, 0, 0) rotateY(-90deg) translate3d(100%, 0, 0);
+}
+.reveal .slides > section > section[data-transition=concave].past,
+.reveal .slides > section > section[data-transition~=concave-out].past,
+.reveal.concave .slides > section > section:not([data-transition]).past {
+  transform: translate3d(0, -80%, 0) rotateX(-70deg) translate3d(0, -80%, 0);
+}
+.reveal .slides > section > section[data-transition=concave].future,
+.reveal .slides > section > section[data-transition~=concave-in].future,
+.reveal.concave .slides > section > section:not([data-transition]).future {
+  transform: translate3d(0, 80%, 0) rotateX(70deg) translate3d(0, 80%, 0);
+}
+/*********************************************
+ * ZOOM TRANSITION
+ *********************************************/
+.reveal .slides section[data-transition=zoom],
+.reveal.zoom .slides section:not([data-transition]) {
+  transition-timing-function: ease;
+}
+.reveal .slides > section[data-transition=zoom].past,
+.reveal .slides > section[data-transition~=zoom-out].past,
+.reveal.zoom .slides > section:not([data-transition]).past {
+  visibility: hidden;
+  transform: scale(16);
+}
+.reveal .slides > section[data-transition=zoom].future,
+.reveal .slides > section[data-transition~=zoom-in].future,
+.reveal.zoom .slides > section:not([data-transition]).future {
+  visibility: hidden;
+  transform: scale(0.2);
+}
+.reveal .slides > section > section[data-transition=zoom].past,
+.reveal .slides > section > section[data-transition~=zoom-out].past,
+.reveal.zoom .slides > section > section:not([data-transition]).past {
+  transform: scale(16);
+}
+.reveal .slides > section > section[data-transition=zoom].future,
+.reveal .slides > section > section[data-transition~=zoom-in].future,
+.reveal.zoom .slides > section > section:not([data-transition]).future {
+  transform: scale(0.2);
+}
+/*********************************************
+ * CUBE TRANSITION
+ *
+ * WARNING:
+ * this is deprecated and will be removed in a
+ * future version.
+ *********************************************/
+.reveal.cube .slides {
+  perspective: 1300px;
+}
+.reveal.cube .slides section {
+  padding: 30px;
+  min-height: 700px;
+  -webkit-backface-visibility: hidden;
+          backface-visibility: hidden;
+  box-sizing: border-box;
+  transform-style: preserve-3d;
+}
+.reveal.center.cube .slides section {
+  min-height: 0;
+}
+.reveal.cube .slides section:not(.stack):before {
+  content: "";
+  position: absolute;
+  display: block;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  background: rgba(0, 0, 0, 0.1);
+  border-radius: 4px;
+  transform: translateZ(-20px);
+}
+.reveal.cube .slides section:not(.stack):after {
+  content: "";
+  position: absolute;
+  display: block;
+  width: 90%;
+  height: 30px;
+  left: 5%;
+  bottom: 0;
+  background: none;
+  z-index: 1;
+  border-radius: 4px;
+  box-shadow: 0px 95px 25px rgba(0, 0, 0, 0.2);
+  transform: translateZ(-90px) rotateX(65deg);
+}
+.reveal.cube .slides > section.stack {
+  padding: 0;
+  background: none;
+}
+.reveal.cube .slides > section.past {
+  transform-origin: 100% 0%;
+  transform: translate3d(-100%, 0, 0) rotateY(-90deg);
+}
+.reveal.cube .slides > section.future {
+  transform-origin: 0% 0%;
+  transform: translate3d(100%, 0, 0) rotateY(90deg);
+}
+.reveal.cube .slides > section > section.past {
+  transform-origin: 0% 100%;
+  transform: translate3d(0, -100%, 0) rotateX(90deg);
+}
+.reveal.cube .slides > section > section.future {
+  transform-origin: 0% 0%;
+  transform: translate3d(0, 100%, 0) rotateX(-90deg);
+}
+/*********************************************
+ * PAGE TRANSITION
+ *
+ * WARNING:
+ * this is deprecated and will be removed in a
+ * future version.
+ *********************************************/
+.reveal.page .slides {
+  perspective-origin: 0% 50%;
+  perspective: 3000px;
+}
+.reveal.page .slides section {
+  padding: 30px;
+  min-height: 700px;
+  box-sizing: border-box;
+  transform-style: preserve-3d;
+}
+.reveal.page .slides section.past {
+  z-index: 12;
+}
+.reveal.page .slides section:not(.stack):before {
+  content: "";
+  position: absolute;
+  display: block;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  background: rgba(0, 0, 0, 0.1);
+  transform: translateZ(-20px);
+}
+.reveal.page .slides section:not(.stack):after {
+  content: "";
+  position: absolute;
+  display: block;
+  width: 90%;
+  height: 30px;
+  left: 5%;
+  bottom: 0;
+  background: none;
+  z-index: 1;
+  border-radius: 4px;
+  box-shadow: 0px 95px 25px rgba(0, 0, 0, 0.2);
+  -webkit-transform: translateZ(-90px) rotateX(65deg);
+}
+.reveal.page .slides > section.stack {
+  padding: 0;
+  background: none;
+}
+.reveal.page .slides > section.past {
+  transform-origin: 0% 0%;
+  transform: translate3d(-40%, 0, 0) rotateY(-80deg);
+}
+.reveal.page .slides > section.future {
+  transform-origin: 100% 0%;
+  transform: translate3d(0, 0, 0);
+}
+.reveal.page .slides > section > section.past {
+  transform-origin: 0% 0%;
+  transform: translate3d(0, -40%, 0) rotateX(80deg);
+}
+.reveal.page .slides > section > section.future {
+  transform-origin: 0% 100%;
+  transform: translate3d(0, 0, 0);
+}
+/*********************************************
+ * FADE TRANSITION
+ *********************************************/
+.reveal .slides section[data-transition=fade],
+.reveal.fade .slides section:not([data-transition]),
+.reveal.fade .slides > section > section:not([data-transition]) {
+  transform: none;
+  transition: opacity 0.5s;
+}
+.reveal.fade.overview .slides section,
+.reveal.fade.overview .slides > section > section {
+  transition: none;
+}
+/*********************************************
+ * NO TRANSITION
+ *********************************************/
+.reveal .slides section[data-transition=none],
+.reveal.none .slides section:not([data-transition]) {
+  transform: none;
+  transition: none;
+}
+/*********************************************
+ * PAUSED MODE
+ *********************************************/
+.reveal .pause-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: black;
+  visibility: hidden;
+  opacity: 0;
+  z-index: 100;
+  transition: all 1s ease;
+}
+.reveal .pause-overlay .resume-button {
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  color: #ccc;
+  border-radius: 2px;
+  padding: 6px 14px;
+  border: 2px solid #ccc;
+  font-size: 16px;
+  background: transparent;
+  cursor: pointer;
+}
+.reveal .pause-overlay .resume-button:hover {
+  color: #fff;
+  border-color: #fff;
+}
+.reveal.paused .pause-overlay {
+  visibility: visible;
+  opacity: 1;
+}
+/*********************************************
+ * FALLBACK
+ *********************************************/
+.reveal .no-transition,
+.reveal .no-transition *,
+.reveal .slides.disable-slide-transitions section {
+  transition: none !important;
+}
+.reveal .slides.disable-slide-transitions section {
+  transform: none !important;
+}
+/*********************************************
+ * PER-SLIDE BACKGROUNDS
+ *********************************************/
+.reveal .backgrounds {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  perspective: 600px;
+}
+.reveal .slide-background {
+  display: none;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  visibility: hidden;
+  overflow: hidden;
+  transition: all 800ms cubic-bezier(0.26, 0.86, 0.44, 0.985);
+}
+.reveal .slide-background-content {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-position: 50% 50%;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.reveal .slide-background.stack {
+  display: block;
+}
+.reveal .slide-background.present {
+  opacity: 1;
+  visibility: visible;
+  z-index: 2;
+}
+.print-pdf .reveal .slide-background {
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+/* Video backgrounds */
+.reveal .slide-background video {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  max-width: none;
+  max-height: none;
+  top: 0;
+  left: 0;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+.reveal .slide-background[data-background-size=contain] video {
+  -o-object-fit: contain;
+     object-fit: contain;
+}
+/* Immediate transition style */
+.reveal[data-background-transition=none] > .backgrounds .slide-background,
+.reveal > .backgrounds .slide-background[data-background-transition=none] {
+  transition: none;
+}
+/* Slide */
+.reveal[data-background-transition=slide] > .backgrounds .slide-background,
+.reveal > .backgrounds .slide-background[data-background-transition=slide] {
+  opacity: 1;
+  -webkit-backface-visibility: hidden;
+          backface-visibility: hidden;
+}
+.reveal[data-background-transition=slide] > .backgrounds .slide-background.past,
+.reveal > .backgrounds .slide-background.past[data-background-transition=slide] {
+  transform: translate(-100%, 0);
+}
+.reveal[data-background-transition=slide] > .backgrounds .slide-background.future,
+.reveal > .backgrounds .slide-background.future[data-background-transition=slide] {
+  transform: translate(100%, 0);
+}
+.reveal[data-background-transition=slide] > .backgrounds .slide-background > .slide-background.past,
+.reveal > .backgrounds .slide-background > .slide-background.past[data-background-transition=slide] {
+  transform: translate(0, -100%);
+}
+.reveal[data-background-transition=slide] > .backgrounds .slide-background > .slide-background.future,
+.reveal > .backgrounds .slide-background > .slide-background.future[data-background-transition=slide] {
+  transform: translate(0, 100%);
+}
+/* Convex */
+.reveal[data-background-transition=convex] > .backgrounds .slide-background.past,
+.reveal > .backgrounds .slide-background.past[data-background-transition=convex] {
+  opacity: 0;
+  transform: translate3d(-100%, 0, 0) rotateY(-90deg) translate3d(-100%, 0, 0);
+}
+.reveal[data-background-transition=convex] > .backgrounds .slide-background.future,
+.reveal > .backgrounds .slide-background.future[data-background-transition=convex] {
+  opacity: 0;
+  transform: translate3d(100%, 0, 0) rotateY(90deg) translate3d(100%, 0, 0);
+}
+.reveal[data-background-transition=convex] > .backgrounds .slide-background > .slide-background.past,
+.reveal > .backgrounds .slide-background > .slide-background.past[data-background-transition=convex] {
+  opacity: 0;
+  transform: translate3d(0, -100%, 0) rotateX(90deg) translate3d(0, -100%, 0);
+}
+.reveal[data-background-transition=convex] > .backgrounds .slide-background > .slide-background.future,
+.reveal > .backgrounds .slide-background > .slide-background.future[data-background-transition=convex] {
+  opacity: 0;
+  transform: translate3d(0, 100%, 0) rotateX(-90deg) translate3d(0, 100%, 0);
+}
+/* Concave */
+.reveal[data-background-transition=concave] > .backgrounds .slide-background.past,
+.reveal > .backgrounds .slide-background.past[data-background-transition=concave] {
+  opacity: 0;
+  transform: translate3d(-100%, 0, 0) rotateY(90deg) translate3d(-100%, 0, 0);
+}
+.reveal[data-background-transition=concave] > .backgrounds .slide-background.future,
+.reveal > .backgrounds .slide-background.future[data-background-transition=concave] {
+  opacity: 0;
+  transform: translate3d(100%, 0, 0) rotateY(-90deg) translate3d(100%, 0, 0);
+}
+.reveal[data-background-transition=concave] > .backgrounds .slide-background > .slide-background.past,
+.reveal > .backgrounds .slide-background > .slide-background.past[data-background-transition=concave] {
+  opacity: 0;
+  transform: translate3d(0, -100%, 0) rotateX(-90deg) translate3d(0, -100%, 0);
+}
+.reveal[data-background-transition=concave] > .backgrounds .slide-background > .slide-background.future,
+.reveal > .backgrounds .slide-background > .slide-background.future[data-background-transition=concave] {
+  opacity: 0;
+  transform: translate3d(0, 100%, 0) rotateX(90deg) translate3d(0, 100%, 0);
+}
+/* Zoom */
+.reveal[data-background-transition=zoom] > .backgrounds .slide-background,
+.reveal > .backgrounds .slide-background[data-background-transition=zoom] {
+  transition-timing-function: ease;
+}
+.reveal[data-background-transition=zoom] > .backgrounds .slide-background.past,
+.reveal > .backgrounds .slide-background.past[data-background-transition=zoom] {
+  opacity: 0;
+  visibility: hidden;
+  transform: scale(16);
+}
+.reveal[data-background-transition=zoom] > .backgrounds .slide-background.future,
+.reveal > .backgrounds .slide-background.future[data-background-transition=zoom] {
+  opacity: 0;
+  visibility: hidden;
+  transform: scale(0.2);
+}
+.reveal[data-background-transition=zoom] > .backgrounds .slide-background > .slide-background.past,
+.reveal > .backgrounds .slide-background > .slide-background.past[data-background-transition=zoom] {
+  opacity: 0;
+  visibility: hidden;
+  transform: scale(16);
+}
+.reveal[data-background-transition=zoom] > .backgrounds .slide-background > .slide-background.future,
+.reveal > .backgrounds .slide-background > .slide-background.future[data-background-transition=zoom] {
+  opacity: 0;
+  visibility: hidden;
+  transform: scale(0.2);
+}
+/* Global transition speed settings */
+.reveal[data-transition-speed=fast] > .backgrounds .slide-background {
+  transition-duration: 400ms;
+}
+.reveal[data-transition-speed=slow] > .backgrounds .slide-background {
+  transition-duration: 1200ms;
+}
+/*********************************************
+ * AUTO ANIMATE
+ *********************************************/
+.reveal [data-auto-animate-target^=unmatched] {
+  will-change: opacity;
+}
+.reveal section[data-auto-animate]:not(.stack):not([data-auto-animate=running]) [data-auto-animate-target^=unmatched] {
+  opacity: 0;
+}
+/*********************************************
+ * OVERVIEW
+ *********************************************/
+.reveal.overview {
+  perspective-origin: 50% 50%;
+  perspective: 700px;
+}
+.reveal.overview .slides {
+  -moz-transform-style: preserve-3d;
+}
+.reveal.overview .slides section {
+  height: 100%;
+  top: 0 !important;
+  opacity: 1 !important;
+  overflow: hidden;
+  visibility: visible !important;
+  cursor: pointer;
+  box-sizing: border-box;
+}
+.reveal.overview .slides section:hover,
+.reveal.overview .slides section.present {
+  outline: 10px solid rgba(150, 150, 150, 0.4);
+  outline-offset: 10px;
+}
+.reveal.overview .slides section .fragment {
+  opacity: 1;
+  transition: none;
+}
+.reveal.overview .slides section:after,
+.reveal.overview .slides section:before {
+  display: none !important;
+}
+.reveal.overview .slides > section.stack {
+  padding: 0;
+  top: 0 !important;
+  background: none;
+  outline: none;
+  overflow: visible;
+}
+.reveal.overview .backgrounds {
+  perspective: inherit;
+  -moz-transform-style: preserve-3d;
+}
+.reveal.overview .backgrounds .slide-background {
+  opacity: 1;
+  visibility: visible;
+  outline: 10px solid rgba(150, 150, 150, 0.1);
+  outline-offset: 10px;
+}
+.reveal.overview .backgrounds .slide-background.stack {
+  overflow: visible;
+}
+.reveal.overview .slides section,
+.reveal.overview-deactivating .slides section {
+  transition: none;
+}
+.reveal.overview .backgrounds .slide-background,
+.reveal.overview-deactivating .backgrounds .slide-background {
+  transition: none;
+}
+/*********************************************
+ * RTL SUPPORT
+ *********************************************/
+.reveal.rtl .slides,
+.reveal.rtl .slides h1,
+.reveal.rtl .slides h2,
+.reveal.rtl .slides h3,
+.reveal.rtl .slides h4,
+.reveal.rtl .slides h5,
+.reveal.rtl .slides h6 {
+  direction: rtl;
+  font-family: sans-serif;
+}
+.reveal.rtl pre,
+.reveal.rtl code {
+  direction: ltr;
+}
+.reveal.rtl ol,
+.reveal.rtl ul {
+  text-align: right;
+}
+.reveal.rtl .progress span {
+  transform-origin: 100% 0;
+}
+/*********************************************
+ * PARALLAX BACKGROUND
+ *********************************************/
+.reveal.has-parallax-background .backgrounds {
+  transition: all 0.8s ease;
+}
+/* Global transition speed settings */
+.reveal.has-parallax-background[data-transition-speed=fast] .backgrounds {
+  transition-duration: 400ms;
+}
+.reveal.has-parallax-background[data-transition-speed=slow] .backgrounds {
+  transition-duration: 1200ms;
+}
+/*********************************************
+ * OVERLAY FOR LINK PREVIEWS AND HELP
+ *********************************************/
+.reveal > .overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1000;
+  background: rgba(0, 0, 0, 0.9);
+  transition: all 0.3s ease;
+}
+.reveal > .overlay .spinner {
+  position: absolute;
+  display: block;
+  top: 50%;
+  left: 50%;
+  width: 32px;
+  height: 32px;
+  margin: -16px 0 0 -16px;
+  z-index: 10;
+  background-image: url(data:image/gif;base64,R0lGODlhIAAgAPMAAJmZmf%2F%2F%2F6%2Bvr8nJybW1tcDAwOjo6Nvb26ioqKOjo7Ozs%2FLy8vz8%2FAAAAAAAAAAAACH%2FC05FVFNDQVBFMi4wAwEAAAAh%2FhpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh%2BQQJCgAAACwAAAAAIAAgAAAE5xDISWlhperN52JLhSSdRgwVo1ICQZRUsiwHpTJT4iowNS8vyW2icCF6k8HMMBkCEDskxTBDAZwuAkkqIfxIQyhBQBFvAQSDITM5VDW6XNE4KagNh6Bgwe60smQUB3d4Rz1ZBApnFASDd0hihh12BkE9kjAJVlycXIg7CQIFA6SlnJ87paqbSKiKoqusnbMdmDC2tXQlkUhziYtyWTxIfy6BE8WJt5YJvpJivxNaGmLHT0VnOgSYf0dZXS7APdpB309RnHOG5gDqXGLDaC457D1zZ%2FV%2FnmOM82XiHRLYKhKP1oZmADdEAAAh%2BQQJCgAAACwAAAAAIAAgAAAE6hDISWlZpOrNp1lGNRSdRpDUolIGw5RUYhhHukqFu8DsrEyqnWThGvAmhVlteBvojpTDDBUEIFwMFBRAmBkSgOrBFZogCASwBDEY%2FCZSg7GSE0gSCjQBMVG023xWBhklAnoEdhQEfyNqMIcKjhRsjEdnezB%2BA4k8gTwJhFuiW4dokXiloUepBAp5qaKpp6%2BHo7aWW54wl7obvEe0kRuoplCGepwSx2jJvqHEmGt6whJpGpfJCHmOoNHKaHx61WiSR92E4lbFoq%2BB6QDtuetcaBPnW6%2BO7wDHpIiK9SaVK5GgV543tzjgGcghAgAh%2BQQJCgAAACwAAAAAIAAgAAAE7hDISSkxpOrN5zFHNWRdhSiVoVLHspRUMoyUakyEe8PTPCATW9A14E0UvuAKMNAZKYUZCiBMuBakSQKG8G2FzUWox2AUtAQFcBKlVQoLgQReZhQlCIJesQXI5B0CBnUMOxMCenoCfTCEWBsJColTMANldx15BGs8B5wlCZ9Po6OJkwmRpnqkqnuSrayqfKmqpLajoiW5HJq7FL1Gr2mMMcKUMIiJgIemy7xZtJsTmsM4xHiKv5KMCXqfyUCJEonXPN2rAOIAmsfB3uPoAK%2B%2BG%2Bw48edZPK%2BM6hLJpQg484enXIdQFSS1u6UhksENEQAAIfkECQoAAAAsAAAAACAAIAAABOcQyEmpGKLqzWcZRVUQnZYg1aBSh2GUVEIQ2aQOE%2BG%2BcD4ntpWkZQj1JIiZIogDFFyHI0UxQwFugMSOFIPJftfVAEoZLBbcLEFhlQiqGp1Vd140AUklUN3eCA51C1EWMzMCezCBBmkxVIVHBWd3HHl9JQOIJSdSnJ0TDKChCwUJjoWMPaGqDKannasMo6WnM562R5YluZRwur0wpgqZE7NKUm%2BFNRPIhjBJxKZteWuIBMN4zRMIVIhffcgojwCF117i4nlLnY5ztRLsnOk%2BaV%2BoJY7V7m76PdkS4trKcdg0Zc0tTcKkRAAAIfkECQoAAAAsAAAAACAAIAAABO4QyEkpKqjqzScpRaVkXZWQEximw1BSCUEIlDohrft6cpKCk5xid5MNJTaAIkekKGQkWyKHkvhKsR7ARmitkAYDYRIbUQRQjWBwJRzChi9CRlBcY1UN4g0%2FVNB0AlcvcAYHRyZPdEQFYV8ccwR5HWxEJ02YmRMLnJ1xCYp0Y5idpQuhopmmC2KgojKasUQDk5BNAwwMOh2RtRq5uQuPZKGIJQIGwAwGf6I0JXMpC8C7kXWDBINFMxS4DKMAWVWAGYsAdNqW5uaRxkSKJOZKaU3tPOBZ4DuK2LATgJhkPJMgTwKCdFjyPHEnKxFCDhEAACH5BAkKAAAALAAAAAAgACAAAATzEMhJaVKp6s2nIkolIJ2WkBShpkVRWqqQrhLSEu9MZJKK9y1ZrqYK9WiClmvoUaF8gIQSNeF1Er4MNFn4SRSDARWroAIETg1iVwuHjYB1kYc1mwruwXKC9gmsJXliGxc%2BXiUCby9ydh1sOSdMkpMTBpaXBzsfhoc5l58Gm5yToAaZhaOUqjkDgCWNHAULCwOLaTmzswadEqggQwgHuQsHIoZCHQMMQgQGubVEcxOPFAcMDAYUA85eWARmfSRQCdcMe0zeP1AAygwLlJtPNAAL19DARdPzBOWSm1brJBi45soRAWQAAkrQIykShQ9wVhHCwCQCACH5BAkKAAAALAAAAAAgACAAAATrEMhJaVKp6s2nIkqFZF2VIBWhUsJaTokqUCoBq%2BE71SRQeyqUToLA7VxF0JDyIQh%2FMVVPMt1ECZlfcjZJ9mIKoaTl1MRIl5o4CUKXOwmyrCInCKqcWtvadL2SYhyASyNDJ0uIiRMDjI0Fd30%2FiI2UA5GSS5UDj2l6NoqgOgN4gksEBgYFf0FDqKgHnyZ9OX8HrgYHdHpcHQULXAS2qKpENRg7eAMLC7kTBaixUYFkKAzWAAnLC7FLVxLWDBLKCwaKTULgEwbLA4hJtOkSBNqITT3xEgfLpBtzE%2FjiuL04RGEBgwWhShRgQExHBAAh%2BQQJCgAAACwAAAAAIAAgAAAE7xDISWlSqerNpyJKhWRdlSAVoVLCWk6JKlAqAavhO9UkUHsqlE6CwO1cRdCQ8iEIfzFVTzLdRAmZX3I2SfZiCqGk5dTESJeaOAlClzsJsqwiJwiqnFrb2nS9kmIcgEsjQydLiIlHehhpejaIjzh9eomSjZR%2BipslWIRLAgMDOR2DOqKogTB9pCUJBagDBXR6XB0EBkIIsaRsGGMMAxoDBgYHTKJiUYEGDAzHC9EACcUGkIgFzgwZ0QsSBcXHiQvOwgDdEwfFs0sDzt4S6BK4xYjkDOzn0unFeBzOBijIm1Dgmg5YFQwsCMjp1oJ8LyIAACH5BAkKAAAALAAAAAAgACAAAATwEMhJaVKp6s2nIkqFZF2VIBWhUsJaTokqUCoBq%2BE71SRQeyqUToLA7VxF0JDyIQh%2FMVVPMt1ECZlfcjZJ9mIKoaTl1MRIl5o4CUKXOwmyrCInCKqcWtvadL2SYhyASyNDJ0uIiUd6GGl6NoiPOH16iZKNlH6KmyWFOggHhEEvAwwMA0N9GBsEC6amhnVcEwavDAazGwIDaH1ipaYLBUTCGgQDA8NdHz0FpqgTBwsLqAbWAAnIA4FWKdMLGdYGEgraigbT0OITBcg5QwPT4xLrROZL6AuQAPUS7bxLpoWidY0JtxLHKhwwMJBTHgPKdEQAACH5BAkKAAAALAAAAAAgACAAAATrEMhJaVKp6s2nIkqFZF2VIBWhUsJaTokqUCoBq%2BE71SRQeyqUToLA7VxF0JDyIQh%2FMVVPMt1ECZlfcjZJ9mIKoaTl1MRIl5o4CUKXOwmyrCInCKqcWtvadL2SYhyASyNDJ0uIiUd6GAULDJCRiXo1CpGXDJOUjY%2BYip9DhToJA4RBLwMLCwVDfRgbBAaqqoZ1XBMHswsHtxtFaH1iqaoGNgAIxRpbFAgfPQSqpbgGBqUD1wBXeCYp1AYZ19JJOYgH1KwA4UBvQwXUBxPqVD9L3sbp2BNk2xvvFPJd%2BMFCN6HAAIKgNggY0KtEBAAh%2BQQJCgAAACwAAAAAIAAgAAAE6BDISWlSqerNpyJKhWRdlSAVoVLCWk6JKlAqAavhO9UkUHsqlE6CwO1cRdCQ8iEIfzFVTzLdRAmZX3I2SfYIDMaAFdTESJeaEDAIMxYFqrOUaNW4E4ObYcCXaiBVEgULe0NJaxxtYksjh2NLkZISgDgJhHthkpU4mW6blRiYmZOlh4JWkDqILwUGBnE6TYEbCgevr0N1gH4At7gHiRpFaLNrrq8HNgAJA70AWxQIH1%2BvsYMDAzZQPC9VCNkDWUhGkuE5PxJNwiUK4UfLzOlD4WvzAHaoG9nxPi5d%2BjYUqfAhhykOFwJWiAAAIfkECQoAAAAsAAAAACAAIAAABPAQyElpUqnqzaciSoVkXVUMFaFSwlpOCcMYlErAavhOMnNLNo8KsZsMZItJEIDIFSkLGQoQTNhIsFehRww2CQLKF0tYGKYSg%2BygsZIuNqJksKgbfgIGepNo2cIUB3V1B3IvNiBYNQaDSTtfhhx0CwVPI0UJe0%2Bbm4g5VgcGoqOcnjmjqDSdnhgEoamcsZuXO1aWQy8KAwOAuTYYGwi7w5h%2BKr0SJ8MFihpNbx%2B4Erq7BYBuzsdiH1jCAzoSfl0rVirNbRXlBBlLX%2BBP0XJLAPGzTkAuAOqb0WT5AH7OcdCm5B8TgRwSRKIHQtaLCwg1RAAAOwAAAAAAAAAAAA%3D%3D);
+  visibility: visible;
+  opacity: 0.6;
+  transition: all 0.3s ease;
+}
+.reveal > .overlay header {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  padding: 5px;
+  z-index: 2;
+  box-sizing: border-box;
+}
+.reveal > .overlay header a {
+  display: inline-block;
+  width: 40px;
+  height: 40px;
+  line-height: 36px;
+  padding: 0 10px;
+  float: right;
+  opacity: 0.6;
+  box-sizing: border-box;
+}
+.reveal > .overlay header a:hover {
+  opacity: 1;
+}
+.reveal > .overlay header a .icon {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  background-position: 50% 50%;
+  background-size: 100%;
+  background-repeat: no-repeat;
+}
+.reveal > .overlay header a.close .icon {
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAABkklEQVRYR8WX4VHDMAxG6wnoJrABZQPYBCaBTWAD2g1gE5gg6OOsXuxIlr40d81dfrSJ9V4c2VLK7spHuTJ/5wpM07QXuXc5X0opX2tEJcadjHuV80li/FgxTIEK/5QBCICBD6xEhSMGHgQPgBgLiYVAB1dpSqKDawxTohFw4JSEA3clzgIBPCURwE2JucBR7rhPJJv5OpJwDX+SfDjgx1wACQeJG1aChP9K/IMmdZ8DtESV1WyP3Bt4MwM6sj4NMxMYiqUWHQu4KYA/SYkIjOsm3BXYWMKFDwU2khjCQ4ELJUJ4SmClRArOCmSXGuKma0fYD5CbzHxFpCSGAhfAVSSUGDUk2BWZaff2g6GE15BsBQ9nwmpIGDiyHQddwNTMKkbZaf9fajXQca1EX44puJZUsnY0ObGmITE3GVLCbEhQUjGVt146j6oasWN+49Vph2w1pZ5EansNZqKBm1txbU57iRRcZ86RWMDdWtBJUHBHwoQPi1GV+JCbntmvok7iTX4/Up9mgyTc/FJYDTcndgH/AA5A/CHsyEkVAAAAAElFTkSuQmCC);
+}
+.reveal > .overlay header a.external .icon {
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAcElEQVRYR+2WSQoAIQwEzf8f7XiOMkUQxUPlGkM3hVmiQfQR9GYnH1SsAQlI4DiBqkCMoNb9y2e90IAEJPAcgdznU9+engMaeJ7Azh5Y1U67gAho4DqBqmB1buAf0MB1AlVBek83ZPkmJMGc1wAR+AAqod/B97TRpQAAAABJRU5ErkJggg==);
+}
+.reveal > .overlay .viewport {
+  position: absolute;
+  display: flex;
+  top: 50px;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+.reveal > .overlay.overlay-preview .viewport iframe {
+  width: 100%;
+  height: 100%;
+  max-width: 100%;
+  max-height: 100%;
+  border: 0;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease;
+}
+.reveal > .overlay.overlay-preview.loaded .viewport iframe {
+  opacity: 1;
+  visibility: visible;
+}
+.reveal > .overlay.overlay-preview.loaded .viewport-inner {
+  position: absolute;
+  z-index: -1;
+  left: 0;
+  top: 45%;
+  width: 100%;
+  text-align: center;
+  letter-spacing: normal;
+}
+.reveal > .overlay.overlay-preview .x-frame-error {
+  opacity: 0;
+  transition: opacity 0.3s ease 0.3s;
+}
+.reveal > .overlay.overlay-preview.loaded .x-frame-error {
+  opacity: 1;
+}
+.reveal > .overlay.overlay-preview.loaded .spinner {
+  opacity: 0;
+  visibility: hidden;
+  transform: scale(0.2);
+}
+.reveal > .overlay.overlay-help .viewport {
+  overflow: auto;
+  color: #fff;
+}
+.reveal > .overlay.overlay-help .viewport .viewport-inner {
+  width: 600px;
+  margin: auto;
+  padding: 20px 20px 80px 20px;
+  text-align: center;
+  letter-spacing: normal;
+}
+.reveal > .overlay.overlay-help .viewport .viewport-inner .title {
+  font-size: 20px;
+}
+.reveal > .overlay.overlay-help .viewport .viewport-inner table {
+  border: 1px solid #fff;
+  border-collapse: collapse;
+  font-size: 16px;
+}
+.reveal > .overlay.overlay-help .viewport .viewport-inner table th,
+.reveal > .overlay.overlay-help .viewport .viewport-inner table td {
+  width: 200px;
+  padding: 14px;
+  border: 1px solid #fff;
+  vertical-align: middle;
+}
+.reveal > .overlay.overlay-help .viewport .viewport-inner table th {
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+/*********************************************
+ * PLAYBACK COMPONENT
+ *********************************************/
+.reveal .playback {
+  position: absolute;
+  left: 15px;
+  bottom: 20px;
+  z-index: 30;
+  cursor: pointer;
+  transition: all 400ms ease;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+.reveal.overview .playback {
+  opacity: 0;
+  visibility: hidden;
+}
+/*********************************************
+ * CODE HIGHLGIHTING
+ *********************************************/
+.reveal .hljs {
+  min-height: 100%;
+}
+.reveal .hljs table {
+  margin: initial;
+}
+.reveal .hljs-ln-code,
+.reveal .hljs-ln-numbers {
+  padding: 0;
+  border: 0;
+}
+.reveal .hljs-ln-numbers {
+  opacity: 0.6;
+  padding-right: 0.75em;
+  text-align: right;
+  vertical-align: top;
+}
+.reveal .hljs.has-highlights tr:not(.highlight-line) {
+  opacity: 0.4;
+}
+.reveal .hljs:not(:first-child).fragment {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  box-sizing: border-box;
+}
+.reveal pre[data-auto-animate-target] {
+  overflow: hidden;
+}
+.reveal pre[data-auto-animate-target] code {
+  height: 100%;
+}
+/*********************************************
+ * ROLLING LINKS
+ *********************************************/
+.reveal .roll {
+  display: inline-block;
+  line-height: 1.2;
+  overflow: hidden;
+  vertical-align: top;
+  perspective: 400px;
+  perspective-origin: 50% 50%;
+}
+.reveal .roll:hover {
+  background: none;
+  text-shadow: none;
+}
+.reveal .roll span {
+  display: block;
+  position: relative;
+  padding: 0 2px;
+  pointer-events: none;
+  transition: all 400ms ease;
+  transform-origin: 50% 0%;
+  transform-style: preserve-3d;
+  -webkit-backface-visibility: hidden;
+          backface-visibility: hidden;
+}
+.reveal .roll:hover span {
+  background: rgba(0, 0, 0, 0.5);
+  transform: translate3d(0px, 0px, -45px) rotateX(90deg);
+}
+.reveal .roll span:after {
+  content: attr(data-title);
+  display: block;
+  position: absolute;
+  left: 0;
+  top: 0;
+  padding: 0 2px;
+  -webkit-backface-visibility: hidden;
+          backface-visibility: hidden;
+  transform-origin: 50% 0%;
+  transform: translate3d(0px, 110%, 0px) rotateX(-90deg);
+}
+/*********************************************
+ * SPEAKER NOTES
+ *********************************************/
+.reveal aside.notes {
+  display: none;
+}
+.reveal .speaker-notes {
+  display: none;
+  position: absolute;
+  width: 33.3333333333%;
+  height: 100%;
+  top: 0;
+  left: 100%;
+  padding: 14px 18px 14px 18px;
+  z-index: 1;
+  font-size: 18px;
+  line-height: 1.4;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  color: #222;
+  background-color: #f5f5f5;
+  overflow: auto;
+  box-sizing: border-box;
+  text-align: left;
+  font-family: Helvetica, sans-serif;
+  -webkit-overflow-scrolling: touch;
+}
+.reveal .speaker-notes .notes-placeholder {
+  color: #ccc;
+  font-style: italic;
+}
+.reveal .speaker-notes:focus {
+  outline: none;
+}
+.reveal .speaker-notes:before {
+  content: "Speaker notes";
+  display: block;
+  margin-bottom: 10px;
+  opacity: 0.5;
+}
+.reveal.show-notes {
+  max-width: 75%;
+  overflow: visible;
+}
+.reveal.show-notes .speaker-notes {
+  display: block;
+}
+@media screen and (min-width: 1600px) {
+  .reveal .speaker-notes {
+    font-size: 20px;
+  }
+}
+@media screen and (max-width: 1024px) {
+  .reveal.show-notes {
+    border-left: 0;
+    max-width: none;
+    max-height: 70%;
+    max-height: 70vh;
+    overflow: visible;
+  }
+
+  .reveal.show-notes .speaker-notes {
+    top: 100%;
+    left: 0;
+    width: 100%;
+    height: 42.8571428571%;
+    height: 30vh;
+    border: 0;
+  }
+}
+@media screen and (max-width: 600px) {
+  .reveal.show-notes {
+    max-height: 60%;
+    max-height: 60vh;
+  }
+
+  .reveal.show-notes .speaker-notes {
+    top: 100%;
+    height: 66.6666666667%;
+    height: 40vh;
+  }
+
+  .reveal .speaker-notes {
+    font-size: 14px;
+  }
+}
+/*********************************************
+ * ZOOM PLUGIN
+ *********************************************/
+.zoomed .reveal *,
+.zoomed .reveal *:before,
+.zoomed .reveal *:after {
+  -webkit-backface-visibility: visible !important;
+          backface-visibility: visible !important;
+}
+.zoomed .reveal .progress,
+.zoomed .reveal .controls {
+  opacity: 0;
+}
+.zoomed .reveal .roll span {
+  background: none;
+}
+.zoomed .reveal .roll span:after {
+  visibility: hidden;
+}
+/*! modern-normalize v1.0.0 | MIT License | https://github.com/sindresorhus/modern-normalize */
+/*
+Document
+========
+*/
+/**
+Use a better box model (opinionated).
+*/
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+/**
+Use a more readable tab size (opinionated).
+*/
+:root {
+  -moz-tab-size: 4;
+  -o-tab-size: 4;
+  tab-size: 4;
+}
+/**
+1. Correct the line height in all browsers.
+2. Prevent adjustments of font size after orientation changes in iOS.
+*/
+html {
+  line-height: 1.15; /* 1 */
+  -webkit-text-size-adjust: 100%; /* 2 */
+}
+/*
+Sections
+========
+*/
+/**
+Remove the margin in all browsers.
+*/
+body {
+  margin: 0;
+}
+/**
+Improve consistency of default fonts in all browsers. (https://github.com/sindresorhus/modern-normalize/issues/3)
+*/
+body {
+  font-family: system-ui, -apple-system,
+    /* Firefox supports this but not yet `system-ui` */ "Segoe UI", Roboto,
+    Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+}
+/*
+Grouping content
+================
+*/
+/**
+1. Add the correct height in Firefox.
+2. Correct the inheritance of border color in Firefox. (https://bugzilla.mozilla.org/show_bug.cgi?id=190655)
+*/
+hr {
+  height: 0; /* 1 */
+  color: inherit; /* 2 */
+}
+/*
+Text-level semantics
+====================
+*/
+/**
+Add the correct text decoration in Chrome, Edge, and Safari.
+*/
+abbr[title] {
+  -webkit-text-decoration: underline dotted;
+  text-decoration: underline dotted;
+}
+/**
+Add the correct font weight in Edge and Safari.
+*/
+b,
+strong {
+  font-weight: bolder;
+}
+/**
+1. Improve consistency of default fonts in all browsers. (https://github.com/sindresorhus/modern-normalize/issues/3)
+2. Correct the odd 'em' font sizing in all browsers.
+*/
+code,
+kbd,
+samp,
+pre {
+  font-family: ui-monospace, SFMono-Regular, Consolas, "Liberation Mono", Menlo,
+    monospace; /* 1 */
+  font-size: 1em; /* 2 */
+}
+/**
+Add the correct font size in all browsers.
+*/
+small {
+  font-size: 80%;
+}
+/**
+Prevent 'sub' and 'sup' elements from affecting the line height in all browsers.
+*/
+sub,
+sup {
+  font-size: 75%;
+  line-height: 0;
+  position: relative;
+  vertical-align: baseline;
+}
+sub {
+  bottom: -0.25em;
+}
+sup {
+  top: -0.5em;
+}
+/*
+Tabular data
+============
+*/
+/**
+1. Remove text indentation from table contents in Chrome and Safari. (https://bugs.chromium.org/p/chromium/issues/detail?id=999088, https://bugs.webkit.org/show_bug.cgi?id=201297)
+2. Correct table border color inheritance in all Chrome and Safari. (https://bugs.chromium.org/p/chromium/issues/detail?id=935729, https://bugs.webkit.org/show_bug.cgi?id=195016)
+*/
+table {
+  text-indent: 0; /* 1 */
+  border-color: inherit; /* 2 */
+}
+/*
+Forms
+=====
+*/
+/**
+1. Change the font styles in all browsers.
+2. Remove the margin in Firefox and Safari.
+*/
+button,
+input,
+optgroup,
+select,
+textarea {
+  font-family: inherit; /* 1 */
+  font-size: 100%; /* 1 */
+  line-height: 1.15; /* 1 */
+  margin: 0; /* 2 */
+}
+/**
+Remove the inheritance of text transform in Edge and Firefox.
+1. Remove the inheritance of text transform in Firefox.
+*/
+button,
+select {
+  /* 1 */
+  text-transform: none;
+}
+/**
+Correct the inability to style clickable types in iOS and Safari.
+*/
+button,
+[type="button"],
+[type="reset"],
+[type="submit"] {
+  -webkit-appearance: button;
+}
+/**
+Remove the inner border and padding in Firefox.
+*/
+::-moz-focus-inner {
+  border-style: none;
+  padding: 0;
+}
+/**
+Restore the focus styles unset by the previous rule.
+*/
+:-moz-focusring {
+  outline: 1px dotted ButtonText;
+}
+/**
+Remove the additional ':invalid' styles in Firefox.
+See: https://github.com/mozilla/gecko-dev/blob/2f9eacd9d3d995c937b4251a5557d95d494c9be1/layout/style/res/forms.css#L728-L737
+*/
+:-moz-ui-invalid {
+  box-shadow: none;
+}
+/**
+Remove the padding so developers are not caught out when they zero out 'fieldset' elements in all browsers.
+*/
+legend {
+  padding: 0;
+}
+/**
+Add the correct vertical alignment in Chrome and Firefox.
+*/
+progress {
+  vertical-align: baseline;
+}
+/**
+Correct the cursor style of increment and decrement buttons in Safari.
+*/
+::-webkit-inner-spin-button,
+::-webkit-outer-spin-button {
+  height: auto;
+}
+/**
+1. Correct the odd appearance in Chrome and Safari.
+2. Correct the outline style in Safari.
+*/
+[type="search"] {
+  -webkit-appearance: textfield; /* 1 */
+  outline-offset: -2px; /* 2 */
+}
+/**
+Remove the inner padding in Chrome and Safari on macOS.
+*/
+::-webkit-search-decoration {
+  -webkit-appearance: none;
+}
+/**
+1. Correct the inability to style clickable types in iOS and Safari.
+2. Change font properties to 'inherit' in Safari.
+*/
+::-webkit-file-upload-button {
+  -webkit-appearance: button; /* 1 */
+  font: inherit; /* 2 */
+}
+/*
+Interactive
+===========
+*/
+/*
+Add the correct display in Chrome and Safari.
+*/
+summary {
+  display: list-item;
+}
+/**
+ * Manually forked from SUIT CSS Base: https://github.com/suitcss/base
+ * A thin layer on top of normalize.css that provides a starting point more
+ * suitable for web applications.
+ */
+/**
+ * Removes the default spacing and border for appropriate elements.
+ */
+blockquote,
+dl,
+dd,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+hr,
+figure,
+p,
+pre {
+  margin: 0;
+}
+button {
+  background-color: transparent;
+  background-image: none;
+}
+/**
+ * Work around a Firefox/IE bug where the transparent `button` background
+ * results in a loss of the default `button` focus styles.
+ */
+button:focus {
+  outline: 1px dotted;
+  outline: 5px auto -webkit-focus-ring-color;
+}
+fieldset {
+  margin: 0;
+  padding: 0;
+}
+ol,
+ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+html {
+  font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
+    "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif,
+    "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"; /* 1 */
+  line-height: 1.5; /* 2 */
+}
+/**
+ * Inherit font-family and line-height from `html` so users can set them as
+ * a class directly on the `html` element.
+ */
+body {
+  font-family: inherit;
+  line-height: inherit;
+}
+/**
+ * 1. Prevent padding and border from affecting element width.
+ *
+ *    We used to set this in the html element and inherit from
+ *    the parent element for everything else. This caused issues
+ *    in shadow-dom-enhanced elements like <details> where the content
+ *    is wrapped by a div with box-sizing set to `content-box`.
+ *
+ *    https://github.com/mozdevs/cssremedy/issues/4
+ *
+ *
+ * 2. Allow adding a border to an element by just adding a border-width.
+ *
+ *    By default, the way the browser specifies that an element should have no
+ *    border is by setting it's border-style to `none` in the user-agent
+ *    stylesheet.
+ *
+ *    In order to easily add borders to elements by just setting the `border-width`
+ *    property, we change the default border-style for all elements to `solid`, and
+ *    use border-width to hide them instead. This way our `border` utilities only
+ *    need to set the `border-width` property instead of the entire `border`
+ *    shorthand, making our border utilities much more straightforward to compose.
+ *
+ *    https://github.com/tailwindcss/tailwindcss/pull/116
+ */
+*,
+::before,
+::after {
+  box-sizing: border-box; /* 1 */
+  border-width: 0; /* 2 */
+  border-style: solid; /* 2 */
+  border-color: #e5e7eb; /* 2 */
+}
+/*
+ * Ensure horizontal rules are visible by default
+ */
+hr {
+  border-top-width: 1px;
+}
+/**
+ * Undo the `border-style: none` reset that Normalize applies to images so that
+ * our `border-{width}` utilities have the expected effect.
+ *
+ * The Normalize reset is unnecessary for us since we default the border-width
+ * to 0 on all elements.
+ *
+ * https://github.com/tailwindcss/tailwindcss/issues/362
+ */
+img {
+  border-style: solid;
+}
+textarea {
+  resize: vertical;
+}
+input::-moz-placeholder,
+textarea::-moz-placeholder {
+  color: #9ca3af;
+}
+input:-ms-input-placeholder,
+textarea:-ms-input-placeholder {
+  color: #9ca3af;
+}
+input::-moz-placeholder, textarea::-moz-placeholder {
+  color: #9ca3af;
+}
+input:-ms-input-placeholder, textarea:-ms-input-placeholder {
+  color: #9ca3af;
+}
+input::placeholder,
+textarea::placeholder {
+  color: #9ca3af;
+}
+button,
+[role="button"] {
+  cursor: pointer;
+}
+table {
+  border-collapse: collapse;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-size: inherit;
+  font-weight: inherit;
+}
+/**
+ * Reset links to optimize for opt-in styling instead of
+ * opt-out.
+ */
+a {
+  color: inherit;
+  text-decoration: inherit;
+}
+/**
+ * Reset form element properties that are easy to forget to
+ * style explicitly so you don't inadvertently introduce
+ * styles that deviate from your design system. These styles
+ * supplement a partial reset that is already applied by
+ * normalize.css.
+ */
+button,
+input,
+optgroup,
+select,
+textarea {
+  padding: 0;
+  line-height: inherit;
+  color: inherit;
+}
+/**
+ * Use the configured 'mono' font family for elements that
+ * are expected to be rendered with a monospace font, falling
+ * back to the system monospace stack if there is no configured
+ * 'mono' font family.
+ */
+pre,
+code,
+kbd,
+samp {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
+    "Liberation Mono", "Courier New", monospace;
+}
+/**
+ * Make replaced elements `display: block` by default as that's
+ * the behavior you want almost all of the time. Inspired by
+ * CSS Remedy, with `svg` added as well.
+ *
+ * https://github.com/mozdevs/cssremedy/issues/14
+ */
+img,
+svg,
+video,
+canvas,
+audio,
+iframe,
+embed,
+object {
+  display: block;
+  vertical-align: middle;
+}
+/**
+ * Constrain images and videos to the parent width and preserve
+ * their instrinsic aspect ratio.
+ *
+ * https://github.com/mozdevs/cssremedy/issues/14
+ */
+img,
+video {
+  max-width: 100%;
+  height: auto;
+}
+/* Global layout settings */
+.slide-background {
+  background-color: var(--lightbackgroundcolor)
+}
+/* Classes applied while doing sizing. */
+.fitting {
+  opacity: 0;
+  overflow: hidden;
+  transition: opacity 0.25s; /* This makes for nicer re-size and reload but for larger images can cause flicker */
+}
+.fitted {
+  transition: none;
+}
+[class*="layout-"] {
+  display: grid;
+  align-items: start;
+  width: auto;
+  height: 100%;
+  /*overflow-y: auto;*/
+}
+@media (min-width: 640px) {
+  [class*="layout-"] > :not([class*="layout-"]) {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    height: 100%;
+  }
+}
+[class*="layout-"] > :not([class*="layout-"]) > *:not(:last-child) {
+  margin-bottom: 0.5em;
+}
+.layout-title > :not([class*="layout-"]) > *:not(:last-child),
+.layout-cover > :not([class*="layout-"]) > *:not(:last-child),
+.layout-caption > :not([class*="layout-"]) > *:not(:last-child),
+.layout-title-image > :not([class*="layout-"]) > *:not(:last-child)  {
+  margin-bottom: 0;
+}
+.layout-section > :not([class*="layout-"]) > :first-child:nth-last-child(2),
+.layout-default > :not([class*="layout-"]) > :first-child:nth-last-child(2){
+  margin-bottom: 0;
+}
+.layout-section > :not([class*="layout-"]) > :last-child:nth-child(2),
+.layout-default > :not([class*="layout-"]) > :last-child:nth-child(2) {
+  margin-top: 0.5em;
+}
+.layout-section > :not([class*="layout-"]) > :is(h1, h2, h3, h4, h5, h6, p) + :is(h1, h2, h3, h4, h5, h6, p):last-child:nth-child(2),
+.layout-default > :not([class*="layout-"]) > :is(h1, h2, h3, h4, h5, h6, p) + :is(h1, h2, h3, h4, h5, h6, p):last-child:nth-child(2) {
+  margin-top: 0;
+}
+section:not(.fitted) > [class*="layout-"] {
+  height: 100%;
+  width: 100%;
+}
+.layout-grid .videoWrapper,
+.layout-grid .single-image-wrapper,
+.layout-v-split .videoWrapper,
+.layout-v-split .single-image-wrapper,
+.layout-default .videoWrapper,
+.layout-default .single-image-wrapper,
+[class*="layout-"] .layout-grid {
+  flex-grow: 1;
+  flex-shrink: 10;
+  flex-basis: 0px;
+  position: relative;
+  overflow: hidden;
+  height: 0;
+  min-height: var(--MIN_IMAGE_HEIGHT);
+  width: 100%;
+}
+@media (min-height: 600px) {
+  .videoWrapper,
+  .single-image-wrapper,
+  [class*="layout-"] .layout-grid {
+    flex-basis: 50px;
+  }
+
+  [class*="layout-"] .videoWrapper,
+  [class*="layout-"] .single-image-wrapper,
+  [class*="layout-"] .layout-grid {
+    flex-basis: 100px;
+  }
+}
+@media (min-height: 768px) {
+  [class*="layout-"] .videoWrapper,
+  [class*="layout-"] .single-image-wrapper,
+  [class*="layout-"] .layout-grid {
+    flex-basis: 300px;
+  }
+}
+[class*="layout-"] .layout-grid {
+  height: 100% !important;
+}
+.layout-grid.media-grid img {
+  -o-object-fit: var(--IMAGE_MODE);
+     object-fit: var(--IMAGE_MODE);
+  -o-object-position: center;
+     object-position: center;
+  align-self: stretch;
+  justify-self: stretch;
+}
+/*.videoWrapper iframe,*/
+.videoWrapper img,
+.single-image-wrapper img,
+.single-image-wrapper video {
+  margin: 0;
+  width: 100%;
+  height: 100%;
+  -o-object-fit: var(--IMAGE_MODE);
+     object-fit: var(--IMAGE_MODE);
+  -o-object-position: center;
+     object-position: center;
+  position: absolute;
+}
+
+.videoWrapper iframe{
+      margin: 0;
+      width: 100%;
+      height: 100%;
+      position: absolute;
+}
+
+
+/* Global settings */
+html {
+  box-sizing: border-box;
+}
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+section {
+  display: grid !important;
+  gap: var(--CONTENT_GAP);
+  padding: var(--CONTENT_PADDING_Y) var(--CONTENT_PADDING_X);
+  grid-template-columns: 1fr;
+  grid-auto-rows: minmax(30%, 1fr);
+  justify-content: center;
+  align-items: start;
+  height: 100%;
+}
+section:not(.has-header,.has-footer,.has-footnotes) {
+  padding: 0;
+}
+section:not(.has-header,.has-footer,.has-footnotes) > [class*="layout-"] {
+  padding: var(--CONTENT_PADDING_Y) var(--CONTENT_PADDING_X);
+}
+/* Headers and footers */
+section.has-header {
+  grid-auto-rows: auto minmax(30%, 1fr);
+}
+section.has-footnotes,
+section.has-footer {
+  grid-auto-rows: minmax(30%, 1fr) auto;
+}
+section.has-footnotes.has-footer {
+  grid-auto-rows: minmax(30%, 1fr) auto auto;
+}
+section.has-header.has-footer,
+section.has-header.has-footnotes {
+  grid-auto-rows: auto minmax(30%, 1fr) auto;
+}
+section.has-header.has-footer.has-footnotes {
+  grid-auto-rows: auto minmax(30%, 1fr) auto auto;
+}
+.footnotes,
+.header,
+.footer { 
+  display: none;
+}
+.has-footnotes .footnotes {
+  display: block;
+  font-size: 0.6rem;
+}
+.has-header .header,
+.has-footer .footer {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: auto;
+  align-items: center;
+  justify-content: start;
+  gap: var(--CONTENT_GAP);
+}
+.footer,
+.footnotes {
+  align-self: end;
+}
+.header *,
+.footer * {
+  margin: 0 !important;
+}
+.header * img,
+.footer * img {
+  display: inline-block !important;
+}
+.leading {
+  text-align: left;
+}
+.middle {
+  text-align: center;
+  display: none;
+}
+.trailing {
+  text-align: right;
+}
+.header img,
+.footer img {
+  max-height: 16px;
+}
+.header,
+.footer {
+  font-size: 0.6875em !important;
+}
+@media (min-width: 768px) {
+  .header,
+  .footer {
+    font-size: 0.8125em !important;
+  }
+  .header img,
+  .footer img {
+    max-height: 40px;
+  }
+}
+@media (min-width: 1025px) {
+  .header,
+  .footer {
+    font-size: 0.9375em !important;
+  }
+  .header img,
+  .footer img {
+    max-height: 44px;
+  }
+}
+@media (min-width: 1367px) {
+  .header,
+  .footer {
+    font-size: 1.125em !important;
+  }
+  .header img,
+  .footer img {
+    max-height: 48px;
+  }
+}
+@media (min-width: 1681px) {
+  .header,
+  .footer {
+    font-size: 1.375em !important;
+  }
+  .header img,
+  .footer img {
+    max-height: 56px;
+  }
+}
+@media (min-width: 2049px) {
+  .header,
+  .footer {
+    font-size: 1.625em !important;
+  }
+  .header img,
+  .footer img {
+    max-height: 62px;
+  }
+}
+@media screen and (min-width: 690px) and (min-height: 690px) {
+  .has-footnotes .footnotes {
+    display: block;
+    font-size: 0.95rem;
+  }
+}
+/* Tables */
+table td,
+table th {
+  min-width: 10ch;
+}
+/* Codeblocks */
+pre{
+  width: 100%;
+  max-width: 100%;
+}
+.hljs {
+  padding-right: 0.2em;
+  padding-left: 0.2em;
+}
+pre > code.hljs {
+  white-space:pre-wrap;
+  padding-top: 0.5em;
+  padding-bottom: 0.5em;
+  padding-right: 1em;
+  padding-left: 1em;
+}
+/* Aspect Ratio 0.5625 */
+@media (min-aspect-ratio: 9/16) {
+  /* Default styles */
+  /* Mobile 375x654 */
+}
+/* Aspect Ratio 0.75 */
+@media (min-aspect-ratio: 3/4) {
+  /* Tablet 768x1024 */
+  .middle {
+    display: block;
+  }
+
+  .has-header .header,
+  .has-footer .footer {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+
+  .layout-title > div > *:not(:last-child),
+  .layout-cover > div > *:not(:last-child) {
+    margin-bottom: 0;
+  }
+}
+/* Aspect Ratio 1.3333333333 */
+@media (min-aspect-ratio: 4/3) {
+  /* Desktop 1024x768 */
+
+  .layout-title > div > *:not(:last-child),
+  .layout-cover > div > *:not(:last-child) {
+    margin-bottom: 0;
+  }
+}
+/* Aspect Ratio 1.7777777778 */
+@media (min-aspect-ratio: 16/9) {
+  /* Desktop 1366/768 */
+
+  .layout-title > div > *:not(:last-child),
+  .layout-cover > div > *:not(:last-child) {
+    margin-bottom: 0;
+  }
+}
+.has-header .header,
+.has-footer .footer {
+  min-height: 25px;
+}
+@media (min-width: 768px) {
+  .has-header .header,
+  .has-footer .footer {
+    min-height: 28px;
+  }
+}
+@media (min-width: 1025px) {
+  .has-header .header,
+  .has-footer .footer {
+    min-height: 30px;
+  }
+}
+@media (min-width: 1367px) {
+  .has-header .header,
+  .has-footer .footer {
+    /* grid-template-columns: 1fr 1fr 1fr; */
+    min-height: 33px;
+  }
+}
+@media (min-width: 1681px) {
+  .has-header .header,
+  .has-footer .footer {
+    min-height: 37px;
+  }
+}
+@media (min-width: 2049px) {
+  .has-header .header,
+  .has-footer .footer {
+    min-height: 41px;
+  }
+}
+:root {
+  --IMAGE_MODE: cover;
+  --GRID_GAP: 10px;
+  --CONTENT_GAP: 10px;
+  --CONTENT_PADDING_X: 10px;
+  --CONTENT_PADDING_Y: 10px;
+  --MIN_IMAGE_HEIGHT: 100px;
+}
+section.has-header,
+section.has-footer,
+section.has-footnotes {
+  --CONTENT_PADDING_X: 23px;
+}
+.layout-default,
+.layout-title,
+.layout-cover,
+.layout-caption,
+.layout-title-image,
+.layout-h-split,
+.layout-v-split,
+.layout-section {
+  --CONTENT_PADDING_X: 23px;
+  --CONTENT_PADDING_Y: 20px;
+}
+@media (min-height: 600px) {
+  :root {
+    --MIN_IMAGE_HEIGHT: 200px;
+  }
+}
+@media (min-height: 768px) {
+  :root {
+    --MIN_IMAGE_HEIGHT: 300px;
+  }
+}
+@media (min-width: 481px) {
+  :root {
+    --GRID_GAP: 20px;
+    --CONTENT_GAP: 20px;
+    --CONTENT_PADDING_X: 20px;
+    --CONTENT_PADDING_Y: 20px;
+  }
+  section.has-header,
+  section.has-footer,
+  section.has-footnotes {
+    --CONTENT_PADDING_X: 46px;
+  }
+  .layout-default,
+  .layout-title,
+  .layout-cover,
+  .layout-caption,
+  .layout-title-image,
+  .layout-h-split,
+  .layout-v-split,
+  .layout-section {
+    --CONTENT_PADDING_X: 46px;
+    --CONTENT_PADDING_Y: 40px;
+  }
+  .layout-v-split {
+    --GRID_GAP: 46px;
+  }
+}
+@media (min-width: 768px) {
+  :root {
+    --GRID_GAP: 30px;
+    --CONTENT_GAP: 30px;
+    --CONTENT_PADDING_X: 30px;
+    --CONTENT_PADDING_Y: 30px;
+  }
+  section.has-header,
+  section.has-footer,
+  section.has-footnotes {
+    --CONTENT_PADDING_X: 69px;
+  }
+  .layout-default,
+  .layout-title,
+  .layout-cover,
+  .layout-caption,
+  .layout-title-image,
+  .layout-h-split,
+  .layout-v-split,
+  .layout-section {
+    --CONTENT_PADDING_X: 69px;
+    --CONTENT_PADDING_Y: 60px;
+  }
+  .layout-v-split {
+    --GRID_GAP: 69px;
+  }
+}
+@media (min-width: 1025px) {
+  :root {
+    --GRID_GAP: 40px;
+    --CONTENT_PADDING_X: 40px;
+    --CONTENT_PADDING_Y: 40px;
+  }
+  section.has-header,
+  section.has-footer,
+  section.has-footnotes {
+    --CONTENT_PADDING_X: 92px;
+  }
+  .layout-default,
+  .layout-title,
+  .layout-cover,
+  .layout-caption,
+  .layout-title-image,
+  .layout-h-split,
+  .layout-v-split,
+  .layout-section {
+    --CONTENT_PADDING_X: 92px;
+    --CONTENT_PADDING_Y: 80px;
+  }
+  .layout-v-split {
+    --GRID_GAP: 92px;
+  }
+}
+@media (min-width: 1367px) {
+  :root {
+    --CONTENT_GAP: 40px;
+    --GRID_GAP: 60px;
+    --CONTENT_PADDING_X: 60px;
+    --CONTENT_PADDING_Y: 60px;
+  }
+  section.has-header,
+  section.has-footer,
+  section.has-footnotes {
+    --CONTENT_PADDING_X: 118px;
+  }
+  .layout-default,
+  .layout-title,
+  .layout-cover,
+  .layout-caption,
+  .layout-title-image,
+  .layout-h-split,
+  .layout-v-split,
+  .layout-section {
+    --CONTENT_PADDING_X: 118px;
+    --CONTENT_PADDING_Y: 100px;
+  }
+  .layout-v-split {
+    --GRID_GAP: 118px;
+  }
+}
+@media (min-width: 1681px) {
+  :root {
+    --GRID_GAP: 80px;
+    --CONTENT_PADDING_X: 80px;
+    --CONTENT_PADDING_Y: 80px;
+  }
+  section.has-header,
+  section.has-footer,
+  section.has-footnotes {
+    --CONTENT_PADDING_X: 144px;
+  }
+  .layout-default,
+  .layout-title,
+  .layout-cover,
+  .layout-caption,
+  .layout-title-image,
+  .layout-h-split,
+  .layout-v-split,
+  .layout-section {
+    --CONTENT_PADDING_X: 144px;
+    --CONTENT_PADDING_Y: 120px;
+  }
+  .layout-v-split {
+    --GRID_GAP: 144px;
+  }
+}
+@media (min-width: 2049px) {
+  :root {
+    --GRID_GAP: 100px;
+    --CONTENT_PADDING_X: 100px;
+    --CONTENT_PADDING_Y: 100px;
+  }
+  section.has-header,
+  section.has-footer,
+  section.has-footnotes {
+    --CONTENT_PADDING_X: 180px;
+  }
+  .layout-default,
+  .layout-title,
+  .layout-cover,
+  .layout-caption,
+  .layout-title-image,
+  .layout-h-split,
+  .layout-v-split,
+  .layout-section {
+    --CONTENT_PADDING_X: 180px;
+    --CONTENT_PADDING_Y: 150px;
+  }
+  .layout-v-split {
+    --GRID_GAP: 180px;
+  }
+}
+.videoWrapper,
+.contain {
+  --IMAGE_MODE: contain;
+}
+:root {
+  --color-typography-100: #f3f4f6;
+  --color-typography-200: #e5e7eb;
+  --color-typography-300: #d1d5db;
+  --color-typography-400: #9ca3af;
+  --color-typography-500: #6b7280;
+  --color-typography-600: #4b5563;
+  --color-typography-800: #374151;
+  --color-typography-800: #1f2937;
+  --color-typography-900: #111827;
+  /*--color-background-dark: #000000;*/
+}
+body {
+  font-family: var(--bodyfont, "Arial"), Helvetica, sans-serif;
+  color: var(--darkbodytextcolor, #000000);
+}
+h1, h2, h3, h4, h5, h6{
+  font-family: var(--titlefont, "Arial"), Helvetica, sans-serif;
+  color: var(--darktitletextcolor, #000000);
+}
+ol,
+ul {
+  list-style-position: outside;
+}
+
+.backgrounds .dark {
+  background: var(--darkbackgroundcolor);
+}
+section > :not([class*="layout-"]) [class~="lead"],
+[class*="layout-"] > div [class~="lead"] {
+  font-size: 1.25em;
+  line-height: 1.6;
+  margin-bottom: 1.2em;
+}
+section > :not([class*="layout-"]) a,
+[class*="layout-"] > div a {
+  text-decoration: underline;
+  font-weight: 500;
+}
+section > :not([class*="layout-"]) strong,
+[class*="layout-"] > div strong {
+  font-weight: 700;
+  font-variation-settings: "wght" 800;
+}
+section > :not([class*="layout-"]) ol[type="A"],
+[class*="layout-"] > div ol[type="A"] {
+  --list-counter-style: upper-alpha;
+}
+section > :not([class*="layout-"]) ol[type="a"],
+[class*="layout-"] > div ol[type="a"] {
+  --list-counter-style: lower-alpha;
+}
+section > :not([class*="layout-"]) ol[type="A s"],
+[class*="layout-"] > div ol[type="A s"] {
+  --list-counter-style: upper-alpha;
+}
+section > :not([class*="layout-"]) ol[type="a s"],
+[class*="layout-"] > div ol[type="a s"] {
+  --list-counter-style: lower-alpha;
+}
+section > :not([class*="layout-"]) ol[type="I"],
+[class*="layout-"] > div ol[type="I"] {
+  --list-counter-style: upper-roman;
+}
+section > :not([class*="layout-"]) ol[type="i"],
+[class*="layout-"] > div ol[type="i"] {
+  --list-counter-style: lower-roman;
+}
+section > :not([class*="layout-"]) ol[type="I s"],
+[class*="layout-"] > div ol[type="I s"] {
+  --list-counter-style: upper-roman;
+}
+section > :not([class*="layout-"]) ol[type="i s"],
+[class*="layout-"] > div ol[type="i s"] {
+  --list-counter-style: lower-roman;
+}
+section > :not([class*="layout-"]) ol[type="1"],
+[class*="layout-"] > div ol[type="1"] {
+  --list-counter-style: decimal;
+}
+section > :not([class*="layout-"]) ol > li,
+[class*="layout-"] > div ol > li {
+  position: relative;
+  padding-left: 1.75em;
+}
+section > :not([class*="layout-"]) ol > li::before,
+[class*="layout-"] > div ol > li::before {
+  content: counter(list-item, var(--list-counter-style, decimal)) ".";
+  position: absolute;
+  font-weight: 400;
+  left: 0;
+  text-align: right;
+  margin-left: -0.85em;
+  width: 1.75em;
+}
+section > :not([class*="layout-"]) ul > li,
+[class*="layout-"] > div ul > li {
+  position: relative;
+  padding-left: 1em;
+}
+section > :not([class*="layout-"]) ul > li::before,
+[class*="layout-"] > div ul > li::before {
+  content: "–";
+  position: absolute;
+  background-color: var(--color-typography-300);
+  width: 0;
+  height: 0;
+  top: calc(-0em);
+  left: 0em;
+}
+section > :not([class*="layout-"]) ul > li::before,
+[class*="layout-"] > div ul  ul > li::before,
+[class*="layout-"] > div ol  ul > li::before {
+  content: "–";
+  position: absolute;
+  background-color: var(--color-typography-300);
+  width: 0;
+  height: 0;
+  top: calc(-0em);
+  left: 0em;
+}
+section > :not([class*="layout-"]) ul > li::before,
+[class*="layout-"] > div ul ul ul > li::before, 
+[class*="layout-"] > div ol ul ul > li::before,
+[class*="layout-"] > div ul ol ul > li::before
+[class*="layout-"] > div ol ol ul > li::before{
+  content: "–";
+  position: absolute;
+  background-color: var(--color-typography-300);
+  width: 0;
+  height: 0;
+  top: calc(-0em);
+  left: 0em;
+}
+section > :not([class*="layout-"]) ul > li::before,
+[class*="layout-"] > div ul ul ul ul > li::before,
+[class*="layout-"] > div ol ul ul ul > li::before,
+[class*="layout-"] > div ul ol ul ul > li::before,
+[class*="layout-"] > div ul ul ol ul > li::before,
+[class*="layout-"] > div ol ol ul ul > li::before,
+[class*="layout-"] > div ul ol ol ul > li::before,
+[class*="layout-"] > div ol ol ol ul > li::before {
+  content: "–";
+  position: absolute;
+  background-color: var(--color-typography-300);
+  width: 0;
+  height: 0;
+  top: calc(-0em);
+  left: 0em;
+}
+section > :not([class*="layout-"]) hr,
+[class*="layout-"] > div hr {
+  border-color: var(--color-typography-200);
+  border-top-width: 1px;
+  margin-top: 3em;
+  margin-bottom: 3em;
+}
+section > :not([class*="layout-"]) blockquote,
+[class*="layout-"] > div blockquote {
+  font-weight: 500;
+  font-style: normal;
+  color: var(--bodytextcolor);
+  border-left-width: 0.15em;
+  border-left-color: var(--bodytextcolor);
+  quotes: "\201C""\201D""\2018""\2019";
+  margin-top: inherit;
+  margin-bottom: inherit;
+  padding-left: 1em;
+}
+section > :not([class*="layout-"]) blockquote p:first-of-type::before,
+[class*="layout-"] > div blockquote p:first-of-type::before {
+  content: none;
+}
+section > :not([class*="layout-"]) blockquote p:last-of-type::after,
+[class*="layout-"] > div blockquote p:last-of-type::after {
+  content: none;
+}
+section > :not([class*="layout-"]) h1,
+[class*="layout-"] > div h1 {
+  font-weight: 700;
+  line-height: 1.3;
+  font-size: 1.2em;
+}
+section > :not([class*="layout-"]) h2,
+[class*="layout-"] > div h2 {
+  font-weight: 700;
+  line-height: 1.3;
+  font-size: 1.2em;
+}
+section > :not([class*="layout-"]) h3,
+[class*="layout-"] > div h3 {
+  font-weight: 700;
+  line-height: 1.3;
+  font-size: 1.2em;
+}
+section > :not([class*="layout-"]) h4,
+[class*="layout-"] > div h4 {
+  font-weight: 700;
+  line-height: 1.3;
+  font-size: 1.2em;
+}
+section > :not([class*="layout-"]) figure figcaption,
+[class*="layout-"] > div figure figcaption {
+  color: var(--color-typography-500);
+  font-size: 0.875em;
+  line-height: 1.3;
+  margin-top: 0.857em;
+}
+section > :not([class*="layout-"]) pre,
+[class*="layout-"] > div pre {
+  color: var(--color-typography-900);
+  font-size: 0.875em;
+}
+section > :not([class*="layout-"]) pre code,
+[class*="layout-"] > div pre code{
+  display: block;
+}
+section > :not([class*="layout-"]) a code,
+[class*="layout-"] > div a code {
+  color: var(--color-typography-900);
+}
+section > :not([class*="layout-"]) table,
+[class*="layout-"] > div table {
+  width: 100%;
+  table-layout: auto;
+  text-align: left;
+  border-bottom-width: 2px;
+  margin-bottom: 2em;
+  font-size: 0.875em;
+  line-height: 1.7;
+}
+section > :not([class*="layout-"]) thead,
+[class*="layout-"] > div thead {
+  font-weight: 600;
+  border-bottom-width: 2px;
+  border-top-width: 2px;
+}
+section > :not([class*="layout-"]) thead th,
+[class*="layout-"] > div thead th {
+  vertical-align: bottom;
+  padding-top: 0.5714286em;
+  padding-right: 0.5714286em;
+  padding-bottom: 0.5714286em;
+  padding-left: 0.5714286em;
+}
+section > :not([class*="layout-"]) tbody tr,
+[class*="layout-"] > div tbody tr {
+  border-bottom-width: 1px;
+}
+section > :not([class*="layout-"]) tbody tr:last-child,
+[class*="layout-"] > div tbody tr:last-child {
+  border-bottom-width: 0;
+}
+section > :not([class*="layout-"]) tbody td,
+[class*="layout-"] > div tbody td {
+  vertical-align: top;
+  padding-top: 0.5714286em;
+  padding-right: 0.5714286em;
+  padding-bottom: 0.5714286em;
+  padding-left: 0.5714286em;
+}
+section > :not([class*="layout-"]) p,
+[class*="layout-"] > div p {
+  font-size: 1.2em;
+}
+section > :not([class*="layout-"]) img,
+[class*="layout-"] > div img {
+  display: block;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+}
+section > :not([class*="layout-"]) .layout-grid > img,
+[class*="layout-"] > div .layout-grid > img {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+section > :not([class*="layout-"]) video,
+[class*="layout-"] > div video {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+section > :not([class*="layout-"]) figure,
+[class*="layout-"] > div figure {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+section > :not([class*="layout-"]) figure > *,
+[class*="layout-"] > div figure > * {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+section > :not([class*="layout-"]) h2 code,
+[class*="layout-"] > div h2 code {
+  font-size: 0.875em;
+}
+section > :not([class*="layout-"]) h3 code,
+[class*="layout-"] > div h3 code {
+  font-size: 0.9em;
+}
+section > :not([class*="layout-"]) ol,
+[class*="layout-"] > div > ol {
+  margin-bottom: 1.25em;
+}
+section > :not([class*="layout-"]) ul,
+[class*="layout-"] > div > ul {
+  margin-bottom: 1.25em;
+}
+section > :not([class*="layout-"]) ul,
+section > :not([class*="layout-"]) ol,
+[class*="layout-"] > div > ul,
+[class*="layout-"] > div > ol {
+  font-size: 1.2em;
+}
+section > :not([class*="layout-"]) li,
+[class*="layout-"] > div li {
+  margin-top: 0.3em;
+  margin-bottom: 0.3em;
+}
+section > :not([class*="layout-"]) > ul > li p,
+[class*="layout-"] > div > ul > li p {
+  margin-top: 0.75em;
+  margin-bottom: 0.75em;
+}
+section > :not([class*="layout-"]) ul ul,
+[class*="layout-"] > div ul ul,
+section > :not([class*="layout-"]) ul ol,
+[class*="layout-"] > div ul ol,
+section > :not([class*="layout-"]) ol ul,
+[class*="layout-"] > div ol ul,
+section > :not([class*="layout-"]) ol ol,
+[class*="layout-"] > div ol ol {
+  /*margin-top: 0.75em;
+  margin-bottom: 0.75em;*/
+}
+.prose ul ul,
+.prose ul ul,
+.prose ul ol,
+.prose ul ol,
+.prose ol ul,
+.prose ol ul,
+.prose ol ol,
+.prose ol ol {
+  margin-top: 0.75em;
+  margin-bottom: 0.75em;
+  margin-top: 0.75em;
+  margin-bottom: 0.75em;
+  margin-top: 0.75em;
+  margin-bottom: 0.75em;
+}
+section > :not([class*="layout-"]) hr + *,
+[class*="layout-"] > div hr + * {
+  margin-top: 0;
+}
+section > :not([class*="layout-"]) h2 + *,
+[class*="layout-"] > div h2 + * {
+  margin-top: 0;
+}
+section > :not([class*="layout-"]) h3 + *,
+[class*="layout-"] > div h3 + * {
+  margin-top: 0;
+}
+section > :not([class*="layout-"]) h4 + *,
+[class*="layout-"] > div h4 + * {
+  margin-top: 0;
+}
+section > :not([class*="layout-"]) thead th:first-child,
+[class*="layout-"] > div thead th:first-child {
+  padding-left: 0;
+}
+section > :not([class*="layout-"]) thead th:last-child,
+[class*="layout-"] > div thead th:last-child {
+  padding-right: 0;
+}
+section > :not([class*="layout-"]) tbody td:first-child,
+[class*="layout-"] > div tbody td:first-child {
+  padding-left: 0;
+}
+section > :not([class*="layout-"]) tbody td:last-child,
+[class*="layout-"] > div tbody td:last-child {
+  padding-right: 0;
+}
+section > :not([class*="layout-"]) > :first-child,
+[class*="layout-"] > div > :first-child {
+  margin-top: 0;
+}
+section > :not([class*="layout-"]) > :last-child,
+[class*="layout-"] > div > :last-child {
+  margin-bottom: 0;
+}
+section > :not([class*="layout-"]) .header,
+[class*="layout-"] > div .header {
+  font-size: 0.833em;
+}
+section > :not([class*="layout-"]) h5,
+[class*="layout-"] > div h5 {
+  font-weight: 700;
+  line-height: 1.3;
+  font-size: 1.2em;
+}
+section > :not([class*="layout-"]) h6,
+[class*="layout-"] > div h6 {
+  font-weight: 700;
+  line-height: 1.3;
+  font-size: 1.2em;
+}
+section > :not([class*="layout-"]),
+[class*="layout-"] > div {
+  font-size: 1.375em;
+  line-height: 1.3;
+}
+section > :not([class*="layout-"]) .header,
+[class*="layout-"] > div .header {
+  font-size: 0.8125rem;
+}
+section > :not([class*="layout-"]) .footer,
+[class*="layout-"] > div .footer {
+  font-size: 0.8125rem;
+}
+section > :not([class*="layout-"]) img,
+[class*="layout-"] > div img {
+  margin: 0;
+}
+section > :not([class*="layout-"]),
+[class*="layout-"] > div {
+  text-align: left;
+}
+@media (min-width: 640px) {
+  section > :not([class*="layout-"]) .sm\:layout-grid > img,
+  [class*="layout-"] > div .sm\:layout-grid > img {
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+
+  section > :not([class*="layout-"]) .sm\:header,
+  [class*="layout-"] > div .sm\:header {
+    font-size: 0.8125rem;
+  }
+
+  section > :not([class*="layout-"]) .sm\:footer,
+  [class*="layout-"] > div .sm\:footer {
+    font-size: 0.8125rem;
+  }
+}
+@media (min-width: 768px) {
+  section > :not([class*="layout-"]) .md\:layout-grid > img,
+  [class*="layout-"] > div .md\:layout-grid > img {
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+
+  section > :not([class*="layout-"]) .md\:header,
+  [class*="layout-"] > div .md\:header {
+    font-size: 0.8125rem;
+  }
+
+  section > :not([class*="layout-"]) .md\:footer,
+  [class*="layout-"] > div .md\:footer {
+    font-size: 0.8125rem;
+  }
+}
+@media (min-width: 1024px) {
+  section > :not([class*="layout-"]) .lg\:layout-grid > img,
+  [class*="layout-"] > div .lg\:layout-grid > img {
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+
+  section > :not([class*="layout-"]) .lg\:header,
+  [class*="layout-"] > div .lg\:header {
+    font-size: 0.8125rem;
+  }
+
+  section > :not([class*="layout-"]) .lg\:footer,
+  [class*="layout-"] > div .lg\:footer {
+    font-size: 0.8125rem;
+  }
+}
+@media (min-width: 1280px) {
+  section > :not([class*="layout-"]) .xl\:layout-grid > img,
+  [class*="layout-"] > div .xl\:layout-grid > img {
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+
+  section > :not([class*="layout-"]) .xl\:header,
+  [class*="layout-"] > div .xl\:header {
+    font-size: 0.8125rem;
+  }
+
+  section > :not([class*="layout-"]) .xl\:footer,
+  [class*="layout-"] > div .xl\:footer {
+    font-size: 0.8125rem;
+  }
+}
+@media (min-width: 1536px) {
+  section > :not([class*="layout-"]) .\32xl\:layout-grid > img,
+  [class*="layout-"] > div .\32xl\:layout-grid > img {
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+
+  section > :not([class*="layout-"]) .\32xl\:header,
+  [class*="layout-"] > div .\32xl\:header {
+    font-size: 0.8125rem;
+  }
+
+  section > :not([class*="layout-"]) .\32xl\:footer,
+  [class*="layout-"] > div .\32xl\:footer {
+    font-size: 0.8125rem;
+  }
+}
+section > :not([class*="layout-"]),
+.responsive [class*="layout-"] > div {
+  font-size: 1.375em;
+  line-height: 1.3;
+}
+@media (max-width: 1366px) {
+  .responsive [class*="layout-"] > div {
+    font-size: 2.8125em; /* Make base 45 * 1.2 = 54 */
+    line-height: 1.3;
+  }
+  .responsive .layout-grid:not(.grid-items-1) > div,
+  .responsive .layout-h-split > div,
+  .responsive .layout-title-image > div,
+  .responsive .layout-v-split > div {
+    font-size: 2.3125em; /* Makes base 37 * 1.2 = 45 */
+  }
+}
+@media (min-width: 1367px) {
+  .responsive [class*="layout-"] > div {
+    font-size: 3.375em; /* Make base 54 * 1.2 = 65 */
+    line-height: 1.3;
+  }
+  .responsive .layout-grid:not(.grid-items-1) > div,
+  .responsive .layout-h-split > div,
+  .responsive .layout-title-image > div,
+  .responsive .layout-v-split > div {
+    font-size: 2.8125em; /* Make base 45 * 1.2 = 54 */
+  }
+}
+@media (min-width: 1681px) {
+  .responsive [class*="layout-"] > div {
+    font-size: 4.0625em; /* Make base 65 * 1.2 = 78 */
+    line-height: 1.3;
+  }
+  .responsive .layout-grid:not(.grid-items-1) > div,
+  .responsive .layout-h-split > div,
+  .responsive .layout-title-image > div,
+  .responsive .layout-v-split > div {
+    font-size: 3.375em; /* Make base 54 * 1.2 = 65 */
+  }
+}
+@media (min-width: 2049px) {
+  .responsive [class*="layout-"] > div {
+    font-size: 4.875em; /* Make base 78 * 1.2 = 93 */
+    line-height: 1.3;
+  }
+  .responsive .layout-grid:not(.grid-items-1) > div,
+  .responsive .layout-h-split > div,
+  .responsive .layout-title-image > div,
+  .responsive .layout-v-split > div {
+    font-size: 4.0625em; /* Make base 65 * 1.2 = 77 */
+    height: auto;
+  }
+}
+@media (max-width: 767px){
+  .responsive [class*="layout-"] > div {
+    font-size: 2.3125em;
+    line-height: 1.3;
+  }
+  .responsive .layout-grid:not(.grid-items-1) > div,
+  .responsive .layout-h-split > div,
+  .responsive .layout-title-image > div,
+  .responsive .layout-v-split > div {
+    font-size: 1.9375em;
+  }
+}
+@media (max-height: 767px) and (max-width: 1024px) {
+  .responsive [class*="layout-"] > div {
+    font-size: 2.3125em;
+    line-height: 1.3;
+  }
+  .responsive .layout-grid:not(.grid-items-1) > div,
+  .responsive .layout-h-split > div,
+  .responsive .layout-title-image > div,
+  .responsive .layout-v-split > div {
+    font-size: 1.9375em;
+  }
+}
+@media (max-width: 480px){
+  .responsive [class*="layout-"] > div {
+    font-size: 1.9375em;
+    line-height: 1.3;
+  }
+}
+@media (max-height: 480px) and (max-width: 1014px) {
+  .responsive [class*="layout-"] > div {
+    font-size: 1.9375em;
+    line-height: 1.3;
+  }
+}
+@media (max-width: 412px){
+  .responsive [class*="layout-"] > div {
+    font-size: 1.625em;
+    line-height: 1.3;
+  }
+}
+@media (max-height: 412px) and (max-width: 870px) {
+  .responsive [class*="layout-"] > div {
+    font-size: 1.625em;
+    line-height: 1.3;
+  }
+}
+@media (max-width: 360px){
+  .responsive [class*="layout-"] > div {
+    font-size: 1.375em;
+    line-height: 1.3;
+  }
+}
+@media (max-height: 360px) and (max-width: 760px) {
+  .responsive [class*="layout-"] > div {
+    font-size: 1.375em;
+    line-height: 1.3;
+  }
+}
+section.dark > :not([class*="layout-"]),
+.dark [class*="layout-"] > div {
+  color: var(--lightbodytextcolor, #d1d5db);
+}
+section.dark > :not([class*="layout-"]) a,
+.dark [class*="layout-"] > div a {
+  color: var(--lightbodytextcolor, #d1d5db);
+}
+section.dark > :not([class*="layout-"]) a:hover,
+.dark [class*="layout-"] > div a:hover {
+  color: var(--lightbodytextcolor, #d1d5db);
+}
+section.dark > :not([class*="layout-"]) h1,
+.dark [class*="layout-"] > div h1 {
+  color: var(--lighttitletextcolor, #d1d5db);
+}
+section.dark > :not([class*="layout-"]) h2,
+.dark [class*="layout-"] > div h2 {
+  color: var(--lighttitletextcolor, #d1d5db);
+}
+section.dark > :not([class*="layout-"]) h3,
+.dark [class*="layout-"] > div h3 {
+  color: var(--lighttitletextcolor, #d1d5db);
+}
+section.dark > :not([class*="layout-"]) h4,
+.dark [class*="layout-"] > div h4 {
+  color: var(--lighttitletextcolor, #d1d5db);
+}
+section.dark > :not([class*="layout-"]) h5,
+.dark [class*="layout-"] > div h5 {
+  color: var(--lighttitletextcolor, #d1d5db);
+}
+section.dark > :not([class*="layout-"]) h6,
+.dark [class*="layout-"] > div h6 {
+  color: var(--lighttitletextcolor, #d1d5db);
+}
+section.dark > :not([class*="layout-"]) strong,
+.dark [class*="layout-"] > div strong {
+  color: var(--lightbodytextcolor, #d1d5db);
+}
+section.dark > :not([class*="layout-"]) code,
+.dark [class*="layout-"] > div code {
+  color: var(--lightbodytextcolor, #d1d5db);
+}
+section.dark > :not([class*="layout-"]) figcaption,
+.dark [class*="layout-"] > div figcaption {
+  color: var(--lightbodytextcolor, #d1d5db);
+}
+section.dark > :not([class*="layout-"]) thead,
+.dark [class*="layout-"] > div thead {
+  /*color: var(--lighttitletextcolor, #d1d5db);*/
+  /*border-bottom-color: var(--color-typography-200);
+  border-top-color: var(--color-typography-200);*/
+}
+/* we need minmax(0, 1fr) to prevent 1fr from becomming larger with images and headings */
+/* This is required for our layout algorithms */
+/* Mobile */
+:root {
+  --layout-grid-gap: var(--GRID_GAP);
+  --font-size: 1em;
+  --number-of-rows: 1;
+}
+/* Apply half the gap for nested layouts */
+[class*="layout-"] .layout-grid {
+  /* Apply half the gap for media only */
+  --layout-grid-gap: calc(var(--GRID_GAP) / 2);
+}
+.grid-items-1 {
+  --layout-grid-cols: minmax(0, 1fr);
+  --number-of-rows: 1;
+}
+.grid-items-2 {
+  --layout-grid-cols: minmax(0, 1fr);
+  --number-of-rows: 2;
+}
+.grid-items-3 {
+  --layout-grid-cols: minmax(0, 1fr);
+  --number-of-rows: 3;
+}
+.grid-items-4 {
+  --layout-grid-cols: minmax(0, 1fr);
+  --number-of-rows: 4;
+}
+.grid-items-5 {
+  --layout-grid-cols: minmax(0, 1fr) minmax(0, 1fr);
+  --number-of-rows: 3;
+}
+.grid-items-5 > :nth-child(5) {
+  /* ToDo: I should proably make this a custom prop */
+  grid-column: span 2 / span 2;
+}
+.grid-items-6 {
+  --layout-grid-cols: minmax(0, 1fr) minmax(0, 1fr);
+  --number-of-rows: 3;
+}
+.grid-items-7 {
+  --layout-grid-cols: minmax(0, 1fr) minmax(0, 1fr);
+  --number-of-rows: 4;
+}
+.grid-items-7 > :nth-child(7) {
+  /* ToDo: I should proably make this a custom prop */
+  /*grid-row: span 2 / span 2;*/
+}
+.grid-items-8 {
+  --layout-grid-cols: minmax(0, 1fr) minmax(0, 1fr);
+  --number-of-rows: 4;
+}
+.grid-items-9,
+.grid-items-10,
+.grid-items-\+ {
+  --layout-grid-cols: minmax(0, 1fr) minmax(0, 1fr);
+  --number-of-rows: 3;
+}
+.grid-items-\+\+ {
+  --layout-grid-cols: minmax(0, 1fr) minmax(0, 1fr);
+  --number-of-rows: 4;
+}
+@media (max-width: 639px) {
+  .grid-items-2 > img {
+    /* Fit container */
+    max-height: 45vh;
+  }
+  .grid-items-3 > img,
+  .grid-items-4 > img,
+  .grid-items-5 > img,
+  .grid-items-6 > img,
+  .grid-items-7 > img,
+  .grid-items-8 > img,
+  .grid-items-9 > img,
+  .grid-items-10 > img,
+  .grid-items-\+ > img {
+    max-height: 35vh;
+  }
+}
+/* Standard */
+@media (min-width: 640px) {
+  .grid-items-2 {
+    --layout-grid-cols: minmax(0, 1fr) minmax(0, 1fr);
+    --number-of-rows: 1;
+  }
+
+  .grid-items-3 {
+    --layout-grid-cols: minmax(0, 1fr) minmax(0, 1fr)  ;
+    --number-of-rows: 2;
+  }
+
+  .grid-items-3 > :first-child {
+    /* ToDo: I should proably make this a custom prop */
+    grid-row: span 2 / span 2;
+  }
+
+  .grid-items-4 {
+    --layout-grid-cols: minmax(0, 1fr) minmax(0, 1fr);
+    --number-of-rows: 2;
+  }
+
+  .grid-items-5 {
+    --layout-grid-cols: minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1fr);
+    --number-of-rows: 2;
+  }
+
+  .grid-items-5 > :nth-child(3) {
+    /* ToDo: I should proably make this a custom prop */
+    grid-row: span 2 / span 2;
+  }
+
+  /* undo the colspan from mobile */
+  .grid-items-5 > :nth-child(5) {
+    grid-column: auto;
+    grid-row: auto;
+  }
+
+  .grid-items-6 {
+    /* Have currently opted not do do complex alternatives for 6 */
+    --layout-grid-cols: minmax(0, 1fr) minmax(0, 1fr);
+    --number-of-rows: 3;
+  }
+
+  .grid-items-7 {
+    --layout-grid-cols: minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1fr);
+    --number-of-rows: 3;
+  }
+
+  .grid-items-7 > :nth-child(3) {
+    grid-row: span 3 / span 3;
+  }
+
+  /* undo the colspan from mobile */
+  .grid-items-7 > :nth-child(7),
+  .grid-items-7 > :first-child {
+    grid-column: auto;
+  }
+
+  .grid-items-8 {
+    --layout-grid-cols: minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1fr);
+    --number-of-rows: 3;
+  }
+
+  .grid-items-8 > :nth-child(3) {
+    grid-row: span 2 / span 2;
+  }
+
+  .grid-items-8 > :nth-child(8) {
+    grid-column: auto;
+  }
+
+  .grid-items-9,
+  .grid-items-10,
+  .grid-items-\+ {
+    --layout-grid-cols: minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1fr)
+      minmax(0, 1fr);
+
+    --number-of-rows: 3;
+  }
+
+  .grid-items-\+\+ {
+    --layout-grid-cols: minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1fr)
+      minmax(0, 1fr) minmax(0, 1fr);
+    --number-of-rows: 4;
+  }
+}
+/* Wide */
+@media (min-width: 1280px) {
+  .grid-items-6 {
+    /* Have currently opted not do do complex alternatives for 6 */
+    --layout-grid-cols: minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1fr);
+    --number-of-rows: 2;
+  }
+
+  .grid-items-7 > :nth-child(3) {
+    grid-column: auto;
+  }
+}
+/* Font Sizing */
+.responsive .layout-grid.grid-items-5 > div,
+.responsive .layout-grid.grid-items-6 > div,
+.responsive .layout-grid.grid-items-7 > div,
+.responsive .layout-grid.grid-items-8 > div {
+  font-size: 1em;
+}
+.responsive .layout-grid.grid-items-9 > div,
+.responsive .layout-grid.grid-items-10 > div,
+.responsive .layout-grid.grid-items-\+ > div,
+.responsive .layout-grid.grid-items-\+\+ > div {
+  font-size: 0.833em;
+}
+@media (min-width: 768px){
+  .responsive .layout-grid.grid-items-2 > div,
+  .responsive .layout-grid.grid-items-3 > div,
+  .responsive .layout-grid.grid-items-4 > div,
+  .responsive .layout-grid.grid-items-6 > div {
+    font-size: 1.9375em;
+  }
+  .responsive .layout-grid.grid-items-5 > div,
+  .responsive .layout-grid.grid-items-7 > div,
+  .responsive .layout-grid.grid-items-8 > div {
+    font-size: 1.6250em;
+  }
+  .responsive .layout-grid.grid-items-9 > div,
+  .responsive .layout-grid.grid-items-10 > div,
+  .responsive .layout-grid.grid-items-\+ > div,
+  .responsive .layout-grid.grid-items-\+\+ > div {
+    font-size: 1.3750em;
+  }
+}
+@media (min-width: 1025px){
+  .responsive .layout-grid.grid-items-2 > div,
+  .responsive .layout-grid.grid-items-3 > div,
+  .responsive .layout-grid.grid-items-4 > div{
+    font-size: 2.3125em;
+  }
+  .responsive .layout-grid.grid-items-5 > div,
+  .responsive .layout-grid.grid-items-6 > div,
+  .responsive .layout-grid.grid-items-7 > div,
+  .responsive .layout-grid.grid-items-8 > div {
+    font-size: 1.9375em;
+  }
+  .responsive .layout-grid.grid-items-9 > div,
+  .responsive .layout-grid.grid-items-10 > div,
+  .responsive .layout-grid.grid-items-\+ > div,
+  .responsive .layout-grid.grid-items-\+\+ > div {
+    font-size: 1.6250em;
+  }
+}
+@media (min-width: 1681px){
+  .responsive .layout-grid.grid-items-2 > div,
+  .responsive .layout-grid.grid-items-3 > div,
+  .responsive .layout-grid.grid-items-4 > div{
+    font-size: 2.8125em;
+  }
+  .responsive .layout-grid.grid-items-5 > div,
+  .responsive .layout-grid.grid-items-6 > div,
+  .responsive .layout-grid.grid-items-7 > div,
+  .responsive .layout-grid.grid-items-8 > div {
+    font-size: 2.3125em;
+  }
+  .responsive .layout-grid.grid-items-9 > div,
+  .responsive .layout-grid.grid-items-10 > div,
+  .responsive .layout-grid.grid-items-\+ > div,
+  .responsive .layout-grid.grid-items-\+\+ > div {
+    font-size: 1.9375em;
+  }
+}
+@media (min-width: 2049px){
+  .responsive .layout-grid.grid-items-2 > div,
+  .responsive .layout-grid.grid-items-3 > div,
+  .responsive .layout-grid.grid-items-4 > div{
+    font-size: 3.3750em;
+  }
+  .responsive .layout-grid.grid-items-5 > div,
+  .responsive .layout-grid.grid-items-6 > div,
+  .responsive .layout-grid.grid-items-7 > div,
+  .responsive .layout-grid.grid-items-8 > div {
+    font-size: 2.8125em;
+  }
+  .responsive .layout-grid.grid-items-9 > div,
+  .responsive .layout-grid.grid-items-10 > div,
+  .responsive .layout-grid.grid-items-\+ > div,
+  .responsive .layout-grid.grid-items-\+\+ > div {
+    font-size: 2.3125em;
+  }
+}
+/* /////////////////////// */
+.layout-grid {
+  --MIN_IMAGE_HEIGHT: 300px;
+}
+@media (min-width: 640px) and (min-height: 600px) {
+  .layout-grid {
+    --MIN_IMAGE_HEIGHT: calc((200 - var(--number-of-rows) * 50) * 1px);
+  }
+}
+@media  (min-width: 640px) and (max-width: 768px) {
+  .fitted > .layout-grid:not(.media-grid) {
+    --MIN_IMAGE_HEIGHT: 150px;
+  }
+}
+.layout-grid {
+  grid-template-columns: 1fr;
+  gap: var(--layout-grid-gap);
+  grid-auto-rows: fit-content(
+    calc(
+      100% / var(--number-of-rows) -
+        (
+          (var(--layout-grid-gap) * (var(--number-of-rows) - 1)) /
+            var(--number-of-rows)
+        )
+    )
+  );
+  display: grid;
+  overflow-x: hidden;
+  overflow-y: auto;
+  width: 100%;
+  height: 100%;
+  /* For accurate height calculations this must be center or start */
+  /* Never stretch - it must fit */
+  align-items: start;
+}
+@media (min-width: 640px) {
+  .layout-grid {
+    grid-template-columns: var(--layout-grid-cols);
+  }
+  .media-grid {
+    grid-auto-rows: calc(
+      100% / var(--number-of-rows) -
+        (
+          (var(--layout-grid-gap) * (var(--number-of-rows) - 1)) /
+            var(--number-of-rows)
+        )
+    );
+  }
+}
+.layout-grid > * {
+  font-size: var(--font-size);
+}
+.layout-grid > img {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: var(--IMAGE_MODE);
+     object-fit: var(--IMAGE_MODE);
+}
+.layout-v-split {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  height: 100%;
+  /* align-items: stretch; */
+  /* display: grid; */
+  /* grid-template-rows: repeat(2, minmax(0, 1fr));
+  grid-gap: var(--CONTENT_GAP); */
+}
+.layout-h-split > div,
+.layout-v-split > div {
+  font-size: 1.125em;
+  /*height: auto;*/
+}
+.layout-h-split > *:not(:last-child),
+.layout-v-split > *:not(:last-child) {
+  /* min-height: calc(50vh - var(--CONTENT_GAP)/2); */
+  margin-bottom: var(--CONTENT_GAP);
+}
+.layout-h-split > .videoWrapper,
+.layout-v-split > .videoWrapper,
+.layout-h-split > img,
+.layout-v-split > img,
+.layout-h-split > video,
+.layout-v-split > video  {
+  -o-object-fit: var(--IMAGE_MODE);
+     object-fit: var(--IMAGE_MODE);
+  -o-object-position: center;
+     object-position: center;
+  flex-grow: 1;
+  flex-shrink: 1;
+  height: 100%;
+  width: 100%;
+}
+section:not(.has-header,.has-footer,.has-footnotes) > .layout-h-split {
+  padding: 0;
+}
+section:not(.has-header,.has-footer,.has-footnotes) > .layout-h-split > img:first-child + div {
+  padding: 0 var(--CONTENT_PADDING_X) var(--CONTENT_PADDING_Y) var(--CONTENT_PADDING_X);
+}
+section:not(.has-header,.has-footer,.has-footnotes) > .layout-h-split > div:first-child {
+  padding: var(--CONTENT_PADDING_Y)  var(--CONTENT_PADDING_X) 0 var(--CONTENT_PADDING_X);
+}
+section:not(.has-header,.has-footer,.has-footnotes) > .layout-h-split > div:first-child + div:last-child {
+  padding: 0 var(--CONTENT_PADDING_X) var(--CONTENT_PADDING_Y) var(--CONTENT_PADDING_X);
+}
+@media (min-width: 600px) {
+  .layout-h-split {
+    display: grid;
+    grid-template-rows: repeat(2, calc(50% - (var(--GRID_GAP) / 2)));
+    gap: var(--GRID_GAP);
+  }
+
+  .layout-h-split > *:not(:last-child) {
+    margin-bottom: 0;
+  }
+
+  .layout-h-split > .videoWrapper,
+  .layout-v-split > .videoWrapper,
+  .layout-h-split > img,
+  .layout-v-split > img,
+  .layout-h-split > video,
+  .layout-v-split > video
+{
+    max-height: 100%;
+    align-self: stretch;
+  }
+}
+.layout-v-split > img {
+  max-height: 50vh;
+}
+section:not(.has-header,.has-footer,.has-footnotes) > .layout-v-split {
+  padding: 0;
+}
+section:not(.has-header,.has-footer,.has-footnotes) > .layout-v-split > img:first-child + div {
+  padding: 0 var(--CONTENT_PADDING_X) var(--CONTENT_PADDING_Y) var(--CONTENT_PADDING_X);
+}
+section:not(.has-header,.has-footer,.has-footnotes) > .layout-v-split > div:first-child {
+  padding:  var(--CONTENT_PADDING_Y) var(--CONTENT_PADDING_X) 0 var(--CONTENT_PADDING_X);
+}
+section:not(.has-header,.has-footer,.has-footnotes) > .layout-v-split > div:first-child + div:last-child {
+  padding: 0 var(--CONTENT_PADDING_X) var(--CONTENT_PADDING_Y) var(--CONTENT_PADDING_X);
+}
+section:not(.has-header,.has-footer,.has-footnotes) > .layout-v-split.has-2-images {
+  --GRID_GAP: 0px;
+  --CONTENT_GAP: 0px;
+}
+.layout-v-split {
+  display: grid;
+  grid-template-rows: repeat(2, minmax(0, 1fr)); 
+  grid-template-columns: 1fr;
+ /* column-gap: var(--GRID_GAP);*/
+}
+.layout-v-split > img{
+  overflow: hidden;
+}
+@media (min-width: 768px) {
+  .layout-v-split > img {
+    max-height: unset;
+  }
+
+.layout-v-split {
+    display: grid;
+    grid-template-rows: 1fr;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+   /* column-gap: var(--GRID_GAP);*/
+  }
+    
+ section:not(.has-header,.has-footer,.has-footnotes) > .layout-v-split > img:first-child + div {
+    padding: calc(var(--CONTENT_PADDING_Y) / 2) calc(var(--GRID_GAP) / 2) calc(var(--CONTENT_PADDING_Y) / 2) calc(var(--GRID_GAP) / 2) ;
+  }
+
+  section:not(.has-header,.has-footer,.has-footnotes) > .layout-v-split > div:first-child {
+    padding:  calc(var(--CONTENT_PADDING_Y) / 2) calc(var(--GRID_GAP) / 2) calc(var(--CONTENT_PADDING_Y) / 2) calc(var(--GRID_GAP) / 2);
+  }
+    
+  section:not(.has-header,.has-footer,.has-footnotes) > .layout-v-split > div:first-child + div:last-child {
+    padding: calc(var(--CONTENT_PADDING_Y) / 2) calc(var(--GRID_GAP) / 2) calc(var(--CONTENT_PADDING_Y) / 2) calc(var(--GRID_GAP) / 2);
+  }
+
+
+
+
+
+  section.has-header > .layout-v-split,
+  section.has-footer > .layout-v-split,
+  section.has-footnotes > .layout-v-split {
+    grid-gap: var(--CONTENT_GAP);
+  }
+
+  .layout-v-split > *:not(:last-child) {
+    margin-bottom: 0;
+  }
+
+  .layout-v-split > .videoWrapper,
+  .layout-v-split > img {
+    max-height: 100%;
+  }
+}
+.layout-title > :not([class*="layout-"]) {
+  align-items: flex-start;
+  justify-content: center;
+}
+@media (min-width: 768px) {
+  .layout-title > :not([class*="layout-"]) {
+    align-items: center;
+    text-align: center;
+  }
+}
+.layout-cover > div{
+  align-items: flex-start;
+  justify-content: flex-end;
+}
+.layout-caption > div {
+  font-size: 0.9375em;
+}
+.layout-caption {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  align-items: stretch;
+}
+.layout-caption > *:not(:last-child) {
+  margin-bottom: 20px;
+}
+.layout-caption > div {
+  font-size: 1.125em;
+  height: auto;
+}
+.layout-caption > .videoWrapper,
+.layout-caption > img,
+.layout-caption > video {
+  -o-object-fit: var(--IMAGE_MODE);
+     object-fit: var(--IMAGE_MODE);
+  -o-object-position: center;
+     object-position: center;
+  flex-grow: 1;
+  flex-shrink: 1;
+  height: 100%;
+  width: 100%;
+}
+section:not(.has-header,.has-footer,.has-footnotes) > .layout-caption {
+  padding: 0;
+}
+section:not(.has-header,.has-footer,.has-footnotes) > .layout-caption > img:first-child + div,
+section:not(.has-header,.has-footer,.has-footnotes) > .layout-caption > video:first-child + div,
+section:not(.has-header,.has-footer,.has-footnotes) > .layout-caption > .videoWrapper:first-child + div {
+  padding: 0 var(--CONTENT_PADDING_X) var(--CONTENT_PADDING_Y) var(--CONTENT_PADDING_X);
+}
+section:not(.has-header,.has-footer,.has-footnotes) > .layout-caption > div:first-child {
+  padding: var(--CONTENT_PADDING_Y)  var(--CONTENT_PADDING_X) 0 var(--CONTENT_PADDING_X);
+}
+section:not(.has-header,.has-footer,.has-footnotes) > .layout-caption > div:first-child + div:last-child {
+  padding: 0 var(--CONTENT_PADDING_X) var(--CONTENT_PADDING_Y) var(--CONTENT_PADDING_X);
+}
+@media(min-width: 481px) and (min-height: 481px){
+  section:not(.has-header,.has-footer,.has-footnotes) > .layout-caption > img:first-child + div,
+  section:not(.has-header,.has-footer,.has-footnotes) > .layout-caption > video:first-child + div,
+  section:not(.has-header,.has-footer,.has-footnotes) > .layout-caption > .videoWrapper:first-child + div {
+    --CONTENT_PADDING_Y: var(--GRID_GAP);
+  }
+}
+@media (min-width: 1015px){
+  section:not(.has-header,.has-footer,.has-footnotes) > .layout-caption > img:first-child + div,
+  section:not(.has-header,.has-footer,.has-footnotes) > .layout-caption > video:first-child + div,
+  section:not(.has-header,.has-footer,.has-footnotes) > .layout-caption > .videoWrapper:first-child + div{
+    --CONTENT_PADDING_Y: var(--GRID_GAP);
+  }
+}
+@media (min-width: 600px) {
+  .layout-caption {
+    display: grid;
+    grid-template-rows: 70% 1fr;
+    gap: var(--GRID_GAP);
+  }
+
+  .layout-caption > *:not(:last-child) {
+    margin-bottom: 0;
+  }
+
+  .layout-caption > .videoWrapper,
+  .layout-v-split > .videoWrapper,
+  .layout-caption > img,
+  .layout-caption > video,
+  .layout-v-split > img {
+    max-height: 100%;
+    align-self: stretch;
+  }
+}
+figcaption {
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+}
+.size-cover{
+  -o-object-fit: cover!important;
+     object-fit: cover!important;
+}
+.size-contain{
+  -o-object-fit: contain!important;
+     object-fit: contain!important;
+}
+.position-left-top{
+  -o-object-position: left top!important;
+     object-position: left top!important;
+}
+.position-left-center{
+  -o-object-position: left center!important;
+     object-position: left center!important;
+}
+.position-left-bottom{
+  -o-object-position: left bottom!important;
+     object-position: left bottom!important;
+}
+.position-center-top{
+  -o-object-position: center top!important;
+     object-position: center top!important;
+}
+.position-center-center{
+  -o-object-position: center center!important;
+     object-position: center center!important;
+}
+.position-center-bottom{
+  -o-object-position: center bottom!important;
+     object-position: center bottom!important;
+}
+.position-right-top{
+  -o-object-position: right top!important;
+     object-position: right top!important;
+}
+.position-right-center{
+  -o-object-position: right center!important;
+     object-position: right center!important;
+}
+.position-right-bottom{
+  -o-object-position: right bottom!important;
+     object-position: right bottom!important;
+}
+.layout-full-image {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    align-items: stretch;
+  }
+.layout-full-image > .videoWrapper,
+  .layout-full-image > img {
+    -o-object-fit: var(--IMAGE_MODE);
+       object-fit: var(--IMAGE_MODE);
+    -o-object-position: center;
+       object-position: center;
+    flex-grow: 1;
+    flex-shrink: 1;
+    height: 100%;
+    width: 100%;
+  }
+section:not(.has-header,.has-footer,.has-footnotes) > .layout-full-image {
+    padding: 0;
+  }
+@media (min-width: 600px) {
+    .layout-full-image {
+      display: grid;
+      grid-template-rows: 100%;
+      gap: var(--GRID_GAP);
+    }
+  
+    .layout-full-image > *:not(:last-child) {
+      margin-bottom: 0;
+    }
+  
+    .layout-full-image > .videoWrapper,
+    .layout-v-split > .videoWrapper,
+    .layout-full-image > img,
+    .layout-v-split > img,
+    .layout-full-image > video,
+    .layout-v-split > video
+    .layout-title-image > .videoWrapper,
+    .layout-title-image > img,
+    .layout-title-image > video  {
+      max-height: 100%;
+      align-self: stretch;
+    }
+  }
+.layout-section > div {
+  align-items: flex-start;
+  justify-content: center;
+}
+.empty-placeholder{
+  border-left: 5px solid rgba(255,215,0,0.9);
+  padding: 0.5em;
+  background-color: rgba(255,215,0,0.2);
+  width: 100%;
+  border-radius: 6px;
+}
+.empty-placeholder-inline{
+    font-family: monospace;
+    background-color: rgba(128,128,128,0.2);
+    border: 1px solid rgba(128,128,128,0.5);
+    padding: 4px;
+    border-radius: 6px;
+}
+.layout-title-image > div {
+  font-size: 0.9375em;
+}
+.layout-title-image {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  align-items: stretch;
+}
+.layout-title-image > *:not(:last-child) {
+  margin-bottom: 20px;
+}
+.layout-title-image > div {
+  font-size: 1.125em;
+  height: auto;
+}
+.layout-title-image > .videoWrapper,
+.layout-title-image > img,
+.layout-title-image > video  {
+  -o-object-fit: var(--IMAGE_MODE);
+     object-fit: var(--IMAGE_MODE);
+  -o-object-position: center;
+     object-position: center;
+  flex-grow: 1;
+  flex-shrink: 1;
+  height: 100%;
+  width: 100%;
+}
+section:not(.has-header,.has-footer,.has-footnotes) > .layout-title-image {
+  padding: 0;
+}
+section:not(.has-header,.has-footer,.has-footnotes) > .layout-title-image > img:first-child + div {
+  padding: 0 var(--CONTENT_PADDING_X) var(--CONTENT_PADDING_Y) var(--CONTENT_PADDING_X);
+}
+section:not(.has-header,.has-footer,.has-footnotes) > .layout-title-image > div:first-child {
+  padding: var(--CONTENT_PADDING_Y)  var(--CONTENT_PADDING_X) 0 var(--CONTENT_PADDING_X);
+}
+section:not(.has-header,.has-footer,.has-footnotes) > .layout-title-image > div:first-child + div:last-child {
+  padding: 0 var(--CONTENT_PADDING_X) var(--CONTENT_PADDING_Y) var(--CONTENT_PADDING_X);
+}
+@media(min-width: 481px) and (min-height: 481px){
+  section:not(.has-header,.has-footer,.has-footnotes) > .layout-title-image > img:first-child + div {
+    --CONTENT_PADDING_Y: var(--GRID_GAP);
+  }
+}
+@media (min-width: 1015px){
+  section:not(.has-header,.has-footer,.has-footnotes) > .layout-title-image > img:first-child + div {
+    --CONTENT_PADDING_Y: var(--GRID_GAP);
+  }
+}
+@media (min-width: 600px) {
+  .layout-title-image {
+    display: grid;
+    grid-template-rows:  1fr 70%;
+    gap: var(--GRID_GAP);
+  }
+
+  .layout-title-image > *:not(:last-child) {
+    margin-bottom: 0;
+  }
+
+  .layout-title-image > .videoWrapper,
+  .layout-v-split > .videoWrapper,
+  .layout-title-image > img,
+  .layout-v-split > img {
+    max-height: 100%;
+    align-self: stretch;
+  }
+}
+/*@import "hljs.css";*/
+.material-icons.xs {
+    font-size: 0.5em;
+  }
+.material-icons.s {
+    font-size: 0.8em;
+  }
+.material-icons.m {
+    font-size: 1em;
+  }
+.material-icons.l {
+    font-size: 2em;
+  }
+.material-icons.xl {
+    font-size: 4em;
+  }
+.material-icons.xxl {
+    font-size: 8em;
+  }
+.playButton {
+    height: 72px;
+    width: 72px;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    position: absolute;
+    background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEgAAABICAMAAABiM0N1AAACf1BMVEUAAAAAAAAAAAD7+/sAAAAuLi7r6+v09PQRERFmZmbq6uoEBAROTk4AAAAAAADw8PCxsbEODg6fn58AAAAAAAD5+fkmJiYAAABgYGDs7OwvLy8AAAAAAADp6ekAAACwsLAAAADCwsJHR0cHBwcAAAD8/PwAAAAAAAADAwPq6uoAAAAAAABubm4AAADm5uY8PDzb29vw8PANDQ0AAAC8vLzQ0NAAAADc3NygoKAnJycAAAAAAAAWFhYAAACWlpYAAACenp5tbW1sbGxVVVUAAAAAAAAAAACVlZXy8vIGBgakpKTy8vIAAADFxcUqKirHx8fExMQAAABhYWEAAACZmZnl5eUAAABFRUX7+/sAAAAAAABISEiioqIAAAD6+vqYmJg/Pz+AgICdnZ319fWoqKgAAAAAAAAAAAAAAAC8vLz09PQwMDCAgIApKSn29vavr68KCgqjo6MAAADz8/NAQEDPz8/Ozs4AAABLS0tQUFAtLS0AAAAAAAAAAADb29uhoaEAAAAAAAAAAABXV1fY2NjAwMBvb28AAAAAAAAAAAAVFRUAAABdXV1fX1+Dg4PNzc0AAABra2va2toAAAAYGBgAAAAAAAAAAAASEhJxcXEAAABPT0/Hx8cAAAAAAABeXl6ysrIUFBQ4ODgAAABnZ2cAAADFxcUyMjJKSkoAAADMzMwAAAAAAAAAAABCQkIAAAAAAADo6OjLy8sAAABSUlIICAhDQ0MAAABcXFxUVFQAAADo6OgAAABbW1tMTEyxsbEAAACampoAAAAAAAAAAAArKysAAABWVlYAAAAAAAAlJSUAAAA+Pj4AAACtra3s7Oz39/cAAAAZGRkAAAD///9jk4VYAAAA1HRSTlOzALL9Br33+7fL97TFqAT44bbclLH8uxvK+L1pLvYm4VHnw7Ss/oKvtPalQ84L9cDw+bZI5u0D8dy8opO4QNmn3M3Nx5V8B9n5tN76Rei86ehYyhLa9YHD/kdNw92q/drB0tv736l/sKbl+r7TvPvhtd1P+sLs7DLExb2rAivx3DEqlsfw585ge6G3ZsnJ0+xOzfCZuJpBDLfOJMXqrWHJ4rfAUMuK6b7EFutapJLCFIf26xXGtcJoyMY99TvIxeJX2mc+ib1+x1lquy/BPOH3+4O4nWBMlcYAAATZSURBVHhepZgFXxXpG4avE5yCAwgsndIlsKKEiqjAqrC6rqzZ3d3dsa6bdq6rbnd397/j/kALAwZw5swcvD7ANb/7nZnnfZ4Hhzn7rnScPJX49HyY/3TiqZMdV/Y5zDEVvT+nNUg/gq1zpkcmcpd/4CQkSTPGuG2LKqe9g0FUxZLj1Z6l0lJP9fElFVEYvDOt0pYoNncsQMnRjaXqR+nGoyUAq3JjrUWZZwGSm7MUkqzmZICzmRYid4YTSP+XyxB4r3WOm5vsA1/y0HGd17yGyrUxHXBmuMOJUhIBX/0sSQrM2xVNH6J3zcuSpMJ6H5CYYi46FAT8AUkakRpNCKJTtxsP8QPLD5mJLhTDpmWStOMqplzdIUnLNsHKC6FFs52w/piktMuE5XKapGPrwTk7lOibJFiUJqn2NBacrpWUtgiS/jlQlFkMM9dIruewwXMLpDVzoTizvyglCFVeacPv2GJ3u+StgmBKX5E7EZIDUs1n2OQfNVIgGRLdfUQZMOSA5H0P22zzStVDIONB0WEn5EiuCUTABJcUD87D90UjR4Ff0joiYp0kP4waeU90G3weqZYIWS15fHD7rqhyFRyUPKOJkNEB6SCMrewV/QDpsyQ/EeOXCtfCtB6RuwxypOcZBG9J8VDmNkRjoMElxTAIYiRXA4wxRDMgQRrBoBghJcCMbtH0JPLjpFQG8kQUVqRKcfkkTe8SzYEvpLhJDESPPPYo4ZkUJ30LL3SJiiBHmkwIJD2VSngmSzlQ5GBkAWSZHLW6scgXI2VBQSzZECV5o01FFvmivVIUZDMcKqSpmIqs8k2VKmA4z0CC9KO5yCpfp7QEfmIF5EnjzUVW+cZLefAbifCSNNRcZJVvqFQNo2iEr6Vkc5FVvr9JadDIXpgo+cxFVvkuSRtgPoBLwlxkmU8SQHFEomFP0p9Pe0WrIonWFCLa/4xoe/k/fGjzsB9PJwRTeg/7Xbuv30hl/vptf5BN4T/IFTwD9VInobBKZbBQSoDPrX9aI5X1T2unjDSFLSNrestIbAGUmhY2I5VVYSs1CptFqTVS2Sq1jhfgjGnxb7JT/M/Ali7Rx07jOnqWgVikAnhWqsnH+WaXyPEL1D/kBfmqcdOWw/qHvLLL7zUR8dJbDIKPHmwiHNNgbeGg25rX4Y+7jdZY2CwFBtVobX6g0XLk9rR+qwfT+l2C3PvNaCL4JS0mIhZLutOnGXXsd8JNyfUJEbDbJd0E5/7+DXudNLEK21RNlOr6N+yOtiPwa40Ut8i2J06qmQJH2gYMNcZQsPRLbBHTLnm3QTAl1Jg1tF1asM7WOS+Q2geOWQZfJcGtUkm1r2DBK7WSSm9B0s+mo+gBSWnjCMu4NEl1U8A5PPRwXL7y3nAcgynfPS9J3w+BleVm4/rO5YDfI0nbXy4hBCUvG+O65w6wfGeYBUIL4JtXKElZ9W/0XyC8kdCzQNjsA1rMFggGbRlOYG28S91sfW3hizP3nMvPP7dn5osLX9uqblzxrwPOP9usliznARqaAwqJp7kB4Pzf7ax9gj1rn5wBrkCOsfYhaL32Mbj4dhkGUScS8ur+/R/N2jqsLi/hRBQGZW9fjGA19qrZauy/pqsxE97cUnSdflwv2hJmWWdObHbHjdaWxgIoaGxpvdGRHesw5y8MprBiu9mrWgAAAABJRU5ErkJggg==);
+  }
+
+.reversefootnote{
+  display: none;
+}
+/* @import "debugging.css"; */
+
+/* LISTS */
+[class*="layout-"] > div li > p{
+   font-size: 1em;
+}
+
+/* TASK LISTS -
+================================================== */
+.task-list-item {
+  --checkbox-size: 1em;
+}
+
+/* Hide default bullets for unordered task lists. */
+ul .task-list-item {
+  list-style-type: none;
+}
+
+/* Hide gen-content bullets for unordered task lists. */
+ul .task-list-item:before {
+  display: none;
+}
+
+.task-list-item-checkbox {
+  float: left;
+  /* Removes from flow in case of paragraph list items */
+  width: 1em;
+  /* line-height */
+  height: 1em;
+  /* line-height */
+  margin: 0 0 0 -1em;
+  /* 0s to overwrite user agent styles */
+  border: none;
+  /* Otherwise iPhone draws a border */
+  font-size: 1em;
+  -webkit-appearance: none;
+  /* Disables system checkbox image */
+  opacity: 1;
+  /* Otherwise they are 0.4 on iPhone, where it applies disabled effect even with above */
+}
+
+input[type="checkbox"].task-list-item-checkbox {
+  position: relative;
+  width: 1.2em;
+  height: 1.2em;
+  color: black;
+  border: 3px solid var(--darkbodytextcolor);
+  border-radius: 6px;
+  appearance: none;
+  outline: 0;
+  cursor: pointer;
+  margin-right:0.3em;
+  transition: background 175ms cubic-bezier(0.1, 0.1, 0.25, 1);
+}
+
+input[type="checkbox"].task-list-item-checkbox::before {
+    position: absolute;
+    content: "";
+    display: block;
+    top: 0.1em;
+    left: 0.32em;
+    width: 0.4em;
+    height: 0.6em;
+    border-style: solid;
+    border-color: var(--darkbodytextcolor);
+    border-width: 0 0.13em 0.1em 0;
+    transform: rotate(45deg);
+    opacity: 0;
+}
+
+input[type="checkbox"].task-list-item-checkbox:checked::before {
+    opacity: 1;
+}
+
+.dark input[type="checkbox"].task-list-item-checkbox {
+    border-color: var(--lightbodytextcolor);
+}
+.dark input[type="checkbox"].task-list-item-checkbox::before {
+    border-color: var(--lightbodytextcolor);
+}
+
+/* HIGHLIGHT JS -
+================================================== */
+.hljs {
+  /* display: block; */
+  overflow-x: auto;
+  /* padding: 0.5em; */
+  /* margin-left: 30px; */
+  /* margin-right: 30px; */
+  color: var(--code-text);
+  background:  var(--code-background);
+  border: 1px solid rgba(0, 0, 0, 0.03);
+  box-sizing: border-box;
+  border-radius: 4px;
+  font-family: "Courier New", Courier, monospace;
+  /* font-size: 14px; */
+}
+
+.dark .hljs{
+  background:  var(--dark-code-background);
+}
+
+/************************************/
+/*General purpose */
+/* keyword     keyword in a regular Algol-style language */
+.hljs-keyword {
+  color: var(--code-include);
+}
+.dark .hljs-keyword {
+  color: var(--dark-code-include);
+}
+/* built_in     built-in or library object (constant, class, function) */
+.hljs-built_in {
+  color: var(--code-include);
+}
+.dark .hljs-built_in {
+  color: var(--dark-code-include);
+}
+/* type     data type (in a language with syntactically significant types) (string, int, array, etc.) */
+.hljs-type {
+  color: var(--code-type);
+}
+.dark .hljs-type {
+  color: var(--dark-code-type);
+}
+/* literal     special identifier for a built-in value (true, false, null, etc.) */
+.hljs-literal {
+  color: var(--code-literal);
+}
+.dark .hljs-literal {
+  color: var(--dark-code-literal);
+}
+/* number     number, including units and modifiers, if any. */
+.hljs-number {
+  color: var(--code-numbers);
+}
+.dark .hljs-number {
+  color: var(--dark-code-numbers);
+}
+/* operator     operators: +, -, >>, |, == */
+.hljs-operator {
+  color: var(--code-functions);
+}
+.dark .hljs-operator {
+  color: var(--dark-code-functions);
+}
+/* punctuation     aux. punctuation that should be subtly highlighted (parentheses, brackets, etc.) */
+/*.hljs-punctuation {
+  color: var(--);
+}*/
+/* regexp     literal regular expression */
+.hljs-regexp {
+  color: var(--code-type);
+}
+.dark .hljs-regexp {
+  color: var(--dark-code-type);
+}
+/* string     literal string, character */
+.hljs-string {
+  color: var(--code-string);
+}
+.dark .hljs-string {
+  color: var(--dark-code-string);
+}
+/* subst     parsed section inside a literal string */
+.hljs-subst {
+  color: var(--code-string);
+}
+.dark .hljs-subst {
+  color: var(--dark-code-string);
+}
+/* symbol     symbolic constant, interned string, goto label */
+/*.hljs-symbol {
+  color: var(--);
+}*/
+/* class     class or class-level declaration (interfaces, traits, modules, etc), typically includes a title submode */
+/*.hljs-class {
+  color: var(--);
+}*/
+/* function     function or method declaration */
+.hljs-function {
+  color: var(--code-functions);
+}
+.dark .hljs-function {
+  color: var(--dark-code-functions);
+}
+/* variable     variables */
+.hljs-variable {
+  color: var(--code-variables);
+}
+.dark .hljs-variable {
+  color: var(--dark-code-variables);
+}
+/* title     name of a class or a function at the place of declaration */
+.hljs-title {
+  color: var(--code-class-name);
+}
+.dark .hljs-title {
+  color: var(--dark-code-class-name);
+}
+/* params     block of function arguments (parameters) at the place of declaration */
+/*.hljs-params {
+  color: var(--);
+}*/
+/* comment     comments */
+.hljs-comment {
+  color: var(--code-comment);
+}
+.dark .hljs-comment {
+  color: var(--dark-code-comment);
+}
+/* doctag     documentation markup within comments */
+/*.hljs-doctag {
+  color: var(--);
+}*/
+
+/************************************/
+/* Meta */
+/* meta     flags, modifiers, annotations, processing instructions, preprocessor directives, etc */
+.hljs-meta {
+  color: var(--code-include);
+}
+.dark .hljs-meta {
+  color: var(--dark-code-include);
+}
+/* meta-keyword     keyword or built-in within meta construct */
+/*.hljs-meta-keyword {
+  color: var(--);
+}*/
+/* meta-string     string within meta construct */
+.hljs-meta-string {
+  color: var(--code-string);
+}
+.dark .hljs-meta-string {
+  color: var(--dark-code-string);
+}
+/************************************/
+/* Tags, attributes, configs */
+/* section     heading of a section in a config file, heading in text markup */
+.hljs-section {
+  font-weight: 700;
+}
+/* tag     XML/HTML tag */
+/*.hljs-tag {
+  color: var(--);
+}*/
+/* name     name of an XML tag, the first word in an s-expression */
+.hljs-name {
+  color: var(--code-functions);
+}
+.dark .hljs-name {
+  color: var(--dark-code-functions);
+}
+/* builtin-name     s-expression name from the language standard library */
+/*.hljs-builtin-name {
+  color: var(--);
+}*/
+/* attr     name of an attribute with no language defined semantics (keys in JSON, setting names in .ini), also sub-attribute within another highlighted object, like XML tag */
+.hljs-attr {
+  color: var(--code-variables);
+}
+.dark .hljs-attr {
+  color: var(--dark-code-variables);
+}
+/* attribute     name of an attribute followed by a structured value part, like CSS properties */
+.hljs-attribute {
+  color: var(--code-variables);
+}
+.dark .hljs-attribute {
+  color: var(--dark-code-variables);
+}
+/************************************/
+/* Text Markup */
+/* bullet     list item bullet */
+/*.hljs-bullet {
+  color: var(--);
+}*/
+/* code     code block */
+.hljs-code {
+  /* not sure this is the behavior we are expecting*/
+  /* color: var(--code-type); */
+  /*color: var(--);*/
+}
+/* emphasis     emphasis */
+.hljs-emphasis {
+  font-style: italic;
+}
+/* strong     strong emphasis */
+.hljs-strong {
+  font-weight: 700;
+}
+/* formula     mathematical formula */
+.hljs-formula {
+  color: var(--code-type);
+}
+.dark .hljs-formula {
+  color: var(--dark-code-type);
+}
+/* link     hyperlink */
+.hljs-link {
+  text-decoration: underline;
+}
+/* quote     quotation or blockquote */
+.hljs-quote {
+  color: var(--code-comment);
+  font-style: normal;
+}
+.dark .hljs-quote {
+  color: var(--dark-code-comment);
+}
+/************************************/
+/* CSS */
+/* selector-tag     tag selector */
+.hljs-selector-tag {
+  color: var(--code-type);
+}
+.dark .hljs-selector-tag {
+  color: var(--dark-code-type);
+}
+/* selector-id     #id selector */
+.hljs-selector-id {
+  color: var(--code-type);
+}
+.dark .hljs-selector-id {
+  color: var(--dark-code-type);
+}
+/* selector-class     .class selector */
+.hljs-selector-class {
+  color: var(--code-type);
+}
+.dark .hljs-selector-class {
+  color: var(--dark-code-type);
+}
+/* selector-attr     [attr] selector */
+.hljs-selector-attr {
+  color: var(--code-variables);
+}
+.dark .hljs-selector-attr {
+  color: var(--dark-code-variables);
+}
+/* selector-pseudo     :pseudo selector */
+.hljs-selector-pseudo {
+  color: var(--code-type);
+}
+.dark .hljs-selector-pseudo {
+  color: var(--dark-code-type);
+}
+
+/************************************/
+/* Templates */
+/* template-tag     tag of a template language */
+/*.hljs-template-tag {
+  color: var(--);
+}*/
+/* template-variable     variable in a template language */
+.hljs-template-variable {
+  color: var(--code-variables);
+}
+.dark .hljs-template-variable {
+  color: var(--dark-code-variables);
+}
+
+/************************************/
+/* diff */
+/* addition     added or changed line */
+.hljs-addition {
+  color: #275078;
+  background-color: rgba(70, 137, 204, 0.11);
+}
+.dark .hljs-addition {
+  color: #C8E8FF;
+  background-color: rgba(200, 232, 255, 0.16);
+}
+/* deletion     deleted line */
+.hljs-deletion {
+  color: #7c3163;
+  background-color: rgba(207, 93, 168, 0.11);
+}
+.dark .hljs-deletion {
+  color: #F2CCE5;
+  background-color: rgba(242, 204, 229, 0.16);
+}
+
+/* Small Dynamic Heading */
+.small-variable-size-headings section > :not([class*="layout-"]) h1,
+.small-variable-size-headings [class*="layout-"] > div h1 {
+  line-height: 1;
+  font-size: 1.6em;
+}
+.small-variable-size-headings section > :not([class*="layout-"]) h2,
+.small-variable-size-headings [class*="layout-"] > div h2 {
+  line-height: 1.1;
+  font-size: 1.4em;
+}
+.small-variable-size-headings section > :not([class*="layout-"]) h3,
+.small-variable-size-headings [class*="layout-"] > div h3 {
+  line-height: 1.2;
+  font-size: 1.2em;
+}
+.small-variable-size-headings section > :not([class*="layout-"]) h5,
+.small-variable-size-headings [class*="layout-"] > div h5 {
+  font-weight: 300;
+}
+.small-variable-size-headings section > :not([class*="layout-"]) h6,
+.small-variable-size-headings [class*="layout-"] > div h6 {
+  font-size: 1em;
+  line-height: 1.4;
+}
+
+.small-variable-size-headings .layout-title > :not([class*="layout-"]) > h1 + h2,
+.small-variable-size-headings .layout-cover > :not([class*="layout-"]) > h1 + h2,
+.small-variable-size-headings .layout-caption > :not([class*="layout-"]) > h1 + h2,
+.small-variable-size-headings .layout-title-image > :not([class*="layout-"]) > h1 + h2,
+.small-variable-size-headings .layout-section > :not([class*="layout-"]) > h1 + h2:nth-child(2):last-child,
+.small-variable-size-headings .layout-default > :not([class*="layout-"]) > h1 + h2:nth-child(2):last-child,
+.small-variable-size-headings .layout-title > :not([class*="layout-"]) > h2 + h3,
+.small-variable-size-headings .layout-cover > :not([class*="layout-"]) > h2 + h3,
+.small-variable-size-headings .layout-caption > :not([class*="layout-"]) > h2 + h3,
+.small-variable-size-headings .layout-title-image > :not([class*="layout-"]) > h2 + h3,
+.small-variable-size-headings .layout-section > :not([class*="layout-"]) > h2 + h3:nth-child(2):last-child,
+.small-variable-size-headings .layout-default > :not([class*="layout-"]) > h2 + h3:nth-child(2):last-child,
+.small-variable-size-headings .layout-title > :not([class*="layout-"]) > h3 + h4,
+.small-variable-size-headings .layout-cover > :not([class*="layout-"]) > h3 + h4,
+.small-variable-size-headings .layout-caption > :not([class*="layout-"]) > h3 + h4,
+.small-variable-size-headings .layout-title-image > :not([class*="layout-"]) > h3 + h4,
+.small-variable-size-headings .layout-section > :not([class*="layout-"]) > h3 + h4:nth-child(2):last-child,
+.small-variable-size-headings .layout-default > :not([class*="layout-"]) > h3 + h4:nth-child(2):last-child,
+.small-variable-size-headings .layout-title > :not([class*="layout-"]) > h3 + h5,
+.small-variable-size-headings .layout-cover > :not([class*="layout-"]) > h3 + h5,
+.small-variable-size-headings .layout-caption > :not([class*="layout-"]) > h3 + h5,
+.small-variable-size-headings .layout-title-image > :not([class*="layout-"]) > h3 + h5,
+.small-variable-size-headings .layout-section > :not([class*="layout-"]) > h3 + h5:nth-child(2):last-child,
+.small-variable-size-headings .layout-default > :not([class*="layout-"]) > h3 + h5:nth-child(2):last-child,
+.small-variable-size-headings .layout-title > :not([class*="layout-"]) > h4 + h6,
+.small-variable-size-headings .layout-cover > :not([class*="layout-"]) > h4 + h6,
+.small-variable-size-headings .layout-caption > :not([class*="layout-"]) > h4 + h6,
+.small-variable-size-headings .layout-title-image > :not([class*="layout-"]) > h4 + h6,
+.small-variable-size-headings .layout-section > :not([class*="layout-"]) > h4 + h6:nth-child(2):last-child,
+.small-variable-size-headings .layout-default > :not([class*="layout-"]) > h4 + h6:nth-child(2):last-child,
+.small-variable-size-headings .layout-title > :not([class*="layout-"]) > h5 + h6,
+.small-variable-size-headings .layout-cover > :not([class*="layout-"]) > h5 + h6,
+.small-variable-size-headings .layout-caption > :not([class*="layout-"]) > h5 + h6,
+.small-variable-size-headings .layout-title-image > :not([class*="layout-"]) > h5 + h6,
+.small-variable-size-headings .layout-section > :not([class*="layout-"]) > h5 + h6:nth-child(2):last-child,
+.small-variable-size-headings .layout-default > :not([class*="layout-"]) > h5 + h6:nth-child(2):last-child,
+.small-variable-size-headings .layout-title > :not([class*="layout-"]) > h3 + p,
+.small-variable-size-headings .layout-cover > :not([class*="layout-"]) > h3 + p,
+.small-variable-size-headings .layout-caption > :not([class*="layout-"]) > h3 + p,
+.small-variable-size-headings .layout-title-image > :not([class*="layout-"]) > h3 + p,
+.small-variable-size-headings .layout-section > :not([class*="layout-"]) > h3 + p:nth-child(2):last-child,
+.small-variable-size-headings .layout-default > :not([class*="layout-"]) > h3 + p:nth-child(2):last-child {
+  margin-top: 0.1em;
+}
+.small-variable-size-headings .layout-title > :not([class*="layout-"]) > h1 + h3,
+.small-variable-size-headings .layout-cover > :not([class*="layout-"]) > h1 + h3,
+.small-variable-size-headings .layout-caption > :not([class*="layout-"]) > h1 + h3,
+.small-variable-size-headings .layout-title-image > :not([class*="layout-"]) > h1 + h3,
+.small-variable-size-headings .layout-section > :not([class*="layout-"]) > h1 + h3:nth-child(2):last-child,
+.small-variable-size-headings .layout-default > :not([class*="layout-"]) > h1 + h3:nth-child(2):last-child,
+.small-variable-size-headings .layout-title > :not([class*="layout-"]) > h2 + h4,
+.small-variable-size-headings .layout-cover > :not([class*="layout-"]) > h2 + h4,
+.small-variable-size-headings .layout-caption > :not([class*="layout-"]) > h2 + h4,
+.small-variable-size-headings .layout-title-image > :not([class*="layout-"]) > h2 + h4,
+.small-variable-size-headings .layout-section > :not([class*="layout-"]) > h2 + h4:nth-child(2):last-child,
+.small-variable-size-headings .layout-default > :not([class*="layout-"]) > h2 + h4:nth-child(2):last-child,
+.small-variable-size-headings .layout-title > :not([class*="layout-"]) > h2 + h5,
+.small-variable-size-headings .layout-cover > :not([class*="layout-"]) > h2 + h5,
+.small-variable-size-headings .layout-caption > :not([class*="layout-"]) > h2 + h5,
+.small-variable-size-headings .layout-title-image > :not([class*="layout-"]) > h2 + h5,
+.small-variable-size-headings .layout-section > :not([class*="layout-"]) > h2 + h5:nth-child(2):last-child,
+.small-variable-size-headings .layout-default > :not([class*="layout-"]) > h2 + h5:nth-child(2):last-child,
+.small-variable-size-headings .layout-title > :not([class*="layout-"]) > h3 + h6,
+.small-variable-size-headings .layout-cover > :not([class*="layout-"]) > h3 + h6,
+.small-variable-size-headings .layout-caption > :not([class*="layout-"]) > h3 + h6,
+.small-variable-size-headings .layout-title-image > :not([class*="layout-"]) > h3 + h6,
+.small-variable-size-headings .layout-section > :not([class*="layout-"]) > h3 + h6:nth-child(2):last-child,
+.small-variable-size-headings .layout-default > :not([class*="layout-"]) > h3 + h6:nth-child(2):last-child,
+.small-variable-size-headings .layout-title > :not([class*="layout-"]) > h2 + p,
+.small-variable-size-headings .layout-cover > :not([class*="layout-"]) > h2 + p,
+.small-variable-size-headings .layout-caption > :not([class*="layout-"]) > h2 + p,
+.small-variable-size-headings .layout-title-image > :not([class*="layout-"]) > h2 + p,
+.small-variable-size-headings .layout-section > :not([class*="layout-"]) > h2 + p:nth-child(2):last-child,
+.small-variable-size-headings .layout-default > :not([class*="layout-"]) > h2 + p:nth-child(2):last-child {
+  margin-top: 0.2em;
+}
+.small-variable-size-headings .layout-title > :not([class*="layout-"]) > h1 + h4,
+.small-variable-size-headings .layout-cover > :not([class*="layout-"]) > h1 + h4,
+.small-variable-size-headings .layout-caption > :not([class*="layout-"]) > h1 + h4,
+.small-variable-size-headings .layout-title-image > :not([class*="layout-"]) > h1 + h4,
+.small-variable-size-headings .layout-section > :not([class*="layout-"]) > h1 + h5:nth-child(2):last-child,
+.small-variable-size-headings .layout-default > :not([class*="layout-"]) > h1 + h5:nth-child(2):last-child,
+.small-variable-size-headings .layout-title > :not([class*="layout-"]) > h1 + h5,
+.small-variable-size-headings .layout-cover > :not([class*="layout-"]) > h1 + h5,
+.small-variable-size-headings .layout-caption > :not([class*="layout-"]) > h1 + h5,
+.small-variable-size-headings .layout-title-image > :not([class*="layout-"]) > h1 + h5,
+.small-variable-size-headings .layout-section > :not([class*="layout-"]) > h1 + h5:nth-child(2):last-child,
+.small-variable-size-headings .layout-default > :not([class*="layout-"]) > h1 + h5:nth-child(2):last-child,
+.small-variable-size-headings .layout-title > :not([class*="layout-"]) > h2 + h6,
+.small-variable-size-headings .layout-cover > :not([class*="layout-"]) > h2 + h6,
+.small-variable-size-headings .layout-caption > :not([class*="layout-"]) > h2 + h6,
+.small-variable-size-headings .layout-title-image > :not([class*="layout-"]) > h2 + h6,
+.small-variable-size-headings .layout-section > :not([class*="layout-"]) > h2 + h6:nth-child(2):last-child,
+.small-variable-size-headings .layout-default > :not([class*="layout-"]) > h2 + h6:nth-child(2):last-child,
+.small-variable-size-headings .layout-title > :not([class*="layout-"]) > h1 + p,
+.small-variable-size-headings .layout-cover > :not([class*="layout-"]) > h1 + p,
+.small-variable-size-headings .layout-caption > :not([class*="layout-"]) > h1 + p,
+.small-variable-size-headings .layout-title-image > :not([class*="layout-"]) > h1 + p,
+.small-variable-size-headings .layout-section > :not([class*="layout-"]) > h1 + p:nth-child(2):last-child,
+.small-variable-size-headings .layout-default > :not([class*="layout-"]) > h1 + p:nth-child(2):last-child {
+  margin-top: 0.3em;
+}
+.small-variable-size-headings .layout-title > :not([class*="layout-"]) > h1 + h6,
+.small-variable-size-headings .layout-cover > :not([class*="layout-"]) > h1 + h6,
+.small-variable-size-headings .layout-caption > :not([class*="layout-"]) > h1 + h6,
+.small-variable-size-headings .layout-title-image > :not([class*="layout-"]) > h1 + h6,
+.small-variable-size-headings .layout-section > :not([class*="layout-"]) > h1 + h6:nth-child(2):last-child,
+.small-variable-size-headings .layout-default > :not([class*="layout-"]) > h1 + h6:nth-child(2):last-child {
+  margin-top: 0.4em;
+}
+
+
+
+/* Dynamic Heading */
+
+.variable-size-headings section > :not([class*="layout-"]) h1,
+.variable-size-headings [class*="layout-"] > div h1 {
+  line-height: 1;
+  font-size: 2.986em;
+}
+.variable-size-headings section > :not([class*="layout-"]) h2,
+.variable-size-headings [class*="layout-"] > div h2 {
+  line-height: 1.1;
+  font-size: 2.488em;
+}
+.variable-size-headings section > :not([class*="layout-"]) h3,
+.variable-size-headings [class*="layout-"] > div h3 {
+  line-height: 1.2;
+  font-size: 1.728em;
+}
+.variable-size-headings section > :not([class*="layout-"]) h5,
+.variable-size-headings [class*="layout-"] > div h5 {
+  font-weight: 300;
+}
+.variable-size-headings section > :not([class*="layout-"]) h6,
+.variable-size-headings [class*="layout-"] > div h6 {
+  font-size: 1em;
+  line-height: 1.4;
+}
+
+.variable-size-headings .layout-title > :not([class*="layout-"]) > h1 + h2,
+.variable-size-headings .layout-cover > :not([class*="layout-"]) > h1 + h2,
+.variable-size-headings .layout-caption > :not([class*="layout-"]) > h1 + h2,
+.variable-size-headings .layout-title-image > :not([class*="layout-"]) > h1 + h2,
+.variable-size-headings .layout-section > :not([class*="layout-"]) > h1 + h2:nth-child(2):last-child,
+.variable-size-headings .layout-default > :not([class*="layout-"]) > h1 + h2:nth-child(2):last-child,
+.variable-size-headings .layout-title > :not([class*="layout-"]) > h2 + h3,
+.variable-size-headings .layout-cover > :not([class*="layout-"]) > h2 + h3,
+.variable-size-headings .layout-caption > :not([class*="layout-"]) > h2 + h3,
+.variable-size-headings .layout-title-image > :not([class*="layout-"]) > h2 + h3,
+.variable-size-headings .layout-section > :not([class*="layout-"]) > h2 + h3:nth-child(2):last-child,
+.variable-size-headings .layout-default > :not([class*="layout-"]) > h2 + h3:nth-child(2):last-child,
+.variable-size-headings .layout-title > :not([class*="layout-"]) > h3 + h4,
+.variable-size-headings .layout-cover > :not([class*="layout-"]) > h3 + h4,
+.variable-size-headings .layout-caption > :not([class*="layout-"]) > h3 + h4,
+.variable-size-headings .layout-title-image > :not([class*="layout-"]) > h3 + h4,
+.variable-size-headings .layout-section > :not([class*="layout-"]) > h3 + h4:nth-child(2):last-child,
+.variable-size-headings .layout-default > :not([class*="layout-"]) > h3 + h4:nth-child(2):last-child,
+.variable-size-headings .layout-title > :not([class*="layout-"]) > h3 + h5,
+.variable-size-headings .layout-cover > :not([class*="layout-"]) > h3 + h5,
+.variable-size-headings .layout-caption > :not([class*="layout-"]) > h3 + h5,
+.variable-size-headings .layout-title-image > :not([class*="layout-"]) > h3 + h5,
+.variable-size-headings .layout-section > :not([class*="layout-"]) > h3 + h5:nth-child(2):last-child,
+.variable-size-headings .layout-default > :not([class*="layout-"]) > h3 + h5:nth-child(2):last-child,
+.variable-size-headings .layout-title > :not([class*="layout-"]) > h4 + h6,
+.variable-size-headings .layout-cover > :not([class*="layout-"]) > h4 + h6,
+.variable-size-headings .layout-caption > :not([class*="layout-"]) > h4 + h6,
+.variable-size-headings .layout-title-image > :not([class*="layout-"]) > h4 + h6,
+.variable-size-headings .layout-section > :not([class*="layout-"]) > h4 + h6:nth-child(2):last-child,
+.variable-size-headings .layout-default > :not([class*="layout-"]) > h4 + h6:nth-child(2):last-child,
+.variable-size-headings .layout-title > :not([class*="layout-"]) > h5 + h6,
+.variable-size-headings .layout-cover > :not([class*="layout-"]) > h5 + h6,
+.variable-size-headings .layout-caption > :not([class*="layout-"]) > h5 + h6,
+.variable-size-headings .layout-title-image > :not([class*="layout-"]) > h5 + h6,
+.variable-size-headings .layout-section > :not([class*="layout-"]) > h5 + h6:nth-child(2):last-child,
+.variable-size-headings .layout-default > :not([class*="layout-"]) > h5 + h6:nth-child(2):last-child,
+.variable-size-headings .layout-title > :not([class*="layout-"]) > h3 + p,
+.variable-size-headings .layout-cover > :not([class*="layout-"]) > h3 + p,
+.variable-size-headings .layout-caption > :not([class*="layout-"]) > h3 + p,
+.variable-size-headings .layout-title-image > :not([class*="layout-"]) > h3 + p,
+.variable-size-headings .layout-section > :not([class*="layout-"]) > h3 + p:nth-child(2):last-child,
+.variable-size-headings .layout-default > :not([class*="layout-"]) > h3 + p:nth-child(2):last-child {
+  margin-top: 0.1em;
+}
+.variable-size-headings .layout-title > :not([class*="layout-"]) > h1 + h3,
+.variable-size-headings .layout-cover > :not([class*="layout-"]) > h1 + h3,
+.variable-size-headings .layout-caption > :not([class*="layout-"]) > h1 + h3,
+.variable-size-headings .layout-title-image > :not([class*="layout-"]) > h1 + h3,
+.variable-size-headings .layout-section > :not([class*="layout-"]) > h1 + h3:nth-child(2):last-child,
+.variable-size-headings .layout-default > :not([class*="layout-"]) > h1 + h3:nth-child(2):last-child,
+.variable-size-headings .layout-title > :not([class*="layout-"]) > h2 + h4,
+.variable-size-headings .layout-cover > :not([class*="layout-"]) > h2 + h4,
+.variable-size-headings .layout-caption > :not([class*="layout-"]) > h2 + h4,
+.variable-size-headings .layout-title-image > :not([class*="layout-"]) > h2 + h4,
+.variable-size-headings .layout-section > :not([class*="layout-"]) > h2 + h4:nth-child(2):last-child,
+.variable-size-headings .layout-default > :not([class*="layout-"]) > h2 + h4:nth-child(2):last-child,
+.variable-size-headings .layout-title > :not([class*="layout-"]) > h2 + h5,
+.variable-size-headings .layout-cover > :not([class*="layout-"]) > h2 + h5,
+.variable-size-headings .layout-caption > :not([class*="layout-"]) > h2 + h5,
+.variable-size-headings .layout-title-image > :not([class*="layout-"]) > h2 + h5,
+.variable-size-headings .layout-section > :not([class*="layout-"]) > h2 + h5:nth-child(2):last-child,
+.variable-size-headings .layout-default > :not([class*="layout-"]) > h2 + h5:nth-child(2):last-child,
+.variable-size-headings .layout-title > :not([class*="layout-"]) > h3 + h6,
+.variable-size-headings .layout-cover > :not([class*="layout-"]) > h3 + h6,
+.variable-size-headings .layout-caption > :not([class*="layout-"]) > h3 + h6,
+.variable-size-headings .layout-title-image > :not([class*="layout-"]) > h3 + h6,
+.variable-size-headings .layout-section > :not([class*="layout-"]) > h3 + h6:nth-child(2):last-child,
+.variable-size-headings .layout-default > :not([class*="layout-"]) > h3 + h6:nth-child(2):last-child,
+.variable-size-headings .layout-title > :not([class*="layout-"]) > h2 + p,
+.variable-size-headings .layout-cover > :not([class*="layout-"]) > h2 + p,
+.variable-size-headings .layout-caption > :not([class*="layout-"]) > h2 + p,
+.variable-size-headings .layout-title-image > :not([class*="layout-"]) > h2 + p,
+.variable-size-headings .layout-section > :not([class*="layout-"]) > h2 + p:nth-child(2):last-child,
+.variable-size-headings .layout-default > :not([class*="layout-"]) > h2 + p:nth-child(2):last-child {
+  margin-top: 0.2em;
+}
+.variable-size-headings .layout-title > :not([class*="layout-"]) > h1 + h4,
+.variable-size-headings .layout-cover > :not([class*="layout-"]) > h1 + h4,
+.variable-size-headings .layout-caption > :not([class*="layout-"]) > h1 + h4,
+.variable-size-headings .layout-title-image > :not([class*="layout-"]) > h1 + h4,
+.variable-size-headings .layout-section > :not([class*="layout-"]) > h1 + h5:nth-child(2):last-child,
+.variable-size-headings .layout-default > :not([class*="layout-"]) > h1 + h5:nth-child(2):last-child,
+.variable-size-headings .layout-title > :not([class*="layout-"]) > h1 + h5,
+.variable-size-headings .layout-cover > :not([class*="layout-"]) > h1 + h5,
+.variable-size-headings .layout-caption > :not([class*="layout-"]) > h1 + h5,
+.variable-size-headings .layout-title-image > :not([class*="layout-"]) > h1 + h5,
+.variable-size-headings .layout-section > :not([class*="layout-"]) > h1 + h5:nth-child(2):last-child,
+.variable-size-headings .layout-default > :not([class*="layout-"]) > h1 + h5:nth-child(2):last-child,
+.variable-size-headings .layout-title > :not([class*="layout-"]) > h2 + h6,
+.variable-size-headings .layout-cover > :not([class*="layout-"]) > h2 + h6,
+.variable-size-headings .layout-caption > :not([class*="layout-"]) > h2 + h6,
+.variable-size-headings .layout-title-image > :not([class*="layout-"]) > h2 + h6,
+.variable-size-headings .layout-section > :not([class*="layout-"]) > h2 + h6:nth-child(2):last-child,
+.variable-size-headings .layout-default > :not([class*="layout-"]) > h2 + h6:nth-child(2):last-child,
+.variable-size-headings .layout-title > :not([class*="layout-"]) > h1 + p,
+.variable-size-headings .layout-cover > :not([class*="layout-"]) > h1 + p,
+.variable-size-headings .layout-caption > :not([class*="layout-"]) > h1 + p,
+.variable-size-headings .layout-title-image > :not([class*="layout-"]) > h1 + p,
+.variable-size-headings .layout-section > :not([class*="layout-"]) > h1 + p:nth-child(2):last-child,
+.variable-size-headings .layout-default > :not([class*="layout-"]) > h1 + p:nth-child(2):last-child {
+  margin-top: 0.3em;
+}
+.variable-size-headings .layout-title > :not([class*="layout-"]) > h1 + h6,
+.variable-size-headings .layout-cover > :not([class*="layout-"]) > h1 + h6,
+.variable-size-headings .layout-caption > :not([class*="layout-"]) > h1 + h6,
+.variable-size-headings .layout-title-image > :not([class*="layout-"]) > h1 + h6,
+.variable-size-headings .layout-section > :not([class*="layout-"]) > h1 + h6:nth-child(2):last-child,
+.variable-size-headings .layout-default > :not([class*="layout-"]) > h1 + h6:nth-child(2):last-child {
+  margin-top: 0.4em;
+}
+
+@media (max-width: 639px) {
+    .variable-size-headings  section > :not([class*="layout-"]) h1,
+    .variable-size-headings [class*="layout-"] > div h1 {
+    line-height: 1;
+    font-size: 2.074em;
+  }
+    .variable-size-headings section > :not([class*="layout-"]) h2,
+    .variable-size-headings [class*="layout-"] > div h2 {
+    line-height: 1.1;
+    font-size: 1.728em;
+  }
+    .variable-size-headings  section > :not([class*="layout-"]) h3,
+    .variable-size-headings  [class*="layout-"] > div h3 {
+    line-height: 1.2;
+    font-size: 1.44em;
+  }
+    .variable-size-headings  section > :not([class*="layout-"]) h5,
+    .variable-size-headings  [class*="layout-"] > div h5 {
+    font-weight: normal;
+  }
+    .variable-size-headings section > :not([class*="layout-"]) h6,
+    .variable-size-headings  [class*="layout-"] > div h6 {
+    font-size: 1em;
+    line-height: 1.4;
+  }
+}
+
+ /*Fix to avoid clipping of descender */
+.variable-size-headings .has-header .layout-cover div{
+    padding-bottom: 10px;
+}
+
+
+.layout-notes{
+    color: #000000;
+}
+
+.reveal [class*="layout-"] > div > .is-single-quote{
+    align-self: center;
+    margin-top: auto;
+    margin-bottom: auto;
+    border:none;
+}
+
+.reveal [class*="layout-"] > div > .is-single-quote p{
+    font-style:italic;
+}
+
+.reveal [class*="layout-"] > div > .is-single-quote .line{
+    border-top: 2px solid;
+    width: 30%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 0.8em;
+    margin-bottom : 0.8em;
+}
+
+/* highlight */
+
+mark, .night-mode mark, .mac.night-mode mark {
+  --mark-vertical-padding: 0%;
+  --mark-vertical-offset: 0%;
+  --mark-underline-thickness: 0.175em;
+  --mark-text-blend-amount: 0.0;
+  --mark-text-white: 0.0;
+ /* --mark-text-color: rgb(calc(255 * (var(--mark-text-white) + var(--mark-text-blend-amount) * (var(--mark-r) - var(--mark-text-white)))), calc(255 * (var(--mark-text-white) + var(--mark-text-blend-amount) * (var(--mark-g) - var(--mark-text-white)))), calc(255 * (var(--mark-text-white) + var(--mark-text-blend-amount) * (var(--mark-b) - var(--mark-text-white)))));*/
+  --mark-background-alpha: 0.55;
+  --mark-underline-dim-amount: 0.0;
+  --mark-underline-color: rgb(calc(255 * var(--mark-r) * (1.0 - var(--mark-underline-dim-amount))), calc(255 * var(--mark-g) * (1.0 - var(--mark-underline-dim-amount))), calc(255 * var(--mark-b) * (1.0 - var(--mark-underline-dim-amount))));
+  --mark-underline-color: color(display-p3 calc(var(--mark-r) * (1.0 - var(--mark-underline-dim-amount))) calc(var(--mark-g) * (1.0 - var(--mark-underline-dim-amount))) calc(var(--mark-b) * (1.0 - var(--mark-underline-dim-amount))));
+  --mark-background-color: rgba(calc(255 * var(--mark-r)), calc(255 * var(--mark-g)), calc(255 * var(--mark-b)), var(--mark-background-alpha));
+  --mark-background-color: color(display-p3 var(--mark-r) var(--mark-g) var(--mark-b) / var(--mark-background-alpha));
+
+  color: var(--mark-text-color);
+  background:
+    radial-gradient(farthest-side, var(--mark-underline-color) 92.5%, transparent 100%) bottom var(--mark-vertical-offset) right 0% / var(--mark-underline-thickness) var(--mark-underline-thickness),
+    radial-gradient(farthest-side, var(--mark-underline-color) 92.5%, transparent 100%) bottom var(--mark-vertical-offset) left 0% / var(--mark-underline-thickness) var(--mark-underline-thickness),
+    linear-gradient(var(--mark-underline-color), var(--mark-underline-color)) bottom var(--mark-vertical-offset) center / calc(100% - var(--mark-underline-thickness)) var(--mark-underline-thickness),
+    linear-gradient(180deg,rgba(255,255,255,0) var(--mark-vertical-padding),
+        var(--mark-background-color) var(--mark-vertical-padding),
+        var(--mark-background-color) calc(100% - var(--mark-vertical-offset)) ,
+        rgba(255,255,255,0) calc(100% - var(--mark-vertical-offset)),
+        rgba(255,255,255,0) 100%)
+    /*var(--mark-background-color)*/ ;
+  background-repeat: no-repeat;
+  padding: 0 0 0.08333em 0;
+  background-clip: content-box;
+}
+
+mark a, .dark mark a {
+    /*color: var(--mark-text-color);*/
+}
+
+h1 mark, h2 mark, h3 mark, h4 mark, h5 mark, h6 mark{
+    --mark-vertical-padding: 14%;
+    --mark-vertical-offset: 8%;
+}
+
+.dark mark{
+  --mark-underline-alpha: 0.75;
+  --mark-background-alpha: 0.175;
+  --mark-text-white: 0.8;
+  --mark-text-blend-amount: 0.275;
+  --mark-underline-dim-amount: 0.2;
+}
+
+html, .yellow-mark, mark.yellow {
+  --mark-r: 1.0;
+  --mark-g: 0.85;
+  --mark-b: 0.0;
+}
+
+.orange-mark, mark.orange {
+  --mark-r: 1.0;
+  --mark-g: 0.5;
+  --mark-b: 0.25;
+  --mark-background-alpha: 0.3;
+}
+
+.pink-mark, mark.pink {
+  --mark-r: 0.95;
+  --mark-g: 0.0;
+  --mark-b: 0.7;
+  --mark-background-alpha: 0.2;
+}
+
+.night-mode.pink-mark, .night-mode mark.pink {
+  --mark-background-alpha: 0.225;
+}
+
+.purple-mark, mark.purple {
+  --mark-r: 0.5;
+  --mark-g: 0.0;
+  --mark-b: 0.95;
+  --mark-background-alpha: 0.2;
+}
+
+.dark.purple-mark, .dark mark.purple {
+  --mark-background-alpha: 0.3;
+}
+
+.blue-mark, mark.blue {
+  --mark-r: 0.0;
+  --mark-g: 0.75;
+  --mark-b: 1.0;
+  --mark-background-alpha: 0.2;
+}
+
+.green-mark, mark.green {
+  --mark-r: 0.6;
+  --mark-g: 0.9;
+  --mark-b: 0.0;
+}
+
+.task-list-item-checked-fade .task-list-item:has(.task-list-item-checkbox:checked) mark {
+    --mark-r: 0.85;
+    --mark-g: 0.85;
+    --mark-b: 0.85;
+}
+
+.task-list-item-checked-fade.dark .task-list-item:has(.task-list-item-checkbox:checked) mark {
+    --mark-r: 0.4;
+    --mark-g: 0.4;
+    --mark-b: 0.4;
+}
+
+@media print {
+  mark {
+    background: var(--mark-background-color);
+    padding: 0;
+    border-bottom: var(--mark-underline-thickness) solid var(--mark-underline-color);
+  }
+}
+
+.context-pdf-export mark {
+    background: var(--mark-background-color);
+    padding: 0;
+    border-bottom: var(--mark-underline-thickness) solid var(--mark-underline-color);
+  }
+
+/* image filters*/
+.background-filter-darken .slide-background-content,
+.image-filter-darken{
+    filter: brightness(50%);
+}
+
+.background-filter-lighten .slide-background-content,
+.image-filter-lighten{
+    filter: brightness(150%);
+}
+
+.background-filter-grayscale .slide-background-content,
+.image-filter-grayscale{
+    filter: grayscale(1);
+}
+
+.background-filter-sepia .slide-background-content,
+.image-filter-sepia{
+    filter: sepia(1);
+}
+
+.background-filter-blur .slide-background-content,
+.image-filter-blur{
+    filter: blur(0.5em);
+}
+
+.background-filter-blur .slide-background-content{
+    transform: scale(1.05);
+}
+
+
+.background-opacity-100 .slide-background-content,
+.image-opacity-100{
+    opacity: 1;
+}
+
+.background-opacity-90 .slide-background-content,
+.image-opacity-90{
+    opacity: 0.9;
+}
+
+.background-opacity-80 .slide-background-content,
+.image-opacity-80{
+    opacity: 0.8;
+}
+
+.background-opacity-70 .slide-background-content,
+.image-opacity-70{
+    opacity: 0.7;
+}
+
+.background-opacity-60 .slide-background-content,
+.image-opacity-60{
+    opacity: 0.6;
+}
+
+.background-opacity-50 .slide-background-content,
+.image-opacity-50{
+    opacity: 0.5;
+}
+
+.background-opacity-40 .slide-background-content,
+.image-opacity-40{
+    opacity: 0.4;
+}
+
+.background-opacity-30 .slide-background-content,
+.image-opacity-30{
+    opacity: 0.3;
+}
+
+.background-opacity-20 .slide-background-content,
+.image-opacity-20{
+    opacity: 0.2;
+}
+
+.background-opacity-10 .slide-background-content,
+.image-opacity-10{
+    opacity: 0.1;
+}
+
+.reveal-viewport {
+  height: 100vh;
+  height: calc( var(--vh, 1vh) * 100 );
+}
+
+section [class*="layout-"] div .layout-grid > img{
+    height: unset;
+}
+
+/*Disable mark during text fit */
+.fitinprogress mark{
+    padding:0!important;
+    display:inline-block;
+}
+

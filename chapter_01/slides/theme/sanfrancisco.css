@@ -1,0 +1,50 @@
+:root {
+    --code-background: rgba(0,0,0,0.45);
+    --code-border: rgba(0,0,0,0.7);
+    --code-text: #F7F7F7;
+    --code-comment: #80878D;
+    --code-type: #EF98A8;
+    --code-include: #C596C9;
+    --code-string: #A59CC7;
+    --code-class-name: #94A5CB;
+    --code-numbers: #E8D670;
+    --code-variables: #77B5E3;
+    --code-functions: #DF8DC0;
+    --code-literal: #F6B99A;
+
+  --dark-code-background: rgba(0,0,0,0.7);
+  --dark-code-border: rgba(0,0,0,0.7);
+  --dark-code-text: #F7F7F7;
+  --dark-code-comment: #80878D;
+  --dark-code-type: #EF98A8;
+  --dark-code-include: #C596C9;
+  --dark-code-string: #A59CC7;
+  --dark-code-class-name: #94A5CB;
+  --dark-code-numbers: #E8D670;
+  --dark-code-variables: #77B5E3;
+  --dark-code-functions: #DF8DC0;
+  --dark-code-literal: #F6B99A;
+}
+
+h1{
+    font-variation-settings: "wght" 1000;
+}
+h2{
+    font-variation-settings: "wght" 800;
+}
+h3{
+    font-variation-settings: "wght" 700;
+}
+h4{
+    font-variation-settings: "wght" 600;
+}
+.hljs{
+    box-shadow:rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+}
+
+
+table td{
+	font-variation-settings: "wdth" 60;
+}
+
+
