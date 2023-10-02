@@ -8,3 +8,10 @@ Below are slides from the introductory talk to the course, covering a brief intr
 ```{=html}
 <iframe class="slide-deck" src="slides.html"></iframe>
 ```
+
+::: {.callout-tip}
+## Related content
+
+You may find interesting a short (6-minute) video from Carto on _What is Spatial Data Science_ composed of
+the answers of many spatial data scientists. Available on [Youtube](https://www.youtube.com/watch?v=osAbJeTho5w).
+:::
