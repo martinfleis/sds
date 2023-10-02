@@ -3,11 +3,6 @@ title: "Does it correlate?"
 format: html
 ---
 
-::: {.callout-caution}
-This course material is currently under construction and is likely incomplete. The final
-version will be released in October 2023.
-:::
-
 In this part, you will try to explore spatial autocorrelation on your own.
 
 ## Scottish Index of Multiple Deprivation again

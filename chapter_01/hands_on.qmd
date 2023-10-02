@@ -6,11 +6,6 @@ format:
 jupyter: sds
 ---
 
-::: {.callout-caution}
-This course material is currently under construction and is likely incomplete. The final
-version will be released in October 2023.
-:::
-
 Welcome to the first **hands-on** section of the course. You will familiarise yourself
 with the tools you will be using, ensure that all works as it should, and prepare for
 some Python code.

@@ -3,11 +3,6 @@ title: "Learning GeoPandas"
 format: html
 ---
 
-::: {.callout-caution}
-This course material is currently under construction and is likely incomplete. The final
-version will be released in October 2023.
-:::
-
 This section is about playing with `geopandas` by yourself. You will zoom at Prague and
 the distribution of land price, provided by the Institute of Planning and Development.
 

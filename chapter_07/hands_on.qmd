@@ -6,11 +6,6 @@ format:
 jupyter: sds
 ---
 
-::: {.callout-caution}
-This course material is currently under construction and is likely incomplete. The final
-version will be released in October 2023.
-:::
-
 This session is all about finding groups of similar observations in data using clustering
 techniques.
 

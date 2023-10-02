@@ -6,11 +6,6 @@ format:
 jupyter: sds
 ---
 
-::: {.callout-caution}
-This course material is currently under construction and is likely incomplete. The final
-version will be released in October 2023.
-:::
-
 This section is about learning how to work with `pandas` by using it without much guidance. You will play with the [dataset](https://www.gov.scot/publications/scottish-index-of-multiple-deprivation-2020v2-ranks/) of the [Scottish Index of Multiple Deprivation](https://www.gov.scot/collections/scottish-index-of-multiple-deprivation-2020/#lookupfiles) (SIMD). Specifically, you will load a table containing the rank of each data zone according to the overall
 SIMD and according to its subdomains (check the links above if you would like to learn more).
 

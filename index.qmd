@@ -3,16 +3,11 @@ title: "Spatial Data Science for Social Geography"
 format: "html"
 ---
 
-::: {.callout-caution}
-This course material is currently under construction and is likely incomplete. The final
-version will be released in October 2023.
-:::
-
-Spatial Data Science for Social Geography course introduces data science and computational analysis
+The course Spatial Data Science for Social Geography introduces data science and computational analysis
 using open source tools written in the Python programming language to the curriculum of
 students of geography.
 
-The course is taught in person at Charles University in Prague from October 2023 under the code MZ340V17.
+The course is taught in person at Charles University in Prague from October 2023 under the code `MZ340V17`.
 
 ## Aims
 

@@ -6,11 +6,6 @@ format:
 jupyter: sds
 ---
 
-::: {.callout-caution}
-This course material is currently under construction and is likely incomplete. The final
-version will be released in October 2023.
-:::
-
 Until now, all the data you were working with were tables. However, not everything is a
 table. Raster data are not that common in social geography, but spatial data science is
 full of it, from satellite imagery to population grids. In this session, you will learn

@@ -3,11 +3,6 @@ title: "Understanding Notebooks"
 format: html
 ---
 
-::: {.callout-caution}
-This course material is currently under construction and is likely incomplete. The final
-version will be released in October 2023.
-:::
-
 This is a ["You do"]{.accent} part of the first lesson.
 
 You now know what a Jupyter Notebook is, how to work with it in Jupyter Lab

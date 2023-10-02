@@ -6,11 +6,6 @@ format:
 jupyter: sds
 ---
 
-::: {.callout-caution}
-This course material is currently under construction and is likely incomplete. The final
-version will be released in October 2023.
-:::
-
 In the last section, you learnt how to encode spatial relationships between geometries
 into weights matrices represented by `Graph` objects and started touching on
 spatial autocorrelation with spatial lag and Moran plot. This section explores spatial

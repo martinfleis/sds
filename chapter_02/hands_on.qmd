@@ -6,11 +6,6 @@ format:
 jupyter: sds
 ---
 
-::: {.callout-caution}
-This course material is currently under construction and is likely incomplete. The final
-version will be released in October 2023.
-:::
-
 You know the basics. What are Jupyter notebooks, how do they work, and how do you run
 Python in them. It is time to start using them for data science (no, that simple math
 you did the last time doesn't count as data science).

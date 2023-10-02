@@ -3,11 +3,6 @@ title: "Graph here, graph there"
 format: html
 ---
 
-::: {.callout-caution}
-This course material is currently under construction and is likely incomplete. The final
-version will be released in October 2023.
-:::
-
 It is time to work with spatial weights matrices by yourself.
 
 ## Zones of suburbanisation
