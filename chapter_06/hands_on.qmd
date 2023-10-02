@@ -158,6 +158,7 @@ pointpats.plot_density(
     alpha=0.55,
     cmap="magma_r",
     linewidths=1,
+    ax=ax,
 )
 contextily.add_basemap(
     ax=ax,
@@ -297,12 +298,12 @@ point pattern is unlikely to be random. A helpful visual illustration of how the
 ```{python}
 # | fig-cap: Quadrat statistic plot
 ax = qstat.plot()
-# contextily.add_basemap(
-#     ax=ax,
-#     crs=accidents.crs,
-#     source="CartoDB Positron No Labels",
-# )
-# plt.xticks(rotation=90);
+contextily.add_basemap(
+    ax=ax,
+    crs=accidents.crs,
+    source="CartoDB Positron No Labels",
+)
+plt.xticks(rotation=90);
 ```
 
 You can see that there are cells with more than 800 observations, while some others have tens or even zeros.
