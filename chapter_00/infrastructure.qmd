@@ -89,6 +89,43 @@ jupyter lab
 
 A Jupyter Lab interface will show up in your browser. If it hasn't opened automatically, copy the link printed in your command line/terminal.
 
+### Opening Jupyter Lab next time
+
+The steps above are needed only the first time. Once you create the environment, it won't disappear and you can use it until you don't delete it. Once you close Jupyter Lab session, you can always start a new one:
+
+::: {.panel-tabset}
+### Windows
+
+1. Open `Miniforge Prompt`
+2. Activate the environment:
+
+```sh
+mamba activate sds
+```
+
+3. Start JupyterLab interface:
+
+```sh
+jupyter lab
+```
+
+### macOS & Linux
+
+1. Open `Terminal`
+2. Activate the environment:
+
+```sh
+mamba activate sds
+```
+
+3. Start JupyterLab interface:
+
+```sh
+jupyter lab
+```
+
+:::
+
 ### Plan B with Google Colab
 
 If you are unable to install an environment using the instructions above, you can follow
