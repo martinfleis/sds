@@ -6,8 +6,8 @@ format:
         logo: ../assets/logo.svg
         menu: false
         transition: slide
-        navigation-mode: linear
-        controls-layout: grid
+        navigation-mode: grid
+        controls-layout: edges
 ---
 
 # Data Science
