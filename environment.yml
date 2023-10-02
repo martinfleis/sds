@@ -21,7 +21,6 @@ dependencies:
   - pyogrio
   - rioxarray
   - scikit-learn
-  - seaborn
   - splot
   - spreg
   - statsmodels
@@ -36,3 +35,4 @@ dependencies:
   - pip:
       - pointpats >=2.4
       - KDEpy
+      - seaborn >=0.13
