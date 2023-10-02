@@ -1,0 +1,205 @@
+---
+title: "What is Spatial Data Science?"
+format:
+    revealjs:
+        theme: [default, ../assets/reveal.scss]
+        logo: ../assets/logo.svg
+        menu: false
+        transition: slide
+        navigation-mode: grid
+        controls-layout: edges
+---
+
+# Data Science
+
+
+# Spatial Data Science
+
+
+# This course
+
+---
+
+::: {.r-fit-text}
+compass
+:::
+
+::: {.r-fit-text .fragment .fade-in}
+not a satnav
+:::
+
+
+---
+
+## What it is
+
+---
+
+### An overview of the ecosystem
+
+### A way to build an intuition {.fragment .fade-in}
+
+### A kickstart of your journey {.fragment .fade-in}
+
+
+## What it is not
+
+---
+
+### Comprehensive guide
+
+### Definitive guide {.fragment .fade-in}
+
+### Deep dive into math and stats {.fragment .fade-in}
+
+---
+
+## Idea
+
+---
+
+### A wide variety of methods and tools
+
+### Focus on application and use {.fragment .fade-in}
+
+### Real-world data {.fragment .fade-in}
+
+---
+
+### Each class is divided into 3 parts
+
+#### Concepts {.fragment .fade-in}
+
+#### Hands-on {.fragment .fade-in}
+
+#### Exercise {.fragment .fade-in}
+
+---
+
+::: {.r-fit-text}
+A lot of options to continue
+:::
+
+
+::: {.r-fit-text .fragment .fade-in}
+on your own
+:::
+
+## Contents
+
+---
+
+::: {.r-fit-text}
+11 lessons in 13 weeks
+:::
+
+---
+
+### Structure
+
+#### 3 lessons on basics {.fragment .fade-in}
+
+#### 3 lessons on exploratory data analysis {.fragment .fade-in}
+
+#### 5 lessons on data science techniques {.fragment .fade-in}
+
+---
+
+### Structure
+
+:::: {.columns}
+
+::: {.column width="33%"}
+Introduction
+
+Open Data Science
+
+Spatial data
+:::
+
+::: {.column width="33%" .fragment .fade-in}
+Spatial weights
+
+ESDA
+
+Point patterns
+:::
+
+::: {.column width="33%" .fragment .fade-in}
+Clustering
+
+Raster data
+
+Interpolation
+
+Regression
+
+Machine learning
+:::
+
+::::
+
+
+## Organisation
+
+---
+
+### Website
+
+
+
+### Discord
+
+## Assignment
+
+::: {.fragment .fade-in}
+### Computational essay
+
+An essay whose narrative is supported by code and its results, which are part of the essay.
+:::
+
+---
+
+::: {.r-fit-text}
+2,500-5,000 words
+:::
+
+::: {.r-fit-text .fragment .fade-in}
+equivalent
+:::
+
+---
+
+::: {.r-fit-text .fade-in}
+1,500 words
+:::
+
+---
+
+::: {.r-fit-text .fade-in}
+5 maps
+:::
+
+---
+
+::: {.r-fit-text .fade-in}
+2 tables
+:::
+
+---
+
+::: {.r-fit-text .fade-in}
+code
+:::
+
+---
+
+### Define your task
+
+### A Barcelona case {.fragment .fade-in}
+
+<!--
+::: {.r-fit-text}
+Maybe this should be a default?
+:::
+-->

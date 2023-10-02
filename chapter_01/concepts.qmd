@@ -16,6 +16,7 @@ Practical:
 - JupyterLab as an interface
 - Other options if you'd like -->
 
+
 ::: {.callout-note appearance="simple"}
 
 ## The contents will appear later
@@ -24,6 +25,6 @@ This section will cover the lecture delivered as part of the in-person course. S
 
 :::
 
-```{=html}
-<iframe class="slide-deck" src="slides/presentation.htm"></iframe>
-```
+<!-- ```{=html}
+<iframe class="slide-deck" src="slides.html"></iframe>
+``` -->
