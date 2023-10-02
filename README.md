@@ -4,10 +4,6 @@
 
 A repository hosting the course material for Spatial Data Science for Social Geography taught at Charles University in Prague.
 
-> [!WARNING]
-> This course material is currently under construction and is likely incomplete. The final
-> version will be released in October 2023.
-
 Spatial Data Science for Social Geography course introduces data science and computational analysis
 using open source tools written in the Python programming language to the curriculum of
 students of geography.
