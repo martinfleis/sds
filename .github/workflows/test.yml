@@ -32,6 +32,13 @@ jobs:
               environment-file: environment.yml
               micromamba-version: "latest"
 
+          - name: Check and log the environment
+            run: |
+              python -c "import geopandas; geopandas.show_versions();"
+              micromamba info
+              micromamba list
+
+
           - name: Register kernel
             run: |
               python -m ipykernel install --user --name sds
