@@ -2,29 +2,9 @@
 title: "What is Spatial Data Science?"
 slide-format: revealjs
 ---
-<!-- Conceptual:
 
-- What is data science?
-- What is spatial data science?
-- What can you do with it?
+Below are slides from the introductory talk to the course, covering a brief introduction to data science and spatial data science, followed by practical information about the course structure and organisation.
 
-Practical:
-
-- Python and its infrastructure
-- Environments and containers
-- Jupyter notebook as a file format
-- JupyterLab as an interface
-- Other options if you'd like -->
-
-
-::: {.callout-note appearance="simple"}
-
-## The contents will appear later
-
-This section will cover the lecture delivered as part of the in-person course. Slides will appear here shortly before the lesson, followed by the summary of the contents in the days after, based on the lecture transcript.
-
-:::
-
-<!-- ```{=html}
+```{=html}
 <iframe class="slide-deck" src="slides.html"></iframe>
-``` -->
+```

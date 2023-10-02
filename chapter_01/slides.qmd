@@ -6,15 +6,160 @@ format:
         logo: ../assets/logo.svg
         menu: false
         transition: slide
-        navigation-mode: grid
-        controls-layout: edges
+        navigation-mode: linear
+        controls-layout: grid
 ---
 
 # Data Science
 
+---
+
+::: {.r-fit-text .absolute top=39%}
+science of extracting meaningful information from data
+:::
+
+## Data Science is about {.smaller}
+
+:::: {.columns}
+
+::: {.column width="50%"}
+
+::: {.fragment .fade-in}
+data collection
+:::
+
+::: {.fragment .fade-in}
+data cleaning and preprocessing
+:::
+
+::: {.fragment .fade-in}
+exploratory data analysis
+:::
+
+::: {.fragment .fade-in}
+data visualization
+:::
+
+::: {.fragment .fade-in}
+data modeling
+:::
+:::
+
+::: {.column width="50%"}
+
+::: {.fragment .fade-in}
+descriptive analytics
+:::
+
+::: {.fragment .fade-in}
+predictive analytics
+:::
+
+::: {.fragment .fade-in}
+prescriptive analytics
+:::
+
+::: {.fragment .fade-in}
+machine learning
+:::
+
+::: {.fragment .fade-in}
+deep learning
+:::
+
+:::
+
+::::
+
+
+## Different
+
+---
+
+::: {.r-fit-text}
+data
+:::
+
+
+## New data revolution
+
+#### Raw data {.fragment .fade-in}
+
+#### Large data {.fragment .fade-in}
+
+#### Exotic data {.fragment .fade-in}
+
+#### Strange data {.fragment .fade-in}
+
+---
+
+::: {.r-fit-text}
+tools
+:::
+
+## Computational revolution
+
+#### Python {.fragment .fade-in}
+
+#### R {.fragment .fade-in}
+
+#### SQL {.fragment .fade-in}
+
+#### JavaScript {.fragment .fade-in}
+
+---
+
+::: {.r-fit-text .absolute top=20%}
+methods
+:::
+
+## Methodological evolution
+
+#### The old in the new world {.fragment .fade-in}
+
+#### The new derived from the old {.fragment .fade-in}
+
+#### The new {.fragment .fade-in}
+
+---
+
+::: {.r-fit-text .absolute top=10%}
+culture
+:::
+
+## Open science
+
+#### Open data {.fragment .fade-in}
+
+#### Open tools {.fragment .fade-in}
+
+#### Open methods {.fragment .fade-in}
+
+#### Open mind {.fragment .fade-in}
 
 # Spatial Data Science
 
+[data science]{.fragment .fade-in} [that treats location]{.fragment .fade-in}[, distance]{.fragment .fade-in}[, and spatial interaction]{.fragment .fade-in} [as core aspects of the data]{.fragment .fade-in} [and employs specialised methods]{.fragment .fade-in} [and software]{.fragment .fade-in} [to store, retrieve, explore, analyse, visualise and learn from such data.]{.fragment .fade-in}
+
+## Spatial Data Science vs GIS
+
+#### advanced statistical and computational techniques to analyse and derive insights from spatial data {.fragment .fade-in}
+
+#### deeper in computation {.fragment .fade-in}
+
+#### complex data pipelines (unlimited power of coding) {.fragment .fade-in}
+
+---
+
+### Spatial data science often draws from GIS [but extends its capabilities by incorporating more extensive data analysis and modelling techniques]{.fragment .fade-in}
+
+---
+
+## different toolkit
+
+::: {.fragment .fade-in}
+though some overlaps in the Esri world do exist
+:::
 
 # This course
 
@@ -28,10 +173,9 @@ compass
 not a satnav
 :::
 
-
 ---
 
-## What it is
+## What the course IS about?
 
 ---
 
@@ -42,7 +186,7 @@ not a satnav
 ### A kickstart of your journey {.fragment .fade-in}
 
 
-## What it is not
+## What the course IS NOT about?
 
 ---
 
@@ -54,7 +198,7 @@ not a satnav
 
 ---
 
-## Idea
+## Idea behind the course design
 
 ---
 
@@ -90,6 +234,24 @@ on your own
 ---
 
 ::: {.r-fit-text}
+Python
+:::
+
+---
+
+![](https://imgs.xkcd.com/comics/python.png){.center_image}
+
+---
+
+### Second best tool for everything
+
+### Standard in GIS and Data Science {.fragment .fade-in}
+
+### Easy-to-read language {.fragment .fade-in}
+
+---
+
+::: {.r-fit-text .absolute top=39%}
 11 lessons in 13 weeks
 :::
 
@@ -146,9 +308,27 @@ Machine learning
 
 ### Website
 
+---
 
+![](website.png){.center}
+
+---
+
+::: {.r-fit-text .absolute top=39%}
+martinfleischmann.net/sds
+:::
+
+---
 
 ### Discord
+
+
+---
+
+![](discord.png){.center}
+
+---
+
 
 ## Assignment
 
@@ -170,36 +350,71 @@ equivalent
 
 ---
 
-::: {.r-fit-text .fade-in}
+::: {.r-fit-text}
 1,500 words
 :::
 
 ---
 
-::: {.r-fit-text .fade-in}
+::: {.r-fit-text}
 5 maps
 :::
 
 ---
 
-::: {.r-fit-text .fade-in}
+::: {.r-fit-text}
 2 tables
 :::
 
 ---
 
-::: {.r-fit-text .fade-in}
+::: {.r-fit-text}
 code
 :::
 
----
 
-### Define your task
+## Topic
+
+### Define your task {.fragment .fade-in}
 
 ### A Barcelona case {.fragment .fade-in}
 
-<!--
+---
+
+### Czech or English language
+
+---
+
+## Use of generative AI
+
+---
+
 ::: {.r-fit-text}
-Maybe this should be a default?
+It can be helpful but be cautious.
 :::
--->
+
+::: {.r-fit-text .fragment .fade-in}
+Helps more advanced users than beginners.
+:::
+
+::: {.r-fit-text .fragment .fade-in}
+Can produce erroneous code.
+:::
+
+::: {.r-fit-text .fragment .fade-in}
+Often results in too verbose and inefficient code.
+:::
+
+::: {.r-fit-text .fragment .fade-in}
+Does not pick up the latest changes.
+:::
+
+::: {.r-fit-text .fragment .fade-in}
+Acknowledge if used for the final assignment.
+:::
+
+# Contact
+
+martin.fleischmann@natur.cuni.cz
+
+Discord!
