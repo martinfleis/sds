@@ -75,7 +75,7 @@ div.sidebar-header {
 }
 
 .slide-deck {
-    border: none;
+    /* border: none; */
     width: 100%;
     height: 525px;
 }

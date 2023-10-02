@@ -570,19 +570,6 @@ div.csl-indent {
 
 </header>
 
-<div class="callout callout-style-default callout-caution callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Caution
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>This course material is currently under construction and is likely incomplete. The final version will be released in October 2023.</p>
-</div>
-</div>
 <p>You know the basics. What are Jupyter notebooks, how do they work, and how do you run Python in them. It is time to start using them for data science (no, that simple math you did the last time doesn’t count as data science).</p>
 <p>You are about to enter the PyData ecosystem. It means that you will start learning how to work with Python from the middle. This course does not explicitly cover the fundamentals of programming. It is expected that those parts you need you’ll be able to pick as you go through the specialised data science stack. If you’re stuck, confused or need further explanation, use Google (or your favourite search engine), ask AI to explain the code or ask in Slack or during the class. Not everything will be told during the course (by design), and the internet is a friend of every programmer, so let’s figure out how to use it efficiently from the beginning.</p>
 <p>Let’s dig in!</p>
@@ -603,7 +590,7 @@ Caution
 <dl class="code-annotation-container-grid">
 <dt data-target-cell="annotated-cell-1" data-target-annotation="1">1</dt>
 <dd>
-<span data-code-cell="annotated-cell-1" data-code-lines="1" data-code-annotation="1">Import the <code>pandas</code> package under the alias <code>pd</code>. Using the alias is not necessary, but it is a convention nearly everyone follows.</span>
+<span data-code-annotation="1" data-code-lines="1" data-code-cell="annotated-cell-1">Import the <code>pandas</code> package under the alias <code>pd</code>. Using the alias is not necessary, but it is a convention nearly everyone follows.</span>
 </dd>
 </dl>
 </div>
@@ -618,15 +605,15 @@ Caution
 <dl class="code-annotation-container-grid">
 <dt data-target-cell="annotated-cell-2" data-target-annotation="1">1</dt>
 <dd>
-<span data-code-cell="annotated-cell-2" data-code-lines="1" data-code-annotation="1">Use the <code>read_csv</code> function from <code>pandas</code>. Remember that you have imported <code>pandas</code> as <code>pd</code>.</span>
+<span data-code-annotation="1" data-code-lines="1" data-code-cell="annotated-cell-2">Use the <code>read_csv</code> function from <code>pandas</code>. Remember that you have imported <code>pandas</code> as <code>pd</code>.</span>
 </dd>
 <dt data-target-cell="annotated-cell-2" data-target-annotation="2">2</dt>
 <dd>
-<span data-code-cell="annotated-cell-2" data-code-lines="2" data-code-annotation="2">Specify the path to the file. It could be a web address like here or a local file path.</span>
+<span data-code-annotation="2" data-code-lines="2" data-code-cell="annotated-cell-2">Specify the path to the file. It could be a web address like here or a local file path.</span>
 </dd>
 <dt data-target-cell="annotated-cell-2" data-target-annotation="3">3</dt>
 <dd>
-<span data-code-cell="annotated-cell-2" data-code-lines="3" data-code-annotation="3">Use the column <code>geography_code</code> as an index of the table by passing its name to the <code>index_col</code> keyword argument. It is not strictly necessary but allows us to choose and index on reading instead of specifying it later. More on indices below.</span>
+<span data-code-annotation="3" data-code-lines="3" data-code-cell="annotated-cell-2">Use the column <code>geography_code</code> as an index of the table by passing its name to the <code>index_col</code> keyword argument. It is not strictly necessary but allows us to choose and index on reading instead of specifying it later. More on indices below.</span>
 </dd>
 </dl>
 </div>
@@ -1547,15 +1534,15 @@ dtype: float64</code></pre>
 <dl class="code-annotation-container-grid">
 <dt data-target-cell="annotated-cell-13" data-target-annotation="1">1</dt>
 <dd>
-<span data-code-cell="annotated-cell-13" data-code-lines="2" data-code-annotation="1">Create a new variable called <code>total_population</code> to store the result.</span>
+<span data-code-annotation="1" data-code-lines="2" data-code-cell="annotated-cell-13">Create a new variable called <code>total_population</code> to store the result.</span>
 </dd>
 <dt data-target-cell="annotated-cell-13" data-target-annotation="2">2</dt>
 <dd>
-<span data-code-cell="annotated-cell-13" data-code-lines="3,4,5,6,7,8,9" data-code-annotation="2">Select all the columns and add them together</span>
+<span data-code-annotation="2" data-code-lines="3,4,5,6,7,8,9" data-code-cell="annotated-cell-13">Select all the columns and add them together</span>
 </dd>
 <dt data-target-cell="annotated-cell-13" data-target-annotation="3">3</dt>
 <dd>
-<span data-code-cell="annotated-cell-13" data-code-lines="11" data-code-annotation="3">Print the top of the variable</span>
+<span data-code-annotation="3" data-code-lines="11" data-code-cell="annotated-cell-13">Print the top of the variable</span>
 </dd>
 </dl>
 </div>
@@ -1577,7 +1564,7 @@ dtype: int64</code></pre>
 <dl class="code-annotation-container-grid">
 <dt data-target-cell="annotated-cell-14" data-target-annotation="1">1</dt>
 <dd>
-<span data-code-cell="annotated-cell-14" data-code-lines="2" data-code-annotation="1">This line is simple, but a lot happens here. Using <code>.loc[]</code>, you select all the rows (<code>:</code> part) and all the columns between <code>"agecat1"</code> and <code>"agecat7"</code>. Then you apply <code>.sum()</code> over <code>axis=1</code>, which means along rows, to get a sum per each row.</span>
+<span data-code-annotation="1" data-code-lines="2" data-code-cell="annotated-cell-14">This line is simple, but a lot happens here. Using <code>.loc[]</code>, you select all the rows (<code>:</code> part) and all the columns between <code>"agecat1"</code> and <code>"agecat7"</code>. Then you apply <code>.sum()</code> over <code>axis=1</code>, which means along rows, to get a sum per each row.</span>
 </dd>
 </dl>
 </div>
@@ -1599,7 +1586,7 @@ dtype: int64</code></pre>
 <dl class="code-annotation-container-grid">
 <dt data-target-cell="annotated-cell-15" data-target-annotation="1">1</dt>
 <dd>
-<span data-code-cell="annotated-cell-15" data-code-lines="1" data-code-annotation="1">Assing a variable <code>total_population</code> that contains a <code>Series</code> as a column <code>"total_population"</code>. <code>pandas</code> creates that column automatically. If it existed, it would get overridden.</span>
+<span data-code-annotation="1" data-code-lines="1" data-code-cell="annotated-cell-15">Assing a variable <code>total_population</code> that contains a <code>Series</code> as a column <code>"total_population"</code>. <code>pandas</code> creates that column automatically. If it existed, it would get overridden.</span>
 </dd>
 </dl>
 </div>
@@ -1737,7 +1724,7 @@ dtype: int64</code></pre>
 <dl class="code-annotation-container-grid">
 <dt data-target-cell="annotated-cell-16" data-target-annotation="1">1</dt>
 <dd>
-<span data-code-cell="annotated-cell-16" data-code-lines="1" data-code-annotation="1">A product of the total population and home ownership percentage provides an estimation of the number of homeowners per census tract.</span>
+<span data-code-annotation="1" data-code-lines="1" data-code-cell="annotated-cell-16">A product of the total population and home ownership percentage provides an estimation of the number of homeowners per census tract.</span>
 </dd>
 </dl>
 </div>
@@ -1758,7 +1745,7 @@ dtype: float64</code></pre>
 <dl class="code-annotation-container-grid">
 <dt data-target-cell="annotated-cell-17" data-target-annotation="1">1</dt>
 <dd>
-<span data-code-cell="annotated-cell-17" data-code-lines="1" data-code-annotation="1">A division of the total population by the area results in an estimation of the population density.</span>
+<span data-code-annotation="1" data-code-lines="1" data-code-cell="annotated-cell-17">A division of the total population by the area results in an estimation of the population density.</span>
 </dd>
 </dl>
 </div>
@@ -1780,7 +1767,7 @@ dtype: float64</code></pre>
 <dl class="code-annotation-container-grid">
 <dt data-target-cell="annotated-cell-18" data-target-annotation="1">1</dt>
 <dd>
-<span data-code-cell="annotated-cell-18" data-code-lines="1" data-code-annotation="1">Create a new column named <code>"ones"</code> with all ones.</span>
+<span data-code-annotation="1" data-code-lines="1" data-code-cell="annotated-cell-18">Create a new column named <code>"ones"</code> with all ones.</span>
 </dd>
 </dl>
 </div>
@@ -2201,15 +2188,15 @@ dtype: float64</code></pre>
 <dl class="code-annotation-container-grid">
 <dt data-target-cell="annotated-cell-21" data-target-annotation="1">1</dt>
 <dd>
-<span data-code-cell="annotated-cell-21" data-code-lines="1" data-code-annotation="1"><code>loc</code> takes two inputs. Selection of rows and selection of columns. If the latter is not present, it is assumed that all the columns are selected. The same could be achieved by using <code>:</code>.</span>
+<span data-code-annotation="1" data-code-lines="1" data-code-cell="annotated-cell-21"><code>loc</code> takes two inputs. Selection of rows and selection of columns. If the latter is not present, it is assumed that all the columns are selected. The same could be achieved by using <code>:</code>.</span>
 </dd>
 <dt data-target-cell="annotated-cell-21" data-target-annotation="2">2</dt>
 <dd>
-<span data-code-cell="annotated-cell-21" data-code-lines="2" data-code-annotation="2">A <code>list</code> of index values. Note that you use squared brackets (<code>[]</code>) to delineate the index of the items you want to subset. In Python, this sequence of items is called a list.</span>
+<span data-code-annotation="2" data-code-lines="2" data-code-cell="annotated-cell-21">A <code>list</code> of index values. Note that you use squared brackets (<code>[]</code>) to delineate the index of the items you want to subset. In Python, this sequence of items is called a list.</span>
 </dd>
 <dt data-target-cell="annotated-cell-21" data-target-annotation="3">3</dt>
 <dd>
-<span data-code-cell="annotated-cell-21" data-code-lines="3" data-code-annotation="3">A <code>list</code> of columns.</span>
+<span data-code-annotation="3" data-code-lines="3" data-code-cell="annotated-cell-21">A <code>list</code> of columns.</span>
 </dd>
 </dl>
 </div>
@@ -3048,7 +3035,7 @@ Tip
 <dl class="code-annotation-container-grid">
 <dt data-target-cell="annotated-cell-29" data-target-annotation="1">1</dt>
 <dd>
-<span data-code-cell="annotated-cell-29" data-code-lines="3" data-code-annotation="1">The <code>&amp;</code> operator combines both conditions together.</span>
+<span data-code-annotation="1" data-code-lines="3" data-code-cell="annotated-cell-29">The <code>&amp;</code> operator combines both conditions together.</span>
 </dd>
 </dl>
 </div>
@@ -3131,7 +3118,7 @@ Tip
 </div>
 </div>
 <div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-6-contents" aria-controls="callout-6" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-5-contents" aria-controls="callout-5" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -3140,7 +3127,7 @@ How do the <code>loc</code> queries work?
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-6" class="callout-6-contents callout-collapse collapse">
+<div id="callout-5" class="callout-5-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>Let’s unpack how these queries work. Each part of the query above creates a single <code>Series</code> with boolean (<code>True</code> or <code>False</code>) values, encoding whether the row fulfils the condition or not.</p>
 <div class="cell" data-execution_count="31">
@@ -3213,7 +3200,7 @@ Length: 496, dtype: bool</code></pre>
 <dl class="code-annotation-container-grid">
 <dt data-target-cell="annotated-cell-30" data-target-annotation="1">1</dt>
 <dd>
-<span data-code-cell="annotated-cell-30" data-code-lines="1" data-code-annotation="1">By default, <code>pandas</code> is sorting from the smallest to the largest values (ascending). By specifying <code>ascending=False</code>, you switch the order.</span>
+<span data-code-annotation="1" data-code-lines="1" data-code-cell="annotated-cell-30">By default, <code>pandas</code> is sorting from the smallest to the largest values (ascending). By specifying <code>ascending=False</code>, you switch the order.</span>
 </dd>
 </dl>
 </div>
@@ -3451,11 +3438,11 @@ Length: 496, dtype: bool</code></pre>
 <dl class="code-annotation-container-grid">
 <dt data-target-cell="annotated-cell-31" data-target-annotation="1">1</dt>
 <dd>
-<span data-code-cell="annotated-cell-31" data-code-lines="1,2,3" data-code-annotation="1">Compute the relative rate and assign it as a new column.</span>
+<span data-code-annotation="1" data-code-lines="1,2,3" data-code-cell="annotated-cell-31">Compute the relative rate and assign it as a new column.</span>
 </dd>
 <dt data-target-cell="annotated-cell-31" data-target-annotation="2">2</dt>
 <dd>
-<span data-code-cell="annotated-cell-31" data-code-lines="4" data-code-annotation="2">Sort values by this new column.</span>
+<span data-code-annotation="2" data-code-lines="4" data-code-cell="annotated-cell-31">Sort values by this new column.</span>
 </dd>
 </dl>
 </div>
@@ -3712,7 +3699,7 @@ Length: 496, dtype: bool</code></pre>
 </div>
 </div>
 <div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-7-contents" aria-controls="callout-7" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-6-contents" aria-controls="callout-6" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -3721,7 +3708,7 @@ Assigning to <code>_</code>
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-7" class="callout-7-contents callout-collapse collapse">
+<div id="callout-6" class="callout-6-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p><code>pandas</code> returns an object with the drawing from its plotting methods. Since you are in Jupyter environment, and you don’t need to work further with that object; you can assign it to <code>_</code>, a convention for an unused variable.</p>
 </div>
@@ -3732,7 +3719,7 @@ Assigning to <code>_</code>
 <div class="sourceCode cell-code" id="cb38"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-8-contents" aria-controls="callout-8" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-7-contents" aria-controls="callout-7" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -3741,7 +3728,7 @@ Why <code>sns</code>?
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-8" class="callout-8-contents callout-collapse collapse">
+<div id="callout-7" class="callout-7-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p><code>seaborn</code> is, by convention, imported as <code>sns</code>. That came as a joke after <a href="https://en.wikipedia.org/wiki/Sam_Seaborn">Samuel Normal Seaborn</a>, a fictional character The West Wing show.</p>
 </div>
@@ -3766,7 +3753,7 @@ Why <code>sns</code>?
 <dl class="code-annotation-container-grid">
 <dt data-target-cell="annotated-cell-35" data-target-annotation="1">1</dt>
 <dd>
-<span data-code-cell="annotated-cell-35" data-code-lines="1" data-code-annotation="1"><code>kind="kde"</code> specifies which type of a distribution plot should <code>seaborn</code> use and <code>fill=True</code> tells it to colour the area under the KDE curve.</span>
+<span data-code-annotation="1" data-code-lines="1" data-code-cell="annotated-cell-35"><code>kind="kde"</code> specifies which type of a distribution plot should <code>seaborn</code> use and <code>fill=True</code> tells it to colour the area under the KDE curve.</span>
 </dd>
 </dl>
 </div>
@@ -3992,7 +3979,7 @@ Caution
 <dl class="code-annotation-container-grid">
 <dt data-target-cell="annotated-cell-40" data-target-annotation="1">1</dt>
 <dd>
-<span data-code-cell="annotated-cell-40" data-code-lines="1" data-code-annotation="1">You are not selecting a single columns with <code>chicago_1918["influenza"]</code> but a subset of columns. Just that the subset contains only one column, so you pass a list with a single column name as <code>chicago_1918[["influenza"]]</code>. Notice the double brackets.</span>
+<span data-code-annotation="1" data-code-lines="1" data-code-cell="annotated-cell-40">You are not selecting a single columns with <code>chicago_1918["influenza"]</code> but a subset of columns. Just that the subset contains only one column, so you pass a list with a single column name as <code>chicago_1918[["influenza"]]</code>. Notice the double brackets.</span>
 </dd>
 </dl>
 </div>
@@ -4273,7 +4260,7 @@ dtype: int64</code></pre>
 <div class="sourceCode cell-code" id="cb51"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a>pop_grouped <span class="op">=</span> tidy_population_df.groupby(<span class="st">"age_category"</span>)</span>
 <span id="cb51-2"><a href="#cb51-2" aria-hidden="true" tabindex="-1"></a>pop_grouped</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="50">
-<pre><code>&lt;pandas.core.groupby.generic.DataFrameGroupBy object at 0x7f20d8976110&gt;</code></pre>
+<pre><code>&lt;pandas.core.groupby.generic.DataFrameGroupBy object at 0x7f0ce85fa650&gt;</code></pre>
 </div>
 </div>
 <p>The object <code>pop_grouped</code> still hasn’t computed anything. It is only a convenient way of specifying the grouping. But this allows us then to perform a multitude of operations on it. For our example, the sum is calculated as follows:</p>
@@ -4283,7 +4270,7 @@ dtype: int64</code></pre>
 <dl class="code-annotation-container-grid">
 <dt data-target-cell="annotated-cell-47" data-target-annotation="1">1</dt>
 <dd>
-<span data-code-cell="annotated-cell-47" data-code-lines="1" data-code-annotation="1">You want a sum of numeric values, not strings. Try it with <code>numeric_only=False</code> to see the difference.</span>
+<span data-code-annotation="1" data-code-lines="1" data-code-cell="annotated-cell-47">You want a sum of numeric values, not strings. Try it with <code>numeric_only=False</code> to see the difference.</span>
 </dd>
 </dl>
 </div>
