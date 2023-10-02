@@ -503,6 +503,7 @@ One of the most common graphical devices to display the distribution of values i
 A histogram is easily created with the following command. In this case, let us have a look at the shape of the overall influenza rates:
 
 ```{python}
+# | fig-cap: Histogram of influenza cases
 _ = chicago_1918["influenza"].plot.hist()
 ```
 
@@ -532,6 +533,7 @@ a fictional character The West Wing show.
 The same plot using `seaborn` has a more pleasant default style and more customisability.
 
 ```{python}
+# | fig-cap: Histogram of influenza cases using `seaborn`
 sns.displot(chicago_1918["influenza"])
 ```
 
@@ -544,6 +546,7 @@ Note you are using `sns` instead of `pd`, as the function belongs to `seaborn` i
 Histograms are useful, but they are artificial in the sense that a continuous variable is made discrete by turning the values into discrete groups. An alternative is kernel density estimation (KDE), which produces an empirical density function:
 
 ```{python}
+# | fig-cap: Kernel density plot of influenza cases
 sns.displot(chicago_1918["influenza"], kind="kde", fill=True)  # <1>
 ```
 1. `kind="kde"` specifies which type of a distribution plot should `seaborn` use and
@@ -554,18 +557,21 @@ sns.displot(chicago_1918["influenza"], kind="kde", fill=True)  # <1>
 Another very common way of visually displaying a variable is with a line or a bar chart. For example, if you want to generate a line plot of the (sorted) total cases by area:
 
 ```{python}
+# | fig-cap: Total cases by area (sorted)
 _ = chicago_1918["influenza"].sort_values(ascending=False).plot()
 ```
 
 For a bar plot all you need to do is to change from `plot` to `plot.bar`. Since there are many census tracts, let us plot only the ten largest ones (which you can retrieve with `head`):
 
 ```{python}
+# | fig-cap: Total cases by area as a bar plot
 _ = chicago_1918["influenza"].sort_values(ascending=False).head(10).plot.bar()
 ```
 
  You can turn the plot around by displaying the bars horizontally (see how it's just changing `bar` for `barh`). Let's display now the top 50 areas and, to make it more readable, let us expand the plot's height:
 
 ```{python}
+# | fig-cap: Total cases by area as a horizontal bar plot
 _ = (
     chicago_1918["total_population"]
     .sort_values()

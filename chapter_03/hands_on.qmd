@@ -245,7 +245,8 @@ buildings["distance_to_arc"].mean()
 Similarly, you can plot the distribution of distances as a histogram.
 
 ```{python}
-buildings["distance_to_arc"].plot.hist(bins=50)
+# | fig-cap: Histogram of distances to the Arc de Triomphe
+_ = buildings["distance_to_arc"].plot.hist(bins=50)
 ```
 
 ## Making maps
@@ -257,7 +258,8 @@ Maps in GeoPandas are of two kinds. Static images and interactive maps based on 
 GeoPandas can also plot maps to check how the geometries appear in space. Call `GeoDataFrame.plot()` to plot the active geometry. To colour code by another column, pass in that column as the first argument. In the example below, you can plot the active geometry column and colour code by the `"distance_to_arc"` column. You may also want to show a legend (`legend=True`).
 
 ```{python}
-buildings.plot("distance_to_arc", legend=True)
+# | fig-cap: Map of distances to the Arc de Triomphe
+_ = buildings.plot("distance_to_arc", legend=True)
 ```
 
 The map is created using the `matplotlib` package. It's the same that was used under the hood for all the plots you have done before. You can use it directly to save the resulting plot to a PNG file.
@@ -362,8 +364,9 @@ world_cities = gpd.read_file(
 A quick map with both shows how the data look and relate.
 
 ```{python}
+# | fig-cap: Overlay of boundaries and cities
 ax = world_countries.plot()                         # <1>
-world_cities.plot(ax=ax, color="pink", alpha=0.7)   # <2>
+_ = world_cities.plot(ax=ax, color="pink", alpha=0.7)   # <2>
 ```
 1. Multi-layer static map works the same as interactive. You just need to replace `m` with `ax`.
 2. `alpha=0.7` sets partial transparency for easier visibility of denser clusters of points.

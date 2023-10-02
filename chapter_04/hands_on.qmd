@@ -170,6 +170,7 @@ This also allows access to quick plotting, which comes in very handy in getting 
 overview of the size of neighbourhoods in general:
 
 ```{python}
+# | fig-cap: Distribution of cardinalites
 sns.displot(queen.cardinalities, bins=14, kde=True)
 ```
 
@@ -529,6 +530,7 @@ example) is plotted against *its own* spatial lag. Usually, a fitted line is add
 include more information:
 
 ```{python}
+# | fig-cap: Moran plot
 f, ax = plt.subplots(1, figsize=(6, 6))                     # <1>
 sns.regplot(x="area", y="w_area", data=prague, ci=None, ax=ax, marker="."); # <2>
 ```
@@ -562,6 +564,7 @@ These will be further explored once spatial autocorrelation has been properly in
 in subsequent blocks.
 
 ```{python}
+# | fig-cap: Moran plot with quadrants
 std_prague = (prague['area'] - prague['area'].mean()) / prague['area'].std()    # <1>
 std_w_prague = pd.Series(                                           # <2>
     row_wise_queen.lag(std_prague), index=std_prague.index              # <2>

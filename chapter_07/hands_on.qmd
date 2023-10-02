@@ -253,6 +253,7 @@ categories created and count how many of them each contains. For a more visual
 representation of the output, a bar plot is a good alternative:
 
 ```{python}
+# | fig-cap: Bar plot of cluster sizes
 _ = k5sizes.plot.bar()
 ```
 

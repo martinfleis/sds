@@ -240,6 +240,7 @@ elections.head()
 You will be dealing with data that looks something like this now:
 
 ```{python}
+# | fig-cap: Boolean representation of the result
 _ = elections.plot("PP_winner", cmap="binary", linewidth=.1, edgecolor="grey")
 ```
 
@@ -545,6 +546,7 @@ otherwise. Then, you can assign the actual quadrant and drop that are not signif
 You can quickly map these results using another PySAL module called `splot`.
 
 ```{python}
+# | fig-cap: LISA clusters
 from splot.esda import lisa_cluster, moran_scatterplot
 
 _ = lisa_cluster(lisa, elections)
