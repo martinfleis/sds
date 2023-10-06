@@ -89,6 +89,12 @@ jupyter lab
 
 A Jupyter Lab interface will show up in your browser. If it hasn't opened automatically, copy the link printed in your command line/terminal.
 
+### Closing Jupyter Lab
+
+The best way to close the Jupyter Lab and shut down its process running in the terminal is to use the Jupyter Lab's interface. In the menu find [File]{.keystroke} > [Shut Down]{.keystroke}.
+
+![Shutting down Jupyter Lab](../assets/figures/chapter_01/shut_down.png)
+
 ### Opening Jupyter Lab next time
 
 The steps above are needed only the first time. Once you create the environment, it won't disappear and you can use it until you don't delete it. Once you close Jupyter Lab session, you can always start a new one:
