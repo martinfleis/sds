@@ -15,7 +15,7 @@ how to work with Python from the middle. This course does not explicitly cover t
 fundamentals of programming. It is expected that those parts you need you'll be able to
 pick as you go through the specialised data science stack. If you're stuck,
 confused or need further explanation, use Google (or your favourite
-search engine), ask AI to explain the code or ask in Slack or during the class. Not
+search engine), ask AI to explain the code or ask on Discord or during the class. Not
 everything will be told during the course (by design), and the internet is a friend of
 every programmer, so let's figure out how to use it efficiently from the beginning.
 
