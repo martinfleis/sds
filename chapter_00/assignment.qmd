@@ -165,6 +165,8 @@ discussed ahead):
 - [50-69]{.accent}: 2
 - [70-100]{.accent}: 1
 
+The documentation should be formatted using Markdown syntax, not HTML.
+
 ## Acknowledgements {.appendix}
 
 The assignment structure is partially derived from _A Course on Geographic Data Science_ by
