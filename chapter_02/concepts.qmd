@@ -3,25 +3,21 @@ title: "Open tools and open mindset"
 format: html
 ---
 
-<!-- Introduction to open science, reproducibility, open mindset, open culture.
+Open science, open tools and open mindset in the slides. With a bonus - how to look and ask for help?
 
-How that translates into tools.
-
-Learn how to ask questions, how to read documentation and how to find help. -->
-
-::: {.callout-note appearance="simple"}
-
-## The contents will appear later
-
-This section will cover the lecture delivered as part of the in-person course. Slides will appear here shortly before the lesson, followed by the summary of the contents in the days after, based on the lecture transcript.
-
-Have a look at the related reading in the meantime.
-
-:::
+```{=html}
+<iframe class="slide-deck" src="slides.html"></iframe>
+```
 
 ::: {.callout-tip}
 ## Related reading
 
 Chapter [_Computational Tools for Geographic Data Science_](https://geographicdata.science/book/notebooks/02_geospatial_computational_environment.html) from
-the Geographic Data Science with Python by @rey2023geographic.
+the Geographic Data Science with Python by @rey2023geographic for open tools.
+
+[The Turing Way handbook to reproducible, ethical and collaborative data science](https://the-turing-way.netlify.app/index.html) by @the_turing_way_community_2022_7625728 for what is says on the cover :).
 :::
+
+## Acknowledgements {.appendix}
+
+The presentation contains the Turing Way project illustration by @the_turing_way_community_2023_8169292. Used under a CC-BY 4.0 licence.

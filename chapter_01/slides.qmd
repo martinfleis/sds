@@ -6,7 +6,7 @@ format:
         logo: ../assets/logo.svg
         menu: false
         transition: slide
-        navigation-mode: grid
+        navigation-mode: linear
         controls-layout: edges
 ---
 

@@ -1,0 +1,176 @@
+---
+title: "Open tools and open mindset"
+format:
+    revealjs:
+        theme: [default, ../assets/reveal.scss]
+        logo: ../assets/logo.svg
+        menu: false
+        transition: slide
+        navigation-mode: linear
+        controls-layout: edges
+---
+
+# Why should I be bothered?
+
+---
+
+::: {.r-fit-text}
+2 reasons
+:::
+
+#### You can do more {.fragment .fade-in}
+
+#### You can do it better {.fragment .fade-in}
+
+---
+
+::: {.r-fit-text}
+open
+:::
+
+---
+
+::: {.r-fit-text}
+knowledge should be open
+:::
+
+::: {.r-fit-text .fragment .fade-in}
+science should be open
+:::
+
+# What does it mean?
+
+---
+
+::: {.r-fit-text .absolute top=25%}
+transparency
+:::
+
+---
+
+![](figures/ReproducibleJourney.jpg){.center_image}
+
+---
+
+::: {.r-fit-text .absolute top=25%}
+accessibility
+:::
+
+---
+
+![](figures/open-science-barriers.jpg){.center_image}
+
+---
+
+::: {.r-fit-text .absolute top=25%}
+reproducibility
+:::
+
+---
+
+![How the [Turing Way](https://the-turing-way.netlify.app/reproducible-research/overview/overview-definitions#table-of-definitions-for-reproducibility) defines reproducible research](figures/ReproducibleDefinitionGrid.jpg){.center_image}
+
+# What is stopping us?
+
+---
+
+::: {.r-fit-text}
+fear
+:::
+
+---
+
+![](figures/BugsAreFeatures.jpg){.center_image}
+
+---
+
+![](figures/BugCatching.jpg){.center_image}
+
+---
+
+::: {.r-fit-text .absolute top=25%}
+recognition
+:::
+
+---
+
+![](figures/CultureShift.jpg){.center_image}
+
+---
+
+::: {.r-fit-text}
+How?
+:::
+
+#### PyData ecosystem {.fragment .fade-in}
+#### Scientific Python {.fragment .fade-in}
+
+::: {.fragment .fade-in}
+Starting today with `pandas`.
+:::
+
+## Jupyter
+
+---
+
+![](figures/jupyter-process.jpg){.center_image}
+
+# Looking for help
+
+---
+
+![[Geographic Data Science with Python](https://geographicdata.science/book/intro.html) by Rey, Arribas-Bel, and Wolf (2023)](figures/book.png){.center_image}
+
+---
+
+::: {.r-fit-text}
+Discord
+:::
+
+---
+
+::: {.r-fit-text .absolute top=25%}
+Documentation
+:::
+
+---
+
+::: {.r-fit-text .absolute top=25%}
+stackoverflow.com
+:::
+
+---
+
+::: {.r-fit-text}
+Google
+:::
+
+---
+
+::: {.r-fit-text .absolute top=25%}
+chatGPT, Bing Chat, Bard, Jupyter AI, GitHub CoPilot
+:::
+
+# Asking for help
+
+---
+
+::: {.r-fit-text}
+identify an issue
+:::
+
+::: {.r-fit-text .fragment .fade-in}
+formulate the question
+:::
+
+::: {.r-fit-text .fragment .fade-in}
+think about the answer
+:::
+
+::: {.r-fit-text .fragment .fade-in}
+rinse and repeat
+:::
+
+---
+
+![](figures/RoadToReproducibility.jpg){.center_image height="600"}
