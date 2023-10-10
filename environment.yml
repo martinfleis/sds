@@ -16,6 +16,7 @@ dependencies:
   - openpyxl
   - osmnx
   - pandas
+  - pointpats >=2.4
   - pyarrow
   - pyinterpolate
   - pyogrio
@@ -34,5 +35,4 @@ dependencies:
   - jupyterlab
   - pip
   - pip:
-      - pointpats >=2.4
       - KDEpy
