@@ -1,0 +1,91 @@
+---
+title: Learning pandas
+format:
+  html: default
+  ipynb: default
+jupyter: sds
+---
+
+Here is one way of getting the solution. There are others, feel free to share yours.
+
+```{python}
+import pandas as pd
+import seaborn as sns
+```
+
+```{python}
+url = "https://www.gov.scot/binaries/content/documents/govscot/publications/statistics/2020/01/scottish-index-of-multiple-deprivation-2020-ranks-and-domain-ranks/documents/scottish-index-of-multiple-deprivation-2020-ranks-and-domain-ranks/scottish-index-of-multiple-deprivation-2020-ranks-and-domain-ranks/govscot%3Adocument/SIMD%2B2020v2%2B-%2Branks.xlsx"
+```
+
+```{python}
+simd = pd.read_excel(url, sheet_name="SIMD 2020v2 ranks")
+```
+
+**Which data zone is the most deprived (lowest ranking?) Which council area is it?**
+
+```{python}
+simd.sort_values("SIMD2020v2_Rank")
+```
+
+You can read the value from the table or extract it using `iloc`, which works like `loc` but based on a position.
+
+```{python}
+simd.sort_values("SIMD2020v2_Rank").iloc[0]["Council_area"]
+```
+
+**Can you add a column with a proportion of the working age population in each data zone?**
+
+```{python}
+simd["working_proportion"] = simd["Working_age_population"] / simd["Total_population"]
+```
+
+**Which council area is, on average, the least deprived based on the Income domain?**
+
+```{python}
+simd.groupby("Council_area")["SIMD2020v2_Income_Domain_Rank"].mean().sort_values(ascending=False).head(1)
+```
+
+**What is the total population of the “Glasgow City” council?**
+
+```{python}
+simd.groupby("Council_area")["Total_population"].sum()["Glasgow City"]
+```
+
+**Can you plot the ranking distribution in “Glasgow City”? How does it compare to the “City of Edinburgh”?**
+
+```{python}
+glasgow = simd.query("Council_area == 'Glasgow City'")
+glasgow["SIMD2020v2_Rank"].plot.hist()
+```
+
+```{python}
+edinburgh = simd.query("Council_area == 'City of Edinburgh'")
+edinburgh["SIMD2020v2_Rank"].plot.hist()
+```
+
+Or using `seaborn`.
+
+```{python}
+sns.displot(glasgow["SIMD2020v2_Rank"])
+```
+
+```{python}
+sns.displot(edinburgh["SIMD2020v2_Rank"])
+```
+
+**Can you figure out how to create a scatter plot of a relationship between the education and health domain rankings?**
+
+```{python}
+simd.plot.scatter("SIMD2020_Education_Domain_Rank", "SIMD2020_Health_Domain_Rank")
+```
+
+Or using `seaborn`.
+
+```{python}
+sns.scatterplot(x="SIMD2020_Education_Domain_Rank", y="SIMD2020_Health_Domain_Rank", data=simd)
+```
+
+**What else can you derive from the data?**
+
+Plenty :).
+
