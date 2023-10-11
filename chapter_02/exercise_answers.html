@@ -500,7 +500,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         
-    </div>
+    <div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="exercise_answers.ipynb" download="exercise_answers.ipynb"><i class="bi bi-journal-code"></i>Jupyter</a></li></ul></div></div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
@@ -521,21 +521,21 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 </header>
 
-<p>One option of solving the issues. There are other, feel free to share yours.</p>
-<div class="cell" data-execution_count="26">
+<p>Here is one way of getting the solution. There are others, feel free to share yours.</p>
+<div class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>url <span class="op">=</span> <span class="st">"https://www.gov.scot/binaries/content/documents/govscot/publications/statistics/2020/01/scottish-index-of-multiple-deprivation-2020-ranks-and-domain-ranks/documents/scottish-index-of-multiple-deprivation-2020-ranks-and-domain-ranks/scottish-index-of-multiple-deprivation-2020-ranks-and-domain-ranks/govscot%3Adocument/SIMD%2B2020v2%2B-%2Branks.xlsx"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell" data-execution_count="5">
+<div class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>simd <span class="op">=</span> pd.read_excel(url, sheet_name<span class="op">=</span><span class="st">"SIMD 2020v2 ranks"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Which data zone is the most deprived (lowest ranking?) Which council area is it?</p>
-<div class="cell" data-execution_count="33">
+<p><strong>Which data zone is the most deprived (lowest ranking?) Which council area is it?</strong></p>
+<div class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>simd.sort_values(<span class="st">"SIMD2020v2_Rank"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="33">
+<div class="cell-output cell-output-display" data-execution_count="4">
 <div>
 
 
@@ -556,7 +556,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <th data-quarto-table-cell-role="th">SIMD2020_Access_Domain_Rank</th>
 <th data-quarto-table-cell-role="th">SIMD2020_Crime_Domain_Rank</th>
 <th data-quarto-table-cell-role="th">SIMD2020_Housing_Domain_Rank</th>
-<th data-quarto-table-cell-role="th">working_proportion</th>
 </tr>
 </thead>
 <tbody>
@@ -575,7 +574,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td>6080</td>
 <td>17.0</td>
 <td>666.0</td>
-<td>0.695067</td>
 </tr>
 <tr class="even">
 <td data-quarto-table-cell-role="th">3739</td>
@@ -592,7 +590,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td>3352</td>
 <td>515.0</td>
 <td>640.0</td>
-<td>0.695980</td>
 </tr>
 <tr class="odd">
 <td data-quarto-table-cell-role="th">5092</td>
@@ -609,7 +606,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td>3287</td>
 <td>55.0</td>
 <td>1079.0</td>
-<td>0.752809</td>
 </tr>
 <tr class="even">
 <td data-quarto-table-cell-role="th">5562</td>
@@ -626,7 +622,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td>5622</td>
 <td>376.0</td>
 <td>514.0</td>
-<td>0.662500</td>
 </tr>
 <tr class="odd">
 <td data-quarto-table-cell-role="th">3616</td>
@@ -643,11 +638,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td>5325</td>
 <td>85.0</td>
 <td>447.5</td>
-<td>0.729941</td>
 </tr>
 <tr class="even">
 <td data-quarto-table-cell-role="th">...</td>
-<td>...</td>
 <td>...</td>
 <td>...</td>
 <td>...</td>
@@ -677,7 +670,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td>6569</td>
 <td>4464.0</td>
 <td>5199.0</td>
-<td>0.672213</td>
 </tr>
 <tr class="even">
 <td data-quarto-table-cell-role="th">2116</td>
@@ -694,7 +686,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td>6774</td>
 <td>5555.0</td>
 <td>1421.0</td>
-<td>0.792969</td>
 </tr>
 <tr class="odd">
 <td data-quarto-table-cell-role="th">67</td>
@@ -711,7 +702,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td>5395</td>
 <td>5882.0</td>
 <td>6618.0</td>
-<td>0.677215</td>
 </tr>
 <tr class="even">
 <td data-quarto-table-cell-role="th">55</td>
@@ -728,7 +718,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td>6844</td>
 <td>3906.0</td>
 <td>6509.0</td>
-<td>0.608516</td>
 </tr>
 <tr class="odd">
 <td data-quarto-table-cell-role="th">2355</td>
@@ -745,97 +734,96 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td>5773</td>
 <td>5028.0</td>
 <td>5056.0</td>
-<td>0.685972</td>
 </tr>
 </tbody>
 </table>
 
-<p>6976 rows × 14 columns</p>
+<p>6976 rows × 13 columns</p>
 </div>
 </div>
 </div>
 <p>You can read the value from the table or extract it using <code>iloc</code>, which works like <code>loc</code> but based on a position.</p>
-<div class="cell" data-execution_count="10">
+<div class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>simd.sort_values(<span class="st">"SIMD2020v2_Rank"</span>).iloc[<span class="dv">0</span>][<span class="st">"Council_area"</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="10">
+<div class="cell-output cell-output-display" data-execution_count="5">
 <pre><code>'Inverclyde'</code></pre>
 </div>
 </div>
-<p>Can you add a column with a proportion of the working age population in each data zone?</p>
-<div class="cell" data-execution_count="12">
+<p><strong>Can you add a column with a proportion of the working age population in each data zone?</strong></p>
+<div class="cell" data-execution_count="6">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>simd[<span class="st">"working_proportion"</span>] <span class="op">=</span> simd[<span class="st">"Working_age_population"</span>] <span class="op">/</span> simd[<span class="st">"Total_population"</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Which council area is, on average, the least deprived based on the Income domain?</p>
-<div class="cell" data-execution_count="17">
+<p><strong>Which council area is, on average, the least deprived based on the Income domain?</strong></p>
+<div class="cell" data-execution_count="7">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>simd.groupby(<span class="st">"Council_area"</span>)[<span class="st">"SIMD2020v2_Income_Domain_Rank"</span>].mean().sort_values(ascending<span class="op">=</span><span class="va">False</span>).head(<span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="17">
+<div class="cell-output cell-output-display" data-execution_count="7">
 <pre><code>Council_area
 East Renfrewshire    4852.442623
 Name: SIMD2020v2_Income_Domain_Rank, dtype: float64</code></pre>
 </div>
 </div>
-<p>What is the total population of the “Glasgow City” council?</p>
-<div class="cell" data-execution_count="18">
+<p><strong>What is the total population of the “Glasgow City” council?</strong></p>
+<div class="cell" data-execution_count="8">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>simd.groupby(<span class="st">"Council_area"</span>)[<span class="st">"Total_population"</span>].<span class="bu">sum</span>()[<span class="st">"Glasgow City"</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="18">
+<div class="cell-output cell-output-display" data-execution_count="8">
 <pre><code>621020</code></pre>
 </div>
 </div>
-<p>Can you plot the ranking distribution in “Glasgow City”? How does it compare to the “City of Edinburgh”?</p>
-<div class="cell" data-execution_count="22">
+<p><strong>Can you plot the ranking distribution in “Glasgow City”? How does it compare to the “City of Edinburgh”?</strong></p>
+<div class="cell" data-execution_count="9">
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>glasgow <span class="op">=</span> simd.query(<span class="st">"Council_area == 'Glasgow City'"</span>)</span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>glasgow[<span class="st">"SIMD2020v2_Rank"</span>].plot.hist()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="22">
+<div class="cell-output cell-output-display" data-execution_count="9">
 <pre><code>&lt;Axes: ylabel='Frequency'&gt;</code></pre>
 </div>
 <div class="cell-output cell-output-display">
-<p><img src="exercise_answers_files/figure-html/cell-10-output-2.png" class="img-fluid"></p>
+<p><img src="exercise_answers_files/figure-html/cell-10-output-2.png" width="593" height="411"></p>
 </div>
 </div>
-<div class="cell" data-execution_count="23">
+<div class="cell" data-execution_count="10">
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>edinburgh <span class="op">=</span> simd.query(<span class="st">"Council_area == 'City of Edinburgh'"</span>)</span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>edinburgh[<span class="st">"SIMD2020v2_Rank"</span>].plot.hist()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="23">
+<div class="cell-output cell-output-display" data-execution_count="10">
 <pre><code>&lt;Axes: ylabel='Frequency'&gt;</code></pre>
 </div>
 <div class="cell-output cell-output-display">
-<p><img src="exercise_answers_files/figure-html/cell-11-output-2.png" class="img-fluid"></p>
+<p><img src="exercise_answers_files/figure-html/cell-11-output-2.png" width="593" height="411"></p>
 </div>
 </div>
 <p>Or using <code>seaborn</code>.</p>
-<div class="cell" data-execution_count="27">
+<div class="cell" data-execution_count="11">
 <div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>sns.displot(glasgow[<span class="st">"SIMD2020v2_Rank"</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
-<p><img src="exercise_answers_files/figure-html/cell-12-output-1.png" class="img-fluid"></p>
+<p><img src="exercise_answers_files/figure-html/cell-12-output-1.png" width="470" height="468"></p>
 </div>
 </div>
-<div class="cell" data-execution_count="28">
+<div class="cell" data-execution_count="12">
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>sns.displot(edinburgh[<span class="st">"SIMD2020v2_Rank"</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
-<p><img src="exercise_answers_files/figure-html/cell-13-output-1.png" class="img-fluid"></p>
+<p><img src="exercise_answers_files/figure-html/cell-13-output-1.png" width="470" height="468"></p>
 </div>
 </div>
-<p>Can you figure out how to create a scatter plot of a relationship between the education and health domain rankings?</p>
-<div class="cell" data-execution_count="25">
+<p><strong>Can you figure out how to create a scatter plot of a relationship between the education and health domain rankings?</strong></p>
+<div class="cell" data-execution_count="13">
 <div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>simd.plot.scatter(<span class="st">"SIMD2020_Education_Domain_Rank"</span>, <span class="st">"SIMD2020_Health_Domain_Rank"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="25">
+<div class="cell-output cell-output-display" data-execution_count="13">
 <pre><code>&lt;Axes: xlabel='SIMD2020_Education_Domain_Rank', ylabel='SIMD2020_Health_Domain_Rank'&gt;</code></pre>
 </div>
 <div class="cell-output cell-output-display">
-<p><img src="exercise_answers_files/figure-html/cell-14-output-2.png" class="img-fluid"></p>
+<p><img src="exercise_answers_files/figure-html/cell-14-output-2.png" width="602" height="429"></p>
 </div>
 </div>
 <p>Or using <code>seaborn</code>.</p>
-<div class="cell" data-execution_count="31">
+<div class="cell" data-execution_count="14">
 <div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>sns.scatterplot(x<span class="op">=</span><span class="st">"SIMD2020_Education_Domain_Rank"</span>, y<span class="op">=</span><span class="st">"SIMD2020_Health_Domain_Rank"</span>, data<span class="op">=</span>simd)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="31">
+<div class="cell-output cell-output-display" data-execution_count="14">
 <pre><code>&lt;Axes: xlabel='SIMD2020_Education_Domain_Rank', ylabel='SIMD2020_Health_Domain_Rank'&gt;</code></pre>
 </div>
 <div class="cell-output cell-output-display">
-<p><img src="exercise_answers_files/figure-html/cell-15-output-2.png" class="img-fluid"></p>
+<p><img src="exercise_answers_files/figure-html/cell-15-output-2.png" width="602" height="429"></p>
 </div>
 </div>
-<p>What else can you derive from the data?</p>
+<p><strong>What else can you derive from the data?</strong></p>
 <p>Plenty :).</p>
 
 
