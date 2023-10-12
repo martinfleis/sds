@@ -1,0 +1,195 @@
+---
+title: "Spatial data old and new"
+format:
+    revealjs:
+        theme: [default, ../assets/reveal.scss]
+        logo: ../assets/logo.svg
+        menu: false
+        transition: slide
+        navigation-mode: linear
+        controls-layout: edges
+---
+
+# Good Old Data
+
+## What is good about it?
+
+---
+
+### Collected for the purpose
+
+::: {.r-fit-text .fragment .fade-in}
+carefully designed
+:::
+
+---
+
+### Detailed in information
+
+::: {.r-fit-text .fragment .fade-in}
+rich profiles
+:::
+
+---
+
+### High quality
+
+::: {.r-fit-text .fragment .fade-in}
+precise methods
+:::
+
+
+## What is less good about it?
+
+---
+
+### Massive enterprises
+
+::: {.r-fit-text .fragment .fade-in}
+costly
+:::
+
+---
+
+### Coarse in resolution
+
+::: {.r-fit-text .fragment .fade-in}
+privacy-led aggregation
+:::
+
+---
+
+### Slow
+
+::: {.r-fit-text .fragment .fade-in}
+more details are less frequent
+:::
+
+
+## Examples
+
+::: {.fragment .fade-in}
+Decennial census (and census geographies)
+:::
+::: {.fragment .fade-in}
+Longitudinal surveys
+:::
+::: {.fragment .fade-in}
+Customly collected surveys, interviews, etc.
+:::
+::: {.fragment .fade-in}
+Economic indicators
+:::
+
+
+# New Forms of Data
+
+::: {.fragment .fade-in}
+Tied into the (geo-)data revolution, new sources are appearing.
+:::
+
+---
+
+### Accidental
+
+::: {.fragment .fade-in}
+Created for different purposes but available for analysis as a side effect
+:::
+
+---
+
+### Diverse
+
+::: {.fragment .fade-in}
+nature
+:::
+::: {.fragment .fade-in}
+resolution
+:::
+::: {.fragment .fade-in}
+quality
+:::
+
+---
+
+### Detailed
+
+::: {.fragment .fade-in}
+Potentially, much more **detailed*::: {.fragment .fade-in}
+in both space and time
+:::
+
+## How to categorise them?
+
+::: {.r-fit-text .fragment .fade-in}
+There are different ways
+:::
+
+
+## Lazer & Radford (2017)
+
+::: {.fragment .fade-in}
+Digital life [(Twitter/X, Facebook, Wikipedia...)]{.fragment .fade-in}
+:::
+::: {.fragment .fade-in}
+Digital traces [(record of digital actions (CDRs, metadata...))]{.fragment .fade-in}
+:::
+::: {.fragment .fade-in}
+Digitalised life [(non intrinsically digital life in digital form (Government
+  records, web...))]{.fragment .fade-in}
+:::
+
+## Arribas-Bel (2014)
+
+::: {.fragment .fade-in}
+Bottom up [("Citizens as sensors")]{.fragment .fade-in}
+:::
+
+::: {.fragment .fade-in}
+Intermediate [(Digital businesses/businesses going digital)]{.fragment .fade-in}
+:::
+
+::: {.fragment .fade-in}
+Top down [(Open Government Data)]{.fragment .fade-in}
+:::
+
+
+## Opportunities
+
+::: {.fragment .fade-in}
+Massive, passive
+:::
+::: {.fragment .fade-in}
+Nowcasting
+:::
+::: {.fragment .fade-in}
+Data on social systems
+:::
+::: {.fragment .fade-in}
+Natural and field experiments ("always-on" observatory of human behaviour)
+:::
+::: {.fragment .fade-in}
+Making big data small
+:::
+
+## Challenges
+
+::: {.fragment .fade-in}
+Bias
+:::
+::: {.fragment .fade-in}
+Technical barriers
+:::
+::: {.fragment .fade-in}
+Methodological "mismatch"
+:::
+
+---
+
+::: {.r-fit-text}
+Old or new?
+:::
+
+::: {.r-fit-text .fragment .fade-in}
+Old and new!
+:::
