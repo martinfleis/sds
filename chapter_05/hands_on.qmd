@@ -88,7 +88,7 @@ elections = gpd.read_file(
 )
 elections = elections.set_index("name") # <1>
 elections.explore(                      # <2>
-    "Petr Pavel",                       # <3>
+    "PetrPavel",                       # <3>
     cmap="coolwarm",                    # <4>
     vmin=0,                             # <5>
     vmax=100,                           # <5>
@@ -99,7 +99,7 @@ elections.explore(                      # <2>
 1. Use the name of each municipality as an index. It will help you link them
 to the weights matrix.
 2. Create a plot to explore the data.
-3. `"Petr Pavel"` is the name of the column with the proportions of votes for Petr Pavel.
+3. `"PetrPavel"` is the name of the column with the proportions of votes for Petr Pavel.
 4. Use `"coolwarm"` divergent colormap to distinguish between municipalities where Petr Pavel won and those where Andrej Babiš did.
 5. Normalise the colormap between 0 and 100 to ensure that the split between blue and red is at 50%.
 6. With larger tables, using Canvas rendering instead of the default one is helpful.
@@ -170,11 +170,11 @@ to the winning candidate, Petr Pavel. Remember that the spatial lag is the produ
 the spatial weights matrix and a given variable. If $W$ is row-standardized, the result
 amounts to the average value of the variable in the neighbourhood of each observation.
 
-We can calculate the spatial lag for the variable `"Petr Pavel"` and store it directly
+We can calculate the spatial lag for the variable `"PetrPavel"` and store it directly
 in the main table with the following line of code:
 
 ```{python}
-elections['PP_lag'] = contiguity_r.lag(elections["Petr Pavel"])
+elections['PP_lag'] = contiguity_r.lag(elections["PetrPavel"])
 elections.head()
 ```
 
@@ -191,7 +191,7 @@ contiguity_r['Abertamy']
 And then checking their values:
 
 ```{python}
-neis = elections.loc[contiguity_r['Abertamy'].index, "Petr Pavel"]
+neis = elections.loc[contiguity_r['Abertamy'].index, "PetrPavel"]
 neis
 ```
 
@@ -209,8 +209,8 @@ done easily with a bit of basic algebra in `pandas`:
 
 ```{python}
 elections["PP_std"] = (
-    elections["Petr Pavel"] - elections["Petr Pavel"].mean()
-) / elections["Petr Pavel"].std()
+    elections["PetrPavel"] - elections["PetrPavel"].mean()
+) / elections["PetrPavel"].std()
 ```
 
 Finally, to be able to explore the spatial patterns of the standardised values, also
@@ -232,10 +232,10 @@ The `elections` dataset does not contain any boolean variable, but it is easy to
 one representing whether Petr Pavel lost in a municipality or not.
 
 ```{python}
-elections["PP_winner"] = (elections["Petr Pavel"] < 50).astype(int)  # <1>
+elections["PP_winner"] = (elections["PetrPavel"] < 50).astype(int)  # <1>
 elections.head()
 ```
-1. Get a mask with True and False values (`elections["Petr Pavel"] > 50`) and convert it to 1 and 0, which is what Join Counts expect.
+1. Get a mask with True and False values (`elections["PetrPavel"] > 50`) and convert it to 1 and 0, which is what Join Counts expect.
 
 You will be dealing with data that looks something like this now:
 
