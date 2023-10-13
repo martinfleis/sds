@@ -20,6 +20,40 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -65,11 +99,16 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 <style>html{ scroll-behavior: smooth; }</style>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" integrity="sha512-c3Nl8+7g4LMSTdrm621y7kf9v3SDPnhxLNhcjFJbKECVnmZHTdo+IRO05sNLTH/D3vA6u1X32ehoLC7WFVdheg==" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script>
+<script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
 
 
 <link rel="stylesheet" href="../assets/styles.css">
 <meta name="twitter:title" content="Spatial Data Science for Social Geography - Regression and geography">
-<meta name="twitter:card" content="summary">
+<meta name="twitter:description" content="">
+<meta name="twitter:image" content="hands_on_files/figure-html/cell-10-output-2.png">
+<meta name="twitter:card" content="summary_large_image">
 </head>
 
 <body class="nav-sidebar floating">
@@ -462,7 +501,26 @@ ul.task-list li input[type="checkbox"] {
 <div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#non-spatial-linear-regression" id="toc-non-spatial-linear-regression" class="nav-link active" data-scroll-target="#non-spatial-linear-regression">Non-spatial linear regression</a>
+  <ul class="collapse">
+  <li><a href="#ols-model" id="toc-ols-model" class="nav-link" data-scroll-target="#ols-model">OLS model</a></li>
+  <li><a href="#spatial-exploration-of-the-model-hidden-structures" id="toc-spatial-exploration-of-the-model-hidden-structures" class="nav-link" data-scroll-target="#spatial-exploration-of-the-model-hidden-structures">Spatial exploration of the model (hidden structures)</a></li>
+  </ul></li>
+  <li><a href="#spatial-heterogeneity" id="toc-spatial-heterogeneity" class="nav-link" data-scroll-target="#spatial-heterogeneity">Spatial heterogeneity</a>
+  <ul class="collapse">
+  <li><a href="#spatial-fixed-effects" id="toc-spatial-fixed-effects" class="nav-link" data-scroll-target="#spatial-fixed-effects">Spatial fixed effects</a></li>
+  </ul></li>
+  <li><a href="#geographically-weighted-regression" id="toc-geographically-weighted-regression" class="nav-link" data-scroll-target="#geographically-weighted-regression">Geographically weighted regression</a>
+  <ul class="collapse">
+  <li><a href="#fixed-bandwidth" id="toc-fixed-bandwidth" class="nav-link" data-scroll-target="#fixed-bandwidth">Fixed bandwidth</a></li>
+  <li><a href="#adaptive-bandwidth" id="toc-adaptive-bandwidth" class="nav-link" data-scroll-target="#adaptive-bandwidth">Adaptive bandwidth</a></li>
+  </ul></li>
+  </ul>
+<div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/martinfleis/sds/issues/new" class="toc-action">Report an issue</a></p></div></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -487,7 +545,7 @@ ul.task-list li input[type="checkbox"] {
 <!-- - non-spatial regression
 - GWR
 - feature eng
-- spatial heterogeneiry
+- spatial heterogeneity
 - spatial dependence -->
 <div class="callout callout-style-simple callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -502,8 +560,1905 @@ The contents will appear later
 <p>This section will contain hands-on material that will appear later.</p>
 </div>
 </div>
+<div class="cell" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> geopandas <span class="im">as</span> gpd</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> mgwr</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> libpysal <span class="im">import</span> graph</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> statsmodels.formula.api <span class="im">as</span> sm</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> esda</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-execution_count="2">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>elections <span class="op">=</span> gpd.read_file(</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">"../chapter_05/data/cz_elections_2023.gpkg"</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>elections <span class="op">=</span> elections.set_index(<span class="st">"name"</span>)</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>elections.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="2">
+<div>
 
 
+<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">PetrPavel</th>
+<th data-quarto-table-cell-role="th">AndrejBabis</th>
+<th data-quarto-table-cell-role="th">nationalCode</th>
+<th data-quarto-table-cell-role="th">sourceOfName</th>
+<th data-quarto-table-cell-role="th">geometry</th>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">name</th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">Abertamy</td>
+<td>62.98</td>
+<td>37.01</td>
+<td>554979</td>
+<td>Český úřad zeměměřický a katastrální</td>
+<td>MULTIPOLYGON (((-849678.970 -996811.240, -8494...</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">Adamov (Blansko, 581291)</td>
+<td>57.17</td>
+<td>42.82</td>
+<td>581291</td>
+<td>Český úřad zeměměřický a katastrální</td>
+<td>MULTIPOLYGON (((-590872.420 -1148832.360, -591...</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">Adamov (České Budějovice, 535826)</td>
+<td>65.17</td>
+<td>34.82</td>
+<td>535826</td>
+<td>Český úřad zeměměřický a katastrální</td>
+<td>MULTIPOLYGON (((-748969.500 -1162820.890, -749...</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">Adamov (Kutná Hora, 531367)</td>
+<td>53.84</td>
+<td>46.15</td>
+<td>531367</td>
+<td>Český úřad zeměměřický a katastrální</td>
+<td>MULTIPOLYGON (((-677775.470 -1077800.050, -677...</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">Adršpach</td>
+<td>62.18</td>
+<td>37.81</td>
+<td>547786</td>
+<td>Český úřad zeměměřický a katastrální</td>
+<td>MULTIPOLYGON (((-620084.550 -999987.800, -6201...</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<div class="cell" data-execution_count="3">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>education <span class="op">=</span> pd.read_csv(<span class="st">"data/education.csv"</span>)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>education.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="3">
+<div>
+
+
+<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">uzemi_kod</th>
+<th data-quarto-table-cell-role="th">without_education</th>
+<th data-quarto-table-cell-role="th">undetermined</th>
+<th data-quarto-table-cell-role="th">incomplete_primary_education</th>
+<th data-quarto-table-cell-role="th">lower_secondary_and_secondary_education</th>
+<th data-quarto-table-cell-role="th">further_education</th>
+<th data-quarto-table-cell-role="th">post_maturita_studies</th>
+<th data-quarto-table-cell-role="th">bachelors_degree</th>
+<th data-quarto-table-cell-role="th">doctoral_degree</th>
+<th data-quarto-table-cell-role="th">masters_degree</th>
+<th data-quarto-table-cell-role="th">higher_vocational_education</th>
+<th data-quarto-table-cell-role="th">higher_vocational_education_in_a_conservatory</th>
+<th data-quarto-table-cell-role="th">primary_education</th>
+<th data-quarto-table-cell-role="th">complete_secondary_vocational_education</th>
+<th data-quarto-table-cell-role="th">complete_secondary_general_education</th>
+<th data-quarto-table-cell-role="th">okres</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">0</td>
+<td>500011</td>
+<td>0.570704</td>
+<td>3.741281</td>
+<td>1.141408</td>
+<td>34.242232</td>
+<td>1.775523</td>
+<td>0.507292</td>
+<td>2.853519</td>
+<td>0.634115</td>
+<td>12.935954</td>
+<td>1.395054</td>
+<td>0.126823</td>
+<td>11.350666</td>
+<td>17.945466</td>
+<td>10.779962</td>
+<td>Zlín</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1</td>
+<td>500020</td>
+<td>0.885827</td>
+<td>3.346457</td>
+<td>1.968504</td>
+<td>40.157480</td>
+<td>2.066929</td>
+<td>0.885827</td>
+<td>1.771654</td>
+<td>0.492126</td>
+<td>6.299213</td>
+<td>1.574803</td>
+<td>0.000000</td>
+<td>15.059055</td>
+<td>16.338583</td>
+<td>9.153543</td>
+<td>Šumperk</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2</td>
+<td>500046</td>
+<td>0.359195</td>
+<td>3.232759</td>
+<td>0.790230</td>
+<td>39.152299</td>
+<td>2.514368</td>
+<td>0.790230</td>
+<td>3.520115</td>
+<td>0.215517</td>
+<td>10.632184</td>
+<td>1.364943</td>
+<td>0.143678</td>
+<td>9.770115</td>
+<td>15.301724</td>
+<td>12.212644</td>
+<td>Nový Jičín</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">3</td>
+<td>500062</td>
+<td>0.238237</td>
+<td>3.573556</td>
+<td>1.072067</td>
+<td>32.757594</td>
+<td>2.084574</td>
+<td>1.131626</td>
+<td>3.037522</td>
+<td>0.178678</td>
+<td>13.281715</td>
+<td>0.714711</td>
+<td>0.119119</td>
+<td>11.316260</td>
+<td>18.701608</td>
+<td>11.792734</td>
+<td>Vsetín</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">4</td>
+<td>500071</td>
+<td>0.412939</td>
+<td>2.890571</td>
+<td>1.238816</td>
+<td>34.067447</td>
+<td>1.720578</td>
+<td>0.757054</td>
+<td>3.028217</td>
+<td>0.137646</td>
+<td>11.080523</td>
+<td>0.894701</td>
+<td>0.000000</td>
+<td>9.772884</td>
+<td>20.027529</td>
+<td>13.971094</td>
+<td>Vsetín</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<div class="cell" data-execution_count="4">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>elections_data <span class="op">=</span> elections.merge(education, left_on<span class="op">=</span><span class="st">"nationalCode"</span>, right_on<span class="op">=</span><span class="st">"uzemi_kod"</span>)</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>elections_data.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="4">
+<div>
+
+
+<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">PetrPavel</th>
+<th data-quarto-table-cell-role="th">AndrejBabis</th>
+<th data-quarto-table-cell-role="th">nationalCode</th>
+<th data-quarto-table-cell-role="th">sourceOfName</th>
+<th data-quarto-table-cell-role="th">geometry</th>
+<th data-quarto-table-cell-role="th">uzemi_kod</th>
+<th data-quarto-table-cell-role="th">without_education</th>
+<th data-quarto-table-cell-role="th">undetermined</th>
+<th data-quarto-table-cell-role="th">incomplete_primary_education</th>
+<th data-quarto-table-cell-role="th">lower_secondary_and_secondary_education</th>
+<th data-quarto-table-cell-role="th">...</th>
+<th data-quarto-table-cell-role="th">post_maturita_studies</th>
+<th data-quarto-table-cell-role="th">bachelors_degree</th>
+<th data-quarto-table-cell-role="th">doctoral_degree</th>
+<th data-quarto-table-cell-role="th">masters_degree</th>
+<th data-quarto-table-cell-role="th">higher_vocational_education</th>
+<th data-quarto-table-cell-role="th">higher_vocational_education_in_a_conservatory</th>
+<th data-quarto-table-cell-role="th">primary_education</th>
+<th data-quarto-table-cell-role="th">complete_secondary_vocational_education</th>
+<th data-quarto-table-cell-role="th">complete_secondary_general_education</th>
+<th data-quarto-table-cell-role="th">okres</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">0</td>
+<td>62.98</td>
+<td>37.01</td>
+<td>554979</td>
+<td>Český úřad zeměměřický a katastrální</td>
+<td>MULTIPOLYGON (((-849678.970 -996811.240, -8494...</td>
+<td>554979</td>
+<td>0.435414</td>
+<td>11.030479</td>
+<td>1.741655</td>
+<td>37.010160</td>
+<td>...</td>
+<td>1.161103</td>
+<td>1.306241</td>
+<td>0.290276</td>
+<td>5.950653</td>
+<td>0.580552</td>
+<td>0.00000</td>
+<td>21.335269</td>
+<td>8.998549</td>
+<td>9.579100</td>
+<td>Karlovy Vary</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1</td>
+<td>57.17</td>
+<td>42.82</td>
+<td>581291</td>
+<td>Český úřad zeměměřický a katastrální</td>
+<td>MULTIPOLYGON (((-590872.420 -1148832.360, -591...</td>
+<td>581291</td>
+<td>0.377766</td>
+<td>5.153805</td>
+<td>1.052348</td>
+<td>34.592553</td>
+<td>...</td>
+<td>0.782515</td>
+<td>2.725310</td>
+<td>1.187264</td>
+<td>11.171074</td>
+<td>1.349164</td>
+<td>0.08095</td>
+<td>11.359957</td>
+<td>17.539126</td>
+<td>11.225040</td>
+<td>Blansko</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2</td>
+<td>65.17</td>
+<td>34.82</td>
+<td>535826</td>
+<td>Český úřad zeměměřický a katastrální</td>
+<td>MULTIPOLYGON (((-748969.500 -1162820.890, -749...</td>
+<td>535826</td>
+<td>0.269542</td>
+<td>3.234501</td>
+<td>0.943396</td>
+<td>23.450135</td>
+<td>...</td>
+<td>0.673854</td>
+<td>4.582210</td>
+<td>1.482480</td>
+<td>23.450135</td>
+<td>2.156334</td>
+<td>0.00000</td>
+<td>7.547170</td>
+<td>17.250674</td>
+<td>13.477089</td>
+<td>České Budějovice</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">3</td>
+<td>53.84</td>
+<td>46.15</td>
+<td>531367</td>
+<td>Český úřad zeměměřický a katastrální</td>
+<td>MULTIPOLYGON (((-677775.470 -1077800.050, -677...</td>
+<td>531367</td>
+<td>0.000000</td>
+<td>3.508772</td>
+<td>1.754386</td>
+<td>44.736842</td>
+<td>...</td>
+<td>0.877193</td>
+<td>2.631579</td>
+<td>0.000000</td>
+<td>5.263158</td>
+<td>0.000000</td>
+<td>0.00000</td>
+<td>7.017544</td>
+<td>20.175439</td>
+<td>13.157895</td>
+<td>Kutná Hora</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">4</td>
+<td>62.18</td>
+<td>37.81</td>
+<td>547786</td>
+<td>Český úřad zeměměřický a katastrální</td>
+<td>MULTIPOLYGON (((-620084.550 -999987.800, -6201...</td>
+<td>547786</td>
+<td>0.744417</td>
+<td>8.188586</td>
+<td>0.992556</td>
+<td>39.702233</td>
+<td>...</td>
+<td>0.496278</td>
+<td>2.729529</td>
+<td>0.248139</td>
+<td>6.451613</td>
+<td>0.000000</td>
+<td>0.00000</td>
+<td>12.903226</td>
+<td>13.895782</td>
+<td>12.406948</td>
+<td>Náchod</td>
+</tr>
+</tbody>
+</table>
+
+<p>5 rows × 21 columns</p>
+</div>
+</div>
+</div>
+<section id="non-spatial-linear-regression" class="level2">
+<h2 class="anchored" data-anchor-id="non-spatial-linear-regression">Non-spatial linear regression</h2>
+<section id="ols-model" class="level3">
+<h3 class="anchored" data-anchor-id="ols-model">OLS model</h3>
+<div class="cell" data-execution_count="5">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>variable_names <span class="op">=</span> education.columns.drop([<span class="st">"uzemi_kod"</span>, <span class="st">"okres"</span>, <span class="st">"without_education"</span>])</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>variable_names</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="5">
+<pre><code>Index(['undetermined', 'incomplete_primary_education',
+       'lower_secondary_and_secondary_education', 'further_education',
+       'post_maturita_studies', 'bachelors_degree', 'doctoral_degree',
+       'masters_degree', 'higher_vocational_education',
+       'higher_vocational_education_in_a_conservatory', 'primary_education',
+       'complete_secondary_vocational_education',
+       'complete_secondary_general_education'],
+      dtype='object')</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="6">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>formula <span class="op">=</span> <span class="ss">f"PetrPavel ~ </span><span class="sc">{</span><span class="st">' + '</span><span class="sc">.</span>join(variable_names)<span class="sc">}</span><span class="ss">"</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>formula</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="6">
+<pre><code>'PetrPavel ~ undetermined + incomplete_primary_education + lower_secondary_and_secondary_education + further_education + post_maturita_studies + bachelors_degree + doctoral_degree + masters_degree + higher_vocational_education + higher_vocational_education_in_a_conservatory + primary_education + complete_secondary_vocational_education + complete_secondary_general_education'</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="7">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>ols <span class="op">=</span> sm.ols(formula, data<span class="op">=</span>elections_data).fit()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-execution_count="8">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>ols.summary()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="8">
+<table class="simpletable table table-sm table-striped small" data-quarto-postprocess="true">
+<caption>OLS Regression Results</caption>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">Dep. Variable:</td>
+<td>PetrPavel</td>
+<td data-quarto-table-cell-role="th">R-squared:</td>
+<td>0.423</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">Model:</td>
+<td>OLS</td>
+<td data-quarto-table-cell-role="th">Adj. R-squared:</td>
+<td>0.422</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">Method:</td>
+<td>Least Squares</td>
+<td data-quarto-table-cell-role="th">F-statistic:</td>
+<td>352.6</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">Date:</td>
+<td>Fri, 13 Oct 2023</td>
+<td data-quarto-table-cell-role="th">Prob (F-statistic):</td>
+<td>0.00</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">Time:</td>
+<td>20:56:46</td>
+<td data-quarto-table-cell-role="th">Log-Likelihood:</td>
+<td>-22397.</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">No. Observations:</td>
+<td>6254</td>
+<td data-quarto-table-cell-role="th">AIC:</td>
+<td>4.482e+04</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">Df Residuals:</td>
+<td>6240</td>
+<td data-quarto-table-cell-role="th">BIC:</td>
+<td>4.492e+04</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">Df Model:</td>
+<td>13</td>
+<td data-quarto-table-cell-role="th"></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">Covariance Type:</td>
+<td>nonrobust</td>
+<td data-quarto-table-cell-role="th"></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<table class="simpletable table table-sm table-striped small" data-quarto-postprocess="true">
+<tbody>
+<tr class="odd">
+<td></td>
+<td data-quarto-table-cell-role="th">coef</td>
+<td data-quarto-table-cell-role="th">std err</td>
+<td data-quarto-table-cell-role="th">t</td>
+<td data-quarto-table-cell-role="th">P&gt;|t|</td>
+<td data-quarto-table-cell-role="th">[0.025</td>
+<td data-quarto-table-cell-role="th">0.975]</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">Intercept</td>
+<td>36.3411</td>
+<td>9.252</td>
+<td>3.928</td>
+<td>0.000</td>
+<td>18.204</td>
+<td>54.478</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">undetermined</td>
+<td>-0.1742</td>
+<td>0.104</td>
+<td>-1.676</td>
+<td>0.094</td>
+<td>-0.378</td>
+<td>0.030</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">incomplete_primary_education</td>
+<td>-0.4502</td>
+<td>0.171</td>
+<td>-2.632</td>
+<td>0.009</td>
+<td>-0.786</td>
+<td>-0.115</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">lower_secondary_and_secondary_education</td>
+<td>-0.0731</td>
+<td>0.093</td>
+<td>-0.786</td>
+<td>0.432</td>
+<td>-0.255</td>
+<td>0.109</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">further_education</td>
+<td>0.6043</td>
+<td>0.147</td>
+<td>4.114</td>
+<td>0.000</td>
+<td>0.316</td>
+<td>0.892</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">post_maturita_studies</td>
+<td>0.9906</td>
+<td>0.223</td>
+<td>4.433</td>
+<td>0.000</td>
+<td>0.553</td>
+<td>1.429</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">bachelors_degree</td>
+<td>0.8013</td>
+<td>0.131</td>
+<td>6.124</td>
+<td>0.000</td>
+<td>0.545</td>
+<td>1.058</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">doctoral_degree</td>
+<td>0.8602</td>
+<td>0.237</td>
+<td>3.624</td>
+<td>0.000</td>
+<td>0.395</td>
+<td>1.325</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">masters_degree</td>
+<td>0.7610</td>
+<td>0.099</td>
+<td>7.699</td>
+<td>0.000</td>
+<td>0.567</td>
+<td>0.955</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">higher_vocational_education</td>
+<td>1.3691</td>
+<td>0.160</td>
+<td>8.539</td>
+<td>0.000</td>
+<td>1.055</td>
+<td>1.683</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">higher_vocational_education_in_a_conservatory</td>
+<td>2.4042</td>
+<td>0.584</td>
+<td>4.117</td>
+<td>0.000</td>
+<td>1.260</td>
+<td>3.549</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">primary_education</td>
+<td>-0.2899</td>
+<td>0.101</td>
+<td>-2.878</td>
+<td>0.004</td>
+<td>-0.487</td>
+<td>-0.092</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">complete_secondary_vocational_education</td>
+<td>0.5061</td>
+<td>0.097</td>
+<td>5.197</td>
+<td>0.000</td>
+<td>0.315</td>
+<td>0.697</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">complete_secondary_general_education</td>
+<td>0.4500</td>
+<td>0.100</td>
+<td>4.485</td>
+<td>0.000</td>
+<td>0.253</td>
+<td>0.647</td>
+</tr>
+</tbody>
+</table>
+<table class="simpletable table table-sm table-striped small" data-quarto-postprocess="true">
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">Omnibus:</td>
+<td>130.315</td>
+<td data-quarto-table-cell-role="th">Durbin-Watson:</td>
+<td>1.981</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">Prob(Omnibus):</td>
+<td>0.000</td>
+<td data-quarto-table-cell-role="th">Jarque-Bera (JB):</td>
+<td>215.929</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">Skew:</td>
+<td>0.189</td>
+<td data-quarto-table-cell-role="th">Prob(JB):</td>
+<td>1.29e-47</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">Kurtosis:</td>
+<td>3.828</td>
+<td data-quarto-table-cell-role="th">Cond. No.</td>
+<td>3.88e+03</td>
+</tr>
+</tbody>
+</table>
+<br><br>Notes:<br>[1] Standard Errors assume that the covariance matrix of the errors is correctly specified.<br>[2] The condition number is large, 3.88e+03. This might indicate that there are<br>strong multicollinearity or other numerical problems.
+</div>
+</div>
+</section>
+<section id="spatial-exploration-of-the-model-hidden-structures" class="level3">
+<h3 class="anchored" data-anchor-id="spatial-exploration-of-the-model-hidden-structures">Spatial exploration of the model (hidden structures)</h3>
+<div class="cell" data-execution_count="9">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>elections_data[<span class="st">"residual"</span>] <span class="op">=</span> ols.resid</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>elections_data.plot(<span class="st">"residual"</span>, legend<span class="op">=</span><span class="va">True</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="9">
+<pre><code>&lt;Axes: &gt;</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<p><img src="hands_on_files/figure-html/cell-10-output-2.png" width="568" height="393"></p>
+</div>
+</div>
+<div class="cell" data-execution_count="10">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>medians <span class="op">=</span> (</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>    elections_data.groupby(<span class="st">"okres"</span>)</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>    .residual.median()</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>    .to_frame(<span class="st">"okres_residual"</span>)</span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>f, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">16</span>, <span class="dv">6</span>))</span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>sns.boxplot(data<span class="op">=</span>elections_data.merge(</span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>        medians, how<span class="op">=</span><span class="st">"left"</span>, left_on<span class="op">=</span><span class="st">"okres"</span>, right_index<span class="op">=</span><span class="va">True</span></span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>    ).sort_values(<span class="st">"okres_residual"</span>), x<span class="op">=</span><span class="st">"okres"</span>, y<span class="op">=</span><span class="st">"residual"</span>)</span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a>_ <span class="op">=</span> plt.xticks(rotation<span class="op">=</span><span class="dv">90</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<p><img src="hands_on_files/figure-html/cell-11-output-1.png" width="1265" height="638"></p>
+</div>
+</div>
+<div class="cell" data-execution_count="11">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>contiguity_r <span class="op">=</span> graph.Graph.build_contiguity(elections_data).transform(<span class="st">"r"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-execution_count="12">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>elections_data[<span class="st">"residual_lag"</span>] <span class="op">=</span> contiguity_r.lag(elections_data[<span class="st">"residual"</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-execution_count="13">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>f, ax <span class="op">=</span> plt.subplots(<span class="dv">1</span>, figsize<span class="op">=</span>(<span class="dv">6</span>, <span class="dv">6</span>))</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>sns.regplot(x<span class="op">=</span><span class="st">"residual"</span>, y<span class="op">=</span><span class="st">"residual_lag"</span>, data<span class="op">=</span>elections_data, ci<span class="op">=</span><span class="va">None</span>, ax<span class="op">=</span>ax, marker<span class="op">=</span><span class="st">"."</span>, line_kws<span class="op">=</span><span class="bu">dict</span>(color<span class="op">=</span><span class="st">"k"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="13">
+<pre><code>&lt;Axes: xlabel='residual', ylabel='residual_lag'&gt;</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<p><img src="hands_on_files/figure-html/cell-14-output-2.png" width="521" height="503"></p>
+</div>
+</div>
+<div class="cell" data-execution_count="14">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>lisa <span class="op">=</span> esda.Moran_Local(elections_data[<span class="st">'residual'</span>], contiguity_r.to_W())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-execution_count="15">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> splot.esda <span class="im">import</span> lisa_cluster, moran_scatterplot</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>_ <span class="op">=</span> lisa_cluster(lisa, elections_data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<p><img src="hands_on_files/figure-html/cell-16-output-1.png" width="540" height="341"></p>
+</div>
+</div>
+</section>
+</section>
+<section id="spatial-heterogeneity" class="level2">
+<h2 class="anchored" data-anchor-id="spatial-heterogeneity">Spatial heterogeneity</h2>
+<p><em>differences within categoricals</em></p>
+<section id="spatial-fixed-effects" class="level3">
+<h3 class="anchored">Spatial fixed effects</h3>
+<p><em>differences of constant - categorical as a dummy explanatory</em></p>
+<div class="cell" data-execution_count="16">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>formula_fe <span class="op">=</span> <span class="ss">f"PetrPavel ~ </span><span class="sc">{</span><span class="st">' + '</span><span class="sc">.</span>join(variable_names)<span class="sc">}</span><span class="ss"> + okres - 1"</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>ols_fe <span class="op">=</span> sm.ols(formula_fe, data<span class="op">=</span>elections_data).fit()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-execution_count="17">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>ols_fe.summary()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="17">
+<table class="simpletable table table-sm table-striped small" data-quarto-postprocess="true">
+<caption>OLS Regression Results</caption>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">Dep. Variable:</td>
+<td>PetrPavel</td>
+<td data-quarto-table-cell-role="th">R-squared:</td>
+<td>0.571</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">Model:</td>
+<td>OLS</td>
+<td data-quarto-table-cell-role="th">Adj. R-squared:</td>
+<td>0.565</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">Method:</td>
+<td>Least Squares</td>
+<td data-quarto-table-cell-role="th">F-statistic:</td>
+<td>92.21</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">Date:</td>
+<td>Fri, 13 Oct 2023</td>
+<td data-quarto-table-cell-role="th">Prob (F-statistic):</td>
+<td>0.00</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">Time:</td>
+<td>20:57:02</td>
+<td data-quarto-table-cell-role="th">Log-Likelihood:</td>
+<td>-21472.</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">No. Observations:</td>
+<td>6254</td>
+<td data-quarto-table-cell-role="th">AIC:</td>
+<td>4.312e+04</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">Df Residuals:</td>
+<td>6164</td>
+<td data-quarto-table-cell-role="th">BIC:</td>
+<td>4.373e+04</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">Df Model:</td>
+<td>89</td>
+<td data-quarto-table-cell-role="th"></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">Covariance Type:</td>
+<td>nonrobust</td>
+<td data-quarto-table-cell-role="th"></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<table class="simpletable table table-sm table-striped small" data-quarto-postprocess="true">
+<tbody>
+<tr class="odd">
+<td></td>
+<td data-quarto-table-cell-role="th">coef</td>
+<td data-quarto-table-cell-role="th">std err</td>
+<td data-quarto-table-cell-role="th">t</td>
+<td data-quarto-table-cell-role="th">P&gt;|t|</td>
+<td data-quarto-table-cell-role="th">[0.025</td>
+<td data-quarto-table-cell-role="th">0.975]</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">okres[Benešov]</td>
+<td>53.5696</td>
+<td>8.116</td>
+<td>6.601</td>
+<td>0.000</td>
+<td>37.660</td>
+<td>69.479</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">okres[Beroun]</td>
+<td>55.3698</td>
+<td>8.134</td>
+<td>6.807</td>
+<td>0.000</td>
+<td>39.424</td>
+<td>71.315</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">okres[Blansko]</td>
+<td>49.9944</td>
+<td>8.128</td>
+<td>6.151</td>
+<td>0.000</td>
+<td>34.060</td>
+<td>65.929</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">okres[Brno-město]</td>
+<td>47.3371</td>
+<td>11.082</td>
+<td>4.271</td>
+<td>0.000</td>
+<td>25.612</td>
+<td>69.063</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">okres[Brno-venkov]</td>
+<td>52.9594</td>
+<td>8.134</td>
+<td>6.511</td>
+<td>0.000</td>
+<td>37.014</td>
+<td>68.905</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">okres[Bruntál]</td>
+<td>40.6139</td>
+<td>8.153</td>
+<td>4.981</td>
+<td>0.000</td>
+<td>24.631</td>
+<td>56.597</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">okres[Břeclav]</td>
+<td>52.2218</td>
+<td>8.152</td>
+<td>6.406</td>
+<td>0.000</td>
+<td>36.241</td>
+<td>68.203</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">okres[Cheb]</td>
+<td>48.3279</td>
+<td>8.153</td>
+<td>5.928</td>
+<td>0.000</td>
+<td>32.346</td>
+<td>64.310</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">okres[Chomutov]</td>
+<td>43.6733</td>
+<td>8.147</td>
+<td>5.361</td>
+<td>0.000</td>
+<td>27.702</td>
+<td>59.645</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">okres[Chrudim]</td>
+<td>51.5555</td>
+<td>8.125</td>
+<td>6.345</td>
+<td>0.000</td>
+<td>35.627</td>
+<td>67.484</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">okres[Domažlice]</td>
+<td>50.4746</td>
+<td>8.143</td>
+<td>6.198</td>
+<td>0.000</td>
+<td>34.511</td>
+<td>66.439</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">okres[Děčín]</td>
+<td>46.3265</td>
+<td>8.129</td>
+<td>5.699</td>
+<td>0.000</td>
+<td>30.392</td>
+<td>62.261</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">okres[Frýdek-Místek]</td>
+<td>43.4517</td>
+<td>8.138</td>
+<td>5.339</td>
+<td>0.000</td>
+<td>27.498</td>
+<td>59.406</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">okres[Havlíčkův Brod]</td>
+<td>51.3506</td>
+<td>8.131</td>
+<td>6.316</td>
+<td>0.000</td>
+<td>35.411</td>
+<td>67.290</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">okres[Hodonín]</td>
+<td>51.5484</td>
+<td>8.154</td>
+<td>6.322</td>
+<td>0.000</td>
+<td>35.564</td>
+<td>67.533</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">okres[Hradec Králové]</td>
+<td>50.9286</td>
+<td>8.131</td>
+<td>6.263</td>
+<td>0.000</td>
+<td>34.988</td>
+<td>66.869</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">okres[Jablonec nad Nisou]</td>
+<td>60.3230</td>
+<td>8.199</td>
+<td>7.357</td>
+<td>0.000</td>
+<td>44.250</td>
+<td>76.396</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">okres[Jeseník]</td>
+<td>43.4420</td>
+<td>8.245</td>
+<td>5.269</td>
+<td>0.000</td>
+<td>27.279</td>
+<td>59.605</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">okres[Jihlava]</td>
+<td>56.8454</td>
+<td>8.136</td>
+<td>6.987</td>
+<td>0.000</td>
+<td>40.896</td>
+<td>72.795</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">okres[Jindřichův Hradec]</td>
+<td>53.4276</td>
+<td>8.138</td>
+<td>6.566</td>
+<td>0.000</td>
+<td>37.475</td>
+<td>69.380</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">okres[Jičín]</td>
+<td>52.7536</td>
+<td>8.132</td>
+<td>6.488</td>
+<td>0.000</td>
+<td>36.813</td>
+<td>68.694</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">okres[Karlovy Vary]</td>
+<td>51.3711</td>
+<td>8.146</td>
+<td>6.306</td>
+<td>0.000</td>
+<td>35.401</td>
+<td>67.341</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">okres[Karviná]</td>
+<td>35.1644</td>
+<td>8.297</td>
+<td>4.238</td>
+<td>0.000</td>
+<td>18.899</td>
+<td>51.430</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">okres[Kladno]</td>
+<td>52.9949</td>
+<td>8.118</td>
+<td>6.528</td>
+<td>0.000</td>
+<td>37.081</td>
+<td>68.908</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">okres[Klatovy]</td>
+<td>49.8094</td>
+<td>8.127</td>
+<td>6.129</td>
+<td>0.000</td>
+<td>33.878</td>
+<td>65.741</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">okres[Kolín]</td>
+<td>53.9306</td>
+<td>8.128</td>
+<td>6.635</td>
+<td>0.000</td>
+<td>37.997</td>
+<td>69.864</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">okres[Kroměříž]</td>
+<td>46.5417</td>
+<td>8.143</td>
+<td>5.716</td>
+<td>0.000</td>
+<td>30.579</td>
+<td>62.504</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">okres[Kutná Hora]</td>
+<td>50.4215</td>
+<td>8.140</td>
+<td>6.194</td>
+<td>0.000</td>
+<td>34.464</td>
+<td>66.379</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">okres[Liberec]</td>
+<td>53.7726</td>
+<td>8.149</td>
+<td>6.598</td>
+<td>0.000</td>
+<td>37.797</td>
+<td>69.748</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">okres[Litoměřice]</td>
+<td>50.3882</td>
+<td>8.127</td>
+<td>6.200</td>
+<td>0.000</td>
+<td>34.457</td>
+<td>66.319</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">okres[Louny]</td>
+<td>40.3466</td>
+<td>8.127</td>
+<td>4.964</td>
+<td>0.000</td>
+<td>24.414</td>
+<td>56.279</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">okres[Mladá Boleslav]</td>
+<td>55.5238</td>
+<td>8.125</td>
+<td>6.833</td>
+<td>0.000</td>
+<td>39.595</td>
+<td>71.452</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">okres[Most]</td>
+<td>41.7373</td>
+<td>8.187</td>
+<td>5.098</td>
+<td>0.000</td>
+<td>25.689</td>
+<td>57.786</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">okres[Mělník]</td>
+<td>56.1074</td>
+<td>8.150</td>
+<td>6.885</td>
+<td>0.000</td>
+<td>40.131</td>
+<td>72.083</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">okres[Nový Jičín]</td>
+<td>46.8763</td>
+<td>8.161</td>
+<td>5.744</td>
+<td>0.000</td>
+<td>30.879</td>
+<td>62.874</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">okres[Nymburk]</td>
+<td>54.9258</td>
+<td>8.134</td>
+<td>6.752</td>
+<td>0.000</td>
+<td>38.980</td>
+<td>70.872</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">okres[Náchod]</td>
+<td>59.7234</td>
+<td>8.153</td>
+<td>7.325</td>
+<td>0.000</td>
+<td>43.741</td>
+<td>75.706</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">okres[Olomouc]</td>
+<td>48.2054</td>
+<td>8.126</td>
+<td>5.933</td>
+<td>0.000</td>
+<td>32.276</td>
+<td>64.135</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">okres[Opava]</td>
+<td>43.8226</td>
+<td>8.130</td>
+<td>5.390</td>
+<td>0.000</td>
+<td>27.884</td>
+<td>59.761</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">okres[Ostrava-město]</td>
+<td>41.4334</td>
+<td>8.368</td>
+<td>4.951</td>
+<td>0.000</td>
+<td>25.029</td>
+<td>57.838</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">okres[Pardubice]</td>
+<td>51.5341</td>
+<td>8.128</td>
+<td>6.340</td>
+<td>0.000</td>
+<td>35.601</td>
+<td>67.467</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">okres[Pelhřimov]</td>
+<td>53.3010</td>
+<td>8.118</td>
+<td>6.566</td>
+<td>0.000</td>
+<td>37.387</td>
+<td>69.215</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">okres[Plzeň-jih]</td>
+<td>49.7863</td>
+<td>8.135</td>
+<td>6.120</td>
+<td>0.000</td>
+<td>33.840</td>
+<td>65.733</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">okres[Plzeň-město]</td>
+<td>52.2555</td>
+<td>8.341</td>
+<td>6.265</td>
+<td>0.000</td>
+<td>35.905</td>
+<td>68.606</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">okres[Plzeň-sever]</td>
+<td>53.4009</td>
+<td>8.145</td>
+<td>6.556</td>
+<td>0.000</td>
+<td>37.433</td>
+<td>69.368</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">okres[Prachatice]</td>
+<td>54.5449</td>
+<td>8.149</td>
+<td>6.694</td>
+<td>0.000</td>
+<td>38.570</td>
+<td>70.519</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">okres[Praha]</td>
+<td>52.5884</td>
+<td>11.084</td>
+<td>4.744</td>
+<td>0.000</td>
+<td>30.859</td>
+<td>74.317</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">okres[Praha-východ]</td>
+<td>58.3993</td>
+<td>8.136</td>
+<td>7.178</td>
+<td>0.000</td>
+<td>42.450</td>
+<td>74.349</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">okres[Praha-západ]</td>
+<td>59.0494</td>
+<td>8.154</td>
+<td>7.241</td>
+<td>0.000</td>
+<td>43.064</td>
+<td>75.035</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">okres[Prostějov]</td>
+<td>46.8490</td>
+<td>8.124</td>
+<td>5.767</td>
+<td>0.000</td>
+<td>30.924</td>
+<td>62.774</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">okres[Písek]</td>
+<td>54.7765</td>
+<td>8.105</td>
+<td>6.758</td>
+<td>0.000</td>
+<td>38.888</td>
+<td>70.666</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">okres[Přerov]</td>
+<td>42.5145</td>
+<td>8.116</td>
+<td>5.239</td>
+<td>0.000</td>
+<td>26.605</td>
+<td>58.424</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">okres[Příbram]</td>
+<td>55.5710</td>
+<td>8.119</td>
+<td>6.844</td>
+<td>0.000</td>
+<td>39.655</td>
+<td>71.487</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">okres[Rakovník]</td>
+<td>50.0472</td>
+<td>8.131</td>
+<td>6.155</td>
+<td>0.000</td>
+<td>34.109</td>
+<td>65.986</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">okres[Rokycany]</td>
+<td>50.5489</td>
+<td>8.118</td>
+<td>6.227</td>
+<td>0.000</td>
+<td>34.635</td>
+<td>66.463</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">okres[Rychnov nad Kněžnou]</td>
+<td>55.6241</td>
+<td>8.142</td>
+<td>6.832</td>
+<td>0.000</td>
+<td>39.663</td>
+<td>71.585</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">okres[Semily]</td>
+<td>61.9484</td>
+<td>8.161</td>
+<td>7.591</td>
+<td>0.000</td>
+<td>45.951</td>
+<td>77.946</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">okres[Sokolov]</td>
+<td>46.6443</td>
+<td>8.174</td>
+<td>5.707</td>
+<td>0.000</td>
+<td>30.621</td>
+<td>62.668</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">okres[Strakonice]</td>
+<td>52.0574</td>
+<td>8.113</td>
+<td>6.417</td>
+<td>0.000</td>
+<td>36.154</td>
+<td>67.961</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">okres[Svitavy]</td>
+<td>54.0551</td>
+<td>8.132</td>
+<td>6.647</td>
+<td>0.000</td>
+<td>38.113</td>
+<td>69.997</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">okres[Tachov]</td>
+<td>47.4973</td>
+<td>8.131</td>
+<td>5.841</td>
+<td>0.000</td>
+<td>31.557</td>
+<td>63.437</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">okres[Teplice]</td>
+<td>44.9451</td>
+<td>8.187</td>
+<td>5.490</td>
+<td>0.000</td>
+<td>28.895</td>
+<td>60.995</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">okres[Trutnov]</td>
+<td>59.9216</td>
+<td>8.155</td>
+<td>7.348</td>
+<td>0.000</td>
+<td>43.936</td>
+<td>75.907</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">okres[Tábor]</td>
+<td>56.0326</td>
+<td>8.136</td>
+<td>6.887</td>
+<td>0.000</td>
+<td>40.084</td>
+<td>71.981</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">okres[Třebíč]</td>
+<td>51.1940</td>
+<td>8.123</td>
+<td>6.302</td>
+<td>0.000</td>
+<td>35.270</td>
+<td>67.118</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">okres[Uherské Hradiště]</td>
+<td>51.8289</td>
+<td>8.155</td>
+<td>6.355</td>
+<td>0.000</td>
+<td>35.842</td>
+<td>67.816</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">okres[Vsetín]</td>
+<td>53.7686</td>
+<td>8.170</td>
+<td>6.581</td>
+<td>0.000</td>
+<td>37.753</td>
+<td>69.784</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">okres[Vyškov]</td>
+<td>48.5024</td>
+<td>8.158</td>
+<td>5.946</td>
+<td>0.000</td>
+<td>32.510</td>
+<td>64.495</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">okres[Zlín]</td>
+<td>54.6929</td>
+<td>8.151</td>
+<td>6.710</td>
+<td>0.000</td>
+<td>38.714</td>
+<td>70.672</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">okres[Znojmo]</td>
+<td>45.5421</td>
+<td>8.127</td>
+<td>5.604</td>
+<td>0.000</td>
+<td>29.610</td>
+<td>61.474</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">okres[Ústí nad Labem]</td>
+<td>45.3819</td>
+<td>8.242</td>
+<td>5.506</td>
+<td>0.000</td>
+<td>29.225</td>
+<td>61.539</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">okres[Ústí nad Orlicí]</td>
+<td>57.9950</td>
+<td>8.103</td>
+<td>7.158</td>
+<td>0.000</td>
+<td>42.111</td>
+<td>73.879</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">okres[Česká Lípa]</td>
+<td>49.7879</td>
+<td>8.146</td>
+<td>6.112</td>
+<td>0.000</td>
+<td>33.820</td>
+<td>65.756</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">okres[České Budějovice]</td>
+<td>54.5617</td>
+<td>8.139</td>
+<td>6.704</td>
+<td>0.000</td>
+<td>38.607</td>
+<td>70.516</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">okres[Český Krumlov]</td>
+<td>57.8695</td>
+<td>8.181</td>
+<td>7.073</td>
+<td>0.000</td>
+<td>41.831</td>
+<td>73.908</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">okres[Šumperk]</td>
+<td>47.6096</td>
+<td>8.144</td>
+<td>5.846</td>
+<td>0.000</td>
+<td>31.645</td>
+<td>63.575</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">okres[Žďár nad Sázavou]</td>
+<td>56.2910</td>
+<td>8.131</td>
+<td>6.923</td>
+<td>0.000</td>
+<td>40.352</td>
+<td>72.230</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">undetermined</td>
+<td>-0.2906</td>
+<td>0.091</td>
+<td>-3.190</td>
+<td>0.001</td>
+<td>-0.469</td>
+<td>-0.112</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">incomplete_primary_education</td>
+<td>-0.4534</td>
+<td>0.150</td>
+<td>-3.024</td>
+<td>0.003</td>
+<td>-0.747</td>
+<td>-0.159</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">lower_secondary_and_secondary_education</td>
+<td>-0.2363</td>
+<td>0.082</td>
+<td>-2.895</td>
+<td>0.004</td>
+<td>-0.396</td>
+<td>-0.076</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">further_education</td>
+<td>0.2114</td>
+<td>0.129</td>
+<td>1.633</td>
+<td>0.103</td>
+<td>-0.042</td>
+<td>0.465</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">post_maturita_studies</td>
+<td>0.5907</td>
+<td>0.195</td>
+<td>3.022</td>
+<td>0.003</td>
+<td>0.207</td>
+<td>0.974</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">bachelors_degree</td>
+<td>0.6961</td>
+<td>0.115</td>
+<td>6.030</td>
+<td>0.000</td>
+<td>0.470</td>
+<td>0.922</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">doctoral_degree</td>
+<td>0.2778</td>
+<td>0.214</td>
+<td>1.296</td>
+<td>0.195</td>
+<td>-0.142</td>
+<td>0.698</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">masters_degree</td>
+<td>0.5969</td>
+<td>0.088</td>
+<td>6.815</td>
+<td>0.000</td>
+<td>0.425</td>
+<td>0.769</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">higher_vocational_education</td>
+<td>0.5115</td>
+<td>0.144</td>
+<td>3.559</td>
+<td>0.000</td>
+<td>0.230</td>
+<td>0.793</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">higher_vocational_education_in_a_conservatory</td>
+<td>2.0816</td>
+<td>0.509</td>
+<td>4.086</td>
+<td>0.000</td>
+<td>1.083</td>
+<td>3.080</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">primary_education</td>
+<td>-0.2957</td>
+<td>0.088</td>
+<td>-3.353</td>
+<td>0.001</td>
+<td>-0.469</td>
+<td>-0.123</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">complete_secondary_vocational_education</td>
+<td>0.3216</td>
+<td>0.085</td>
+<td>3.775</td>
+<td>0.000</td>
+<td>0.155</td>
+<td>0.489</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">complete_secondary_general_education</td>
+<td>0.2972</td>
+<td>0.088</td>
+<td>3.388</td>
+<td>0.001</td>
+<td>0.125</td>
+<td>0.469</td>
+</tr>
+</tbody>
+</table>
+<table class="simpletable table table-sm table-striped small" data-quarto-postprocess="true">
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">Omnibus:</td>
+<td>286.683</td>
+<td data-quarto-table-cell-role="th">Durbin-Watson:</td>
+<td>1.974</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">Prob(Omnibus):</td>
+<td>0.000</td>
+<td data-quarto-table-cell-role="th">Jarque-Bera (JB):</td>
+<td>766.532</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">Skew:</td>
+<td>0.226</td>
+<td data-quarto-table-cell-role="th">Prob(JB):</td>
+<td>3.55e-167</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">Kurtosis:</td>
+<td>4.655</td>
+<td data-quarto-table-cell-role="th">Cond. No.</td>
+<td>3.43e+04</td>
+</tr>
+</tbody>
+</table>
+<br><br>Notes:<br>[1] Standard Errors assume that the covariance matrix of the errors is correctly specified.<br>[2] The condition number is large, 3.43e+04. This might indicate that there are<br>strong multicollinearity or other numerical problems.
+</div>
+</div>
+<div class="cell" data-execution_count="18">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>fixed_effects <span class="op">=</span> ols_fe.params.<span class="bu">filter</span>(like<span class="op">=</span><span class="st">"okres"</span>)</span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>fixed_effects.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="18">
+<pre><code>okres[Benešov]        53.569563
+okres[Beroun]         55.369844
+okres[Blansko]        49.994365
+okres[Brno-město]     47.337083
+okres[Brno-venkov]    52.959431
+dtype: float64</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="19">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>fixed_effects.index <span class="op">=</span> fixed_effects.index.<span class="bu">str</span>.strip(</span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">"okres["</span></span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>).<span class="bu">str</span>.strip(<span class="st">"]"</span>)</span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>fixed_effects.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="19">
+<pre><code>Benešov        53.569563
+Beroun         55.369844
+Blansko        49.994365
+Brno-město     47.337083
+Brno-venkov    52.959431
+dtype: float64</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="20">
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>elections_data.merge(fixed_effects.to_frame(<span class="st">"fixed_effect"</span>), left_on<span class="op">=</span><span class="st">"okres"</span>, right_index<span class="op">=</span><span class="va">True</span>, how<span class="op">=</span><span class="st">"left"</span>).plot(<span class="st">"fixed_effect"</span>, legend<span class="op">=</span><span class="va">True</span>, vmin<span class="op">=</span><span class="dv">30</span>, vmax<span class="op">=</span><span class="dv">70</span>, cmap<span class="op">=</span><span class="st">"PRGn"</span>).set_axis_off()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<p><img src="hands_on_files/figure-html/cell-21-output-1.png" width="507" height="402"></p>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Spatial regimes and spatial dependence
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Link to the book</p>
+<section id="spatial-regimes" class="level3">
+<h3 class="anchored" data-anchor-id="spatial-regimes">Spatial regimes</h3>
+<p><em>differernces of constant and coefficients - spreg</em></p>
+</section>
+<section id="spatial-dependence-possibly-only-via-literature" class="level2">
+<h2 class="anchored" data-anchor-id="spatial-dependence-possibly-only-via-literature">Spatial dependence (possibly only via literature?)</h2>
+<p><em>based on spatial configuration via W</em> - <em>lagged explanatory</em> - <em>lagged error</em> - <em>lagged dependent as another explanatory (no OLS)</em></p>
+</section>
+</div>
+</div>
+</section>
+</section>
+<section id="geographically-weighted-regression" class="level2">
+<h2 class="anchored" data-anchor-id="geographically-weighted-regression">Geographically weighted regression</h2>
+<ul>
+<li>kernels
+<ul>
+<li>shape</li>
+<li>size</li>
+<li>fixed / adaptive</li>
+</ul></li>
+</ul>
+<p>https://smds-book.github.io/smds/08-weighted-regression-modelling.html</p>
+<section id="fixed-bandwidth" class="level3">
+<h3 class="anchored" data-anchor-id="fixed-bandwidth">Fixed bandwidth</h3>
+<div class="cell" data-execution_count="21">
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>coords <span class="op">=</span> elections_data.centroid.get_coordinates().values</span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> elections_data[<span class="ss">f"PetrPavel"</span>].values.reshape(<span class="op">-</span><span class="dv">1</span>, <span class="dv">1</span>)</span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> elections_data[variable_names].values</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-execution_count="22">
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>fixed_bandwidth <span class="op">=</span> mgwr.gwr.GWR(coords, y, X, bw<span class="op">=</span><span class="dv">25_000</span>, fixed<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>results_fb <span class="op">=</span> fixed_bandwidth.fit()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>/home/runner/micromamba/envs/sds/lib/python3.11/site-packages/spglm/iwls.py:36: LinAlgWarning: Ill-conditioned matrix (rcond=4.36156e-20): result may not be accurate.
+  xtx_inv_xt = linalg.solve(xtx, xT)</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="23">
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>results_fb.summary()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>===========================================================================
+Model type                                                         Gaussian
+Number of observations:                                                6254
+Number of covariates:                                                    14
+
+Global Regression Results
+---------------------------------------------------------------------------
+Residual sum of squares:                                         472435.355
+Log-likelihood:                                                  -22397.315
+AIC:                                                              44822.630
+AICc:                                                             44824.707
+BIC:                                                             417891.662
+R2:                                                                   0.423
+Adj. R2:                                                              0.422
+
+Variable                              Est.         SE  t(Est/SE)    p-value
+------------------------------- ---------- ---------- ---------- ----------
+X0                                  36.341      9.252      3.928      0.000
+X1                                  -0.174      0.104     -1.676      0.094
+X2                                  -0.450      0.171     -2.632      0.008
+X3                                  -0.073      0.093     -0.786      0.432
+X4                                   0.604      0.147      4.114      0.000
+X5                                   0.991      0.223      4.433      0.000
+X6                                   0.801      0.131      6.124      0.000
+X7                                   0.860      0.237      3.624      0.000
+X8                                   0.761      0.099      7.699      0.000
+X9                                   1.369      0.160      8.539      0.000
+X10                                  2.404      0.584      4.117      0.000
+X11                                 -0.290      0.101     -2.878      0.004
+X12                                  0.506      0.097      5.197      0.000
+X13                                  0.450      0.100      4.485      0.000
+
+Geographically Weighted Regression (GWR) Results
+---------------------------------------------------------------------------
+Spatial kernel:                                          Fixed bisquare
+Bandwidth used:                                                   25000.000
+
+Diagnostic information
+---------------------------------------------------------------------------
+Residual sum of squares:                                         197205.111
+Effective number of parameters (trace(S)):                         1411.387
+Degree of freedom (n - trace(S)):                                  4842.613
+Sigma estimate:                                                       6.381
+Log-likelihood:                                                  -19665.391
+AIC:                                                              42155.555
+AICc:                                                             42980.347
+BIC:                                                              51676.422
+R2:                                                                   0.759
+Adjusted R2:                                                          0.689
+Adj. alpha (95%):                                                     0.000
+Adj. critical t value (95%):                                          3.485
+
+Summary Statistics For GWR Parameter Estimates
+---------------------------------------------------------------------------
+Variable                   Mean        STD        Min     Median        Max
+-------------------- ---------- ---------- ---------- ---------- ----------
+X0                       12.981    164.590  -1321.925     29.616   2143.456
+X1                        0.133      1.753    -21.518     -0.001     12.361
+X2                        0.045      2.204    -16.465      0.109     13.673
+X3                        0.172      1.667    -21.854      0.015     12.977
+X4                        0.578      2.320    -23.645      0.385     20.838
+X5                        0.834      2.472    -29.763      0.802     32.429
+X6                        1.080      1.971    -22.924      1.018     17.149
+X7                        1.016      3.175    -36.485      0.980     27.718
+X8                        1.007      1.635    -20.412      0.865     13.268
+X9                        1.051      2.219    -15.730      0.887     20.739
+X10                       2.085      6.206    -28.910      2.212     49.485
+X11                       0.151      1.731    -21.594     -0.014     15.680
+X12                       0.634      1.691    -20.264      0.473     12.963
+X13                       0.636      1.682    -22.330      0.428     15.057
+===========================================================================
+</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="24">
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>elections_data.plot(results_fb.localR2.flatten(), legend<span class="op">=</span><span class="va">True</span>).set_axis_off()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<p><img src="hands_on_files/figure-html/cell-25-output-1.png" width="511" height="389"></p>
+</div>
+</div>
+</section>
+<section id="adaptive-bandwidth" class="level3">
+<h3 class="anchored" data-anchor-id="adaptive-bandwidth">Adaptive bandwidth</h3>
+<div class="cell" data-execution_count="25">
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>sel_bw <span class="op">=</span> mgwr.sel_bw.Sel_BW(coords, y, X)</span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>bw <span class="op">=</span> sel_bw.search()</span>
+<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>bw</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="25">
+<pre><code>236.0</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="26">
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>adaptive <span class="op">=</span> mgwr.gwr.GWR(coords, y, X, bw<span class="op">=</span>bw, fixed<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>results_ab <span class="op">=</span> adaptive.fit()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-execution_count="27">
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>results_ab.summary()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>===========================================================================
+Model type                                                         Gaussian
+Number of observations:                                                6254
+Number of covariates:                                                    14
+
+Global Regression Results
+---------------------------------------------------------------------------
+Residual sum of squares:                                         472435.355
+Log-likelihood:                                                  -22397.315
+AIC:                                                              44822.630
+AICc:                                                             44824.707
+BIC:                                                             417891.662
+R2:                                                                   0.423
+Adj. R2:                                                              0.422
+
+Variable                              Est.         SE  t(Est/SE)    p-value
+------------------------------- ---------- ---------- ---------- ----------
+X0                                  36.341      9.252      3.928      0.000
+X1                                  -0.174      0.104     -1.676      0.094
+X2                                  -0.450      0.171     -2.632      0.008
+X3                                  -0.073      0.093     -0.786      0.432
+X4                                   0.604      0.147      4.114      0.000
+X5                                   0.991      0.223      4.433      0.000
+X6                                   0.801      0.131      6.124      0.000
+X7                                   0.860      0.237      3.624      0.000
+X8                                   0.761      0.099      7.699      0.000
+X9                                   1.369      0.160      8.539      0.000
+X10                                  2.404      0.584      4.117      0.000
+X11                                 -0.290      0.101     -2.878      0.004
+X12                                  0.506      0.097      5.197      0.000
+X13                                  0.450      0.100      4.485      0.000
+
+Geographically Weighted Regression (GWR) Results
+---------------------------------------------------------------------------
+Spatial kernel:                                           Adaptive bisquare
+Bandwidth used:                                                     236.000
+
+Diagnostic information
+---------------------------------------------------------------------------
+Residual sum of squares:                                         236315.313
+Effective number of parameters (trace(S)):                          923.602
+Degree of freedom (n - trace(S)):                                  5330.398
+Sigma estimate:                                                       6.658
+Log-likelihood:                                                  -20231.136
+AIC:                                                              42311.476
+AICc:                                                             42632.704
+BIC:                                                              48544.198
+R2:                                                                   0.712
+Adjusted R2:                                                          0.662
+Adj. alpha (95%):                                                     0.001
+Adj. critical t value (95%):                                          3.369
+
+Summary Statistics For GWR Parameter Estimates
+---------------------------------------------------------------------------
+Variable                   Mean        STD        Min     Median        Max
+-------------------- ---------- ---------- ---------- ---------- ----------
+X0                       10.097    123.398   -547.414     29.093    502.800
+X1                        0.152      1.337     -4.657     -0.004      5.597
+X2                        0.089      1.685     -5.757      0.090      6.345
+X3                        0.202      1.262     -4.762      0.025      5.768
+X4                        0.626      1.635     -3.378      0.475      6.735
+X5                        0.892      1.781     -4.506      0.749      5.922
+X6                        1.094      1.392     -3.578      1.062      7.809
+X7                        0.958      2.215     -6.627      0.919      9.032
+X8                        1.048      1.237     -3.895      0.881      6.413
+X9                        1.147      1.645     -3.542      1.016      8.496
+X10                       2.274      4.718     -9.970      2.370     20.543
+X11                       0.174      1.281     -4.854     -0.028      5.646
+X12                       0.667      1.297     -4.785      0.463      6.615
+X13                       0.656      1.248     -3.979      0.449      6.007
+===========================================================================
+</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="28">
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>elections_data.plot(results_ab.localR2.flatten(), legend<span class="op">=</span><span class="va">True</span>).set_axis_off()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<p><img src="hands_on_files/figure-html/cell-29-output-1.png" width="511" height="389"></p>
+</div>
+</div>
+<div class="cell" data-execution_count="29">
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>fig, axs <span class="op">=</span> plt.subplots(<span class="dv">4</span>, <span class="dv">3</span>, figsize<span class="op">=</span>(<span class="dv">9</span>, <span class="dv">9</span>))</span>
+<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a>axs <span class="op">=</span> axs.flatten()</span>
+<span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i, name <span class="kw">in</span> <span class="bu">enumerate</span>(variable_names[<span class="dv">1</span>:]):</span>
+<span id="cb39-4"><a href="#cb39-4" aria-hidden="true" tabindex="-1"></a>    elections_data.plot(results_ab.params[:, i <span class="op">+</span> <span class="dv">2</span>], cmap<span class="op">=</span><span class="st">"cividis"</span>, ax<span class="op">=</span>axs[i])</span>
+<span id="cb39-5"><a href="#cb39-5" aria-hidden="true" tabindex="-1"></a>    axs[i].set_title(name[:<span class="dv">20</span>], fontdict<span class="op">=</span>{<span class="st">'fontsize'</span>: <span class="dv">8</span>})</span>
+<span id="cb39-6"><a href="#cb39-6" aria-hidden="true" tabindex="-1"></a>    axs[i].set_axis_off()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<p><img src="hands_on_files/figure-html/cell-30-output-1.png" width="689" height="677"></p>
+</div>
+</div>
+
+
+</section>
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -872,7 +2827,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     <div class="nav-footer-left">
       &nbsp;
     </div>   
-    <div class="nav-footer-center">Course material by <a href="https://martinfleischmann.net">Martin Fleischmann</a>. Available under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a>.<div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/martinfleis/sds/issues/new" class="toc-action">Report an issue</a></p></div></div></div>
+    <div class="nav-footer-center">Course material by <a href="https://martinfleischmann.net">Martin Fleischmann</a>. Available under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a>.</div>
     <div class="nav-footer-right">
       &nbsp;
     </div>
