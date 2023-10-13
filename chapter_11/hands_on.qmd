@@ -6,7 +6,7 @@ format: html
 <!--
 - scikit-learn classification
 - scikit-learn regression
-- spatial component via feature engineering (proximity variables, lags) -->
+- spatial component via feature engineering (proximity variables, lags) ala spatial dependence-->
 
 ::: {.callout-note appearance="simple"}
 
