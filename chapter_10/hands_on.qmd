@@ -128,6 +128,22 @@ ols_fe = sm.ols(formula_fe, data=elections_data).fit()
 ols_fe.summary()
 ```
 
+```{python}
+fixed_effects = ols_fe.params.filter(like="okres")
+fixed_effects.head()
+```
+
+```{python}
+fixed_effects.index = fixed_effects.index.str.strip(
+    "okres["
+).str.strip("]")
+fixed_effects.head()
+```
+
+```{python}
+elections_data.merge(fixed_effects.to_frame("fixed_effect"), left_on="okres", right_index=True, how="left").plot("fixed_effect", legend=True, vmin=30, vmax=70, cmap="PRGn").set_axis_off()
+```
+
 ::: {.callout-tip}
 # Spatial regimes and spatial dependence
 
