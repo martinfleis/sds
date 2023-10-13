@@ -36,3 +36,5 @@ dependencies:
   - pip
   - pip:
       - KDEpy
+      - git+https://github.com/pysal/spglm.git
+      - git+https://github.com/martinfleis/mgwr.git@summary_names

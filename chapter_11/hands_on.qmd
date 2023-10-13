@@ -3,9 +3,10 @@ title: "Classification and regression"
 format: html
 ---
 
-<!-- - scikit-learn classification
+<!--
+- scikit-learn classification
 - scikit-learn regression
-- spatial component -->
+- spatial component via feature engineering (proximity variables, lags) -->
 
 ::: {.callout-note appearance="simple"}
 

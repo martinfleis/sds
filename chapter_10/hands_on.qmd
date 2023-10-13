@@ -6,7 +6,7 @@ format: html
 <!-- - non-spatial regression
 - GWR
 - feature eng
-- spatial heterogeneiry
+- spatial heterogeneity
 - spatial dependence -->
 
 ::: {.callout-note appearance="simple"}
@@ -16,3 +16,193 @@ format: html
 This section will contain hands-on material that will appear later.
 
 :::
+
+```{python}
+import geopandas as gpd
+import pandas as pd
+import mgwr
+import seaborn as sns
+import matplotlib.pyplot as plt
+from libpysal import graph
+import statsmodels.formula.api as sm
+import esda
+```
+
+```{python}
+elections = gpd.read_file(
+    "../chapter_05/data/cz_elections_2023.gpkg"
+)
+elections = elections.set_index("name")
+elections.head()
+```
+
+```{python}
+education = pd.read_csv("data/education.csv")
+education.head()
+```
+
+```{python}
+elections_data = elections.merge(education, left_on="nationalCode", right_on="uzemi_kod")
+elections_data.head()
+```
+
+## Non-spatial linear regression
+
+### OLS model
+
+```{python}
+variable_names = education.columns.drop(["uzemi_kod", "okres", "without_education"])
+variable_names
+```
+
+```{python}
+formula = f"PetrPavel ~ {' + '.join(variable_names)}"
+formula
+```
+
+```{python}
+ols = sm.ols(formula, data=elections_data).fit()
+```
+
+```{python}
+ols.summary()
+```
+
+### Spatial exploration of the model (hidden structures)
+
+```{python}
+elections_data["residual"] = ols.resid
+elections_data.plot("residual", legend=True)
+```
+
+```{python}
+medians = (
+    elections_data.groupby("okres")
+    .residual.median()
+    .to_frame("okres_residual")
+)
+f, ax = plt.subplots(figsize=(16, 6))
+sns.boxplot(data=elections_data.merge(
+        medians, how="left", left_on="okres", right_index=True
+    ).sort_values("okres_residual"), x="okres", y="residual")
+_ = plt.xticks(rotation=90)
+```
+
+```{python}
+contiguity_r = graph.Graph.build_contiguity(elections_data).transform("r")
+```
+
+```{python}
+elections_data["residual_lag"] = contiguity_r.lag(elections_data["residual"])
+```
+
+```{python}
+f, ax = plt.subplots(1, figsize=(6, 6))
+sns.regplot(x="residual", y="residual_lag", data=elections_data, ci=None, ax=ax, marker=".", line_kws=dict(color="k"))
+```
+```{python}
+lisa = esda.Moran_Local(elections_data['residual'], contiguity_r.to_W())
+```
+
+```{python}
+from splot.esda import lisa_cluster, moran_scatterplot
+
+_ = lisa_cluster(lisa, elections_data)
+```
+
+## Spatial heterogeneity
+
+_differences within categoricals_
+
+### Spatial fixed effects
+
+_differences of constant - categorical as a dummy explanatory_
+
+
+```{python}
+formula_fe = f"PetrPavel ~ {' + '.join(variable_names)} + okres - 1"
+ols_fe = sm.ols(formula_fe, data=elections_data).fit()
+```
+
+```{python}
+ols_fe.summary()
+```
+
+::: {.callout-tip}
+# Spatial regimes and spatial dependence
+
+Link to the book
+
+### Spatial regimes
+
+_differernces of constant and coefficients - spreg_
+
+## Spatial dependence (possibly only via literature?)
+
+_based on spatial configuration via W_
+    - _lagged explanatory_
+    - _lagged error_
+    - _lagged dependent as another explanatory (no OLS)_
+:::
+
+## Geographically weighted regression
+
+- kernels
+    - shape
+    - size
+    - fixed / adaptive
+
+https://smds-book.github.io/smds/08-weighted-regression-modelling.html
+
+### Fixed bandwidth
+
+```{python}
+coords = elections_data.centroid.get_coordinates().values
+y = elections_data[f"PetrPavel"].values.reshape(-1, 1)
+X = elections_data[variable_names].values
+```
+
+```{python}
+fixed_bandwidth = mgwr.gwr.GWR(coords, y, X, bw=25_000, fixed=True)
+results_fb = fixed_bandwidth.fit()
+```
+
+```{python}
+results_fb.summary()
+```
+
+```{python}
+elections_data.plot(results_fb.localR2.flatten(), legend=True).set_axis_off()
+```
+
+### Adaptive bandwidth
+
+```{python}
+sel_bw = mgwr.sel_bw.Sel_BW(coords, y, X)
+bw = sel_bw.search()
+bw
+```
+
+```{python}
+adaptive = mgwr.gwr.GWR(coords, y, X, bw=bw, fixed=False)
+results_ab = adaptive.fit()
+```
+
+```{python}
+results_ab.summary()
+```
+
+```{python}
+elections_data.plot(results_ab.localR2.flatten(), legend=True).set_axis_off()
+```
+
+
+```{python}
+fig, axs = plt.subplots(4, 3, figsize=(9, 9))
+axs = axs.flatten()
+for i, name in enumerate(variable_names[1:]):
+    elections_data.plot(results_ab.params[:, i + 2], cmap="cividis", ax=axs[i])
+    axs[i].set_title(name[:20], fontdict={'fontsize': 8})
+    axs[i].set_axis_off()
+```
+
