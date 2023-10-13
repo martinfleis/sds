@@ -399,7 +399,7 @@ In order to calculate Moran's $I$ in your dataset, you can call a specific funct
 PySAL's 'esda' module directly:
 
 ```{python}
-mi = esda.Moran(elections['Petr Pavel'], contiguity_r.to_W())  # <1>
+mi = esda.Moran(elections['PetrPavel'], contiguity_r.to_W())  # <1>
 ```
 1. `Moran` assumes a row-standardised matrix in the old `W` format. Note how you do not need to use the standardised version of the variable in this context, as you will not represent it visually.
 
@@ -496,7 +496,7 @@ phenomenon, etc.
 In Python, you can calculate LISAs in a very streamlined way thanks to `esda`:
 
 ```{python}
-lisa = esda.Moran_Local(elections['Petr Pavel'], contiguity_r.to_W())
+lisa = esda.Moran_Local(elections['PetrPavel'], contiguity_r.to_W())
 ```
 
 All you need to pass is the variable of interest -the percentage of Pavel's votes- and the
