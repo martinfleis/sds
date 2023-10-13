@@ -84,7 +84,8 @@ to download any dataset:
 ```{python}
 #| classes: explore
 elections = gpd.read_file(
-    "https://martinfleischmann.net/sds/chapter_05/data/cz_elections_2023.gpkg"
+    # "https://martinfleischmann.net/sds/chapter_05/data/cz_elections_2023.gpkg"
+    "data/cz_elections_2023.gpkg"
 )
 elections = elections.set_index("name") # <1>
 elections.explore(                      # <2>
