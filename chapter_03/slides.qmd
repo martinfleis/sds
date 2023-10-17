@@ -115,7 +115,8 @@ quality
 ### Detailed
 
 ::: {.fragment .fade-in}
-Potentially, much more **detailed*
+Potentially, much more **detailed**
+:::
 
 ::: {.fragment .fade-in}
 in both space and time
