@@ -340,10 +340,9 @@ sns.regplot(
     x="PP_std",
     y="PP_std_lag",
     data=elections,
-    ci=None,
-    ax=ax,
     marker=".",
     scatter_kws={"alpha": 0.2},                 # <1>
+    line_kws=dict(color="lightcoral")
 )
 plt.axvline(0, c="black", alpha=0.5)
 plt.axhline(0, c="black", alpha=0.5)
