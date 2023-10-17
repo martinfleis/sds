@@ -46,7 +46,7 @@ permits. A few requirements:
 - Plot the price.
 - Plot boundaries on top. Try different colours to get a nice combination of colours.
 - Show a legend.
-- Use CartoDB Voyager or Dark Matter basemap.
+- Use CartoDB Voyager or CartoDB Dark Matter basemap.
 - Can you figure out how to change the colormap?
 - Can you change the transparency of polygons?
 
