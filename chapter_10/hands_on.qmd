@@ -6,6 +6,11 @@ format:
 jupyter: sds
 ---
 
+::: {.callout-caution}
+# Still in works
+This notebook currently requires development versions of `mgwr` and `spglm` packages specified in the [environment file](../environment.yml).
+:::
+
 When trying to determine the effect of some (independent) variables on the outcome of phenomena (dependent variable), you often
 use regression to model such an outcome and understand the influence each of the variables has in the model.
 With spatial regression, it is the same. You just need to use the spatial dimension in a
@@ -15,15 +20,15 @@ This chapter provides an introduction to ways of incorporating space into regres
 spatial variables in standard linear regression to geographically weighted regression.
 
 ```{python}
-import geopandas as gpd
-import pandas as pd
-import numpy as np
-import mgwr
-import seaborn as sns
-import matplotlib.pyplot as plt
-from libpysal import graph
-import statsmodels.formula.api as sm
 import esda
+import geopandas as gpd
+import matplotlib.pyplot as plt
+import mgwr
+import numpy as np
+import pandas as pd
+import seaborn as sns
+import statsmodels.formula.api as sm
+from libpysal import graph
 from splot.esda import lisa_cluster
 ```
 
@@ -33,7 +38,7 @@ You will work with the same data you already used in the chapter on [spatial aut
 
 ```{python}
 elections = gpd.read_file(
-    "../chapter_05/data/cz_elections_2023.gpkg"
+    "https://martinfleischmann.net/sds/chapter_05/data/cz_elections_2023.gpkg"
 )
 elections = elections.set_index("name")
 elections.head()
