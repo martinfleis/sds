@@ -3,17 +3,11 @@ title: "Space as math"
 format: html
 ---
 
-<!-- The concept of weights and graphs. And sparse matrices. Plus spatial lag. -->
+Slides from the talk about the concept of spatial graphs or spatial weights as a formal mathematical representation of space.
 
-::: {.callout-note appearance="simple"}
-
-## The contents will appear later
-
-This section will cover the lecture delivered as part of the in-person course. Slides will appear here shortly before the lesson, followed by the summary of the contents in the days after, based on the lecture transcript.
-
-Have a look at the related reading in the meantime.
-
-:::
+```{=html}
+<iframe class="slide-deck" src="slides.html"></iframe>
+```
 
 ::: {.callout-tip}
 ## Related reading
