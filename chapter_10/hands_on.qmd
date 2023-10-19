@@ -353,7 +353,7 @@ Visually, you can imagine a spatial kernel being constructed around each locatio
 
 ![Illustration of two spatial kernels across a point pattern.](figures/fixed_bandwidth.png){#fig-kernel}
 
-Illustrations of kernels. Reproduced from Fotheringham et al. [-@Fotheringham_et_al_2002_book, pp.44-45]
+Illustrations of kernels. Reproduced from Fotheringham et al. [-@fotheringham2002geographically, pp.44-45]
 :::
 
 With kernels being the core of the GWR method, their specification significantly affects the resulting model. You can specify three parameters:
@@ -362,7 +362,7 @@ With kernels being the core of the GWR method, their specification significantly
 - **Kernel size**: The bandwidth distance specifying how large is the moving window.
 - **Bandwidth adaptivity**: Bandwidth can be either fixed, specified by the metric distance, where the moving window is essentially formed as a buffer around a point, or adaptive, specified by the number of nearest neighbours.
 
-The details of the implications of the choices are beyond the scope of this lesson but are discussed in-depth by @Fotheringham_et_al_2002_book.
+The details of the implications of the choices are beyond the scope of this lesson but are discussed in-depth by @fotheringham2002geographically.
 
 ### Fixed bandwidth
 
@@ -544,7 +544,7 @@ Have a look at the chapter
 from the Geographic Data Science with Python by @rey2023geographic for more details
 and some other extensions.
 
-If you'd like to learn the details of GWR, _Geographically Weighted Regression_ by @Fotheringham_et_al_2002_book is a good start.
+If you'd like to learn the details of GWR, _Geographically Weighted Regression_ by @fotheringham2002geographically is a good start.
 :::
 
 ## Acknowledgements {.appendix}
