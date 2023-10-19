@@ -1,0 +1,635 @@
+---
+title: "Space as math"
+format:
+    revealjs:
+        theme: [default, ../assets/reveal.scss]
+        logo: ../assets/logo.svg
+        menu: false
+        transition: fade
+        navigation-mode: linear
+        controls-layout: edges
+        code-fold: true
+jupyter: sds
+---
+```{python}
+#| echo: false
+
+import geopandas as gpd
+from libpysal import graph
+import matplotlib.pyplot as plt
+import numpy as np
+from mapclassify import greedy
+from libpysal.cg import voronoi_frames
+from shapely import Point, LineString
+
+np.random.seed(42)
+width = 8
+height = 5
+buffer = 1.4
+points = gpd.GeoDataFrame(geometry=gpd.GeoSeries.from_xy(np.random.uniform(0, width, 100), np.random.uniform(0, height, 100)))
+regions, _ = voronoi_frames(points.get_coordinates().values)
+centre = regions.index[regions.intersects(Point(width / 2, height / 2))].item()
+rook = graph.Graph.build_contiguity(regions)
+band = regions.iloc[[centre]].centroid.buffer(buffer).boundary
+db = graph.Graph.build_distance_band(regions.centroid, buffer)
+knn = graph.Graph.build_knn(regions.centroid, k=5)
+knn1 = graph.Graph.build_knn(regions.centroid, k=1)
+kernel10 = graph.Graph.build_kernel(regions.centroid, k=20)
+
+regions.loc[regions.centroid.cx[:width * .2, :height * .7].index, "block"] = 0
+regions.loc[regions.centroid.cx[width * .2:width *.6, :height * .4].index, "block"] = 1
+regions.loc[regions.centroid.cx[:width * .2, height * .7:].index, "block"] = 2
+regions.loc[regions.centroid.cx[width * .6:, :].index, "block"] = 3
+regions["block"] = regions["block"].fillna(4)
+block = graph.Graph.build_block_contiguity(regions["block"])
+
+cont2 = rook.higher_order(2)
+cont3 = rook.higher_order(3)
+cont4 = rook.higher_order(4)
+
+regions["comps"] = knn1.component_labels
+
+
+def plot(
+    graph, gdf, indexed_on=None, ax=None, color="k", node_kws=None, edge_kws=None
+):
+    """Plot spatial weights objects. **Requires** ``matplotlib``, and
+    implicitly requires a ``geopandas.GeoDataFrame`` as input.
+
+    Parameters
+    ----------
+    gdf : geopandas.GeoDataFrame
+        The original shapes whose topological relations are modelled in ``W``.
+    indexed_on : str
+        Column of ``geopandas.GeoDataFrame`` that the weights object uses
+        as an index. Default is ``None``, so the index of the
+        ``geopandas.GeoDataFrame`` is used.
+    ax : matplotlib.axes.Axes
+        Axis on which to plot the weights. Default is ``None``, so
+        plots on the current figure.
+    color : str
+        ``matplotlib`` color string, will color both nodes and edges
+        the same by default.
+    node_kws : dict
+        Keyword arguments dictionary to send to ``pyplot.scatter``,
+        which provides fine-grained control over the aesthetics
+        of the nodes in the plot.
+    edge_kws : dict
+        Keyword arguments dictionary to send to ``pyplot.plot``,
+        which provides fine-grained control over the aesthetics
+        of the edges in the plot.
+
+    Returns
+    -------
+    f : matplotlib.figure.Figure
+        Figure on which the plot is made.
+    ax : matplotlib.axes.Axes
+        Axis on which the plot is made.
+
+    Notes
+    -----
+    If you'd like to overlay the actual shapes from the
+    ``geopandas.GeoDataFrame``, call ``gdf.plot(ax=ax)`` after this.
+    To plot underneath, adjust the z-order of the plot as follows:
+    ``gdf.plot(ax=ax,zorder=0)``.
+
+    Examples
+    --------
+
+    >>> from libpysal.weights import Queen
+    >>> import libpysal as lp
+    >>> import geopandas
+    >>> gdf = geopandas.read_file(lp.examples.get_path("columbus.shp"))
+    >>> weights = Queen.from_dataframe(gdf)
+    >>> tmp = weights.plot(gdf, color='firebrickred', node_kws=dict(marker='*', color='k'))
+    """
+    try:
+        import matplotlib.pyplot as plt
+    except ImportError:
+        raise ImportError(
+            "W.plot depends on matplotlib.pyplot, and this was"
+            "not able to be imported. \nInstall matplotlib to"
+            "plot spatial weights."
+        )
+    if ax is None:
+        f = plt.figure()
+        ax = plt.gca()
+    else:
+        f = plt.gcf()
+    if node_kws is not None:
+        if "color" not in node_kws:
+            node_kws["color"] = color
+    else:
+        node_kws = dict(color=color)
+    if edge_kws is not None:
+        if "color" not in edge_kws:
+            edge_kws["color"] = color
+    else:
+        edge_kws = dict(color=color)
+
+    seen = list()
+    for idx, neighbors in graph.neighbors.items():
+        if idx in graph.islands:
+            continue
+        if indexed_on is not None:
+            neighbors = gdf[gdf[indexed_on].isin(neighbors)].index.tolist()
+            idx = gdf[gdf[indexed_on] == idx].index.tolist()[0]
+        centroids = gdf.loc[neighbors].centroid.apply(lambda p: (p.x, p.y))
+        centroids = np.vstack(centroids.values)
+        focal = np.hstack(gdf.loc[idx].geometry.centroid.xy)
+        for nidx, neighbor in zip(neighbors, centroids):
+            if (idx, nidx) in seen or (nidx, idx) in seen:
+                continue
+            ax.plot(*list(zip(focal, neighbor)), marker=None, **edge_kws)
+            seen.append((idx, nidx))
+            seen.append((nidx, idx))
+    ax.scatter(
+        gdf.centroid.apply(lambda p: p.x),
+        gdf.centroid.apply(lambda p: p.y),
+        **node_kws,
+    )
+    return f, ax
+
+```
+
+# How to include space in statistics?
+
+---
+
+## We need its mathematical representation
+
+::: {.r-fit-text .fragment .fade-in}
+geometries are not
+:::
+
+---
+
+::: {.r-fit-text .absolute top=25%}
+graphs are
+:::
+
+# What is a graph?
+
+[a data structure]{.fragment .fade-in} [that consists of a set of objects called nodes]{.fragment .fade-in} [and a set of connections between them called edges]{.fragment .fade-in}
+
+---
+
+## Matrix
+
+$$
+\begin{array}{cccc}
+0 & w_{12} & \dots & w_{1N} \\
+w_{21} & \ddots & w_{ij} & \vdots \\
+\vdots & w_{ji} & 0 & \vdots \\
+w_{N1} & \dots & \dots & 0
+\end{array}
+$$
+
+## Matrix
+
+$$
+\begin{array}{cccc}
+0 & 1 & 0 & 0 \\
+1 & 0 & 1 & 1 \\
+1 & 1 & 0 & 0 \\
+0 & 0 & 1 & 0
+\end{array}
+$$
+
+---
+
+::: {.r-fit-text .absolute top=45%}
+mathematical structure capturing spatial relationships
+:::
+
+
+# What is a neighbour?
+
+---
+
+::: {.r-fit-text .absolute top=25%}
+it depends
+:::
+
+## Contiguity
+
+### [Two geometries are considered neighbours]{.fragment .fade-in} [if they share at least one vertex (_queen contiguity_)]{.fragment .fade-in} [or one edge (_rook contiguity_).]{.fragment .fade-in}
+
+---
+```{python}
+# | fig-cap: Starting with some polygons...
+f, ax = plt.subplots(figsize=(12, 8))
+regions.plot(color="#f84260", ax=ax)
+# regions.plot(greedy(regions), cmap="bone", alpha=.1, ax=ax)
+regions.boundary.plot(linewidth=.8, edgecolor="w", ax=ax)
+ax.set_axis_off();
+```
+
+---
+```{python transition="fade"}
+# | fig-cap: Focus on this one. Which are its neighbours?
+f, ax = plt.subplots(figsize=(12, 8))
+regions.plot(color="#f84260", ax=ax, alpha=1)
+regions.boundary.plot(linewidth=.8, edgecolor="w", ax=ax)
+regions.iloc[[centre]].plot(ax=ax, color="#25b497")
+ax.set_axis_off();
+```
+
+---
+
+```{python}
+# | fig-cap: Based on (rook) contiguity, these.
+f, ax = plt.subplots(figsize=(12, 8))
+regions.drop(rook[centre].index).plot(color="#f84260", ax=ax, alpha=1)
+regions.boundary.plot(linewidth=.8, edgecolor="w", ax=ax)
+regions.iloc[[centre]].plot(ax=ax, color="#25b497")
+regions.iloc[rook[centre].index].plot(ax=ax, color="#25b497", alpha=.6)
+ax.set_axis_off();
+```
+
+---
+
+```{python}
+# | fig-cap: Here is a complete graph.
+f, ax = plt.subplots(figsize=(12, 8))
+regions.drop(rook[centre].index).plot(color="#f84260", ax=ax, alpha=1)
+regions.boundary.plot(linewidth=.8, edgecolor="w", ax=ax)
+regions.iloc[[centre]].plot(ax=ax, color="#25b497")
+regions.iloc[rook[centre].index].plot(ax=ax, color="#25b497", alpha=.6)
+
+plot(rook.to_W(), regions, ax=ax, color="k", edge_kws=dict(linestyle="dotted"), node_kws=dict(s=0))
+ax.set_axis_off();
+```
+
+---
+
+```{python}
+# | fig-cap: Here is a complete graph.
+f, ax = plt.subplots(figsize=(12, 8))
+regions.plot(color="w", ax=ax, alpha=0)
+
+plot(rook.to_W(), regions, ax=ax, color="k", edge_kws=dict(linewidth=.3), node_kws=dict(s=0))
+ax.set_axis_off();
+```
+
+## Distance
+
+### [Two geometries are considered neighbours]{.fragment .fade-in} [if they lie within a set threshold from each other]{.fragment .fade-in}
+
+#### Distance band {.fragment .fade-in}
+
+---
+
+```{python}
+# | fig-cap: Everything within a distance is a neighbour.
+f, ax = plt.subplots(figsize=(12, 8))
+regions.plot(color="#f84260", ax=ax, alpha=1)
+regions.boundary.plot(linewidth=.8, edgecolor="w", ax=ax)
+regions.iloc[[centre]].plot(ax=ax, color="#25b497")
+regions.centroid.plot(ax=ax, color="k", markersize=5)
+band.plot(ax=ax, color="k", linestyle="dashed")
+
+ax.set_axis_off();
+```
+
+---
+
+```{python}
+# | fig-cap: Just like this.
+f, ax = plt.subplots(figsize=(12, 8))
+regions.drop(db[centre].index).plot(color="#f84260", ax=ax, alpha=1)
+regions.boundary.plot(linewidth=.8, edgecolor="w", ax=ax)
+regions.iloc[[centre]].plot(ax=ax, color="#25b497")
+regions.iloc[db[centre].index].plot(ax=ax, color="#25b497", alpha=.6)
+regions.centroid.plot(ax=ax, color="k", markersize=5)
+band.plot(ax=ax, color="k", linestyle="dashed")
+ax.set_axis_off();
+```
+---
+
+```{python}
+# | fig-cap: Here is a complete graph. A bit denser.
+f, ax = plt.subplots(figsize=(12, 8))
+regions.drop(db[centre].index).plot(color="#f84260", ax=ax, alpha=1)
+regions.boundary.plot(linewidth=.8, edgecolor="w", ax=ax)
+regions.iloc[[centre]].plot(ax=ax, color="#25b497")
+regions.iloc[db[centre].index].plot(ax=ax, color="#25b497", alpha=.6)
+regions.centroid.plot(ax=ax, color="k", markersize=5)
+band.plot(ax=ax, color="k", linestyle="dashed")
+
+plot(db.to_W(), regions, ax=ax, color="k", edge_kws=dict(linestyle="dotted"), node_kws=dict(s=0))
+ax.set_axis_off();
+```
+---
+
+```{python}
+# | fig-cap: Here is a complete graph. A bit denser.
+f, ax = plt.subplots(figsize=(12, 8))
+regions.plot(color="w", ax=ax, alpha=0)
+
+plot(db.to_W(), regions, ax=ax, color="k", edge_kws=dict(linewidth=.3), node_kws=dict(s=0))
+ax.set_axis_off();
+```
+
+## Distance
+
+### [A geometry is considered a neighbour]{.fragment .fade-in} [if it is no further than K-1 others]{.fragment .fade-in}
+
+#### K-nearest neighbour {.fragment .fade-in}
+
+---
+
+```{python}
+# | fig-cap: Only a set number of nearest geometries are neighbours.
+f, ax = plt.subplots(figsize=(12, 8))
+regions.plot(color="#f84260", ax=ax, alpha=1)
+regions.boundary.plot(linewidth=.8, edgecolor="w", ax=ax)
+regions.iloc[[centre]].plot(ax=ax, color="#25b497")
+regions.centroid.plot(ax=ax, color="k", markersize=5)
+
+lines = []
+for nei in knn[centre].index:
+    lines.append(LineString([regions.centroid.iloc[centre], regions.centroid.iloc[nei]]))
+gpd.GeoSeries(lines).plot(ax=ax, color="k")
+
+ax.set_axis_off();
+```
+---
+
+```{python}
+# | fig-cap: In this case $k=5$.
+f, ax = plt.subplots(figsize=(12, 8))
+regions.drop(knn[centre].index).plot(color="#f84260", ax=ax, alpha=1)
+regions.boundary.plot(linewidth=.8, edgecolor="w", ax=ax)
+regions.iloc[[centre]].plot(ax=ax, color="#25b497")
+regions.centroid.plot(ax=ax, color="k", markersize=5)
+regions.iloc[knn[centre].index].plot(ax=ax, color="#25b497", alpha=.6)
+
+lines = []
+for nei in knn[centre].index:
+    lines.append(LineString([regions.centroid.iloc[centre], regions.centroid.iloc[nei]]))
+gpd.GeoSeries(lines).plot(ax=ax, color="k")
+
+ax.set_axis_off();
+```
+
+---
+
+```{python}
+# | fig-cap: And a graph.
+f, ax = plt.subplots(figsize=(12, 8))
+regions.drop(knn[centre].index).plot(color="#f84260", ax=ax, alpha=1)
+regions.boundary.plot(linewidth=.8, edgecolor="w", ax=ax)
+regions.iloc[[centre]].plot(ax=ax, color="#25b497")
+regions.centroid.plot(ax=ax, color="k", markersize=5)
+regions.iloc[knn[centre].index].plot(ax=ax, color="#25b497", alpha=.6)
+
+plot(knn.to_W(), regions, ax=ax, color="k", edge_kws=dict(linestyle="dotted"), node_kws=dict(s=0))
+
+ax.set_axis_off();
+```
+
+---
+
+```{python}
+# | fig-cap: And a graph.
+f, ax = plt.subplots(figsize=(12, 8))
+regions.plot(color="w", ax=ax, alpha=0)
+
+plot(knn.to_W(), regions, ax=ax, color="k", edge_kws=dict(linewidth=.3), node_kws=dict(s=0))
+ax.set_axis_off();
+```
+
+---
+
+```{python}
+# | fig-cap: This would be the same with $k=1$.
+f, ax = plt.subplots(figsize=(12, 8))
+regions.drop(knn1[centre].index).plot(color="#f84260", ax=ax, alpha=1)
+regions.boundary.plot(linewidth=.8, edgecolor="w", ax=ax)
+regions.iloc[[centre]].plot(ax=ax, color="#25b497")
+regions.centroid.plot(ax=ax, color="k", markersize=5)
+regions.iloc[knn1[centre].index].plot(ax=ax, color="#25b497", alpha=.6)
+
+plot(knn1.to_W(), regions, ax=ax, color="k", edge_kws=dict(linestyle="dotted"), node_kws=dict(s=0))
+
+ax.set_axis_off();
+```
+---
+
+```{python}
+# | fig-cap: This would be the same with $k=1$.
+f, ax = plt.subplots(figsize=(12, 8))
+regions.plot(color="w", ax=ax, alpha=0)
+
+plot(knn1.to_W(), regions, ax=ax, color="k", edge_kws=dict(linewidth=.3), node_kws=dict(s=0))
+ax.set_axis_off();
+```
+
+## Block contiguity/regions
+
+### [Two geometries are considered neighbours]{.fragment .fade-in} [if they belong to the same group]{.fragment .fade-in}
+
+---
+
+```{python}
+# | fig-cap: Let's assume five regions.
+f, ax = plt.subplots(figsize=(12, 8))
+for region in range(5):
+    regions.query(f"block == {region}").dissolve().plot(ax=ax, color="#f84260", alpha=.2 + .2 * region)
+    regions.query(f"block == {region}").dissolve().boundary.plot(ax=ax, linewidth=6, edgecolor="w")
+regions.boundary.plot(linewidth=.8, edgecolor="w", ax=ax)
+
+ax.set_axis_off();
+```
+
+---
+
+```{python}
+# | fig-cap: Let's assume four regions. Each polygon belongs to one.
+f, ax = plt.subplots(figsize=(12, 8))
+for region in range(5):
+    regions.query(f"block == {region}").dissolve().plot(ax=ax, color="#f84260", alpha=.2 + .2 * region)
+    regions.iloc[[centre]].plot(ax=ax, color="#25b497")
+    regions.query(f"block == {region}").dissolve().boundary.plot(ax=ax, linewidth=6, edgecolor="w")
+regions.boundary.plot(linewidth=.8, edgecolor="w", ax=ax)
+
+ax.set_axis_off();
+```
+
+---
+
+```{python}
+# | fig-cap: All geometries within a region are neighbours.
+f, ax = plt.subplots(figsize=(12, 8))
+regions.drop(block[centre].index).plot(color="#f84260", ax=ax, alpha=1)
+regions.boundary.plot(linewidth=.8, edgecolor="w", ax=ax)
+regions.iloc[[centre]].plot(ax=ax, color="#25b497")
+regions.iloc[block[centre].index].plot(ax=ax, color="#25b497", alpha=.6)
+
+for region in range(4):
+    regions.query(f"block == {region}").dissolve().boundary.plot(ax=ax, linewidth=6, edgecolor="w")
+
+ax.set_axis_off();
+```
+
+---
+
+```{python}
+# | fig-cap: Graph forms isolated components.
+f, ax = plt.subplots(figsize=(12, 8))
+regions.drop(block[centre].index).plot(color="#f84260", ax=ax, alpha=1)
+regions.boundary.plot(linewidth=.8, edgecolor="w", ax=ax)
+regions.iloc[[centre]].plot(ax=ax, color="#25b497")
+regions.iloc[block[centre].index].plot(ax=ax, color="#25b497", alpha=.6)
+
+plot(block.to_W(), regions, ax=ax, color="k", edge_kws=dict(linestyle="dotted"), node_kws=dict(s=0))
+
+ax.set_axis_off();
+```
+---
+
+```{python}
+# | fig-cap: Graph forms isolated components.
+f, ax = plt.subplots(figsize=(12, 8))
+regions.plot(color="w", ax=ax, alpha=0)
+
+plot(block.to_W(), regions, ax=ax, color="k", edge_kws=dict(linewidth=.3), node_kws=dict(s=0))
+ax.set_axis_off();
+```
+
+# Graph routines
+
+## Order of contiguity
+
+---
+
+```{python}
+# | fig-cap: Let's bring back contiguity.
+f, ax = plt.subplots(figsize=(12, 8))
+regions.drop(rook[centre].index).plot(color="#f84260", ax=ax, alpha=1)
+regions.boundary.plot(linewidth=.8, edgecolor="w", ax=ax)
+regions.iloc[[centre]].plot(ax=ax, color="#25b497")
+regions.iloc[rook[centre].index].plot(ax=ax, color="#25b497", alpha=.6)
+ax.set_axis_off();
+```
+
+---
+
+```{python}
+# | fig-cap: Order 2 of contiguity
+f, ax = plt.subplots(figsize=(12, 8))
+regions.drop(cont2[centre].index).plot(color="#f84260", ax=ax, alpha=1)
+regions.boundary.plot(linewidth=.8, edgecolor="w", ax=ax)
+regions.iloc[[centre]].plot(ax=ax, color="#25b497")
+regions.iloc[cont2[centre].index].plot(ax=ax, color="#25b497", alpha=.6)
+ax.set_axis_off();
+```
+---
+```{python}
+# | fig-cap: Order 3 of contiguity
+f, ax = plt.subplots(figsize=(12, 8))
+regions.drop(cont3[centre].index).plot(color="#f84260", ax=ax, alpha=1)
+regions.boundary.plot(linewidth=.8, edgecolor="w", ax=ax)
+regions.iloc[[centre]].plot(ax=ax, color="#25b497")
+regions.iloc[cont3[centre].index].plot(ax=ax, color="#25b497", alpha=.6)
+ax.set_axis_off();
+```
+---
+
+```{python}
+# | fig-cap: Order 4 of contiguity
+f, ax = plt.subplots(figsize=(12, 8))
+regions.drop(cont4[centre].index).plot(color="#f84260", ax=ax, alpha=1)
+regions.boundary.plot(linewidth=.8, edgecolor="w", ax=ax)
+regions.iloc[[centre]].plot(ax=ax, color="#25b497")
+regions.iloc[cont4[centre].index].plot(ax=ax, color="#25b497", alpha=.6)
+ax.set_axis_off();
+```
+
+## Component analysis
+
+---
+
+```{python}
+# | fig-cap: Let's bring back KNN with $k=1$.
+f, ax = plt.subplots(figsize=(12, 8))
+regions.plot(color="#f84260", ax=ax, alpha=1)
+regions.boundary.plot(linewidth=.8, edgecolor="w", ax=ax)
+regions.centroid.plot(ax=ax, color="k", markersize=5)
+
+plot(knn1.to_W(), regions, ax=ax, color="k", edge_kws=dict(linestyle="dotted"), node_kws=dict(s=0))
+
+ax.set_axis_off();
+```
+
+---
+
+```{python}
+# | fig-cap: You can identify connected components.
+f, ax = plt.subplots(figsize=(12, 8))
+regions.plot(color="#f84260", ax=ax, alpha=1)
+regions.boundary.plot(linewidth=.8, edgecolor="w", ax=ax)
+regions.centroid.plot(ax=ax, color="k", markersize=5)
+
+for comp in regions.comps.unique():
+    regions.query(f"comps == {comp}").dissolve().boundary.plot(ax=ax, linewidth=6, edgecolor="w")
+
+plot(knn1.to_W(), regions, ax=ax, color="k", edge_kws=dict(linestyle="dotted"), node_kws=dict(s=0))
+
+ax.set_axis_off();
+```
+
+# Weights are not always binary
+
+---
+
+```{python}
+# | fig-cap: Look at 20 nearest neighbours.
+f, ax = plt.subplots(figsize=(12, 8))
+regions.plot(color="#f84260", ax=ax, alpha=1)
+regions.boundary.plot(linewidth=.8, edgecolor="w", ax=ax)
+regions.iloc[[centre]].plot(ax=ax, color="#25b497")
+regions.centroid.plot(ax=ax, color="k", markersize=5)
+
+lines = []
+vals = []
+for nei in kernel10[centre].index:
+    lines.append(LineString([regions.centroid.iloc[centre], regions.centroid.iloc[nei]]))
+    vals.append(kernel10[centre][nei])
+gpd.GeoDataFrame({"w":vals}, geometry=lines).plot(ax=ax, color="k")
+
+ax.set_axis_off();
+```
+---
+
+```{python}
+# | fig-cap: The closer a neighbour is, the higher the weight it has.
+f, ax = plt.subplots(figsize=(12, 8))
+regions.plot(color="#f84260", ax=ax, alpha=1)
+regions.boundary.plot(linewidth=.8, edgecolor="w", ax=ax)
+regions.iloc[[centre]].plot(ax=ax, color="#25b497")
+regions.centroid.plot(ax=ax, color="k", markersize=5)
+
+lines = []
+vals = []
+for nei in kernel10[centre].index:
+    lines.append(LineString([regions.centroid.iloc[centre], regions.centroid.iloc[nei]]))
+    vals.append(kernel10[centre][nei])
+gpd.GeoDataFrame({"w":vals}, geometry=lines).plot(ax=ax, color="k", linewidth=np.array(vals)**3 * 2000, alpha=.5)
+
+ax.set_axis_off();
+```
+
+---
+
+```{python}
+# | fig-cap: time to code
+f, ax = plt.subplots(figsize=(12, 8))
+plot(cont4.to_W(), regions, ax=ax, color="k", edge_kws=dict(linewidth=.1), node_kws=dict(s=0))
+ax.set_axis_off();
+```
+
+::: {.r-fit-text .absolute top=35% .fragment .fade-in}
+from libpysal import graph
+:::
