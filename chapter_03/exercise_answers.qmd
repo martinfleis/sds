@@ -112,6 +112,6 @@ sorted_price.idxmin()
 What is the difference between the cheapest and the most expensive one?
 
 ```{python}
-sorted_price.max() - sorted_price.mean()
+sorted_price.max() - sorted_price.min()
 ```
 
