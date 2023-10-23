@@ -4,8 +4,6 @@ format:
   html: default
   ipynb: default
 jupyter: sds
-execute:
-  echo: false
 ---
 
 
@@ -13,17 +11,17 @@ Here is one way of getting the solution. There are others, feel free to
 share yours.
 
 
-```{python}
+```py
 import geopandas as gpd
 import contextily as ctx
 ```
 
-```{python}
+```py
 price = gpd.read_file("https://opendata.iprpraha.cz/CUR/SED/SED_CenovaMapa_p/S_JTSK/SED_CenovaMapa_p_shp.zip")
 districts = gpd.read_file("https://opendata.iprpraha.cz/CUR/MAP/MAP_MESTSKECASTI_P/S_JTSK/MAP_MESTSKECASTI_P_shp.zip")
 ```
 
-```{python}
+```py
 price["CENA"] = price["CENA"].replace("N", None).astype('float')
 ```
 
@@ -36,14 +34,14 @@ price["CENA"] = price["CENA"].replace("N", None).astype('float')
 
 Interactive:
 
-```{python}
+```py
 m = price.explore("CENA", legend=True, tiles="CartoDB Voyager", cmap="plasma", style_kwds={"fillOpacity": .5})
 districts.boundary.explore(m=m, color="red")
 ```
 
 Static:
 
-```{python}
+```py
 ax = price.plot("CENA", legend=True, cmap="plasma", alpha=.5)
 districts.boundary.plot(ax=ax, color="red")
 ctx.add_basemap(ax=ax, crs=price.crs, source="CartoDB Voyager")
@@ -51,19 +49,19 @@ ctx.add_basemap(ax=ax, crs=price.crs, source="CartoDB Voyager")
 
 Create a convex hull around each polygon in price.
 
-```{python}
+```py
 price["hull"] = price.convex_hull
 ```
 
 Calculate the area of these convex hulls.
 
-```{python}
+```py
 price["hull_area"] = price["hull"].area
 ```
 
 Find the 20% smallest convex hulls in the GeoDataFrame. Create a new object (e.g. smallest) only with them.
 
-```{python}
+```py
 total_length = len(price)  # get total length
 twenty_percent = total_length / 5  # get the length of 20%
 twenty_percent
@@ -71,32 +69,32 @@ twenty_percent
 
 You can either type it in:
 
-```{python}
+```py
 smallest = price.sort_values("hull_area").iloc[:1889]
 ```
 
 Or convert the `float` to `int` and use it programmatically.
 
-```{python}
+```py
 smallest = price.sort_values("hull_area").iloc[:int(twenty_percent)]
 ```
 
 Create a multi-layer map of Prague where the smallest areas are coloured in one colour, and the rest appear in black. _(I need to revise this task, the result is not great...)_
 
-```{python}
+```py
 ax = price.plot(color="black")
 smallest.plot(ax=ax, color="red")
 ```
 
 Join the two GeoDataFrame using .sjoin() or .overlay() methods.
 
-```{python}
+```py
 price_w_district = price.sjoin(districts)
 ```
 
 Is the mean price higher in Praha 3 or Praha 6?
 
-```{python}
+```py
 sorted_price = price_w_district.groupby("NAZEV_MC")["CENA"].mean().sort_values()
 sorted_price
 ```
@@ -107,13 +105,13 @@ Which district is the cheapest?
 
 Again, you can read that it is Praha-Přední Kopanina. But if you want to get that programmatically, you will need to access the index.
 
-```{python}
+```py
 sorted_price.idxmin()
 ```
 
 What is the difference between the cheapest and the most expensive one?
 
-```{python}
+```py
 sorted_price.max() - sorted_price.min()
 ```
 
