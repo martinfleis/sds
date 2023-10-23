@@ -4,6 +4,8 @@ format:
   html: default
   ipynb: default
 jupyter: sds
+execute:
+  echo: false
 ---
 
 
