@@ -195,7 +195,7 @@ queen.isolates    # <1>
 
 Spatial weight matrices can be explored visually in other ways. For example, you can pick
 an observation and visualise it in the context of its neighbourhood. The following plot
-does exactly that by zooming into the surroundings of LSOA `Albertov` and displaying
+does exactly that by zooming into the surroundings of ZSJ `Albertov` and displaying
 its polygon as well as those of its neighbours:
 
 ```{python}
@@ -368,8 +368,8 @@ block weights is a list of memberships. In this class of weights, neighbouring
 observations, those in the same group, are assigned a weight of one, and the rest
 receive a weight of zero.
 
-In this example, you will build a spatial weights matrix that connects every LSOA with
-all the other ones in the same MSOA. See how the MSOA code is expressed for every LSOA:
+In this example, you will build a spatial weights matrix that connects every ZSJ with
+all the other ones in the same KU. See how the KU code is expressed for every ZSJ:
 
 ```{python}
 prague.head()
