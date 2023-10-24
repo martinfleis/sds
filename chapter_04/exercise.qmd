@@ -9,7 +9,7 @@ It is time to work with spatial weights matrices by yourself.
 
 You are familiar with Prague from the last section, so let's zoom out to zones of suburbanisation
 around Prague and other Czech cities. Head over to the [DataHub](https://datahub.natur.cuni.cz) of the Faculty of Science and
-download the dataset called ["Zóny rezidenční suburbanizace 2008-2016"](https://datahub.natur.cuni.cz/datasets/zóny-rezidenční-suburbanizace-2008-2016/explore) containing the zones of residential suburbanisation outlined by @ouvrednivcek2019between. Download the dataset and open it with `geopandas`. Use `"OBJECTID"` column as an index.
+download the dataset called ["Zóny rezidenční suburbanizace 2008-2016"](https://datahub.natur.cuni.cz/datasets/zóny-rezidenční-suburbanizace-2008-2016/explore) containing the zones of residential suburbanisation outlined by @ouvrednivcek2019between. Download the dataset and open it with `geopandas`. Use `"OBJECTID"` column as an index (other feasible columns are not unique - they contain duplicated entries).
 
 ::: {.callout-note collapse="true"}
 # Backup data
