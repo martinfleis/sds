@@ -24,6 +24,7 @@ dependencies:
   - scikit-learn
   - seaborn >=0.13
   - splot
+  - spglm
   - spreg
   - statsmodels
   - tobler >=0.11.2
@@ -36,5 +37,4 @@ dependencies:
   - pip
   - pip:
       - KDEpy
-      - git+https://github.com/pysal/spglm.git
       - git+https://github.com/martinfleis/mgwr.git@summary_names
