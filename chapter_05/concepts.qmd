@@ -3,19 +3,11 @@ title: "Explore space!"
 format: html
 ---
 
-<!-- - Intro to ESDA as a concept
-- Spatial autocorrelation
-    - both global and local -->
+Slides from the talk about the concept of exploratory spatial data analysis and spatial autocorrelation.
 
-::: {.callout-note appearance="simple"}
-
-## The contents will appear later
-
-This section will cover the lecture delivered as part of the in-person course. Slides will appear here shortly before the lesson, followed by the summary of the contents in the days after, based on the lecture transcript.
-
-Have a look at the related reading in the meantime.
-
-:::
+```{=html}
+<iframe class="slide-deck" src="slides.html"></iframe>
+```
 
 ::: {.callout-tip}
 ## Related reading
@@ -23,3 +15,8 @@ Have a look at the related reading in the meantime.
 Chapters [_Global Spatial Autocorrelation_](https://geographicdata.science/book/notebooks/06_spatial_autocorrelation.html) and [_Local Spatial Autocorrelation_](https://geographicdata.science/book/notebooks/07_local_autocorrelation.html) from
 the Geographic Data Science with Python by @rey2023geographic.
 :::
+
+## Acknowledgements {.appendix}
+
+This section is derived from _A Course on Geographic Data Science_ by
+@darribas_gds_course, licensed under CC-BY-SA 4.0.

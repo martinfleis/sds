@@ -35,3 +35,8 @@ $presentation-slide-text-align: left;
     margin-left: auto;
     margin-right: auto;
 }
+
+.reveal blockquote {
+    color: #f84260;
+    border-left: .25rem solid #f84260;
+}
