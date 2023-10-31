@@ -1,0 +1,153 @@
+---
+title: "Does it correlate?"
+format: html
+---
+
+Here is one way of getting the solution. There are others, feel free to share yours.
+
+```py
+import geopandas as gpd
+import esda
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+from libpysal import graph
+```
+
+Read it as a `GeoDataFrame` and assign a column you think would be the best as an index.
+
+```py
+simd = gpd.read_file("SG_SIMD_2020.zip")
+```
+
+Filter the data to work only with Glasgow.
+
+```py
+glasgow = simd[simd.LAName == "Glasgow City"].set_index("DataZone")
+```
+
+Create contiguity weights based on the reduced dataset.
+
+```py
+contiguity = graph.Graph.build_contiguity(glasgow)
+```
+
+Create a binary variable from `"Rankv2"` encoding areas with rank above city-wide mean.
+
+```py
+mean_rank = glasgow["Rankv2"].mean()
+glasgow["better_half"] = glasgow["Rankv2"] > mean_rank
+```
+
+Measure Join Counts statistic on your new variable.
+
+```py
+jc = esda.Join_Counts(
+    glasgow["better_half"],
+    contiguity.to_W(),
+)
+```
+
+```py
+print(f"""BB: {jc.bb}
+WW: {jc.ww}
+BW: {jc.bw}
+J: {jc.J}
+mean BB: {jc.mean_bb}
+mean BW: {jc.mean_bw}
+p_sim BB: {jc.p_sim_bb}
+""")
+```
+
+Visualise the main `"Rankv2"` with a Moran Plot
+
+```py
+glasgow['rank_std'] = (
+    glasgow["Rankv2"] - glasgow["Rankv2"].mean()
+) / glasgow["Rankv2"].std()
+```
+
+```py
+contiguity_r = contiguity.transform("r")
+
+glasgow['rank_lag'] = contiguity_r.lag(glasgow['rank_std'])
+```
+
+```py
+f, ax = plt.subplots(figsize=(6, 6))
+sns.regplot(
+    x="rank_std",
+    y="rank_lag",
+    data=glasgow,
+    marker=".",
+    scatter_kws={"alpha": 0.2},
+    line_kws=dict(color="lightcoral")
+)
+ax.axvline(0, c="black", alpha=0.5)
+ax.axhline(0, c="black", alpha=0.5)
+```
+
+Calculate Moran's $I$
+
+```py
+mi = esda.Moran(glasgow['rank_std'], contiguity_r.to_W())
+```
+
+```py
+mi.I
+```
+
+```py
+mi.p_sim
+```
+
+Calculate LISA statistics for the areas
+
+```py
+lisa = esda.Moran_Local(glasgow['rank_std'], contiguity_r.to_W())
+```
+
+Make a map of significant clusters at the 5%
+
+```py
+from splot.esda import lisa_cluster
+
+_ = lisa_cluster(lisa, glasgow)
+```
+
+Create cluster maps for significance levels 1%
+
+```py
+_ = lisa_cluster(lisa, glasgow, p=.01)
+```
+
+Create cluster maps for significance levels 10%;
+
+```py
+_ = lisa_cluster(lisa, glasgow, p=.01)
+```
+
+Can you create both interactive and static versions of those maps?
+
+```py
+glasgow.loc[lisa.p_sim < 0.05, 'cluster'] = lisa.q[lisa.p_sim < 0.05]
+glasgow["cluster"] = glasgow["cluster"].fillna(0)
+glasgow["cluster"] = glasgow["cluster"].map(
+    {
+        0: "Not significant",
+        1: "High-high",
+        2: "Low-high",
+        3: "Low-low",
+        4: "High-low",
+    }
+)
+```
+
+```py
+m = glasgow.loc[glasgow["cluster"] == "Not significant"].explore(color="lightgrey", prefer_canvas=True, tiles="CartoDB Positron")
+glasgow.loc[(glasgow["cluster"] == "High-high")].explore(m=m, color="#d7191c")
+glasgow.loc[(glasgow["cluster"] == "Low-low")].explore(m=m, color="#2c7bb6")
+glasgow.loc[(glasgow["cluster"] == "Low-high")].explore(m=m, color="#abd9e9")
+glasgow.loc[(glasgow["cluster"] == "High-low")].explore(m=m, color="#fdae61")
+```
+
