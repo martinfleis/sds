@@ -20,35 +20,16 @@ data later, there was no geometry assigned. That will change today.
 If the link does not work, please [report it](https://github.com/martinfleis/sds/issues/new) and use the [backup](https://martinfleischmann.net/sds/chapter_05/data/SG_SIMD_2020.zip).
 :::
 
-Now, here's a tricky part. The dataset contains isolates. Those are geometries that do not
-share any piece of the border with any other - typically islands.
-
-These cases can create issues in the analysis and distort the results. There are several solutions to this situation, such as connecting the islands to other observations through a different criterium (e.g. nearest neighbour) and combining both spatial weights matrices. For convenience, you will remove them from the dataset because they are a small sample, and their removal is likely not to have a large impact in the calculations.
-
-Technically, this amounts to a subsetting, very much like you saw in the first weeks of the course, although in this case, you will use the `drop` command, which comes in very handy in these cases.
-
-3. Create a contiguity weights matrix.
-4. Check which polygons are isolates. Assuming the `GeoDataFrame` is called `simd` and the weights are called `contiguity`, the code could look like this:
-
-```python
-ax = simd.plot()
-simd.loc[contiguity.isolates].plot(color='red', ax=ax)
-```
-
-5. Drop all the isolates. Again, the code should look like this.
-
-```python
-simd = simd.drop(contiguity.isolates)
-```
-6. Create new contiguity weights based on the reduced dataset.
+3. Filter the data to work only with Glasgow.
+4. Create contiguity weights based on the reduced dataset.
 
 ## Global spatial autocorrelation
 
-With the data prepared like that:
+With the data prepared like this:
 
 ### Join Counts
 
-- Create a binary variable from `"Rankv2"` encoding top 50% of areas.
+- Create a binary variable from `"Rankv2"` encoding areas with rank above city-wide mean.
 - Measure Join Counts statistic on your new variable.
 - *What conclusions can you reach from the Join Counts?*
 
@@ -71,6 +52,7 @@ The last action is a bit more sophisticated, put all your brain power into it an
 :::
 
 - Create cluster maps for significance levels 1% and 10%; compare them with the one we obtained. *What are the main changes? Why?*
+- Can you create both interactive and static versions of those maps?
 
 ## Acknowledgements {.appendix}
 
