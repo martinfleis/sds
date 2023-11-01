@@ -1,9 +1,11 @@
 ---
-title: "Does it correlate?"
+title: Does it correlate?
 format: html
 ---
 
+
 Here is one way of getting the solution. There are others, feel free to share yours.
+
 
 ```py
 import geopandas as gpd
@@ -18,12 +20,28 @@ Read it as a `GeoDataFrame` and assign a column you think would be the best as a
 
 ```py
 simd = gpd.read_file("SG_SIMD_2020.zip")
+simd = simd.set_index("DataZone")
 ```
 
 Filter the data to work only with Glasgow.
 
+If you check the Excel file in the zip above, you will learn that a column LAName represents Local Authority name. You can use it to filter Glasgow.
+
+Since the string may be something else than "Glasgow", let's find out the right one. You can list all unique names in the LAName column.
+
 ```py
-glasgow = simd[simd.LAName == "Glasgow City"].set_index("DataZone")
+simd.LAName.unique()
+```
+
+From that you can see that the right string is 'Glasgow City'. You can use that directly. But if you'd like to know the programmatic way (you can ask chatGPT to explain the code if you need):
+
+```py
+glasgow_name = simd.LAName[simd.LAName.str.contains('Glasgow')].unique()[0]
+glasgow_name
+```
+
+```py
+glasgow = simd[simd.LAName == "Glasgow City"]
 ```
 
 Create contiguity weights based on the reduced dataset.
@@ -47,6 +65,8 @@ jc = esda.Join_Counts(
     contiguity.to_W(),
 )
 ```
+
+Let's print the results i a nice way. Using a multi-line f-string (google!):
 
 ```py
 print(f"""BB: {jc.bb}
