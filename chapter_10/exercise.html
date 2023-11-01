@@ -532,7 +532,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ol type="1">
 <li>Go back to the <a href="../chapter_05/exercise.html">Does it correlate?</a> and load the dataset to your Jupyter Notebook. Do not filter for Glasgow this time, use the whole dataset.</li>
 <li>Let’s try to understand the effect of a proportion of youths entering university (<code>"EduUniver"</code>), crime rate (“<code>CrimeRate</code>”), hospital stays related to alcohol use (<code>"HlthAlcSR"</code>), hospital stays related to drug use (<code>"HlthDrugSR"</code>) and mortality (<code>"HlthSMR")</code>.</li>
-<li>Check the columns and ensure they are all <code>float</code> columns (with numbers, no text.)</li>
+<li>Check the columns and ensure they are all <code>float</code> or <code>int</code> columns (with numbers, no text.)</li>
 </ol>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="false" aria-label="Toggle callout">
@@ -586,17 +586,7 @@ Okay, here’s the code
 <div id="callout-1" class="callout-1-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>This is how the pre-processing could look.</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> [</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">"EduUniver"</span>,</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">"CrimeRate"</span>,</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">"HlthAlcSR"</span>,</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>    <span class="st">"HlthDrugSR"</span>,</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>    <span class="st">"HlthSMR"</span>,</span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>]</span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> column <span class="kw">in</span> data:</span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> simd[column].dtype <span class="op">==</span> <span class="bu">object</span>:</span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>        simd[column] <span class="op">=</span> simd[column].<span class="bu">str</span>.rstrip(<span class="st">'%'</span>).astype(<span class="bu">float</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>simd[<span class="st">"EduUniver"</span>] <span class="op">=</span> simd[<span class="st">"EduUniver"</span>].<span class="bu">str</span>.rstrip(<span class="st">'%'</span>).astype(<span class="bu">float</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </div>
