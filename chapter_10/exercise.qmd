@@ -13,7 +13,7 @@ at the impact of individual components on the overall deprivation ranking.
 
 1. Go back to the [Does it correlate?](../chapter_05/exercise.qmd) and load the dataset to your Jupyter Notebook. Do not filter for Glasgow this time, use the whole dataset.
 2. Let's try to understand the effect of a proportion of youths entering university (`"EduUniver"`), crime rate ("`CrimeRate`"), hospital stays related to alcohol use (`"HlthAlcSR"`), hospital stays related to drug use (`"HlthDrugSR"`) and mortality (`"HlthSMR")`.
-3. Check the columns and ensure they are all `float` columns (with numbers, no text.)
+3. Check the columns and ensure they are all `float`  or `int` columns (with numbers, no text.)
 
 ::: {.callout-tip collapse="true"}
 # A few hints
@@ -36,17 +36,7 @@ The `.str.rstrip()` method will be particularly useful.
 This is how the pre-processing could look.
 
 ```py
-data = [
-    "EduUniver",
-    "CrimeRate",
-    "HlthAlcSR",
-    "HlthDrugSR",
-    "HlthSMR",
-]
-
-for column in data:
-    if simd[column].dtype == object:
-        simd[column] = simd[column].str.rstrip('%').astype(float)
+simd["EduUniver"] = simd["EduUniver"].str.rstrip('%').astype(float)
 ```
 
 :::
