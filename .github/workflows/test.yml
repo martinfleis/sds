@@ -42,10 +42,13 @@ jobs:
               micromamba info
               micromamba list
 
-
           - name: Register kernel
             run: |
               python -m ipykernel install --user --name sds
+
+          - name: Quarto check
+            run: |
+              quarto check
 
           - name: Render Book project
             run: |
