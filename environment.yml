@@ -37,4 +37,4 @@ dependencies:
   - pip
   - pip:
       - KDEpy
-      - git+https://github.com/martinfleis/mgwr.git@summary_names
+      - git+https://github.com/pysal/mgwr.git
