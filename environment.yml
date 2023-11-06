@@ -12,7 +12,7 @@ dependencies:
   - geopandas >=0.14
   - geopy
   - h3-py
-  - libpysal >=4.8
+  - libpysal ==4.8.0
   - openpyxl
   - osmnx
   - pandas
