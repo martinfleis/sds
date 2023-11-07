@@ -1,0 +1,110 @@
+---
+title: "I need more points!"
+format:
+    revealjs:
+        theme: [default, ../assets/reveal.scss]
+        logo: ../assets/logo.svg
+        menu: false
+        transition: slide
+        navigation-mode: linear
+        controls-layout: edges
+---
+
+# Point Pattern Analysis
+
+# Point as a fixed entity
+
+---
+
+::: {.r-fit-text}
+points are **conceptually** similar to **polygons/lines**
+:::
+
+::: {.r-fit-text .fragment .fade-in}
+the **goal**  is, taking a fixed location, to model other aspects of the data
+:::
+
+---
+
+### Examples
+
+::: {.fragment .fade-in}
+#### Cities (in most cases)
+:::
+
+::: {.fragment .fade-in}
+#### Shops
+:::
+
+::: {.fragment .fade-in}
+#### Polygons represented as their centroid
+:::
+
+# Point as an event
+
+---
+
+### Points can represent a fundamentally different way to approach spatial analysis
+
+---
+
+::: {.r-fit-text}
+rather than exhausting the entire space, <br>points can be **events** subject to **occur anywhere**
+:::
+
+::: {.r-fit-text .fragment .fade-in}
+The **location** of the event is **part** <br> of what we are trying to understand/**model**
+:::
+
+::: {.r-fit-text .fragment .fade-in}
+The interest focuses on **characterizing** <br> the **pattern** that the points follow **over space**
+:::
+
+---
+
+### Examples
+
+::: {.fragment .fade-in}
+#### Crime location
+:::
+
+::: {.fragment .fade-in}
+#### Trees
+:::
+
+::: {.fragment .fade-in}
+#### Meteorite hits
+:::
+
+::: {.fragment .fade-in}
+#### Instagram photo locations
+:::
+
+# Point patterns
+
+::: {.r-fit-text .fragment .fade-in}
+Distribution of **points over** a portion of **space**
+:::
+
+::: {.r-fit-text .fragment .fade-in}
+The assumption is a point can happen anywhere in that space but only happens in
+specific locations.
+:::
+---
+
+### Unmarked
+#### locations only{.fragment .fage-in}
+### Marked{.fragment .fage-in}
+#### values attached to each point{.fragment .fage-in}
+
+## Point Pattern Analysis
+
+::: {.r-fit-text .fragment .fade-in}
+Describe, characterise, and explain point patterns,<br> focusing on their **generating process**
+:::
+
+---
+
+::: {.r-fit-text .absolute top=25%}
+import pointpats
+:::

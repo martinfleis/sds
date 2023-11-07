@@ -7,18 +7,20 @@ format: html
 - how to visualise them
 - how to cluster them -->
 
-::: {.callout-note appearance="simple"}
 
-## The contents will appear later
+Slides from the talk about the concept of point patterns and basics of their analytics.
 
-This section will cover the lecture delivered as part of the in-person course. Slides will appear here shortly before the lesson, followed by the summary of the contents in the days after, based on the lecture transcript.
-
-Have a look at the related reading in the meantime.
-
-:::
+```{=html}
+<iframe class="slide-deck" src="slides.html"></iframe>
+```
 
 ::: {.callout-tip}
 ## Related reading
 
 Chapter [_Point Pattern Analysis_](https://geographicdata.science/book/notebooks/08_point_pattern_analysis.html) from the Geographic Data Science with Python by @rey2023geographic.
 :::
+
+## Acknowledgements {.appendix}
+
+This section is derived from _A Course on Geographic Data Science_ by
+@darribas_gds_course, licensed under CC-BY-SA 4.0.
