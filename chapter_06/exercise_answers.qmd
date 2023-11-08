@@ -1,0 +1,249 @@
+---
+title: Is there a pattern?
+format: html
+---
+
+One solution. You may have yours.
+
+```py
+import geopandas as gpd
+import pandas as pd
+import matplotlib.pyplot as plt
+import seaborn as sns
+import pointpats
+import numpy as np
+import contextily
+```
+
+Read the data and create a GeoDataFrame projected to S-JTSK / Krovak East North (EPSG:5514).
+
+```py
+url = "http://data.insideairbnb.com/czech-republic/prague/prague/2023-06-24/data/listings.csv.gz"
+airbnb = pd.read_csv(url)
+airbnb = gpd.GeoDataFrame(
+    airbnb,
+    geometry=gpd.points_from_xy(
+        airbnb["longitude"], airbnb["latitude"], crs="EPSG:4326"
+    ),
+)
+airbnb = airbnb.to_crs("EPSG:5514")
+```
+
+Create a hexbin visualisation of the listings
+
+```py
+airbnb[["x", "y"]] = airbnb.get_coordinates()
+```
+
+```py
+f, ax = plt.subplots()
+airbnb.plot(ax=ax, markersize=0.05)
+hb = ax.hexbin(
+    airbnb["x"],
+    airbnb["y"],
+    gridsize=60,
+    linewidths=0,
+    alpha=0.8,
+    cmap="plasma",
+    mincnt=1,
+)
+# Add basemap
+contextily.add_basemap(
+    ax=ax,
+    crs=airbnb.crs,
+    source="CartoDB Positron",
+)
+# Add colorbar
+plt.colorbar(hb)
+plt.xticks(rotation=90);
+```
+
+Create a kernel density estimate of the distribution of Airbnb’s
+
+```py
+f, ax = plt.subplots()
+airbnb.plot(ax=ax, markersize=0.05, color="grey")
+pointpats.plot_density(
+    airbnb,
+    bandwidth=500,
+    levels=15,
+    alpha=0.55,
+    cmap="plasma",
+    linewidths=1,
+    ax=ax,
+)
+contextily.add_basemap(
+    ax=ax,
+    crs=airbnb.crs,
+    source="CartoDB Positron",
+)
+```
+
+```py
+airbnb.info()
+```
+
+Measure mean, median, and mean weighted by a column of your choice.
+
+```py
+mean_center = pointpats.centrography.mean_center(airbnb[["x", "y"]])
+med_center = pointpats.centrography.euclidean_median(airbnb[["x", "y"]])
+weighted_mean = pointpats.centrography.weighted_mean_center(
+    airbnb[["x", "y"]], airbnb["calculated_host_listings_count"]
+)
+```
+
+Can you plot them on a map?
+
+```py
+f, ax = plt.subplots()
+airbnb.plot(ax=ax, markersize=0.005, color="grey")
+
+ax.scatter(*mean_center, color="k", marker="o", label="Mean Center", alpha=0.8)
+ax.scatter(*med_center, color="r", marker="o", label="Median Center", alpha=0.8)
+ax.scatter(
+    *weighted_mean,
+    color="pink",
+    marker="o",
+    label="Weighted Mean Center",
+    alpha=0.8
+)
+
+ax.legend(loc="upper left")
+
+contextily.add_basemap(
+    ax=ax,
+    crs=airbnb.crs,
+    source="CartoDB Positron No Labels",
+)
+plt.xticks(rotation=90);
+```
+
+Measure quadrat statistic
+
+```py
+qstat = pointpats.QStatistic(airbnb[["x", "y"]].values, nx=6, ny=6)
+```
+
+```py
+qstat.chi2, qstat.chi2_pvalue
+```
+
+```py
+ax = qstat.plot()
+contextily.add_basemap(
+    ax=ax,
+    crs=airbnb.crs,
+    source="CartoDB Positron No Labels",
+)
+plt.xticks(rotation=90);
+```
+
+How does it change when you change the grid size?
+
+```py
+qstat = pointpats.QStatistic(airbnb[["x", "y"]].values, nx=12, ny=10)
+```
+
+```py
+qstat.chi2, qstat.chi2_pvalue
+```
+
+```py
+ax = qstat.plot()
+contextily.add_basemap(
+    ax=ax,
+    crs=airbnb.crs,
+    source="CartoDB Positron No Labels",
+)
+plt.xticks(rotation=90);
+```
+
+Measure Ripley’s G and F
+
+Start with the definition of the extent.
+
+```py
+convex_hull = airbnb.unary_union.convex_hull
+
+ax = airbnb.plot(markersize=0.05)
+gpd.GeoSeries([convex_hull]).plot(
+    ax=ax, facecolor="none", edgecolor="k", linestyle="--"
+)
+plt.xticks(rotation=90);
+```
+
+```py
+g_test = pointpats.distance_statistics.g_test(
+    airbnb[["x", "y"]].values,
+    support=200,
+    keep_simulations=True,
+    hull=convex_hull,
+    n_simulations=99,
+)
+```
+
+Check significance
+
+```py
+np.mean(g_test.pvalue)
+```
+
+Optionally plot. There's no need to change the code.
+
+```py
+f, ax = plt.subplots()
+ax.plot(g_test.support, g_test.simulations.T, color="lightgrey")
+ax.plot(
+    g_test.support,
+    np.median(g_test.simulations, axis=0),
+    color="k",
+    label="median simulation",
+    linestyle="--",
+)
+ax.plot(g_test.support, g_test.statistic, label="observed", color="red")
+ax.set_xlabel("distance [m]")
+ax.set_ylabel(
+    "ratio of nearest neighbor\n"
+    "distances shorter than distance"
+)
+ax.legend()
+ax.set_xlim(0, 500);
+```
+
+```py
+f_test = pointpats.distance_statistics.f_test(
+    airbnb[["x", "y"]].values,
+    support=200,
+    keep_simulations=True,
+    hull=convex_hull,
+    n_simulations=99,
+)
+```
+
+Check significance
+
+```py
+np.mean(f_test.pvalue)
+```
+
+Optionally plot. There's no need to change the code.
+
+```py
+f, ax = plt.subplots()
+ax.plot(f_test.support, f_test.simulations.T, color="lightgrey")
+ax.plot(
+    f_test.support,
+    np.median(f_test.simulations, axis=0),
+    color="k",
+    label="median simulation",
+    linestyle="--",
+)
+ax.plot(f_test.support, f_test.statistic, label="observed", color="red")
+ax.set_xlabel("distance")
+ax.set_ylabel("ratio of points within a distance threshold")
+ax.legend()
+ax.set_xlim(0, 500);
+```
+
+
