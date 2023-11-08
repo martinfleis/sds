@@ -118,6 +118,7 @@ hb = ax.hexbin(                         # <3>
     linewidths=0,                       # <3>
     alpha=0.5,                          # <3>
     cmap="magma_r",                     # <3>
+    mincnt=1,                           # <4>
 )
 # Add basemap
 contextily.add_basemap(
@@ -126,13 +127,14 @@ contextily.add_basemap(
     source="CartoDB Positron No Labels",
 )
 # Add colorbar
-plt.colorbar(hb)                        # <4>
+plt.colorbar(hb)                        # <5>
 plt.xticks(rotation=90);
 ```
 1. Create an empty `matplotlib` figure.
 2. Add points.
 3. Create a `hexbin` layer with 25 cells in x-direction.
-4. Add colour bar legend to the side.
+4. Show only the cells with a minimal count of 1.
+5. Add colour bar legend to the side.
 
 Hexbin gives you a better sense of the density of accidents across the city. There seems to be a large hotspot in the central areas and a few other places that seem to be more dangerous.
 

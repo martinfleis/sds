@@ -144,7 +144,7 @@ _ = lisa_cluster(lisa, glasgow, p=.01)
 Create cluster maps for significance levels 10%;
 
 ```py
-_ = lisa_cluster(lisa, glasgow, p=.01)
+_ = lisa_cluster(lisa, glasgow, p=.1)
 ```
 
 Can you create both interactive and static versions of those maps?
