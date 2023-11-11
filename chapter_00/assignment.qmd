@@ -5,6 +5,12 @@ format: "html"
 
 This course is assessed based on a single final assignment - a computational essay.
 
+::: {.callout-important}
+# Office hours
+
+Students enrolled in `MZ340V17` can book a slot via [cal.com/martinfleis/sds](https://cal.com/martinfleis/sds). The slots are available two weeks ahead and must be booked at least a day in advance.
+:::
+
 ## Computational essay
 
 A computational essay is an essay whose narrative is supported by code and its results,
