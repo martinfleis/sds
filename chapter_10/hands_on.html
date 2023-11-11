@@ -1094,7 +1094,7 @@ Alternative
 </tr>
 <tr class="odd">
 <td data-quarto-table-cell-role="th">Time:</td>
-<td>20:03:03</td>
+<td>20:09:00</td>
 <td data-quarto-table-cell-role="th">Log-Likelihood:</td>
 <td>-22397.</td>
 </tr>
@@ -1296,11 +1296,11 @@ Alternative
 <td data-quarto-table-cell-role="th">Kurtosis:</td>
 <td>3.828</td>
 <td data-quarto-table-cell-role="th">Cond. No.</td>
-<td>5.74e+17</td>
+<td>6.74e+17</td>
 </tr>
 </tbody>
 </table>
-<br><br>Notes:<br>[1] Standard Errors assume that the covariance matrix of the errors is correctly specified.<br>[2] The smallest eigenvalue is 4.03e-29. This might indicate that there are<br>strong multicollinearity problems or that the design matrix is singular.
+<br><br>Notes:<br>[1] Standard Errors assume that the covariance matrix of the errors is correctly specified.<br>[2] The smallest eigenvalue is 2.92e-29. This might indicate that there are<br>strong multicollinearity problems or that the design matrix is singular.
 </div>
 </div>
 <p>It is clear that education composition has a significant effect on the outcome of the elections but can explain only about 42% of its variance (adjusted <span class="math inline">\(R^2\)</span> is 0.422). A higher amount of residents with only primary education tends to lower Pavel’s gain while a higher amount of university degrees tends to increase the number of votes he received. That is nothing unexpected. However, let’s make use of geography and unpack these results a bit.</p>
@@ -1579,7 +1579,7 @@ dtype: float64</code></pre>
 </tr>
 <tr class="odd">
 <td data-quarto-table-cell-role="th">Time:</td>
-<td>20:03:19</td>
+<td>20:09:22</td>
 <td data-quarto-table-cell-role="th">Log-Likelihood:</td>
 <td>-21472.</td>
 </tr>
@@ -2465,11 +2465,11 @@ dtype: float64</code></pre>
 <td data-quarto-table-cell-role="th">Kurtosis:</td>
 <td>4.655</td>
 <td data-quarto-table-cell-role="th">Cond. No.</td>
-<td>2.52e+18</td>
+<td>2.54e+18</td>
 </tr>
 </tbody>
 </table>
-<br><br>Notes:<br>[1] Standard Errors assume that the covariance matrix of the errors is correctly specified.<br>[2] The smallest eigenvalue is 2.09e-30. This might indicate that there are<br>strong multicollinearity problems or that the design matrix is singular.
+<br><br>Notes:<br>[1] Standard Errors assume that the covariance matrix of the errors is correctly specified.<br>[2] The smallest eigenvalue is 2.05e-30. This might indicate that there are<br>strong multicollinearity problems or that the design matrix is singular.
 </div>
 </div>
 <p>The coefficients for each of the values of the categorical variable <code>"okres"</code> are considered spatial fixed effects. You can extract just those from the model by getting the <code>.params</code> <code>Series</code> and filtering it.</p>
@@ -2690,13 +2690,13 @@ Spatial regimes and spatial dependence
 </dl>
 </div>
 <div class="cell-output cell-output-stderr">
-<pre><code>/home/runner/micromamba/envs/sds/lib/python3.11/site-packages/spglm/iwls.py:37: LinAlgWarning: Ill-conditioned matrix (rcond=3.94411e-21): result may not be accurate.
+<pre><code>/home/runner/micromamba/envs/sds/lib/python3.11/site-packages/spglm/iwls.py:37: LinAlgWarning: Ill-conditioned matrix (rcond=4.61298e-21): result may not be accurate.
   xtx_inv_xt = linalg.solve(xtx, xT)
-/home/runner/micromamba/envs/sds/lib/python3.11/site-packages/spglm/iwls.py:37: LinAlgWarning: Ill-conditioned matrix (rcond=3.33013e-22): result may not be accurate.
+/home/runner/micromamba/envs/sds/lib/python3.11/site-packages/spglm/iwls.py:37: LinAlgWarning: Ill-conditioned matrix (rcond=1.59583e-20): result may not be accurate.
   xtx_inv_xt = linalg.solve(xtx, xT)
-/home/runner/micromamba/envs/sds/lib/python3.11/site-packages/spglm/iwls.py:37: LinAlgWarning: Ill-conditioned matrix (rcond=8.5851e-21): result may not be accurate.
+/home/runner/micromamba/envs/sds/lib/python3.11/site-packages/spglm/iwls.py:37: LinAlgWarning: Ill-conditioned matrix (rcond=1.08817e-20): result may not be accurate.
   xtx_inv_xt = linalg.solve(xtx, xT)
-/home/runner/micromamba/envs/sds/lib/python3.11/site-packages/spglm/iwls.py:37: LinAlgWarning: Ill-conditioned matrix (rcond=8.12331e-20): result may not be accurate.
+/home/runner/micromamba/envs/sds/lib/python3.11/site-packages/spglm/iwls.py:37: LinAlgWarning: Ill-conditioned matrix (rcond=8.5898e-20): result may not be accurate.
   xtx_inv_xt = linalg.solve(xtx, xT)</code></pre>
 </div>
 <div class="cell-output cell-output-display" data-execution_count="25">
