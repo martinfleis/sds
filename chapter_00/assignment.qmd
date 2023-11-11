@@ -8,7 +8,7 @@ This course is assessed based on a single final assignment - a computational ess
 ::: {.callout-important}
 # Office hours
 
-Students enrolled in `MZ340V17` can book a slot via [cal.com/martinfleis/sds](https://cal.com/martinfleis/sds). The slots are available two weeks ahead and must be booked at least a day in advance.
+Students enrolled in `MZ340V17` can book a slot to discuss the assignment via [cal.com/martinfleis/sds](https://cal.com/martinfleis/sds). The slots are available two weeks ahead and must be booked at least a day in advance.
 :::
 
 ## Computational essay
