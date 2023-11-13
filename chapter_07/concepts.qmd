@@ -3,24 +3,19 @@ title: "Similar data belong together"
 format: html
 ---
 
-<!-- Intro to clustering
+Slides from the talk introducing concepts of clustering and regionalisation.
 
-- benefits of clustering
-- non-spatial clustering methods
-- spatial clustering (regionalisation) -->
-
-::: {.callout-note appearance="simple"}
-
-## The contents will appear later
-
-This section will cover the lecture delivered as part of the in-person course. Slides will appear here shortly before the lesson, followed by the summary of the contents in the days after, based on the lecture transcript.
-
-Have a look at the related reading in the meantime.
-
-:::
+```{=html}
+<iframe class="slide-deck" src="slides.html"></iframe>
+```
 
 ::: {.callout-tip}
 ## Related reading
 
 Chapter [_Clustering and Regionalization_](https://geographicdata.science/book/notebooks/10_clustering_and_regionalization.html) from the Geographic Data Science with Python by @rey2023geographic.
 :::
+
+## Acknowledgements {.appendix}
+
+This section is derived from _A Course on Geographic Data Science_ by
+@darribas_gds_course, licensed under CC-BY-SA 4.0.
