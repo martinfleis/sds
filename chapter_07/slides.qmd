@@ -162,7 +162,7 @@ plt.legend(frameon=False);
 ax= sns.scatterplot(data=penguins, x="bill_length_mm", y="flipper_length_mm", hue="Cluster", style="species", palette="Set2", legend=True)
 sns.despine(offset=10)
 plt.legend(frameon=False)
-plt.scatter(*((kmeans_std.cluster_centers_ * df.std().values) + df.mean().values).T, color="k")
+plt.scatter(*((kmeans_std.cluster_centers_ * df.std().values) + df.mean().values).T, color="k");
 ```
 
 ---
@@ -180,7 +180,7 @@ distance-based
 ax= sns.scatterplot(data=penguins, x="bill_length_mm", y="flipper_length_mm", hue="Cluster (no stand.)", style="species", palette="Set2", legend=True)
 sns.despine(offset=10)
 plt.legend(frameon=False)
-plt.scatter(*kmeans.cluster_centers_.T, color="k")
+plt.scatter(*kmeans.cluster_centers_.T, color="k");
 ```
 
 ---
@@ -190,7 +190,7 @@ plt.scatter(*kmeans.cluster_centers_.T, color="k")
 ax= sns.scatterplot(data=penguins, x="bill_length_mm", y="flipper_length_mm", hue="Cluster (no stand.)", style="species", palette="Set2", legend=False)
 sns.despine(offset=10)
 plt.scatter(*kmeans.cluster_centers_.T, color="k")
-ax.set_aspect("equal")
+ax.set_aspect("equal");
 ```
 
 ---
