@@ -3341,6 +3341,22 @@ Length: 496, dtype: bool</code></pre>
 <td>...</td>
 </tr>
 <tr class="odd">
+<td data-quarto-table-cell-role="th">G17003100297</td>
+<td>38.1</td>
+<td>4</td>
+<td>0.461538</td>
+<td>0.000000</td>
+<td>0</td>
+<td>3</td>
+<td>1</td>
+<td>4</td>
+<td>0</td>
+<td>8</td>
+<td>10</td>
+<td>0</td>
+<td>26</td>
+</tr>
+<tr class="even">
 <td data-quarto-table-cell-role="th">G17003100209</td>
 <td>124.1</td>
 <td>13</td>
@@ -3356,21 +3372,37 @@ Length: 496, dtype: bool</code></pre>
 <td>0</td>
 <td>1858</td>
 </tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">G17003100093</td>
-<td>71.2</td>
-<td>34</td>
-<td>0.268041</td>
-<td>0.025773</td>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">G17003100293</td>
+<td>40.0</td>
+<td>17</td>
+<td>0.345238</td>
+<td>0.053571</td>
 <td>4</td>
-<td>33</td>
-<td>20</td>
-<td>25</td>
-<td>10</td>
-<td>66</td>
-<td>36</td>
+<td>23</td>
+<td>18</td>
+<td>26</td>
+<td>16</td>
+<td>59</td>
+<td>22</td>
 <td>0</td>
-<td>194</td>
+<td>168</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">G17003100202</td>
+<td>13.1</td>
+<td>6</td>
+<td>0.323326</td>
+<td>0.027714</td>
+<td>5</td>
+<td>40</td>
+<td>24</td>
+<td>37</td>
+<td>28</td>
+<td>218</td>
+<td>78</td>
+<td>0</td>
+<td>430</td>
 </tr>
 <tr class="odd">
 <td data-quarto-table-cell-role="th">G17003100396</td>
@@ -3387,38 +3419,6 @@ Length: 496, dtype: bool</code></pre>
 <td>275</td>
 <td>0</td>
 <td>1084</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">G17003100297</td>
-<td>38.1</td>
-<td>4</td>
-<td>0.461538</td>
-<td>0.000000</td>
-<td>0</td>
-<td>3</td>
-<td>1</td>
-<td>4</td>
-<td>0</td>
-<td>8</td>
-<td>10</td>
-<td>0</td>
-<td>26</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">G17003100488</td>
-<td>1600.1</td>
-<td>3</td>
-<td>0.404762</td>
-<td>0.000000</td>
-<td>2</td>
-<td>5</td>
-<td>4</td>
-<td>7</td>
-<td>1</td>
-<td>17</td>
-<td>6</td>
-<td>0</td>
-<td>42</td>
 </tr>
 </tbody>
 </table>
@@ -3608,20 +3608,20 @@ Length: 496, dtype: bool</code></pre>
 <td>0.000000</td>
 </tr>
 <tr class="even">
-<td data-quarto-table-cell-role="th">G17003100396</td>
-<td>26.2</td>
-<td>8</td>
-<td>0.344066</td>
-<td>0.015639</td>
-<td>14</td>
-<td>54</td>
-<td>31</td>
-<td>53</td>
-<td>48</td>
-<td>609</td>
-<td>275</td>
+<td data-quarto-table-cell-role="th">G17003100093</td>
+<td>71.2</td>
+<td>34</td>
+<td>0.268041</td>
+<td>0.025773</td>
+<td>4</td>
+<td>33</td>
+<td>20</td>
+<td>25</td>
+<td>10</td>
+<td>66</td>
+<td>36</td>
 <td>0</td>
-<td>1084</td>
+<td>194</td>
 <td>0.000000</td>
 </tr>
 <tr class="odd">
@@ -4290,7 +4290,7 @@ dtype: int64</code></pre>
 <div class="sourceCode cell-code" id="cb51"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a>pop_grouped <span class="op">=</span> tidy_population_df.groupby(<span class="st">"age_category"</span>)</span>
 <span id="cb51-2"><a href="#cb51-2" aria-hidden="true" tabindex="-1"></a>pop_grouped</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="50">
-<pre><code>&lt;pandas.core.groupby.generic.DataFrameGroupBy object at 0x7f72031972d0&gt;</code></pre>
+<pre><code>&lt;pandas.core.groupby.generic.DataFrameGroupBy object at 0x7f1f621b2590&gt;</code></pre>
 </div>
 </div>
 <p>The object <code>pop_grouped</code> still hasn’t computed anything. It is only a convenient way of specifying the grouping. But this allows us then to perform a multitude of operations on it. For our example, the sum is calculated as follows:</p>
