@@ -1,0 +1,79 @@
+---
+title: "Data as a grid"
+format:
+    revealjs:
+        theme: [default, ../assets/reveal.scss]
+        logo: ../assets/logo.svg
+        menu: false
+        transition: slide
+        navigation-mode: linear
+        controls-layout: edges
+---
+
+# From geometries to rasters
+
+---
+
+### Some data are not linked to geometries
+### Some data are linked to cells of a grid {.fragment .fade-in}
+
+---
+
+### Grid can be represented as geometries
+### But it is inefficient! {.fragment .fade-in}
+
+# Welcome N-D arrays
+
+---
+
+![N-D arrays in xarray](https://docs.xarray.dev/en/stable/_images/dataset-diagram.png)
+
+---
+
+#### Efficient storage
+#### Efficient processing (grids are predictable!) {.fragment .fade-in}
+#### Efficient scaling {.fragment .fade-in}
+#### Efficient data structure for N-dimensional data {.fragment .fade-in}
+
+---
+
+### Directly reflect the way some data is captured
+
+# Grids in social geography
+
+---
+
+### Usually large (global) scale data
+
+---
+
+![Population grids](figs/population.png)
+
+---
+
+![Built-up area](figs/surface.png)
+
+---
+
+![Built-up volume](figs/volume.png)
+
+---
+
+![Typology of urbanisation](figs/degree.png)
+
+---
+
+### Auxiliary data
+
+---
+
+#### Land cover
+#### Satellite imagery {.fragment .fade-in}
+#### Temperature {.fragment .fade-in}
+#### Weather {.fragment .fade-in}
+
+---
+
+::: {.r-fit-text .absolute top=25%}
+import xarray
+:::

@@ -580,4 +580,6 @@ districts.explore("mean_density", cmap="cividis_r", tiles="CartoDB Positron")
 Have a look at the chapter
 [_Local Spatial Autocorrelation_](https://geographicdata.science/book/notebooks/07_local_autocorrelation.html#bonus-local-statistics-on-surfaces)
 from the Geographic Data Science with Python by @rey2023geographic to learn how to do LISA on rasters.
+
+The great resource on xarray is their [tutorial](https://tutorial.xarray.dev/intro.html).
 :::
