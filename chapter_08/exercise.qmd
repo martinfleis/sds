@@ -5,7 +5,7 @@ format: html
 
 Try to reproduce the similar with different population grids.
 
-## WorlPop data of Kenya
+## WorldPop data of Kenya
 
 Go to [wopr.worldpop.org](https://wopr.worldpop.org/) and download a _Gridded population estimates (~100m) for Kenya_ and a _Kenya 100m Building class_. Each is an archive, so unzip (reading from the zipped archive doesn't seem to work in this case.)
 
