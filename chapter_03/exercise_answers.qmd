@@ -16,9 +16,11 @@ import geopandas as gpd
 import contextily as ctx
 ```
 
+Download data.
+
 ```py
-price = gpd.read_file("https://opendata.iprpraha.cz/CUR/SED/SED_CenovaMapa_p/S_JTSK/SED_CenovaMapa_p_shp.zip")
-districts = gpd.read_file("https://opendata.iprpraha.cz/CUR/MAP/MAP_MESTSKECASTI_P/S_JTSK/MAP_MESTSKECASTI_P_shp.zip")
+price = gpd.read_file("SED_CUR_SED_CENOVAMAPA_P.zip")
+districts = gpd.read_file("MAP_CUR_MAP_MESTSKECASTI_P.zip")
 ```
 
 ```py
