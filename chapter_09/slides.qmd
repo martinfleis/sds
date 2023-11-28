@@ -14,7 +14,8 @@ jupyter: sds
 
 ```{python}
 #| echo: false
-#|
+#| output: false
+
 import geopandas as gpd
 from libpysal.examples import load_example
 
@@ -24,6 +25,7 @@ c2 = load_example('Charleston2')
 crs = 6569
 tracts = gpd.read_file(c1.get_path('sc_final_census2.shp')).to_crs(crs)
 zip_codes = gpd.read_file(c2.get_path('CharlestonMSA2.shp')).to_crs(crs)
+print("echo")
 ```
 
 # From geometries to geometries
