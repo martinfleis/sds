@@ -1,0 +1,152 @@
+---
+title: "Use space in your favour"
+format:
+    revealjs:
+        theme: [default, ../assets/reveal.scss]
+        logo: ../assets/logo.svg
+        menu: false
+        transition: slide
+        navigation-mode: linear
+        controls-layout: edges
+jupyter: sds
+
+---
+
+```{python}
+#| echo: false
+#|
+import geopandas as gpd
+from libpysal.examples import load_example
+
+c1 = load_example('Charleston1')
+c2 = load_example('Charleston2')
+
+crs = 6569
+tracts = gpd.read_file(c1.get_path('sc_final_census2.shp')).to_crs(crs)
+zip_codes = gpd.read_file(c2.get_path('CharlestonMSA2.shp')).to_crs(crs)
+```
+
+# From geometries to geometries
+
+---
+
+### Data comes linked to geometry A
+### Analysis happens on geometry B {.fragment .fade-in}
+
+## Interpolation techniques
+
+#### Polygon to polygon {.fragment .fade-in}
+#### Point to point {.fragment .fade-in}
+
+# Areal interpolation and dasymetric mapping
+
+---
+
+### Data are on one set of polygons
+### Analysis happens on another set of polygons {.fragment .fade-in}
+
+---
+
+::: {.r-fit-text .absolute top=30%}
+proportionally transfer data <br>
+from one set to the other
+:::
+
+## Areal interpolation
+
+---
+
+```{python}
+m = tracts.explore(tiles="CartoDB positron", tooltip=False)
+zip_codes.boundary.explore(m=m, color="red")
+```
+
+---
+
+
+#### Overlay geometries
+#### Get proportions taken by each source geometry {.fragment .fade-in}
+#### Redistribute values proportionally to area {.fragment .fade-in}
+
+
+## Dasymetric interpolation
+
+::: {.r-fit-text .fragment .fade-in}
+areal interpolation with ancillary information
+:::
+
+---
+
+#### Overlay geometries
+#### [Get proportions taken by each source geometry]{.fragment .fade-in} [weighted by ancillary data]{.fragment .fade-in}
+#### Redistribute values proportionally to weight {.fragment .fade-in}
+
+## Pycnophylactic interpolation
+
+---
+
+::: {.r-fit-text .absolute top=30%}
+no sharp boundaries exist
+:::
+
+---
+
+#### Create a smooth volume-preserving contour map from source data
+#### Redistribute values from the contour map to target geometries {.fragment .fade-in}
+
+---
+
+::: {.r-fit-text .absolute top=25%}
+pycnophylactic interpolation does<br>
+<u>not</u> work for intensive variables
+:::
+
+# Point interpolation and kriging
+
+---
+
+### Data are on a marked point pattern
+### Analysis requires values in between {.fragment .fade-in}
+
+---
+
+::: {.r-fit-text .absolute top=25%}
+estimate values in unobserved locations<br>
+based on the spatial distribution of <br>
+values on observed locations
+:::
+
+---
+
+### Assign the value of the nearest point
+### Model value based on neighbors {.fragment .fade-in}
+#### K-nearest neighbours {.fragment .fade-in}
+#### Distance band {.fragment .fade-in}
+
+---
+
+### Use distance (or not)
+#### uniform (binary) weights {.fragment .fade-in}
+#### (inverse) distance-weighted {.fragment .fade-in}
+
+---
+
+## Ordinary Kriging
+
+#### linear combination of observations that are nearby {.fragment .fade-in}
+#### which takes into account geographical proximity, {.fragment .fade-in}
+#### spatial arrangement of observations, {.fragment .fade-in}
+#### and pattern of autocorrelation {.fragment .fade-in}
+
+---
+
+### create experimental variogram
+### fit theoretical variogram {.fragment .fade-in}
+### use theoretical variogram to model values {.fragment .fade-in}
+
+---
+
+::: {.r-fit-text .absolute top=15%}
+import tobler<br>
+import pyinterpolate
+:::

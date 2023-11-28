@@ -555,7 +555,12 @@ exp_semivar = pyinterpolate.build_experimental_variogram(
 1. `step_size` is the distance between lags within each point in included in the calculations.
 2. `max_range` is the maximum range of analysis.
 
-The result can be plotted and explored using the `plot()` method.
+The result can be plotted and explored using the `plot()` method. The experimental variogram
+is a plot that shows how the semivariance between pairs of sample points changes with distance.
+The variogram is calculated by taking pairs of sample points and computing the semivariance of
+the differences in their values at different distances. It measures the degree of relationship
+between points at different distances. Semivariance is half the variance of the differences in values
+between pairs of points at a set distance.
 
 ```{python}
 # | fig-cap: Experimental variogram
@@ -578,7 +583,8 @@ semivar = pyinterpolate.build_theoretical_variogram(
 3. `sill` captures the value at which dissimilarity is close to its maximum if the model is bounded. You can pass the variance from the experimental variogram.
 4. The semivariogram range is the distance at which spatial correlation exists. It shouldn't be set at a distance larger than half of the study extent.
 
-Again, you can plot the result.
+Again, you can plot the result. The theoretical variogram is a model or a mathematical
+function that is fitted to the experimental variogram.
 
 
 ```{python}
@@ -587,12 +593,34 @@ Again, you can plot the result.
 semivar.plot()
 ```
 
+You can see that the linear model does not precisely follow the experimental semivariances.
+Let's try another option.
+
+```{python}
+semivar_spherical = pyinterpolate.build_theoretical_variogram(
+    experimental_variogram=exp_semivar,
+    model_name='spherical',    # <1>
+    sill=exp_semivar.variance,
+    rang=2500, # <2>
+)
+```
+1. Change the model type to spherical.
+2. Change the range of the semivariogram to get a better fit.
+
+Let's see if it is a bit better.
+
+```{python}
+# | fig-cap: Theoretical semivariogram using spherical model
+# | classes: variogram
+semivar_spherical.plot()
+```
+
 Now you are ready to use kriging to interpolate data on your grid.
 
 ```{python}
 ordinary_kriging = pyinterpolate.kriging(
     observations=input_data,    # <1>
-    theoretical_model=semivar,  # <2>
+    theoretical_model=semivar_spherical,  # <2>
     points=grid_coordinates.values, # <3>
     how="ok",   # <4>
     no_neighbors=10,    # <5>
@@ -634,7 +662,14 @@ grid_10["variance_error"] = ordinary_kriging[:, 1]
 _ = grid_10.plot("variance_error", legend=True)
 ```
 
-You can see from the plot of variance error, that anything further away from existing points is becoming fairly unreliable. You can, for example, set the specific threshold of the variance error you think is acceptable and treat all the other locations as _missing_ or _unreliable_.
+You can see from the plot of variance error that anything further away from existing points becomes fairly unreliable. You can, for example, set the specific threshold of the variance error you think is acceptable and treat all the other locations as _missing_ or _unreliable_.
+
+::: {.callout-tip}
+# Check the effect of the theoretical semivariogram model
+
+Explore the difference between kriging using linear and spherical models in
+theoretical semivariograms. What are the other options and their effects?
+:::
 
 ::: {.callout-tip}
 # Additional reading
@@ -647,4 +682,5 @@ about areal interpolation or look at the
 topic of The Geographic Information Science & Technology Body of Knowledge by
 @comber2022areal. The same source also contains a nice
 [explanation of kriging](https://gistbok.ucgis.org/bok-topics/kriging-interpolation) by
-@goovaerts2019kriging. :::
+@goovaerts2019kriging.
+:::
