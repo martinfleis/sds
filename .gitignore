@@ -171,3 +171,5 @@ chapter_04/queen.parquet
 */cache
 .vdoc.py
 chapter_08/population_density.tif
+data/prague_morphology/prg_geometry.gpkg
+data/prague_morphology/prg_primary.csv.gz
