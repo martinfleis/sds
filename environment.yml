@@ -13,6 +13,7 @@ dependencies:
   - geopy
   - h3-py
   - libpysal >=4.8.0
+  - mgwr >=2.2
   - openpyxl
   - osmnx
   - pandas
@@ -37,4 +38,3 @@ dependencies:
   - pip
   - pip:
       - KDEpy
-      - git+https://github.com/pysal/mgwr.git
