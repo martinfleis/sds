@@ -1,0 +1,174 @@
+---
+title: "Relationship and prediction"
+format:
+    revealjs:
+        theme: [default, ../assets/reveal.scss]
+        logo: ../assets/logo.svg
+        menu: false
+        transition: slide
+        navigation-mode: linear
+        controls-layout: edges
+---
+
+# Linear regression
+
+---
+
+::: {.r-fit-text .absolute top=30%}
+$$y_{i}=\alpha+\beta _{1}\ x_{i1}+\beta _{2}\ x_{i2}+\cdots +\beta _{p}\ x_{ip}+\varepsilon _{i}$$
+:::
+
+---
+
+#### $$y_{i}=\alpha+\beta _{1}\ x_{i1}+\beta _{2}\ x_{i2}+\cdots +\beta _{p}\ x_{ip}+\varepsilon _{i}$$
+#### $\alpha$ = constant {.fragment .fade-in}
+#### $x_{1}$ = value of a variable $1$ {.fragment .fade-in}
+#### $x_{2}$ = value of a variable $2$ {.fragment .fade-in}
+#### $\beta$ = regression coefficient {.fragment .fade-in}
+#### $\varepsilon$ = error {.fragment .fade-in}
+
+---
+
+### Prediction
+### Relationship or effect {.fragment .fade-in}
+
+## Evaluation
+
+---
+
+### $R^2$
+
+#### Coefficient of determination {.fragment .fade-in}
+#### Variance of dependent that can be explained by independent {.fragment .fade-in}
+#### 0...1 {.fragment .fade-in}
+
+---
+
+### $\beta$
+
+#### Regression coefficient {.fragment .fade-in}
+#### Captures the relationship between the dependent variable and independent variable {.fragment .fade-in}
+### Each $\beta$ has a $p$ value {.fragment .fade-in}
+
+---
+
+### Residuals
+
+#### $\varepsilon$ {.fragment .fade-in}
+#### The error {.fragment .fade-in}
+#### Deviation of the prediction from the observation {.fragment .fade-in}
+
+---
+
+## Assumptions
+
+---
+
+### Linearity
+#### Dependent variable is assumed to be a linear combination of independent variables {.fragment .fade-in}
+
+---
+
+### Weak exogeneity
+#### Independent variables are assumed to contain no error {.fragment .fade-in}
+
+---
+
+### Constant variance
+#### Variance of errors does not depend on the value of the dependent variable {.fragment .fade-in}
+
+---
+
+### Independence of errors
+#### Residuals are not correlated with independent variables {.fragment .fade-in}
+
+---
+
+### No perfect multicollinearity
+#### Independent variables are not perfectly multicollinear {.fragment .fade-in}
+
+# Spatial evaluation
+
+---
+
+### Spatial dimension of residuals
+#### Spatial autocorrelation means a problem {.fragment .fade-in}
+#### Dependent variable is spatially heterogeneous {.fragment .fade-in}
+#### The relationship between $\alpha$, dependent and independent variables varies across space {.fragment .fade-in}
+
+# Spatial heterogeneity
+
+---
+
+### Spatially dependent $\alpha$
+### Spatially dependent $\beta$ {.fragment .fade-in}
+
+---
+
+### Spatially dependent $\alpha$
+#### Spatial fixed effects {.fragment .fade-in}
+#### Spatially explicit (categorical) variable accounting for regional differences {.fragment .fade-in}
+
+---
+
+### Spatially dependent $\beta$
+#### Spatial regimes {.fragment .fade-in}
+#### All $\alpha$ and $\beta$ coefficients can vary geographically {.fragment .fade-in}
+#### Spatially explicit (categorical) variable accounting for regional differences {.fragment .fade-in}
+
+# Spatial dependence
+
+---
+
+::: {.r-fit-text .absolute top=30%}
+configuration matters
+:::
+
+---
+
+### Inlcusion of spatially lagged variables in the model
+#### Lag of independent variables {.fragment .fade-in}
+#### Lag of dependent variable (violates the OLS assumptions) {.fragment .fade-in}
+#### Lag of error (violates the OLS assumptions) {.fragment .fade-in}
+
+# Geographically weighted regression
+
+---
+
+::: {.r-fit-text .absolute top=30%}
+single model across space is too restrictive
+:::
+
+---
+
+### GWR
+#### A system of smaller, geographically delimited regressions {.fragment .fade-in}
+#### Accounts for both spatial heterogeneity and spatial dependence {.fragment .fade-in}
+
+---
+
+### Spatial kernel function
+#### Kernel type {.fragment .fade-in}
+#### Kernel size {.fragment .fade-in}
+#### Kernel shape {.fragment .fade-in}
+---
+
+![Illustration of kernel by Fotheringham et al. (2002, p.44)](figures/bandwidth.png)
+
+---
+
+
+
+- geographically weighted regression
+    - single model may be too restrictive to capture geographical diversity
+    - a system of smaller, geographically delimited regressions
+    - kernels
+        - fixed
+        - adaptive
+        - shapes = weights
+    - bandwidth selection methods
+    - evaluation
+        - Betas per region, p-value per region
+    - multiscale gwr
+        - each variable has its own bandwidth
+    - either is computationally expensive and scale linearly - bad. useful only for smaller data
