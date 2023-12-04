@@ -358,30 +358,6 @@
 <h3 id="prediction">Prediction</h3>
 <h3 class="fragment fade-in" id="relationship-or-effect">Relationship or effect</h3>
 </section>
-<section id="evaluation" class="slide level2">
-<h2>Evaluation</h2>
-</section>
-<section class="slide level2">
-
-<h3 id="r2"><span class="math inline">\(R^2\)</span></h3>
-<h4 class="fragment fade-in" id="coefficient-of-determination">Coefficient of determination</h4>
-<h4 class="fragment fade-in" id="variance-of-dependent-that-can-be-explained-by-independent">Variance of dependent that can be explained by independent</h4>
-<h4 class="fragment fade-in" id="section">0…1</h4>
-</section>
-<section class="slide level2">
-
-<h3 id="beta"><span class="math inline">\(\beta\)</span></h3>
-<h4 class="fragment fade-in" id="regression-coefficient">Regression coefficient</h4>
-<h4 class="fragment fade-in" id="captures-the-relationship-between-the-dependent-variable-and-independent-variable">Captures the relationship between the dependent variable and independent variable</h4>
-<h3 class="fragment fade-in" id="each-beta-has-a-p-value">Each <span class="math inline">\(\beta\)</span> has a <span class="math inline">\(p\)</span> value</h3>
-</section>
-<section class="slide level2">
-
-<h3 id="residuals">Residuals</h3>
-<h4 class="fragment fade-in" id="varepsilon"><span class="math inline">\(\varepsilon\)</span></h4>
-<h4 class="fragment fade-in" id="the-error">The error</h4>
-<h4 class="fragment fade-in" id="deviation-of-the-prediction-from-the-observation">Deviation of the prediction from the observation</h4>
-</section>
 <section id="assumptions" class="slide level2">
 <h2>Assumptions</h2>
 </section>
@@ -409,6 +385,33 @@
 
 <h3 id="no-perfect-multicollinearity">No perfect multicollinearity</h3>
 <h4 class="fragment fade-in" id="independent-variables-are-not-perfectly-multicollinear">Independent variables are not perfectly multicollinear</h4>
+</section>
+<section id="evaluation" class="slide level2">
+<h2>Evaluation</h2>
+</section>
+<section class="slide level2">
+
+<h3 id="r2"><span class="math inline">\(R^2\)</span></h3>
+<h4 class="fragment fade-in" id="coefficient-of-determination">Coefficient of determination</h4>
+<h4 class="fragment fade-in" id="variance-of-dependent-that-can-be-explained-by-independent">Variance of dependent that can be explained by independent</h4>
+<h4 class="fragment fade-in" id="section">0…1</h4>
+</section>
+<section class="slide level2">
+
+<h3 id="beta"><span class="math inline">\(\beta\)</span></h3>
+<h4 class="fragment fade-in" id="regression-coefficient">Regression coefficient</h4>
+<h4 class="fragment fade-in" id="captures-the-relationship-between-the-dependent-variable-and-independent-variable">Captures the relationship between the dependent variable and independent variable</h4>
+<h4 class="fragment fade-in" id="each-beta-has-a-p-value">Each <span class="math inline">\(\beta\)</span> has a <span class="math inline">\(p\)</span> value</h4>
+</section>
+<section class="slide level2">
+
+<h3 id="residuals">Residuals</h3>
+<h4 class="fragment fade-in" id="varepsilon"><span class="math inline">\(\varepsilon\)</span></h4>
+<h4 class="fragment fade-in" id="the-error">The error</h4>
+<h4 class="fragment fade-in" id="deviation-of-the-prediction-from-the-observation">Deviation of the prediction from the observation</h4>
+</section>
+<section class="slide level2">
+
 </section></section>
 <section>
 <section id="spatial-evaluation" class="title-slide slide level1 center">
@@ -490,32 +493,49 @@
 <section class="slide level2">
 
 
-<img data-src="figures/bandwidth.png" class="r-stretch quarto-figure-center"><p class="caption">Illustration of kernel by Fotheringham et al.&nbsp;(2002, p.44)</p></section>
+<img data-src="figures/bandwidth.png" class="r-stretch quarto-figure-center"><p class="caption">Illustration of a kernel by Fotheringham et al.&nbsp;(2002, p.44)</p></section>
+<section id="evaluation-1" class="slide level2">
+<h2>Evaluation</h2>
+</section>
 <section class="slide level2">
 
-<ul>
-<li>geographically weighted regression
-<ul>
-<li>single model may be too restrictive to capture geographical diversity</li>
-<li>a system of smaller, geographically delimited regressions</li>
-<li>kernels
-<ul>
-<li>fixed</li>
-<li>adaptive</li>
-<li>shapes = weights</li>
-</ul></li>
-<li>bandwidth selection methods</li>
-<li>evaluation
-<ul>
-<li>Betas per region, p-value per region</li>
-</ul></li>
-<li>multiscale gwr
-<ul>
-<li>each variable has its own bandwidth</li>
-</ul></li>
-<li>either is computationally expensive and scale linearly - bad. useful only for smaller data</li>
-</ul></li>
-</ul>
+<h3 id="r2-1"><span class="math inline">\(R^2\)</span></h3>
+<h4 id="coefficient-of-determination-1">Coefficient of determination</h4>
+<h4 id="variance-of-dependent-that-can-be-explained-by-independent-1">Variance of dependent that can be explained by independent</h4>
+<h4 id="section-1">0…1</h4>
+<h4 class="fragment fade-in" id="global-metric">Global metric</h4>
+<h4 class="fragment fade-in" id="local-metric-per-geometry">Local metric per geometry</h4>
+</section>
+<section class="slide level2">
+
+<h3 id="beta-1"><span class="math inline">\(\beta\)</span></h3>
+<h4 id="regression-coefficient-1">Regression coefficient</h4>
+<h4 id="captures-the-relationship-between-the-dependent-variable-and-independent-variable-1">Captures the relationship between the dependent variable and independent variable</h4>
+<h4 class="fragment fade-in" id="estimation-of-beta-per-geometry">Estimation of <span class="math inline">\(\beta\)</span> per geometry</h4>
+<h4 class="fragment fade-in" id="significance-based-on-t-value-and-a-critical-t-value">Significance based on <span class="math inline">\(t\)</span> value and a critical <span class="math inline">\(t\)</span> value</h4>
+</section>
+<section class="slide level2">
+
+<h3 id="residuals-1">Residuals</h3>
+<h4 id="varepsilon-1"><span class="math inline">\(\varepsilon\)</span></h4>
+<h4 id="the-error-1">The error</h4>
+<h4 id="deviation-of-the-prediction-from-the-observation-1">Deviation of the prediction from the observation</h4>
+</section>
+<section class="slide level2">
+
+<h3 id="multiscale-geographically-weighted-regression">Multiscale geographically weighted regression</h3>
+<h4 class="fragment fade-in" id="extension-where-each-variable-can-have-its-own-kernel-bandwidth">Extension where each variable can have its own kernel bandwidth</h4>
+</section>
+<section id="limits" class="slide level2">
+<h2>Limits</h2>
+<h3 class="fragment fade-in" id="mgwr-is-computationally-expensive-and-does-not-scale-well">(M)GWR is computationally expensive and does not scale well</h3>
+<h4 class="fragment fade-in" id="use-with-caution">Use with caution</h4>
+</section>
+<section class="slide level2">
+
+<div class="r-fit-text absolute" style="top: 15%; ">
+<p>import statsmodels<br> import mgwr</p>
+</div>
 
 
 <img src="../assets/logo.svg" class="slide-logo r-stretch"><div class="footer footer-default">
