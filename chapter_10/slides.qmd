@@ -32,34 +32,6 @@ $$y_{i}=\alpha+\beta _{1}\ x_{i1}+\beta _{2}\ x_{i2}+\cdots +\beta _{p}\ x_{ip}+
 ### Prediction
 ### Relationship or effect {.fragment .fade-in}
 
-## Evaluation
-
----
-
-### $R^2$
-
-#### Coefficient of determination {.fragment .fade-in}
-#### Variance of dependent that can be explained by independent {.fragment .fade-in}
-#### 0...1 {.fragment .fade-in}
-
----
-
-### $\beta$
-
-#### Regression coefficient {.fragment .fade-in}
-#### Captures the relationship between the dependent variable and independent variable {.fragment .fade-in}
-### Each $\beta$ has a $p$ value {.fragment .fade-in}
-
----
-
-### Residuals
-
-#### $\varepsilon$ {.fragment .fade-in}
-#### The error {.fragment .fade-in}
-#### Deviation of the prediction from the observation {.fragment .fade-in}
-
----
-
 ## Assumptions
 
 ---
@@ -86,6 +58,36 @@ $$y_{i}=\alpha+\beta _{1}\ x_{i1}+\beta _{2}\ x_{i2}+\cdots +\beta _{p}\ x_{ip}+
 
 ### No perfect multicollinearity
 #### Independent variables are not perfectly multicollinear {.fragment .fade-in}
+
+
+## Evaluation
+
+---
+
+### $R^2$
+
+#### Coefficient of determination {.fragment .fade-in}
+#### Variance of dependent that can be explained by independent {.fragment .fade-in}
+#### 0...1 {.fragment .fade-in}
+
+---
+
+### $\beta$
+
+#### Regression coefficient {.fragment .fade-in}
+#### Captures the relationship between the dependent variable and independent variable {.fragment .fade-in}
+#### Each $\beta$ has a $p$ value {.fragment .fade-in}
+
+---
+
+### Residuals
+
+#### $\varepsilon$ {.fragment .fade-in}
+#### The error {.fragment .fade-in}
+#### Deviation of the prediction from the observation {.fragment .fade-in}
+
+---
+
 
 # Spatial evaluation
 
@@ -153,22 +155,52 @@ single model across space is too restrictive
 #### Kernel shape {.fragment .fade-in}
 ---
 
-![Illustration of kernel by Fotheringham et al. (2002, p.44)](figures/bandwidth.png)
+![Illustration of a kernel by Fotheringham et al. (2002, p.44)](figures/bandwidth.png)
 
 ---
 
+## Evaluation
 
+---
 
-- geographically weighted regression
-    - single model may be too restrictive to capture geographical diversity
-    - a system of smaller, geographically delimited regressions
-    - kernels
-        - fixed
-        - adaptive
-        - shapes = weights
-    - bandwidth selection methods
-    - evaluation
-        - Betas per region, p-value per region
-    - multiscale gwr
-        - each variable has its own bandwidth
-    - either is computationally expensive and scale linearly - bad. useful only for smaller data
+### $R^2$
+
+#### Coefficient of determination
+#### Variance of dependent that can be explained by independent
+#### 0...1
+#### Global metric {.fragment .fade-in}
+#### Local metric per geometry {.fragment .fade-in}
+
+---
+
+### $\beta$
+
+#### Regression coefficient
+#### Captures the relationship between the dependent variable and independent variable
+#### Estimation of $\beta$ per geometry {.fragment .fade-in}
+#### Significance based on $t$ value and a critical $t$ value {.fragment .fade-in}
+
+---
+
+### Residuals
+
+#### $\varepsilon$
+#### The error
+#### Deviation of the prediction from the observation
+
+---
+
+### Multiscale geographically weighted regression
+#### Extension where each variable can have its own kernel bandwidth {.fragment .fade-in}
+
+## Limits
+
+### (M)GWR is computationally expensive and does not scale well {.fragment .fade-in}
+#### Use with caution {.fragment .fade-in}
+
+---
+
+::: {.r-fit-text .absolute top=15%}
+import statsmodels<br>
+import mgwr
+:::

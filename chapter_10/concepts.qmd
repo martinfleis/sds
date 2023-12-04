@@ -9,13 +9,12 @@ format: html
 
 ::: {.callout-note appearance="simple"}
 
-## The contents will appear later
+Slides from the talk on linear regression, methods of inclusion of space to the model and geographically weighted regression.
 
-This section will cover the lecture delivered as part of the in-person course. Slides will appear here shortly before the lesson, followed by the summary of the contents in the days after, based on the lecture transcript.
+```{=html}
+<iframe class="slide-deck" src="slides.html"></iframe>
+```
 
-Have a look at the related reading in the meantime.
-
-:::
 
 ::: {.callout-tip}
 ## Related reading
