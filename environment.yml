@@ -19,7 +19,7 @@ dependencies:
   - pandas
   - pointpats >=2.4
   - pyarrow
-  - pyinterpolate
+  - pyinterpolate >=0.5
   - pyogrio
   - rioxarray
   - scikit-learn
