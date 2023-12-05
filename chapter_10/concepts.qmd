@@ -7,8 +7,6 @@ format: html
 - GWR
 - MGWR -->
 
-::: {.callout-note appearance="simple"}
-
 Slides from the talk on linear regression, methods of inclusion of space to the model and geographically weighted regression.
 
 ```{=html}

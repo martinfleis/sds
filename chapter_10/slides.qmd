@@ -86,8 +86,6 @@ $$y_{i}=\alpha+\beta _{1}\ x_{i1}+\beta _{2}\ x_{i2}+\cdots +\beta _{p}\ x_{ip}+
 #### The error {.fragment .fade-in}
 #### Deviation of the prediction from the observation {.fragment .fade-in}
 
----
-
 
 # Spatial evaluation
 
@@ -203,4 +201,13 @@ single model across space is too restrictive
 ::: {.r-fit-text .absolute top=15%}
 import statsmodels<br>
 import mgwr
+:::
+
+---
+
+::: {.r-fit-text .absolute top=15%}
+```sh
+mamba activate sds
+mamba install mgwr -y
+```
 :::
