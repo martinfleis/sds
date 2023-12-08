@@ -97,6 +97,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   }
 }</script>
 <style>html{ scroll-behavior: smooth; }</style>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" integrity="sha512-c3Nl8+7g4LMSTdrm621y7kf9v3SDPnhxLNhcjFJbKECVnmZHTdo+IRO05sNLTH/D3vA6u1X32ehoLC7WFVdheg==" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script>
+<script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
 
 
 <link rel="stylesheet" href="../../assets/styles.css">
@@ -499,71 +502,698 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 
-<div class="cell" data-execution_count="2">
+<div class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> geopandas <span class="im">as</span> gpd</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> tobler</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> requests</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> requests</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>https://figshare.com/articles/dataset/Data_for_Methodological_Foundation_of_a_Numerical_Taxonomy_of_Urban_Form_research_paper/16897102</p>
 <div class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>url <span class="op">=</span> <span class="st">"https://figshare.com/ndownloader/files/31252828"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell" data-execution_count="3">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>r <span class="op">=</span> requests.get(url)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell" data-execution_count="5">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="st">"geoms.gpkg.zip"</span>, <span class="st">"wb"</span>) <span class="im">as</span> f:</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    f.write(r.content)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Unzip</p>
-<div class="cell" data-execution_count="3">
+<div class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>buildings <span class="op">=</span> gpd.read_file(<span class="st">"prg_geometry.gpkg"</span>, engine<span class="op">=</span><span class="st">'pyogrio'</span>, layer<span class="op">=</span><span class="st">"buildings"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell" data-execution_count="4">
+<div class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>buildings <span class="op">=</span> buildings.set_geometry(buildings.centroid)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell" data-execution_count="5">
+<div class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>clusters <span class="op">=</span> pd.read_csv(<span class="st">"https://figshare.com/ndownloader/files/31250203"</span>, index_col<span class="op">=</span><span class="dv">0</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell" data-execution_count="6">
+<div class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>buildings <span class="op">=</span> buildings.merge(clusters, on<span class="op">=</span><span class="st">"uID"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell" data-execution_count="7">
+<div class="cell" data-execution_count="6">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>buildings.cluster.nunique()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="7">
+<div class="cell-output cell-output-display" data-execution_count="6">
 <pre><code>10</code></pre>
 </div>
 </div>
-<div class="cell" data-execution_count="19">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>prague <span class="op">=</span> gpd.read_file(</span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">"https://martinfleischmann.net/sds/chapter_04/data/zsj_prague_2021.gpkg"</span></span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-execution_count="7">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>mapping <span class="op">=</span> {</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>    <span class="dv">0</span>: <span class="st">"large-scale industry"</span>,</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>    <span class="dv">1</span>: <span class="st">"single family housing"</span>,</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>    <span class="dv">2</span>: <span class="st">"fringe development"</span>,</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>    <span class="dv">3</span>: <span class="st">"grids"</span>,</span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>    <span class="dv">4</span>: <span class="st">"housing estates"</span>,</span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>    <span class="dv">5</span>: <span class="st">"periphery"</span>,</span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>    <span class="dv">6</span>: <span class="st">"grids"</span>,</span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>    <span class="dv">7</span>: <span class="st">"medieval city"</span>,</span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>    <span class="dv">8</span>: <span class="st">"single family housing"</span>,</span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a>    <span class="dv">9</span>: <span class="st">"small-scale row houses"</span>,</span>
+<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-execution_count="8">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>buildings[<span class="st">"cluster"</span>] <span class="op">=</span> buildings[<span class="st">"cluster"</span>].<span class="bu">map</span>(mapping)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell" data-execution_count="9">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>buildings <span class="op">=</span> buildings.sjoin(prague.to_crs(buildings.crs).drop(columns<span class="op">=</span><span class="st">"n_people"</span>), how<span class="op">=</span><span class="st">'left'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>prague <span class="op">=</span> gpd.read_file(</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">"https://martinfleischmann.net/sds/chapter_04/data/zsj_prague_2021.gpkg"</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell" data-execution_count="56">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>r <span class="op">=</span> requests.get(<span class="st">"https://figshare.com/ndownloader/files/31250227"</span>)</span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="st">"prg_primary.csv.gz"</span>, <span class="st">"wb"</span>) <span class="im">as</span> f:</span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>    f.write(r.content)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-execution_count="10">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>buildings <span class="op">=</span> buildings.sjoin(prague.to_crs(buildings.crs).drop(columns<span class="op">=</span><span class="st">"n_people"</span>), how<span class="op">=</span><span class="st">'left'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-execution_count="13">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>r <span class="op">=</span> requests.get(<span class="st">"https://figshare.com/ndownloader/files/31250227"</span>)</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="st">"prg_primary.csv.gz"</span>, <span class="st">"wb"</span>) <span class="im">as</span> f:</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>    f.write(r.content)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell" data-execution_count="11">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> pd.read_csv(<span class="st">"prg_primary.csv.gz"</span>, index_col<span class="op">=</span><span class="dv">0</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> pd.read_csv(<span class="st">"prg_primary.csv.gz"</span>, index_col<span class="op">=</span><span class="dv">0</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell" data-execution_count="14">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> buildings.merge(data, on<span class="op">=</span><span class="st">"uID"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-execution_count="12">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> buildings.merge(data, on<span class="op">=</span><span class="st">"uID"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell" data-execution_count="21">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>data[[<span class="st">"geometry"</span>, <span class="st">"cluster_x"</span>, <span class="st">"sicFAR"</span>, <span class="st">"sdbHei"</span>, <span class="st">"ssbCCo"</span>, <span class="st">"stbSAl"</span>, <span class="st">"ltbIBD"</span>, <span class="st">"ldbPWL"</span>, <span class="st">"NAZ_ZSJ"</span>, <span class="st">"NAZ_KU"</span>]].rename(columns<span class="op">=</span>{</span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">"cluster_x"</span>: <span class="st">"cluster"</span>,</span>
-<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">"sicFAR"</span>: <span class="st">"floor_area_ratio"</span>,</span>
-<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">"sdbHei"</span>: <span class="st">"height"</span>,</span>
-<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>    <span class="st">"ssbCCo"</span>: <span class="st">"compactness"</span>,</span>
-<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>    <span class="st">"stbSAl"</span>: <span class="st">"street_alignment"</span>,</span>
-<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>    <span class="st">"ltbIBD"</span>: <span class="st">"interbuilding_distance"</span>,</span>
-<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a>    <span class="st">"ldbPWL"</span>: <span class="st">"block_perimeter_wall_length"</span>,</span>
-<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a>}).to_file(<span class="st">"../../chapter_11/data/prg_building_locations.gpkg"</span>, engine<span class="op">=</span><span class="st">"pyogrio"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-execution_count="13">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>data</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="13">
+<div>
+
+
+<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">uID</th>
+<th data-quarto-table-cell-role="th">geometry</th>
+<th data-quarto-table-cell-role="th">cluster</th>
+<th data-quarto-table-cell-role="th">index_right</th>
+<th data-quarto-table-cell-role="th">NAZ_ZSJ</th>
+<th data-quarto-table-cell-role="th">NAZ_KU</th>
+<th data-quarto-table-cell-role="th">bID</th>
+<th data-quarto-table-cell-role="th">stcOri</th>
+<th data-quarto-table-cell-role="th">sdcLAL</th>
+<th data-quarto-table-cell-role="th">sdcAre</th>
+<th data-quarto-table-cell-role="th">...</th>
+<th data-quarto-table-cell-role="th">ldsMSL</th>
+<th data-quarto-table-cell-role="th">ldsRea</th>
+<th data-quarto-table-cell-role="th">ldkAre</th>
+<th data-quarto-table-cell-role="th">ldkPer</th>
+<th data-quarto-table-cell-role="th">lskCCo</th>
+<th data-quarto-table-cell-role="th">lskERI</th>
+<th data-quarto-table-cell-role="th">lskCWA</th>
+<th data-quarto-table-cell-role="th">ltkOri</th>
+<th data-quarto-table-cell-role="th">ltkWNB</th>
+<th data-quarto-table-cell-role="th">likWBB</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">0</td>
+<td>0</td>
+<td>POINT (-749841.681 -1052279.951)</td>
+<td>large-scale industry</td>
+<td>760.0</td>
+<td>U cementárny</td>
+<td>Radotín</td>
+<td>0</td>
+<td>7.603973</td>
+<td>33.817996</td>
+<td>342.233358</td>
+<td>...</td>
+<td>500.099794</td>
+<td>1.006508e+06</td>
+<td>397667.372035</td>
+<td>3615.243681</td>
+<td>0.404219</td>
+<td>0.724434</td>
+<td>880.163669</td>
+<td>28.214414</td>
+<td>0.000553</td>
+<td>0.000108</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1</td>
+<td>1</td>
+<td>POINT (-744432.289 -1042699.409)</td>
+<td>medieval city</td>
+<td>34.0</td>
+<td>Horní malostranský obvod</td>
+<td>Malá Strana</td>
+<td>1</td>
+<td>3.712491</td>
+<td>58.703914</td>
+<td>1435.882458</td>
+<td>...</td>
+<td>129.395330</td>
+<td>3.504396e+05</td>
+<td>262570.110986</td>
+<td>2902.374890</td>
+<td>0.392367</td>
+<td>0.742951</td>
+<td>714.928910</td>
+<td>8.174868</td>
+<td>0.003790</td>
+<td>0.000369</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2</td>
+<td>2</td>
+<td>POINT (-733300.261 -1048136.856)</td>
+<td>periphery</td>
+<td>553.0</td>
+<td>Dolní Měcholupy-střed</td>
+<td>Dolní Měcholupy</td>
+<td>4</td>
+<td>12.121107</td>
+<td>34.814040</td>
+<td>433.237769</td>
+<td>...</td>
+<td>245.801133</td>
+<td>4.159394e+05</td>
+<td>56345.646398</td>
+<td>1310.808733</td>
+<td>0.264617</td>
+<td>0.799244</td>
+<td>389.760230</td>
+<td>28.532001</td>
+<td>0.004577</td>
+<td>0.000461</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">3</td>
+<td>3</td>
+<td>POINT (-742468.177 -1039691.997)</td>
+<td>periphery</td>
+<td>334.0</td>
+<td>Trojský obvod</td>
+<td>Troja</td>
+<td>5</td>
+<td>7.700002</td>
+<td>45.376335</td>
+<td>839.521945</td>
+<td>...</td>
+<td>334.823124</td>
+<td>1.586278e+06</td>
+<td>93980.927007</td>
+<td>1236.106936</td>
+<td>0.694690</td>
+<td>0.994124</td>
+<td>119.993680</td>
+<td>6.159727</td>
+<td>0.004045</td>
+<td>0.000638</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">4</td>
+<td>4</td>
+<td>POINT (-740093.985 -1043857.813)</td>
+<td>grids</td>
+<td>62.0</td>
+<td>Vrch Svatého kříže</td>
+<td>Žižkov</td>
+<td>6</td>
+<td>29.080840</td>
+<td>135.981870</td>
+<td>7058.965193</td>
+<td>...</td>
+<td>133.672812</td>
+<td>3.444156e+05</td>
+<td>7058.965193</td>
+<td>328.785377</td>
+<td>0.486059</td>
+<td>1.039719</td>
+<td>31.062697</td>
+<td>29.080840</td>
+<td>0.006083</td>
+<td>0.000142</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">140310</td>
+<td>140457</td>
+<td>POINT (-742330.100 -1043654.354)</td>
+<td>medieval city</td>
+<td>30.0</td>
+<td>Jindřišský obvod</td>
+<td>Nové Město</td>
+<td>5488</td>
+<td>28.178572</td>
+<td>98.965803</td>
+<td>3505.778714</td>
+<td>...</td>
+<td>117.971921</td>
+<td>3.082993e+05</td>
+<td>56606.217751</td>
+<td>951.571799</td>
+<td>0.596143</td>
+<td>1.009986</td>
+<td>94.926096</td>
+<td>35.086045</td>
+<td>0.008407</td>
+<td>0.000654</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">140311</td>
+<td>140458</td>
+<td>POINT (-745114.729 -1036851.623)</td>
+<td>periphery</td>
+<td>313.0</td>
+<td>Suchdol-střed</td>
+<td>Suchdol</td>
+<td>1139</td>
+<td>24.776814</td>
+<td>92.897524</td>
+<td>5114.085960</td>
+<td>...</td>
+<td>129.984846</td>
+<td>4.016710e+05</td>
+<td>40933.111154</td>
+<td>1380.026247</td>
+<td>0.224597</td>
+<td>0.664578</td>
+<td>447.681498</td>
+<td>10.487112</td>
+<td>0.005797</td>
+<td>0.000220</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">140312</td>
+<td>140459</td>
+<td>POINT (-741484.617 -1045909.408)</td>
+<td>grids</td>
+<td>143.0</td>
+<td>Nuselský obvod</td>
+<td>Nusle</td>
+<td>4960</td>
+<td>15.112430</td>
+<td>34.559509</td>
+<td>520.511963</td>
+<td>...</td>
+<td>93.310638</td>
+<td>1.411415e+05</td>
+<td>9762.288285</td>
+<td>426.012538</td>
+<td>0.550692</td>
+<td>0.956055</td>
+<td>61.986071</td>
+<td>4.259050</td>
+<td>0.011737</td>
+<td>0.002663</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">140313</td>
+<td>140460</td>
+<td>POINT (-741509.029 -1045897.128)</td>
+<td>grids</td>
+<td>143.0</td>
+<td>Nuselský obvod</td>
+<td>Nusle</td>
+<td>4960</td>
+<td>20.447865</td>
+<td>19.148696</td>
+<td>193.498945</td>
+<td>...</td>
+<td>93.310638</td>
+<td>1.411415e+05</td>
+<td>9762.288285</td>
+<td>426.012538</td>
+<td>0.550692</td>
+<td>0.956055</td>
+<td>61.986071</td>
+<td>4.259050</td>
+<td>0.011737</td>
+<td>0.002663</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">140314</td>
+<td>140461</td>
+<td>POINT (-752191.036 -1045077.650)</td>
+<td>fringe development</td>
+<td>890.0</td>
+<td>Na Radosti-západ</td>
+<td>Třebonice</td>
+<td>995</td>
+<td>26.473486</td>
+<td>529.188185</td>
+<td>132182.587224</td>
+<td>...</td>
+<td>163.473174</td>
+<td>4.540435e+05</td>
+<td>908485.880353</td>
+<td>6184.489156</td>
+<td>0.372760</td>
+<td>0.659936</td>
+<td>1573.430287</td>
+<td>5.804051</td>
+<td>0.002749</td>
+<td>0.000179</td>
+</tr>
+</tbody>
+</table>
+
+<p>140315 rows × 88 columns</p>
+</div>
+</div>
+</div>
+<div class="cell" data-execution_count="17">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>data[[<span class="st">"geometry"</span>, <span class="st">"cluster"</span>, <span class="st">"sicFAR"</span>, <span class="st">"sdbHei"</span>, <span class="st">"ssbCCo"</span>, <span class="st">"stbSAl"</span>, <span class="st">"ltbIBD"</span>, <span class="st">"ldbPWL"</span>, <span class="st">"NAZ_ZSJ"</span>, <span class="st">"NAZ_KU"</span>]].rename(columns<span class="op">=</span>{</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">"sicFAR"</span>: <span class="st">"floor_area_ratio"</span>,</span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">"sdbHei"</span>: <span class="st">"height"</span>,</span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">"ssbCCo"</span>: <span class="st">"compactness"</span>,</span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>    <span class="st">"stbSAl"</span>: <span class="st">"street_alignment"</span>,</span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>    <span class="st">"ltbIBD"</span>: <span class="st">"interbuilding_distance"</span>,</span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a>    <span class="st">"ldbPWL"</span>: <span class="st">"block_perimeter_wall_length"</span>,</span>
+<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a>    <span class="st">"NAZ_ZSJ"</span>: <span class="st">"basic_settlement_unit"</span>,</span>
+<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a>    <span class="st">"NAZ_KU"</span>: <span class="st">"cadastral zone"</span></span>
+<span id="cb19-10"><a href="#cb19-10" aria-hidden="true" tabindex="-1"></a>}).dropna(subset<span class="op">=</span><span class="st">"basic_settlement_unit"</span>).to_file(<span class="st">"../../chapter_11/data/prg_building_locations.gpkg"</span>, engine<span class="op">=</span><span class="st">"pyogrio"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-execution_count="16">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>data</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="16">
+<div>
+
+
+<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">uID</th>
+<th data-quarto-table-cell-role="th">geometry</th>
+<th data-quarto-table-cell-role="th">cluster</th>
+<th data-quarto-table-cell-role="th">index_right</th>
+<th data-quarto-table-cell-role="th">NAZ_ZSJ</th>
+<th data-quarto-table-cell-role="th">NAZ_KU</th>
+<th data-quarto-table-cell-role="th">bID</th>
+<th data-quarto-table-cell-role="th">stcOri</th>
+<th data-quarto-table-cell-role="th">sdcLAL</th>
+<th data-quarto-table-cell-role="th">sdcAre</th>
+<th data-quarto-table-cell-role="th">...</th>
+<th data-quarto-table-cell-role="th">ldsMSL</th>
+<th data-quarto-table-cell-role="th">ldsRea</th>
+<th data-quarto-table-cell-role="th">ldkAre</th>
+<th data-quarto-table-cell-role="th">ldkPer</th>
+<th data-quarto-table-cell-role="th">lskCCo</th>
+<th data-quarto-table-cell-role="th">lskERI</th>
+<th data-quarto-table-cell-role="th">lskCWA</th>
+<th data-quarto-table-cell-role="th">ltkOri</th>
+<th data-quarto-table-cell-role="th">ltkWNB</th>
+<th data-quarto-table-cell-role="th">likWBB</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">0</td>
+<td>0</td>
+<td>POINT (-749841.681 -1052279.951)</td>
+<td>large-scale industry</td>
+<td>760.0</td>
+<td>U cementárny</td>
+<td>Radotín</td>
+<td>0</td>
+<td>7.603973</td>
+<td>33.817996</td>
+<td>342.233358</td>
+<td>...</td>
+<td>500.099794</td>
+<td>1.006508e+06</td>
+<td>397667.372035</td>
+<td>3615.243681</td>
+<td>0.404219</td>
+<td>0.724434</td>
+<td>880.163669</td>
+<td>28.214414</td>
+<td>0.000553</td>
+<td>0.000108</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1</td>
+<td>1</td>
+<td>POINT (-744432.289 -1042699.409)</td>
+<td>medieval city</td>
+<td>34.0</td>
+<td>Horní malostranský obvod</td>
+<td>Malá Strana</td>
+<td>1</td>
+<td>3.712491</td>
+<td>58.703914</td>
+<td>1435.882458</td>
+<td>...</td>
+<td>129.395330</td>
+<td>3.504396e+05</td>
+<td>262570.110986</td>
+<td>2902.374890</td>
+<td>0.392367</td>
+<td>0.742951</td>
+<td>714.928910</td>
+<td>8.174868</td>
+<td>0.003790</td>
+<td>0.000369</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2</td>
+<td>2</td>
+<td>POINT (-733300.261 -1048136.856)</td>
+<td>periphery</td>
+<td>553.0</td>
+<td>Dolní Měcholupy-střed</td>
+<td>Dolní Měcholupy</td>
+<td>4</td>
+<td>12.121107</td>
+<td>34.814040</td>
+<td>433.237769</td>
+<td>...</td>
+<td>245.801133</td>
+<td>4.159394e+05</td>
+<td>56345.646398</td>
+<td>1310.808733</td>
+<td>0.264617</td>
+<td>0.799244</td>
+<td>389.760230</td>
+<td>28.532001</td>
+<td>0.004577</td>
+<td>0.000461</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">3</td>
+<td>3</td>
+<td>POINT (-742468.177 -1039691.997)</td>
+<td>periphery</td>
+<td>334.0</td>
+<td>Trojský obvod</td>
+<td>Troja</td>
+<td>5</td>
+<td>7.700002</td>
+<td>45.376335</td>
+<td>839.521945</td>
+<td>...</td>
+<td>334.823124</td>
+<td>1.586278e+06</td>
+<td>93980.927007</td>
+<td>1236.106936</td>
+<td>0.694690</td>
+<td>0.994124</td>
+<td>119.993680</td>
+<td>6.159727</td>
+<td>0.004045</td>
+<td>0.000638</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">4</td>
+<td>4</td>
+<td>POINT (-740093.985 -1043857.813)</td>
+<td>grids</td>
+<td>62.0</td>
+<td>Vrch Svatého kříže</td>
+<td>Žižkov</td>
+<td>6</td>
+<td>29.080840</td>
+<td>135.981870</td>
+<td>7058.965193</td>
+<td>...</td>
+<td>133.672812</td>
+<td>3.444156e+05</td>
+<td>7058.965193</td>
+<td>328.785377</td>
+<td>0.486059</td>
+<td>1.039719</td>
+<td>31.062697</td>
+<td>29.080840</td>
+<td>0.006083</td>
+<td>0.000142</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">140310</td>
+<td>140457</td>
+<td>POINT (-742330.100 -1043654.354)</td>
+<td>medieval city</td>
+<td>30.0</td>
+<td>Jindřišský obvod</td>
+<td>Nové Město</td>
+<td>5488</td>
+<td>28.178572</td>
+<td>98.965803</td>
+<td>3505.778714</td>
+<td>...</td>
+<td>117.971921</td>
+<td>3.082993e+05</td>
+<td>56606.217751</td>
+<td>951.571799</td>
+<td>0.596143</td>
+<td>1.009986</td>
+<td>94.926096</td>
+<td>35.086045</td>
+<td>0.008407</td>
+<td>0.000654</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">140311</td>
+<td>140458</td>
+<td>POINT (-745114.729 -1036851.623)</td>
+<td>periphery</td>
+<td>313.0</td>
+<td>Suchdol-střed</td>
+<td>Suchdol</td>
+<td>1139</td>
+<td>24.776814</td>
+<td>92.897524</td>
+<td>5114.085960</td>
+<td>...</td>
+<td>129.984846</td>
+<td>4.016710e+05</td>
+<td>40933.111154</td>
+<td>1380.026247</td>
+<td>0.224597</td>
+<td>0.664578</td>
+<td>447.681498</td>
+<td>10.487112</td>
+<td>0.005797</td>
+<td>0.000220</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">140312</td>
+<td>140459</td>
+<td>POINT (-741484.617 -1045909.408)</td>
+<td>grids</td>
+<td>143.0</td>
+<td>Nuselský obvod</td>
+<td>Nusle</td>
+<td>4960</td>
+<td>15.112430</td>
+<td>34.559509</td>
+<td>520.511963</td>
+<td>...</td>
+<td>93.310638</td>
+<td>1.411415e+05</td>
+<td>9762.288285</td>
+<td>426.012538</td>
+<td>0.550692</td>
+<td>0.956055</td>
+<td>61.986071</td>
+<td>4.259050</td>
+<td>0.011737</td>
+<td>0.002663</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">140313</td>
+<td>140460</td>
+<td>POINT (-741509.029 -1045897.128)</td>
+<td>grids</td>
+<td>143.0</td>
+<td>Nuselský obvod</td>
+<td>Nusle</td>
+<td>4960</td>
+<td>20.447865</td>
+<td>19.148696</td>
+<td>193.498945</td>
+<td>...</td>
+<td>93.310638</td>
+<td>1.411415e+05</td>
+<td>9762.288285</td>
+<td>426.012538</td>
+<td>0.550692</td>
+<td>0.956055</td>
+<td>61.986071</td>
+<td>4.259050</td>
+<td>0.011737</td>
+<td>0.002663</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">140314</td>
+<td>140461</td>
+<td>POINT (-752191.036 -1045077.650)</td>
+<td>fringe development</td>
+<td>890.0</td>
+<td>Na Radosti-západ</td>
+<td>Třebonice</td>
+<td>995</td>
+<td>26.473486</td>
+<td>529.188185</td>
+<td>132182.587224</td>
+<td>...</td>
+<td>163.473174</td>
+<td>4.540435e+05</td>
+<td>908485.880353</td>
+<td>6184.489156</td>
+<td>0.372760</td>
+<td>0.659936</td>
+<td>1573.430287</td>
+<td>5.804051</td>
+<td>0.002749</td>
+<td>0.000179</td>
+</tr>
+</tbody>
+</table>
+
+<p>140315 rows × 88 columns</p>
+</div>
+</div>
 </div>
 
 
