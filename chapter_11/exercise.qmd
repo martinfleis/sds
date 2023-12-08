@@ -17,6 +17,7 @@ This section will contain exercise material that will appear later.
 
 - try combining multiple approaches. Can you get Kappa over 0.6?
 - what if you used different ML models than RandomForest? Compare the same input using different models, like HistGradientBoostingClassifier, DecisionTreeClassifier, or AdaBoostClassifier. Which one is the best, when using the default hyperparameters?
+- find clusters of areas with high and low certainty
 
 ## Explore regression
 
