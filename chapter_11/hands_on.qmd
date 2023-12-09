@@ -6,28 +6,21 @@ format:
 jupyter: sds
 ---
 
-::: {.callout-caution appearance="simple"}
-
-## Work in progress
-
-This section is not yet finished. Proceed with caution.
-:::
-
 Linear regression, covered in the previous chapter, is often seen as an entry method to enter
 the world of supervised machine learning. However, not every phenomenon can be explained
 using a linear relationship, and not everything is a regression. For the former, you need
-to use methods that have a bit more complicated math in behind (but often the same
+to use methods that have a bit more complicated math behind them (but often the same
 Python API). For the latter, you will often need to look for classification models. Both
-of these options are covered in this chapter, that will outline methods of introducing
+of these options are covered in this chapter, which will outline methods of introducing
 spatial dimension to commonly used machine learning models. To a degree, it is a continuation
-of the work covered last time but there are some new things here and there.
+of the work covered last time, but there are some new things here and there.
 
 ::: {.callout-important }
 # This is not an introduction to ML
 
 Note that this material does not aim to cover an introduction to machine
 learning thoroughly. There are other, much better materials for that. One of them can be [scikit-learn's
-User guide](https://scikit-learn.org/stable/user_guide.html) but I am sure you will find
+User guide](https://scikit-learn.org/stable/user_guide.html), but I am sure you will find
 one that suits you.
 :::
 
@@ -47,7 +40,7 @@ The data you will work with today comes from the study on the urban development 
 in @fleischmann2022Methodological. The original dataset is significantly simplified for the
 purpose of this material and contains point data reflecting the location of buildings in Prague
 with a subset of measured attributes describing each one and (aggregated) type of urban
-devlopment they belong to. The type is a categorical variable that will be your dependent variable
+development they belong to. The type is a categorical variable that will be your dependent variable
 today. The goal is to use the other variables and spatial information to predict which
 type each building belongs to.
 
@@ -118,7 +111,7 @@ for i, var in enumerate(independent_variables):
 
 ## Classification 101
 
-The main task of today is to train classification models using `scikit-learn`, so let's begin.
+The main task of today is to train classification models using the `scikit-learn`, so let's begin.
 
 ### Data preparation
 
@@ -166,10 +159,10 @@ mean.
 ### Random Forest Classifier
 
 While there is a large number of ML models available, your goal today is not to understand which ML model is better
-and how to fine-tune it, but how to include the spatial dimension in them. So let's not complicate
+and how to fine-tune it but how to include the spatial dimension in them. So, let's not complicate
 the situation and stick to one of the common models - [random forest](https://en.wikipedia.org/wiki/Random_forest).
 
-Random forest classifier is implemented within the `ensemble` module of `scikit-learn` and
+Random forest classifier is implemented within the `ensemble` module of the `scikit-learn` and
 has the API you should already be familiar with. Get the training data and fit the baseline
 model without thinking about space and geography at all.
 
@@ -178,7 +171,7 @@ model = ensemble.RandomForestClassifier(random_state=0, n_jobs=-1) # <1>
 model.fit(X_train, y_train)  # <2>
 ```
 1. `n_jobs=-1` specifies that the algorithm should use all available cores. Otherwise, it runs in a single thread only.
-2. The first argument is a 2-D array of independent variables, the second a 1-D array of labels
+2. The first argument is a 2-D array of independent variables, and the second is a 1-D array of labels
 you want to predict. You could potentially change
 
 #### Prediction
@@ -191,7 +184,7 @@ pred = model.predict(X_test)
 pred
 ```
 
-Or probabilities for every single class. The class prediction above is just selecting the one with the maximum probability.
+Or probabilities for every single class. The class prediction above just involves selecting the one with the maximum probability.
 
 ```{python}
 proba = model.predict_proba(X_test)
@@ -255,13 +248,13 @@ spatial distribution of each of them.
 ### Cross-validated prediction
 
 Now, if you want to plot the predicted labels on a map, you can do that reliably only
-for the test sample. The train sample was seen by the model and would not be representative
+for the test sample. The training sample was seen by the model and would not be representative
 of model capabilities. Nevertheless, you can create a map using the complete sample, just
-not using exactly same model for all its parts. Welcome cross-validated prediction.
+not using exactly the same model for all its parts. Welcome cross-validated prediction.
 
-Cross-validated (CV) prediction splits the dataset (prior you divided it into train and test)
+Cross-validated (CV) prediction splits the dataset (before you divided it into train and test)
 into a small number of parts and trains a separate model to predict labels for each of
-them. In the example below, it creates four equally-sized parts, and then takes three of
+them. In the example below, it creates four equally-sized parts and then takes three of
 them as _train_ part to train a model that is used to predict labels on the fourth one.
 Then, it switches the one that is left out and repeats the process until there are labels for
 every part. The resulting labels should not contain any data leakage between train and test
@@ -278,7 +271,7 @@ ax = training_sample.plot(predicted, legend=True, figsize=(9, 9), markersize=0.1
 ax.set_axis_off()
 ```
 
-What CV-prediction allows to not only plot the labels, but importantly to plot the
+What CV-prediction allows to not only plot the labels but importantly to plot the
 spatial pattern of errors.
 
 ```{python}
@@ -311,12 +304,12 @@ proximity comes with a potential data leakage.
 
 Spatial CV mitigates the issue by including a spatial dimension in the train-test split.
 The aim is to divide the whole study area into smaller regions and allocate whole regions
-to train and test splits. You can do that based on many criteria but it is handy to have
-a variable representing those regions, as `"basic_settlement_unit"` column in your
+to train and test splits. You can do that based on many criteria, but it is handy to have
+a variable representing those regions as the `"basic_settlement_unit"` column in your
 DataFrame.
 
 With a categorical column indicating groups, you can use the `StratifiedGroupKFold` class
-from `scikit-learn` to create the folds.
+from the `scikit-learn` to create the folds.
 
 ```{python}
 gkf = model_selection.StratifiedGroupKFold(n_splits=5)  # <1>
@@ -341,8 +334,8 @@ training_sample["split"] = split_label  # <4>
 ```
 1. Create an empty array you will fill with the actual label using the for loop.
 2. Loop over `splits`. Every loop gives you indices for `train` and `test` splits. You can use `enumerate` to get a split label.
-3. Assing split label to the subset of points used for test in each loop.
-4. Assing the labels to the DataFrame.
+3. Assing split labels to the subset of points used for the test in each loop.
+4. Assing the labels to the `DataFrame`.
 
 With the labels extracted from `StratifiedGroupKFold`, you can plot the splits on a map.
 
@@ -397,28 +390,54 @@ print(summary)
 ```
 
 The results are marginally worse, but that is expected. It means that the original model was
-indeed a bit leaking! The model based on spatial CV should be more robust that the previous one,
-meaning that it should perform as expected on an unseen data.
+indeed a bit leaking! The model based on the spatial CV should be more robust than the previous one,
+meaning that it should perform as expected on unseen data.
 
-The result is worse on paper but it is now more spatially robust - it will generalise better on unseen data.
+The result is worse on paper but is now more spatially robust - it will generalize better on unseen data.
 
 ## Feature engineering
 
+Sometimes, the original data is just not enough for a decent prediction. At that point,
+you may want to include some other variables that would help, but they may not be readily
+available, and you need to create them.
+
+The first option is to look at the data you have and extract some additional information
+from it using methods known as map synthesis.
+
 ### Map synthesis
+
+Map synthesis uses the spatial structure of the data to derive new features. There's no
+external input, you simply put geography at work.
+
+#### Point density
+
+There are methods of map synthesis that work directly with existing values, and there
+are those that look solely at the spatial distribution of your data. One example of the
+latter is a measurement of point density (number of neighbors within a distance band).
+
+You should already know how to do that using the `graph` module of `libpysal`. Create a
+`Graph` and extract its cardinalities (the number of neighbors).
 
 ```{python}
 distance_200 = graph.Graph.build_distance_band(training_sample, 200)
 training_sample["points_in_200m"] = distance_200.cardinalities
 ```
 
+Let's check if the result has some meaningful spatial pattern.
+
 ```{python}
-training_sample.plot("points_in_200m", figsize=(9, 9), markersize=0.1)
-_ = ax.set_axis_off()
+# | fig-cap: Point density within a 200m distance band
+ax = training_sample.plot("points_in_200m", figsize=(9, 9), markersize=0.1)
+ax.set_axis_off()
 ```
+
+It is not a strong one, but there are clear pockets of the higher point density, so this
+new column can help with the prediction accuracy. Create a new set of independent variables,
+including the new one, and generate new training and evaluation data.
 
 ```{python}
 independent_proximity = training_sample[
-    independent_variables + ["points_in_200m"]
+    independent_variables + ["points_in_200m"] # <1>
 ]
 
 X_train = independent_proximity.loc[train]
@@ -427,15 +446,16 @@ y_train = training_sample["cluster"].loc[train]
 X_test = independent_proximity.loc[test]
 y_test = training_sample["cluster"].loc[test]
 ```
+1. Add the new column to the list of existing columns and use it to subset the `DataFrame`.
 
-Fit a new model, with more robust split.
+The rest is simply rinse and repeat. Create the model and train it on new data.
 
 ```{python}
 rf_proximity = ensemble.RandomForestClassifier(random_state=0, n_jobs=-1)
 rf_proximity.fit(X_train, y_train)
 ```
 
-Evaluate it
+And evaluate it in the same way as before.
 
 ```{python}
 pred = rf_proximity.predict(X_test)
@@ -451,15 +471,39 @@ Points within 200m (spatial CV):
 print(summary)
 ```
 
+Remember that your baseline model is the _Basic model with spatial cross-validation_.
+Compared to that, the performance of the new model is a bit better, especially when looking
+at Cohen's kappa. It seems that the point density brings some value. You can check how
+important it is compared to the original variables.
+
 ```{python}
 pd.Series(
     rf_proximity.feature_importances_, index=rf_proximity.feature_names_in_
 ).sort_values()
 ```
 
+It seems that not that much, but each percent of accuracy counts.
+
+Point density is just one example, and there are many more. Below, when dealing with
+spatial dependence, you'll get back to map synthesis once again. But before that, let's
+use some external data to improve the model.
+
 ### Proximity variables
 
-```{python}
+Sometimes, you may have an assumption that a distance to a specific location or a set
+of locations makes a difference to the spatial distribution of the dependent variable, and
+the inclusion of a variable reflecting this distance could help the model. You can think of
+distance to subway stations when dealing with rent price prediction or distance to
+highways when trying to predict air pollution. In the case of urban development in Prague,
+it may be interesting to capture the distance from the city centre. Prague is a very monocentric
+city whose development happened over the years in a series of concentric rings. First, the
+medieval centre, then industrial-era neighborhoods behind the original city walls, and so on.
+Therefore, a distance to Old Town Square may be useful for the development type prediction.
+
+You have done this [before](../chapter_03/hands_on.html#measuring-distance), so fire up
+geocoding, and extract the point representing the square in the same CRS the rest of the data is in.
+
+```py
 old_town_square = (
     gpd.tools.geocode("Old Town Square, Prague")
     .to_crs(building_data.crs)
@@ -468,15 +512,25 @@ old_town_square = (
 ```
 
 ```{python}
+# | echo: false
+# | output: false
 old_town_square = shapely.Point(-742830, -1043011)
+# this is here to avoid geocoding issues on github actions
 ```
 
+With the point, you can measure the distance from every building in the training sample
+and use the resulting column as another independent variable.
+
 ```{python}
+# | fig-cap: Distance to the Old Town Square
 training_sample["distance_to_old_town"] = training_sample.distance(old_town_square)
 
 ax = training_sample.plot("distance_to_old_town", figsize=(9, 9), markersize=0.1)
-_ = ax.set_axis_off()
+ax.set_axis_off()
 ```
+
+Now simply add it to the `DataFrame` representing independent variables and the rest
+is the same.
 
 ```{python}
 independent_distance = training_sample[
@@ -490,14 +544,14 @@ X_test = independent_distance.loc[test]
 y_test = training_sample["cluster"].loc[test]
 ```
 
-Fit a new model, with more robust split.
+Get a new, hopefully better model.
 
 ```{python}
 rf_distance = ensemble.RandomForestClassifier(random_state=0, n_jobs=-1)
 rf_distance.fit(X_train, y_train)
 ```
 
-Evaluate it
+And check if the new variable makes a difference.
 
 ```{python}
 pred = rf_distance.predict(X_test)
@@ -513,60 +567,86 @@ Distance to Old Town Sq + above (spatial CV):
 print(summary)
 ```
 
+That is quite a decent bump in performance! It seems that the distance to the city centre
+is not bad in explaining the development typology. Check how important it is within the model.
+
 ```{python}
 pd.Series(
     rf_distance.feature_importances_, index=rf_distance.feature_names_in_
 ).sort_values()
 ```
 
+Interestingly enough, it seems to be more explanatory than any of the variables reflecting
+the actual morphology.
+
 ### Map matching
+
+In other cases, you can make use of other data and link it to existing data. When you join
+the data based on spatial operation, you can talk about map matching. You can measure
+a number of points of interest in the vicinity of each location, [link the data from
+rasters](../chapter_08/hands_on.html#extracting-values-for-locations-with-xvec), [interpolate
+them from point patterns](../chapter_09/hands_on.html#point-interpolation) or [from polygons
+to other polygons](../chapter_09/hands_on.html#areal-interpolation-and-dasymetric-mapping).
+By now, you should know all that, so there's no need to go into detail. Sticking to a simple
+case, map matching can also be done using a spatial join.
+
+Load the price data you worked with in the Learning GeoPandas chapter.
 
 ```{python}
 price = gpd.read_file(
     "https://martinfleischmann.net/sds/chapter_03/data/SED_CenovaMapa_p_shp.zip",
-    engine="pyogrio",
 )
-price["CENA"] = price["CENA"].replace("N", None).astype("float")
+price["CENA"] = price["CENA"].replace("N", None).astype("float")  # <1>
 price.head(2)
 ```
+1. Price is in the column called `"CENA"`, which needs to be turned to floats.
+
+Before any spatial joins, check the CRS.
 
 ```{python}
 price.crs.equals(training_sample.crs)
 ```
 
+And, like in this case, don't forget to re-project geometries in case of a CRS mismatch.
+Then you can go ahead with the spatial join.
+
 ```{python}
 price = price.to_crs(training_sample.crs)
 
 training_sample_price = training_sample.sjoin(
-    price[["CENA", "geometry"]].dropna(), how="left"
-).dropna(subset=["CENA"])
+    price[["CENA", "geometry"]].dropna() # <1>
+)
 training_sample_price.head(2)
 ```
+1. Ignore rows with missing prices, as those will bring no value, only issues.
 
-Another model with price included.
+You can prepare data for a model with price included.
 
 ```{python}
 independent_proximity_price = training_sample_price[
     independent_variables + ["points_in_200m", "distance_to_old_town", "CENA"]
 ]
 
-train_price = training_sample_price["split"] != 0
+train_price = training_sample_price["split"] != 0  # <1>
 X_train = independent_proximity_price.loc[train_price]
 y_train = training_sample_price["cluster"].loc[train_price]
 
-test_price = training_sample_price["split"] == 0
+test_price = training_sample_price["split"] == 0 # <1>
 X_test = independent_proximity_price.loc[test_price]
 y_test = training_sample_price["cluster"].loc[test_price]
 ```
+1. Get the new split mask as due to some points not being merged to any geometries,
+`training_sample_price` is slightly shorter than `training_sample`, and the original mask
+does not align.
 
-Fit a new model, with more robust split.
+The rest, you know. First the model.
 
 ```{python}
 rf_distance_price = ensemble.RandomForestClassifier(random_state=0, n_jobs=-1)
 rf_distance_price.fit(X_train, y_train)
 ```
 
-Evaluate it
+Then, the evaluation.
 
 ```{python}
 pred = rf_distance_price.predict(X_test)
@@ -582,24 +662,52 @@ Price + above (spatial CV):
 print(summary)
 ```
 
+Another improvement. It seems that price is not that critical, but is surely brings some value.
+
 ```{python}
 pd.Series(
     rf_distance_price.feature_importances_, index=rf_distance_price.feature_names_in_
 ).sort_values()
 ```
 
+As the feature importance shows, it is among the most important variables, though the distance
+to the Old Town Sq. is still unbeaten.
+
 ## Spatial dependence
+
+Let's get back to map synthesis and talk about spatial dependence. Some phenomena, urban
+development type may be one of them, are not explained only by values linked to individual
+geometries but also by the spatial configuration of the observations around. If the mean inter-building
+distance of observation A is small but that of nearly all observations around is high, it may
+be worth taking that into account. You can say that the predicted value on observation A
+_depends_ on the spatial context and configuration around it. Generally speaking, the values
+of observations are related to each other based on their distance and are spatially dependent,
+reflecting Tobler's First law of geography once again.
 
 ### Include spatially lagged variables in the model
 
+The simplest way of incorporating spatial dependence to a generic ML model is to add
+variables to your set of independent variables capturing spatial dependence through spatial lag.
+
+Use the spatial weights matrix created above and generate a spatial lag of all independent variables.
+
 ```{python}
-distance_200_row = distance_200.transform("r")
-lagged_variables = []
-for var in independent_variables:
-    training_sample[f"{var}_lag"] = distance_200_row.lag(training_sample[var])
-    lagged_variables.append(f"{var}_lag")
+distance_200_row = distance_200.transform("r")  # <1>
+lagged_variables = []  # <2>
+for var in independent_variables:  # <3>
+    training_sample[f"{var}_lag"] = distance_200_row.lag(training_sample[var])  # <4>
+    lagged_variables.append(f"{var}_lag") # <5>
 training_sample.head(2)
 ```
+1. Remember that the graph needs to be row-standardised to get a mean value.
+2. Create and empty list that will be populated with names of new lagged variables.
+3. Loop through the list of existing independent variables.
+4. Measure a lag for each and assign it to a column.
+5. Add the name to the list.
+
+It may be interesting to assess the effect of spatial dependence without the variables
+added above. Combine original independent variables with the new lagged and prepare new
+training data.
 
 ```{python}
 independent_lag = training_sample[independent_variables + lagged_variables]
@@ -611,14 +719,14 @@ X_test = independent_lag.loc[test]
 y_test = training_sample["cluster"].loc[test]
 ```
 
-Fit a new model, with more robust split.
+Fit the new model, which should be able to use spatial dependence.
 
 ```{python}
 rf_lag_200m = ensemble.RandomForestClassifier(random_state=0, n_jobs=-1)
 rf_lag_200m.fit(X_train, y_train)
 ```
 
-Evaluate it
+And check how significant an effect it has on the model performance.
 
 ```{python}
 pred = rf_lag_200m.predict(X_test)
@@ -634,20 +742,49 @@ Spatial dependence - lagged model (spatial CV):
 print(summary)
 ```
 
+That is surely not negligible, considering that no other data were needed.
+
 ```{python}
 pd.Series(
     rf_lag_200m.feature_importances_, index=rf_lag_200m.feature_names_in_
 ).sort_values()
 ```
 
+The feature importance very clearly shows that when detecting urban typology, the context
+is always more important than the individual observation. It is expected as the typology
+attempts to reflect the general pattern of development but you can see the similar effect
+in many other situations.
+
 ## Spatial heterogneity
 
+While ML models like the random forest learn interaction between variables, they are not
+always able to pick up spatial heterogeneity of the interaction between dependent and
+independent variables. Last week, you tried to deal with spatial heterogeneity using
+the categorical variable reflecting the spatial fixed effect. You could do the
+same here, but let's try another approach.
+
 ### Include x, y coordinates
+
+Including the x and y (or longitude and latitude) coordinates of your geometries is a clever
+way of capturing the spatial heterogeneity in the model. The location serves as a proxy
+for any unexplained variance of a spatial nature. It does not help you with interpretation,
+as coordinates do not explain anything.
+
+The model will also struggle to generalise outside
+of the original spatial extent. So while a model trained on Prague using the original
+set of variables could be easily used in any other Czech city, like Brno, the model that
+includes coordinates would have no idea how to interpret the values it would see in Brno.
+Use with caution.
+
+Technically, it is dead simple. You just include coordinates as another two columns.
 
 ```{python}
 training_sample[["x", "y"]] = training_sample.get_coordinates()
 training_sample.head(2)
 ```
+
+To check the effect of spatial heterogeneity compared to the
+baseline model, create new training data with the original variables and coordinates on top.
 
 ```{python}
 independent_coordinates = training_sample[independent_variables + ["x", "y"]]
@@ -659,14 +796,14 @@ X_test = independent_coordinates.loc[test]
 y_test = training_sample["cluster"].loc[test]
 ```
 
-Fit a new model, with more robust split.
+Train the model.
 
 ```{python}
 rf_coordinates = ensemble.RandomForestClassifier(random_state=0, n_jobs=-1)
 rf_coordinates.fit(X_train, y_train)
 ```
 
-Evaluate it
+And evaluate its performance.
 
 ```{python}
 pred = rf_coordinates.predict(X_test)
@@ -682,19 +819,23 @@ Spatial heterogeneity - coordinates (spatial CV):
 print(summary)
 ```
 
+There indeed is some degree of spatial heterogeneity, but its effect is not that strong
+as that of spatial dependence.
+
 ```{python}
 pd.Series(
     rf_coordinates.feature_importances_, index=rf_coordinates.feature_names_in_
 ).sort_values()
 ```
 
-::: {.callout-tip}
-# Fixed effects
+Interpreting feature importance is a bit more complicated, as x and y are not to be treated
+as two separate variables but as a pair. You can try to sum their importance, but
+remember that the result may be misleading.
 
-Only as an admonition pointing to the previous chapter
-:::
+## Heterogeneity and dependence
 
-## Heterogeneity and dependency
+You can try to combine the effects of heterogeneity and dependence within a single model
+as each seems to help when used separately.
 
 ```{python}
 independent_coordinates = training_sample[
@@ -708,14 +849,14 @@ X_test = independent_coordinates.loc[test]
 y_test = training_sample["cluster"].loc[test]
 ```
 
-Fit a new model, with more robust split.
+Let's consider this a final model of the day.
 
 ```{python}
 rf_het_dep = ensemble.RandomForestClassifier(random_state=0, n_jobs=-1)
 rf_het_dep.fit(X_train, y_train)
 ```
 
-Evaluate it
+The final evaluation:
 
 ```{python}
 pred = rf_het_dep.predict(X_test)
@@ -731,15 +872,26 @@ Spatial dependence + heterogeneity (spatial CV):
 print(summary)
 ```
 
+This seems to be the best model so far. Keep in mind that variables coming from the
+feature engineering section are not included here, so there still may be some space
+for an improvement.
+
 ```{python}
 pd.Series(
     rf_het_dep.feature_importances_, index=rf_het_dep.feature_names_in_
 ).sort_values()
 ```
 
-### Prediction on the whole dataset
+Both lagged variables and coordinates are valuable here but keep in mind that the strength
+of these effects will vary dependning on specific use case. What is clearly useful in this
+case may have no value in other situations.
 
-Predict on the whole dataset
+### Prediction on the whole dataset
+
+If you consider `rf_het_dep` a final model you are happy with, you can check how it performs
+on the full dataset, not only on the sample of 20k observations used above.
+
+First, you will need all the variables computed for the full dataset.
 
 ```{python}
 distance_200_all = graph.Graph.build_distance_band(building_data, 200).transform("r")
@@ -749,6 +901,8 @@ for var in independent_variables:
 building_data[["x", "y"]] = building_data.get_coordinates()
 ```
 
+Then, you can use the model for inference. First, check the probabilities.
+
 ```{python}
 probabilities = rf_het_dep.predict_proba(
     building_data[independent_variables + lagged_variables + ["x", "y"]]
@@ -756,20 +910,34 @@ probabilities = rf_het_dep.predict_proba(
 probabilities
 ```
 
+Plotting class-based probabilities allows you to visualise the likelihood that each observation
+(building in our case) belonging to each class.
+
 ```{python}
+# | fig-cap: Class-based probability
 fig, axs = plt.subplots(4, 2, figsize=(9, 14))
 axs = axs.flatten()
 for i, ax in enumerate(axs):
-    building_data.plot(probabilities[:, i], markersize=0.01, cmap="bone_r", ax=ax)
+    building_data.plot(
+      probabilities[:, i], markersize=0.01, cmap="bone_r", ax=ax, vmin=0, vmax=1,
+    )
     axs[i].set_title(rf_het_dep.classes_[i], fontdict={"fontsize": 8})
     ax.set_axis_off()
 ```
 
+Plotting the maximum probability assigned to an observation regardless of
+class is also useful. This can be seen as a proxy of the certainty of a model and allows you to identify areas
+where the model works well and has no issue picking up the correct class and those where it
+struggles.
+
 ```{python}
+# | fig-cap: Maximum probability reflecting the certainty of the model
 building_data.plot(
     probabilities.max(axis=1), markersize=0.01, cmap="cividis_r", figsize=(9, 9)
 ).set_axis_off()
 ```
+
+If you want just a label, it is easier to use the `predict()` method instead.
 
 ```{python}
 predicted_class = rf_het_dep.predict(
@@ -777,7 +945,10 @@ predicted_class = rf_het_dep.predict(
 )
 ```
 
+The predicted labels allow you to check the spatial pattern of errors as you did earlier.
+
 ```{python}
+# | fig-cap: Spatial pattern of correct (True) and incorrect (False) predictions on the full dataset
 building_data.plot(
     predicted_class == building_data["cluster"],
     categorical=True,
@@ -788,9 +959,9 @@ building_data.plot(
 ).set_axis_off()
 ```
 
-```{python}
-pred = rf_het_dep.predict(X_test)
+Finally, you may be interested in the performance of the model on the full dataset.
 
+```{python}
 accuracy_all = metrics.accuracy_score(predicted_class, building_data["cluster"])
 kappa_all = metrics.cohen_kappa_score(predicted_class, building_data["cluster"])
 
@@ -804,7 +975,32 @@ Spatial dependence + heterogeneity (spatial CV):
 print(summary)
 ```
 
+Not bad at all. More than 75% of buildings were correctly classified using only the data
+you were given in the beginning and geography. Just note that since the evaluation based
+on the full dataset is done based on a different sample of data than all those above, the values
+are not entirely comparable.
+
+::: {.callout-caution}
+# Self-study topic
+
+The part below will not be covered in the class. It contains an introduction to regression
+models using the `scikit-learn`. You will need it to complete the exercise. However, since this is the
+final chapter of the course, it is time to let you learn by yourself.
+:::
+
 ## Regression
+
+Classification problems are only one part of ML. The other big chunk focuses on regression
+problems, where your target variable is not a class but a value. Consider the rent price
+or air pollution levels if I use the abovementioned examples. All of what was covered above
+applies nearly equally to regression models, except evaluation methods. But
+all of the spatial components remain the same.
+
+Below is an example of a regression model using random forest trying to estimate the rent
+price based on the same set of independent variables used in the classification task above.
+
+Split to train and test parts is the same. The same would also be the application of
+spatial cross-validation if you wanted to go in that direction.
 
 ```{python}
 independent = training_sample_price[independent_variables]
@@ -813,12 +1009,16 @@ X_train, X_test, y_train, y_test = model_selection.train_test_split(
 )
 ```
 
+The API of regression models mirrors the API of classification models. There are no
+surprises waiting for you there.
+
 ```{python}
 price_model = ensemble.RandomForestRegressor(random_state=0, n_jobs=-1)
 price_model.fit(X_train, y_train)
 ```
 
-Evaluate it
+The evaluation is different in the selection of metrics. You, obviously, cannot use
+the accuracy or Cohen's kappa score, but you can use $R^2$ or mean absolute error (among many others).
 
 ```{python}
 pred = price_model.predict(X_test)
@@ -836,13 +1036,18 @@ Basic model:
 print(summary)
 ```
 
+Cross-validated prediction is the same as you know from above.
+
 ```{python}
 predicted = model_selection.cross_val_predict(
     price_model, independent, training_sample_price["CENA"], cv=4, n_jobs=-1
 )
 ```
 
+The result allows you to compute residuals. The rest is up to you.
+
 ```{python}
+# | fig-cap: Residuals of the regression model
 residuals = training_sample_price["CENA"] - predicted
 
 maximum = np.max(np.abs(residuals))
@@ -856,6 +1061,17 @@ ax = training_sample_price.plot(
     vmax=maximum,
     legend_kwds={"shrink": 0.5},
 )
-_ = ax.set_axis_off()
+ax.set_axis_off()
 ```
 
+::: {.callout-tip}
+# Additional reading
+
+This material combines components from the chapters on
+[_Spatial Regression_](https://geographicdata.science/book/notebooks/11_regression.html) and [_Spatial Feature Engineering_](https://geographicdata.science/book/notebooks/12_feature_engineering.html)
+from the Geographic Data Science with Python by @rey2023geographic.
+:::
+
+## The end {.appendix}
+
+Thank you for getting this far.
