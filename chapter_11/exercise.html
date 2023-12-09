@@ -65,9 +65,12 @@ ul.task-list li input[type="checkbox"] {
 }</script>
 <style>html{ scroll-behavior: smooth; }</style>
 
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
 <link rel="stylesheet" href="../assets/styles.css">
 <meta name="twitter:title" content="Spatial Data Science for Social Geography - Predict future">
+<meta name="twitter:description" content="">
 <meta name="twitter:card" content="summary">
 </head>
 
@@ -461,7 +464,15 @@ ul.task-list li input[type="checkbox"] {
 <div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#continue-with-classficiation" id="toc-continue-with-classficiation" class="nav-link active" data-scroll-target="#continue-with-classficiation">Continue with classficiation</a></li>
+  <li><a href="#explore-regression" id="toc-explore-regression" class="nav-link" data-scroll-target="#explore-regression">Explore regression</a></li>
+  <li><a href="#effect-of-hyperparameters-advanced" id="toc-effect-of-hyperparameters-advanced" class="nav-link" data-scroll-target="#effect-of-hyperparameters-advanced">Effect of hyperparameters (advanced)</a></li>
+  </ul>
+<div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/martinfleis/sds/issues/new" class="toc-action">Report an issue</a></p></div></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -484,37 +495,34 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 <!-- Playing with scikit-learn. -->
-<div class="callout callout-style-simple callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-The contents will appear later
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>This section will contain exercise material that will appear later.</p>
-</div>
-</div>
-
-<!--
-## Continue with classficiation
-
-- try combining multiple approaches. Can you get Kappa over 0.6?
-- what if you used different ML models than RandomForest? Compare the same input using different models, like HistGradientBoostingClassifier, DecisionTreeClassifier, or AdaBoostClassifier. Which one is the best, when using the default hyperparameters?
-- find clusters of areas with high and low certainty
-
-## Explore regression
-
-- try to use techniques of spatial augmentation on the regression model predicting price
-    - what is the best R2 you can get?
-
-## Effect of hyperparameters (advanced)
-
-- You've been using the default model parameters. Can you figure out a way of fine-tuning them? Have a look at this [resource](https://scikit-learn.org/stable/modules/grid_search.html) and try to fine-tune on of the models you've worked with. -->
+<p>In this part, you will not start anything new but will continue working with the data from Prague from the previous section and get a bit deeper into the problem. Not everything has been covered in class, so consult the documentation, Google, or your favourite LLM.</p>
+<section id="continue-with-classficiation" class="level2">
+<h2 class="anchored" data-anchor-id="continue-with-classficiation">Continue with classficiation</h2>
+<p>Let’s try to explore the classification problem a bit further.</p>
+<ol type="1">
+<li>Try different combinations of independent variables.
+<ul>
+<li>Does it make sense to combine proximity variables with spatial heterogeneity? Test that.</li>
+<li>Contrary to what you may expect, removing some variables with low importance helps the performance. Is this the case in our situation?</li>
+<li>Find the best combination of variables. How far can you push accuracy?</li>
+</ul></li>
+<li>Test other ML models.
+<ul>
+<li>Check what happens when you use different models than random forest. Compare the same input using different models, like <code>HistGradientBoostingClassifier</code>, <code>DecisionTreeClassifier</code>, or <code>AdaBoostClassifier</code>. Which one is the best when using the default hyperparameters?</li>
+</ul></li>
+<li>Pick your favourite model and find high and low prediction certainty clusters.</li>
+</ol>
+</section>
+<section id="explore-regression" class="level2">
+<h2 class="anchored" data-anchor-id="explore-regression">Explore regression</h2>
+<p>Try using the techniques of spatial augmentation on the regression model predicting price outlined at the end of the last section. Combine all you think may help. What is the best <span class="math inline">\(R^2\)</span> you can get? You can even optionally compare the result with the performance of Geographically Weighted Regression on the same problem (but do not try to fit it on the full dataset :)).</p>
+</section>
+<section id="effect-of-hyperparameters-advanced" class="level2">
+<h2 class="anchored" data-anchor-id="effect-of-hyperparameters-advanced">Effect of hyperparameters (advanced)</h2>
+<p>You’ve been using the default model parameters. Can you figure out a way of fine-tuning them? Have a look at this <a href="https://scikit-learn.org/stable/modules/grid_search.html">resource</a> and Google and try to fine-tune one of the models you’ve worked with. Does the change of parameters like the number of estimators affect the result in any way? How important do you think it is?</p>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -880,7 +888,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     <div class="nav-footer-left">
       &nbsp;
     </div>   
-    <div class="nav-footer-center">Course material by <a href="https://martinfleischmann.net">Martin Fleischmann</a>. Available under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a>.<div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/martinfleis/sds/issues/new" class="toc-action">Report an issue</a></p></div></div></div>
+    <div class="nav-footer-center">Course material by <a href="https://martinfleischmann.net">Martin Fleischmann</a>. Available under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a>.</div>
     <div class="nav-footer-right">
       &nbsp;
     </div>
