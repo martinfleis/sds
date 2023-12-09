@@ -5,25 +5,24 @@ format: html
 
 <!-- Playing with scikit-learn. -->
 
-::: {.callout-note appearance="simple"}
+In this part, you will not start anything new but will continue working with the data from Prague from the previous section and get a bit deeper into the problem. Not everything has been covered in class, so consult the documentation, Google, or your favourite LLM.
 
-## The contents will appear later
-
-This section will contain exercise material that will appear later.
-
-:::
-<!--
 ## Continue with classficiation
 
-- try combining multiple approaches. Can you get Kappa over 0.6?
-- what if you used different ML models than RandomForest? Compare the same input using different models, like HistGradientBoostingClassifier, DecisionTreeClassifier, or AdaBoostClassifier. Which one is the best, when using the default hyperparameters?
-- find clusters of areas with high and low certainty
+Let's try to explore the classification problem a bit further.
+
+1. Try different combinations of independent variables.
+    - Does it make sense to combine proximity variables with spatial heterogeneity? Test that.
+    - Contrary to what you may expect, removing some variables with low importance helps the performance. Is this the case in our situation?
+    - Find the best combination of variables. How far can you push accuracy?
+2. Test other ML models.
+    - Check what happens when you use different models than random forest. Compare the same input using different models, like `HistGradientBoostingClassifier`, `DecisionTreeClassifier`, or `AdaBoostClassifier`. Which one is the best when using the default hyperparameters?
+3. Pick your favourite model and find high and low prediction certainty clusters.
 
 ## Explore regression
 
-- try to use techniques of spatial augmentation on the regression model predicting price
-    - what is the best R2 you can get?
+Try using the techniques of spatial augmentation on the regression model predicting price outlined at the end of the last section. Combine all you think may help. What is the best $R^2$ you can get? You can even optionally compare the result with the performance of Geographically Weighted Regression on the same problem (but do not try to fit it on the full dataset :)).
 
 ## Effect of hyperparameters (advanced)
 
-- You've been using the default model parameters. Can you figure out a way of fine-tuning them? Have a look at this [resource](https://scikit-learn.org/stable/modules/grid_search.html) and try to fine-tune on of the models you've worked with. -->
+You've been using the default model parameters. Can you figure out a way of fine-tuning them? Have a look at this [resource](https://scikit-learn.org/stable/modules/grid_search.html) and Google and try to fine-tune one of the models you've worked with. Does the change of parameters like the number of estimators affect the result in any way? How important do you think it is?
