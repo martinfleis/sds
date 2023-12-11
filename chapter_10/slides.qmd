@@ -202,12 +202,3 @@ single model across space is too restrictive
 import statsmodels<br>
 import mgwr
 :::
-
----
-
-::: {.r-fit-text .absolute top=15%}
-```sh
-mamba activate sds
-mamba install mgwr -y
-```
-:::
