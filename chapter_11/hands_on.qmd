@@ -49,7 +49,10 @@ The dataset contains ~140k points, so I don't recommend using `explore()` on all
 :::
 
 ```{python}
-building_data = gpd.read_file("data/prg_building_locations.gpkg", engine="pyogrio")
+building_data = gpd.read_file(
+  "https://martinfleischmann.net/sds/chapter_11/data/prg_building_locations.gpkg",
+  engine="pyogrio",
+)
 building_data.head()
 ```
 

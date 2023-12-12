@@ -51,13 +51,6 @@ format:
 ## A visual explanation
 #### By [R2D3](http://www.r2d3.us/visual-intro-to-machine-learning-part-1/) (Stephanie Yee and Tony Chu)
 
----
-
-```{=html}
-<iframe width="100%" height="100%" src="http://www.r2d3.us/visual-intro-to-machine-learning-part-1/
-"></iframe>
-```
-
 ## Evaluation methods
 
 ### Classification {.fragment .fade-in}
