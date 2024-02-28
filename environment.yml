@@ -12,6 +12,7 @@ dependencies:
   - geopandas >=0.14
   - geopy
   - h3-py
+  - httpx
   - libpysal >=4.8.0
   - mgwr >=2.2
   - openpyxl
