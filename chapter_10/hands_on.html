@@ -601,7 +601,7 @@ window.Quarto = {
 
 <p>When trying to determine the effect of some (independent) variables on the outcome of phenomena (dependent variable), you often use regression to model such an outcome and understand the influence each of the variables has in the model. With spatial regression, it is the same. You just need to use the spatial dimension in a mindful way.</p>
 <p>This chapter provides an introduction to ways of incorporating space into regression models, from spatial variables in standard linear regression to geographically weighted regression.</p>
-<div id="ff6e0865" class="cell" data-execution_count="1">
+<div id="f9d56672" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> esda</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> geopandas <span class="im">as</span> gpd</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
@@ -616,7 +616,7 @@ window.Quarto = {
 <section id="data" class="level2">
 <h2 class="anchored" data-anchor-id="data">Data</h2>
 <p>You will work with the same data you already used in the chapter on <a href="../chapter_05/hands_on.html">spatial autocorrelation</a> - the results of the second round of the presidential elections in Czechia in 2023, between Petr Pavel and Andrej Babiš, on a level of municipalities. You can read the election data directly from the chapter 5 location.</p>
-<div id="c3313091" class="cell" data-execution_count="2">
+<div id="b3779590" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>elections <span class="op">=</span> gpd.read_file(</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">"https://martinfleischmann.net/sds/chapter_05/data/cz_elections_2023.gpkg"</span></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>)</span>
@@ -720,7 +720,7 @@ Alternative
 </div>
 <p>The election results give you the dependent variable - you will look at the percentage of votes Petr Pavel, the winner, received. From the <a href="../chapter_05/hands_on.html#code-cell-2">map of the results</a> and the analysis you did when exploring spatial autocorrelation you already know that there are some significant spatial patterns. Let’s look whether these patterns correspond to the composition of education levels within each municipality.</p>
 <p>You can use the data from the <a href="https://www.czso.cz/csu/czso/vysledky-scitani-2021-otevrena-data">Czech Statistical Office</a> reflecting the situation during the Census 2021. The original table has been <a href="../data/cz_education_2021/preprocessing.html">preprocessed</a> and is available as a CSV.</p>
-<div id="842b8b09" class="cell" data-execution_count="3">
+<div id="307d9bf7" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>education <span class="op">=</span> pd.read_csv(</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">"https://martinfleischmann.net/sds/chapter_10/data/education.csv"</span></span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>)</span>
@@ -880,7 +880,7 @@ Alternative
 </div>
 </div>
 <p>The first thing you need to do is to merge the two tables, to have both dependent and independent variables together. The municipality code in the <code>elections</code> table is in the <code>"nationalCode"</code> column, while in the education table in the <code>"uzemi_kod"</code> column.</p>
-<div id="7dce1d3a" class="cell" data-execution_count="4">
+<div id="00948a2e" class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>elections_data <span class="op">=</span> elections.merge(education, left_on<span class="op">=</span><span class="st">"nationalCode"</span>, right_on<span class="op">=</span><span class="st">"uzemi_kod"</span>)</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>elections_data.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="4">
@@ -1055,7 +1055,7 @@ Alternative
 <p><span class="math display">\[y_{i}=\alpha+\beta _{1}\ x_{i1}+\beta _{2}\ x_{i2}+\cdots +\beta _{p}\ x_{ip}+\varepsilon _{i}\]</span></p>
 <p>where <span class="math inline">\(\epsilon_{i}\)</span> represents unobserved random variables and <span class="math inline">\(\alpha\)</span> represents an intercept - a constant. You know the <span class="math inline">\(y_i\)</span>, all of the <span class="math inline">\(x_i\)</span> and try to estimate the coefficients. In Python, you can run linear regression using implementations from more than one package (e.g., <code>statsmodels</code>, <code>scikit-learn</code>, <code>spreg</code>). This course covers <code>statsmodels</code> approach as it has a nice API to work with.</p>
 <p>First, you need a list of names of independent variables. That is equal to column names without a few of the columns that represent other data.</p>
-<div id="dc135e99" class="cell" data-execution_count="5">
+<div id="31a28c9f" class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>independent_names <span class="op">=</span> education.columns.drop([<span class="st">"uzemi_kod"</span>, <span class="st">"okres"</span>])</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>independent_names</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="5">
@@ -1070,7 +1070,7 @@ Alternative
 </div>
 </div>
 <p><code>statsmodels</code> (above imported as <code>sm</code>) offers an intuitive formula API to define the linear regression.</p>
-<div id="3e7c1e61" class="cell" data-execution_count="6">
+<div id="eb7719dd" class="cell" data-execution_count="6">
 <div class="sourceCode cell-code" id="annotated-cell-6"><pre class="sourceCode python code-annotation-code code-with-copy code-annotated"><code class="sourceCode python"><a class="code-annotation-anchor" data-target-cell="annotated-cell-6" data-target-annotation="1" onclick="event.preventDefault();">1</a><span id="annotated-cell-6-1" class="code-annotation-target"><a href="#annotated-cell-6-1" aria-hidden="true" tabindex="-1"></a>formula <span class="op">=</span> <span class="ss">f"PetrPavel ~ </span><span class="sc">{</span><span class="st">' + '</span><span class="sc">.</span>join(independent_names)<span class="sc">}</span><span class="ss">"</span></span>
 <span id="annotated-cell-6-2"><a href="#annotated-cell-6-2" aria-hidden="true" tabindex="-1"></a>formula</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-annotation">
@@ -1086,11 +1086,11 @@ Alternative
 </div>
 </div>
 <p>With the formula ready, you can fit the model and estimate all betas and <span class="math inline">\(\varepsilon\)</span>.</p>
-<div id="d86603b0" class="cell" data-execution_count="7">
+<div id="512a2902" class="cell" data-execution_count="7">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>ols <span class="op">=</span> sm.ols(formula, data<span class="op">=</span>elections_data).fit()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>The <code>ols</code> object offers a handy <code>summary()</code> function providing most of the results from the fitting in one place.</p>
-<div id="3cb4d8d7" class="cell explore" data-execution_count="8">
+<div id="f362abff" class="cell explore" data-execution_count="8">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>ols.summary()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="8">
 <div>
@@ -1123,7 +1123,7 @@ Alternative
 </tr>
 <tr class="odd">
 <td data-quarto-table-cell-role="th">Time:</td>
-<td>15:50:45</td>
+<td>17:31:32</td>
 <td data-quarto-table-cell-role="th">Log-Likelihood:</td>
 <td>-22397.</td>
 </tr>
@@ -1342,7 +1342,7 @@ Alternative
 <section id="spatial-exploration-of-the-model-hidden-structures" class="level3">
 <h3 class="anchored" data-anchor-id="spatial-exploration-of-the-model-hidden-structures">Spatial exploration of the model (hidden structures)</h3>
 <p>Start with the visualisation of the prediction the OLS model produces using the coefficients shown above.</p>
-<div id="8584fccd" class="cell" data-execution_count="9">
+<div id="6a198be0" class="cell" data-execution_count="9">
 <div class="sourceCode cell-code" id="annotated-cell-9"><pre class="sourceCode python code-annotation-code code-with-copy code-annotated"><code class="sourceCode python"><a class="code-annotation-anchor" data-target-cell="annotated-cell-9" data-target-annotation="1" onclick="event.preventDefault();">1</a><span id="annotated-cell-9-1" class="code-annotation-target"><a href="#annotated-cell-9-1" aria-hidden="true" tabindex="-1"></a>predicted <span class="op">=</span> ols.predict(elections_data)</span>
 <span id="annotated-cell-9-2"><a href="#annotated-cell-9-2" aria-hidden="true" tabindex="-1"></a>predicted.head()</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-annotation">
@@ -1363,7 +1363,7 @@ dtype: float64</code></pre>
 </div>
 </div>
 <p>Make a plot comparing the prediction with the actual results.</p>
-<div id="dc9098ff" class="cell" data-execution_count="10">
+<div id="b760cbfd" class="cell" data-execution_count="10">
 <div class="sourceCode cell-code" id="annotated-cell-10"><pre class="sourceCode python code-annotation-code code-with-copy code-annotated"><code class="sourceCode python"><a class="code-annotation-anchor" data-target-cell="annotated-cell-10" data-target-annotation="1" onclick="event.preventDefault();">1</a><span id="annotated-cell-10-1" class="code-annotation-target"><a href="#annotated-cell-10-1" aria-hidden="true" tabindex="-1"></a>f, axs <span class="op">=</span> plt.subplots(<span class="dv">2</span>, <span class="dv">1</span>, figsize<span class="op">=</span>(<span class="dv">7</span>, <span class="dv">8</span>))</span>
 <a class="code-annotation-anchor" data-target-cell="annotated-cell-10" data-target-annotation="2" onclick="event.preventDefault();">2</a><span id="annotated-cell-10-2" class="code-annotation-target"><a href="#annotated-cell-10-2" aria-hidden="true" tabindex="-1"></a>elections_data.plot(</span>
 <span id="annotated-cell-10-3"><a href="#annotated-cell-10-3" aria-hidden="true" tabindex="-1"></a>    predicted, legend<span class="op">=</span><span class="va">True</span>, cmap<span class="op">=</span><span class="st">"coolwarm"</span>, vmin<span class="op">=</span><span class="dv">0</span>, vmax<span class="op">=</span><span class="dv">100</span>, ax<span class="op">=</span>axs[<span class="dv">0</span>]</span>
@@ -1410,7 +1410,7 @@ dtype: float64</code></pre>
 </div>
 </div>
 <p>The general patterns are captured but there are some areas of the country which seem to be quite off. The actual error between prediction and the dependent variable is captured as <em>residuals</em>, which are directly available in <code>ols</code> as <code>ols.resid</code> attribute. Let’s plot to get a better comparison.</p>
-<div id="a1cbe972" class="cell" data-execution_count="11">
+<div id="75d080d0" class="cell" data-execution_count="11">
 <div class="sourceCode cell-code" id="annotated-cell-11"><pre class="sourceCode python code-annotation-code code-with-copy code-annotated"><code class="sourceCode python"><a class="code-annotation-anchor" data-target-cell="annotated-cell-11" data-target-annotation="1" onclick="event.preventDefault();">1</a><span id="annotated-cell-11-1" class="code-annotation-target"><a href="#annotated-cell-11-1" aria-hidden="true" tabindex="-1"></a>elections_data[<span class="st">"residual"</span>] <span class="op">=</span> ols.resid</span>
 <a class="code-annotation-anchor" data-target-cell="annotated-cell-11" data-target-annotation="2" onclick="event.preventDefault();">2</a><span id="annotated-cell-11-2" class="code-annotation-target"><a href="#annotated-cell-11-2" aria-hidden="true" tabindex="-1"></a>max_residual <span class="op">=</span> ols.resid.<span class="bu">abs</span>().<span class="bu">max</span>()</span>
 <a class="code-annotation-anchor" data-target-cell="annotated-cell-11" data-target-annotation="3" onclick="event.preventDefault();">3</a><span id="annotated-cell-11-3" class="code-annotation-target"><a href="#annotated-cell-11-3" aria-hidden="true" tabindex="-1"></a>ax <span class="op">=</span> elections_data.plot(</span>
@@ -1444,15 +1444,15 @@ dtype: float64</code></pre>
 </div>
 <p>All of the municipalities in blue (residual above 0) have reported higher gains for Petr Pavel than the model assumes based on education structure, while all in red reported lower gains than what is expected. However, as data scientists, we have better tools to analyse the spatial structure of residuals than eyeballing it. Let’s recall the chapter on spatial autocorrelation again and figure out the spatial clusters of residuals.</p>
 <p>First, create a contiguity graph and row-normalise it.</p>
-<div id="fdf2639b" class="cell" data-execution_count="12">
+<div id="e1110958" class="cell" data-execution_count="12">
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>contiguity_r <span class="op">=</span> graph.Graph.build_contiguity(elections_data).transform(<span class="st">"r"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Then you can generate a Moran plot of residuals. For that, you will need the lag of residuals.</p>
-<div id="60314f6f" class="cell" data-execution_count="13">
+<div id="9b7ebfcf" class="cell" data-execution_count="13">
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>elections_data[<span class="st">"residual_lag"</span>] <span class="op">=</span> contiguity_r.lag(elections_data[<span class="st">"residual"</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>And then you can use the code from the earlier chapter to generate a Moran scatterplot using <code>seaborn</code>.</p>
-<div id="231f1554" class="cell" data-execution_count="14">
+<div id="fd3bff4c" class="cell" data-execution_count="14">
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>f, ax <span class="op">=</span> plt.subplots(<span class="dv">1</span>, figsize<span class="op">=</span>(<span class="dv">6</span>, <span class="dv">6</span>))</span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>sns.regplot(</span>
 <span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>    x<span class="op">=</span><span class="st">"residual"</span>,</span>
@@ -1474,7 +1474,7 @@ dtype: float64</code></pre>
 </div>
 </div>
 <p>That looks like a pretty strong relationship. Use the local version of Moran’s statistic to find out the clusters.</p>
-<div id="7ab7c677" class="cell" data-execution_count="15">
+<div id="1dfc1b2c" class="cell" data-execution_count="15">
 <div class="sourceCode cell-code" id="annotated-cell-15"><pre class="sourceCode python code-annotation-code code-with-copy code-annotated"><code class="sourceCode python"><a class="code-annotation-anchor" data-target-cell="annotated-cell-15" data-target-annotation="1" onclick="event.preventDefault();">1</a><span id="annotated-cell-15-1" class="code-annotation-target"><a href="#annotated-cell-15-1" aria-hidden="true" tabindex="-1"></a>lisa <span class="op">=</span> esda.Moran_Local(elections_data[<span class="st">'residual'</span>], contiguity_r.to_W())</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-annotation">
 <dl class="code-annotation-container-grid">
@@ -1486,7 +1486,7 @@ dtype: float64</code></pre>
 </div>
 </div>
 <p>Let’s use our handy <code>lisa_cluster</code> function from <code>splot</code> to visualise the results.</p>
-<div id="d021df04" class="cell" data-execution_count="16">
+<div id="22eaafd1" class="cell" data-execution_count="16">
 <div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>_ <span class="op">=</span> lisa_cluster(lisa, elections_data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div class="quarto-figure quarto-figure-center">
@@ -1507,7 +1507,7 @@ dtype: float64</code></pre>
 <section id="spatial-fixed-effects" class="level3">
 <h3 class="anchored" data-anchor-id="spatial-fixed-effects">Spatial fixed effects</h3>
 <p>You need to find a way to let <span class="math inline">\(\alpha\)</span> change across space. One option is through the proxy variable capturing higher-level geography. You have information about <em>okres</em> (the closest translation to English would probably be district or county) each municipality belongs to. Let’s start by checking if that could be useful by visualising residuals within each. While you can use the box plot directly, it may be better to sort the values by median residuals, so let’s complicate the code a bit.</p>
-<div id="67670001" class="cell" data-execution_count="17">
+<div id="c834aaa1" class="cell" data-execution_count="17">
 <div class="sourceCode cell-code" id="annotated-cell-17"><pre class="sourceCode python code-annotation-code code-with-copy code-annotated"><code class="sourceCode python"><a class="code-annotation-anchor" data-target-cell="annotated-cell-17" data-target-annotation="1" onclick="event.preventDefault();">1</a><span id="annotated-cell-17-1" class="code-annotation-target"><a href="#annotated-cell-17-1" aria-hidden="true" tabindex="-1"></a>medians <span class="op">=</span> (</span>
 <span id="annotated-cell-17-2"><a href="#annotated-cell-17-2" aria-hidden="true" tabindex="-1"></a>    elections_data.groupby(<span class="st">"okres"</span>)</span>
 <span id="annotated-cell-17-3"><a href="#annotated-cell-17-3" aria-hidden="true" tabindex="-1"></a>    .residual.median()</span>
@@ -1564,7 +1564,7 @@ dtype: float64</code></pre>
 </div>
 </div>
 <p>There are clear differences among these geographies, with a gradient between median -16.5 and 8.3. In a model that does not show spatial heterogeneity across higher-level geographies like these, all medians would be close to zero. This is positive information as it indicates, that we can encode these geographies in the model as a spatial proxy. Using <code>statsmodels</code>, you can adapt the equation and include <code>"okres"</code> as a dummy variable.</p>
-<div id="716ddca7" class="cell" data-execution_count="18">
+<div id="2833b66e" class="cell" data-execution_count="18">
 <div class="sourceCode cell-code" id="annotated-cell-18"><pre class="sourceCode python code-annotation-code code-with-copy code-annotated"><code class="sourceCode python"><a class="code-annotation-anchor" data-target-cell="annotated-cell-18" data-target-annotation="1" onclick="event.preventDefault();">1</a><span id="annotated-cell-18-1" class="code-annotation-target"><a href="#annotated-cell-18-1" aria-hidden="true" tabindex="-1"></a>formula_fe <span class="op">=</span> <span class="ss">f"PetrPavel ~ </span><span class="sc">{</span><span class="st">' + '</span><span class="sc">.</span>join(independent_names)<span class="sc">}</span><span class="ss"> + okres - 1"</span></span>
 <a class="code-annotation-anchor" data-target-cell="annotated-cell-18" data-target-annotation="2" onclick="event.preventDefault();">2</a><span id="annotated-cell-18-2" class="code-annotation-target"><a href="#annotated-cell-18-2" aria-hidden="true" tabindex="-1"></a>ols_fe <span class="op">=</span> sm.ols(formula_fe, data<span class="op">=</span>elections_data).fit()</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-annotation">
@@ -1581,7 +1581,7 @@ dtype: float64</code></pre>
 </div>
 </div>
 <p>Since every unique value in the <code>"okres"</code> column is now treated as a unique variable the summary is a bit longer than before.</p>
-<div id="eedfe0fb" class="cell explore" data-execution_count="19">
+<div id="51877ee1" class="cell explore" data-execution_count="19">
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>ols_fe.summary()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="19">
 <div>
@@ -1614,7 +1614,7 @@ dtype: float64</code></pre>
 </tr>
 <tr class="odd">
 <td data-quarto-table-cell-role="th">Time:</td>
-<td>15:51:01</td>
+<td>17:31:48</td>
 <td data-quarto-table-cell-role="th">Log-Likelihood:</td>
 <td>-21472.</td>
 </tr>
@@ -2513,7 +2513,7 @@ dtype: float64</code></pre>
 </div>
 </div>
 <p>The coefficients for each of the values of the categorical variable <code>"okres"</code> are considered spatial fixed effects. You can extract just those from the model by getting the <code>.params</code> <code>Series</code> and filtering it.</p>
-<div id="bcee2ede" class="cell" data-execution_count="20">
+<div id="d1068c43" class="cell" data-execution_count="20">
 <div class="sourceCode cell-code" id="annotated-cell-20"><pre class="sourceCode python code-annotation-code code-with-copy code-annotated"><code class="sourceCode python"><a class="code-annotation-anchor" data-target-cell="annotated-cell-20" data-target-annotation="1" onclick="event.preventDefault();">1</a><span id="annotated-cell-20-1" class="code-annotation-target"><a href="#annotated-cell-20-1" aria-hidden="true" tabindex="-1"></a>fixed_effects <span class="op">=</span> ols_fe.params.<span class="bu">filter</span>(like<span class="op">=</span><span class="st">"okres"</span>)</span>
 <span id="annotated-cell-20-2"><a href="#annotated-cell-20-2" aria-hidden="true" tabindex="-1"></a>fixed_effects.head()</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-annotation">
@@ -2534,7 +2534,7 @@ dtype: float64</code></pre>
 </div>
 </div>
 <p>You can see that if you want to join this Series to the original DataFrame, you need to extract the names of each <em>okres</em> from within the square brackets.</p>
-<div id="0c6c989c" class="cell" data-execution_count="21">
+<div id="8b8c3bdb" class="cell" data-execution_count="21">
 <div class="sourceCode cell-code" id="annotated-cell-21"><pre class="sourceCode python code-annotation-code code-with-copy code-annotated"><code class="sourceCode python"><a class="code-annotation-anchor" data-target-cell="annotated-cell-21" data-target-annotation="1" onclick="event.preventDefault();">1</a><span id="annotated-cell-21-1" class="code-annotation-target"><a href="#annotated-cell-21-1" aria-hidden="true" tabindex="-1"></a>fixed_effects.index <span class="op">=</span> fixed_effects.index.<span class="bu">str</span>.strip(</span>
 <span id="annotated-cell-21-2"><a href="#annotated-cell-21-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">"okres["</span></span>
 <a class="code-annotation-anchor" data-target-cell="annotated-cell-21" data-target-annotation="2" onclick="event.preventDefault();">2</a><span id="annotated-cell-21-3" class="code-annotation-target"><a href="#annotated-cell-21-3" aria-hidden="true" tabindex="-1"></a>).<span class="bu">str</span>.strip(<span class="st">"]"</span>)</span>
@@ -2561,7 +2561,7 @@ dtype: float64</code></pre>
 </div>
 </div>
 <p>The resulting Series can be merged with the <code>elections_data</code>, allowing us to map the spatial fixed effects.</p>
-<div id="d4243b91" class="cell" data-execution_count="22">
+<div id="6fb81b5b" class="cell" data-execution_count="22">
 <div class="sourceCode cell-code" id="annotated-cell-22"><pre class="sourceCode python code-annotation-code code-with-copy code-annotated"><code class="sourceCode python"><a class="code-annotation-anchor" data-target-cell="annotated-cell-22" data-target-annotation="1" onclick="event.preventDefault();">1</a><span id="annotated-cell-22-1" class="code-annotation-target"><a href="#annotated-cell-22-1" aria-hidden="true" tabindex="-1"></a>max_effect <span class="op">=</span> fixed_effects.<span class="bu">abs</span>().<span class="bu">max</span>()</span>
 <a class="code-annotation-anchor" data-target-cell="annotated-cell-22" data-target-annotation="2" onclick="event.preventDefault();">2</a><span id="annotated-cell-22-2" class="code-annotation-target"><a href="#annotated-cell-22-2" aria-hidden="true" tabindex="-1"></a>elections_data.merge(</span>
 <a class="code-annotation-anchor" data-target-cell="annotated-cell-22" data-target-annotation="3" onclick="event.preventDefault();">3</a><span id="annotated-cell-22-3" class="code-annotation-target"><a href="#annotated-cell-22-3" aria-hidden="true" tabindex="-1"></a>    fixed_effects.to_frame(<span class="st">"fixed_effect"</span>),</span>
@@ -2686,7 +2686,7 @@ Figure&nbsp;1: Illustrations of kernels. Reproduced from Fotheringham et al. <sp
 <h4 class="anchored" data-anchor-id="bandwidth-selection">Bandwidth selection</h4>
 <p>You may have some theoretically defined bandwidth (e.g.&nbsp;you know that you want to consider only locations closer than 25 km) or use cross-validation to find the optimal bandwidth programmatically. CV can be an expensive procedure as the selection procedure fits models based on different bandwidths and compares residuals to choose the one where those are minimised. <code>mgwr</code> has the <code>mgwr.sel_bw.Sel_BW</code> function that helps you with the search. But before using it (or any other <code>mgwr</code> function), you need to prepare the data in the correct form.</p>
 <p>As mentioned above, the GWR assumes point locations as those are well-defined within the distance search (unlike polygons), so you need to extract centroids from geometries and get their coordinates.</p>
-<div id="52ba447e" class="cell" data-execution_count="23">
+<div id="420f2331" class="cell" data-execution_count="23">
 <div class="sourceCode cell-code" id="annotated-cell-23"><pre class="sourceCode python code-annotation-code code-with-copy code-annotated"><code class="sourceCode python"><a class="code-annotation-anchor" data-target-cell="annotated-cell-23" data-target-annotation="1" onclick="event.preventDefault();">1</a><span id="annotated-cell-23-1" class="code-annotation-target"><a href="#annotated-cell-23-1" aria-hidden="true" tabindex="-1"></a>coords <span class="op">=</span> elections_data.centroid.get_coordinates().values</span>
 <span id="annotated-cell-23-2"><a href="#annotated-cell-23-2" aria-hidden="true" tabindex="-1"></a>coords</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-annotation">
@@ -2708,7 +2708,7 @@ Figure&nbsp;1: Illustrations of kernels. Reproduced from Fotheringham et al. <sp
 </div>
 </div>
 <p>Since <code>mgwr</code> is designed to work with numpy objects rather than pandas, extract both dependent and independent variables as arrays.</p>
-<div id="51cdb68b" class="cell" data-execution_count="24">
+<div id="54dd8d5e" class="cell" data-execution_count="24">
 <div class="sourceCode cell-code" id="annotated-cell-24"><pre class="sourceCode python code-annotation-code code-with-copy code-annotated"><code class="sourceCode python"><a class="code-annotation-anchor" data-target-cell="annotated-cell-24" data-target-annotation="1" onclick="event.preventDefault();">1</a><span id="annotated-cell-24-1" class="code-annotation-target"><a href="#annotated-cell-24-1" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> elections_data[<span class="ss">f"PetrPavel"</span>].values.reshape(<span class="op">-</span><span class="dv">1</span>, <span class="dv">1</span>)</span>
 <a class="code-annotation-anchor" data-target-cell="annotated-cell-24" data-target-annotation="2" onclick="event.preventDefault();">2</a><span id="annotated-cell-24-2" class="code-annotation-target"><a href="#annotated-cell-24-2" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> elections_data[independent_names[<span class="dv">1</span>:]].values</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-annotation">
@@ -2725,7 +2725,7 @@ Figure&nbsp;1: Illustrations of kernels. Reproduced from Fotheringham et al. <sp
 </div>
 </div>
 <p>With the data ready, you can identify the optimal bandwidth. This step may take some time (probably minutes).</p>
-<div id="c5c21f64" class="cell" data-execution_count="25">
+<div id="65706137" class="cell" data-execution_count="25">
 <div class="sourceCode cell-code" id="annotated-cell-25"><pre class="sourceCode python code-annotation-code code-with-copy code-annotated"><code class="sourceCode python"><a class="code-annotation-anchor" data-target-cell="annotated-cell-25" data-target-annotation="1" onclick="event.preventDefault();">1</a><span id="annotated-cell-25-1" class="code-annotation-target"><a href="#annotated-cell-25-1" aria-hidden="true" tabindex="-1"></a>sel_bw <span class="op">=</span> mgwr.sel_bw.Sel_BW(coords, y, X, fixed<span class="op">=</span><span class="va">True</span>)</span>
 <a class="code-annotation-anchor" data-target-cell="annotated-cell-25" data-target-annotation="2" onclick="event.preventDefault();">2</a><span id="annotated-cell-25-2" class="code-annotation-target"><a href="#annotated-cell-25-2" aria-hidden="true" tabindex="-1"></a>bw <span class="op">=</span> sel_bw.search()</span>
 <span id="annotated-cell-25-3"><a href="#annotated-cell-25-3" aria-hidden="true" tabindex="-1"></a>bw</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -2756,7 +2756,7 @@ Figure&nbsp;1: Illustrations of kernels. Reproduced from Fotheringham et al. <sp
 </div>
 </div>
 <p>The optimal fixed bandwidth seems to be a bit more than 34 kilometres. You can pass it to the <code>GWR</code> function and fit the regression.</p>
-<div id="910153da" class="cell" data-execution_count="26">
+<div id="d1908a13" class="cell" data-execution_count="26">
 <div class="sourceCode cell-code" id="annotated-cell-26"><pre class="sourceCode python code-annotation-code code-with-copy code-annotated"><code class="sourceCode python"><span id="annotated-cell-26-1"><a href="#annotated-cell-26-1" aria-hidden="true" tabindex="-1"></a>fixed_bandwidth <span class="op">=</span> mgwr.gwr.GWR(</span>
 <a class="code-annotation-anchor" data-target-cell="annotated-cell-26" data-target-annotation="1" onclick="event.preventDefault();">1</a><span id="annotated-cell-26-2" class="code-annotation-target"><a href="#annotated-cell-26-2" aria-hidden="true" tabindex="-1"></a>    coords, y, X, bw<span class="op">=</span>bw, fixed<span class="op">=</span><span class="va">True</span>, name_x<span class="op">=</span>independent_names[<span class="dv">1</span>:]</span>
 <span id="annotated-cell-26-3"><a href="#annotated-cell-26-3" aria-hidden="true" tabindex="-1"></a>)</span>
@@ -2775,7 +2775,7 @@ Figure&nbsp;1: Illustrations of kernels. Reproduced from Fotheringham et al. <sp
 </div>
 </div>
 <p>As before, you can use a summary method.</p>
-<div id="d2b2ca99" class="cell" data-execution_count="27">
+<div id="f6e02edc" class="cell" data-execution_count="27">
 <div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>results.summary()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>===========================================================================
@@ -2854,7 +2854,7 @@ complete_secondary_g      0.616      1.131     -4.232      0.449      8.692
 </div>
 <p>The function fits GWR but also OLS for comparison and prints its results under the Global Regression Results section. You can see that the performance matches the first model done with <code>statsmodels</code> above. The performance of the GWR based on the adjusted <span class="math inline">\(R^2\)</span> is 0.651, another improvement over the fixed effects OLS model. It is probably as good as it can be given the data on education can explain only a part of the election behaviour.</p>
 <p>Apart from the global <span class="math inline">\(R^2\)</span>, GWR can report <span class="math inline">\(R^2\)</span> per geometry, giving us further insights into where education is the driver of the election result and where you need to look for other causes.</p>
-<div id="2845c83c" class="cell" data-execution_count="28">
+<div id="e9929a59" class="cell" data-execution_count="28">
 <div class="sourceCode cell-code" id="annotated-cell-28"><pre class="sourceCode python code-annotation-code code-with-copy code-annotated"><code class="sourceCode python"><a class="code-annotation-anchor" data-target-cell="annotated-cell-28" data-target-annotation="1" onclick="event.preventDefault();">1</a><span id="annotated-cell-28-1" class="code-annotation-target"><a href="#annotated-cell-28-1" aria-hidden="true" tabindex="-1"></a>elections_data[<span class="st">"local_r2"</span>] <span class="op">=</span> results.localR2</span>
 <a class="code-annotation-anchor" data-target-cell="annotated-cell-28" data-target-annotation="2" onclick="event.preventDefault();">2</a><span id="annotated-cell-28-2" class="code-annotation-target"><a href="#annotated-cell-28-2" aria-hidden="true" tabindex="-1"></a>elections_data.plot(<span class="st">"local_r2"</span>, legend<span class="op">=</span><span class="va">True</span>, vmin<span class="op">=</span><span class="dv">0</span>, vmax<span class="op">=</span><span class="dv">1</span>).set_axis_off()</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-annotation">
@@ -2880,7 +2880,7 @@ complete_secondary_g      0.616      1.131     -4.232      0.449      8.692
 </div>
 <p>Higher local <span class="math inline">\(R^2\)</span> means that the model is able to use the data at each municipality and its surrounding areas to provide a result that is closer to the actual observed gain of Petr Pavel.</p>
 <p>You can use the new GWR model and compare its predicted results with the OLS done first and the actual results.</p>
-<div id="24184ccf" class="cell" data-execution_count="29">
+<div id="7c7d6426" class="cell" data-execution_count="29">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>f, axs <span class="op">=</span> plt.subplots(<span class="dv">3</span>, <span class="dv">1</span>, figsize<span class="op">=</span>(<span class="dv">7</span>, <span class="dv">14</span>))</span>
@@ -2912,7 +2912,7 @@ complete_secondary_g      0.616      1.131     -4.232      0.449      8.692
 </div>
 </div>
 <p>It is clear that the model is getting closer. Notice especially the mountains in the southwest and north of the country. You can check this even better by plotting residuals.</p>
-<div id="62d6f00c" class="cell" data-execution_count="30">
+<div id="008712e9" class="cell" data-execution_count="30">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>f, axs <span class="op">=</span> plt.subplots(<span class="dv">2</span>, <span class="dv">1</span>, figsize<span class="op">=</span>(<span class="dv">7</span>, <span class="dv">8</span>))</span>
@@ -2949,14 +2949,14 @@ complete_secondary_g      0.616      1.131     -4.232      0.449      8.692
 </div>
 <p>Apart from localised <span class="math inline">\(R^2\)</span>, GWR also contains localised <span class="math inline">\(\beta_k\)</span> coefficients. While you can plot them directly (they are available as <code>results.params</code>), you should also understand whether the coefficients are statistically significant. For that, you first need to understand what is the critical value of <span class="math inline">\(t\)</span>. It is reported in the summary above but not available as an attribute.</p>
 <p>The <code>results</code> object contains the adjusted alpha values for 0.1, 0.05 and 0.01 levels of significance:</p>
-<div id="26213b93" class="cell" data-execution_count="31">
+<div id="113691d6" class="cell" data-execution_count="31">
 <div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>results.adj_alpha</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="31">
 <pre><code>array([1.69052693e-03, 8.45263464e-04, 1.69052693e-05])</code></pre>
 </div>
 </div>
 <p>You can use the selected alpha value together with the <code>results.critical_tval()</code> method to get the critical value of <span class="math inline">\(t\)</span>.</p>
-<div id="34bbf023" class="cell" data-execution_count="32">
+<div id="031a5502" class="cell" data-execution_count="32">
 <div class="sourceCode cell-code" id="annotated-cell-32"><pre class="sourceCode python code-annotation-code code-with-copy code-annotated"><code class="sourceCode python"><a class="code-annotation-anchor" data-target-cell="annotated-cell-32" data-target-annotation="1" onclick="event.preventDefault();">1</a><span id="annotated-cell-32-1" class="code-annotation-target"><a href="#annotated-cell-32-1" aria-hidden="true" tabindex="-1"></a>sig95 <span class="op">=</span> results.adj_alpha[<span class="dv">1</span>]</span>
 <a class="code-annotation-anchor" data-target-cell="annotated-cell-32" data-target-annotation="2" onclick="event.preventDefault();">2</a><span id="annotated-cell-32-2" class="code-annotation-target"><a href="#annotated-cell-32-2" aria-hidden="true" tabindex="-1"></a>critical_t <span class="op">=</span> results.critical_tval(alpha<span class="op">=</span>sig95)</span>
 <span id="annotated-cell-32-3"><a href="#annotated-cell-32-3" aria-hidden="true" tabindex="-1"></a>critical_t</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -2977,7 +2977,7 @@ complete_secondary_g      0.616      1.131     -4.232      0.449      8.692
 </div>
 </div>
 <p>If a coefficient estimate has an absolute value of <span class="math inline">\(t\)</span> greater than 3.33, then it is statistically significant. You can use this level to mask out the coefficients on the maps below making a distinction between significant and non-significant values.</p>
-<div id="c2baf006" class="cell" data-execution_count="33">
+<div id="b0ef5abd" class="cell" data-execution_count="33">
 <div class="sourceCode cell-code" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>significant <span class="op">=</span> np.<span class="bu">abs</span>(results.tvalues) <span class="op">&gt;</span> critical_t</span>
 <span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>fig, axs <span class="op">=</span> plt.subplots(<span class="dv">4</span>, <span class="dv">3</span>, figsize<span class="op">=</span>(<span class="dv">9</span>, <span class="dv">9</span>))</span>
