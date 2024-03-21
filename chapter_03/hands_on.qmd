@@ -4,6 +4,7 @@ format:
   html: default
   ipynb: default
 jupyter: sds
+code-links: binder
 ---
 
 It is time to get your hands on some spatial data. You will not go far from your `pandas`
