@@ -19,7 +19,8 @@ jobs:
           - name: Set up Quarto
             uses: quarto-dev/quarto-actions/setup@v2
             with:
-                tinytex: true
+                tinytex: false
+                version: pre-release
 
           - name: Setup micromamba
             uses: mamba-org/setup-micromamba@v1
