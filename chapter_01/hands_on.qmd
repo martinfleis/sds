@@ -4,7 +4,6 @@ format:
   html: default
   ipynb: default
 jupyter: sds
-code-links: binder
 ---
 
 Welcome to the first **hands-on** section of the course. You will familiarise yourself

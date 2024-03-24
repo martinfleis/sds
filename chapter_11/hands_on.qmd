@@ -4,7 +4,6 @@ format:
   html: default
   ipynb: default
 jupyter: sds
-code-links: binder
 ---
 
 Linear regression, covered in the previous chapter, is often seen as an entry method to enter

@@ -4,7 +4,6 @@ format:
   html: default
   ipynb: default
 jupyter: sds
-code-links: binder
 ---
 
 When you need to deal with point data, you will likely be interested in the spatial patterns

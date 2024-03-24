@@ -4,7 +4,6 @@ format:
   html: default
   ipynb: default
 jupyter: sds
-code-links: binder
 ---
 
 This session is all about finding groups of similar observations in data using clustering

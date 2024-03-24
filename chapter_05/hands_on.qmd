@@ -4,7 +4,6 @@ format:
   html: default
   ipynb: default
 jupyter: sds
-code-links: binder
 ---
 
 In the last section, you learnt how to encode spatial relationships between geometries

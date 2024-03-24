@@ -4,7 +4,6 @@ format:
   html: default
   ipynb: default
 jupyter: sds
-code-links: binder
 ---
 
 In your life as a spatial data scientist, you will find yourself in a situation where
