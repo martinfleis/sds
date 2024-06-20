@@ -1,0 +1,81 @@
+:root {
+    --main-color: #fa94a5;
+    --main-color-hover: #f97389;
+    --accent-color: #25b497;
+}
+
+a {
+    color: var(--main-color);
+}
+
+a:hover {
+    color:var(--main-color-hover)
+}
+
+.sidebar nav[role=doc-toc] ul>li>a.active, .sidebar nav[role=doc-toc] ul>li>ul>li>a.active {
+    border-left: 1px solid var(--main-color-hover);
+    color: var(--main-color-hover) !important;
+}
+
+.sidebar nav[role=doc-toc] ul>li>a:hover, .sidebar nav[role=doc-toc] ul>li>ul>li>a:hover {
+    color:var(--main-color-hover) !important;
+}
+
+.toc-actions a:hover {
+    color:var(--main-color-hover)
+}
+
+.quarto-secondary-nav nav.quarto-page-breadcrumbs a:hover {
+    color:var(--main-color-hover)
+}
+
+div.sidebar-item-container .active, div.sidebar-item-container .show>.nav-link, div.sidebar-item-container .sidebar-link>code {
+    color: var(--main-color);
+}
+
+.nav-page a:hover {
+    color: var(--main-color);
+}
+
+code {
+    color:  var(--accent-color);
+}
+
+div.sidebar-item-container:hover, div.sidebar-item-container:focus {
+    color:rgba(249, 115, 137, 0.8)
+}
+
+div.sidebar-header {
+    text-align: center;
+}
+
+.sidebar-navigation li a {
+    cursor: pointer;
+}
+
+.accent {
+    color: var(--accent-color)
+}
+
+.keystroke {
+    color: var(--accent-color);
+    padding: 1px 3px;
+    border: 1px solid var(--accent-color);
+    border-radius: 3px;
+    background-color: rgba(37, 180, 151, .05);
+}
+
+.explore {
+    margin-bottom: 1em;
+}
+
+.variogram>div.cell-output>div.quarto-figure>figure>p>img {
+    max-width: 100%;
+    height: auto;
+}
+
+.slide-deck {
+    /* border: none; */
+    width: 100%;
+    height: 525px;
+}
