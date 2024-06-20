@@ -2,17 +2,18 @@ project:
   type: website
   title: "Spatial Data Science for Social Geography"
   resources:
-    - environment.yml
     - "*/slides/*"
-    - "*/data/*"
     - "!_site_micro/"
-    - "!_site_sds4sg/"
+    - "!_site/"
 
 lang: en
 
 execute:
   freeze: false
   cache: true
+
+profile:
+  default: sds4sg
 
 format:
   html:
