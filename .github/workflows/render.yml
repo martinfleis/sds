@@ -40,7 +40,12 @@ jobs:
 
           - name: Render Book project
             run: |
-                quarto render
+                quarto render --profile sds4sg
+                quarto render --profile micro
+                mkdir _site
+                mv _site_micro _site/micro
+                mv _site_sds4sg _site/sds4sg
+                echo "<head><meta http-equiv='refresh' content='0; URL=sds4sg/index.html'></head>" > _site/index.html
 
           - name: Deploy
             uses: peaceiris/actions-gh-pages@v3

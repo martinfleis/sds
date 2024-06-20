@@ -1,0 +1,13 @@
+project:
+  title: "Spatial Data Science in Python"
+  output-dir: ./_site_micro
+
+website:
+  sidebar:
+    contents:
+      - section: "Course information"
+        contents:
+          - text: "Overview"
+            file: index.qmd
+          - chapter_00/infrastructure.qmd
+          - chapter_00/assignment.qmd
