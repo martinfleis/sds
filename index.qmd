@@ -14,7 +14,7 @@ The course is taught in person at Charles University in Prague from October 2023
 The module provides students with little or no prior knowledge of core competencies in Spatial Data Science (SDS). It includes:
 
 - Advancing their statistical and numerical literacy.
-- Introducing basic principles of programming and state-of-the-art computational tools for SDS.
+- Introducing basic principles of programming for data science and state-of-the-art computational tools for SDS.
 - Presenting a comprehensive overview of the main methodologies available to the Spatial Data Scientist and their intuition on how and when they can be applied.
 - Focusing on real-world applications of these techniques in a geographical and applied context.
 
@@ -51,6 +51,8 @@ statistics behind these concepts in detail.
 
 No prior experience with programming or computer science is needed, although a positive
 attitude towards these topics is necessary.
+
+Previous experience in programming or computer science is preferable. A positive attitude towards these topics is essential. In the absence of previous Python experience, the course can be taken, but an increased need for self-study in the first weeks of the semester should be expected.
 
 ## Course structure
 
