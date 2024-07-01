@@ -20,15 +20,15 @@ format:
     theme:
       light: flatly
       dark: darkly
-    css: assets/styles.css
+    css: _assets/styles.css
     toc: true
     smooth-scroll: true
     highlight-style: atom-one
-    bibliography: assets/references.bib
+    bibliography: _assets/references.bib
 
 website:
   repo-url: https://github.com/martinfleis/sds/
-  favicon: assets/favicon.png
+  favicon: _assets/favicon.png
   repo-actions: [issue]
   twitter-card: true
   page-navigation: true
@@ -40,7 +40,7 @@ website:
   sidebar:
     style: floating
     collapse-level: 1
-    logo: assets/logo.svg
+    logo: _assets/logo.svg
     tools:
       - icon: twitter
         href: https://twitter.com/martinfleis

@@ -1,6 +1,6 @@
 # Spatial Data Science for Social Geography
 
-![SDS4SG](assets/logo.svg)
+![SDS4SG](_assets/logo.svg)
 
 A repository hosting the course material for Spatial Data Science for Social Geography taught at Charles University in Prague.
 

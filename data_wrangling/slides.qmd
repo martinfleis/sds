@@ -2,8 +2,8 @@
 title: "Open tools and open mindset"
 format:
     revealjs:
-        theme: [default, ../assets/reveal.scss]
-        logo: ../assets/logo.svg
+        theme: [default, ../_assets/reveal.scss]
+        logo: ../_assets/logo.svg
         menu: false
         transition: slide
         navigation-mode: linear

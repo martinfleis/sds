@@ -32,7 +32,7 @@ to the tools you will need for this course.
 Depending on your operating system, you will have either Terminal (macOS, Linux) or
 Miniforge Prompt application installed. It will look like this:
 
-![Terminal on macOS](../assets/figures/introduction/terminal.png)
+![Terminal on macOS](../_assets/figures/introduction/terminal.png)
 
 Terminal (and Miniforge Prompt or Command line, but we will refer to all as the terminal for simplicity) is
 used to interact with applications that do not have any graphic interface or with
@@ -65,7 +65,7 @@ ls
 
 The output would look like this:
 
-![Output of the `ls` command.](../assets/figures/introduction/ls.png)
+![Output of the `ls` command.](../_assets/figures/introduction/ls.png)
 
 You can also pass a parameter `-l`, specifying that you want a long listing including attributes.
 
@@ -75,7 +75,7 @@ ls -l
 
 That changes the output to this:
 
-![Output of the `ls -l` command.](../assets/figures/introduction/ls-l.png)
+![Output of the `ls -l` command.](../_assets/figures/introduction/ls-l.png)
 
 The syntax is always the same, starting with the app name and then followed by parameters.
 
@@ -127,7 +127,7 @@ jupyter lab
 
 This command should open your browser and load the Jupyter Lab interface.
 
-![Jupyter Lab interface](../assets/figures/introduction/lab.png)
+![Jupyter Lab interface](../_assets/figures/introduction/lab.png)
 
 In the launcher, we can create a new Notebook by clicking on the Python logo representing
 our current environment. If you have more of them, you will see them there, as well as
@@ -135,7 +135,7 @@ other environments using different programming languages like R or Julia.
 
 The notebook is composed of cells. This is a cell:
 
-![Jupyter Notebook cell](../assets/figures/introduction/cell.png)
+![Jupyter Notebook cell](../_assets/figures/introduction/cell.png)
 
 Cells can contain either code or text. A typical notebook is then a series of cells where
 some include text describing what is happening while others contain the code, either
