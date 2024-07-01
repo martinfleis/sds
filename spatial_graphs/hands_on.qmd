@@ -149,7 +149,9 @@ from GeoPandas.
 ```{python}
 #| classes: explore
 m = prague.explore()  # <1>
-queen.explore(prague, m=m)   # <2>
+queen.explore(
+    prague, m=m, edge_kws=dict(style_kwds=dict(weight=1)), nodes=False # <2>
+)
 ```
 1. Use (optionally) polygons as the underlying layer providing context.
 2. `Graph` itself represents only topological relations between geometries. To plot the
