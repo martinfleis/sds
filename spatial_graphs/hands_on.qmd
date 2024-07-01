@@ -37,6 +37,7 @@ most commonly used ones and show how to compute them with `PySAL`.
 
 ```{python}
 import matplotlib.pyplot as plt     # <1>
+import contextily
 import geopandas as gpd
 import numpy as np
 import pandas as pd
@@ -103,6 +104,7 @@ these principles can be done by running:
 
 ```{python}
 queen = graph.Graph.build_contiguity(prague, rook=False)  # <1>
+queen
 ```
 1. The main class that represents a weights matrix is `Graph`. `rook=False` specifies to
 use queen contiguity, while `rook=True` would create rook contiguity.
@@ -138,6 +140,33 @@ of a specific neighbour, `Zderaz` for example, you can do recursive querying:
 ```{python}
 queen['Albertov']['Zderaz']
 ```
+
+All of these relations can be easily visualised using `Graph.explore()` method you know
+from GeoPandas.
+
+```{python}
+#| classes: explore
+m = prague.explore()  # <1>
+queen.explore(prague, m=m)   # <2>
+```
+1. Use (optionally) polygons as the underlying layer providing context.
+2. `Graph` itself represents only topological relations between geometries. To plot the
+graph on a map, you need to pass geometries representing graph nodes.
+
+
+::: {.callout-tip}
+# Static plots
+
+Similarly to `GeoDataFrame`, `Graph` can also be visualised as a static plot, using the
+`Graph.plot()` method working analogously to `Graph.explore()`.
+
+```{python}
+ax = queen.plot(prague, nodes=False, edge_kws={"linewidth": .5})
+contextily.add_basemap(ax=ax, crs=prague.crs, source="CartoDB Positron")
+ax.set_axis_off()
+```
+:::
+
 
 Once created, `Graph` objects can provide much information about the matrix beyond the
 basic attributes one would expect. You have direct access to the number of neighbours each
@@ -196,12 +225,14 @@ queen.isolates    # <1>
 Spatial weight matrices can be explored visually in other ways. For example, you can pick
 an observation and visualise it in the context of its neighbourhood. The following plot
 does exactly that by zooming into the surroundings of ZSJ `Albertov` and displaying
-its polygon as well as those of its neighbours:
+its polygon as well as those of its neighbours together with a relevant portion of the
+`Graph`:
 
 ```{python}
 #| classes: explore
 m = prague.loc[queen['Albertov'].index].explore(color="#25b497")
 prague.loc[['Albertov']].explore(m=m, color="#fa94a5")
+queen.explore(prague, m=m, focal='Albertov')
 ```
 
 #### Rook
@@ -219,10 +250,35 @@ From a technical point of view, constructing a rook matrix is very similar:
 
 ```{python}
 rook = graph.Graph.build_contiguity(prague, rook=True)
+rook
 ```
 
-The output is of the same type as before, a `W` object that can be queried and used in
+The output is of the same type as before, a `Graph` object that can be queried and used in
 very much the same way as any other one.
+
+#### Bishop
+
+In a similar sense, you may want to create bishop contiguity - consider two geometries
+neighbouring if they share only one vertex. There's no constructor for that but you can
+derive bishop contiguity from queen and rook as queen contains both shared vertex and
+shared edge relations. You can, therefore, subtract one from the other to get bishop
+contiguity:
+
+```{python}
+bishop = queen.difference(rook)
+bishop
+```
+
+See the remaining edges:
+
+```{python}
+ax = bishop.plot(prague, nodes=False, edge_kws={"linewidth": .5})
+contextily.add_basemap(ax=ax, crs=prague.crs, source="CartoDB Positron")
+ax.set_axis_off()
+```
+
+Only a small fraction of queen neighbours are not rook neighbors at the same time
+(represented by the number of edges here), but there are some.
 
 ### Distance
 
@@ -244,10 +300,19 @@ To calculate KNN weights, you can use a similar function as before and derive th
 prague["centroid"] = prague.centroid            # <1>
 prague = prague.set_geometry("centroid")        # <2>
 knn5 = graph.Graph.build_knn(prague, k=5)
+knn5
 ```
 1. Distance-based methods usually work only with points (for performance reasons). Create a centroid representation
 of each geometry.
 2. Assign it as an active geometry column.
+
+See the resulting graph visually:
+
+```{python}
+ax = knn5.plot(prague, nodes=False, edge_kws={"linewidth": .5})
+contextily.add_basemap(ax=ax, crs=prague.crs, source="CartoDB Positron")
+ax.set_axis_off()
+```
 
 Note how you need to specify the number of nearest neighbours you want to consider with the
 argument `k`. Since it is a polygon `GeoDataFrame` that you are passing, you need to
@@ -277,6 +342,7 @@ To compute binary distance matrices in `PySAL`, you can use the following comman
 
 ```{python}
 dist1kmB = graph.Graph.build_distance_band(prague, 1000)
+dist1kmB
 ```
 
 This creates a binary matrix that considers neighbors of an observation every polygon
@@ -297,7 +363,13 @@ prague.crs
 ```
 
 In this case, you can see the unit is expressed in metres (`m`). Hence you set the
-threshold to 1,000 for a circle of 1km radius.
+threshold to 1,000 for a circle of 1km radius. The whole graph looks like this:
+
+```{python}
+ax = dist1kmB.plot(prague, nodes=False, edge_kws={"linewidth": .5})
+contextily.add_basemap(ax=ax, crs=prague.crs, source="CartoDB Positron")
+ax.set_axis_off()
+```
 
 An extension of the weights above introduces further detail by assigning different
 weights to different neighbours within the radius circle based on how far they are from
@@ -307,6 +379,7 @@ following command:
 
 ```{python}
 dist1kmC = graph.Graph.build_distance_band(prague, 1000, binary=False)
+dist1kmC
 ```
 
 In `dist1kmC`, every observation within the 1km circle is assigned a weight equal to
@@ -380,12 +453,21 @@ same KU, you only require the mapping of codes. Using `PySAL`, this is a one-lin
 
 ```{python}
 block = graph.Graph.build_block_contiguity(prague['NAZ_KU'])
+block
 ```
 
 If you query for the neighbors of observation by its name, it will work as usual:
 
 ```{python}
 block['Albertov']
+```
+
+Notice the resulting blocks are clearly visible when you visualise the graph:
+
+```{python}
+ax = block.plot(prague, nodes=False, edge_kws={"linewidth": .5})
+contextily.add_basemap(ax=ax, crs=prague.crs, source="CartoDB Positron")
+ax.set_axis_off()
 ```
 
 ## Standardizing `Graph` relationships
@@ -465,8 +547,16 @@ queen_2 = graph.read_parquet("queen.parquet")
 # Interoperabilty with other tools
 
 Weights saved as a Parquet file are efficient if PySAL is the only tool you want to use to read and write them.
-If you want to save them to other file formats like GAL or GWT that are readable by tools like GeoDa, check
-the [documentation](https://pysal.org/libpysal/api.html#io) of the `libpysal.io` module.
+If you want to save them to other file formats like GAL or GWT that are readable by tools like GeoDa, you can
+save graphs to interoperable `GAL` (binary) or `GWT` (non-binary) formats using:
+
+```py
+queen.to_gal("queen.gal")
+
+queen.to_gwt("queen.gwt")
+```
+
+Similarly, you can read such files with `graph.read_gal()` and `graph.read_gwt()`.
 :::
 
 ## Spatial Lag
