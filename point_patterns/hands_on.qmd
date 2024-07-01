@@ -37,7 +37,7 @@ to download any dataset:
 ```{python}
 # | classes: explore
 accidents = gpd.read_file(
-    "data/brno_pedestrian_accidents.gpkg"
+    "https://martinfleischmann.net/sds/point_patterns/data/brno_pedestrian_accidents.gpkg"
 )
 accidents.explore("rok", tiles="CartoDB Positron", cmap="magma_r")  # <1>
 ```

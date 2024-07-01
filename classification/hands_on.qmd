@@ -50,7 +50,7 @@ The dataset contains ~140k points, so I don't recommend using `explore()` on all
 
 ```{python}
 building_data = gpd.read_file(
-  "data/prg_building_locations.gpkg",
+  "https://martinfleischmann.net/sds/classification/data/prg_building_locations.gpkg",
 )
 building_data.head()
 ```

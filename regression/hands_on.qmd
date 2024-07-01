@@ -63,7 +63,7 @@ You can use the data from the [Czech Statistical Office](https://www.czso.cz/csu
 
 ```{python}
 education = pd.read_csv(
-    "data/education.csv"
+    "https://martinfleischmann.net/sds/regression/data/education.csv"
 )
 education.head()
 ```

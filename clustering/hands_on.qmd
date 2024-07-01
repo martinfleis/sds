@@ -72,7 +72,7 @@ As always, the table can be read from the site:
 
 ```{python}
 simd = gpd.read_file(
-    "data/glasgow_simd_2020.gpkg"
+    "https://martinfleischmann.net/sds/clustering/data/glasgow_simd_2020.gpkg"
 )
 ```
 
