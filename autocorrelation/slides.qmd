@@ -1,0 +1,207 @@
+---
+title: "Explore space!"
+format:
+    revealjs:
+        theme: [default, ../assets/reveal.scss]
+        logo: ../assets/logo.svg
+        menu: false
+        transition: slide
+        navigation-mode: linear
+        controls-layout: edges
+---
+
+# Exploratory Spatial Data Analysis
+
+---
+
+::: {.r-fit-text}
+ESDA
+:::
+
+---
+
+### Exploratory
+
+::: {.r-fit-text .fragment .fade-in}
+Focus on discovery and assumption-free investigation
+:::
+
+---
+
+### Spatial
+
+::: {.r-fit-text .fragment .fade-in}
+Patterns and processes that put *space* and *geography* at the core
+:::
+
+---
+
+### Data Analysis
+
+::: {.r-fit-text .fragment .fade-in}
+Statistical techniques for exploration
+:::
+
+## Questions that ESDA helps...
+
+---
+
+### Answer
+
+::: {.r-fit-text .fragment .fade-in}
+Is the variable I'm looking at concentrated over space?
+:::
+
+::: {.r-fit-text .fragment .fade-in}
+Do similar values tend to be located close by?
+:::
+
+::: {.r-fit-text .fragment .fade-in}
+Can I identify any particular areas where certain values are clustered?
+:::
+
+---
+
+### Ask
+::: {.r-fit-text .fragment .fade-in}
+What is behind this pattern?
+:::
+
+::: {.r-fit-text .fragment .fade-in}
+What could be generating the process?
+:::
+
+::: {.r-fit-text .fragment .fade-in}
+Why do we observe certain clusters over space?
+:::
+
+# Spatial Autocorrelation
+
+---
+
+> Everything is related to everything else, but near things are more related than distant things.
+
+::: {.fragment .fade-in}
+Waldo Tobler (1970)
+:::
+
+## Spatial Autocorrelation
+
+::: {.fragment .fade-in}
+#### Statistical representation of Tobler's law
+:::
+
+::: {.fragment .fade-in}
+#### Spatial counterpart of traditional correlation
+:::
+
+::: {.fragment .fade-in}
+Degree to which similar values are located in similar locations
+:::
+
+## Two flavours
+
+::: {.fragment .fade-in}
+#### Positive: similar values $\rightarrow$ similar location (*closeby*)
+:::
+
+::: {.fragment .fade-in}
+#### Negative: similar values $\rightarrow$ disimilar location (*further apart*)
+:::
+
+## Two scales
+
+::: {.fragment .fade-in}
+#### Global: do values tend to be close to other (dis)similar values?
+:::
+
+::: {.fragment .fade-in}
+#### Local: are there any specific parts of a map with an extraordinary concentration of (dis)similar values?
+:::
+
+# Global Spatial Autocorrelation
+
+## "Clustering"
+
+::: {.fragment .fade-in}
+Overall trend where the distribution of values follows a particular pattern
+over space.
+:::
+
+---
+
+### Positive
+Similar values close to each other (high-high, low-low)
+
+::: {.fragment .fade-in}
+### Negative
+Similar values far from each other (high-low)
+:::
+
+---
+
+::: {.r-fit-text}
+How to measure it?
+:::
+
+## Moran Plot
+
+---
+
+![Moran Plot from the last session](https://martinfleischmann.net/sds/spatial_graphs/hands_on_files/figure-html/cell-38-output-1.png){.center_image height="600"}
+
+## Moran's I
+
+[Formal test of global spatial autocorrelation]{.fragment .fade-in}
+
+[Statistically identify the presence of clustering in a variable]{.fragment .fade-in}
+
+[Slope of the Moran plot]{.fragment .fade-in}
+
+# Local Spatial Autocorrelation
+
+## "Clusters"
+
+::: {.fragment .fade-in}
+*Pockets of spatial instability*
+:::
+
+::: {.fragment .fade-in}
+Portions of a map where values are correlated in a particularly strong and
+specific way
+:::
+
+---
+
+### Clusters
+
+#### High-High
+Positive SA of *high* values (*hotspots*)
+
+::: {.fragment .fade-in}
+#### Low-Low
+Positive SA of *low* values (*coldspots*)
+:::
+
+::: {.fragment .fade-in}
+#### High-Low
+Negative SA (*spatial outliers*)
+
+#### Low-High
+Negative SA (*spatial outliers*)
+:::
+
+## LISAs
+
+#### Local Indicators of Spatial Association
+
+[Statistical tests for spatial cluster detection]{.fragment .fade-in}
+
+[Compares the observed map with many randomly generated ones to see how likely
+it is to obtain the observed associations for each location]{.fragment .fade-in}
+
+---
+
+::: {.r-fit-text .absolute top=25%}
+import esda
+:::

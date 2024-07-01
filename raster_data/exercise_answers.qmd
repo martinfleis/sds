@@ -1,0 +1,142 @@
+---
+title: "Learning xarray"
+format: html
+---
+
+One solution. You may have yours.
+
+```py
+import datashader as ds
+import geopandas as gpd
+import rioxarray
+import osmnx as ox
+import xvec
+
+from geocube.api.core import make_geocube
+```
+
+Load `KEN_population_v2_0_gridded.tif` and `KEN_building_class_metrics_v1_0_residential_count.tif` files.
+
+```py
+population = rioxarray.open_rasterio(
+    "/Users/martin/Downloads/KEN_population_v2_0_gridded 2/KEN_population_v2_0_gridded.tif",
+    masked=True
+)
+buildings = rioxarray.open_rasterio(
+    "/Users/martin/Downloads/KEN_building_class_metrics_v1_0_rasters 2/KEN_building_class_metrics_v1_0_residential_count.tif",
+    masked=True
+)
+```
+
+Plot at least one of them in their full extent.
+
+```py
+canvas = ds.Canvas(plot_width=600, plot_height=600)
+agg = canvas.raster(population.sel(band=1))
+agg.plot(cmap="cividis")
+```
+
+Clip them both to the extent of the `"Mombasa"` functional urban area from GHSL.
+
+```py
+fua_url = (
+    "https://martinfleischmann.net/sds/raster_data/data/"
+    "GHS_FUA_UCDB2015_GLOBE_R2019A_54009_1K_V1_0.zip"
+)
+p = f"zip+{fua_url}!GHS_FUA_UCDB2015_GLOBE_R2019A_54009_1K_V1_0.gpkg"
+fuas = gpd.read_file(p)
+mombasa = fuas.query("eFUA_name == 'Mombasa'")
+```
+
+```py
+population_mombasa = population.rio.clip(
+    mombasa.to_crs(population.rio.crs).geometry
+)
+buildings_mombasa = buildings.rio.clip(
+    mombasa.to_crs(buildings.rio.crs).geometry
+)
+```
+
+What is the maximum population per hectare in Mombasa?
+
+```py
+population_mombasa.max()
+```
+
+Reproject one to match the other.
+
+```py
+buildings_aligned = buildings_mombasa.rio.reproject_match(population_mombasa)
+```
+
+ Normalise the population with the building count.
+
+```py
+norm_pop = population_mombasa / buildings_aligned
+```
+
+```py
+norm_pop.sel(band=1).plot()
+```
+
+Save the result as a GeoTIFF.
+
+```py
+norm_pop.rio.to_raster("normalised_population.tif")
+```
+
+```py
+admin = ox.features_from_place("Mombasa", {"admin_level": "6"})
+districts = admin[admin.geom_type == "Polygon"][
+    ["name", "geometry"]
+]
+districts["key"] = range(len(districts))
+```
+
+```py
+districts
+```
+
+```py
+buildings_aligned = buildings_aligned.sel(band=1).squeeze()
+```
+
+```py
+districts_grid = make_geocube(      # <1>
+    vector_data=districts.to_crs(buildings.rio.crs),  # <2>
+    measurements=["key"],   # <3>
+    like=buildings, # <4>
+)
+```
+
+```py
+grouped = buildings.groupby(districts_grid.key)
+```
+
+```py
+districts["n_buildings"] = grouped.sum().sel(band=1)
+```
+
+```py
+districts.plot("n_buildings", legend=True)
+```
+
+Extract values for 100 random points from each Mombasa district.
+
+```py
+points = districts.sample_points(100).explode(index_parts=True)
+```
+
+```py
+points_w_value = population_mombasa.xvec.extract_points(
+    points=points.to_crs(population_mombasa.rio.crs),
+    x_coords="x",
+    y_coords="y",
+)
+points_dataframe = points_w_value.xvec.to_geopandas()
+```
+
+```py
+points_dataframe.plot(1, markersize=0.1)
+```
+

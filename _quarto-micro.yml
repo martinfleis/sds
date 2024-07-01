@@ -9,5 +9,5 @@ website:
         contents:
           - text: "Overview"
             file: index.qmd
-          - chapter_00/infrastructure.qmd
-          - chapter_00/assignment.qmd
+          - course_information/infrastructure.qmd
+          - course_information/assignment.qmd

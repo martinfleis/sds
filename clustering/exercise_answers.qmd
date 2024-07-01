@@ -1,0 +1,124 @@
+---
+title: Find me a cluster
+format:
+  html: default
+  ipynb: default
+jupyter: sds
+---
+
+One solution. You may have yours.
+
+```{python}
+import geopandas as gpd
+import seaborn as sns
+from libpysal import graph
+from sklearn import cluster, preprocessing
+```
+
+```{python}
+chicago = gpd.read_file(
+    "https://martinfleischmann.net/sds/clustering/data/chicago_influenza_1918.geojson"
+)
+```
+
+Before working with clustering, do you remember that note about data standardisation? The demographic variables in the table are not using the same scale, so you need to do something about it before using K-means.
+
+```{python}
+demographics = [
+    "gross_acres",
+    "illit",
+    "unemployed_pct",
+    "ho_pct",
+    "agecat1",
+    "agecat2",
+    "agecat3",
+    "agecat4",
+    "agecat5",
+    "agecat6",
+    "agecat7",
+]
+chicago[demographics] = preprocessing.robust_scale(chicago[demographics])
+chicago.head(2)
+```
+
+If you check the values now, you will see that they are all distributed around 0.
+
+```{python}
+_ = sns.pairplot(chicago[demographics])
+```
+
+Pick a number of clusters
+
+```{python}
+n_clusters = 4
+```
+
+Run K-Means for that number of clusters
+
+```{python}
+kmeans = cluster.KMeans(n_clusters=n_clusters, random_state=0, n_init=1000)
+kmeans.fit(chicago[demographics])
+```
+
+Plot the different clusters on a map
+
+```{python}
+chicago["cluster"] = kmeans.labels_
+
+chicago.explore("cluster", categorical=True)
+```
+
+Analyse the results:
+- What do you find?
+- What are the main characteristics of each cluster?
+- How are clusters distributed geographically?
+- Can you identify some groups concentrated on particular areas?
+
+```{python}
+groups = chicago.groupby('cluster')
+groups.size()
+```
+
+```{python}
+groups[demographics].mean().T
+```
+
+Create spatially lagged K-Means.
+
+```{python}
+queen = graph.Graph.build_contiguity(chicago).transform("r")
+
+for column in demographics:
+    chicago[column + "_lag"] = queen.lag(chicago[column])
+
+demographics_spatial = demographics + [column + "_lag" for column in demographics]
+
+kmeans_lag = cluster.KMeans(n_clusters=n_clusters, random_state=42, n_init=1000)
+kmeans_lag.fit(chicago[demographics_spatial])
+
+chicago["cluster_lag"] = kmeans_lag.labels_
+
+chicago.explore("cluster_lag", categorical=True)
+```
+
+Develop a regionalisation using agglomerative clustering
+
+```{python}
+agg = cluster.AgglomerativeClustering(n_clusters=n_clusters, connectivity=queen.sparse)
+agg.fit(chicago[demographics])
+```
+
+```{python}
+chicago["cluster_agg"] = agg.labels_
+
+chicago.explore("cluster_agg", categorical=True)
+```
+
+Generate a geography that contains only the boundaries of each region and visualise it.
+
+```{python}
+regions = chicago[["cluster_agg", "geometry"]].dissolve("cluster_agg")
+regions.reset_index().explore("cluster_agg", categorical=True)
+```
+
+

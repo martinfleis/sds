@@ -164,12 +164,12 @@ cython_debug/
 
 resources/
 .jupyter_cache
-chapter_03/buildings.geojson
-chapter_03/paris-map.html
-chapter_03/distance_to_arc.png
-chapter_04/queen.parquet
+geographic_data/buildings.geojson
+geographic_data/paris-map.html
+geographic_data/distance_to_arc.png
+spatial_graphs/queen.parquet
 */cache
 .vdoc.py
-chapter_08/population_density.tif
+raster_data/population_density.tif
 data/prague_morphology/prg_geometry.gpkg
 data/prague_morphology/prg_primary.csv.gz

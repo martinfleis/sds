@@ -63,7 +63,7 @@ occasional guidance by the lecturer. So we finish the day with "You do".
 
 For enrolled students of Charles University, the course will finish with a written
 assignment in the form of a computational essay. See the
-[Assignment](chapter_00/assignment.qmd) section for details.
+[Assignment](course_information/assignment.qmd) section for details.
 
 ## Literature
 

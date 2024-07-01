@@ -13,62 +13,62 @@ website:
         contents:
           - text: "Overview"
             file: index.qmd
-          - chapter_00/infrastructure.qmd
-          - chapter_00/assignment.qmd
+          - course_information/infrastructure.qmd
+          - course_information/assignment.qmd
       - text: "---"
       - section: "Introduction"
         contents:
-          - chapter_01/concepts.qmd
-          - chapter_01/hands_on.qmd
-          - chapter_01/exercise.qmd
+          - introduction/concepts.qmd
+          - introduction/hands_on.qmd
+          - introduction/exercise.qmd
       - section: "Open Data Science"
         contents:
-          - chapter_02/concepts.qmd
-          - chapter_02/hands_on.qmd
-          - chapter_02/exercise.qmd
+          - data_wrangling/concepts.qmd
+          - data_wrangling/hands_on.qmd
+          - data_wrangling/exercise.qmd
       - section: "Spatial data"
         contents:
-          - chapter_03/concepts.qmd
-          - chapter_03/hands_on.qmd
-          - chapter_03/exercise.qmd
+          - geographic_data/concepts.qmd
+          - geographic_data/hands_on.qmd
+          - geographic_data/exercise.qmd
       - section: "Spatial weights"
         contents:
-          - chapter_04/concepts.qmd
-          - chapter_04/hands_on.qmd
-          - chapter_04/exercise.qmd
+          - spatial_graphs/concepts.qmd
+          - spatial_graphs/hands_on.qmd
+          - spatial_graphs/exercise.qmd
       - section: "Exploratory spatial data analysis"
         contents:
-          - chapter_05/concepts.qmd
-          - chapter_05/hands_on.qmd
-          - chapter_05/exercise.qmd
+          - autocorrelation/concepts.qmd
+          - autocorrelation/hands_on.qmd
+          - autocorrelation/exercise.qmd
       - section: "Point patterns"
         contents:
-          - chapter_06/concepts.qmd
-          - chapter_06/hands_on.qmd
-          - chapter_06/exercise.qmd
+          - point_patterns/concepts.qmd
+          - point_patterns/hands_on.qmd
+          - point_patterns/exercise.qmd
       - section: "Clustering"
         contents:
-          - chapter_07/concepts.qmd
-          - chapter_07/hands_on.qmd
-          - chapter_07/exercise.qmd
+          - clustering/concepts.qmd
+          - clustering/hands_on.qmd
+          - clustering/exercise.qmd
       - section: "Raster data"
         contents:
-          - chapter_08/concepts.qmd
-          - chapter_08/hands_on.qmd
-          - chapter_08/exercise.qmd
+          - raster_data/concepts.qmd
+          - raster_data/hands_on.qmd
+          - raster_data/exercise.qmd
       - section: "Interpolation"
         contents:
-          - chapter_09/concepts.qmd
-          - chapter_09/hands_on.qmd
-          - chapter_09/exercise.qmd
+          - interpolation/concepts.qmd
+          - interpolation/hands_on.qmd
+          - interpolation/exercise.qmd
       - section: "Regression"
         contents:
-          - chapter_10/concepts.qmd
-          - chapter_10/hands_on.qmd
-          - chapter_10/exercise.qmd
+          - regression/concepts.qmd
+          - regression/hands_on.qmd
+          - regression/exercise.qmd
       - section: "Machine learning"
         contents:
-          - chapter_11/concepts.qmd
-          - chapter_11/hands_on.qmd
-          - chapter_11/exercise.qmd
+          - classification/concepts.qmd
+          - classification/hands_on.qmd
+          - classification/exercise.qmd
 

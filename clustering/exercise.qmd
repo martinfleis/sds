@@ -1,0 +1,85 @@
+---
+title: "Find me a cluster"
+format: html
+jupyter: sds
+---
+
+Now, it is up to you to find some clusters.
+
+## Chicago 1918
+
+You will work with the  demographic characteristics of Chicago in 1918 linked to the
+influenza mortality during the pandemic that happened back then, coming from the
+research paper by @grantz2016disparities you used before in the
+[Data wrangling](../data_wrangling/hands_on.qmd) chapter, but this time with geometries.
+
+```{python}
+# | classes: explore
+import geopandas as gpd
+
+chicago = gpd.read_file(
+    "https://martinfleischmann.net/sds/clustering/data/chicago_influenza_1918.geojson"
+)
+chicago.explore()
+```
+
+Before working with clustering, do you remember that note about data standardisation? The
+demographic variables in the table are not using the same scale, so you need to do something
+about it before using K-means.
+
+I'll let you check the
+[_Data_ section](https://geographicdata.science/book/notebooks/10_clustering_and_regionalization.html#data) of
+the chapter
+[_Clustering and Regionalization_](https://geographicdata.science/book/notebooks/10_clustering_and_regionalization.html)
+from the Geographic Data Science with Python by @rey2023geographic by yourself for an explanation
+of what is happening below. In short, you take the variables and scale them using the robust scaler, ensuring that
+all of them are using the same scale and the scaling is not affected by outliers.
+
+```{python}
+from sklearn import preprocessing   # <1>
+
+demographics = [                # <2>
+    "gross_acres",        # <2>
+    "illit",        # <2>
+    "unemployed_pct",        # <2>
+    "ho_pct",        # <2>
+    "agecat1",        # <2>
+    "agecat2",        # <2>
+    "agecat3",        # <2>
+    "agecat4",        # <2>
+    "agecat5",        # <2>
+    "agecat6",        # <2>
+    "agecat7",        # <2>
+]        # <2>
+chicago[demographics] = preprocessing.robust_scale(chicago[demographics])  # <3>
+chicago.head(2)
+```
+1. Import the `preprocessing` module of `scikit-learn`.
+2. Specify a list of demographic variables.
+3. Scale the selected columns and assign them back to the table.
+
+If you check the values now, you will see that they are all distributed around 0.
+
+Once this is ready, get to work with the following tasks:
+
+1. Pick a number of clusters
+1. Run K-Means for that number of clusters
+1. Plot the different clusters on a map
+1. Analyse the results:
+    - *What do you find?*
+    - *What are the main characteristics of each cluster?*
+    - *How are clusters distributed geographically?*
+    - *Can you identify some groups concentrated on particular areas?*
+1. Create spatially lagged K-Means.
+    - *How did the result change?*
+1. Develop a regionalisation using agglomerative clustering
+    - *How did the result change compared to the previous two?*
+1.  Generate a geography that contains only the boundaries of each region and visualise it.
+
+- Rinse and repeat with several combinations of variables and number of clusters
+- Pick your best. *Why have you selected it? What does it show? What are the main groups of areas based on the built environment?*
+
+## Acknowledgements {.appendix}
+
+This section is derived from _A Course on Geographic Data Science_ by
+@darribas_gds_course, licensed under CC-BY-SA 4.0.

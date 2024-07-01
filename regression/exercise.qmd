@@ -1,0 +1,53 @@
+---
+title: "Fit that model"
+format: html
+---
+
+In this part, you will try to fit some regression models on your own.
+
+## Scottish Index of Multiple Deprivation yet again
+
+You already know the Scottish Index of Multiple Deprivation (SIMD) from exercise on
+pandas and then on spatial autocorrelation. This time, you will use it again to look
+at the impact of individual components on the overall deprivation ranking.
+
+1. Go back to the [Does it correlate?](../autocorrelation/exercise.qmd) and load the dataset to your Jupyter Notebook. Do not filter for Glasgow this time, use the whole dataset.
+2. Let's try to understand the effect of a proportion of youths entering university (`"EduUniver"`), crime rate ("`CrimeRate`"), hospital stays related to alcohol use (`"HlthAlcSR"`), hospital stays related to drug use (`"HlthDrugSR"`) and mortality (`"HlthSMR")`.
+3. Check the columns and ensure they are all `float`  or `int` columns (with numbers, no text.)
+
+::: {.callout-tip collapse="true"}
+# A few hints
+
+You will need to remove some characters from strings and convert dtypes.
+
+::: {.callout-tip collapse="true"}
+# More hints
+
+Check the `.str` accessor on a `pandas.Series`.
+
+::: {.callout-tip collapse="true"}
+# Even more hints
+
+The `.str.rstrip()` method will be particularly useful.
+
+::: {.callout-tip collapse="true"}
+# Okay, here's the code
+
+This is how the pre-processing could look.
+
+```py
+simd["EduUniver"] = simd["EduUniver"].str.rstrip('%').astype(float)
+```
+
+:::
+:::
+:::
+:::
+
+4. Create a standard OLS regression predicting `"Rankv2"` based on these 5 variables. *What can you tell about them? How good is the model?*
+5. Compare the prediction with the original data on a map. *Can you spot the difference?*
+6. Plot residuals. *Is there a geographical pattern?*
+7. Check for geographical patterns in residuals using the spatial autocorrelation analysis of your choice.
+8. Create another OLS model and include local authority `"LAName"` in the formula. *Are there significant spatial fixed effects? Did the model improve? How much?*
+9. Create geographically weighted regression using the set of variables from the first model. Use adaptive kernel with `bandiwdth=150` or figure out the optimal adaptive bandwidth yourself. *Is the model better than those before?*
+10. Explore GWR results. *What is the distribution of local R2? Can you say anything about the significance of individual variables?*

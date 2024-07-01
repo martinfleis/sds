@@ -1,0 +1,68 @@
+---
+title: "Learning xarray"
+format: html
+---
+
+Try to reproduce the similar with different population grids.
+
+## WorldPop data of Kenya
+
+Go to [wopr.worldpop.org](https://wopr.worldpop.org/) and download a _Gridded population estimates (~100m) for Kenya_ and a _Kenya 100m Building class_. Each is an archive, so unzip (reading from the zipped archive doesn't seem to work in this case.)
+
+::: {.callout-note collapse="true"}
+# Backup data
+
+If the link does not work, please [report it](https://github.com/martinfleis/sds/issues/new) and use the backup:
+
+- [Gridded population estimates](https://martinfleischmann.net/sds/raster_data/data/KEN_population_v2_0_gridded.zip)
+- [Kenya 100m Building](https://martinfleischmann.net/sds/raster_data/data/KEN_building_class_metrics_v1_0_rasters.7z)
+:::
+
+1. Load `KEN_population_v2_0_gridded.tif` and `KEN_building_class_metrics_v1_0_residential_count.tif` files.
+2. Plot at least one of them in their full extent.
+3. Clip them both to the extent of the `"Mombasa"` functional urban area from GHSL.
+4. What is the maximum population per hectare in Mombasa?
+4. Reproject one to match the other. These two grids are not perfectly aligned, so you need to align them. Check the tip below on how to do that.
+
+::: {.callout-tip collapse="true"}
+# Aligning rasters
+
+When two rasters don't perfectly match (i.e. their resolution and placement are exactly
+the same), you need to align them by projecting one to match the other.
+
+Try figuring that out!
+
+::: {.callout-tip collapse="true"}
+# A hint, please!
+
+`rioxarray` has the functionality to do this as one line of code. Have you checked their (not so great, I admin) [documentation](https://corteva.github.io/rioxarray/stable/index.html)?
+
+:::  {.callout-tip collapse="true"}
+# Another hint
+
+You are looking for `.rio.reproject_match()` method.
+
+::: {.callout-tip collapse="true"}
+# Okay, here's the code
+
+This is how the aligning should look.
+
+```py
+aligned_b = b.rio.reproject_match(a)
+```
+
+:::
+:::
+:::
+:::
+6. Normalise the population with the building count.
+7. Save the result as a GeoTIFF.
+
+::: {.callout}
+
+# Optional extension
+
+8. If you have time, you can also figure out how many buildings are per district in Mombasa. Those are in OpenStreetMap as admin_level==6.
+9. Extract values for 100 random points from each Mombasa district.
+:::
+
