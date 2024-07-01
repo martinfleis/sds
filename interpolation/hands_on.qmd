@@ -4,6 +4,8 @@ format:
   html: default
   ipynb: default
 jupyter: sds
+aliases:
+  - ../chapter_09/hands_on.html
 ---
 
 In your life as a spatial data scientist, you will find yourself in a situation where

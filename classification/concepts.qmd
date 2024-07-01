@@ -1,6 +1,8 @@
 ---
 title: "Is there space in machine learning?"
 format: html
+aliases: 
+  - ../chapter_11/concepts.html
 ---
 
 <!-- - intro to supervised ML -->

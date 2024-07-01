@@ -1,6 +1,8 @@
 ---
 title: "Understanding Notebooks"
 format: html
+aliases:
+  - ../chapter_01/exercise.html
 ---
 
 This is a ["You do"]{.accent} part of the first lesson.

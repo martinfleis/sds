@@ -1,5 +1,7 @@
 ---
 title: "Infrastructure"
+aliases:
+  - ../chapter_00/infrastructure.html
 ---
 
 The course does not use any university-specific resources. It is designed to run entirely

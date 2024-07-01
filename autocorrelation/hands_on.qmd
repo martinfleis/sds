@@ -4,6 +4,8 @@ format:
   html: default
   ipynb: default
 jupyter: sds
+aliases:
+  - ../chapter_05/hands_on.html
 ---
 
 In the last section, you learned how to encode spatial relationships between geometries

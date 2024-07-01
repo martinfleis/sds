@@ -4,6 +4,8 @@ format:
   html: default
   ipynb: default
 jupyter: sds
+aliases:
+  - ../chapter_02/exercise.html
 ---
 
 This section is about learning how to work with `pandas` by using it without much guidance. You will play with the [dataset](https://www.gov.scot/publications/scottish-index-of-multiple-deprivation-2020v2-ranks/) of the [Scottish Index of Multiple Deprivation](https://www.gov.scot/collections/scottish-index-of-multiple-deprivation-2020/#lookupfiles) (SIMD). Specifically, you will load a table containing the rank of each data zone according to the overall

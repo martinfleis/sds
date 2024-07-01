@@ -1,6 +1,8 @@
 ---
 title: "What is Spatial Data Science?"
 slide-format: revealjs
+aliases:
+  - ../chapter_01/concepts.html
 ---
 
 Below are slides from the introductory talk to the course, covering a brief introduction to data science and spatial data science, followed by practical information about the course structure and organisation.

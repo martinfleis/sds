@@ -1,6 +1,8 @@
 ---
 title: "Data as a grid"
 format: html
+aliases:
+  - ../chapter_08/concepts.html
 ---
 
 <!-- Intro to rasters and xarray

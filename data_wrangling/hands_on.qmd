@@ -4,6 +4,8 @@ format:
   html: default
   ipynb: default
 jupyter: sds
+aliases:
+  - ../chapter_02/hands_on.html
 ---
 
 You know the basics. What are Jupyter notebooks, how do they work, and how do you run

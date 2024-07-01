@@ -1,6 +1,8 @@
 ---
 title: "I need more points"
 format: html
+aliases:
+  - ../chapter_06/concepts.html
 ---
 <!--
 - What are point patterns

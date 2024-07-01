@@ -1,6 +1,8 @@
 ---
 title: "Spatial data old and new"
 format: html
+aliases:
+  - ../chapter_03/concepts.html
 ---
 
 Slides from the talk about the nature of _old_ spatial data and _new_ spatial data, adapted from @darribas_gds_course, drawing from the work of @Lazer14032014 and @ArribasBel201445.

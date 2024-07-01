@@ -1,6 +1,8 @@
 ---
 title: "Graph here, graph there"
 format: html
+aliases:
+  - ../chapter_04/exercise.html
 ---
 
 It is time to work with spatial weights matrices by yourself.

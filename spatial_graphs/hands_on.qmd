@@ -4,6 +4,8 @@ format:
   html: default
   ipynb: default
 jupyter: sds
+aliases:
+  - ../chapter_04/hands_on.html
 ---
 
 In this session, you will be learning the ins and outs of one of the key pieces in spatial

@@ -4,6 +4,8 @@ format:
   html: default
   ipynb: default
 jupyter: sds
+aliases:
+  - ../chapter_01/hands_on.html
 ---
 
 Welcome to the first **hands-on** section of the course. You will familiarise yourself

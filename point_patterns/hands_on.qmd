@@ -4,6 +4,8 @@ format:
   html: default
   ipynb: default
 jupyter: sds
+aliases:
+  - ../chapter_06/hands_on.html
 ---
 
 When you need to deal with point data, you will likely be interested in the spatial patterns

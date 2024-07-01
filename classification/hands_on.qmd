@@ -4,6 +4,8 @@ format:
   html: default
   ipynb: default
 jupyter: sds
+aliases:
+  - ../chapter_11/hands_on.html
 ---
 
 Linear regression, covered in the previous chapter, is often seen as an entry method to enter

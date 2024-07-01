@@ -1,6 +1,8 @@
 ---
 title: "Similar data belong together"
 format: html
+aliases:
+  - ../chapter_07/concepts.html
 ---
 
 Slides from the talk introducing concepts of clustering and regionalisation.

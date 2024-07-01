@@ -1,6 +1,8 @@
 ---
 title: "Learning xarray"
 format: html
+aliases:
+  - ../chapter_08/exercise.html
 ---
 
 Try to reproduce the similar with different population grids.

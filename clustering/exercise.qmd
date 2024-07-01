@@ -2,6 +2,8 @@
 title: "Find me a cluster"
 format: html
 jupyter: sds
+aliases:
+  - ../chapter_07/exercise.html
 ---
 
 Now, it is up to you to find some clusters.

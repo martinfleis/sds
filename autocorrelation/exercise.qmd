@@ -1,6 +1,8 @@
 ---
 title: "Does it correlate?"
 format: html
+aliases:
+  - ../chapter_05/exercise.html
 ---
 
 In this part, you will try to explore spatial autocorrelation on your own.

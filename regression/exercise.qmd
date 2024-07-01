@@ -1,6 +1,8 @@
 ---
 title: "Fit that model"
 format: html
+aliases:
+  - ../chapter_10/exercise.html
 ---
 
 In this part, you will try to fit some regression models on your own.

@@ -1,6 +1,8 @@
 ---
 title: "Use space in your favour"
 format: html
+aliases:
+  - ../chapter_09/concepts.html
 ---
 <!--
 - Feature engineering intro

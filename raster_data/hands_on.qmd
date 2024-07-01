@@ -4,6 +4,8 @@ format:
   html: default
   ipynb: default
 jupyter: sds
+aliases:
+  - ../chapter_08/hands_on.html
 ---
 
 Until now, all the data you were working with were tables. However, not everything is a

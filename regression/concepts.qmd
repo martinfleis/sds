@@ -1,6 +1,8 @@
 ---
 title: "Relationship and prediction"
 format: html
+aliases:
+  - ../chapter_10/concepts.html
 ---
 
 <!-- - non-spatial regression

@@ -4,6 +4,8 @@ format:
   html: default
   ipynb: default
 jupyter: sds
+aliases:
+  - ../chapter_03/hands_on.html
 ---
 
 It is time to get your hands on some spatial data. You will not go far from your `pandas`

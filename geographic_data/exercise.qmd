@@ -1,6 +1,8 @@
 ---
 title: "Learning GeoPandas"
 format: html
+aliases:
+  - ../chapter_03/exercise.html
 ---
 
 This section is about playing with `geopandas` by yourself. You will zoom at Prague and

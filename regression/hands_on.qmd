@@ -4,6 +4,8 @@ format:
   html: default
   ipynb: default
 jupyter: sds
+aliases:
+  - ../chapter_10/hands_on.html
 ---
 
 When trying to determine the effect of some (independent) variables on the outcome of phenomena (dependent variable), you often

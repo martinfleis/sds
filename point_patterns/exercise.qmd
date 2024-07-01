@@ -2,6 +2,8 @@
 title: "Is there a pattern?"
 format: html
 jupyter: sds
+aliases:
+  - ../chapter_06/exercise.html
 ---
 
 It's time to explore some point patterns.

@@ -1,6 +1,8 @@
 ---
 title: "Explore space!"
 format: html
+aliases:
+  - ../chapter_05/concepts.html
 ---
 
 Slides from the talk about the concept of exploratory spatial data analysis and spatial autocorrelation.

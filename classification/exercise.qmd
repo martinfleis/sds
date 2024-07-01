@@ -1,6 +1,8 @@
 ---
 title: "Predict future"
 format: html
+aliases:
+  - ../chapter_11/exercise.html
 ---
 
 <!-- Playing with scikit-learn. -->

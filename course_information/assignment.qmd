@@ -1,6 +1,8 @@
 ---
 title: "Assignment"
 format: "html"
+aliases:
+  - ../chapter_00/assignment.html
 ---
 
 This course is assessed based on a single final assignment - a computational essay.

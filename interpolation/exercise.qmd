@@ -1,6 +1,8 @@
 ---
 title: "What is in between?"
 format: html
+aliases:
+  - ../chapter_09/exercise.html
 ---
 
 Going through this exercise is even more up to you than usual.
