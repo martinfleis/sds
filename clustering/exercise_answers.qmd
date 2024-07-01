@@ -17,7 +17,7 @@ from sklearn import cluster, preprocessing
 
 ```{python}
 chicago = gpd.read_file(
-    "https://martinfleischmann.net/sds/data_wrangling/data/chicago_influenza_1918.geojson"
+    "https://martinfleischmann.net/sds/clustering/data/chicago_influenza_1918.geojson"
 )
 ```
 

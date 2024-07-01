@@ -18,7 +18,7 @@ research paper by @grantz2016disparities you used before in the
 import geopandas as gpd
 
 chicago = gpd.read_file(
-    "https://martinfleischmann.net/sds/data_wrangling/data/chicago_influenza_1918.geojson"
+    "https://martinfleischmann.net/sds/clustering/data/chicago_influenza_1918.geojson"
 )
 chicago.explore()
 ```
