@@ -44,13 +44,10 @@ buildings.head()
 ::: {.callout-tip}
 # Explore available layers
 
-You can quickly check which layers are available in the GPKG file using a lower-level package
-called `pyogrio`.
+You can quickly check which layers are available in the GPKG file using `geopandas.list_layers()`.
 
 ```{python}
-import pyogrio
-
-pyogrio.list_layers(paris_url)
+gpd.list_layers(paris_url)
 ```
 :::
 
