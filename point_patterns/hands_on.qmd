@@ -10,7 +10,7 @@ When you need to deal with point data, you will likely be interested in the spat
 they form. For that, you can use point pattern analysis techniques. This session will walk
 you through some basic ways of approaching the analysis based primarily on geometries and their
 locations rather than variables associated with them.
-<!--
+
 
 ```{python}
 import contextily
@@ -37,7 +37,7 @@ to download any dataset:
 ```{python}
 # | classes: explore
 accidents = gpd.read_file(
-    "https://martinfleischmann.net/sds/point_patterns/data/brno_pedestrian_accidents.gpkg"
+    "data/brno_pedestrian_accidents.gpkg"
 )
 accidents.explore("rok", tiles="CartoDB Positron", cmap="magma_r")  # <1>
 ```
@@ -503,4 +503,4 @@ and some other extensions.
 ## Acknowledgements {.appendix}
 
 This section loosely follows the _Point Pattern Analysis_ chapter from
-the _Geographic Data Science with Python_ by @rey2023geographic. -->
+the _Geographic Data Science with Python_ by @rey2023geographic.

@@ -50,8 +50,7 @@ The dataset contains ~140k points, so I don't recommend using `explore()` on all
 
 ```{python}
 building_data = gpd.read_file(
-  "https://martinfleischmann.net/sds/classification/data/prg_building_locations.gpkg",
-  engine="pyogrio",
+  "data/prg_building_locations.gpkg",
 )
 building_data.head()
 ```
@@ -597,7 +596,7 @@ Load the price data you worked with in the Learning GeoPandas chapter.
 
 ```{python}
 price = gpd.read_file(
-    "https://martinfleischmann.net/sds/geographic_data/data/SED_CenovaMapa_p_shp.zip",
+    "../geographic_data/data/SED_CenovaMapa_p_shp.zip",
 )
 price["CENA"] = price["CENA"].replace("N", None).astype("float")  # <1>
 price.head(2)

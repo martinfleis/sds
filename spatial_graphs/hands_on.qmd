@@ -59,7 +59,7 @@ you do not need to download any dataset:
 ```{python}
 #| classes: explore
 prague = gpd.read_file(
-    "https://martinfleischmann.net/sds/spatial_graphs/data/zsj_prague_2021.gpkg"
+    "data/zsj_prague_2021.gpkg"
 )
 prague = prague.set_index("NAZ_ZSJ") # <1>
 prague.explore()

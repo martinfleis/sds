@@ -46,7 +46,7 @@ distribution*? *Are similar values closer to other similar values than you would
 from pure chance?* These are some of the questions that tools for global spatial
 autocorrelation allow to answer. You will practice with global spatial autocorrelation on
 the Join Counts statistic and Moran's $I$ statistic.
-<!--
+
 Tools for *local* spatial autocorrelation instead focus on spatial instability: the
 departure of parts of a map from the general trend. The idea here is that, even though
 there is a given trend for the data in terms of the nature and strength of spatial
@@ -84,7 +84,7 @@ to download any dataset:
 ```{python}
 #| classes: explore
 elections = gpd.read_file(
-    "https://martinfleischmann.net/sds/autocorrelation/data/cz_elections_2023.gpkg"
+    "data/cz_elections_2023.gpkg"
 )
 elections = elections.set_index("name") # <1>
 elections.explore(                      # <2>
@@ -626,7 +626,7 @@ those you have used today.
   from the Geographic Data Science with Python by @rey2023geographic for more details
   and some other extensions.
 
-::: -->
+:::
 
 ## Acknowledgements {.appendix}
 

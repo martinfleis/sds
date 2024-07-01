@@ -33,7 +33,7 @@ You will work with the same data you already used in the chapter on [spatial aut
 
 ```{python}
 elections = gpd.read_file(
-    "https://martinfleischmann.net/sds/autocorrelation/data/cz_elections_2023.gpkg"
+    "../autocorrelation/data/cz_elections_2023.gpkg"
 )
 elections = elections.set_index("name")
 elections.head()
@@ -63,7 +63,7 @@ You can use the data from the [Czech Statistical Office](https://www.czso.cz/csu
 
 ```{python}
 education = pd.read_csv(
-    "https://martinfleischmann.net/sds/regression/data/education.csv"
+    "data/education.csv"
 )
 education.head()
 ```
