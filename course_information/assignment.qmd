@@ -7,11 +7,11 @@ aliases:
 
 This course is assessed based on a single final assignment - a computational essay.
 
-::: {.callout-important}
+<!-- ::: {.callout-important}
 # Office hours
 
 Students enrolled in `MZ340V17` can book a slot to discuss the assignment via [cal.com/martinfleis/sds](https://cal.com/martinfleis/sds). The slots are available two weeks ahead and must be booked at least a day in advance.
-:::
+::: -->
 
 ## Computational essay
 
@@ -30,8 +30,8 @@ some maps and possibly tables, but you get the gist.
 :::
 
 The essay corresponds to a range of 2,500-5,000 words. That does not mean that you have
-to write that many words. Since you will have to produce not only text (in Czech or
-English) but also code and its outputs, the following requirements are specified:
+to write that many words. Since you will have to produce not only text (in English or
+Czech) but also code and its outputs, the following requirements are specified:
 
 - The maximum number of words in Markdown cells is 1,500 (the bibliography, if provided,
   does not count towards the word count).
@@ -41,6 +41,7 @@ English) but also code and its outputs, the following requirements are specified
 
 The rest of the word count is assumed to be consumed by code.
 
+::: {.content-visible when-profile='sds4sg'}
 You have two options regarding topics. The first one is to work on your data on the
 topic of your choice, while the second is a semi-defined task if you prefer that.
 
@@ -55,9 +56,9 @@ The requirement is to cover:
 2. Exploration of a degree of randomness of data (e.g. spatial autocorrelation, point pattern analysis)[^2]
 3. At least one other technique of your choice (clustering, interpolation, regression, prediction)[^3]
 
-[^1]: Based on chapters 1 ([Introduction](../introduction/hands_on.qmd)) - 3 ([Spatial data](../geographic_data/hands_on.qmd)).
-[^2]: Based on chapters 4 ([Spatial weights](../spatial_graphs/hands_on.qmd)) - 6 ([Point patterns](../point_patterns/hands_on.qmd)).
-[^3]: Based on chapters 7 ([Clustering](../clustering/hands_on.qmd)) - 11 ([Machine learning](../classification/hands_on.qmd)).
+[^1]: Based on sessions [Introduction](../introduction/hands_on.qmd) - [Spatial data](../geographic_data/hands_on.qmd).
+[^2]: Based on sessions [Spatial weights](../spatial_graphs/hands_on.qmd) - [Point patterns](../point_patterns/hands_on.qmd).
+[^3]: Based on sessions [Clustering](../clustering/hands_on.qmd)) - [[Machine learning](../classification/hands_on.qmd)].
 
 Consult the second option to get a better sense of the extent.
 
@@ -72,9 +73,11 @@ be marked with 0%. Reach out via Discord or email to get approval.
 This option is recommended for students of Master's and Postgraduate courses enrolled in
 `MZ340V17`.
 
-### A Barcelona case
-
 The second option is more defined but still leaves some space for your creativity.
+
+:::
+
+### A Barcelona case
 
 You will take the role of a real-world data scientist tasked to explore a dataset on the
 city of Barcelona (Spain) and find useful insights for a variety of decision-makers. It
@@ -136,7 +139,7 @@ The other two options share the basics:
 
 ## Submission
 
-The submission will contain an executed Jupyter Notebook and a PDF version of the same.
+The submission will contain an executed Jupyter Notebook.
 The code needs to be reproducible. That means that all the data used in the essay need
 to be available online (and ideally fetched directly from the notebook but a link to a
 download page is also fine, although data manipulation outside of the Notebook is not
