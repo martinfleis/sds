@@ -3,7 +3,7 @@ title: "What is Spatial Data Science?"
 format:
     revealjs:
         theme: [default, ../_assets/reveal.scss]
-        logo: ../_assets/logo.svg
+        logo: ../_assets/logo_micro.svg
         menu: false
         transition: slide
         navigation-mode: linear
@@ -252,7 +252,12 @@ Python
 ---
 
 ::: {.r-fit-text .absolute top=39%}
+::: {.content-visible when-profile='sds4sg'}
 11 lessons in 13 weeks
+:::
+::: {.content-visible when-profile='micro'}
+10 lessons in 5 days
+:::
 :::
 
 ---
@@ -263,8 +268,12 @@ Python
 
 #### 3 lessons on exploratory data analysis {.fragment .fade-in}
 
+::: {.content-visible when-profile='sds4sg'}
 #### 5 lessons on data science techniques {.fragment .fade-in}
-
+:::
+::: {.content-visible when-profile='micro'}
+#### 4 lessons on data science techniques {.fragment .fade-in}
+:::
 ---
 
 ### Structure
@@ -296,7 +305,7 @@ Interpolation
 
 Regression
 
-Machine learning
+[Machine learning]{.content-visible when-profile='sds4sg'}
 :::
 
 ::::
@@ -310,15 +319,22 @@ Machine learning
 
 ---
 
+::: {.content-visible when-profile='sds4sg'}
 ![](website.png){.center}
+:::
+::: {.content-visible when-profile='micro'}
+![](website_micro.png){.center}
+:::
 
 ---
 
 ::: {.r-fit-text .absolute top=39%}
-martinfleischmann.net/sds
+martinfleischmann.net/sds[/micro]{.content-visible when-profile='micro'}
 :::
 
 ---
+
+::: {.content-visible when-profile='sds4sg'}
 
 ### Discord
 
@@ -326,6 +342,19 @@ martinfleischmann.net/sds
 ---
 
 ![](discord.png){.center}
+
+:::
+::: {.content-visible when-profile='micro'}
+
+### Teams
+
+<!--
+---
+
+![](discord.png){.center}
+-->
+
+:::
 
 ---
 
@@ -375,13 +404,15 @@ code
 
 ## Topic
 
+::: {.content-visible when-profile='sds4sg'}
 ### Define your task {.fragment .fade-in}
+:::
 
 ### A Barcelona case {.fragment .fade-in}
 
 ---
 
-### Czech or English language
+### English or Czech language
 
 ---
 
@@ -417,4 +448,4 @@ Acknowledge if used for the final assignment.
 
 martin.fleischmann@natur.cuni.cz
 
-Discord!
+[Discord!]{.content-visible when-profile='sds4sg'}

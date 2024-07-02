@@ -32,11 +32,11 @@ to the tools you will need for this course.
 ### Terminal and Command line
 
 Depending on your operating system, you will have either Terminal (macOS, Linux) or
-Miniforge Prompt application installed. It will look like this:
+Anaconda Prompt application installed. It will look like this:
 
 ![Terminal on macOS](../_assets/figures/introduction/terminal.png)
 
-Terminal (and Miniforge Prompt or Command line, but we will refer to all as the terminal for simplicity) is
+Terminal (and Anaconda Prompt or Command line, but we will refer to all as the terminal for simplicity) is
 used to interact with applications that do not have any graphic interface or with
 the apps that do have one, but you want to use them programmatically. The terminal usage
 is straightforward. Let's start with a few examples.
@@ -46,17 +46,17 @@ is straightforward. Let's start with a few examples.
    side of this page and move the notebook to the folder.
 
 You want to see a list of files and folders you have in the folder. First, you need to navigate to
-the folder. For that, you can use the `cd` command, which stands for [c]{.accent}urrent
+the folder. For that, you can use the `cd` command, which stands for [c]{.accent}hange
 [d]{.accent}irectory.
 
 ```sh
-cd university/sds/
+cd courses/sds/
 ```
 
 Let's assume that you have the folder with course material in the folder called `sds` in
-another folder called `university`. The full command is then composed of the `cd` part,
+another folder called `courses`. The full command is then composed of the `cd` part,
 saying *set the current directory to...* and waits for the parameter, which is a path
-to the folder in this case - `university/sds/`.
+to the folder in this case - `courses/sds/`.
 
 Once in the correct folder, you can use another command, `ls`, which stands for [l]{.accent}i[s]{.accent}t
 and allows you to list the contents of the current directory.
@@ -81,28 +81,28 @@ That changes the output to this:
 
 The syntax is always the same, starting with the app name and then followed by parameters.
 
-## Conda and Mamba
+## Conda
 
 If you
 followed the installation of Python described in the [infrastructure](../course_information/infrastructure.qmd)
-section, you have used `mamba` with parameters specifying that you want to use it
-to create an environment based on an `environment.yml` file. But what is `mamba`?
+section, you have used `conda` with parameters specifying that you want to use it
+to create an environment based on an `environment.yml` file. But what is `conda`?
 
-`Mamba`, and its predecessor, `conda`, are tools you will use to create "environments" and install
+`Conda`, is a tool you will use to create "environments" and install
 Python and Python packages. It is a package manager, ensuring
 all the necessary parts work together. For example, if you want to create a new environment
 and install Python in it, you type the following command in your terminal.
 
 ```sh
-mamba create -n my_environment python
+conda create -n my_environment python
 ```
 
 You don't need to do that now but it is useful as you will probably need that at some
-point later. You can check more in the [documentation of mamba](https://mamba.readthedocs.io/).
+point later. You can check more in the [documentation of conda](https://docs.anaconda.com/working-with-conda/).
 
 ### Other options
 
-Mamba is not the only way of setting up a Python environment. If you don't want to install anything on your
+Conda is not the only way of setting up a Python environment. If you don't want to install anything on your
 local machine, you can use [Google Colab](http://colab.research.google.com), which gives you an environment with Python and an
 interface to work with Jupyter Notebooks.
 
@@ -112,13 +112,13 @@ While you can interact with Python from the terminal, it is inconvenient. Instea
 will use Jypyter Notebooks and Jupyter Lab. Jupyter Notebooks are documents that allow
 you to mix text and code, execute small pieces of code one at a time and include
 graphical outputs of your code. Jupyter Lab is a handy interface that allows you to work
-with multiple notebooks and switch between your Python environments created with Mamba.
+with multiple notebooks and switch between your Python environments created with conda.
 
 It is time to say goodbye to the terminal and start Jupyter Lab. You should ensure you
 have your `sds` environment activated first:
 
 ```sh
-mamba activate sds
+conda activate sds
 ```
 
 Then you can start Lab using:

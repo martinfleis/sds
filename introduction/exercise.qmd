@@ -19,7 +19,7 @@ For this task, you will focus on getting to know Markdown better. To practise it
 
 > [https://en.wikipedia.org/wiki/Waldo_R._Tobler](https://en.wikipedia.org/wiki/Waldo_R._Tobler)
 
-You should be able to figure out the proper Markdown syntax by yourself, with some help from your favourite search engine or AI (yes, usage of AI tools like ChatGPT or Bard is allowed and possible even encouraged in this course).
+You should be able to figure out the proper Markdown syntax by yourself, with some help from your favourite search engine (or LLM).
 
 ::: {.callout-tip}
 Do not overthink it. Focus on correctly formatting the bold, italics, links, headlines, and lists, but don’t worry too much about the overall layout. Bonus if you also manage to insert the image (it does not need to be properly placed as on the original page)!
