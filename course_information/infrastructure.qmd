@@ -9,8 +9,8 @@ on students' machines using solely open-source software.
 
 ## Communication
 
-Students enrolled in the `MZ340V17` course at Charles University will be invited to a dedicated
-Discord server for online discussion. Students are encouraged to use the platform to seek
+Students enrolled in the course at Charles University will be invited to a dedicated
+[Discord server for online discussion]{.content-visible when-profile='sds4sg'}[Microsoft Teams team facilitating both asynchronous discussion and synchronous teaching]{.content-visible when-profile='micro'}. Students are encouraged to use the platform to seek
 help from peers, share thoughts and tips, and other meaningful contributions the rest of the
 group can benefit from. Learn from the mistakes of the others.
 
@@ -22,7 +22,7 @@ rather than seek guidance outside of class.
 There are many options on how to run Python. You may already have a copy on your machine,
 you can run it in the browser and install it in a myriad ways. This course uses
 what is considered a standard for **scientific** computing based on two key components -
-a package manager (you will be using `mamba`, built on top `conda`) and an interface (Jupyter Lab).
+a package manager (you will be using `conda`) and an interface (Jupyter Lab).
 
 The basics will be explained in the first lesson but it would be beneficial if you could create
 an environment before the class.
@@ -41,19 +41,19 @@ follow the instructions below.
 Windows may complain that the app is not recognised. Click _More information_ and you will be able to run the installer.
 :::
 
-1. Download `miniforge` package manager from [Github](https://github.com/conda-forge/miniforge#download){.external target="_blank"} for your operating system.
+1. Download `miniconda` package manager from [Anaconda](https://docs.anaconda.com/miniconda/miniconda-install/){.external target="_blank"} for your operating system.
 2. Execute the installer and make sure to create start menu shortcuts (there's a tick box during installation).
-3. Open the installed `Miniforge Prompt` application.
+3. Open the installed `Anaconda Prompt` application.
 4. Create a Python environment using the following command:
 
 ```sh
-mamba env create -f https://martinfleischmann.net/sds/environment.yml
+conda env create -f https://martinfleischmann.net/sds/environment.yml
 ```
 
 5. Activate the environment using:
 
 ```sh
-mamba activate sds
+conda activate sds
 ```
 
 6. Start JupyterLab interface:
@@ -63,23 +63,23 @@ jupyter lab
 ```
 
 ::: {.callout-important}
-Ensure that you install `miniforge` in a directory without any special characters in the name. It may occasionally break things.
+Ensure that you install `miniconda` in a directory without any special characters in the name. It may occasionally break things.
 :::
 
 ### macOS & Linux
 
-1. Download `miniforge` package manager from [Github](https://github.com/conda-forge/miniforge#download){.external target="_blank"} for your operating system and install it.
+1. Download `miniconda` package manager from [Anaconda](https://docs.anaconda.com/miniconda/miniconda-install/){.external target="_blank"} for your operating system and install it.
 3. Open `Terminal` application.
 4. Create a Python environment using the following command:
 
 ```sh
-mamba env create -f https://martinfleischmann.net/sds/environment.yml
+conda env create -f https://martinfleischmann.net/sds/environment.yml
 ```
 
 5. Activate the environment using:
 
 ```sh
-mamba activate sds
+conda activate sds
 ```
 
 6. Start JupyterLab interface:
@@ -104,11 +104,11 @@ The steps above are needed only the first time. Once you create the environment,
 ::: {.panel-tabset}
 ### Windows
 
-1. Open `Miniforge Prompt`
+1. Open `Anaconda Prompt`
 2. Activate the environment:
 
 ```sh
-mamba activate sds
+conda activate sds
 ```
 
 3. Start JupyterLab interface:
@@ -123,7 +123,7 @@ jupyter lab
 2. Activate the environment:
 
 ```sh
-mamba activate sds
+conda activate sds
 ```
 
 3. Start JupyterLab interface:
@@ -134,12 +134,18 @@ jupyter lab
 
 :::
 
+::: {.callout-important}
+# Always activate an environment
+
+You should never use `conda install` in the base environment. Remember to always activate the environment.
+:::
+
 ### Plan B with Google Colab
 
 If you are unable to install an environment using the instructions above, you can follow
 the course using [Google Colab](https://colab.research.google.com). You will just need to install the required packages to
-your Colab environment. Reach out in class or via Discord if you need to set it up.
+your Colab environment. Reach out in class or via [Discord]{.content-visible when-profile='sds4sg'}[Teams]{.content-visible when-profile='micro'} if you need to set it up.
 
 ### Troubleshooting
 
-In case of any issues related to environment creation, reach out in the class or via Discord.
+In case of any issues related to environment creation, reach out in the class or via [Discord]{.content-visible when-profile='sds4sg'}[Teams]{.content-visible when-profile='micro'}.
