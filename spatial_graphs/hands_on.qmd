@@ -165,6 +165,7 @@ Similarly to `GeoDataFrame`, `Graph` can also be visualised as a static plot, us
 `Graph.plot()` method working analogously to `Graph.explore()`.
 
 ```{python}
+# | fig-cap: Static plot of Queen contiguity
 ax = queen.plot(prague, nodes=False, edge_kws={"linewidth": .5})
 contextily.add_basemap(ax=ax, crs=prague.crs, source="CartoDB Positron")
 ax.set_axis_off()
@@ -276,6 +277,7 @@ bishop
 See the remaining edges:
 
 ```{python}
+# | fig-cap: Bishop contiguity derived as a difference of Queen and Rook
 ax = bishop.plot(prague, nodes=False, edge_kws={"linewidth": .5})
 contextily.add_basemap(ax=ax, crs=prague.crs, source="CartoDB Positron")
 ax.set_axis_off()
@@ -313,6 +315,7 @@ of each geometry.
 See the resulting graph visually:
 
 ```{python}
+# | fig-cap: A graph representing 5 nearest neighbours
 ax = knn5.plot(prague, nodes=False, edge_kws={"linewidth": .5})
 contextily.add_basemap(ax=ax, crs=prague.crs, source="CartoDB Positron")
 ax.set_axis_off()
@@ -370,6 +373,7 @@ In this case, you can see the unit is expressed in metres (`m`). Hence you set t
 threshold to 1,000 for a circle of 1km radius. The whole graph looks like this:
 
 ```{python}
+# | fig-cap: A graph representing distance band of 1 km.
 ax = dist1kmB.plot(prague, nodes=False, edge_kws={"linewidth": .5})
 contextily.add_basemap(ax=ax, crs=prague.crs, source="CartoDB Positron")
 ax.set_axis_off()
@@ -469,6 +473,7 @@ block['Albertov']
 Notice the resulting blocks are clearly visible when you visualise the graph:
 
 ```{python}
+# | fig-cap: A graph representing block contiguity
 ax = block.plot(prague, nodes=False, edge_kws={"linewidth": .5})
 contextily.add_basemap(ax=ax, crs=prague.crs, source="CartoDB Positron")
 ax.set_axis_off()

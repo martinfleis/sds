@@ -124,7 +124,7 @@ Starting today with `pandas`.
 ---
 
 ::: {.r-fit-text}
-Discord
+[Discord]{.content-visible when-profile='sds4sg'}[Teams]{.content-visible when-profile='micro'}
 :::
 
 ---
@@ -148,7 +148,7 @@ Google
 ---
 
 ::: {.r-fit-text .absolute top=25%}
-chatGPT, Bing Chat, Bard, Jupyter AI, GitHub CoPilot
+chatGPT, Bing Chat, Gemini, Jupyter AI, GitHub CoPilot
 :::
 
 # Asking for help

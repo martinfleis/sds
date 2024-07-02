@@ -46,7 +46,7 @@ similarity between `pandas` and `xarray`, but also some differences.
 
 Let's read some raster and explore `xarray` objects in practice.
 
-```py
+```{python}
 import datashader as ds
 import geopandas as gpd
 import rioxarray
@@ -74,7 +74,7 @@ The link below points to a single tile[^1] covering most of Eastern Europe.
 
 [^1]: See the distribution of tiles in the [data repository](https://ghsl.jrc.ec.europa.eu/download.php?ds=pop).
 
-```py
+```{python}
 pop_url = (  # <1>
     "https://martinfleischmann.net/sds/raster_data/data/"
     "GHS_POP_E2030_GLOBE_R2023A_54009_100_V1_0_R4_C20.zip"
@@ -110,7 +110,7 @@ by default, it is not able to read geospatial file formats like GeoTIFF. That is
 `rioxarray` comes in. It comes with the support of the usual geo-specific things like
 specific file formats or CRS.
 
-```py
+```{python}
 p = f"zip+{pop_url}!GHS_POP_E2030_GLOBE_R2023A_54009_100_V1_0_R4_C20.tif"  # <1>
 population = rioxarray.open_rasterio(p, masked=True)    # <2>
 population
@@ -125,20 +125,20 @@ three dimensions (`"band"`, `"x"`, `"y"`) with a resolution 1x10,000x10,000 and 
 `rioxarray` gives you a handy `.rio` accessor on `xarray` objects, allowing you to access
 geospatial-specific tools. Like retrieval of CRS.
 
-```py
+```{python}
 population.rio.crs
 ```
 
 Or the extent of the raster (in the CRS shown above).
 
-```py
+```{python}
 population.rio.bounds()
 ```
 
 The missing, masked data can be represented as as specific value, especially when dealing with
 integer arrays. You can check which one:
 
-```py
+```{python}
 population.rio.nodata
 ```
 
@@ -149,7 +149,7 @@ is even larger than that. The best way to plot is to resample the data to a smal
 resolution that better fits the screen. A handy tool that can do that quickly is
 [`datashader`](https://datashader.org). Let's use it to plot the array as 600x600 pixels.
 
-```py
+```{python}
 canvas = ds.Canvas(plot_width=600, plot_height=600)     # <1>
 agg = canvas.raster(population.where(population>0).sel(band=1)) # <2>
 agg
@@ -160,7 +160,7 @@ agg
 You can see that the result is a new `xarray.DataArray` with a resolution 600x600. The
 built-in matplotlib-based plotting can easily handle that.
 
-```py
+```{python}
 # | fig-cap: Population grid resampled to 600x600 pixels
 _ = agg.plot()
 ```
@@ -177,7 +177,7 @@ its [functional urban area](https://ghsl.jrc.ec.europa.eu/ghs_fua.php) (FUA), av
 another data product on GHSL. FUAs are available as a single GeoPackage with vector
 geometries.
 
-```py
+```{python}
 #| classes: explore
 fua_url = ( # <1>
     "https://martinfleischmann.net/sds/raster_data/data/"    # <1>
@@ -210,7 +210,7 @@ fua_url = (
 If you want to clip the `population` raster to the extent of Budapest FUA, you can use
 the `clip` method from the `rioxarray` extension of `xarray`.
 
-```py
+```{python}
 population_bud = population.rio.clip(      # <1>
     budapest.to_crs(population.rio.crs).geometry # <2>
 )
@@ -222,7 +222,7 @@ population_bud
 The raster is no longer 10,000x10,000 pixels but only 840x830, covering the extent of Budapest
 FUA. You can easily check that by plotting the clipped array.
 
-```py
+```{python}
 # | fig-cap: Population grid clipped to Budapest FUA
 _ = population_bud.plot()
 ```
@@ -233,39 +233,39 @@ While this is technically a 3-dimensional array, the dimension `"band"` has only
 Normally, you would get a 2-dimensional array representing a selected band using the `.sel()`
 method.
 
-```py
+```{python}
 population_bud.sel(band=1)
 ```
 
 But if you have only one band, you can _squeeze_ the array and get rid of that dimension
 that is not needed.
 
-```py
+```{python}
 population_bud = population_bud.drop_vars("band").squeeze()
 population_bud
 ```
 
 Now a lot what you know from `pandas` works equally in `xarray`. Getting the minimum:
 
-```py
+```{python}
 population_bud.min()
 ```
 
 As expected, there are some cells with no inhabitants.
 
-```py
+```{python}
 population_bud.max()
 ```
 
 The densest cell, on the other hand, has more than 600 people per hectare.
 
-```py
+```{python}
 population_bud.mean()
 ```
 
 Mean is, however, only below 7.
 
-```py
+```{python}
 population_bud.median()
 ```
 
@@ -277,21 +277,21 @@ While the median is 0, there are a lot of cells with 0.
 Notice that `xarray` always returns another `DataArray` even with a single value. If you
 want to get that scalar value, you can use `.item()`.
 
-```py
+```{python}
 population_bud.mean().item()
 ```
 :::
 
 You can plot the distribution of values across the array.
 
-```py
+```{python}
 # | fig-cap: Histogram of population counts
 _ = population_bud.plot.hist(bins=100)
 ```
 
 Indeed, there are a lot of zeros. Let's filter them out and check the distribution again.
 
-```py
+```{python}
 # | fig-cap: Histogram of population counts excluding 0
 _ = population_bud.where(population_bud>0).plot.hist(bins=100)
 ```
@@ -304,7 +304,7 @@ with a lot of observations with tiny values and only a few with large ones.
 Let's assume that you want to normalise population counts by the built-up volume, which
 is available as another GHSL product. This time, on a grid again.
 
-```py
+```{python}
 volume_url = (
     "https://martinfleischmann.net/sds/raster_data/data/"
     "GHS_BUILT_V_E2030_GLOBE_R2023A_54009_100_V1_0_R4_C20.zip"
@@ -328,7 +328,7 @@ volume_url = (
 
 All work the same as before. You read the GeoTIFF as a `DataArray`.
 
-```py
+```{python}
 p = f"zip+{volume_url}!GHS_BUILT_V_E2030_GLOBE_R2023A_54009_100_V1_0_R4_C20.tif"
 built_up = rioxarray.open_rasterio(p, masked=True).drop_vars("band").squeeze()
 built_up
@@ -336,14 +336,14 @@ built_up
 
 And clip it to the same extent.
 
-```py
+```{python}
 built_up_bud = built_up.rio.clip(budapest.to_crs(built_up.rio.crs).geometry)
 built_up_bud
 ```
 
 You can quickly check what it looks like.
 
-```py
+```{python}
 # | fig-cap: Built-up volume
 _ = built_up_bud.plot(cmap="magma_r")
 ```
@@ -352,7 +352,7 @@ The two grids are aligned, meaning that pixels with the same coordinates represe
 same area. This allows us to directly perform array algebra. Again, you know this from
 `pandas`.
 
-```py
+```{python}
 pop_density = population_bud /  built_up_bud  # <1>
 pop_density
 ```
@@ -361,14 +361,14 @@ pop_density
 The result is a new array that inherits spatial information (`spatial_ref`) but contains
 newly computed values.
 
-```py
+```{python}
 # | fig-cap: Population grid normalised by the built-up volume
 _ = pop_density.plot(cmap="cividis_r")
 ```
 
 The resulting array can then be saved to a GeoTIFF using `rioxarray`.
 
-```py
+```{python}
 pop_density.rio.to_raster("population_density.tif")
 ```
 
@@ -378,7 +378,7 @@ A common need is to extract values from raster data for a specific location of i
 That is a first type of interaction between raster and vector data (points in this case).
 To illustrate the use case, create a set of random points covering the area of `budapest`.
 
-```py
+```{python}
 locations = budapest.sample_points(1000).explode(ignore_index=True) # <1>
 locations.head()
 ```
@@ -390,7 +390,7 @@ you can use `ignore_index=True` to get the default `pd.RangeIndex`.
 
 Check how the sample looks on a map.
 
-```py
+```{python}
 locations.explore()
 ```
 
@@ -407,7 +407,7 @@ The `xarray` ecosystem offers many ways of extracting point values. Below, you w
 use the implementation from the `xvec` package. Create a new `xarray.DataArray` with all three
 arrays you created so far to see the benefits of using `xvec` below.
 
-```py
+```{python}
 bud_cube = xr.concat(   # <1>
     [pop_density, population_bud, built_up_bud],    # <2>
     dim=pd.Index( # <3>
@@ -427,14 +427,14 @@ The resulting `DataArray` is 3-dimensional, compared to 2-dimensional arrays use
 Apart from `x` and `y`, you now have `measurement` as well. Using the new index created
 above, you can use the `sel()` method to get the original arrays.
 
-```py
+```{python}
 bud_cube.sel(measurement="density")
 ```
 
 Now it is time to take this _cube_ and create another based on your points. That can
 be done using the `.xvec` accessor and its `extract_points` method.
 
-```py
+```{python}
 vector_cube = bud_cube.drop_vars("spatial_ref").xvec.extract_points( # <1>
     points=locations.geometry, # <2>
     x_coords="x", # <3>
@@ -457,14 +457,14 @@ of the original array is preserved.
 
 You can then convert the data into a `geopandas.GeoDataFrame` and work with it as usual.
 
-```py
+```{python}
 location_data = vector_cube.xvec.to_geopandas()
 location_data.head()
 ```
 
 Check the result on a map to verify that all worked as expected.
 
-```py
+```{python}
 location_data.explore("density", cmap="cividis_r", tiles="CartoDB Positron")
 ```
 
@@ -493,7 +493,7 @@ is downloadable. In Python, a recommended way (when not doing large downloads) i
 for this session, but if you are interested in details, check the official
 [Getting started](https://osmnx.readthedocs.io/en/stable/getting-started.html) guide.
 
-```py
+```{python}
 admin_level_9 = ox.features_from_place("Budapest", {"admin_level": "9"})    # <1>
 districts = admin_level_9[admin_level_9.geom_type == "Polygon"][    # <2>
     ["name", "name:en", "geometry"]     # <3>
@@ -509,7 +509,7 @@ districts["key"] = range(len(districts))    # <4>
 
 Both `xarray` and `geopandas` can create `matplotlib` plots that can be combined to see how the two overlap.
 
-```py
+```{python}
 # | fig-cap: Overlay of district boundaries over population density
 f, ax = plt.subplots()     # <1>
 pop_density.plot(ax=ax, cmap="cividis_r")     # <2>
@@ -532,7 +532,7 @@ Zonal statistics using `geocube` has three conceptual phases.
 
 Let's start with the first one.
 
-```py
+```{python}
 districts_grid = make_geocube(      # <1>
     vector_data=districts,  # <2>
     measurements=["key"],   # <3>
@@ -547,7 +547,7 @@ districts_grid
 
 You can visually check the resulting raster by plotting the `"key"` variable.
 
-```py
+```{python}
 # | fig-cap: Rasterised districts
 _ = districts_grid.key.plot.imshow(cmap="tab20")  # <1>
 ```
@@ -556,7 +556,7 @@ _ = districts_grid.key.plot.imshow(cmap="tab20")  # <1>
 The second and third steps outlined above can be combined into a single one.
 You can directly group `pop_density` by the array stored in `districts_grid.key`.
 
-```py
+```{python}
 grouped_density = pop_density.groupby(districts_grid.key)
 grouped_density
 ```
@@ -564,13 +564,13 @@ grouped_density
 This gives you a similar `GroupBy` object you know from `pandas`. You can get any type
 of aggregation from the object and assign it directly back to the `GeoDataFrame`.
 
-```py
+```{python}
 districts["mean_density"] = grouped_density.mean()
 ```
 
 Check the result!
 
-```py
+```{python}
 #| classes: explore
 districts.explore("mean_density", cmap="cividis_r", tiles="CartoDB Positron")
 ```

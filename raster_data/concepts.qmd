@@ -10,7 +10,7 @@ DataArray and Dataset
 N-Dimensional data structures -->
 
 Slides from the talk very briefly introducing gridded data and their application in
-social geography.
+human geography.
 
 ```{=html}
 <iframe class="slide-deck" src="slides.html"></iframe>

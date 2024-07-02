@@ -989,7 +989,7 @@ are not entirely comparable.
 
 The part below will not be covered in the class. It contains an introduction to regression
 models using the `scikit-learn`. You will need it to complete the exercise. However, since this is the
-final chapter of the course, it is time to let you learn by yourself.
+final session of the course, it is time to let you learn by yourself.
 :::
 
 ## Regression

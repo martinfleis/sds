@@ -10,6 +10,24 @@ format:
         controls-layout: edges
 ---
 
+```{python}
+#| echo: false
+import geopandas as gpd
+import numpy as np
+from libpysal import graph
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+prague = gpd.read_file(
+    "https://martinfleischmann.net/sds/spatial_graphs/data/zsj_prague_2021.gpkg"
+)
+prague = prague.set_index("NAZ_ZSJ") # <1>
+prague["area"] = np.log(prague.area)
+queen = graph.Graph.build_contiguity(prague, rook=False)
+row_wise_queen = queen.transform("R")
+prague['w_area'] = row_wise_queen.lag(prague["area"])
+```
+
 # Exploratory Spatial Data Analysis
 
 ---
@@ -147,8 +165,13 @@ How to measure it?
 ## Moran Plot
 
 ---
+```{python}
+#| fig-cap: Moran Plot from the last session
+f, ax = plt.subplots(1, figsize=(6, 6))                     # <1>
+sns.regplot(x="area", y="w_area", data=prague, ci=None, ax=ax, marker="."); # <2>
+```
 
-![Moran Plot from the last session](https://martinfleischmann.net/sds/spatial_graphs/hands_on_files/figure-html/cell-38-output-1.png){.center_image height="600"}
+<!-- ![](https://martinfleischmann.net/sds/spatial_graphs/hands_on_files/figure-html/cell-38-output-1.png){.center_image height="600"} -->
 
 ## Moran's I
 

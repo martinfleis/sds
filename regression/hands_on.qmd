@@ -13,7 +13,7 @@ use regression to model such an outcome and understand the influence each of the
 With spatial regression, it is the same. You just need to use the spatial dimension in a
 mindful way.
 
-This chapter provides an introduction to ways of incorporating space into regression models, from
+This session provides an introduction to ways of incorporating space into regression models, from
 spatial variables in standard linear regression to geographically weighted regression.
 
 ```{python}
@@ -31,7 +31,7 @@ from splot.esda import lisa_cluster
 
 ## Data
 
-You will work with the same data you already used in the chapter on [spatial autocorrelation](../autocorrelation/hands_on.qmd) - the results of the second round of the presidential elections in Czechia in 2023, between Petr Pavel and Andrej Babiš, on a level of municipalities. You can read the election data directly from the chapter 5 location.
+You will work with the same data you already used in the session on [spatial autocorrelation](../autocorrelation/hands_on.qmd) - the results of the second round of the presidential elections in Czechia in 2023, between Petr Pavel and Andrej Babiš, on a level of municipalities. You can read the election data directly from the original location.
 
 ```{python}
 elections = gpd.read_file(
@@ -188,7 +188,7 @@ ax.set_axis_off()
 2. Identify the maximum residual value based on absolute value to specify `vmin` and `vmax` values of the colormap.
 3. Plot the data using diverging colormap centred around 0.
 
-All of the municipalities in blue (residual above 0) have reported higher gains for Petr Pavel than the model assumes based on education structure, while all in red reported lower gains than what is expected. However, as data scientists, we have better tools to analyse the spatial structure of residuals than eyeballing it. Let's recall the chapter on spatial autocorrelation again and figure out the spatial clusters of residuals.
+All of the municipalities in blue (residual above 0) have reported higher gains for Petr Pavel than the model assumes based on education structure, while all in red reported lower gains than what is expected. However, as data scientists, we have better tools to analyse the spatial structure of residuals than eyeballing it. Let's recall the session on spatial autocorrelation again and figure out the spatial clusters of residuals.
 
 First, create a contiguity graph and row-normalise it.
 
@@ -202,7 +202,7 @@ Then you can generate a Moran plot of residuals. For that, you will need the lag
 elections_data["residual_lag"] = contiguity_r.lag(elections_data["residual"])
 ```
 
-And then you can use the code from the earlier chapter to generate a Moran scatterplot using `seaborn`.
+And then you can use the code from the earlier session to generate a Moran scatterplot using `seaborn`.
 
 ```{python}
 #| fig-cap: Moran Plot

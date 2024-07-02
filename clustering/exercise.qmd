@@ -13,7 +13,7 @@ Now, it is up to you to find some clusters.
 You will work with the  demographic characteristics of Chicago in 1918 linked to the
 influenza mortality during the pandemic that happened back then, coming from the
 research paper by @grantz2016disparities you used before in the
-[Data wrangling](../data_wrangling/hands_on.qmd) chapter, but this time with geometries.
+[Data wrangling](../data_wrangling/hands_on.qmd) session, but this time with geometries.
 
 ```{python}
 # | classes: explore
