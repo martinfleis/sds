@@ -28,7 +28,6 @@ format:
 
 website:
   repo-url: https://github.com/martinfleis/sds/
-  favicon: _assets/favicon.png
   repo-actions: [issue]
   twitter-card: true
   page-navigation: true

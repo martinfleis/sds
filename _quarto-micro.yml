@@ -3,6 +3,7 @@ project:
   output-dir: ./_site_micro
 
 website:
+  favicon: _assets/favicon_micro.png
   sidebar:
     logo: _assets/logo_micro.svg
     contents:
@@ -63,3 +64,8 @@ website:
           - regression/concepts.qmd
           - regression/hands_on.qmd
           - regression/exercise.qmd
+  announcement:
+    icon: bell-fill
+    dismissable: true
+    content: "**[Registration](https://is.cuni.cz/studium/eng/prijimacky/index.php?do=detail_kurz_mc&cid=10752)** for the August 2024 iteration of the course is now open."
+    type: primary
