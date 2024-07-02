@@ -468,7 +468,6 @@ div.csl-indent {
   <ul>
   <li><a href="#computational-essay" id="toc-computational-essay" class="nav-link active" data-scroll-target="#computational-essay">Computational essay</a>
   <ul class="collapse">
-  <li><a href="#define-your-task" id="toc-define-your-task" class="nav-link" data-scroll-target="#define-your-task">Define your task</a></li>
   <li><a href="#a-barcelona-case" id="toc-a-barcelona-case" class="nav-link" data-scroll-target="#a-barcelona-case">A Barcelona case</a></li>
   </ul></li>
   <li><a href="#submission" id="toc-submission" class="nav-link" data-scroll-target="#submission">Submission</a></li>
@@ -500,19 +499,11 @@ div.csl-indent {
 
 
 <p>This course is assessed based on a single final assignment - a computational essay.</p>
-<div class="callout callout-style-default callout-important callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Office hours
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Students enrolled in <code>MZ340V17</code> can book a slot to discuss the assignment via <a href="https://cal.com/martinfleis/sds">cal.com/martinfleis/sds</a>. The slots are available two weeks ahead and must be booked at least a day in advance.</p>
-</div>
-</div>
+<!-- ::: {.callout-important}
+# Office hours
+
+Students enrolled in `MZ340V17` can book a slot to discuss the assignment via [cal.com/martinfleis/sds](https://cal.com/martinfleis/sds). The slots are available two weeks ahead and must be booked at least a day in advance.
+::: -->
 <section id="computational-essay" class="level2">
 <h2 class="anchored" data-anchor-id="computational-essay">Computational essay</h2>
 <p>A computational essay is an essay whose narrative is supported by code and its results, which are part of the essay. Think of a Jupyter Notebook with cells corresponding to text explaining the process and its results and cells with executed code doing the computation.</p>
@@ -529,42 +520,15 @@ An example of a computational essay
 <p>One nice example of a computational essay is the <a href="https://urbangrammarai.xyz/age_capsule/">Age Capsule</a> by Dani Arribas-Bel. The code in there is a bit more advanced than what you are asked to do and you will need to include some maps and possibly tables, but you get the gist.</p>
 </div>
 </div>
-<p>The essay corresponds to a range of 2,500-5,000 words. That does not mean that you have to write that many words. Since you will have to produce not only text (in Czech or English) but also code and its outputs, the following requirements are specified:</p>
+<p>The essay corresponds to a range of 2,500-5,000 words. That does not mean that you have to write that many words. Since you will have to produce not only text (in English or Czech) but also code and its outputs, the following requirements are specified:</p>
 <ul>
 <li>The maximum number of words in Markdown cells is 1,500 (the bibliography, if provided, does not count towards the word count).</li>
 <li>A maximum of 5 maps or other graphic outputs (one output may contain more than one map and will only count as one, but it must be included in the same <code>matplotlib</code> object).</li>
 <li>A maximum of 2 tables.</li>
 </ul>
 <p>The rest of the word count is assumed to be consumed by code.</p>
-<p>You have two options regarding topics. The first one is to work on your data on the topic of your choice, while the second is a semi-defined task if you prefer that.</p>
-<section id="define-your-task" class="level3">
-<h3 class="anchored" data-anchor-id="define-your-task">Define your task</h3>
-<p>Option one is to come up with your own idea for an essay, supported by data you either already have or can gather from openly available sources.</p>
-<p>The requirement is to cover:</p>
-<ol type="1">
-<li>Initial data exploration and visualisation<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a></li>
-<li>Exploration of a degree of randomness of data (e.g.&nbsp;spatial autocorrelation, point pattern analysis)<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a></li>
-<li>At least one other technique of your choice (clustering, interpolation, regression, prediction)<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a></li>
-</ol>
-<p>Consult the second option to get a better sense of the extent.</p>
-<div class="callout callout-style-default callout-important callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Every topic needs to be approved
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>If you decide to define your own task, the topic and the extent need to be approved by the tutor. Essays on custom topics without prior approval will not be accepted and will be marked with 0%. Reach out via Discord or email to get approval.</p>
-</div>
-</div>
-<p>This option is recommended for students of Master’s and Postgraduate courses enrolled in <code>MZ340V17</code>.</p>
-</section>
 <section id="a-barcelona-case" class="level3">
 <h3 class="anchored" data-anchor-id="a-barcelona-case">A Barcelona case</h3>
-<p>The second option is more defined but still leaves some space for your creativity.</p>
 <p>You will take the role of a real-world data scientist tasked to explore a dataset on the city of Barcelona (Spain) and find useful insights for a variety of decision-makers. It does not matter if you have never been to Barcelona. In fact, this will help you focus on what you can learn about the city through the data, without the influence of prior knowledge. Furthermore, the assessment will not be marked based on how much you know about Barcelona but instead on how much you can show you have learned through analysing data.</p>
 <section id="part-one" class="level4">
 <h4 class="anchored" data-anchor-id="part-one">Part one</h4>
@@ -612,7 +576,7 @@ Every topic needs to be approved
 </section>
 <section id="submission" class="level2">
 <h2 class="anchored" data-anchor-id="submission">Submission</h2>
-<p>The submission will contain an executed Jupyter Notebook and a PDF version of the same. The code needs to be reproducible. That means that all the data used in the essay need to be available online (and ideally fetched directly from the notebook but a link to a download page is also fine, although data manipulation outside of the Notebook is not allowed) or shared as part of the submission. Any additional Python packages apart from those available in the provided <code>sds</code> environment need to be explicitly specified on top of the notebook. However, it is not expected that you will need it.</p>
+<p>The submission will contain an executed Jupyter Notebook. The code needs to be reproducible. That means that all the data used in the essay need to be available online (and ideally fetched directly from the notebook but a link to a download page is also fine, although data manipulation outside of the Notebook is not allowed) or shared as part of the submission. Any additional Python packages apart from those available in the provided <code>sds</code> environment need to be explicitly specified on top of the notebook. However, it is not expected that you will need it.</p>
 </section>
 <section id="evalutation-criteria" class="level2">
 <h2 class="anchored" data-anchor-id="evalutation-criteria">Evalutation criteria</h2>
@@ -637,7 +601,6 @@ Every topic needs to be approved
 </section>
 
 
-
 <div id="quarto-appendix" class="default"><section id="acknowledgements" class="level2 appendix"><h2 class="anchored quarto-appendix-heading">Acknowledgements</h2><div class="quarto-appendix-contents">
 
 <p>The assignment structure is partially derived from <em>A Course on Geographic Data Science</em> by <span class="citation" data-cites="darribas_gds_course">Arribas-Bel (<a href="#ref-darribas_gds_course" role="doc-biblioref">2019</a>)</span>, licensed under CC-BY-SA 4.0.</p>
@@ -648,14 +611,7 @@ Every topic needs to be approved
 <div id="ref-darribas_gds_course" class="csl-entry" role="listitem">
 Arribas-Bel, Dani. 2019. <span>“A Course on Geographic Data Science.”</span> <em>The Journal of Open Source Education</em> 2 (14). <a href="https://doi.org/10.21105/jose.00042">https://doi.org/10.21105/jose.00042</a>.
 </div>
-</div></section><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
-
-<ol>
-<li id="fn1"><p>Based on chapters 1 (<a href="../introduction/hands_on.html">Introduction</a>) - 3 (<a href="../geographic_data/hands_on.html">Spatial data</a>).<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn2"><p>Based on chapters 4 (<a href="../spatial_graphs/hands_on.html">Spatial weights</a>) - 6 (<a href="../point_patterns/hands_on.html">Point patterns</a>).<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn3"><p>Based on chapters 7 (<a href="../clustering/hands_on.html">Clustering</a>) - 11 (<a href="../classification/hands_on.html">Machine learning</a>).<a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-</ol>
-</section></div></main> <!-- /main -->
+</div></section></div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
