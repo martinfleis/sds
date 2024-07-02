@@ -4,6 +4,7 @@ project:
 
 website:
   sidebar:
+    logo: _assets/logo_micro.svg
     contents:
       - section: "Course information"
         contents:
@@ -11,3 +12,54 @@ website:
             file: index.qmd
           - course_information/infrastructure.qmd
           - course_information/assignment.qmd
+      - text: "---"
+      - section: "Introduction"
+        contents:
+          - introduction/concepts.qmd
+          - introduction/hands_on.qmd
+          - introduction/exercise.qmd
+      - section: "Open Data Science"
+        contents:
+          - data_wrangling/concepts.qmd
+          - data_wrangling/hands_on.qmd
+          - data_wrangling/exercise.qmd
+      - section: "Spatial data"
+        contents:
+          - geographic_data/concepts.qmd
+          - geographic_data/hands_on.qmd
+          - geographic_data/exercise.qmd
+      - section: "Spatial weights"
+        contents:
+          - spatial_graphs/concepts.qmd
+          - spatial_graphs/hands_on.qmd
+          - spatial_graphs/exercise.qmd
+      - section: "Exploratory spatial data analysis"
+        contents:
+          - autocorrelation/concepts.qmd
+          - autocorrelation/hands_on.qmd
+          - autocorrelation/exercise.qmd
+      - section: "Point patterns"
+        contents:
+          - point_patterns/concepts.qmd
+          - point_patterns/hands_on.qmd
+          - point_patterns/exercise.qmd
+      - section: "Clustering"
+        contents:
+          - clustering/concepts.qmd
+          - clustering/hands_on.qmd
+          - clustering/exercise.qmd
+      - section: "Raster data"
+        contents:
+          - raster_data/concepts.qmd
+          - raster_data/hands_on.qmd
+          - raster_data/exercise.qmd
+      - section: "Interpolation"
+        contents:
+          - interpolation/concepts.qmd
+          - interpolation/hands_on.qmd
+          - interpolation/exercise.qmd
+      - section: "Regression"
+        contents:
+          - regression/concepts.qmd
+          - regression/hands_on.qmd
+          - regression/exercise.qmd

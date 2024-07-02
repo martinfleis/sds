@@ -40,7 +40,6 @@ website:
   sidebar:
     style: floating
     collapse-level: 1
-    logo: _assets/logo.svg
     tools:
       - icon: twitter
         href: https://twitter.com/martinfleis

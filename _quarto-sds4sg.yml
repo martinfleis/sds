@@ -8,6 +8,7 @@ project:
 
 website:
   sidebar:
+    logo: _assets/logo.svg
     contents:
       - section: "Course information"
         contents:

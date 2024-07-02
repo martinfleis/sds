@@ -161,6 +161,7 @@ cython_debug/
 
 /.quarto/
 /_site/
+/_site_micro/
 
 resources/
 .jupyter_cache

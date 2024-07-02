@@ -1,17 +1,38 @@
 ---
-title: "Spatial Data Science for Social Geography"
+title: A course on Spatial Data Science
 format: "html"
 ---
 
+::: {.content-visible when-profile='sds4sg'}
 The course Spatial Data Science for Social Geography introduces data science and computational analysis
 using open source tools written in the Python programming language to the curriculum of
 students of geography.
 
 The course is taught in person at Charles University in Prague from October 2023 under the code `MZ340V17`.
+:::
+
+::: {.content-visible when-profile='micro'}
+The course Spatial Data Science in Python introduces data science and computational analysis
+using open source tools written in the Python programming language.
+
+The course is provided by Charles University as a standalone micro-credentials certification and is taught __online__ every August. The
+course is open to anyone.
+
+::: {.callout-important}
+# Course registration for 2024 is now open
+
+The course will happen between 12.8. - 16.8. with 6 teaching hours a day. The fee for 2024 is 15,000 CZK (approximately €600).
+Registration is open until August 9.
+
+Please enroll via the [university portal](https://is.cuni.cz/studium/eng/prijimacky/index.php?do=detail_kurz_mc&cid=10752).
+
+In case of any questions, please contact the course lead directly at [martin.fleischmann@natur.cuni.cz](mailto:martin.fleischmann@natur.cuni.cz).
+:::
+:::
 
 ## Aims
 
-The module provides students with little or no prior knowledge of core competencies in Spatial Data Science (SDS). It includes:
+The course supports students with little prior knowledge of core competencies in Spatial Data Science (SDS). It includes:
 
 - Advancing their statistical and numerical literacy.
 - Introducing basic principles of programming for data science and state-of-the-art computational tools for SDS.
@@ -19,11 +40,10 @@ The module provides students with little or no prior knowledge of core competenc
 - Focusing on real-world applications of these techniques in a geographical and applied context.
 
 ::: {.callout-note appearance="simple"}
+## What is the scope?
 
-## Is it only for social geography?
-
-The course revolves around data typically used in social geography, but its applicability
-is not limited to social geography. In practice, you will work more with vector
+The course revolves around data typically used in human geography, but its applicability
+is not limited to human geography. In practice, you will work more with vector
 data than rasters (although we cover those a bit as well) and often with data capturing
 various aspects of human life. The spatial data science concepts, however, are universal.
 
@@ -49,23 +69,27 @@ optimally with some spatial component (geographically weighted regression).
 While the course will briefly explain these topics, it will not cover the theory and
 statistics behind these concepts in detail.
 
-No prior experience with programming or computer science is needed, although a positive
-attitude towards these topics is necessary.
-
+::: {.content-visible when-profile='sds4sg'}
 Previous experience in programming or computer science is preferable. A positive attitude towards these topics is essential. In the absence of previous Python experience, the course can be taken, but an increased need for self-study in the first weeks of the semester should be expected.
+:::
+
+::: {.content-visible when-profile='micro'}
+A basic understanding of Python is required. Understanding of data analysis using `pandas` is not expected but certainly helps.
+:::
 
 ## Course structure
 
-The material is planned for 12 weeks, with one session per week. Each session
+
+[The material is planned for 12 weeks, with one session per week.]{.content-visible when-profile='sds4sg'}[The material is planned for 5 days with two 3-hour sessions per day. ]{.content-visible when-profile='micro'} Each session
 is divided into three parts - _Concepts_, _Hands-on_ and _Exercise_, following the model
-proposed by @darribas_gds_course. _Concepts_ have a form of a lecture covering conceptual
+proposed by @darribas_gds_course. _Concepts_ have the form of a lecture covering conceptual
 aspects of the day's topic, providing necessary theoretical background before digging into code. This part can be nicknamed ["I do"]{.accent}.
 _Hands-on_ contains documented code in a Jupyter notebook, executed in
 parallel by a lecturer, providing an additional explanation, and by students. Therefore, we have a part ["We do"]{.accent}.
 _Exercise_ is a set of tasks to be performed by students individually, with
-occasional guidance by the lecturer. So we finish the day with ["You do"]{.accent}.
+occasional guidance by the lecturer. So we finish the session with ["You do"]{.accent}.
 
-For enrolled students of Charles University, the course will finish with a written
+For enrolled students, the course will finish with a written
 assignment in the form of a computational essay. See the
 [Assignment](course_information/assignment.qmd) section for details.
 
