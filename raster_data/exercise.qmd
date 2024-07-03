@@ -66,5 +66,6 @@ aligned_b = b.rio.reproject_match(a)
 
 8. If you have time, you can also figure out how many buildings are per district in Mombasa. Those are in OpenStreetMap as admin_level==6.
 9. Extract values for 100 random points from each Mombasa district.
+10. Generate zonal statistics for each district. Think about the proper aggregation method.
 :::
 

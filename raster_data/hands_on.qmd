@@ -55,8 +55,6 @@ import osmnx as ox
 import pandas as pd
 import matplotlib.pyplot as plt
 import xvec
-
-from geocube.api.core import make_geocube
 ```
 
 ## Population grids
@@ -372,7 +370,7 @@ The resulting array can then be saved to a GeoTIFF using `rioxarray`.
 pop_density.rio.to_raster("population_density.tif")
 ```
 
-### Extracting values for locations with `xvec`
+## Extracting values for locations
 
 A common need is to extract values from raster data for a specific location of interest.
 That is a first type of interaction between raster and vector data (points in this case).
@@ -391,6 +389,7 @@ you can use `ignore_index=True` to get the default `pd.RangeIndex`.
 Check how the sample looks on a map.
 
 ```{python}
+#| classes: explore
 locations.explore()
 ```
 
@@ -465,6 +464,7 @@ location_data.head()
 Check the result on a map to verify that all worked as expected.
 
 ```{python}
+#| classes: explore
 location_data.explore("density", cmap="cividis_r", tiles="CartoDB Positron")
 ```
 
@@ -476,12 +476,12 @@ case of an `xarray` N-dimensional object, where at least one dimension is indexe
 geometries. See more in the [Xvec documentation](https://xvec.readthedocs.io/en/stable/intro.html).
 :::
 
-## Zonal statistics with `geocube`
+## Zonal statistics
 
 Another operation when working with rasters is the transfer of values from an array
 to a set of polygons. This is called _zonal statistics_ and can be done in many
-ways, depending on the use case. When your polygons are large compared to cells of the array,
-a good option is to use a `geocube` package.
+ways, depending on the use case. In most cases, one of the methods available in `xvec`
+should cover your specific needs.
 
 ### Downloading OpenStreetMap data
 
@@ -499,11 +499,13 @@ districts = admin_level_9[admin_level_9.geom_type == "Polygon"][    # <2>
     ["name", "name:en", "geometry"]     # <3>
 ]
 districts["key"] = range(len(districts))    # <4>
+districts = districts.to_crs(pop_density.rio.crs)  #<5>
 ```
 1. Use `features_from_place` to download features from Budapest. But filter only those tagged with the `admin_level` equal to 9.
 2. Filter only polygons. The `GeoDataFrame` coming from `osmnx` also contains many LineStrings.
 3. Retain only three columns that may be useful.
 4. Create a new column with a _key_ - an integer value unique to each observation. That will be useful later.
+5. Ensure the geometry uses the same CRS as the grid.
 
 ### Plotting raster and vector together
 
@@ -513,7 +515,7 @@ Both `xarray` and `geopandas` can create `matplotlib` plots that can be combined
 # | fig-cap: Overlay of district boundaries over population density
 f, ax = plt.subplots()     # <1>
 pop_density.plot(ax=ax, cmap="cividis_r")     # <2>
-districts.to_crs(pop_density.rio.crs).plot( # <3>
+districts.plot( # <3>
     ax=ax, facecolor="none", edgecolor="red", linewidth=1, aspect=None # <4>
 );
 ```
@@ -524,57 +526,60 @@ districts.to_crs(pop_density.rio.crs).plot( # <3>
 
 ### Zonal statistics
 
-Zonal statistics using `geocube` has three conceptual phases.
-
-1. Convert the geometry to an aligned raster, bringing the ID of each polygon to a raster format.
-2. Merge of the two arrays.
-3. Groupby operation using the IDs as grouping keys.
-
-Let's start with the first one.
+Zonal statistics using `xvec` is as simple as point data extraction, with the only difference that you can optionally
+specify the type of aggregation you'd like to extract. By default, you get mean.
 
 ```{python}
-districts_grid = make_geocube(      # <1>
-    vector_data=districts,  # <2>
-    measurements=["key"],   # <3>
-    like=pop_density, # <4>
+zonal_stats = bud_cube.drop_vars("spatial_ref").xvec.zonal_stats( # <1>
+    geometry=districts.geometry, # <2>
+    x_coords="x", # <3>
+    y_coords="y", # <3>
 )
-districts_grid
+zonal_stats
 ```
-1. Use `make_geocube` imported from `geocube`.
-2. You want to rasterise `districts` `GeoDataFrame`.
-3. Use the values in the `"key"` column as values of the resulting array.
-4. Make the array look like `pop_density` to ensure the two are exactly aligned.
+1. Drop `spatial_ref` because it is not interesting for point extraction and use
+`.xvec.zonal_stats()`
+2. Specify the geometries for which you want to aggregate the values.
+3. Specify which dimension of the `bud_cube` `DataArray` represents x-coordinate
+dimension of geometries and which represents the y-coordinate dimension to match geometries to
+the array.
 
-You can visually check the resulting raster by plotting the `"key"` variable.
+The result is again a vector data cube. Though mean is not the optimal aggregation method for `population`. Let's refine the code above a bit to get more useful aggregation.
 
 ```{python}
-# | fig-cap: Rasterised districts
-_ = districts_grid.key.plot.imshow(cmap="tab20")  # <1>
+zonal_stats = bud_cube.drop_vars("spatial_ref").xvec.zonal_stats(
+    geometry=districts.geometry,
+    x_coords="x",
+    y_coords="y",
+    stats=["mean", "sum", "median", "min", "max"],  # <3>
+)
+zonal_stats
 ```
-1. `"tab20"` is a categorical colour map suitable for the categorical variable stored in `"key"`.
+3. Specify which aggregations should `xvec` return as a list.
 
-The second and third steps outlined above can be combined into a single one.
-You can directly group `pop_density` by the array stored in `districts_grid.key`.
+You may have noticed that our data cube now has one more dimension `zonal_statistics`, reflecting each
+of the aggregation methods specified above.
+
+::: {.callout-tip}
+# Other statistics
+
+The `stats` keyword is quite flexible and allows you to pass
+even your custom functions. Check the [documentation](https://xvec.readthedocs.io/en/stable/zonal_stats.html) for details.
+:::
+
+To check the result on a map, convert the data to a `geopandas.GeoDataFrame` again.
 
 ```{python}
-grouped_density = pop_density.groupby(districts_grid.key)
-grouped_density
+zones = zonal_stats.xvec.to_geodataframe(name="stats")
+zones
 ```
 
-This gives you a similar `GroupBy` object you know from `pandas`. You can get any type
-of aggregation from the object and assign it directly back to the `GeoDataFrame`.
-
-```{python}
-districts["mean_density"] = grouped_density.mean()
-```
-
-Check the result!
+Check the result on a map to verify that all worked as expected. Get mean density and explore its values, stored in the `stats` column.
 
 ```{python}
 #| classes: explore
-districts.explore("mean_density", cmap="cividis_r", tiles="CartoDB Positron")
+zones.loc[("mean", 'density')].explore("stats", cmap="cividis_r", tiles="CartoDB Positron")
 ```
-
 
 ::: {.callout-tip}
 # Additional reading
