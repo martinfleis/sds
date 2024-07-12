@@ -33,6 +33,12 @@ To run the course material, you will need a Python environment with all the pack
 spatial data science installed. Unless you already know how to work with `conda` or `mamba`,
 follow the instructions below.
 
+::: {.callout-important}
+# Anaconda and the other snakes
+
+If you have Anaconda, conda, or mamba installed, use that directly. Just start `Anaconda Prompt` (or any other relevant prompt) or `Terminal` and start with the point _Create a Python environment_.
+:::
+
 ::: {.panel-tabset}
 
 ### Windows
@@ -69,20 +75,20 @@ Ensure that you install `miniconda` in a directory without any special character
 ### macOS & Linux
 
 1. Download `miniconda` package manager from [Anaconda](https://docs.anaconda.com/miniconda/miniconda-install/){.external target="_blank"} for your operating system and install it.
-3. Open `Terminal` application.
-4. Create a Python environment using the following command:
+2. Open `Terminal` application.
+3. Create a Python environment using the following command:
 
 ```sh
 conda env create -f https://martinfleischmann.net/sds/environment.yml
 ```
 
-5. Activate the environment using:
+4. Activate the environment using:
 
 ```sh
 conda activate sds
 ```
 
-6. Start JupyterLab interface:
+5. Start JupyterLab interface:
 
 ```sh
 jupyter lab
