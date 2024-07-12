@@ -598,7 +598,7 @@ Load the price data you worked with in the Learning GeoPandas chapter.
 
 ```{python}
 price = gpd.read_file(
-    "../geographic_data/data/SED_CenovaMapa_p_shp.zip",
+    "https://martinfleischmann.net/sds/geographic_data/data/SED_CenovaMapa_p_shp.zip",
 )
 price["CENA"] = price["CENA"].replace("N", None).astype("float")  # <1>
 price.head(2)

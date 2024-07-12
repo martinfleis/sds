@@ -35,7 +35,7 @@ You will work with the same data you already used in the session on [spatial aut
 
 ```{python}
 elections = gpd.read_file(
-    "../autocorrelation/data/cz_elections_2023.gpkg"
+    "https://martinfleischmann.net/sds/autocorrelation/data/cz_elections_2023.gpkg"
 )
 elections = elections.set_index("name")
 elections.head()
