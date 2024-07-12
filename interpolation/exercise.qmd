@@ -12,7 +12,7 @@ Going through this exercise is even more up to you than usual.
 Pick any dataset linked to polygon geometries used in previous chapters of the
 course. Or any of your own, if you wish.
 
-- Create a hexagonal grid of a reasonable resolution covering the area of your data.
+- Create a hexagonal grid of a reasonable [resolution](https://h3geo.org/docs/core-library/restable#cell-areas) covering the area of your data.
 - Interpolate data to the grid. Make sure to use extensive and intensive variables correctly.
 - Do you understand the difference in how the intensive variables are interpolated vs. the extensive?
 - If you don't have a categorical column in your data, create one. Interpolate this categorical

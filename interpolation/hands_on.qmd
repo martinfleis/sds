@@ -84,6 +84,8 @@ especially.
 H3 grids are a very interesting concept as they often allow for very efficient spatial
 operations based on known relationships between individual cells (encoded in their index).
 Check the [official documentation](https://h3geo.org) if you want to learn more.
+
+Pay specific attention to the meaning of the [resolution](https://h3geo.org/docs/core-library/restable#cell-areas).
 :::
 
 You can create the H3 grid covering the area of Edinburgh using the `tobler` package.
@@ -93,7 +95,7 @@ grid_8 = tobler.util.h3fy(simd, resolution=8)  # <1>
 grid_8.head(2)
 ```
 1. The `h3fy` function takes the `GeoDataFrame` you want to cover and a `resolution` of the
-H3 grid. In this case, 8 could be a good choice but feel free to play with other resolutions
+H3 grid. In this case, 8 could be a good choice but feel free to play with other [resolutions](https://h3geo.org/docs/core-library/restable#cell-areas)
 to see the difference.
 
 Let's check how the H3 grid overlaps the data zones of SIMD.
