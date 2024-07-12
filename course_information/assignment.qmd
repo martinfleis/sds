@@ -33,11 +33,12 @@ The essay corresponds to a range of 2,500-5,000 words. That does not mean that y
 to write that many words. Since you will have to produce not only text (in English or
 Czech) but also code and its outputs, the following requirements are specified:
 
-- The maximum number of words in Markdown cells is 1,500 (the bibliography, if provided,
-  does not count towards the word count).
-- A maximum of 5 maps or other graphic outputs (one output may contain more than one map
+- The approximate number of words in Markdown cells is 1,500 (the bibliography, if provided,
+  does not count towards the word count). Try to stay within 20% margin.
+- The approximate number of maps or other graphic outputs is 5 (one output may contain more than one map
   and will only count as one, but it must be included in the same `matplotlib` object).
-- A maximum of 2 tables.
+- The approximate number of tables is 2, where a table is considered an output
+  of a DataFrame automatically rendered by the Notebook.
 
 The rest of the word count is assumed to be consumed by code.
 
