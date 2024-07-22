@@ -50,19 +50,25 @@ Windows may complain that the app is not recognised. Click _More information_ an
 1. Download `miniconda` package manager from [Anaconda](https://docs.anaconda.com/miniconda/miniconda-install/){.external target="_blank"} for your operating system.
 2. Execute the installer and make sure to create start menu shortcuts (there's a tick box during installation).
 3. Open the installed `Anaconda Prompt` application.
-4. Create a Python environment using the following command:
+4. Configure `conda` to avoid automatic activation of the base environment. You should never use it to avoid issues in the future.
+
+```sh
+conda config --set auto_activate_base false
+```
+
+5. Create a Python environment using the following command:
 
 ```sh
 conda env create -f https://martinfleischmann.net/sds/environment.yml
 ```
 
-5. Activate the environment using:
+6. Activate the environment using:
 
 ```sh
 conda activate sds
 ```
 
-6. Start JupyterLab interface:
+7. Start JupyterLab interface:
 
 ```sh
 jupyter lab
@@ -76,19 +82,25 @@ Ensure that you install `miniconda` in a directory without any special character
 
 1. Download `miniconda` package manager from [Anaconda](https://docs.anaconda.com/miniconda/miniconda-install/){.external target="_blank"} for your operating system and install it.
 2. Open `Terminal` application.
-3. Create a Python environment using the following command:
+3. Configure `conda` to avoid automatic activation of the base environment. You should never use it to avoid issues in the future.
+
+```sh
+conda config --set auto_activate_base false
+```
+
+4. Create a Python environment using the following command:
 
 ```sh
 conda env create -f https://martinfleischmann.net/sds/environment.yml
 ```
 
-4. Activate the environment using:
+5. Activate the environment using:
 
 ```sh
 conda activate sds
 ```
 
-5. Start JupyterLab interface:
+6. Start JupyterLab interface:
 
 ```sh
 jupyter lab
