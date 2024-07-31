@@ -96,11 +96,11 @@ Contiguity weights matrices define spatial connections through the existence of 
 boundaries. This makes it directly suitable to use with polygons: if two polygons share
 boundaries to some degree, they will be labelled as neighbours under these kinds of
 weights. Exactly how much they need to share is what differentiates the two approaches
-we will learn: queen and rook.
+we will learn: Queen and Rook.
 
 #### Queen
 
-Under the queen criteria, two observations only need to share a vertex (a single point)
+Under the Queen criteria, two observations only need to share a vertex (a single point)
 of their boundaries to be considered neighbours. Constructing a weights matrix under
 these principles can be done by running:
 
@@ -109,7 +109,7 @@ queen = graph.Graph.build_contiguity(prague, rook=False)  # <1>
 queen
 ```
 1. The main class that represents a weights matrix is `Graph`. `rook=False` specifies to
-use queen contiguity, while `rook=True` would create rook contiguity.
+use Queen contiguity, while `rook=True` would create Rook contiguity.
 
 The command above creates an object `queen` of the class `Graph`. This is the
 format in which spatial weights matrices are stored in `PySAL`. By default, the
@@ -135,7 +135,7 @@ queen['Albertov']
 ```
 
 This returns a `pandas.Series` containing each neighbour's ID codes as an index,
-with the weights assigned as values. Since you are looking at a raw queen
+with the weights assigned as values. Since you are looking at a raw Queen
 contiguity matrix, every neighbour gets a weight of one. If you want to access the weight
 of a specific neighbour, `Zderaz` for example, you can do recursive querying:
 
@@ -227,6 +227,13 @@ queen.isolates    # <1>
 ```
 1. In this case, this `Series` is empty since there are no isolates present.
 
+A nice summary of these properties is available using the `summary()` method.
+
+```{python}
+# | classes: explore
+queen.summary()
+```
+
 Spatial weight matrices can be explored visually in other ways. For example, you can pick
 an observation and visualise it in the context of its neighbourhood. The following plot
 does exactly that by zooming into the surroundings of ZSJ `Albertov` and displaying
@@ -234,24 +241,24 @@ its polygon as well as those of its neighbours together with a relevant portion 
 `Graph`:
 
 ```{python}
-#| classes: explore
-m = prague.loc[queen['Albertov'].index].explore(color="#25b497")
-prague.loc[['Albertov']].explore(m=m, color="#fa94a5")
-queen.explore(prague, m=m, focal='Albertov')
+# | classes: explore
+m = prague.loc[queen["Albertov"].index].explore(color="#25b497")
+prague.loc[["Albertov"]].explore(m=m, color="#fa94a5")
+queen.explore(prague, m=m, focal="Albertov")
 ```
 
 #### Rook
 
-Rook contiguity is similar to and, in many ways, superseded by queen contiguity.
+Rook contiguity is similar to and, in many ways, superseded by Queen contiguity.
 However, since it sometimes comes up in the literature, it is useful to know about it.
 The main idea is the same: two observations are neighbours if they share some of their
-boundary lines. However, in the rook case, it is not enough to share only one point.
+boundary lines. However, in the Rook case, it is not enough to share only one point.
 It needs to be at least a segment of their boundary. In most applied cases, these
 differences usually boil down to how the geocoding was done, but in some cases, such as
 when you use raster data or grids, this approach can differ more substantively, and it
 thus makes more sense.
 
-From a technical point of view, constructing a rook matrix is very similar:
+From a technical point of view, constructing a Rook matrix is very similar:
 
 ```{python}
 rook = graph.Graph.build_contiguity(prague, rook=True)
@@ -263,10 +270,10 @@ very much the same way as any other one.
 
 #### Bishop
 
-In a similar sense, you may want to create bishop contiguity - consider two geometries
+In a similar sense, you may want to create Bishop contiguity - consider two geometries
 neighbouring if they share only one vertex. There's no constructor for that but you can
-derive bishop contiguity from queen and rook as queen contains both shared vertex and
-shared edge relations. You can, therefore, subtract one from the other to get bishop
+derive Bishop contiguity from Queen and Rook as Queen contains both shared vertex and
+shared edge relations. You can, therefore, subtract one from the other to get Bishop
 contiguity:
 
 ```{python}
@@ -283,7 +290,7 @@ contextily.add_basemap(ax=ax, crs=prague.crs, source="CartoDB Positron")
 ax.set_axis_off()
 ```
 
-Only a small fraction of queen neighbours are not rook neighbors at the same time
+Only a small fraction of Queen neighbours are not Rook neighbors at the same time
 (represented by the number of edges here), but there are some.
 
 ### Distance
@@ -479,15 +486,69 @@ contextily.add_basemap(ax=ax, crs=prague.crs, source="CartoDB Positron")
 ax.set_axis_off()
 ```
 
+## Weighted graphs
+
+So far, all the graphs resulted in boolean weights. The two geometries either are
+neighbors or they are not. However, there are many situations where you want to
+give a different _weight_ to each neighbor. For example, you may want to give a higher
+weight to those neighbors that are closer over those that are further away. Take
+the example of K-nearest neighbors.
+
+```{python}
+knn5['Albertov']
+```
+
+As you can see, all have the same weight - 1.
+
+### Kernel graphs
+
+To make use of the actual distance, you
+can build a Kernel graph, where the distance between two points is passed to the kernel
+function deriving a weight from it.
+
+```{python}
+knn5_kernel = graph.Graph.build_kernel(prague, k=5)   # <1>
+knn5_kernel
+```
+1. As with KNN, kernel uses point-to-point distance. You can do kernel-weighted KNN by passing `k`.
+
+The default kernel is Gaussian but there's a long list of built-in kernels and option to
+pass a custom function as well.
+
+The resulting Graph has the same neighbors as the `knn5` but the weight is derived from the
+distance between the points.
+
+```{python}
+knn5_kernel['Albertov']
+```
+
+### Perimeter-weighted contiguity
+
+Similarly, you can adapt contiguity graphs to derive weight from the proportion of
+the shared boundary between adjacent polygons.
+
+```{python}
+prague = prague.set_geometry("geometry")
+rook_by_perimeter = graph.Graph.build_contiguity(prague, by_perimeter=True)
+rook_by_perimeter
+```
+
+By default, the weight is the length of the shared boundary:
+
+```{python}
+rook_by_perimeter['Albertov']
+```
+
 ## Standardizing `Graph` relationships
 
 In the context of many spatial analysis techniques, a spatial weights matrix with raw
-values (e.g. ones and zeros for the binary case) is not always the best-suiting one for
+values (e.g. ones and zeros for the binary case or lenghts for the perimeter-weighted
+contiguity) is not always the best-suiting one for
 analysis and some sort of transformation is required. This implies modifying each weight
 so they conform to certain rules. `PySAL` has transformations baked right into the `Graph`
 object, so it is possible to check the state of an object as well as to modify it.
 
-Consider the original queen weights for observation `Albertov`:
+Consider the original Queen weights for observation `Albertov`:
 
 ```{python}
 queen['Albertov']
@@ -528,6 +589,24 @@ row_wise_queen['Albertov'].sum()
 * `R`: row, with all the neighbours of a given observation adding up to one.
 * `V`: variance stabilising, with the sum of all the weights being constrained to the number of observations.
 * `D`: double, with all the weights across all observations adding up to one.
+
+The same can be done with non-binary weights. Given the example of perimeter-weighted Rook
+contiguity created above, you can transform the lengths of shared boundaries to a row-normalised
+value.
+
+```{python}
+rook_by_perimeter['Albertov']
+```
+
+Transform the weights:
+
+```{python}
+rook_by_perimeter_row = rook_by_perimeter.transform("R")  # <1>
+rook_by_perimeter_row['Albertov']
+```
+
+This may be necessary for certain statistical operations assuming a sum of weights in a
+row equals to 1.
 
 ## Reading and Writing spatial weights in `PySAL`
 
@@ -605,79 +684,80 @@ later on and, as such, it is fully supported in `PySAL`. To compute the spatial 
 given variable, `area`, for example:
 
 ```{python}
-queen_score = row_wise_queen.lag(prague["area"])    # <1>
-queen_score[:5]                                 # <2>
+queen_lag = row_wise_queen.lag(prague["area"])    # <1>
+queen_lag[:5]                                 # <2>
 ```
 1. Compute spatial lag of `area` using row-wised standardised weights to get mean values. If you used binary weights, the resulting
 spatial lag would equal to sum of values.
 2. Print the first five elements
 
-Line 4 contains the actual computation, which is highly optimised in `PySAL`. Note that,
+Line 1 contains the actual computation, which is highly optimised in `PySAL`. Note that,
 despite passing in a `pd.Series` object, the output is a `numpy` array. This however,
 can be added directly to the table `prague`:
 
 ```{python}
-prague['w_area'] = queen_score
+prague['area_lag'] = queen_lag
 ```
 
-## Moran Plot
+### Categorical lag
 
-The Moran Plot is a graphical way to start exploring the concept of spatial
-autocorrelation, and it is a good application of spatial weight matrices and the spatial
-lag. In essence, it is a standard scatter plot in which a given variable (`area`, for
-example) is plotted against *its own* spatial lag. Usually, a fitted line is added to
-include more information:
+If you have categorical data, you can use the categorical lag, which returns the most
+common category within the neighbors. You can try with the KU name.
 
 ```{python}
-# | fig-cap: Moran plot
-f, ax = plt.subplots(1, figsize=(6, 6))                     # <1>
-sns.regplot(x="area", y="w_area", data=prague, ci=None, ax=ax, marker="."); # <2>
+categorical_lag = row_wise_queen.lag(prague["NAZ_KU"], ties="tryself")
+categorical_lag[:5]
 ```
-1. Setup the figure (`f`) and axis (`ax`) to allow setting the size of the figure and forcing it to be square.
-2. Plot the values. `ci=None` turns off the computation of the confidence interval for the regression line estimate.
 
-In order to easily compare different scatter plots and spot outlier observations, it is
-common practice to standardise the values of the variable before computing its spatial
-lag and plotting it. This can be accomplished by substracting the average value and
-dividing the result by the standard deviation:
+Note that when there is a tie, i.e., no category is the most common, `lag()` will raise
+an error by default. You can let it resolve ties either by including the value from the
+focal observation to break the tie or by picking the one randomly (`ties="random"`).
 
-$$
-z_i = \dfrac{y - \bar{y}}{\sigma_y}
-$$
+### Describe
 
-where $z_i$ is the standardized version of $y_i$, $\bar{y}$ is the average of the
-variable, and $\sigma$ its standard deviation.
-
-Creating a standardised Moran Plot implies that average values are centred in the plot
-(as they are zero when standardised), and dispersion is expressed in standard deviations,
-with the rule of thumb of values greater or smaller than two standard deviations being
-*outliers*. A standardised Moran Plot also partitions the space into four quadrants that
-represent different situations:
-
-1. High-High (*HH*): values above average surrounded by values above average.
-1. Low-Low (*LL*): values below average surrounded by values below average.
-1. High-Low (*HL*): values above average surrounded by values below average.
-1. Low-High (*LH*): values below average surrounded by values above average.
-
-These will be further explored once spatial autocorrelation has been properly introduced
-in subsequent blocks.
+Spatial lag is usually used to derive the mean value from neighbors. However, if you
+are interested in a more robust description of the distribution, you can use the
+`summary()` method.
 
 ```{python}
-# | fig-cap: Moran plot with quadrants
-std_prague = (prague['area'] - prague['area'].mean()) / prague['area'].std()    # <1>
-std_w_prague = pd.Series(                                           # <2>
-    row_wise_queen.lag(std_prague), index=std_prague.index              # <2>
-)                                                               # <2>
-f, ax = plt.subplots(1, figsize=(6, 6))
-sns.regplot(x=std_prague, y=std_w_prague, ci=None, marker=".")
-
-plt.axvline(0, c='k', alpha=0.5)                                # <3>
-plt.axhline(0, c='k', alpha=0.5);                               # <4>
+area_description = queen.describe(
+    prague["area"],
+    statistics=["mean", "median", "min", "max", "std"],
+)
+area_description.head()
 ```
-1. Standardize the area.
-2. Compute the spatial lag of the standardised version and save it as a `Series` indexed as the original variable.
-3. Plot a vertical line dividing quadrants.
-4. Plot a horizontal line dividing quadrants.
+
+The table can be directly assigned to the `prague` DataFrame, if needed.
+
+```{python}
+prague = prague.join(area_description)
+prague.head()
+```
+
+Notice that `mean` column matches the spatial lag computed using the `lag()` method, as
+expected.
+
+Compare a subset visually on a map. You can create a subplot with 4 axes and loop over
+the selected columns to do that efficiently.
+
+```{python}
+# | fig-cap: Log of area and its derivatives based on Queen contiguity
+columns = ["area", "area_lag", "std", "max"]  # <1>
+
+fig, axs = plt.subplots(2, 2, figsize=(9, 6))  # <2>
+axs = axs.flatten() # <3>
+for column, ax in zip(columns, axs):  # <4>
+    prague.plot(column, ax=ax, legend=True, cmap="YlGnBu")  # <5>
+    ax.set_axis_off()  # <6>
+    ax.set_title(column)  # <7>
+```
+1. Specify a list of columns to be plotted.
+2. Create a figure with 4 subplots in a 2x2 grid, sized 9x6 inches.
+3. Flatten the axis for easier iteration.
+4. Make a `for` loop over two arrays at the same time zipped together.
+5. Make the map, show its legend and assign a custom colormap.
+6. Disable axis boundary plotting.
+7. Set title of each subplot.
 
 ## Acknowledgements {.appendix}
 

@@ -206,8 +206,16 @@ neis.mean()
 
 For some of the techniques you will see below, it makes more sense to operate with the
 standardised version of a variable rather than the raw one. Standardising means
-subtracting the average value and dividing it by the standard deviation. This can be
-done easily with a bit of basic algebra in `pandas`:
+subtracting the average value and dividing it by the standard deviation.
+
+$$
+z_i = \dfrac{y - \bar{y}}{\sigma_y}
+$$
+
+where $z_i$ is the standardized version of $y_i$, $\bar{y}$ is the average of the
+variable, and $\sigma$ its standard deviation.
+
+This can be done easily with a bit of basic algebra in `pandas`:
 
 ```{python}
 elections["PP_std"] = (
@@ -328,31 +336,48 @@ The `Join_Counts` class includes much more than these. Explore them yourself!
 ### Moran Plot
 
 When dealing with continuous variables, the first indication of spatial autocorrelation
-can be obtained using the Moran plot. You already know how to create one, so let's have
-a look at what it looks like in this case based on the standardised values you made
-above.
+can be obtained using the Moran plot.The Moran Plot is a graphical way to start exploring
+the concept of spatial autocorrelation, and it is a good application of spatial weight
+matrices and the spatial lag. In essence, it is a standard scatter plot in which a given
+variable (`area`, for example) is plotted against *its own* spatial lag. Usually, a
+fitted line is added to include more information. In order to easily compare different
+scatter plots and spot outlier observations, it ismcommon practice to standardise the
+values of the variable before computing its spatial lag and plotting it. Let's have a
+look at what it looks like in this case based on the standardised values you made above.
 
 ```{python}
 #| label: fig-moran-plot
 #| fig-cap: Moran Plot
-f, ax = plt.subplots(1, figsize=(6, 6))
+f, ax = plt.subplots(1, figsize=(6, 6))  # <1>
 sns.regplot(
     x="PP_std",
     y="PP_std_lag",
     data=elections,
     marker=".",
-    scatter_kws={"alpha": 0.2},                 # <1>
+    scatter_kws={"alpha": 0.2},                 # <2>
     line_kws=dict(color="lightcoral")
 )
 plt.axvline(0, c="black", alpha=0.5)
 plt.axhline(0, c="black", alpha=0.5)
-plt.text(2.3, 2.7, "High-high", fontsize=10)    # <2>
-plt.text(2.3, -2.7, "High-low", fontsize=10)    # <2>
-plt.text(-4.4, 2.7, "Low-high", fontsize=10)    # <2>
-plt.text(-4.4, -2.7, "Low-low", fontsize=10);   # <2>
+plt.text(2.3, 2.7, "High-high", fontsize=10)    # <3>
+plt.text(2.3, -2.7, "High-low", fontsize=10)    # <3>
+plt.text(-4.4, 2.7, "Low-high", fontsize=10)    # <3>
+plt.text(-4.4, -2.7, "Low-low", fontsize=10);   # <3>
 ```
-1. Make points semi-transparent to mitigate their density.
-2. Annotate different quadrants.
+1. Setup the figure (`f`) and axis (`ax`) to allow setting the size of the figure and forcing it to be square.
+2. Make points semi-transparent to mitigate their density.
+3. Annotate different quadrants.
+
+Creating a standardised Moran Plot implies that average values are centred in the plot
+(as they are zero when standardised), and dispersion is expressed in standard deviations,
+with the rule of thumb of values greater or smaller than two standard deviations being
+*outliers*. A standardised Moran Plot also partitions the space into four quadrants that
+represent different situations:
+
+1. High-High (*HH*): values above average surrounded by values above average.
+2. Low-Low (*LL*): values below average surrounded by values below average.
+3. High-Low (*HL*): values above average surrounded by values below average.
+4. Low-High (*LH*): values below average surrounded by values above average.
 
 The figure above displays the relationship between the standardised percentage that
 voted for Petr Pavel (`"PP_std"`) and its spatial lag, which, because the $W$ that was
@@ -530,6 +555,7 @@ global Moran's $I$, you select 5% as the threshold for statistical significance.
 You can quickly map these results using the `explore()` method.
 
 ```{python}
+#| classes: explore
 lisa.explore(
   elections,   # <1>
   crit_value=0.05,  # <2>
