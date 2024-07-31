@@ -264,13 +264,12 @@ to binary. You can then measure the statistics using the `Join_Counts` class fro
 ```{python}
 jc = esda.Join_Counts(              # <1>
     elections["PP_winner"],         # <2>
-    contiguity.to_W(),              # <3>
+    contiguity              # <3>
 )
 ```
 1. `esda.Join_Counts` will compute all you will need.
 2. Pass in a Series of the (binary) variable of interest.
-3. And the spatial weights matric. Since `contiguity` is using the new `Graph` and `esda`
-hasn't been updated yet, you need to convert it to the older `W` object.
+3. And the spatial weights matrix.
 
 The results are all stored in the `jc` object. You can ask for the observed number of
 black-black relations:
@@ -396,12 +395,12 @@ of Moran's $I$ corresponds with the slope of the linear fit overlayed on top of 
 Moran Plot.
 
 In order to calculate Moran's $I$ in your dataset, you can call a specific function in
-PySAL's 'esda' module directly:
+PySAL's `esda` package directly:
 
 ```{python}
-mi = esda.Moran(elections['PetrPavel'], contiguity_r.to_W())  # <1>
+mi = esda.Moran(elections['PetrPavel'], contiguity_r)  # <1>
 ```
-1. `Moran` assumes a row-standardised matrix in the old `W` format. Note how you do not need to use the standardised version of the variable in this context, as you will not represent it visually.
+1. Note how you do not need to use the standardised version of the variable in this context, as you will not represent it visually.
 
 The class `esda.Moran` creates an object that contains much more information than the
 actual statistic. If you want to retrieve the value of the statistic, you can do it this
@@ -496,7 +495,7 @@ phenomenon, etc.
 In Python, you can calculate LISAs in a very streamlined way thanks to `esda`:
 
 ```{python}
-lisa = esda.Moran_Local(elections['PetrPavel'], contiguity_r.to_W())
+lisa = esda.Moran_Local(elections['PetrPavel'], contiguity_r)
 ```
 
 All you need to pass is the variable of interest -the percentage of Pavel's votes- and the
@@ -517,34 +516,28 @@ But, to make the map-making more straightforward, it is convenient to pull them 
 insert them in the main data table, `elections`:
 
 ```{python}
-elections.loc[lisa.p_sim < 0.05, 'cluster'] = lisa.q[lisa.p_sim < 0.05]     # <1>
-elections["cluster"] = elections["cluster"].fillna(0)                       # <2>
-elections["cluster"] = elections["cluster"].map(                            # <3>
-    {                                                                       # <3>
-        0: "Not significant",                                               # <3>
-        1: "High-high",                                                     # <3>
-        2: "Low-high",                                                      # <3>
-        3: "Low-low",                                                       # <3>
-        4: "High-low",                                                      # <3>
-    }                                                                       # <3>
-)                                                                           # <3>
+elections['cluster'] = lisa.get_cluster_labels(crit_value=0.05)    # <1>
 elections.head()
 ```
-1. Use `lisa.p_sim < 0.05` as a filter to assign a quadrant from `lisa.q` only to observations that can be
-considered significant.
-2. Fill the remaining - non-significant - observations with 0.
-3. Replace the numerical codes of quadrants with spelled-out versions.
+1. Use `lisa.p_sim < 0.05` as a critical values.
 
 Similarly as with global Moran's $I$, `esda` is automatically computing a $p$-value for
 each LISA. Because not every observation represents a statistically significant one, you
 want to identify those with a $p$-value small enough that it rules out the possibility of
 obtaining a similar situation from pure chance. Following a similar reasoning as with
-global Moran's $I$, you select 5% as the threshold for statistical significance. To
-identify these values, you use `lisa.p_sim < 0.05` to create a mask, that contains
-`True` if the $p$-value of the observation satisfies the condition, and `False` if
-otherwise. Then, you can assign the actual quadrant and drop that are not significant.
+global Moran's $I$, you select 5% as the threshold for statistical significance.
 
-You can quickly map these results using another PySAL module called `splot`.
+You can quickly map these results using the `explore()` method.
+
+```{python}
+lisa.explore(elections, crit_value=0.05)   # <1>
+```
+1. `lisa` does not save geometry so you need to pass the original GeoDataFrame as a source of geometric information.
+
+::: {.callout-tip collapse="true"}
+# Static plots
+You can also create a static using another PySAL package called `splot` but note that
+this function will likely move directly to the `esda.Moran_Local` class soon.
 
 ```{python}
 # | fig-cap: LISA clusters
@@ -552,6 +545,7 @@ from splot.esda import lisa_cluster, moran_scatterplot
 
 _ = lisa_cluster(lisa, elections)
 ```
+:::
 
 ::: {.callout-tip collapse="true"}
 # Plotting LISA manually
@@ -561,11 +555,11 @@ presented, you can "cook" the plot ourselves:
 
 ```{python}
 f, ax = plt.subplots(1, figsize=(6, 6))
-elections.loc[elections["cluster"] == "Not significant"].plot(ax=ax, color="lightgrey")
-elections.loc[(elections["cluster"] == "High-high")].plot(ax=ax, color="#d7191c")
-elections.loc[(elections["cluster"] == "Low-low")].plot(ax=ax, color="#2c7bb6")
-elections.loc[(elections["cluster"] == "Low-high")].plot(ax=ax, color="#abd9e9")
-elections.loc[(elections["cluster"] == "High-low")].plot(ax=ax, color="#fdae61");
+elections.loc[elections["cluster"] == "Insignificant"].plot(ax=ax, color="lightgrey")
+elections.loc[(elections["cluster"] == "High-High")].plot(ax=ax, color="#d7191c")
+elections.loc[(elections["cluster"] == "Low-Low")].plot(ax=ax, color="#2c7bb6")
+elections.loc[(elections["cluster"] == "Low-High")].plot(ax=ax, color="#abd9e9")
+elections.loc[(elections["cluster"] == "High-Low")].plot(ax=ax, color="#fdae61");
 ```
 :::
 
@@ -580,13 +574,6 @@ Mariánské Lázně). Finally, in light blue, you find the other type of spatial
 municipalities with low Pavel's support surrounded by other municipalities with high
 support.
 
-::: {.callout-tip}
-# Explore LISA clusters interactively
-
-Try `elections.explore("cluster", prefer_canvas=True)` to create an interactive map of
-LISA cluster for easier exploration.
-:::
-
 The substantive interpretation of a LISA map needs to relate its output to the original
 intention of the analyst who created the map. In this case, your original idea was to
 explore the spatial structure of support of Petr Pavel. The LISA proves a fairly useful
@@ -594,7 +581,7 @@ tool in this context. Comparing the LISA map above with the choropleth you start
 you can interpret the LISA as a "simplification" of the detailed but perhaps too
 complicated picture in the choropleth that focuses the reader's attention to the areas
 that display a particularly high concentration of (dis)similar values, helping the
-spatial structure of the vote emerge in a more explicit way. The result of this
+spatial structure of the vote emerge more explicitly. The result of this
 highlights the relevance that the cities had in voting for Pavel, as well as the regions
 of the map where there was a lot less excitement about him.
 
