@@ -530,10 +530,15 @@ global Moran's $I$, you select 5% as the threshold for statistical significance.
 You can quickly map these results using the `explore()` method.
 
 ```{python}
-lisa.explore(elections, crit_value=0.05)   # <1>
+lisa.explore(
+  elections,   # <1>
+  crit_value=0.05,  # <2>
+  prefer_canvas=True,
+  tiles="CartoDB Positron",
+)
 ```
 1. `lisa` does not save geometry so you need to pass the original GeoDataFrame as a source of geometric information.
-
+2. You can specify a custom threshold of significance.
 
 ::: {.callout-tip collapse="true"}
 # Plotting LISA manually

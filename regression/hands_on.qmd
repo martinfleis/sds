@@ -26,7 +26,6 @@ import pandas as pd
 import seaborn as sns
 import statsmodels.formula.api as sm
 from libpysal import graph
-from splot.esda import lisa_cluster
 ```
 
 ## Data
@@ -222,18 +221,17 @@ plt.axhline(0, c="black", alpha=0.5);
 That looks like a pretty strong relationship. Use the local version of Moran's statistic to find out the clusters.
 
 ```{python}
-lisa = esda.Moran_Local(elections_data['residual'], contiguity_r.to_W())  # <1>
+lisa = esda.Moran_Local(elections_data['residual'], contiguity_r)  # <1>
 ```
-1. Use `Moran_Local` function from `esda` and remember that it needs `W`, not `Graph`.
+1. Use `Moran_Local` function from `esda`.
 
-Let's use our handy `lisa_cluster` function from `splot` to visualise the results.
+Let's visualise the results.
 
 ```{python}
 #| fig-cap: LISA clusters
-_ = lisa_cluster(lisa, elections_data)
+lisa.explore(elections_data, prefer_canvas=True, tiles="CartoDB Positron")
 ```
-
-The outcome of LISA shows large clusters of both overpredicted (high-high) and underpredicted (low-low) areas. The underpredicted are mostly in central Bohemia around Prague and in the mountains near the borders, where the ski resorts are. Putting aside the central areas for a bit, the explanation of underprediction in mountains is relatively straightforward. The education data are linked to the residents of each municipality. The people who voted in a municipality do not necessarily need to match with residents. It is known that more affluent population groups, who are more likely to go to a ski resort, voted overwhelmingly for Pavel. And since the elections were in winter, a lot of them likely voted in ski resorts, affecting the outcome of the model.
+The outcome of LISA shows large clusters of both overpredicted (High-High) and underpredicted (Low-Low) areas. The underpredicted are mostly in central Bohemia around Prague and in the mountains near the borders, where the ski resorts are. Putting aside the central areas for a bit, the explanation of underprediction in mountains is relatively straightforward. The education data are linked to the residents of each municipality. The people who voted in a municipality do not necessarily need to match with residents. It is known that more affluent population groups, who are more likely to go to a ski resort, voted overwhelmingly for Pavel. And since the elections were in winter, a lot of them likely voted in ski resorts, affecting the outcome of the model.
 
 The overpredicted areas, on the other hand, are known for higher levels of deprivation, which may have played a role in the results. What is clear, is that geography plays a huge role in the modelling of the elections.
 

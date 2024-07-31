@@ -62,7 +62,7 @@ Measure Join Counts statistic on your new variable.
 ```py
 jc = esda.Join_Counts(
     glasgow["better_half"],
-    contiguity.to_W(),
+    contiguity,
 )
 ```
 
@@ -110,7 +110,7 @@ ax.axhline(0, c="black", alpha=0.5)
 Calculate Moran's $I$
 
 ```py
-mi = esda.Moran(glasgow['rank_std'], contiguity_r.to_W())
+mi = esda.Moran(glasgow['rank_std'], contiguity_r)
 ```
 
 ```py
@@ -124,27 +124,25 @@ mi.p_sim
 Calculate LISA statistics for the areas
 
 ```py
-lisa = esda.Moran_Local(glasgow['rank_std'], contiguity_r.to_W())
+lisa = esda.Moran_Local(glasgow['rank_std'], contiguity_r)
 ```
 
 Make a map of significant clusters at the 5%
 
 ```py
-from splot.esda import lisa_cluster
-
-_ = lisa_cluster(lisa, glasgow)
+lisa.explore(glasgow)
 ```
 
 Create cluster maps for significance levels 1%
 
 ```py
-_ = lisa_cluster(lisa, glasgow, p=.01)
+lisa.explore(glasgow, crit_value=.01)
 ```
 
 Create cluster maps for significance levels 10%;
 
 ```py
-_ = lisa_cluster(lisa, glasgow, p=.1)
+lisa.explore(glasgow, crit_value=.1)
 ```
 
 Can you create both interactive and static versions of those maps?
