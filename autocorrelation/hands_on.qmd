@@ -534,24 +534,12 @@ lisa.explore(elections, crit_value=0.05)   # <1>
 ```
 1. `lisa` does not save geometry so you need to pass the original GeoDataFrame as a source of geometric information.
 
-::: {.callout-tip collapse="true"}
-# Static plots
-You can also create a static using another PySAL package called `splot` but note that
-this function will likely move directly to the `esda.Moran_Local` class soon.
-
-```{python}
-# | fig-cap: LISA clusters
-from splot.esda import lisa_cluster, moran_scatterplot
-
-_ = lisa_cluster(lisa, elections)
-```
-:::
 
 ::: {.callout-tip collapse="true"}
 # Plotting LISA manually
 
-If you want to have more control over what is being displayed and how each component is
-presented, you can "cook" the plot ourselves:
+If you want to create a static plot or have more control over what is being displayed and how each component is
+presented, you can "cook" the plot by hand. The same will apply to interactive maps:
 
 ```{python}
 f, ax = plt.subplots(1, figsize=(6, 6))
@@ -584,17 +572,6 @@ that display a particularly high concentration of (dis)similar values, helping t
 spatial structure of the vote emerge more explicitly. The result of this
 highlights the relevance that the cities had in voting for Pavel, as well as the regions
 of the map where there was a lot less excitement about him.
-
-::: {.callout-tip}
-# Linking map with Moran plot
-
-`splot` also comes with a way of plotting the Moran Plot, allowing you to link both
-together:
-
-```{python}
-_ = moran_scatterplot(lisa, p=0.05, scatter_kwds={"s": 5, "alpha":.2})
-```
-:::
 
 ## Other options
 
