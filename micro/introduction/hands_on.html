@@ -2,12 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.5.55">
+<meta name="generator" content="quarto-1.5.56">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Jupyter and Python – Spatial Data Science in Python</title>
+<title>Jupyter Notebook and Lab – Spatial Data Science in Python</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -106,9 +106,38 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 }</script>
 <style>html{ scroll-behavior: smooth; }</style>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 <link rel="stylesheet" href="../_assets/styles.css">
-<meta name="twitter:title" content="Jupyter and Python – Spatial Data Science in Python">
+<meta name="twitter:title" content="Jupyter Notebook and Lab – Spatial Data Science in Python">
 <meta name="twitter:description" content="">
 <meta name="twitter:card" content="summary">
 </head>
@@ -125,7 +154,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../introduction/concepts.html">Introduction</a></li><li class="breadcrumb-item"><a href="../introduction/hands_on.html">Jupyter and Python</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../introduction/concepts.html">Introduction</a></li><li class="breadcrumb-item"><a href="../introduction/hands_on.html">Jupyter Notebook and Lab</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -199,7 +228,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../introduction/hands_on.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text">Jupyter and Python</span></a>
+ <span class="menu-text">Jupyter Notebook and Lab</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -481,7 +510,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#computer-science-101" id="toc-computer-science-101" class="nav-link active" data-scroll-target="#computer-science-101">Computer Science 101</a>
+  <li><a href="#shell" id="toc-shell" class="nav-link active" data-scroll-target="#shell">Shell</a>
   <ul class="collapse">
   <li><a href="#terminal-and-command-line" id="toc-terminal-and-command-line" class="nav-link" data-scroll-target="#terminal-and-command-line">Terminal and Command line</a></li>
   </ul></li>
@@ -489,14 +518,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <ul class="collapse">
   <li><a href="#other-options" id="toc-other-options" class="nav-link" data-scroll-target="#other-options">Other options</a></li>
   </ul></li>
-  <li><a href="#jupyter-notebook-and-jupyter-lab" id="toc-jupyter-notebook-and-jupyter-lab" class="nav-link" data-scroll-target="#jupyter-notebook-and-jupyter-lab">Jupyter Notebook and Jupyter Lab</a></li>
-  <li><a href="#let-the-snake-in" id="toc-let-the-snake-in" class="nav-link" data-scroll-target="#let-the-snake-in">Let the snake in</a>
+  <li><a href="#jupyter-notebook-and-jupyter-lab" id="toc-jupyter-notebook-and-jupyter-lab" class="nav-link" data-scroll-target="#jupyter-notebook-and-jupyter-lab">Jupyter Notebook and Jupyter Lab</a>
   <ul class="collapse">
-  <li><a href="#simple-python-math" id="toc-simple-python-math" class="nav-link" data-scroll-target="#simple-python-math">Simple Python math</a></li>
-  <li><a href="#functions" id="toc-functions" class="nav-link" data-scroll-target="#functions">Functions</a></li>
-  <li><a href="#variables" id="toc-variables" class="nav-link" data-scroll-target="#variables">Variables</a></li>
-  <li><a href="#updating-variables" id="toc-updating-variables" class="nav-link" data-scroll-target="#updating-variables">Updating variables</a></li>
-  <li><a href="#data-types" id="toc-data-types" class="nav-link" data-scroll-target="#data-types">Data types</a></li>
+  <li><a href="#markdown" id="toc-markdown" class="nav-link" data-scroll-target="#markdown">Markdown</a></li>
+  </ul></li>
+  <li><a href="#notebook-essentials" id="toc-notebook-essentials" class="nav-link" data-scroll-target="#notebook-essentials">Notebook essentials</a>
+  <ul class="collapse">
+  <li><a href="#execution" id="toc-execution" class="nav-link" data-scroll-target="#execution">Execution</a></li>
+  <li><a href="#tab-completion" id="toc-tab-completion" class="nav-link" data-scroll-target="#tab-completion">Tab completion</a></li>
+  <li><a href="#contextual-help" id="toc-contextual-help" class="nav-link" data-scroll-target="#contextual-help">Contextual help</a></li>
+  <li><a href="#cell-mode" id="toc-cell-mode" class="nav-link" data-scroll-target="#cell-mode">Cell mode</a></li>
+  <li><a href="#shortcuts" id="toc-shortcuts" class="nav-link" data-scroll-target="#shortcuts">Shortcuts</a></li>
+  <li><a href="#i-am-stuck" id="toc-i-am-stuck" class="nav-link" data-scroll-target="#i-am-stuck">I am stuck!</a></li>
   </ul></li>
   
   </ul>
@@ -505,9 +538,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../introduction/concepts.html">Introduction</a></li><li class="breadcrumb-item"><a href="../introduction/hands_on.html">Jupyter and Python</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../introduction/concepts.html">Introduction</a></li><li class="breadcrumb-item"><a href="../introduction/hands_on.html">Jupyter Notebook and Lab</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">Jupyter and Python</h1>
+<h1 class="title">Jupyter Notebook and Lab</h1>
 </div>
 
 
@@ -538,8 +571,8 @@ Do you have Python ready?
 <p>Before you start, ensure you have carefully read and followed the instructions <a href="../course_information/infrastructure.html">outlined in the Infrastructure section</a> and have a working installation of Python and some Jupyter Notebook IDE, either via Jupyter Lab (recommended) or on Google Colab.</p>
 </div>
 </div>
-<section id="computer-science-101" class="level2">
-<h2 class="anchored" data-anchor-id="computer-science-101">Computer Science 101</h2>
+<section id="shell" class="level2">
+<h2 class="anchored" data-anchor-id="shell">Shell</h2>
 <p>Spatial Data Science depends on code, and coding environments can be unfriendly to an average user. People designing the tools are often computer scientists or have a strong knowledge of CS-related environments. It means we sometimes need to deal with the tools that look a bit scary, like a Terminal or a Command line. Below is a brief introduction to the tools you will need for this course.</p>
 <section id="terminal-and-command-line" class="level3">
 <h3 class="anchored" data-anchor-id="terminal-and-command-line">Terminal and Command line</h3>
@@ -613,312 +646,260 @@ Do you have Python ready?
 </figure>
 </div>
 <p>Cells can contain either code or text. A typical notebook is then a series of cells where some include text describing what is happening while others contain the code, either waiting for execution or already executed. The cells with the executed code may also contain outputs.</p>
-<p>We can start with simple math that Python can do natively. Run the following code cell. To do that, you can either click the “play” button on top or hit <span class="keystroke">Shift</span> + <span class="keystroke">Enter</span>:</p>
-<div id="5c03cdca" class="cell" data-execution_count="2">
+<p>You can start with simple math that Python can do natively. Run the following code cell. To do that, you can either click the “play” button on top or hit <span class="keystroke">Shift</span> + <span class="keystroke">Enter</span>:</p>
+<div id="dc696d99" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span> <span class="op">+</span> <span class="dv">1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="1">
 <pre><code>2</code></pre>
 </div>
 </div>
 <p>You now have a code cell with the output. Jupyter Lab automatically created a new cell. Change its type to <code>Markdown</code> and write a short text describing what the cell above does.</p>
-</section>
-<section id="let-the-snake-in" class="level2">
-<h2 class="anchored" data-anchor-id="let-the-snake-in">Let the snake in</h2>
-<p>You can start exploring Python.</p>
-<section id="simple-python-math" class="level3">
-<h3 class="anchored" data-anchor-id="simple-python-math">Simple Python math</h3>
-<p>As shown above, Python can be used as a simple calculator. Remember, you can press <span class="keystroke">Shift</span> + <span class="keystroke">Enter</span> to execute the code in the cells below. Try it out by typing some simple math into new cells and see what you get.</p>
-<div id="62e7fa92" class="cell" data-execution_count="3">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="dv">42</span> <span class="op">*</span> <span class="dv">12</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="2">
-<pre><code>504</code></pre>
+<section id="markdown" class="level3">
+<h3 class="anchored" data-anchor-id="markdown">Markdown</h3>
+<p>Text cells can be formatted using the <a href="https://www.markdownguide.org">Markdown</a> syntax. Markdown is a way of using plain text to write documents that can later be formatted by a rendering engine (Jupyter Lab is the rendering engine in this case). Unlike <span class="math inline">\(\LaTeX\)</span>, it is very lightweight.</p>
+<p>In a cell of a Markdown type, you can:</p>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true" aria-current="page">Markdown</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false">Render</a></li></ul>
+<div class="tab-content">
+<div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
+<pre><code>- create
+- simple
+- lists</code></pre>
 </div>
-</div>
-<div id="8bd81300" class="cell" data-execution_count="4">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="dv">12</span> <span class="op">/</span> <span class="dv">3</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="3">
-<pre><code>4.0</code></pre>
-</div>
-</div>
-<p>If you want to edit and re-run some code, change the cell and press <span class="keystroke">Shift</span> + <span class="keystroke">Enter</span> to execute the modified code.</p>
-</section>
-<section id="functions" class="level3">
-<h3 class="anchored" data-anchor-id="functions">Functions</h3>
-<p>You can use Python for more advanced math by using a function. Functions are pieces of code that perform a single action, such as printing information to the screen (e.g., the <code>print()</code> function). Functions exist for a huge number of operations in Python.</p>
-<p>Let’s try out a few simple examples using functions to find the sine or square root of a value. You can type <code>sin(3)</code> or <code>sqrt(4)</code> into the cells below to test this out.</p>
-<div id="38291b0f" class="cell" data-execution_count="5">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>sin(<span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-error">
-<div class="ansi-escaped-output">
-<pre><span class="ansi-red-fg">---------------------------------------------------------------------------</span>
-<span class="ansi-red-fg">NameError</span>                                 Traceback (most recent call last)
-Cell <span class="ansi-green-fg">In[4], line 1</span>
-<span class="ansi-green-fg">----&gt; 1</span> <span class="ansi-yellow-bg">sin</span>(<span style="color:rgb(98,98,98)">3</span>)
-
-<span class="ansi-red-fg">NameError</span>: name 'sin' is not defined</pre>
+<div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
+<ul>
+<li>create</li>
+<li>simple</li>
+<li>lists</li>
+</ul>
 </div>
 </div>
 </div>
-<div id="669efd64" class="cell" data-execution_count="6">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>sqrt(<span class="dv">4</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-error">
-<div class="ansi-escaped-output">
-<pre><span class="ansi-red-fg">---------------------------------------------------------------------------</span>
-<span class="ansi-red-fg">NameError</span>                                 Traceback (most recent call last)
-Cell <span class="ansi-green-fg">In[5], line 1</span>
-<span class="ansi-green-fg">----&gt; 1</span> <span class="ansi-yellow-bg">sqrt</span>(<span style="color:rgb(98,98,98)">4</span>)
-
-<span class="ansi-red-fg">NameError</span>: name 'sqrt' is not defined</pre>
+<p>If you need numbering, you can:</p>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-2-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-1" role="tab" aria-controls="tabset-2-1" aria-selected="true">Markdown</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-2" role="tab" aria-controls="tabset-2-2" aria-selected="false">Render</a></li></ul>
+<div class="tab-content">
+<div id="tabset-2-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-2-1-tab">
+<pre><code>1. create
+2. numbered
+3. lists
+    1. or nested
+    2. lists within lists
+4. that may continue below</code></pre>
+</div>
+<div id="tabset-2-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-2-tab">
+<ol type="1">
+<li>create</li>
+<li>numbered</li>
+<li>lists
+<ol type="1">
+<li>or nested</li>
+<li>lists within lists</li>
+</ol></li>
+<li>that may continue below</li>
+</ol>
 </div>
 </div>
 </div>
-<p>Well, that didn’t work. Python can calculate square roots or do basic trigonometry, but we need one more step.</p>
-<section id="math-operations" class="level4">
-<h4 class="anchored" data-anchor-id="math-operations">Math operations</h4>
-<p>The table below shows the list of basic arithmetic operations that can be done by default in Python.</p>
+<p>You can also include links:</p>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-3-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-1" role="tab" aria-controls="tabset-3-1" aria-selected="true">Markdown</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-3-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-2" role="tab" aria-controls="tabset-3-2" aria-selected="false">Render</a></li></ul>
+<div class="tab-content">
+<div id="tabset-3-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-3-1-tab">
+<pre><code>Wrap a word that shall be a [link](https://github.com) in square brackets followed by
+round brackets with the URL.</code></pre>
+</div>
+<div id="tabset-3-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-3-2-tab">
+<p>Wrap a word that shall be a <a href="https://github.com">link</a> in square brackets followed by round brackets with the URL.</p>
+</div>
+</div>
+</div>
+<p>Or include images, using a very similar syntax.</p>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-4-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-4-1" role="tab" aria-controls="tabset-4-1" aria-selected="true">Markdown</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-4-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-4-2" role="tab" aria-controls="tabset-4-2" aria-selected="false">Render</a></li></ul>
+<div class="tab-content">
+<div id="tabset-4-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-4-1-tab">
+<pre><code>![Alt text describing the figure (optional)](https://imgs.xkcd.com/comics/standards.png)</code></pre>
+</div>
+<div id="tabset-4-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-4-2-tab">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://imgs.xkcd.com/comics/standards.png" class="img-fluid figure-img"></p>
+<figcaption>Alt text describing the figure (optional)</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<p>Markdown has a few flavours, which are often compatible but some marks are unique to distinct flavours. You can therefore write <em>italic</em> using underscores <code>_italic_</code> or using stars <code>*italic*</code> around the text you want to adapt. The same applies to <strong>bold</strong>, with two underscores or stars <code>**bold**</code>.</p>
+<p>You can further include mathematical formulas using <span class="math inline">\(\LaTeX\)</span>. Either using the inline syntax <code>$e = mc^2$</code> which renders as <span class="math inline">\(e = mc^2\)</span> or as a proper formula:</p>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-5-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-5-1" role="tab" aria-controls="tabset-5-1" aria-selected="true">Markdown</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-5-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-5-2" role="tab" aria-controls="tabset-5-2" aria-selected="false">Render</a></li></ul>
+<div class="tab-content">
+<div id="tabset-5-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-5-1-tab">
+<pre><code>$$
+I = \frac N W \frac {\sum_{i=1}^N \sum_{j=1}^N w_{ij}(x_i-\bar x) (x_j-\bar x)} {\sum_{i=1}^N (x_i-\bar x)^2}
+$$</code></pre>
+</div>
+<div id="tabset-5-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-5-2-tab">
+<p><span class="math display">\[
+I = \frac N W \frac {\sum_{i=1}^N \sum_{j=1}^N w_{ij}(x_i-\bar x) (x_j-\bar x)} {\sum_{i=1}^N (x_i-\bar x)^2}
+\]</span></p>
+</div>
+</div>
+</div>
+<p>Markdown can also do tables, like this one:</p>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-6-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-6-1" role="tab" aria-controls="tabset-6-1" aria-selected="true">Markdown</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-6-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-6-2" role="tab" aria-controls="tabset-6-2" aria-selected="false">Render</a></li></ul>
+<div class="tab-content">
+<div id="tabset-6-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-6-1-tab">
+<pre><code>| Language | Year |
+| -------- | ---- |
+| Python   | 1991 |
+| R        | 1993 |
+| Julia    | 2012 |
+| Rust     | 2015 |</code></pre>
+</div>
+<div id="tabset-6-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-6-2-tab">
 <table class="caption-top table">
 <thead>
 <tr class="header">
-<th>Operation</th>
-<th>Symbol</th>
-<th>Example syntax</th>
-<th>Returned value</th>
+<th>Language</th>
+<th>Year</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td>Addition</td>
-<td><code>+</code></td>
-<td><code>2 + 2</code></td>
-<td><code>4</code></td>
+<td>Python</td>
+<td>1991</td>
 </tr>
 <tr class="even">
-<td>Subtraction</td>
-<td><code>-</code></td>
-<td><code>4 - 2</code></td>
-<td><code>2</code></td>
+<td>R</td>
+<td>1993</td>
 </tr>
 <tr class="odd">
-<td>Multiplication</td>
-<td><code>*</code></td>
-<td><code>2 * 3</code></td>
-<td><code>6</code></td>
+<td>Julia</td>
+<td>2012</td>
 </tr>
 <tr class="even">
-<td>Division</td>
-<td><code>/</code></td>
-<td><code>4 / 2</code></td>
-<td><code>2</code></td>
-</tr>
-<tr class="odd">
-<td>Exponentiation</td>
-<td><code>**</code></td>
-<td><code>2 ** 3</code></td>
-<td><code>8</code></td>
+<td>Rust</td>
+<td>2015</td>
 </tr>
 </tbody>
 </table>
-<p>For anything more advanced, we need to load a <span class="accent">module</span> or a <span class="accent">package</span>. For math operations, this module is called <code>math</code> and can be loaded by typing <code>import math</code>.</p>
-<div id="e96e0e3f" class="cell" data-execution_count="7">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> math</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>Now that we have access to functions in the <code>math</code> module, we can use it by typing the module name, a period (dot), and the name of the function we want to use. For example, <code>math.sin(3)</code>. Try this with the sine and square root examples from above.</p>
-<div id="a56c6994" class="cell" data-execution_count="8">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>math.sin(<span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="7">
-<pre><code>0.1411200080598672</code></pre>
 </div>
 </div>
-<div id="c5c9c8eb" class="cell" data-execution_count="9">
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>math.sqrt(<span class="dv">4</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="8">
-<pre><code>2.0</code></pre>
+</div>
+<p>For structuring the documents, Markdown offers up to six levels of headings.</p>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-7-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-7-1" role="tab" aria-controls="tabset-7-1" aria-selected="true">Markdown</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-7-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-7-2" role="tab" aria-controls="tabset-7-2" aria-selected="false">Render</a></li></ul>
+<div class="tab-content">
+<div id="tabset-7-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-7-1-tab">
+<pre><code># Heading level 1
+
+### Heading level 3
+
+##### Heading level 5
+</code></pre>
+</div>
+<div id="tabset-7-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-7-2-tab">
+<section id="heading-level-1" class="level1">
+<h1>Heading level 1</h1>
+<section id="heading-level-3" class="level3">
+<h3 class="anchored" data-anchor-id="heading-level-3">Heading level 3</h3>
+<section id="heading-level-5" class="level5">
+<h5 class="anchored" data-anchor-id="heading-level-5">Heading level 5</h5>
+</section>
+</section>
+</section>
 </div>
 </div>
-<p>Let’s summarise what you’ve just done with modules:</p>
-<ol type="1">
-<li><p>A <em>module</em> is a group of code items, such as functions, related to one another. Individual modules are often in a group called a <em>package</em>.</p></li>
-<li><p>Modules can be loaded using <code>import</code>. Functions that are part of the module <code>modulename</code> can then be used by typing <code>modulename.functionname()</code>. For example, <code>sin()</code> is a function that is part of the <code>math</code> module and is used by typing <code>math.sin()</code> with some number between the parentheses.</p></li>
-<li><p>Within a Jupyter Notebook, the variables you defined earlier in the notebook will be available for use in the following cells as long as you have executed the cells.</p></li>
-<li><p>Modules may also contain constants such as <code>math.pi</code> (notice no parentheses at the end). Type this in the cell below to see the constant’s <code>math.pi</code> value.</p></li>
-</ol>
-<div id="afd62715" class="cell" data-execution_count="10">
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>math.pi</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="9">
+</div>
+<p>While you can also use basic HTML within Markdown (the cell is rendered in the browser anyway), please try to avoid doing so and stick to vanilla Markdown if possible. The inclusion of HTML tends to break some rendering engines and alter the expected visual style of the resulting document.</p>
+</section>
+</section>
+<section id="notebook-essentials" class="level2">
+<h2 class="anchored" data-anchor-id="notebook-essentials">Notebook essentials</h2>
+<p>Jupyter Notebooks are great and have a lot of built-in features that can improve your quality of life.</p>
+<section id="execution" class="level3">
+<h3 class="anchored" data-anchor-id="execution">Execution</h3>
+<p>While you can run the code cell by clicking on the ▶ button on the top, try creating muscle memory for <span class="keystroke">Shift</span> + <span class="keystroke">Enter</span> instead. You’ll be much faster.</p>
+</section>
+<section id="tab-completion" class="level3">
+<h3 class="anchored" data-anchor-id="tab-completion">Tab completion</h3>
+<p>Learn to use <span class="keystroke">Tab</span>. It provides you with all possible actions you can do after loading in a library <strong>and</strong> it is used for automatic autocompletion. Try hitting <span class="keystroke">Tab</span> while writing the code below.</p>
+<div id="4e4c880c" class="cell" data-execution_count="3">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> math</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>math.pi</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="2">
 <pre><code>3.141592653589793</code></pre>
 </div>
 </div>
-</section>
-<section id="combining-functions" class="level4">
-<h4 class="anchored" data-anchor-id="combining-functions">Combining functions</h4>
-<p>Functions can also be combined. The <code>print()</code> function returns values within the parentheses as text on the screen. Below, try printing the value of the square root of four.</p>
-<div id="0eccfe14" class="cell" data-execution_count="11">
-<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(math.sqrt(<span class="dv">4</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>2.0</code></pre>
-</div>
-</div>
-<p>You can also combine text with other calculated values using the <code>print()</code> function. For example, <code>print('Two plus two is', 2+2)</code> would generate the text reading <code>'Two plus two is 4'</code>. Combine the <code>print()</code> function with the <code>math.sqrt()</code> function in the cell below to produce text that reads <code>'The square root of 4 is 2.0'</code>.</p>
-<div id="4c00ffbf" class="cell" data-execution_count="12">
-<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"The square root of 4 is"</span>, math.sqrt(<span class="dv">4</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>The square root of 4 is 2.0</code></pre>
+<p>As you have noticed, Jupyter gives you options on what you can import or use. It also remembers all the variables so you don’t have to type them next time.</p>
+<div id="b1abc649" class="cell" data-execution_count="4">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>variable_name_that_got_super_long <span class="op">=</span> <span class="dv">42</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span> <span class="op">+</span> variable_name_that_got_super_long</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="3">
+<pre><code>43</code></pre>
 </div>
 </div>
 </section>
-</section>
-<section id="variables" class="level3">
-<h3 class="anchored" data-anchor-id="variables">Variables</h3>
-<p>A <span class="accent">variable</span> can store values calculated in expressions and used for other calculations. Assigning value to variables is straightforward. To assign a value, you type <code>variable_name = value</code>, where <code>variable_name</code> is the name of the variable you wish to define. In the cell below, define a variable called <code>temp_celsius</code>, assign it a value of <code>10.0</code>, and then print that variable value using the <code>print()</code> function. Note that you should do this on two separate lines.</p>
-<div id="e19f359e" class="cell" data-execution_count="13">
-<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>temp_celsius <span class="op">=</span> <span class="fl">10.0</span></span>
-<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(temp_celsius)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>10.0</code></pre>
-</div>
-</div>
-<p>As we did above, you can combine text and even use some math when printing out variable values. The idea is similar to adding 2+2 or calculating the square root of four from the previous section. In the cell below, print out the value of <code>temp_celsius</code> in degrees Fahrenheit by multiplying <code>temp_celsius</code> by 9/5 and adding 32. This should be done within the <code>print()</code> function to produce output that reads <code>'Temperature in Fahrenheit: 50.0'</code>.</p>
-<div id="9cd96861" class="cell" data-execution_count="14">
-<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Temperature in Fahrenheit:"</span>, <span class="dv">9</span> <span class="op">/</span> <span class="dv">5</span> <span class="op">*</span> temp_celsius <span class="op">+</span> <span class="dv">32</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>Temperature in Fahrenheit: 50.0</code></pre>
+<section id="contextual-help" class="level3">
+<h3 class="anchored" data-anchor-id="contextual-help">Contextual help</h3>
+<p>Each Python function comes with documentation. You can fetch and display it directly in the Notebook using <span class="keystroke">Shift</span> + <span class="keystroke">Tab</span>. Try using it in the cell below.</p>
+<div id="1e0b6a43" class="cell" data-execution_count="5">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>math.sin(math.pi)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="4">
+<pre><code>1.2246467991473532e-16</code></pre>
 </div>
 </div>
 </section>
-<section id="updating-variables" class="level3">
-<h3 class="anchored" data-anchor-id="updating-variables">Updating variables</h3>
-<p>Values stored in variables can also be updated. Let’s redefine the value of <code>temp_celsius</code> to be equal to 15.0 and print its value in the cells below.</p>
-<div id="c16e3a76" class="cell" data-execution_count="15">
-<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>temp_celsius <span class="op">=</span> <span class="fl">15.0</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div id="f1552cdc" class="cell" data-execution_count="16">
-<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"temperature in Celsius is now:"</span>, temp_celsius)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>temperature in Celsius is now: 15.0</code></pre>
-</div>
-</div>
-<div class="callout callout-style-default callout-warning callout-titled">
+<section id="cell-mode" class="level3">
+<h3 class="anchored" data-anchor-id="cell-mode">Cell mode</h3>
+<p>Each cell can be either in the <em>edit</em> mode or in the <em>command</em> mode. Edit mode allows you to change the contents of the cell. In the case of code cells, it looks nearly the same as the command mode but in the case of Markdown cells, edit mode shows the plain text with the Markdown syntax while the command mode shows the rendered text. You can enter the edit mode by hitting <span class="keystroke">Enter</span>.</p>
+<p>Command mode moves you away from editing individual cells and allows you to use keyboard shortcuts to manipulate the notebook. You can enter the command mode by hitting <span class="keystroke">Esc</span>.</p>
+</section>
+<section id="shortcuts" class="level3">
+<h3 class="anchored" data-anchor-id="shortcuts">Shortcuts</h3>
+<p>When you are in command mode, you can use a wide range of keyboard shortcuts. For example:</p>
+<ul>
+<li><span class="keystroke">A</span> creates a new cell above the selected one.</li>
+<li><span class="keystroke">B</span> creates a new cell below the selected one.</li>
+<li><span class="keystroke">C</span> copies the selected cell, while <span class="keystroke">V</span> pastes it below.</li>
+<li><span class="keystroke">D</span> + <span class="keystroke">D</span> deletes the cell.</li>
+<li><span class="keystroke">M</span> changes the cell type to Markdown.</li>
+<li><span class="keystroke">Y</span> changes the cell type to code.</li>
+<li><span class="keystroke">Ctrl</span> + <span class="keystroke">Shift</span> + <span class="keystroke">C</span> / <span class="keystroke">Cmd</span> + <span class="keystroke">Shift</span> + <span class="keystroke">C</span> opens a command palette.</li>
+</ul>
+</section>
+<section id="i-am-stuck" class="level3">
+<h3 class="anchored" data-anchor-id="i-am-stuck">I am stuck!</h3>
+<p>Things may get stuck or break completely. When that happens:</p>
+<ul>
+<li>first, try <code>Kernel</code> &gt; <code>Interrupt</code> -&gt; your cell should stop running</li>
+<li>if that does not help -&gt; <code>Kernel</code> &gt; <code>Restart</code> -&gt; restart your notebook</li>
+</ul>
+<div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Warning
+Python basics
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>If you try to run some code that accesses a variable that has not yet been defined, you will get a <code>NameError</code> message. Try printing out the value of the variable <code>temp_fahrenheit</code> using the <code>print()</code> function in the cell below.</p>
+<p>This course won’t cover the very basics of Python. You may be able to catch it along the way but if you prefer more explicit material, have a look at <em><a href="https://geo-python-site.readthedocs.io/en/latest/notebooks/L1/a-taste-of-python.html">A taste of Python</a></em> section of the <em><a href="https://geo-python-site.readthedocs.io">Geo-Python</a> course</em> by D. Whipp, H. Tenkanen, V. Heikinheimo, H. Aagesen, and C. Fink.</p>
 </div>
 </div>
-<div id="d21a4c83" class="cell" data-execution_count="17">
-<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Temperature in Celsius:"</span>, <span class="dv">5</span> <span class="op">/</span> <span class="dv">9</span> <span class="op">*</span> (temp_fahrenheit <span class="op">-</span> <span class="dv">32</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-error">
-<div class="ansi-escaped-output">
-<pre><span class="ansi-red-fg">---------------------------------------------------------------------------</span>
-<span class="ansi-red-fg">NameError</span>                                 Traceback (most recent call last)
-Cell <span class="ansi-green-fg">In[16], line 1</span>
-<span class="ansi-green-fg">----&gt; 1</span> <span style="color:rgb(0,135,0)">print</span>(<span style="color:rgb(175,0,0)">"</span><span style="color:rgb(175,0,0)">Temperature in Celsius:</span><span style="color:rgb(175,0,0)">"</span>, <span style="color:rgb(98,98,98)">5</span> <span style="color:rgb(98,98,98)">/</span> <span style="color:rgb(98,98,98)">9</span> <span style="color:rgb(98,98,98)">*</span> (<span class="ansi-yellow-bg">temp_fahrenheit</span> <span style="color:rgb(98,98,98)">-</span> <span style="color:rgb(98,98,98)">32</span>))
-
-<span class="ansi-red-fg">NameError</span>: name 'temp_fahrenheit' is not defined</pre>
-</div>
-</div>
-</div>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Note
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>One of the interesting things here is that if we define the undefined variable in a cell lower down in the notebook and execute that cell, we can return to the earlier cell, and the code should now work. That was a bit of a complicated sentence, so let’s test this all out. First, let’s define a variable called <code>temp_fahrenheit</code> in the cell below and assign it to be equal to <code>9/5 * temp_celsius + 32</code>, the conversion factor from temperatures in Celsius to Fahrenheit. Then, return to the cell above this text and run that cell again. See how the error message has gone away? <code>temp_fahrenheit</code> has now been defined, and thus, the cell above no longer generates a <code>NameError</code> when the code is executed.</p>
-<p>Also, the number beside the cell, for example, <code>In [2]</code>, tells you the order in which the Python cells have been executed. This way, you can see a history of the order in which you have run the cells.</p>
-</div>
-</div>
-<div id="50ed5791" class="cell" data-execution_count="18">
-<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>temp_fahrenheit <span class="op">=</span> <span class="dv">9</span> <span class="op">/</span> <span class="dv">5</span> <span class="op">*</span> temp_celsius <span class="op">+</span> <span class="dv">32</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>To check their current values, print out the values of <code>temp_celsius</code> and <code>temp_fahrenheit</code> in the cell below.</p>
-<div id="aedda613" class="cell" data-execution_count="19">
-<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"temperature in Celsius:"</span>, temp_celsius, <span class="st">"and in Fahrenheit:"</span>, temp_fahrenheit)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>temperature in Celsius: 15.0 and in Fahrenheit: 59.0</code></pre>
-</div>
-</div>
-</section>
-<section id="data-types" class="level3">
-<h3 class="anchored" data-anchor-id="data-types">Data types</h3>
-<p>A <span class="accent">data type</span> determines the characteristics of data in a program. There are four basic data types in Python, as shown in the table below.</p>
-<table class="caption-top table">
-<thead>
-<tr class="header">
-<th>Data type name</th>
-<th>Data type</th>
-<th>Example</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><code>int</code></td>
-<td>Whole integer values</td>
-<td><code>4</code></td>
-</tr>
-<tr class="even">
-<td><code>float</code></td>
-<td>Decimal values</td>
-<td><code>3.1415</code></td>
-</tr>
-<tr class="odd">
-<td><code>str</code></td>
-<td>Character strings</td>
-<td><code>'Hot'</code></td>
-</tr>
-<tr class="even">
-<td><code>bool</code></td>
-<td>True/false values</td>
-<td><code>True</code></td>
-</tr>
-</tbody>
-</table>
-<p>The data type can be found using the <code>type()</code> function. As you will see, the data types are essential because some are incompatible.</p>
-<p>Let’s define a variable <code>weather_forecast</code> and assign it the value <code>'Hot'</code>. After this, we can check its data type using the <code>type()</code> function.</p>
-<div id="5ef7f114" class="cell" data-execution_count="20">
-<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>weather_forecast <span class="op">=</span> <span class="st">"Hot"</span></span>
-<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a><span class="bu">type</span>(weather_forecast)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="19">
-<pre><code>str</code></pre>
-</div>
-</div>
-<p>Let’s also check the type of <code>temp_fahrenheit</code>. What happens if you try to combine <code>temp_fahrenheit</code> and <code>weather_forecast</code> in a single math equation such as <code>temp_fahrenheit = temp_fahrenheit + 5.0 * weather_forecast</code>?</p>
-<div id="593ba1d5" class="cell" data-execution_count="21">
-<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="bu">type</span>(temp_fahrenheit)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="20">
-<pre><code>float</code></pre>
-</div>
-</div>
-<div id="b6e10d0a" class="cell" data-execution_count="22">
-<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a>temp_fahrenheit <span class="op">=</span> temp_fahrenheit <span class="op">+</span> <span class="fl">5.0</span> <span class="op">*</span> weather_forecast</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-error">
-<div class="ansi-escaped-output">
-<pre><span class="ansi-red-fg">---------------------------------------------------------------------------</span>
-<span class="ansi-red-fg">TypeError</span>                                 Traceback (most recent call last)
-Cell <span class="ansi-green-fg">In[21], line 1</span>
-<span class="ansi-green-fg">----&gt; 1</span> temp_fahrenheit <span style="color:rgb(98,98,98)">=</span> temp_fahrenheit <span style="color:rgb(98,98,98)">+</span> <span style="color:rgb(98,98,98)" class="ansi-yellow-bg">5.0</span><span class="ansi-yellow-bg"> </span><span style="color:rgb(98,98,98)" class="ansi-yellow-bg">*</span><span class="ansi-yellow-bg"> </span><span class="ansi-yellow-bg">weather_forecast</span>
-
-<span class="ansi-red-fg">TypeError</span>: can't multiply sequence by non-int of type 'float'</pre>
-</div>
-</div>
-</div>
-<p>In this case, we get at <code>TypeError</code> because we are trying to execute a math operation with data types that are not compatible. There is no way in Python to multiply numbers with a character string.</p>
 </section>
 </section>
 
 
 <div id="quarto-appendix" class="default"><section id="acknowledgements" class="level2 appendix"><h2 class="anchored quarto-appendix-heading">Acknowledgements</h2><div class="quarto-appendix-contents">
 
-<p>The ‘Let the snake in’ section is derived from <em><a href="https://geo-python-site.readthedocs.io/en/latest/notebooks/L1/a-taste-of-python.html">A taste of Python</a></em> section of the <em><a href="https://geo-python-site.readthedocs.io">Geo-Python</a> course 2022</em> by D. Whipp, H. Tenkanen, V. Heikinheimo, H. Aagesen, and C. Fink from the Department of Geosciences and Geography, University of Helsinki, licensed under CC-BY-SA 4.0.</p>
+<p>The Jupyter Notebook section is inspired by <a href="https://github.com/jorisvandenbossche/DS-python-data-analysis"><em>Data manipulation, analysis and visualisation in Python</em></a> by Joris Van den Bossche and Stijn Van Hoey licensed under CC-BY 4.0.</p>
 
 
 </div></section></div></main> <!-- /main -->
