@@ -1,5 +1,5 @@
 ---
-title: "Jupyter and Python"
+title: "Jupyter Notebook and Lab"
 format:
   html: default
   ipynb: default
@@ -21,7 +21,7 @@ working installation of Python and some Jupyter Notebook IDE, either via Jupyter
 (recommended) or on Google Colab.
 :::
 
-## Computer Science 101
+## Shell
 
 Spatial Data Science depends on code, and coding environments can be unfriendly to
 an average user. People designing the tools are often computer scientists or have a strong
@@ -144,7 +144,7 @@ some include text describing what is happening while others contain the code, ei
 waiting for execution or already executed. The cells with the executed code may also
 contain outputs.
 
-We can start with simple math that Python can do natively. Run the following code cell.
+You can start with simple math that Python can do natively. Run the following code cell.
 To do that, you can either click the "play" button on top or hit [Shift]{.keystroke} + [Enter]{.keystroke}:
 
 ```{python}
@@ -154,190 +154,248 @@ To do that, you can either click the "play" button on top or hit [Shift]{.keystr
 You now have a code cell with the output. Jupyter Lab automatically created a new cell.
 Change its type to `Markdown` and write a short text describing what the cell above does.
 
-## Let the snake in
+### Markdown
 
-You can start exploring Python.
+Text cells can be formatted using the [Markdown](https://www.markdownguide.org) syntax.
+Markdown is a way of using plain text to write documents that can later be formatted by
+a rendering engine (Jupyter Lab is the rendering engine in this case). Unlike $\LaTeX$, it
+is very lightweight.
 
-### Simple Python math
+In a cell of a Markdown type, you can:
 
-As shown above, Python can be used as a simple calculator. Remember, you can press
-[Shift]{.keystroke} + [Enter]{.keystroke} to execute the code in the cells below.
-Try it out by typing some simple math into new cells and see what you get.
+::: {.panel-tabset}
 
+## Markdown
 
-```{python}
-42 * 12
+```
+- create
+- simple
+- lists
 ```
 
-```{python}
-12 / 3
+## Render
+
+- create
+- simple
+- lists
+
+:::
+
+If you need numbering, you can:
+
+::: {.panel-tabset}
+
+## Markdown
+
+```
+1. create
+2. numbered
+3. lists
+    1. or nested
+    2. lists within lists
+4. that may continue below
 ```
 
-If you want to edit and re-run some code, change the cell and press [Shift]{.keystroke} + [Enter]{.keystroke} to execute the modified code.
+## Render
 
-### Functions
+1. create
+2. numbered
+3. lists
+    1. or nested
+    2. lists within lists
+4. that may continue below
 
-You can use Python for more advanced math by using a function. Functions are pieces of code that perform a single action, such as printing information to the screen (e.g., the `print()` function). Functions exist for a huge number of operations in Python.
+:::
 
-Let’s try out a few simple examples using functions to find the sine or square root of a value. You can type `sin(3)` or `sqrt(4)` into the cells below to test this out.
+You can also include links:
 
-```{python}
-# | error: true
-sin(3)
+::: {.panel-tabset}
+
+## Markdown
+
+```
+Wrap a word that shall be a [link](https://github.com) in square brackets followed by
+round brackets with the URL.
 ```
 
-```{python}
-# | error: true
-sqrt(4)
+## Render
+
+Wrap a word that shall be a [link](https://github.com) in square brackets followed by
+round brackets with the URL.
+
+:::
+
+Or include images, using a very similar syntax.
+
+::: {.panel-tabset}
+
+## Markdown
+
+```
+![Alt text describing the figure (optional)](https://imgs.xkcd.com/comics/standards.png)
 ```
 
-Well, that didn't work. Python can calculate square roots or do basic trigonometry, but we need one more step.
+## Render
 
-#### Math operations
+![Alt text describing the figure (optional)](https://imgs.xkcd.com/comics/standards.png)
 
-The table below shows the list of basic arithmetic operations that can be done by default in Python.
+:::
 
-| Operation      | Symbol | Example syntax | Returned value |
-| -------------- | ------ | -------------- | -------------- |
-| Addition       | `+`    | `2 + 2`        | `4`            |
-| Subtraction    | `-`    | `4 - 2`        | `2`            |
-| Multiplication | `*`    | `2 * 3`        | `6`            |
-| Division       | `/`    | `4 / 2`        | `2`            |
-| Exponentiation | `**`   | `2 ** 3`       | `8`            |
+Markdown has a few flavours, which are often compatible but some marks are unique to
+distinct flavours. You can therefore write _italic_ using underscores `_italic_` or using
+stars `*italic*` around the text you want to adapt. The same applies to **bold**, with
+two underscores or stars `**bold**`.
 
-For anything more advanced, we need to load a [module]{.accent} or a [package]{.accent}. For math operations, this module is called `math` and can be loaded by typing `import math`.
+You can further include mathematical formulas using $\LaTeX$. Either using the inline syntax
+`$e = mc^2$` which renders as $e = mc^2$ or as a proper formula:
+
+::: {.panel-tabset}
+
+## Markdown
+
+```
+$$
+I = \frac N W \frac {\sum_{i=1}^N \sum_{j=1}^N w_{ij}(x_i-\bar x) (x_j-\bar x)} {\sum_{i=1}^N (x_i-\bar x)^2}
+$$
+```
+
+## Render
+
+$$
+I = \frac N W \frac {\sum_{i=1}^N \sum_{j=1}^N w_{ij}(x_i-\bar x) (x_j-\bar x)} {\sum_{i=1}^N (x_i-\bar x)^2}
+$$
+
+:::
+
+Markdown can also do tables, like this one:
+
+::: {.panel-tabset}
+
+## Markdown
+
+```
+| Language | Year |
+| -------- | ---- |
+| Python   | 1991 |
+| R        | 1993 |
+| Julia    | 2012 |
+| Rust     | 2015 |
+```
+
+## Render
+
+| Language | Year |
+| -------- | ---- |
+| Python   | 1991 |
+| R        | 1993 |
+| Julia    | 2012 |
+| Rust     | 2015 |
+
+:::
+
+For structuring the documents, Markdown offers up to six levels of headings.
+
+::: {.panel-tabset}
+
+## Markdown
+
+```
+# Heading level 1
+
+### Heading level 3
+
+##### Heading level 5
+
+```
+
+## Render
+
+# Heading level 1
+
+### Heading level 3
+
+##### Heading level 5
+
+:::
+
+While you can also use basic HTML within Markdown (the cell is rendered in the browser anyway),
+please try to avoid doing so and stick to vanilla Markdown if possible. The inclusion of HTML
+tends to break some rendering engines and alter the expected visual style of the resulting
+document.
+
+## Notebook essentials
+
+Jupyter Notebooks are great and have a lot of built-in features that can improve your quality
+of life.
+
+### Execution
+
+While you can run the code cell by clicking on the ▶ button on the top, try creating muscle memory
+for [Shift]{.keystroke} + [Enter]{.keystroke} instead. You'll be much faster.
+
+### Tab completion
+
+Learn to use [Tab]{.keystroke}. It provides you with all possible actions you can do after loading in a library __and__ it is used for automatic autocompletion. Try hitting [Tab]{.keystroke} while writing the code below.
 
 ```{python}
 import math
 
-```
-
-Now that we have access to functions in the `math` module, we can use it by typing the module name, a period (dot), and the name of the function we want to use. For example, ``math.sin(3)``. Try this with the sine and square root examples from above.
-
-```{python}
-math.sin(3)
-```
-
-
-```{python}
-math.sqrt(4)
-```
-
-Let's summarise what you've just done with modules:
-
-1. A *module* is a group of code items, such as functions, related to one another. Individual modules are often in a group called a *package*.
-
-2. Modules can be loaded using ``import``. Functions that are part of the module ``modulename`` can then be used by typing ``modulename.functionname()``. For example, ``sin()`` is a function that is part of the ``math`` module and is used by typing ``math.sin()`` with some number between the parentheses.
-
-3. Within a Jupyter Notebook, the variables you defined earlier in the notebook will be available for use in the following cells as long as you have executed the cells.
-
-4. Modules may also contain constants such as ``math.pi`` (notice no parentheses at the end). Type this in the cell below to see the constant's ``math.pi`` value.
-
-```{python}
 math.pi
 ```
 
-#### Combining functions
-
-Functions can also be combined. The `print()` function returns values within the parentheses as text on the screen. Below, try printing the value of the square root of four.
-
-```{python}
-print(math.sqrt(4))
-```
-
-You can also combine text with other calculated values using the `print()` function. For example, `print('Two plus two is', 2+2)` would generate the text reading `'Two plus two is 4'`. Combine the `print()` function with the `math.sqrt()` function in the cell below to produce text that reads `'The square root of 4 is 2.0'`.
+As you have noticed, Jupyter gives you options on what you can import or use. It also remembers all the variables
+so you don't have to type them next time.
 
 ```{python}
-print("The square root of 4 is", math.sqrt(4))
+variable_name_that_got_super_long = 42
+1 + variable_name_that_got_super_long
 ```
 
-### Variables
+### Contextual help
 
-A [variable]{.accent} can store values calculated in expressions and used for other calculations. Assigning value to variables is straightforward. To assign a value, you type ``variable_name = value``, where ``variable_name`` is the name of the variable you wish to define. In the cell below, define a variable called ``temp_celsius``, assign it a value of `10.0`, and then print that variable value using the ``print()`` function. Note that you should do this on two separate lines.
+Each Python function comes with documentation. You can fetch and display it directly in the Notebook
+using [Shift]{.keystroke} + [Tab]{.keystroke}. Try using it in the cell below.
 
 ```{python}
-temp_celsius = 10.0
-print(temp_celsius)
+math.sin(math.pi)
 ```
 
-As we did above, you can combine text and even use some math when printing out variable values. The idea is similar to adding 2+2 or calculating the square root of four from the previous section. In the cell below, print out the value of ``temp_celsius`` in degrees Fahrenheit by multiplying ``temp_celsius`` by 9/5 and adding 32. This should be done within the ``print()`` function to produce output that reads `'Temperature in Fahrenheit: 50.0'`.
+### Cell mode
 
-```{python}
-print("Temperature in Fahrenheit:", 9 / 5 * temp_celsius + 32)
-```
+Each cell can be either in the _edit_ mode or in the _command_ mode. Edit mode allows you
+to change the contents of the cell. In the case of code cells, it looks nearly the same as the
+command mode but in the case of Markdown cells, edit mode shows the plain text with the Markdown syntax while
+the command mode shows the rendered text. You can enter the edit mode by hitting [Enter]{.keystroke}.
 
-### Updating variables
+Command mode moves you away from editing individual cells and allows you to use keyboard shortcuts
+to manipulate the notebook. You can enter the command mode by hitting [Esc]{.keystroke}.
 
-Values stored in variables can also be updated. Let's redefine the value of ``temp_celsius`` to be equal to 15.0 and print its value in the cells below.
+### Shortcuts
 
-```{python}
-temp_celsius = 15.0
-```
+When you are in command mode, you can use a wide range of keyboard shortcuts. For example:
 
-```{python}
-print("temperature in Celsius is now:", temp_celsius)
-```
+- [A]{.keystroke} creates a new cell above the selected one.
+- [B]{.keystroke} creates a new cell below the selected one.
+- [C]{.keystroke} copies the selected cell, while [V]{.keystroke} pastes it below.
+- [D]{.keystroke} + [D]{.keystroke} deletes the cell.
+- [M]{.keystroke} changes the cell type to Markdown.
+- [Y]{.keystroke} changes the cell type to code.
+- [Ctrl]{.keystroke} + [Shift]{.keystroke} + [C]{.keystroke} / [Cmd]{.keystroke} + [Shift]{.keystroke} + [C]{.keystroke} opens a command palette.
 
-::: {.callout-warning}
-If you try to run some code that accesses a variable that has not yet been defined, you will get a `NameError` message. Try printing out the value of the variable `temp_fahrenheit` using the `print()` function in the cell below.
+### I am stuck!
+
+Things may get stuck or break completely. When that happens:
+
+- first, try `Kernel` > `Interrupt` -> your cell should stop running
+- if that does not help -> `Kernel` > `Restart` -> restart your notebook
+
+::: {.callout-tip}
+# Python basics
+
+This course won't cover the very basics of Python. You may be able to catch it along the
+way but if you prefer more explicit material, have a look at _[A taste of Python](https://geo-python-site.readthedocs.io/en/latest/notebooks/L1/a-taste-of-python.html)_ section of the _[Geo-Python](https://geo-python-site.readthedocs.io) course_ by D. Whipp, H. Tenkanen, V. Heikinheimo, H. Aagesen, and C. Fink.
 :::
-
-```{python}
-# | error: true
-print("Temperature in Celsius:", 5 / 9 * (temp_fahrenheit - 32))
-```
-
-::: {.callout-note}
-One of the interesting things here is that if we define the undefined variable in a cell lower down in the notebook and execute that cell, we can return to the earlier cell, and the code should now work. That was a bit of a complicated sentence, so let's test this all out. First, let's define a variable called `temp_fahrenheit` in the cell below and assign it to be equal to `9/5 * temp_celsius + 32`, the conversion factor from temperatures in Celsius to Fahrenheit. Then, return to the cell above this text and run that cell again. See how the error message has gone away? `temp_fahrenheit` has now been defined, and thus, the cell above no longer generates a `NameError` when the code is executed.
-
-Also, the number beside the cell, for example, `In [2]`, tells you the order in which the Python cells have been executed. This way, you can see a history of the order in which you have run the cells.
-:::
-
-```{python}
-temp_fahrenheit = 9 / 5 * temp_celsius + 32
-```
-
-To check their current values, print out the values of ``temp_celsius`` and ``temp_fahrenheit`` in the cell below.
-
-```{python}
-print("temperature in Celsius:", temp_celsius, "and in Fahrenheit:", temp_fahrenheit)
-```
-
-### Data types
-
-A [data type]{.accent} determines the characteristics of data in a program.
-There are four basic data types in Python, as shown in the table below.
-
-| Data type name | Data type            | Example    |
-| -------------- | -------------------- | ---------- |
-| `int`          | Whole integer values | `4`        |
-| `float`        | Decimal values       | `3.1415`   |
-| `str`          | Character strings    | `'Hot'`    |
-| `bool`         | True/false values    | `True`     |
-
-The data type can be found using the `type()` function.
-As you will see, the data types are essential because some are incompatible.
-
-Let's define a variable ``weather_forecast`` and assign it the value ``'Hot'``. After this, we can check its data type using the ``type()`` function.
-
-```{python}
-weather_forecast = "Hot"
-type(weather_forecast)
-```
-
-Let's also check the type of ``temp_fahrenheit``. What happens if you try to combine ``temp_fahrenheit`` and ``weather_forecast`` in a single math equation such as ``temp_fahrenheit = temp_fahrenheit + 5.0 * weather_forecast``?
-```{python}
-type(temp_fahrenheit)
-```
-
-```{python}
-# | error: true
-temp_fahrenheit = temp_fahrenheit + 5.0 * weather_forecast
-```
-
-In this case, we get at ``TypeError`` because we are trying to execute a math operation with data types that are not compatible. There is no way in Python to multiply numbers with a character string.
 
 ## Acknowledgements {.appendix}
 
-The 'Let the snake in' section is derived from _[A taste of Python](https://geo-python-site.readthedocs.io/en/latest/notebooks/L1/a-taste-of-python.html)_ section of the _[Geo-Python](https://geo-python-site.readthedocs.io) course 2022_ by
-D. Whipp, H. Tenkanen, V. Heikinheimo, H. Aagesen, and C. Fink from the Department of Geosciences and Geography, University of Helsinki, licensed under CC-BY-SA 4.0.
+The Jupyter Notebook section is inspired by [_Data manipulation, analysis and visualisation in Python_](https://github.com/jorisvandenbossche/DS-python-data-analysis) by Joris Van den Bossche and Stijn Van Hoey licensed under CC-BY 4.0.
