@@ -39,7 +39,7 @@ follow the instructions below.
 If you have Anaconda, conda, or mamba installed, use that directly. Just start `Anaconda Prompt` (or any other relevant prompt) or `Terminal` and start with the point _Create a Python environment_.
 :::
 
-::: {.panel-tabset}
+::: {.panel-tabset group="os"}
 
 ### Windows
 
@@ -119,7 +119,7 @@ The best way to close the Jupyter Lab and shut down its process running in the t
 
 The steps above are needed only the first time. Once you create the environment, it won't disappear and you can use it until you don't delete it. Once you close Jupyter Lab session, you can always start a new one:
 
-::: {.panel-tabset}
+::: {.panel-tabset group="os"}
 ### Windows
 
 1. Open `Anaconda Prompt`
