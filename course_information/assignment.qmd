@@ -59,7 +59,7 @@ The requirement is to cover:
 
 [^1]: Based on sessions [Introduction](../introduction/hands_on.qmd) - [Spatial data](../geographic_data/hands_on.qmd).
 [^2]: Based on sessions [Spatial weights](../spatial_graphs/hands_on.qmd) - [Point patterns](../point_patterns/hands_on.qmd).
-[^3]: Based on sessions [Clustering](../clustering/hands_on.qmd)) - [[Machine learning](../classification/hands_on.qmd)].
+[^3]: Based on sessions [Clustering](../clustering/hands_on.qmd) - [Machine learning](../classification/hands_on.qmd).
 
 Consult the second option to get a better sense of the extent.
 
