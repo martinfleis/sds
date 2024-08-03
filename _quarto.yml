@@ -25,9 +25,9 @@ format:
     smooth-scroll: true
     highlight-style: atom-one
     bibliography: _assets/references.bib
-  ipynb:
-    execute:
-      output: false
+  # ipynb:
+  #   execute:
+  #     output: false
 
 website:
   repo-url: https://github.com/martinfleis/sds/
