@@ -169,6 +169,7 @@ complete the class, a minimum of 40% is required:
   extends/improves the functionality provided to the student (e.g., algorithm
   optimization, new methods to perform the task, etc.).
 
+::: {.content-visible when-profile='sds4sg'}
 The expected relationship between the score and a final mark (potential change will be
 discussed ahead):
 
@@ -176,6 +177,7 @@ discussed ahead):
 - [40-49]{.accent}: 3
 - [50-69]{.accent}: 2
 - [70-100]{.accent}: 1
+:::
 
 The documentation should be formatted using Markdown syntax, not HTML.
 
