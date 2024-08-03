@@ -1,5 +1,5 @@
 ---
-title: "Jupyter Notebook and Lab"
+title: "Jupyter"
 format:
   html: default
   ipynb: default
@@ -25,7 +25,7 @@ working installation of Python and some Jupyter Notebook IDE, either via Jupyter
 
 Spatial Data Science depends on code, and coding environments can be unfriendly to
 an average user. People designing the tools are often computer scientists or have a strong
-knowledge of CS-related environments. It means we sometimes need to deal with the tools
+knowledge of CS-related environments. It means we sometimes need to deal with tools
 that look a bit scary, like a Terminal or a Command line. Below is a brief introduction
 to the tools you will need for this course.
 
@@ -323,17 +323,17 @@ please try to avoid doing so and stick to vanilla Markdown if possible. The incl
 tends to break some rendering engines and alter the expected visual style of the resulting
 document.
 
-## Notebook essentials
+### Notebook essentials
 
 Jupyter Notebooks are great and have a lot of built-in features that can improve your quality
 of life.
 
-### Execution
+#### Execution
 
 While you can run the code cell by clicking on the ▶ button on the top, try creating muscle memory
 for [Shift]{.keystroke} + [Enter]{.keystroke} instead. You'll be much faster.
 
-### Tab completion
+#### Tab completion
 
 Learn to use [Tab]{.keystroke}. It provides you with all possible actions you can do after loading in a library __and__ it is used for automatic autocompletion. Try hitting [Tab]{.keystroke} while writing the code below.
 
@@ -351,7 +351,7 @@ variable_name_that_got_super_long = 42
 1 + variable_name_that_got_super_long
 ```
 
-### Contextual help
+#### Contextual help
 
 Each Python function comes with documentation. You can fetch and display it directly in the Notebook
 using [Shift]{.keystroke} + [Tab]{.keystroke}. Try using it in the cell below.
@@ -360,7 +360,7 @@ using [Shift]{.keystroke} + [Tab]{.keystroke}. Try using it in the cell below.
 math.sin(math.pi)
 ```
 
-### Cell mode
+#### Cell mode
 
 Each cell can be either in the _edit_ mode or in the _command_ mode. Edit mode allows you
 to change the contents of the cell. In the case of code cells, it looks nearly the same as the
@@ -370,7 +370,7 @@ the command mode shows the rendered text. You can enter the edit mode by hitting
 Command mode moves you away from editing individual cells and allows you to use keyboard shortcuts
 to manipulate the notebook. You can enter the command mode by hitting [Esc]{.keystroke}.
 
-### Shortcuts
+#### Shortcuts
 
 When you are in command mode, you can use a wide range of keyboard shortcuts. For example:
 
@@ -382,7 +382,7 @@ When you are in command mode, you can use a wide range of keyboard shortcuts. Fo
 - [Y]{.keystroke} changes the cell type to code.
 - [Ctrl]{.keystroke} + [Shift]{.keystroke} + [C]{.keystroke} / [Cmd]{.keystroke} + [Shift]{.keystroke} + [C]{.keystroke} opens a command palette.
 
-### I am stuck!
+#### I am stuck!
 
 Things may get stuck or break completely. When that happens:
 
