@@ -19,15 +19,14 @@ For this task, you will focus on getting to know Markdown better. To practise it
 
 > [https://en.wikipedia.org/wiki/Waldo_R._Tobler](https://en.wikipedia.org/wiki/Waldo_R._Tobler)
 
-You should be able to figure out the proper Markdown syntax by yourself, with some help from your favourite search engine (or LLM).
 
 ::: {.callout-tip}
 Do not overthink it. Focus on correctly formatting the bold, italics, links, headlines, and lists, but don’t worry too much about the overall layout. Bonus if you also manage to insert the image (it does not need to be properly placed as on the original page)!
 :::
 
-## Play with the `math` module
+## Play with the `math` module to build muscle memory
 
-Play a bit more with the `math` module you have explored in the previous section.
+Play a bit with the `math` module you have used in the previous section and focus on learning how to use Jupyter Lab efficiently. Think about Tab completions, contextual help, documentation retrieval, and keyboard shortcuts. You should be able to do it all from inside the Lab without touching the mouse.
 
 - Can you figure out how to round numbers?
 - Can you create the natural logarithm of a variable? And can you get the original value back?
@@ -39,5 +38,5 @@ Play a bit more with the `math` module you have explored in the previous section
 Don't forget to document your code cells with Markdown cells.
 
 ::: {.callout-tip}
-You don't need to answer all of the questions, but try if you have time. A good place to start would be a documentation of the `math` module but that is up to you.
+You don't need to answer all of the questions, but try if you have time. If you have limited experience with `math`, a good place to start would be documentation of the module but that is up to you.
 :::
