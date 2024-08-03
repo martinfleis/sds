@@ -222,7 +222,7 @@ div.csl-indent {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../introduction/hands_on.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Jupyter Notebook and Lab</span></a>
+ <span class="menu-text">Jupyter</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -566,7 +566,7 @@ div.csl-indent {
 <h2 class="anchored" data-anchor-id="dataset">Dataset</h2>
 <p>You will be exploring demographic characteristics of Chicago in 1918 linked to the influenza mortality during the pandemic that happened back then, coming from the research paper by <span class="citation" data-cites="grantz2016disparities">Grantz et al. (<a href="#ref-grantz2016disparities" role="doc-biblioref">2016</a>)</span>. The data are aggregated to census tracts and contain information on unemployment, home ownership, age structure and influenza mortality from a period of 8 weeks.</p>
 <p>The main tool you use is the <code>pandas</code> package. As with the <code>math</code> you used <a href="../introduction/hands_on.html">before</a>, you must import it first.</p>
-<div id="5df2ad89" class="cell" data-execution_count="2">
+<div id="145e5e31" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="annotated-cell-1"><pre class="sourceCode python code-annotation-code code-with-copy code-annotated"><code class="sourceCode python"><a class="code-annotation-anchor" data-target-cell="annotated-cell-1" data-target-annotation="1" onclick="event.preventDefault();">1</a><span id="annotated-cell-1-1" class="code-annotation-target"><a href="#annotated-cell-1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-annotation">
 <dl class="code-annotation-container-grid">
@@ -578,7 +578,7 @@ div.csl-indent {
 </div>
 </div>
 <p>The data is stored in a CSV file. To make things easier, you can read data from a file posted online so, for now, you do not need to download any dataset:</p>
-<div id="79d4430c" class="cell" data-execution_count="3">
+<div id="454d3c75" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="annotated-cell-2"><pre class="sourceCode python code-annotation-code code-with-copy code-annotated"><code class="sourceCode python"><a class="code-annotation-anchor" data-target-cell="annotated-cell-2" data-target-annotation="1" onclick="event.preventDefault();">1</a><span id="annotated-cell-2-1" class="code-annotation-target"><a href="#annotated-cell-2-1" aria-hidden="true" tabindex="-1"></a>chicago_1918 <span class="op">=</span> pd.read_csv(</span>
 <a class="code-annotation-anchor" data-target-cell="annotated-cell-2" data-target-annotation="2" onclick="event.preventDefault();">2</a><span id="annotated-cell-2-2" class="code-annotation-target"><a href="#annotated-cell-2-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">"https://martinfleischmann.net/sds/data_wrangling/data/chicago_influenza_1918.csv"</span>,</span>
 <a class="code-annotation-anchor" data-target-cell="annotated-cell-2" data-target-annotation="3" onclick="event.preventDefault();">3</a><span id="annotated-cell-2-3" class="code-annotation-target"><a href="#annotated-cell-2-3" aria-hidden="true" tabindex="-1"></a>    index_col<span class="op">=</span><span class="st">"geography_code"</span>,</span>
@@ -642,7 +642,7 @@ Alternative
 <section id="data-structures" class="level3">
 <h3 class="anchored" data-anchor-id="data-structures">Data Structures</h3>
 <p>The first aspect worth spending a bit of time on is the structure of a <code>DataFrame</code>. You can print it by simply typing its name:</p>
-<div id="77c3d2a9" class="cell" data-execution_count="4">
+<div id="a2c4f1bb" class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>chicago_1918</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="3">
 <div>
@@ -857,7 +857,7 @@ Alternative
 <p>Note the printing is cut to keep a nice and compact view but enough to see its structure. Since they represent a table of data, <code>DataFrame</code> objects have two dimensions: rows and columns. Each of these is automatically assigned a name in what you will call its <em>index</em>. When printing, the index of each dimension is rendered in bold, as opposed to the standard rendering for the content. The example above shows how the column index is automatically picked up from the <code>.csv</code> file’s column names. For rows, we have specified when reading the file you wanted the column <code>geography_code</code>, so that is used. If you hadn’t set any, <code>pandas</code> would automatically generate a sequence starting in <code>0</code> and going all the way to the number of rows minus one. This is the standard structure of a <code>DataFrame</code> object, so you will come to it over and over. Importantly, even when you move to spatial data, your datasets will have a similar structure.</p>
 <p>One final feature that is worth mentioning about these tables is that they can hold columns with different types of data. In this example, you have counts (or <code>int</code> for integer types) and ratios (or ‘float’ for floating point numbers - a number with decimals) for each column. But it is useful to keep in mind that you can combine this with columns that hold other types of data such as categories, text (<code>str</code>, for string), dates or, as you will see later in the course, geographic features.</p>
 <p>To extract a single column from this <code>DataFrame</code>, specify its name in the square brackets (<code>[]</code>). Note that the name, in this case, is a <code>string</code>. A piece of text. As such, it needs to be within single (<code>'</code>) or double quotes (<code>"</code>). The resulting data structure is no longer a <code>DataFrame</code>, but you have a <code>Series</code> because you deal with a single column.</p>
-<div id="c645a3e2" class="cell" data-execution_count="5">
+<div id="4b8c7828" class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>chicago_1918[<span class="st">"influenza"</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="4">
 <pre><code>geography_code
@@ -879,7 +879,7 @@ Name: influenza, Length: 496, dtype: int64</code></pre>
 <section id="inspect" class="level3">
 <h3 class="anchored" data-anchor-id="inspect">Inspect</h3>
 <p>Inspecting what it looks like. You can check the table’s top (or bottom) X lines by passing X to the method <code>head</code> (<code>tail</code>). For example, for the top/bottom five lines:</p>
-<div id="dce30373" class="cell" data-execution_count="6">
+<div id="62eb5f8a" class="cell" data-execution_count="6">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>chicago_1918.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="5">
 <div>
@@ -1000,7 +1000,7 @@ Name: influenza, Length: 496, dtype: int64</code></pre>
 </div>
 </div>
 </div>
-<div id="e5ea6070" class="cell" data-execution_count="7">
+<div id="68ee3e4d" class="cell" data-execution_count="7">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>chicago_1918.tail()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="6">
 <div>
@@ -1122,7 +1122,7 @@ Name: influenza, Length: 496, dtype: int64</code></pre>
 </div>
 </div>
 <p>Or get an overview of the table:</p>
-<div id="484aca30" class="cell" data-execution_count="8">
+<div id="82adf821" class="cell" data-execution_count="8">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>chicago_1918.info()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>&lt;class 'pandas.core.frame.DataFrame'&gt;
@@ -1150,7 +1150,7 @@ memory usage: 66.5+ KB</code></pre>
 <section id="summarise" class="level3">
 <h3 class="anchored" data-anchor-id="summarise">Summarise</h3>
 <p>Or of the <em>values</em> of the table:</p>
-<div id="5336addb" class="cell" data-execution_count="9">
+<div id="906477fd" class="cell" data-execution_count="9">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>chicago_1918.describe()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="8">
 <div>
@@ -1303,7 +1303,7 @@ memory usage: 66.5+ KB</code></pre>
 </div>
 <p>Note how the output is also a <code>DataFrame</code> object, so you can do with it the same things you would with the original table (e.g.&nbsp;writing it to a file).</p>
 <p>In this case, the summary might be better presented if the table is “transposed”:</p>
-<div id="38ec27ac" class="cell" data-execution_count="10">
+<div id="8256c6d1" class="cell" data-execution_count="10">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>chicago_1918.describe().T</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="9">
 <div>
@@ -1463,7 +1463,7 @@ memory usage: 66.5+ KB</code></pre>
 </div>
 </div>
 <p>Equally, common descriptive statistics are also available. To obtain minimum values for each column, you can use <code>.min()</code>.</p>
-<div id="5a54125c" class="cell" data-execution_count="11">
+<div id="49d762a0" class="cell" data-execution_count="11">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>chicago_1918.<span class="bu">min</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="10">
 <pre><code>gross_acres       6.9000
@@ -1482,7 +1482,7 @@ dtype: float64</code></pre>
 </div>
 </div>
 <p>Or to obtain a minimum for a single column only.</p>
-<div id="83957603" class="cell" data-execution_count="12">
+<div id="c55a5962" class="cell" data-execution_count="12">
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>chicago_1918[<span class="st">"influenza"</span>].<span class="bu">min</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="11">
 <pre><code>0</code></pre>
@@ -1490,7 +1490,7 @@ dtype: float64</code></pre>
 </div>
 <p>Note here how you have restricted the calculation of the minimum value to one column only by getting the <code>Series</code> and calling <code>.min()</code> on that.</p>
 <p>Similarly, you can restrict the calculations to a single row using <code>.loc[]</code> indexer:</p>
-<div id="c7aab846" class="cell" data-execution_count="13">
+<div id="87322c32" class="cell" data-execution_count="13">
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>chicago_1918.loc[<span class="st">"G17003100492"</span>].<span class="bu">max</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="12">
 <pre><code>2176.6</code></pre>
@@ -1500,7 +1500,7 @@ dtype: float64</code></pre>
 <section id="create-new-columns" class="level3">
 <h3 class="anchored" data-anchor-id="create-new-columns">Create new columns</h3>
 <p>You can generate new variables by applying operations to existing ones. For example, you can calculate the total population by area. Here are a couple of ways to do it:</p>
-<div id="e7074475" class="cell" data-execution_count="14">
+<div id="8bbdf4d0" class="cell" data-execution_count="14">
 <div class="sourceCode cell-code" id="annotated-cell-13"><pre class="sourceCode python code-annotation-code code-with-copy code-annotated"><code class="sourceCode python"><span id="annotated-cell-13-1"><a href="#annotated-cell-13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># This one is longer, hardcoded</span></span>
 <a class="code-annotation-anchor" data-target-cell="annotated-cell-13" data-target-annotation="1" onclick="event.preventDefault();">1</a><span id="annotated-cell-13-2" class="code-annotation-target"><a href="#annotated-cell-13-2" aria-hidden="true" tabindex="-1"></a>total_population <span class="op">=</span> (</span>
 <a class="code-annotation-anchor" data-target-cell="annotated-cell-13" data-target-annotation="2" onclick="event.preventDefault();">2</a><span id="annotated-cell-13-3" class="code-annotation-target"><a href="#annotated-cell-13-3" aria-hidden="true" tabindex="-1"></a>    chicago_1918[<span class="st">"agecat1"</span>]</span>
@@ -1538,7 +1538,7 @@ G17003100005    5528
 dtype: int64</code></pre>
 </div>
 </div>
-<div id="e1a7f91a" class="cell" data-execution_count="15">
+<div id="89f518e5" class="cell" data-execution_count="15">
 <div class="sourceCode cell-code" id="annotated-cell-14"><pre class="sourceCode python code-annotation-code code-with-copy code-annotated"><code class="sourceCode python"><span id="annotated-cell-14-1"><a href="#annotated-cell-14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># This one is shorted, using a range of columns and sum</span></span>
 <a class="code-annotation-anchor" data-target-cell="annotated-cell-14" data-target-annotation="1" onclick="event.preventDefault();">1</a><span id="annotated-cell-14-2" class="code-annotation-target"><a href="#annotated-cell-14-2" aria-hidden="true" tabindex="-1"></a>total_population <span class="op">=</span> chicago_1918.loc[:, <span class="st">"agecat1"</span>:<span class="st">"agecat7"</span>].<span class="bu">sum</span>(axis<span class="op">=</span><span class="dv">1</span>)</span>
 <span id="annotated-cell-14-3"><a href="#annotated-cell-14-3" aria-hidden="true" tabindex="-1"></a>total_population.head()</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -1561,7 +1561,7 @@ dtype: int64</code></pre>
 </div>
 </div>
 <p>Once you have created the variable, you can make it part of the table:</p>
-<div id="5d46911b" class="cell" data-execution_count="16">
+<div id="d165cfad" class="cell" data-execution_count="16">
 <div class="sourceCode cell-code" id="annotated-cell-15"><pre class="sourceCode python code-annotation-code code-with-copy code-annotated"><code class="sourceCode python"><a class="code-annotation-anchor" data-target-cell="annotated-cell-15" data-target-annotation="1" onclick="event.preventDefault();">1</a><span id="annotated-cell-15-1" class="code-annotation-target"><a href="#annotated-cell-15-1" aria-hidden="true" tabindex="-1"></a>chicago_1918[<span class="st">"total_population"</span>] <span class="op">=</span> total_population</span>
 <span id="annotated-cell-15-2"><a href="#annotated-cell-15-2" aria-hidden="true" tabindex="-1"></a>chicago_1918.head()</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-annotation">
@@ -1699,7 +1699,7 @@ dtype: int64</code></pre>
 </div>
 </div>
 <p>You can also do other mathematical operations on columns. These are always automatically applied to individual values in corresponding rows.</p>
-<div id="a16acd71" class="cell" data-execution_count="17">
+<div id="4ab0b6de" class="cell" data-execution_count="17">
 <div class="sourceCode cell-code" id="annotated-cell-16"><pre class="sourceCode python code-annotation-code code-with-copy code-annotated"><code class="sourceCode python"><a class="code-annotation-anchor" data-target-cell="annotated-cell-16" data-target-annotation="1" onclick="event.preventDefault();">1</a><span id="annotated-cell-16-1" class="code-annotation-target"><a href="#annotated-cell-16-1" aria-hidden="true" tabindex="-1"></a>homeowners <span class="op">=</span> chicago_1918[<span class="st">"total_population"</span>] <span class="op">*</span> chicago_1918[<span class="st">"ho_pct"</span>]</span>
 <span id="annotated-cell-16-2"><a href="#annotated-cell-16-2" aria-hidden="true" tabindex="-1"></a>homeowners.head()</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-annotation">
@@ -1720,7 +1720,7 @@ G17003100005    468.237675
 dtype: float64</code></pre>
 </div>
 </div>
-<div id="349fc68e" class="cell" data-execution_count="18">
+<div id="221fddb3" class="cell" data-execution_count="18">
 <div class="sourceCode cell-code" id="annotated-cell-17"><pre class="sourceCode python code-annotation-code code-with-copy code-annotated"><code class="sourceCode python"><a class="code-annotation-anchor" data-target-cell="annotated-cell-17" data-target-annotation="1" onclick="event.preventDefault();">1</a><span id="annotated-cell-17-1" class="code-annotation-target"><a href="#annotated-cell-17-1" aria-hidden="true" tabindex="-1"></a>pop_density <span class="op">=</span> chicago_1918[<span class="st">"total_population"</span>] <span class="op">/</span> chicago_1918[<span class="st">"gross_acres"</span>]</span>
 <span id="annotated-cell-17-2"><a href="#annotated-cell-17-2" aria-hidden="true" tabindex="-1"></a>pop_density.head()</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-annotation">
@@ -1742,7 +1742,7 @@ dtype: float64</code></pre>
 </div>
 </div>
 <p>A different spin on this is assigning new values: you can generate new variables with scalars<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a>, and modify those:</p>
-<div id="2127ef42" class="cell" data-execution_count="19">
+<div id="5086aabd" class="cell" data-execution_count="19">
 <div class="sourceCode cell-code" id="annotated-cell-18"><pre class="sourceCode python code-annotation-code code-with-copy code-annotated"><code class="sourceCode python"><a class="code-annotation-anchor" data-target-cell="annotated-cell-18" data-target-annotation="1" onclick="event.preventDefault();">1</a><span id="annotated-cell-18-1" class="code-annotation-target"><a href="#annotated-cell-18-1" aria-hidden="true" tabindex="-1"></a>chicago_1918[<span class="st">"ones"</span>] <span class="op">=</span> <span class="dv">1</span></span>
 <span id="annotated-cell-18-2"><a href="#annotated-cell-18-2" aria-hidden="true" tabindex="-1"></a>chicago_1918.head()</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-annotation">
@@ -1887,7 +1887,7 @@ dtype: float64</code></pre>
 </div>
 </div>
 <p>And you can modify specific values too:</p>
-<div id="3f4c9d13" class="cell" data-execution_count="20">
+<div id="e68819cb" class="cell" data-execution_count="20">
 <div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>chicago_1918.loc[<span class="st">"G17003100001"</span>, <span class="st">"ones"</span>] <span class="op">=</span> <span class="dv">3</span></span>
 <span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>chicago_1918.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="19">
@@ -2027,7 +2027,7 @@ dtype: float64</code></pre>
 <section id="remove-columns" class="level3">
 <h3 class="anchored" data-anchor-id="remove-columns">Remove columns</h3>
 <p>Permanently deleting variables is also within reach of one command:</p>
-<div id="a158c7ab" class="cell" data-execution_count="21">
+<div id="3bdb9028" class="cell" data-execution_count="21">
 <div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>chicago_1918 <span class="op">=</span> chicago_1918.drop(columns<span class="op">=</span><span class="st">"ones"</span>)</span>
 <span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>chicago_1918.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="20">
@@ -2160,7 +2160,7 @@ dtype: float64</code></pre>
 <section id="index-based-queries" class="level3">
 <h3 class="anchored" data-anchor-id="index-based-queries">Index-based queries</h3>
 <p>Here, you explore how to subset parts of a <code>DataFrame</code> if you know exactly which bits you want. For example, if you want to extract the influenza mortality and total population of the first four areas in the table, you use <code>loc</code> with lists:</p>
-<div id="38929c01" class="cell" data-execution_count="22">
+<div id="302a1dd0" class="cell" data-execution_count="22">
 <div class="sourceCode cell-code" id="annotated-cell-21"><pre class="sourceCode python code-annotation-code code-with-copy code-annotated"><code class="sourceCode python"><a class="code-annotation-anchor" data-target-cell="annotated-cell-21" data-target-annotation="1" onclick="event.preventDefault();">1</a><span id="annotated-cell-21-1" class="code-annotation-target"><a href="#annotated-cell-21-1" aria-hidden="true" tabindex="-1"></a>death_pop_first4 <span class="op">=</span> chicago_1918.loc[</span>
 <a class="code-annotation-anchor" data-target-cell="annotated-cell-21" data-target-annotation="2" onclick="event.preventDefault();">2</a><span id="annotated-cell-21-2" class="code-annotation-target"><a href="#annotated-cell-21-2" aria-hidden="true" tabindex="-1"></a>    [<span class="st">"G17003100001"</span>, <span class="st">"G17003100002"</span>, <span class="st">"G17003100003"</span>, <span class="st">"G17003100004"</span>],</span>
 <a class="code-annotation-anchor" data-target-cell="annotated-cell-21" data-target-annotation="3" onclick="event.preventDefault();">3</a><span id="annotated-cell-21-3" class="code-annotation-target"><a href="#annotated-cell-21-3" aria-hidden="true" tabindex="-1"></a>    [<span class="st">"influenza"</span>, <span class="st">"total_population"</span>],</span>
@@ -2228,7 +2228,7 @@ dtype: float64</code></pre>
 </div>
 <p>You can see how you can create a list with the names (index IDs) along each of the two dimensions of a <code>DataFrame</code> (rows and columns), and <code>loc</code> will return a subset of the original table only with the elements queried for.</p>
 <p>An alternative to list-based queries is what is called “range-based” queries. These work on the indices of the table, but instead of requiring the ID of each item you want to retrieve, they operate by requiring only two IDs: the first and last element in a range of items. Range queries are expressed with a colon (<code>:</code>). For example:</p>
-<div id="bb5691c8" class="cell" data-execution_count="23">
+<div id="27f753e0" class="cell" data-execution_count="23">
 <div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>range_query <span class="op">=</span> chicago_1918.loc[</span>
 <span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">"G17003100010"</span>:<span class="st">"G17003100012"</span>,</span>
 <span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">"influenza"</span>:<span class="st">'total_population'</span>,</span>
@@ -2275,7 +2275,7 @@ dtype: float64</code></pre>
 </div>
 <p>The range query picks up all the elements between the specified IDs. Note that for this to work, the first ID in the range needs to be placed before the second one in the table’s index.</p>
 <p>Once you know about list and range-based queries, you can combine them! For example, you can specify a range of rows and a list of columns:</p>
-<div id="f43767b7" class="cell" data-execution_count="24">
+<div id="20121afe" class="cell" data-execution_count="24">
 <div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>range_list_qry <span class="op">=</span> chicago_1918.loc[</span>
 <span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">"G17003100010"</span>:<span class="st">"G17003100012"</span>, [<span class="st">"influenza"</span>, <span class="st">"total_population"</span>]</span>
 <span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>]</span>
@@ -2325,7 +2325,7 @@ dtype: float64</code></pre>
 <h3 class="anchored" data-anchor-id="condition-based-queries">Condition-based queries</h3>
 <p>However, sometimes, you do not know exactly which observations you want, but you do know what conditions they need to satisfy (e.g.&nbsp;areas with more than 2,000 inhabitants). For these cases, <code>DataFrames</code> support selection based on conditions. Let us see a few examples. Suppose you want to select…</p>
 <p><em>… areas with more than 60 cases of influenza deaths:</em></p>
-<div id="b7384fd8" class="cell" data-execution_count="25">
+<div id="5ecae12a" class="cell" data-execution_count="25">
 <div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>flu_over_60 <span class="op">=</span> chicago_1918.loc[chicago_1918[<span class="st">"influenza"</span>] <span class="op">&gt;</span> <span class="dv">60</span>]</span>
 <span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>flu_over_60</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="24">
@@ -2471,7 +2471,7 @@ dtype: float64</code></pre>
 </div>
 </div>
 <p><em>… areas with less than 200 inhabitants:</em></p>
-<div id="eb369f0b" class="cell" data-execution_count="26">
+<div id="be311ba5" class="cell" data-execution_count="26">
 <div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>pop_under <span class="op">=</span> chicago_1918.loc[chicago_1918[<span class="st">"total_population"</span>] <span class="op">&lt;</span> <span class="dv">200</span>]</span>
 <span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>pop_under</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="25">
@@ -2601,7 +2601,7 @@ dtype: float64</code></pre>
 </div>
 </div>
 <p><em>… areas with exactly a hundred illiterate persons:</em></p>
-<div id="2a5ab2a8" class="cell" data-execution_count="27">
+<div id="5ab50ac4" class="cell" data-execution_count="27">
 <div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>illit_100 <span class="op">=</span> chicago_1918.loc[chicago_1918[<span class="st">"illit"</span>] <span class="op">==</span> <span class="dv">100</span>]</span>
 <span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>illit_100</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="26">
@@ -2693,7 +2693,7 @@ Unlimited power
 </div>
 <div class="callout-body-container callout-body">
 <p>These queries can grow in sophistication with almost no limits. For example, here is a case where you want to find out the areas where the oldest age group is more than half the population:</p>
-<div id="cd788d5d" class="cell" data-execution_count="28">
+<div id="dea02b62" class="cell" data-execution_count="28">
 <div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>chicago_1918.loc[</span>
 <span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>    (chicago_1918[<span class="st">"agecat7"</span>] <span class="op">*</span> <span class="dv">100</span> <span class="op">/</span> chicago_1918[<span class="st">"total_population"</span>]) <span class="op">&gt;</span> <span class="dv">50</span></span>
 <span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -2762,7 +2762,7 @@ Unlimited power
 </div>
 </div>
 <p>All the condition-based queries above are expressed using the <code>loc</code> operator. This is a powerful way, and since it shares syntax with index-based queries, it is also easier to remember. However, sometimes querying using <code>loc</code> involves a lot of quotation marks, parenthesis, etc. A more streamlined approach for condition-based queries of rows is provided by the <code>query</code> engine. Using this approach, you express everything in our query on a single string, or piece of text, and that is evaluated in the table at once. For example, you can run the same operation as in the first query above with the following syntax:</p>
-<div id="73bacab6" class="cell" data-execution_count="29">
+<div id="a631a55e" class="cell" data-execution_count="29">
 <div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>flu_over_60_query <span class="op">=</span> chicago_1918.query(<span class="st">"influenza &gt; 60"</span>)</span>
 <span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>flu_over_60_query</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="28">
@@ -2908,7 +2908,7 @@ Unlimited power
 </div>
 </div>
 <p>If you want to combine operations, this is also possible:</p>
-<div id="41679f25" class="cell" data-execution_count="30">
+<div id="b32f6082" class="cell" data-execution_count="30">
 <div class="sourceCode cell-code" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>flu_query <span class="op">=</span> chicago_1918.query(<span class="st">"(influenza &gt; 60) &amp; (total_population &lt; 10000)"</span>)</span>
 <span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>flu_query</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="29">
@@ -3007,7 +3007,7 @@ Tip
 <section id="combining-queries" class="level3">
 <h3 class="anchored" data-anchor-id="combining-queries">Combining queries</h3>
 <p>Now, all of these queries can be combined with each other for further flexibility. For example, imagine you want areas with more than 60 cases of influenza from areas with less than 10,000 inhabitants:</p>
-<div id="714701a9" class="cell" data-execution_count="31">
+<div id="d4e09ced" class="cell" data-execution_count="31">
 <div class="sourceCode cell-code" id="annotated-cell-29"><pre class="sourceCode python code-annotation-code code-with-copy code-annotated"><code class="sourceCode python"><span id="annotated-cell-29-1"><a href="#annotated-cell-29-1" aria-hidden="true" tabindex="-1"></a>flu_loc <span class="op">=</span> chicago_1918.loc[</span>
 <span id="annotated-cell-29-2"><a href="#annotated-cell-29-2" aria-hidden="true" tabindex="-1"></a>    (chicago_1918[<span class="st">"influenza"</span>] <span class="op">&gt;</span> <span class="dv">60</span>)</span>
 <a class="code-annotation-anchor" data-target-cell="annotated-cell-29" data-target-annotation="1" onclick="event.preventDefault();">1</a><span id="annotated-cell-29-3" class="code-annotation-target"><a href="#annotated-cell-29-3" aria-hidden="true" tabindex="-1"></a>    <span class="op">&amp;</span> (chicago_1918[<span class="st">"total_population"</span>] <span class="op">&lt;</span> <span class="dv">10000</span>)</span>
@@ -3112,7 +3112,7 @@ How do the <code>loc</code> queries work?
 <div id="callout-5" class="callout-5-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>Let’s unpack how these queries work. Each part of the query above creates a single <code>Series</code> with boolean (<code>True</code> or <code>False</code>) values, encoding whether the row fulfils the condition or not.</p>
-<div id="72dafbaf" class="cell" data-execution_count="32">
+<div id="0a4294ca" class="cell" data-execution_count="32">
 <div class="sourceCode cell-code" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>chicago_1918[<span class="st">"influenza"</span>] <span class="op">&gt;</span> <span class="dv">60</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="31">
 <pre><code>geography_code
@@ -3130,7 +3130,7 @@ G17003100496    False
 Name: influenza, Length: 496, dtype: bool</code></pre>
 </div>
 </div>
-<div id="f0ca4245" class="cell" data-execution_count="33">
+<div id="ce16bf6f" class="cell" data-execution_count="33">
 <div class="sourceCode cell-code" id="cb33"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>chicago_1918[<span class="st">"total_population"</span>] <span class="op">&lt;</span> <span class="dv">10000</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="32">
 <pre><code>geography_code
@@ -3149,7 +3149,7 @@ Name: total_population, Length: 496, dtype: bool</code></pre>
 </div>
 </div>
 <p>You then combine two of these Series with <code>&amp;</code>, asking for a new <code>Series</code> where values in both the first and the second <code>Series</code> are <code>True</code>.</p>
-<div id="0b798ff6" class="cell" data-execution_count="34">
+<div id="d19adfd2" class="cell" data-execution_count="34">
 <div class="sourceCode cell-code" id="cb35"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>(chicago_1918[<span class="st">"influenza"</span>] <span class="op">&gt;</span> <span class="dv">60</span>) <span class="op">&amp;</span> (chicago_1918[<span class="st">"total_population"</span>] <span class="op">&lt;</span> <span class="dv">10000</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="33">
 <pre><code>geography_code
@@ -3175,7 +3175,7 @@ Length: 496, dtype: bool</code></pre>
 <section id="sorting" class="level3">
 <h3 class="anchored" data-anchor-id="sorting">Sorting</h3>
 <p>Among the many operations <code>DataFrame</code> objects support, one of the most useful ones is to sort a table based on a given column. For example, imagine you want to sort the table by the influenza cases:</p>
-<div id="308bf1e1" class="cell" data-execution_count="35">
+<div id="8962f831" class="cell" data-execution_count="35">
 <div class="sourceCode cell-code" id="annotated-cell-30"><pre class="sourceCode python code-annotation-code code-with-copy code-annotated"><code class="sourceCode python"><a class="code-annotation-anchor" data-target-cell="annotated-cell-30" data-target-annotation="1" onclick="event.preventDefault();">1</a><span id="annotated-cell-30-1" class="code-annotation-target"><a href="#annotated-cell-30-1" aria-hidden="true" tabindex="-1"></a>chicago_sorted <span class="op">=</span> chicago_1918.sort_values(<span class="st">'influenza'</span>, ascending<span class="op">=</span><span class="va">False</span>)</span>
 <span id="annotated-cell-30-2"><a href="#annotated-cell-30-2" aria-hidden="true" tabindex="-1"></a>chicago_sorted</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-annotation">
@@ -3410,7 +3410,7 @@ Length: 496, dtype: bool</code></pre>
 </div>
 </div>
 <p>Given the areas of each census tract differ, it may be better to sort by the mortality rate rather than raw counts.</p>
-<div id="1886feb9" class="cell" data-execution_count="36">
+<div id="0dd978a1" class="cell" data-execution_count="36">
 <div class="sourceCode cell-code" id="annotated-cell-31"><pre class="sourceCode python code-annotation-code code-with-copy code-annotated"><code class="sourceCode python"><a class="code-annotation-anchor" data-target-cell="annotated-cell-31" data-target-annotation="1" onclick="event.preventDefault();">1</a><span id="annotated-cell-31-1" class="code-annotation-target"><a href="#annotated-cell-31-1" aria-hidden="true" tabindex="-1"></a>chicago_1918[<span class="st">"flu_rate"</span>] <span class="op">=</span> (</span>
 <span id="annotated-cell-31-2"><a href="#annotated-cell-31-2" aria-hidden="true" tabindex="-1"></a>    chicago_1918[<span class="st">"influenza"</span>] <span class="op">/</span> chicago_1918[<span class="st">"total_population"</span>]</span>
 <span id="annotated-cell-31-3"><a href="#annotated-cell-31-3" aria-hidden="true" tabindex="-1"></a>)</span>
@@ -3674,7 +3674,7 @@ Length: 496, dtype: bool</code></pre>
 <h3 class="anchored" data-anchor-id="histograms">Histograms</h3>
 <p>One of the most common graphical devices to display the distribution of values in a variable is a histogram. Values are assigned into groups of equal intervals, and the groups are plotted as bars rising as high as the number of values into the group.</p>
 <p>A histogram is easily created with the following command. In this case, let us have a look at the shape of the overall influenza rates:</p>
-<div id="8a711e4e" class="cell" data-execution_count="37">
+<div id="13f09561" class="cell" data-execution_count="37">
 <div class="sourceCode cell-code" id="cb37"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>_ <span class="op">=</span> chicago_1918[<span class="st">"influenza"</span>].plot.hist()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div class="quarto-figure quarto-figure-center">
@@ -3702,7 +3702,7 @@ Assigning to <code>_</code>
 </div>
 </div>
 <p>However, the default <code>pandas</code> plots can be a bit dull. A better option is to use another package, called <a href="https://seaborn.pydata.org"><code>seaborn</code></a>.</p>
-<div id="fcf9ae21" class="cell" data-execution_count="38">
+<div id="3680d544" class="cell" data-execution_count="38">
 <div class="sourceCode cell-code" id="cb38"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="callout callout-style-default callout-note callout-titled">
@@ -3722,7 +3722,7 @@ Why <code>sns</code>?
 </div>
 </div>
 <p>The same plot using <code>seaborn</code> has a more pleasant default style and more customisability.</p>
-<div id="dd768feb" class="cell" data-execution_count="39">
+<div id="b331cdca" class="cell" data-execution_count="39">
 <div class="sourceCode cell-code" id="cb39"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>sns.displot(chicago_1918[<span class="st">"influenza"</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div class="quarto-figure quarto-figure-center">
@@ -3739,7 +3739,7 @@ Why <code>sns</code>?
 <section id="kernel-density-plots" class="level3">
 <h3 class="anchored" data-anchor-id="kernel-density-plots">Kernel Density Plots</h3>
 <p>Histograms are useful, but they are artificial in the sense that a continuous variable is made discrete by turning the values into discrete groups. An alternative is kernel density estimation (KDE), which produces an empirical density function:</p>
-<div id="ef5982dc" class="cell" data-execution_count="40">
+<div id="e49bc559" class="cell" data-execution_count="40">
 <div class="sourceCode cell-code" id="annotated-cell-35"><pre class="sourceCode python code-annotation-code code-with-copy code-annotated"><code class="sourceCode python"><a class="code-annotation-anchor" data-target-cell="annotated-cell-35" data-target-annotation="1" onclick="event.preventDefault();">1</a><span id="annotated-cell-35-1" class="code-annotation-target"><a href="#annotated-cell-35-1" aria-hidden="true" tabindex="-1"></a>sns.displot(chicago_1918[<span class="st">"influenza"</span>], kind<span class="op">=</span><span class="st">"kde"</span>, fill<span class="op">=</span><span class="va">True</span>)</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-annotation">
 <dl class="code-annotation-container-grid">
@@ -3762,7 +3762,7 @@ Why <code>sns</code>?
 <section id="line-and-bar-plots" class="level3">
 <h3 class="anchored" data-anchor-id="line-and-bar-plots">Line and bar plots</h3>
 <p>Another very common way of visually displaying a variable is with a line or a bar chart. For example, if you want to generate a line plot of the (sorted) total cases by area:</p>
-<div id="85fec147" class="cell" data-execution_count="41">
+<div id="53feccfa" class="cell" data-execution_count="41">
 <div class="sourceCode cell-code" id="cb40"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>_ <span class="op">=</span> chicago_1918[<span class="st">"influenza"</span>].sort_values(ascending<span class="op">=</span><span class="va">False</span>).plot()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div class="quarto-figure quarto-figure-center">
@@ -3774,7 +3774,7 @@ Why <code>sns</code>?
 </div>
 </div>
 <p>For a bar plot all you need to do is to change from <code>plot</code> to <code>plot.bar</code>. Since there are many census tracts, let us plot only the ten largest ones (which you can retrieve with <code>head</code>):</p>
-<div id="d19711d1" class="cell" data-execution_count="42">
+<div id="e40bfc1d" class="cell" data-execution_count="42">
 <div class="sourceCode cell-code" id="cb41"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a>_ <span class="op">=</span> chicago_1918[<span class="st">"influenza"</span>].sort_values(ascending<span class="op">=</span><span class="va">False</span>).head(<span class="dv">10</span>).plot.bar()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div class="quarto-figure quarto-figure-center">
@@ -3786,7 +3786,7 @@ Why <code>sns</code>?
 </div>
 </div>
 <p>You can turn the plot around by displaying the bars horizontally (see how it’s just changing <code>bar</code> for <code>barh</code>). Let’s display now the top 50 areas and, to make it more readable, let us expand the plot’s height:</p>
-<div id="a6475d45" class="cell" data-execution_count="43">
+<div id="90dc3cd4" class="cell" data-execution_count="43">
 <div class="sourceCode cell-code" id="cb42"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a>_ <span class="op">=</span> (</span>
 <span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a>    chicago_1918[<span class="st">"total_population"</span>]</span>
 <span id="cb42-3"><a href="#cb42-3" aria-hidden="true" tabindex="-1"></a>    .sort_values()</span>
@@ -3845,7 +3845,7 @@ Caution
 </ol>
 <p>If you are further interested in the concept of <em>“tidy data”</em>, I recommend you check out the <a href="http://www.jstatsoft.org/v59/i10/">original paper</a> (open access) and the <a href="https://github.com/hadley/tidy-data">public repository</a> associated with it.</p>
 <p>Let us bring in the concept of “<em>tidy data</em>” to our own Chicago dataset. First, remember its structure:</p>
-<div id="5fc38992" class="cell" data-execution_count="44">
+<div id="84821889" class="cell" data-execution_count="44">
 <div class="sourceCode cell-code" id="cb43"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a>chicago_1918.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="43">
 <div>
@@ -3984,7 +3984,7 @@ Caution
 <ul>
 <li>Starting by the last one (<em>each type of observational unit forms a table</em>), this dataset actually contains not one but many observational units: the different areas of Chicago, captured by <code>geography_code</code>; <em>and</em> different observatoins for each area. To <em>tidy</em> up this aspect, you can create separate tables. You will probably want population groups divided by age as one tidy table and flu rates as another. Start by extracting relevant columns.</li>
 </ul>
-<div id="39ae52be" class="cell" data-execution_count="45">
+<div id="594e682e" class="cell" data-execution_count="45">
 <div class="sourceCode cell-code" id="annotated-cell-40"><pre class="sourceCode python code-annotation-code code-with-copy code-annotated"><code class="sourceCode python"><a class="code-annotation-anchor" data-target-cell="annotated-cell-40" data-target-annotation="1" onclick="event.preventDefault();">1</a><span id="annotated-cell-40-1" class="code-annotation-target"><a href="#annotated-cell-40-1" aria-hidden="true" tabindex="-1"></a>influenza_rates <span class="op">=</span> chicago_1918[[<span class="st">"influenza"</span>]]</span>
 <span id="annotated-cell-40-2"><a href="#annotated-cell-40-2" aria-hidden="true" tabindex="-1"></a>influenza_rates.head()</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-annotation">
@@ -4037,7 +4037,7 @@ Caution
 </div>
 </div>
 </div>
-<div id="ad7e9b02" class="cell" data-execution_count="46">
+<div id="a8daf000" class="cell" data-execution_count="46">
 <div class="sourceCode cell-code" id="cb44"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a>population <span class="op">=</span> chicago_1918.loc[:, <span class="st">"agecat1"</span>:<span class="st">"agecat7"</span>]</span>
 <span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a>population.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="45">
@@ -4127,7 +4127,7 @@ Caution
 <p>At this point, the table <code>influenza_rates</code> is tidy: every row is an observation, every table is a variable, and there is only one observational unit in the table.</p>
 <p>The other table (<code>population</code>), however, is not entirely tidied up yet: there is only one observational unit in the table, true; but every row is not an observation, and there are variable values as the names of columns (in other words, every column is not a variable). To obtain a fully tidy version of the table, you need to re-arrange it in a way that every row is an age category in an area, and there are three variables: <code>geography_code</code>, age category, and population count (or frequency).</p>
 <p>Because this is actually a fairly common pattern, there is a direct way to solve it in <code>pandas</code>:</p>
-<div id="ce5fe98f" class="cell" data-execution_count="47">
+<div id="11e981d8" class="cell" data-execution_count="47">
 <div class="sourceCode cell-code" id="cb45"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a>tidy_population <span class="op">=</span> population.stack()</span>
 <span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a>tidy_population.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="46">
@@ -4141,14 +4141,14 @@ dtype: int64</code></pre>
 </div>
 </div>
 <p>The method <code>stack</code>, well, “stacks” the different columns into rows. This fixes our “tidiness” problems but the type of object that is returning is not a <code>DataFrame</code>:</p>
-<div id="d4934953" class="cell" data-execution_count="48">
+<div id="b6d810ae" class="cell" data-execution_count="48">
 <div class="sourceCode cell-code" id="cb47"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="bu">type</span>(tidy_population)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="47">
 <pre><code>pandas.core.series.Series</code></pre>
 </div>
 </div>
 <p>It is a <code>Series</code>, which really is like a <code>DataFrame</code>, but with only one column. The additional information (<code>geography_code</code> and age category) are stored in what is called an multi-index. You will skip these for now, so you would really just want to get a <code>DataFrame</code> as you know it out of the <code>Series</code>. This is also one line of code away:</p>
-<div id="3f8496aa" class="cell" data-execution_count="49">
+<div id="9eb77fb3" class="cell" data-execution_count="49">
 <div class="sourceCode cell-code" id="cb49"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a>tidy_population_df <span class="op">=</span> tidy_population.reset_index()</span>
 <span id="cb49-2"><a href="#cb49-2" aria-hidden="true" tabindex="-1"></a>tidy_population_df.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="48">
@@ -4202,7 +4202,7 @@ dtype: int64</code></pre>
 </div>
 </div>
 <p>To which you can apply to renaming to make it look better:</p>
-<div id="103d271a" class="cell" data-execution_count="50">
+<div id="bb18269b" class="cell" data-execution_count="50">
 <div class="sourceCode cell-code" id="cb50"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a>tidy_population_df <span class="op">=</span> tidy_population_df.rename(</span>
 <span id="cb50-2"><a href="#cb50-2" aria-hidden="true" tabindex="-1"></a>    columns<span class="op">=</span>{<span class="st">"level_1"</span>: <span class="st">"age_category"</span>, <span class="dv">0</span>: <span class="st">"count"</span>}</span>
 <span id="cb50-3"><a href="#cb50-3" aria-hidden="true" tabindex="-1"></a>)</span>
@@ -4268,15 +4268,15 @@ dtype: int64</code></pre>
 <li>Compute the sum of <code>count</code> for each of them.</li>
 </ul>
 <p>To do this in <code>pandas</code>, meet one of its workhorses, and also one of the reasons why the library has become so popular: the <code>groupby</code> operator.</p>
-<div id="bd3f74ac" class="cell" data-execution_count="51">
+<div id="be283dce" class="cell" data-execution_count="51">
 <div class="sourceCode cell-code" id="cb51"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a>pop_grouped <span class="op">=</span> tidy_population_df.groupby(<span class="st">"age_category"</span>)</span>
 <span id="cb51-2"><a href="#cb51-2" aria-hidden="true" tabindex="-1"></a>pop_grouped</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="50">
-<pre><code>&lt;pandas.core.groupby.generic.DataFrameGroupBy object at 0x7f9af5de4290&gt;</code></pre>
+<pre><code>&lt;pandas.core.groupby.generic.DataFrameGroupBy object at 0x7f7025f34a10&gt;</code></pre>
 </div>
 </div>
 <p>The object <code>pop_grouped</code> still hasn’t computed anything. It is only a convenient way of specifying the grouping. But this allows us then to perform a multitude of operations on it. For our example, the sum is calculated as follows:</p>
-<div id="415becd2" class="cell" data-execution_count="52">
+<div id="fe112840" class="cell" data-execution_count="52">
 <div class="sourceCode cell-code" id="annotated-cell-47"><pre class="sourceCode python code-annotation-code code-with-copy code-annotated"><code class="sourceCode python"><a class="code-annotation-anchor" data-target-cell="annotated-cell-47" data-target-annotation="1" onclick="event.preventDefault();">1</a><span id="annotated-cell-47-1" class="code-annotation-target"><a href="#annotated-cell-47-1" aria-hidden="true" tabindex="-1"></a>pop_grouped.<span class="bu">sum</span>(numeric_only<span class="op">=</span><span class="va">True</span>)</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-annotation">
 <dl class="code-annotation-container-grid">
@@ -4337,7 +4337,7 @@ dtype: int64</code></pre>
 </div>
 </div>
 <p>Similarly, you can also obtain a summary of each group:</p>
-<div id="9472ff79" class="cell" data-execution_count="53">
+<div id="7c7c23eb" class="cell" data-execution_count="53">
 <div class="sourceCode cell-code" id="cb53"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a>pop_grouped.describe()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="52">
 <div>
