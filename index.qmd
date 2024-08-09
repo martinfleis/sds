@@ -18,7 +18,7 @@ using open source tools written in the Python programming language.
 The course is provided by Charles University as a standalone micro-credentials certification and is taught __online__ every August. The
 course is open to anyone.
 
-::: {.callout-important}
+<!-- ::: {.callout-important}
 # Course registration for 2024 is now open
 
 The course will happen between 12.8. - 16.8. with 6 teaching hours a day. The fee for 2024 is 15,000 CZK (approximately €600).
@@ -27,7 +27,7 @@ Registration is open until August 9.
 Please enroll via the [university portal](https://is.cuni.cz/studium/eng/prijimacky/index.php?do=detail_kurz_mc&cid=10752).
 
 In case of any questions, please contact the course lead directly at [martin.fleischmann@natur.cuni.cz](mailto:martin.fleischmann@natur.cuni.cz).
-:::
+::: -->
 :::
 
 ## Aims
