@@ -130,14 +130,3 @@ What is the difference in results for Prague? Do you know why?
 ```py
 suburbanisation.loc[891, ["queen_lag", "nuts_lag", "knn_lag"]]
 ```
-
-Compare Moran Plots based on spatial lags from your two matrices. What is causing the difference? Which one would you use in a study of population density and why?
-
-```py
-f, ax = plt.subplots(1, 2, figsize=(12, 6))
-sns.regplot(x="obyv_log", y="queen_lag", data=suburbanisation, ci=None, ax=ax[0], marker=".")
-sns.regplot(x="obyv_log", y="knn_lag", data=suburbanisation, ci=None, ax=ax[1], marker=".")
-```
-
-The plot above is done using subplots. You will see more of those, so check the [documentation](https://matplotlib.org/stable/users/explain/axes/axes_intro.html) on how those work.
-
