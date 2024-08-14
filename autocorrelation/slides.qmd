@@ -166,12 +166,11 @@ How to measure it?
 
 ---
 ```{python}
-#| fig-cap: Moran Plot from the last session
+#| fig-cap: Moran Plot
 f, ax = plt.subplots(1, figsize=(6, 6))                     # <1>
 sns.regplot(x="area", y="w_area", data=prague, ci=None, ax=ax, marker="."); # <2>
 ```
 
-<!-- ![](https://martinfleischmann.net/sds/spatial_graphs/hands_on_files/figure-html/cell-38-output-1.png){.center_image height="600"} -->
 
 ## Moran's I
 
