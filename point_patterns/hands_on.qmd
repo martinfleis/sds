@@ -312,10 +312,10 @@ A better option for the assessment of the randomness of a point pattern is a fam
 
 Before working with any of those, let's quickly look at the Quadrat statistic plot above. Some of the cells contain 0 points simply because the extent of the point pattern is smaller than the bounding box of the area. Since Ripley's functions are based on the generation of random point patterns within the extent of the analysed one, a situation like this might unnecessarily skew the results. To minise this effect, you want to perform the test only within the area of the existing point pattern.
 
-While you can define such an extent in many way, a simple and often very suitable method is to define a convex hull of the point pattern. You can do that directly with `geopandas`.
+While you can define such an extent in many way, a simple and often very suitable method is to define a concave hull of the point pattern to limit the possible space where modelled point locations may occur. You can do that directly with `geopandas`.
 
 ```{python}
-convex_hull = accidents.unary_union.convex_hull  # <1>
+concave_hull = accidents.dissolve().concave_hull(ratio=.1)  # <1>
 ```
 1. First, create a union of all points into a single MultiPoint and then get a convex hull of that.
 
@@ -324,7 +324,7 @@ The resulting object is a `shapely.Polygon`. If you wrap it in a `geopandas.GeoS
 ```{python}
 # | fig-cap: Convex hull around the point pattern
 ax = accidents.plot(markersize=0.05)
-gpd.GeoSeries([convex_hull]).plot(
+concave_hull.plot(
     ax=ax, facecolor="none", edgecolor="k", linestyle="--"  # <1>
 )
 plt.xticks(rotation=90);
@@ -344,13 +344,13 @@ g_test = pointpats.distance_statistics.g_test(
     accidents[["x", "y"]].values,
     support=200,                    # <1>
     keep_simulations=True,          # <2>
-    hull=convex_hull,               # <3>
+    hull=concave_hull.item(),               # <3>
     n_simulations=99,               # <4>
 )
 ```
 1. Practically, the number of bins of the distance between neighbours. More ensures better precision of resulting curves.
 2. Keep simulated data so you can plot them later.
-3. Limit the test only to the `convex_hull`.
+3. Limit the test only to the `concave_hull`. You need to extract the shapely geometry.
 4. Number of simulations used as a baseline.
 
 The intuition behind the statistic can be built based on the plot of the $G$ values per distance threshold, comparing the observed results with those based on simulated random point patterns.
@@ -399,7 +399,7 @@ f_test = pointpats.distance_statistics.f_test(
     accidents[["x", "y"]].values,
     support=200,
     keep_simulations=True,
-    hull=convex_hull,
+    hull=concave_hull.item(),
     n_simulations=99,
 )
 ```
@@ -424,7 +424,7 @@ ax.plot(f_test.support, f_test.statistic, label="observed", color="red")
 ax.set_xlabel("distance")
 ax.set_ylabel("ratio of points within a distance threshold")
 ax.legend()
-ax.set_xlim(0, 500);
+ax.set_xlim(0, 2000);
 ```
 
 The observed curve of the $F$ function is clearly below the simulated, meaning that it increases more slowly than it should if it were a random pattern. You can conclude the same as above: the pattern is clustered. For completeness, you can check the $p$-value.
@@ -432,6 +432,8 @@ The observed curve of the $F$ function is clearly below the simulated, meaning t
 ```{python}
 np.mean(f_test.pvalue)
 ```
+
+There's one key difference in the result compared to the $G$ function - the $F$ function result is not significant if we use the significance threshold 0.01 but it is with the more common threshold of 0.05.
 
 ::: {.callout-caution}
 # Advanced topic
