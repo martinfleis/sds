@@ -35,7 +35,7 @@ from the [Spatial weights](../spatial_graphs/hands_on.qmd) session or creating a
 This would be one option:
 
 ```py
-extent = gpd.GeoSeries([airbnb.unary_union.convex_hull], crs=airbnb.crs)
+extent = gpd.GeoSeries([airbnb.union_all().convex_hull], crs=airbnb.crs)
 ```
 :::
 
