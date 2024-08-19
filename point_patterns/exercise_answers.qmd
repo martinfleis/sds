@@ -164,10 +164,10 @@ Measure Ripley’s G and F
 Start with the definition of the extent.
 
 ```py
-convex_hull = airbnb.unary_union.convex_hull
+concave_hull = airbnb.dissolve().concave_hull(ratio=.05)
 
 ax = airbnb.plot(markersize=0.05)
-gpd.GeoSeries([convex_hull]).plot(
+concave_hull.plot(
     ax=ax, facecolor="none", edgecolor="k", linestyle="--"
 )
 plt.xticks(rotation=90);
@@ -178,7 +178,7 @@ g_test = pointpats.distance_statistics.g_test(
     airbnb[["x", "y"]].values,
     support=200,
     keep_simulations=True,
-    hull=convex_hull,
+    hull=concave_hull.item(),
     n_simulations=99,
 )
 ```
@@ -216,7 +216,7 @@ f_test = pointpats.distance_statistics.f_test(
     airbnb[["x", "y"]].values,
     support=200,
     keep_simulations=True,
-    hull=convex_hull,
+    hull=concave_hull.item(),
     n_simulations=99,
 )
 ```

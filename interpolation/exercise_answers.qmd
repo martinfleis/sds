@@ -1,0 +1,273 @@
+---
+title: Areal interpolation
+---
+
+
+
+```py
+import pandas as pd
+import geopandas as gpd
+import tobler
+import pyinterpolate
+import numpy as np
+import matplotlib.pyplot as plt
+import contextily
+import shapely
+
+from libpysal import graph
+from sklearn import neighbors
+from scipy import interpolate
+```
+
+## Scottish index of multiple deprivation
+
+```py
+simd = gpd.read_file('/Users/martin/Downloads/SG_SIMD_2020.zip')
+```
+
+```py
+glasgow = simd.query("LAName == 'Glasgow City'").copy()
+```
+
+```py
+grid = tobler.util.h3fy(glasgow, resolution=8)
+```
+
+```py
+m = glasgow.boundary.explore(tiles="CartoDB Positron")
+grid.boundary.explore(m=m, color='red')
+```
+
+```py
+glasgow.head()
+```
+
+```py
+glasgow['EmpRate'] = glasgow['EmpRate'].str.replace('%','').astype(int)
+```
+
+```py
+glasgow['IncRate'] = glasgow['IncRate'].str.replace('%','').astype(int)
+```
+
+```py
+interpolated = tobler.area_weighted.area_interpolate(
+    source_df=glasgow,
+    target_df=grid,
+    extensive_variables=['EmpNumDep', 'IncNumDep'],
+    intensive_variables=['EmpRate', 'IncRate'],
+    categorical_variables=['DZName']
+)
+interpolated.head()
+```
+
+```py
+interpolated.explore('DZName_Drumchapel North - 05', tiles='CartoDB Positron', tooltip='DZName_Drumchapel North - 05')
+```
+
+## Point interpolation
+
+```py
+url = ("http://data.insideairbnb.com/czech-republic/prague/prague/2023-06-24"
+       "/data/listings.csv.gz"
+      )
+```
+
+```py
+airbnb = pd.read_csv(url)
+airbnb = gpd.GeoDataFrame(
+    airbnb,
+    geometry=gpd.points_from_xy(
+        airbnb['longitude'], airbnb['latitude'], crs='EPSG:4326'
+    ),
+)
+airbnb = airbnb.to_crs('EPSG:5514')
+```
+
+```py
+airbnb['price'] = (
+    airbnb['price'].str.strip('$').str.replace(',', '').astype(float)
+)
+```
+
+```py
+two_bed_homes = airbnb[
+    (airbnb['bedrooms'] == 2)
+    & (airbnb['property_type'] == 'Entire rental unit')
+    & (airbnb['price'] < 3500)
+].copy()
+```
+
+```py
+two_bed_homes = two_bed_homes.drop_duplicates('geometry')
+```
+
+```py
+two_bed_homes.explore('price', tiles='CartoDB DarkMatter')
+```
+
+```py
+knn = graph.Graph.build_kernel(two_bed_homes, k=10).transform('r')
+two_bed_homes['price_lag'] = knn.lag(two_bed_homes.price)
+two_bed_homes.explore('price_lag', tiles='CartoDB DarkMatter')
+```
+
+```py
+extent = airbnb.dissolve().concave_hull(ratio=.3)
+```
+
+```py
+grid = tobler.util.h3fy(extent, resolution=10)
+```
+
+```py
+grid.plot()
+```
+
+```py
+grid_coordinates = grid.centroid.get_coordinates()
+grid_coordinates.head()
+```
+
+```py
+homes_coordinates = two_bed_homes.get_coordinates()
+homes_coordinates.head()
+```
+
+```py
+nearest = interpolate.griddata(
+    points=homes_coordinates,
+    values=two_bed_homes.price_lag,
+    xi=grid_coordinates,
+    method='nearest'
+)
+nearest
+```
+
+```py
+grid['nearest'] = nearest
+ax = grid.plot('nearest', legend=True, figsize=(15,15), cmap='viridis', alpha=.5)
+contextily.add_basemap(ax=ax, crs=grid.crs, source="CartoDB Positron")
+```
+
+```py
+interpolation_uniform = neighbors.KNeighborsRegressor(n_neighbors=10)
+```
+
+```py
+interpolation_uniform.fit(
+    homes_coordinates, two_bed_homes.price_lag
+)
+```
+
+```py
+price_on_grid = interpolation_uniform.predict(grid_coordinates)
+price_on_grid
+```
+
+```py
+grid['KNN_uniform'] = price_on_grid
+```
+
+```py
+ax = grid.plot('KNN_uniform', legend=True, figsize=(15,15), cmap='viridis', alpha=.5)
+contextily.add_basemap(ax=ax, crs=grid.crs, source="CartoDB Positron")
+```
+
+```py
+interpolation_distance = neighbors.KNeighborsRegressor(
+    n_neighbors=10, weights='distance'
+)
+```
+
+```py
+interpolation_distance.fit(
+    homes_coordinates, two_bed_homes.price_lag
+)
+```
+
+```py
+price_on_grid = interpolation_distance.predict(grid_coordinates)
+price_on_grid
+```
+
+```py
+grid['KNN_distance'] = price_on_grid
+```
+
+```py
+ax = grid.plot('KNN_distance', legend=True, figsize=(15,15), cmap='viridis', alpha=.5)
+contextily.add_basemap(ax=ax, crs=grid.crs, source="CartoDB Positron")
+```
+
+```py
+interpolation_radius = neighbors.RadiusNeighborsRegressor(
+    radius=500, weights='distance'
+)
+interpolation_radius.fit(
+    homes_coordinates, two_bed_homes.price_lag
+)
+grid['radius'] = interpolation_radius.predict(grid_coordinates)
+
+ax = grid.plot('radius', legend=True, figsize=(15,15), cmap='viridis', alpha=.5)
+contextily.add_basemap(ax=ax, crs=grid.crs, source="CartoDB Positron")
+```
+
+## Krigging
+
+```py
+input_data = np.hstack(
+    [homes_coordinates, two_bed_homes.price_lag.values.reshape(-1, 1)]
+)
+input_data
+```
+
+```py
+exp_semivar = pyinterpolate.build_experimental_variogram(
+    input_array=input_data,
+    step_size=100,
+    max_range=5000,
+)
+```
+
+```py
+exp_semivar.plot()
+```
+
+```py
+semivar = pyinterpolate.build_theoretical_variogram(
+    experimental_variogram=exp_semivar,
+    model_name='linear',
+    sill=exp_semivar.variance,
+    rang=3000,
+)
+semivar.plot()
+```
+
+```py
+ordinary_kriging = pyinterpolate.kriging(
+    observations=input_data,
+    theoretical_model=semivar,
+    points=grid_coordinates.values,
+    how="ok",
+    no_neighbors=10,
+    show_progress_bar=False,
+)
+```
+
+```py
+grid["ordinary_kriging"] = ordinary_kriging[:, 0]
+```
+
+```py
+ax = grid.plot('ordinary_kriging', legend=True, figsize=(15,15), cmap='viridis', alpha=.5)
+contextily.add_basemap(ax=ax, crs=grid.crs, source="CartoDB Positron")
+```
+
+```py
+grid["variance_error"] = ordinary_kriging[:, 1]
+ax = grid.plot('variance_error', legend=True, figsize=(15,15), cmap='inferno_r', alpha=.5)
+contextily.add_basemap(ax=ax, crs=grid.crs, source="CartoDB Positron")
+```
+
+

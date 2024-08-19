@@ -17,7 +17,6 @@ import seaborn as sns
 import statsmodels.formula.api as sm
 
 from libpysal import graph
-from splot.esda import lisa_cluster
 ```
 
 Go back to the [Does it correlate?](../autocorrelation/exercise.qmd) and load the dataset to your Jupyter Notebook. Do not filter for Glasgow this time, use the whole dataset.
@@ -120,11 +119,11 @@ plt.axhline(0, c="black", alpha=0.5);
 ```
 
 ```py
-lisa = esda.Moran_Local(simd['residual'], contiguity_r.to_W())
+lisa = esda.Moran_Local(simd['residual'], contiguity_r)
 ```
 
 ```py
-_ = lisa_cluster(lisa, simd)
+lisa.explore(simd)
 ```
 
 Create another OLS model and include local authority `"LAName"` in the formula.
