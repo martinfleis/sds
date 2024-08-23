@@ -176,3 +176,6 @@ data/prague_morphology/prg_geometry.gpkg
 data/prague_morphology/prg_primary.csv.gz
 
 /.luarc.json
+# pixi environments
+.pixi
+*.egg-info
