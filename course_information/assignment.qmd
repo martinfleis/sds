@@ -181,6 +181,19 @@ discussed ahead):
 
 The documentation should be formatted using Markdown syntax, not HTML.
 
+## Use of generative AI
+
+You are free to use any tool available to you. Please keep in mind the outcome of the
+following experiment decribed by [Esther Shein](https://cacm.acm.org/news/the-impact-of-ai-on-computer-science-education/):
+
+> Last fall, Eric Klopfer decided to conduct an experiment in his undergraduate computer science class at the Massachusetts Institute of Technology (MIT). He divided the class into three groups and gave them a programming task to solve in the Fortran language, which none of them knew.
+>
+> One group was allowed to use ChatGPT to solve the problem, the second group was told to use Meta’s Code Llama large language model (LLM), and the third group could only use Google. The group that used ChatGPT, predictably, solved the problem quickest, while it took the second group longer to solve it. It took the group using Google even longer, because they had to break the task down into components.
+>
+> Then, the students were tested on how they solved the problem from memory, and the tables turned. The ChatGPT group “remembered nothing, and they all failed,” recalled Klopfer, a professor and director of the MIT Scheller Teacher Education Program and The Education Arcade.
+>
+> Meanwhile, half of the Code Llama group passed the test. The group that used Google? Every student passed.
+
 ## Acknowledgements {.appendix}
 
 The assignment structure is partially derived from _A Course on Geographic Data Science_ by
