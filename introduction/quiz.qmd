@@ -1,0 +1,59 @@
+---
+title: "Quiz on Jupyter and Markdown"
+filters:
+  - naquiz
+---
+
+Check how much you remember from previous sections by answering the questions below.
+
+:::::{.question}
+What would be the effect of the following Markdown syntax `***Markdown***`?
+
+::::{.choices}
+
+:::{.choice}
+**Markdown**
+:::
+
+:::{.choice}
+*Markdown*
+:::
+
+:::{.choice .correct-choice}
+***Markdown***
+:::
+
+:::{.choice}
+~~Markdown~~
+:::
+
+::::
+:::::
+
+:::::{.question}
+Can you use the `_` and `*` symbols interchangeably?
+
+::::{.choices}
+
+:::{.choice}
+Yes. Both of them have the same same effect.
+:::
+
+:::{.choice .correct-choice}
+Yes, as long as you use the same to mark start and end of the sequence..
+:::
+
+:::{.choice}
+No. They mean the same but only one can be used in a document.
+:::
+
+:::{.choice}
+No. Only one is valid Markdown.
+:::
+
+:::{.choice}
+No. They have a different meaning.
+:::
+
+::::
+:::::

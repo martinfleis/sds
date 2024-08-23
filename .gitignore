@@ -1,4 +1,4 @@
- # Byte-compiled / optimized / DLL files
+# Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
 *$py.class
@@ -174,3 +174,5 @@ spatial_graphs/queen.parquet
 raster_data/population_density.tif
 data/prague_morphology/prg_geometry.gpkg
 data/prague_morphology/prg_primary.csv.gz
+
+/.luarc.json
