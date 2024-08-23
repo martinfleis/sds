@@ -1,0 +1,38 @@
+.btn-group-xs > .btn, .btn-xs {
+  padding: 1px 5px;
+  font-size: 12px;
+  line-height: 1.5;
+  border-radius: 3px;
+}
+
+#correct {
+  color: green;
+}
+
+[id^="no"] {
+  color: red;
+}
+
+.button-clear button {
+  background-color: #f9fafb;
+  border-color: #f9fafb;
+}
+
+
+.button-hint button {
+  background-color: #FFFAA0;
+  border-color: #FFFAA0;
+}
+
+.button-hint .border-warning {
+  border-color: #FFFAA0 !important;
+}
+
+.button-answer button {
+  background-color: #e7f1ff;
+  border-color: #e7f1ff;
+}
+
+.button-answer .border-info {
+  border-color: #e7f1ff !important;
+}
