@@ -357,16 +357,18 @@ sns.regplot(
     scatter_kws={"alpha": 0.2},                 # <2>
     line_kws=dict(color="lightcoral")
 )
+ax.set_aspect('equal')  # <3>
 plt.axvline(0, c="black", alpha=0.5)
 plt.axhline(0, c="black", alpha=0.5)
-plt.text(2.3, 2.7, "High-high", fontsize=10)    # <3>
-plt.text(2.3, -2.7, "High-low", fontsize=10)    # <3>
-plt.text(-4.4, 2.7, "Low-high", fontsize=10)    # <3>
-plt.text(-4.4, -2.7, "Low-low", fontsize=10);   # <3>
+plt.text(2.3, 2.7, "High-high", fontsize=10)    # <4>
+plt.text(2.3, -2.7, "High-low", fontsize=10)    # <4>
+plt.text(-4.4, 2.7, "Low-high", fontsize=10)    # <4>
+plt.text(-4.4, -2.7, "Low-low", fontsize=10);   # <4>
 ```
 1. Setup the figure (`f`) and axis (`ax`) to allow setting the size of the figure and forcing it to be square.
 2. Make points semi-transparent to mitigate their density.
-3. Annotate different quadrants.
+3. Ensure both x an y axes use the same scale.
+4. Annotate different quadrants.
 
 Creating a standardised Moran Plot implies that average values are centred in the plot
 (as they are zero when standardised), and dispersion is expressed in standard deviations,
