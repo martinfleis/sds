@@ -562,14 +562,17 @@ dbscan_100_20.fit(accidents[["x", "y"]])
 Assigning the cluster label as a column allows a comfortable plotting of cluster membership.
 
 ```{python}
-# | fig-cap: Clusters based on 100 meters distance and 20 samples requirement
 accidents['cluster'] = dbscan_100_20.labels_
+```
 
+```{python}
+# | fig-cap: Clusters based on 100 meters distance and 20 samples requirement
+# | code-fold: true
 ax = accidents[accidents["cluster"] == -1].plot(
     markersize=0.05, color="lightgrey"
 )
 accidents[accidents["cluster"] != -1].plot(
-    "cluster", categorical=True, ax=ax, markersize=0.05, legend=True
+    "cluster", categorical=True, ax=ax, markersize=0.1, legend=True
 )
 contextily.add_basemap(
     ax=ax,
@@ -600,31 +603,18 @@ timestamp = pd.to_datetime(                                         # <1>
         columns={"rok": "year", "mesic": "month", "den": "day"}     # <1>
     )                                                               # <1>
 )                                                                   # <1>
-days_since_first = (timestamp - timestamp.min()).dt.days            # <2>
-days_since_first.head()
+accidents["days_since_first"] = (timestamp - timestamp.min()).dt.days            # <2>
+accidents["days_since_first"].head()
 ```
 1. `pandas` can create a `datetime` object based on columns named `"year"`, `"month"` and `"day"`.
 2. You can then do time-based algebra on `datetime` columns and use the `.dt` accessor to retrieve the number of days since the first observations as integers.
 
-The array of time coordinates should look like an array of spatial coordinates does, just with one column:
-
-```{python}
-accidents[["x", "y"]].values
-```
-
-Getting `days_since_first.values` results in an incorrect shape (check it for yourself), so you need to use `numpy` to reshape it to an expected form.
-
-```{python}
-time_coords = days_since_first.values.reshape(-1, 1)  # <1>
-time_coords
-```
-1. Reshape the array from its current shape `(n,)` (1-dimensional array) to `(n, 1)` (2-dimensional array with 1 column).
-
-
 With the time coordinates ready, you can use the Knox test for spatiotemporal interaction.
 
 ```{python}
-knox = pointpats.Knox(accidents[["x", "y"]], time_coords, delta=500, tau=100)
+knox = pointpats.Knox.from_dataframe(
+    accidents, time_col="days_since_first", delta=500, tau=100
+)
 ```
 
 The test takes spatial coordinates, time coordinates and two parameters. `delta` is a threshold for proximity in space (use 500m), while `tau` is a threshold for proximity in time (use 100 days). Knox test then counts a number of events that are closer than `delta` in space and `tau` in time. This count is available as `.statistic_`.
