@@ -254,6 +254,84 @@ plt.xticks(rotation=90);
 
 You can see that in this specific case, all three ways of computing centre of the mass are within a short distance from each other, suggesting the dataset is pretty balanced. A similar conclusion can be made based on the shape of the ellipse, which nearly resembles a circle.
 
+A useful application of centrography is when you need to compare mutliple point patterns. Have a look at the difference between accidents that happened during the day and at night (column `"doba"`, where "den" means day and "noc" means night).
+
+```{python}
+day = accidents[accidents["doba"] == "den"]
+night = accidents[accidents["doba"] == "noc"]
+```
+
+As always, start with visual exploration.
+
+```{python}
+# | fig-cap: Point patterns for accidents during the day and night
+f, axs = plt.subplots(1, 2, sharey=True)
+day.plot(color="red", markersize=.05, ax=axs[0])
+night.plot(color='blue', markersize=.05, ax=axs[1])
+for ax in axs:
+    ax.set_axis_off()
+```
+
+Focus on the ellipse. What does it say about the patterns? How does it change and why?
+
+```{python}
+mean_center_day = pointpats.centrography.mean_center(day[["x", "y"]])
+mean_center_night = pointpats.centrography.mean_center(night[["x", "y"]])
+
+major_day, minor_day, rotation_day = pointpats.centrography.ellipse(
+    day[["x", "y"]]
+)
+major_night, minor_night, rotation_night = pointpats.centrography.ellipse(
+    night[["x", "y"]]
+)
+```
+
+Compare the two ellipses visually on a map.
+
+```{python}
+# | fig-cap: Comparison of centrographic ellipse for day and night
+# | code-fold: true
+f, ax = plt.subplots()
+accidents.plot(ax=ax, markersize=0.05)
+
+ax.scatter(*mean_center_day, color="red", marker="o", label="Mean Center [Day]", alpha=0.8)
+ellipse = patches.Ellipse(
+    xy=mean_center_day,
+    width=major_day * 2,
+    height=minor_day * 2,
+    angle=np.rad2deg(rotation_day),
+    facecolor="none",
+    edgecolor="red",
+    linestyle="--",
+    label="Std. Ellipse [Day]",
+)
+ax.add_patch(ellipse)
+
+ax.scatter(*mean_center_night, color="blue", marker="o", label="Mean Center [Night]", alpha=0.8)
+ellipse = patches.Ellipse(
+    xy=mean_center_night,
+    width=major_night * 2,
+    height=minor_night * 2,
+    angle=np.rad2deg(rotation_night),
+    facecolor="none",
+    edgecolor="blue",
+    linestyle="--",
+    label="Std. Ellipse [Night]",
+)
+ax.add_patch(ellipse)
+
+ax.legend(loc="upper left")
+
+contextily.add_basemap(
+    ax=ax,
+    crs=accidents.crs,
+    source="CartoDB Positron No Labels",
+)
+plt.xticks(rotation=90);
+```
+
+As you can see, the night ellipse is slightly smaller and centred closer to the centre of Brno than the day ellipse. You can probably guess why.
+
 ::: {.callout-tip}
 # Extent
 
