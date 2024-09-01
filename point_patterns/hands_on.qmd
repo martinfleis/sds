@@ -22,8 +22,8 @@ import numpy as np
 import pandas as pd
 import pointpats
 import seaborn as sns
-import shapely
 from matplotlib import patches
+from sklearn import cluster
 ```
 
 ## Data
@@ -512,6 +512,74 @@ np.mean(f_test.pvalue)
 ```
 
 There's one key difference in the result compared to the $G$ function - the $F$ function result is not significant if we use the significance threshold 0.01 but it is with the more common threshold of 0.05.
+
+### Locating clusters
+
+Knowing that there is a degree of clustering is often enough but there may be cases where you need to understand where the local clusters of points are. There are many ways of doing so, but one of the most common is DBSCAN (Density-Based Spatial Clustering of Applications). While the algorithm itself generalises to any data, when applied to point pattern coordinates, it behaves as a spatial explicit method. As the name suggests, it looks at the density of points and determines whether there is a cluster or not. It expects a single argument - the epsilon representing the distance threshold, used as the maximum distance between two samples for one to be considered as in the neighborhood of the other. Additionally, you can specify the minimal number of points that need to be within the epsilon of a point for it to be consider a core point of a cluster. See the detailed explanation in
+the attached additional reading or in the documentation of scikit-learn.
+
+Use 100 meters as the epsilon to start with.
+
+```{python}
+dbscan_100 = cluster.DBSCAN(eps=100)
+dbscan_100.fit(accidents[["x", "y"]])
+```
+
+The resulting `dbscan_100` object contains all the information about clusters, most important of which are the cluster labels.
+
+```{python}
+dbscan_100.labels_
+```
+
+This is an array aligned with your points where `-1` represents noise and any other value represents a cluster label. You can use it to split the noise from clusters.
+
+```{python}
+noise = accidents[dbscan_100.labels_ == -1]
+clusters = accidents[dbscan_100.labels_ != -1]
+```
+
+This allows you to check where there are some clusters of accidents, which may lead to some changes to the streetscape, making it safer in future.
+
+```{python}
+# | fig-cap: Clusters based on 100 meters distance
+ax = noise.plot(markersize=.05)
+clusters.plot(ax=ax, markersize=.05, color='red')
+contextily.add_basemap(
+    ax=ax,
+    crs=accidents.crs,
+    source="CartoDB Positron No Labels",
+)
+plt.xticks(rotation=90);
+```
+
+By default, `DBSCAN` uses 5 as the minimal number of points in a neighbourhood. If you adjust that, some of the smaller clusters disappear.
+
+```{python}
+dbscan_100_20 = cluster.DBSCAN(eps=100, min_samples=20)
+dbscan_100_20.fit(accidents[["x", "y"]])
+```
+
+Assigning the cluster label as a column allows a comfortable plotting of cluster membership.
+
+```{python}
+# | fig-cap: Clusters based on 100 meters distance and 20 samples requirement
+accidents['cluster'] = dbscan_100_20.labels_
+
+ax = accidents[accidents["cluster"] == -1].plot(
+    markersize=0.05, color="lightgrey"
+)
+accidents[accidents["cluster"] != -1].plot(
+    "cluster", categorical=True, ax=ax, markersize=0.05, legend=True
+)
+contextily.add_basemap(
+    ax=ax,
+    crs=accidents.crs,
+    source="CartoDB Positron No Labels",
+)
+plt.xticks(rotation=90);
+```
+
+Try for yourself, how the cluster detection changes with a larger or a smaller epsilon or a different minimum number of samples within a cluster.
 
 ::: {.callout-caution}
 # Advanced topic
