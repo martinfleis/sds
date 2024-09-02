@@ -386,67 +386,6 @@ contextily.add_basemap(ax=ax, crs=prague.crs, source="CartoDB Positron")
 ax.set_axis_off()
 ```
 
-An extension of the weights above introduces further detail by assigning different
-weights to different neighbours within the radius circle based on how far they are from
-the observation of interest. For example, you could think of assigning the inverse of the
-distance between observations $i$ and $j$ as $w_{ij}$. This can be computed with the
-following command:
-
-```{python}
-dist1kmC = graph.Graph.build_distance_band(prague, 1000, binary=False)
-dist1kmC
-```
-
-In `dist1kmC`, every observation within the 1km circle is assigned a weight equal to
-the inverse distance between the two:
-
-$$
-w_{ij} = \dfrac{1}{d_{ij}}
-$$
-
-This way, the further apart $i$ and $j$ are from each other, the smaller the weight $w_{ij}$ will be.
-
-Contrast the binary neighbourhood with the continuous one for `Albertov`:
-
-```{python}
-dist1kmC['Albertov']
-```
-
-Following this logic of more detailed weights through distance, there is a temptation to
-take it further and consider everyone else in the dataset as a neighbor whose weight
-will then get modulated by the distance effect shown above. However, although
-conceptually correct, this approach is not always the most computationally or practical
-one. Because of the nature of spatial weights matrices, particularly because of the fact
-their size is $N$ by $N$, they can grow substantially large. A way to cope with this
-problem is by making sure they remain fairly *sparse* (with many zeros). Sparsity is
-typically ensured in the case of contiguity or KNN by construction but, with inverse
-distance, it needs to be imposed as, otherwise, the matrix could be potentially entirely
-dense (no zero values other than the diagonal). In practical terms, what is usually done
-is to impose a distance threshold beyond which no weight is assigned and interaction is
-assumed to be non-existent. Beyond being computationally feasible and scalable, results
-from this approach usually do not differ much from a fully "dense" one as the additional
-information that is included from further observations is almost ignored due to the
-small weight they receive. In this context, a commonly used threshold, although not
-always best, is that which makes every observation to have at least one neighbor.
-
-::: {.callout-tip}
-# Computing threshold
-Such a threshold can be calculated using the `min_threshold_distance` function from `libpysal.weights` module:
-
-```{python}
-from libpysal import weights
-
-min_thr = weights.min_threshold_distance(pts)
-min_thr
-```
-
-Which can then be used to calculate an inverse distance weights matrix:
-
-```py
-min_dist = graph.Graph.build_distance_band(prague, min_thr, binary=False)
-```
-:::
-
 ### Block weights
 
 Block weights connect every observation in a dataset that belongs to the same category
@@ -522,6 +461,51 @@ distance between the points.
 knn5_kernel['Albertov']
 ```
 
+### Distance-weighted distance band
+
+An extension of the distance band weights above introduces further detail by assigning different
+weights to different neighbours within the radius circle based on how far they are from
+the observation of interest. For example, you could think of assigning the inverse of the
+distance between observations $i$ and $j$ as $w_{ij}$. This can be computed with the
+following command:
+
+```{python}
+dist1kmC = graph.Graph.build_distance_band(prague, 1000, binary=False)
+dist1kmC
+```
+
+In `dist1kmC`, every observation within the 1km circle is assigned a weight equal to
+the inverse distance between the two:
+
+$$
+w_{ij} = \dfrac{1}{d_{ij}}
+$$
+
+This way, the further apart $i$ and $j$ are from each other, the smaller the weight $w_{ij}$ will be.
+
+Contrast the binary neighbourhood with the continuous one for `Albertov`:
+
+```{python}
+dist1kmC['Albertov']
+```
+
+Following this logic of more detailed weights through distance, there is a temptation to
+take it further and consider everyone else in the dataset as a neighbor whose weight
+will then get modulated by the distance effect shown above. However, although
+conceptually correct, this approach is not always the most computationally or practical
+one. Because of the nature of spatial weights matrices, particularly because of the fact
+their size is $N$ by $N$, they can grow substantially large. A way to cope with this
+problem is by making sure they remain fairly *sparse* (with many zeros). Sparsity is
+typically ensured in the case of contiguity or KNN by construction but, with inverse
+distance, it needs to be imposed as, otherwise, the matrix could be potentially entirely
+dense (no zero values other than the diagonal). In practical terms, what is usually done
+is to impose a distance threshold beyond which no weight is assigned and interaction is
+assumed to be non-existent. Beyond being computationally feasible and scalable, results
+from this approach usually do not differ much from a fully "dense" one as the additional
+information that is included from further observations is almost ignored due to the
+small weight they receive. In this context, a commonly used threshold, although not
+always best, is that which makes every observation to have at least one neighbor.
+
 ### Perimeter-weighted contiguity
 
 Similarly, you can adapt contiguity graphs to derive weight from the proportion of
@@ -538,6 +522,26 @@ By default, the weight is the length of the shared boundary:
 ```{python}
 rook_by_perimeter['Albertov']
 ```
+
+
+::: {.callout-tip}
+# Computing threshold
+Such a threshold can be calculated using the `min_threshold_distance` function from `libpysal.weights` module:
+
+```{python}
+from libpysal import weights
+
+min_thr = weights.min_threshold_distance(pts)
+min_thr
+```
+
+Which can then be used to calculate an inverse distance weights matrix:
+
+```py
+min_dist = graph.Graph.build_distance_band(prague, min_thr, binary=False)
+```
+:::
+
 
 ## Standardizing `Graph` relationships
 
@@ -647,9 +651,69 @@ queen.to_gwt("queen.gwt")
 Similarly, you can read such files with `graph.read_gal()` and `graph.read_gwt()`.
 :::
 
+## Using graph to aggregate variables
+
+A typical use of a graph is a description of the distribution of values within the
+neighborhood of each geometry. This can be done either solely based on the neighborhood
+definition, ignoring the actual weight, or as a weighted operation.
+
+### Describe
+
+The first option is implemented within the `describe()` method, which returns a statistical
+description of distribution of a given variable within each neighborhood.
+
+For this illustration, you will use the area of each polygon as the variable of interest.
+And to make things a bit nicer later on, you will keep the log of the area instead of the
+raw measurement. Hence, let's create a column for it:
+
+```{python}
+prague = prague.set_geometry("geometry")    # <1>
+prague["area"] = np.log(prague.area)        # <2>
+```
+1. Remember to set active geometry back to polygons before computing area.
+2. `np.log` is a function from the `numpy` package that computes the natural logarithm of an array of values (elementwise).
+
+```{python}
+area_description = queen.describe(
+    prague["area"],
+    statistics=["mean", "median", "min", "max", "std"],
+)
+area_description.head()
+```
+
+The table can be directly assigned to the `prague` DataFrame, if needed.
+
+```{python}
+prague = prague.join(area_description)
+prague.head()
+```
+
+Compare a subset visually on a map. You can create a subplot with 4 axes and loop over
+the selected columns to do that efficiently.
+
+```{python}
+# | fig-cap: Log of area and its derivatives based on Queen contiguity
+columns = ["area", "mean", "std", "max"]  # <1>
+
+fig, axs = plt.subplots(2, 2, figsize=(9, 6))  # <2>
+axs = axs.flatten() # <3>
+for column, ax in zip(columns, axs):  # <4>
+    prague.plot(column, ax=ax, legend=True, cmap="YlGnBu")  # <5>
+    ax.set_axis_off()  # <6>
+    ax.set_title(column)  # <7>
+```
+1. Specify a list of columns to be plotted.
+2. Create a figure with 4 subplots in a 2x2 grid, sized 9x6 inches.
+3. Flatten the axis for easier iteration.
+4. Make a `for` loop over two arrays at the same time zipped together.
+5. Make the map, show its legend and assign a custom colormap.
+6. Disable axis boundary plotting.
+7. Set title of each subplot.
+
+
 ## Spatial Lag
 
-One of the most direct applications of spatial weight matrices is the so-called _spatial
+If you need to use the weight, you are looking for the so-called _spatial
 lag_. The spatial lag of a given variable is the product of a spatial weight matrix and
 the variable itself:
 
@@ -666,18 +730,8 @@ y_{sl-i} = \displaystyle \sum_j w_{ij} y_j
 $$
 
 If you are using row-standardized weights, $w_{ij}$ becomes a proportion between zero and
-one, and $y_{sl-i}$ can be seen as the average value of $Y$ in the neighborhood of $i$.
-
-For this illustration, you will use the area of each polygon as the variable of interest.
-And to make things a bit nicer later on, you will keep the log of the area instead of the
-raw measurement. Hence, let's create a column for it:
-
-```{python}
-prague = prague.set_geometry("geometry")    # <1>
-prague["area"] = np.log(prague.area)        # <2>
-```
-1. Remember to set active geometry back to polygons before computing area.
-2. `np.log` is a function from the `numpy` package that computes the natural logarithm of an array of values (elementwise).
+one, and $y_{sl-i}$ can be seen as the mean value of $Y$ in the neighborhood of $i$, the
+same you would get with `describe()`.
 
 The spatial lag is a key element of many spatial analysis techniques, as you will see
 later on and, as such, it is fully supported in `PySAL`. To compute the spatial lag of a
@@ -712,52 +766,6 @@ categorical_lag[:5]
 Note that when there is a tie, i.e., no category is the most common, `lag()` will raise
 an error by default. You can let it resolve ties either by including the value from the
 focal observation to break the tie or by picking the one randomly (`ties="random"`).
-
-### Describe
-
-Spatial lag is usually used to derive the mean value from neighbors. However, if you
-are interested in a more robust description of the distribution, you can use the
-`summary()` method.
-
-```{python}
-area_description = queen.describe(
-    prague["area"],
-    statistics=["mean", "median", "min", "max", "std"],
-)
-area_description.head()
-```
-
-The table can be directly assigned to the `prague` DataFrame, if needed.
-
-```{python}
-prague = prague.join(area_description)
-prague.head()
-```
-
-Notice that `mean` column matches the spatial lag computed using the `lag()` method, as
-expected.
-
-Compare a subset visually on a map. You can create a subplot with 4 axes and loop over
-the selected columns to do that efficiently.
-
-```{python}
-# | fig-cap: Log of area and its derivatives based on Queen contiguity
-columns = ["area", "area_lag", "std", "max"]  # <1>
-
-fig, axs = plt.subplots(2, 2, figsize=(9, 6))  # <2>
-axs = axs.flatten() # <3>
-for column, ax in zip(columns, axs):  # <4>
-    prague.plot(column, ax=ax, legend=True, cmap="YlGnBu")  # <5>
-    ax.set_axis_off()  # <6>
-    ax.set_title(column)  # <7>
-```
-1. Specify a list of columns to be plotted.
-2. Create a figure with 4 subplots in a 2x2 grid, sized 9x6 inches.
-3. Flatten the axis for easier iteration.
-4. Make a `for` loop over two arrays at the same time zipped together.
-5. Make the map, show its legend and assign a custom colormap.
-6. Disable axis boundary plotting.
-7. Set title of each subplot.
 
 ## Acknowledgements {.appendix}
 
