@@ -17,7 +17,7 @@ The text in Jupyter Notebooks is formatted using Markdown, a straightforward syn
 
 For this task, you will focus on getting to know Markdown better. To practise its syntax, try to reproduce the following Wikipedia entry:
 
-> [https://en.wikipedia.org/wiki/Waldo_R._Tobler](https://en.wikipedia.org/wiki/Waldo_R._Tobler)
+> [https://en.wikipedia.org/wiki/Tobler%27s_first_law_of_geography](https://en.wikipedia.org/wiki/Tobler%27s_first_law_of_geography)
 
 
 ::: {.callout-tip}
