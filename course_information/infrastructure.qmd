@@ -22,16 +22,40 @@ rather than seek guidance outside of class.
 There are many options on how to run Python. You may already have a copy on your machine,
 you can run it in the browser and install it in a myriad ways. This course uses
 what is considered a standard for **scientific** computing based on two key components -
-a package manager (you will be using `conda`) and an interface (Jupyter Lab).
+a package manager (you will be using `Pixi`) and an interface (Jupyter Lab).
 
-The basics will be explained in the first lesson but it would be beneficial if you could create
-an environment before the class.
+The basics will be explained in the first lesson.
 
-### Create an environment
+### Install Pixi
 
-To run the course material, you will need a Python environment with all the packages for
-spatial data science installed. Unless you already know how to work with `conda` or `mamba`,
-follow the instructions below.
+The main tool dealing with the setup of the coding environment used in this course is [Pixi](https://pixi.sh). Go to Pixi weibsite, and follow the [installation instructions](https://pixi.sh/latest/#installation) to install it on your machines.
+
+### Get the template repository and install the environment
+
+There is a template repository you should be using during this course. The repository contains
+the definition of the environment and a placeholder structure for your work.
+
+1. Go to [https://github.com/martinfleis/sds4sg](https://github.com/martinfleis/sds4sg) and either download or clone the repository to a location on your machine where you'd like to store the files for this course.
+2. Use Command Line or Terminal to navigate to the folder.
+4. Install the enviroment using `pixi install`.
+5. Start the Jupyter Lab interface using `pixi run jupyter lab`.
+
+That is all!
+
+### Closing and reopening Jupyter Lab
+
+The best way to close the Jupyter Lab and shut down its process running in the terminal is to use the Jupyter Lab's interface. In the menu find [File]{.keystroke} > [Shut Down]{.keystroke}.
+
+![Shutting down Jupyter Lab](../_assets/figures/introduction/shut_down.png)
+
+Next time, navigate to the folder and run `pixi run jupyter lab` again.
+
+
+::: {.callout-note collapse="true"}
+
+### Create an environment with conda
+
+If you prefer to use `conda` over `Pixi`, you can follow the instructions below.
 
 ::: {.callout-important}
 # Anaconda and the other snakes
@@ -156,6 +180,8 @@ jupyter lab
 # Always activate an environment
 
 You should never use `conda install` in the base environment. Remember to always activate the environment.
+:::
+
 :::
 
 ### Plan B with Google Colab
