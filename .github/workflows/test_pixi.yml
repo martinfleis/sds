@@ -8,7 +8,7 @@ on:
         default: Test
         required: false
 
-name: Test execution
+name: Test execution using Pixi
 
 jobs:
     build:
