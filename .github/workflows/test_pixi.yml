@@ -1,0 +1,53 @@
+on:
+  schedule:
+    - cron: '59 8 * * 1,4'
+  workflow_dispatch:
+    inputs:
+      version:
+        description: Manual test execution
+        default: Test
+        required: false
+
+name: Test execution
+
+jobs:
+    build:
+        name: "Build the site"
+        runs-on: ${{ matrix.os }}
+        strategy:
+          fail-fast: false
+          matrix:
+            os: [ubuntu-latest, macos-latest, macos-14, windows-latest]
+        defaults:
+          run:
+            shell: bash -l {0}
+        steps:
+          - name: Check out repository
+            uses: actions/checkout@v4
+
+          - name: Set up Quarto
+            uses: quarto-dev/quarto-actions/setup@v2
+            with:
+                tinytex: false
+                version: pre-release
+
+          - name: Setup Pixi
+            uses: prefix-dev/setup-pixi@v0.5.1
+            with:
+              cache: true
+
+          - name: Check and log the environment
+            run: |
+              pixi run python -c "import geopandas; geopandas.show_versions();"
+
+          - name: Register kernel
+            run: |
+              pixi run python -m ipykernel install --user --name sds
+
+          - name: Quarto check
+            run: |
+              pixi run quarto check
+
+          - name: Render Book project
+            run: |
+              pixi run quarto render
