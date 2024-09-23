@@ -442,7 +442,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-11" role="navigation" aria-expanded="false">
- <span class="menu-text">Regression</span></a>
+ <span class="menu-text">Linear regression</span></a>
           <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-11" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -471,7 +471,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-12" role="navigation" aria-expanded="false">
- <span class="menu-text">Machine learning</span></a>
+ <span class="menu-text">Classification</span></a>
           <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-12" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -510,9 +510,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#communication" id="toc-communication" class="nav-link active" data-scroll-target="#communication">Communication</a></li>
   <li><a href="#software-stack" id="toc-software-stack" class="nav-link" data-scroll-target="#software-stack">Software stack</a>
   <ul class="collapse">
-  <li><a href="#create-an-environment" id="toc-create-an-environment" class="nav-link" data-scroll-target="#create-an-environment">Create an environment</a></li>
-  <li><a href="#closing-jupyter-lab" id="toc-closing-jupyter-lab" class="nav-link" data-scroll-target="#closing-jupyter-lab">Closing Jupyter Lab</a></li>
-  <li><a href="#opening-jupyter-lab-next-time" id="toc-opening-jupyter-lab-next-time" class="nav-link" data-scroll-target="#opening-jupyter-lab-next-time">Opening Jupyter Lab next time</a></li>
+  <li><a href="#install-pixi" id="toc-install-pixi" class="nav-link" data-scroll-target="#install-pixi">Install Pixi</a></li>
+  <li><a href="#get-the-template-repository-and-install-the-environment" id="toc-get-the-template-repository-and-install-the-environment" class="nav-link" data-scroll-target="#get-the-template-repository-and-install-the-environment">Get the template repository and install the environment</a></li>
+  <li><a href="#closing-and-reopening-jupyter-lab" id="toc-closing-and-reopening-jupyter-lab" class="nav-link" data-scroll-target="#closing-and-reopening-jupyter-lab">Closing and reopening Jupyter Lab</a></li>
   <li><a href="#plan-b-with-google-colab" id="toc-plan-b-with-google-colab" class="nav-link" data-scroll-target="#plan-b-with-google-colab">Plan B with Google Colab</a></li>
   <li><a href="#troubleshooting" id="toc-troubleshooting" class="nav-link" data-scroll-target="#troubleshooting">Troubleshooting</a></li>
   </ul></li>
@@ -549,11 +549,46 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="software-stack" class="level2">
 <h2 class="anchored" data-anchor-id="software-stack">Software stack</h2>
-<p>There are many options on how to run Python. You may already have a copy on your machine, you can run it in the browser and install it in a myriad ways. This course uses what is considered a standard for <strong>scientific</strong> computing based on two key components - a package manager (you will be using <code>conda</code>) and an interface (Jupyter Lab).</p>
-<p>The basics will be explained in the first lesson but it would be beneficial if you could create an environment before the class.</p>
-<section id="create-an-environment" class="level3">
-<h3 class="anchored" data-anchor-id="create-an-environment">Create an environment</h3>
-<p>To run the course material, you will need a Python environment with all the packages for spatial data science installed. Unless you already know how to work with <code>conda</code> or <code>mamba</code>, follow the instructions below.</p>
+<p>There are many options on how to run Python. You may already have a copy on your machine, you can run it in the browser and install it in a myriad ways. This course uses what is considered a standard for <strong>scientific</strong> computing based on two key components - a package manager (you will be using <code>Pixi</code>) and an interface (Jupyter Lab).</p>
+<p>The basics will be explained in the first lesson.</p>
+<section id="install-pixi" class="level3">
+<h3 class="anchored" data-anchor-id="install-pixi">Install Pixi</h3>
+<p>The main tool dealing with the setup of the coding environment used in this course is <a href="https://pixi.sh">Pixi</a>. Go to Pixi weibsite, and follow the <a href="https://pixi.sh/latest/#installation">installation instructions</a> to install it on your machines.</p>
+</section>
+<section id="get-the-template-repository-and-install-the-environment" class="level3">
+<h3 class="anchored" data-anchor-id="get-the-template-repository-and-install-the-environment">Get the template repository and install the environment</h3>
+<p>There is a template repository you should be using during this course. The repository contains the definition of the environment and a placeholder structure for your work.</p>
+<ol type="1">
+<li>Go to <a href="https://github.com/martinfleis/sds4sg">https://github.com/martinfleis/sds4sg</a> and either download or clone the repository to a location on your machine where you’d like to store the files for this course.</li>
+<li>Use Command Line or Terminal to navigate to the folder.</li>
+<li>Install the enviroment using <code>pixi install</code>.</li>
+<li>Start the Jupyter Lab interface using <code>pixi run jupyter lab</code>.</li>
+</ol>
+<p>That is all!</p>
+</section>
+<section id="closing-and-reopening-jupyter-lab" class="level3">
+<h3 class="anchored" data-anchor-id="closing-and-reopening-jupyter-lab">Closing and reopening Jupyter Lab</h3>
+<p>The best way to close the Jupyter Lab and shut down its process running in the terminal is to use the Jupyter Lab’s interface. In the menu find <span class="keystroke">File</span> &gt; <span class="keystroke">Shut Down</span>.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../_assets/figures/introduction/shut_down.png" class="img-fluid figure-img"></p>
+<figcaption>Shutting down Jupyter Lab</figcaption>
+</figure>
+</div>
+<p>Next time, navigate to the folder and run <code>pixi run jupyter lab</code> again.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-5-contents" aria-controls="callout-5" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Create an environment with conda
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-5" class="callout-5-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>If you prefer to use <code>conda</code> over <code>Pixi</code>, you can follow the instructions below.</p>
 <div class="callout callout-style-default callout-important callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -640,7 +675,6 @@ Important
 </div>
 </div>
 <p>A Jupyter Lab interface will show up in your browser. If it hasn’t opened automatically, copy the link printed in your command line/terminal.</p>
-</section>
 <section id="closing-jupyter-lab" class="level3">
 <h3 class="anchored" data-anchor-id="closing-jupyter-lab">Closing Jupyter Lab</h3>
 <p>The best way to close the Jupyter Lab and shut down its process running in the terminal is to use the Jupyter Lab’s interface. In the menu find <span class="keystroke">File</span> &gt; <span class="keystroke">Shut Down</span>.</p>
@@ -692,6 +726,10 @@ Always activate an environment
 </div>
 <div class="callout-body-container callout-body">
 <p>You should never use <code>conda install</code> in the base environment. Remember to always activate the environment.</p>
+</div>
+</div>
+</section>
+</div>
 </div>
 </div>
 </section>
