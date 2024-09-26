@@ -21,27 +21,23 @@ jobs:
             with:
                 tinytex: false
 
-          - name: Setup micromamba
-            uses: mamba-org/setup-micromamba@v1
+          - name: Setup Pixi
+            uses: prefix-dev/setup-pixi@v0.8.1
             with:
-              environment-file: environment.yml
-              micromamba-version: "latest"
+              cache: true
 
           - name: Check and log the environment
             run: |
-              python -c "import geopandas; geopandas.show_versions();"
-              micromamba info
-              micromamba list
-              quarto --version
+              pixi run python -c "import geopandas; geopandas.show_versions();"
 
           - name: Register kernel
             run: |
-              python -m ipykernel install --user --name sds
+              pixi run python -m ipykernel install --user --name sds
 
           - name: Render Book project
             run: |
-                quarto render
-                quarto render --profile micro
+                pixi run quarto render
+                pixi run quarto render --profile micro
 
           - name: Move subprojects under a single domain
             run: |
