@@ -5,13 +5,27 @@ aliases:
   - ../chapter_00/assignment.html
 ---
 
-This course is assessed based on a single final assignment - a computational essay.
+This course is assessed based on work during the semester and a final assignment - a computational essay.
 
 <!-- ::: {.callout-important}
 # Office hours
 
 Students enrolled in `MZ340V17` can book a slot to discuss the assignment via [cal.com/martinfleis/sds](https://cal.com/martinfleis/sds). The slots are available two weeks ahead and must be booked at least a day in advance.
 ::: -->
+
+## Structure of the final mark
+
+The final mark is derived from the total number of points collected during the semester and
+from the final assignment. You can get up to 24 points during the semester for submitted
+exercises and 76 from the final assignment.
+
+## Exercises
+
+Each lesson contains an exercise to practice the topic covered during the class. There
+will be some time to finish it during the class but it is not expected to be finished during
+the class. For each exercise submitted within one week, student will receive 2 points.
+The correctness is not verified, we just want to see that you put some effort in it.
+Submission needs to happen via GitHub Classroom.
 
 ## Computational essay
 
@@ -150,36 +164,37 @@ of the notebook. However, it is not expected that you will need it.
 
 ## Evalutation criteria
 
-The essay is primarily evaluated on a percentage scale of 0-100. To successfully
-complete the class, a minimum of 40% is required:
+The essay is primarily evaluated on a point scale of 0-76:
 
-- [0-15]{.accent}: the code does not work and there is no documentation for it.
-- [16-39]{.accent}: the code does not work or works but does not lead to the expected result. There
+- [0-14]{.accent}: the code does not work and there is no documentation for it.
+- [15-24]{.accent}: the code does not work or works but does not lead to the expected result. There
   is some documentation explaining its logic.
-- [40-49]{.accent}: the code runs and produces the expected output. There is some documentation
+- [25-34]{.accent}: the code runs and produces the expected output. There is some documentation
   explaining its logic.
-- [50-59]{.accent}: the code runs and produces the expected output. There is extensive
+- [35-44]{.accent}: the code runs and produces the expected output. There is extensive
   documentation explaining its logic.
-- [60-69]{.accent}: the code runs and produces the expected output. There is extensive
+- [45-54]{.accent}: the code runs and produces the expected output. There is extensive
   documentation, properly formatted, explaining its logic.
-- [70-79]{.accent}: everything as above, plus the code design includes clear evidence of skills
+- [55-64]{.accent}: everything as above, plus the code design includes clear evidence of skills
   presented in advanced parts of the course (e.g., custom methods, list comprehension,
   etc.).
-- [80-100]{.accent}: everything as above, plus the code includes new knowledge that
+- [65-74]{.accent}: everything as above, plus the code includes new knowledge that
   extends/improves the functionality provided to the student (e.g., algorithm
   optimization, new methods to perform the task, etc.).
 
+Additional point deductions may happen in case of issues in the code or text. Note that
+the documentation should be formatted using Markdown syntax, not HTML.
+
 ::: {.content-visible when-profile='sds4sg'}
-The expected relationship between the score and a final mark (potential change will be
-discussed ahead):
+To successfully complete the class, a
+minimum of 40 points in total is required. The expected relationship between the score
+and a final mark (potential change will be discussed ahead):
 
 - [0-39]{.accent}: 4
 - [40-49]{.accent}: 3
 - [50-69]{.accent}: 2
 - [70-100]{.accent}: 1
 :::
-
-The documentation should be formatted using Markdown syntax, not HTML.
 
 ## Use of generative AI
 
