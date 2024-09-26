@@ -17,6 +17,12 @@ group can benefit from. Learn from the mistakes of the others.
 The tutor will be part of the discussion forum but the priority is to help each other,
 rather than seek guidance outside of class.
 
+## Code management and submissions
+
+The course will be using GitHub Classroom. Each student will have their own code repository
+managed by the Classroom which will eventually contain all submissions. Part of the repository
+will be a definition of the software stack.
+
 ## Software stack
 
 There are many options on how to run Python. You may already have a copy on your machine,
@@ -26,17 +32,29 @@ a package manager (you will be using `Pixi`) and an interface (Jupyter Lab).
 
 The basics will be explained in the first lesson.
 
-### Install Pixi
+### 1. Install Pixi
 
-The main tool dealing with the setup of the coding environment used in this course is [Pixi](https://pixi.sh). Go to Pixi weibsite, and follow the [installation instructions](https://pixi.sh/latest/#installation) to install it on your machines.
+The main tool dealing with the setup of the coding environment used in this course is [Pixi](https://pixi.sh). Go to Pixi website, and follow the [installation instructions](https://pixi.sh/latest/#installation) to install it on your machines.
 
-### Get the template repository and install the environment
+### 2. Install Github Desktop
 
-There is a template repository you should be using during this course. The repository contains
+To manage the repositories and Git, the easiest option is to use [GitHub Desktop](https://github.com/apps/desktop). Get it installed.
+
+### 3. Ensure you have a GitHub account
+
+To use GitHub Classroom, you will need a GitHub account. Get one on [github.com](https://github.com) if you don't have it already.
+
+### 4. Accept the assignment in the GitHub Classroom
+
+You have received a link with the invitation to accept the assignment. Click on it. You may need to authorise GitHub Classroom with GitHub.
+
+### 5. Get the repository and install the environment
+
+GitHub Classroom automatically created a repository you should be using during this course. The repository contains
 the definition of the environment and a placeholder structure for your work.
 
-1. Go to [https://github.com/martinfleis/sds4sg](https://github.com/martinfleis/sds4sg) and either download or clone the repository to a location on your machine where you'd like to store the files for this course.
-2. Use Command Line or Terminal to navigate to the folder.
+1. Clone the repository to a location on your machine where you'd like to store the files for this course.
+2. Use Powershell or Terminal to navigate to the folder.
 4. Install the enviroment using `pixi install`.
 5. Start the Jupyter Lab interface using `pixi run jupyter lab`.
 
