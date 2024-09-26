@@ -178,7 +178,7 @@ The essay is primarily evaluated on a point scale of 0-76:
 - [55-64]{.accent}: everything as above, plus the code design includes clear evidence of skills
   presented in advanced parts of the course (e.g., custom methods, list comprehension,
   etc.).
-- [65-74]{.accent}: everything as above, plus the code includes new knowledge that
+- [65-76]{.accent}: everything as above, plus the code includes new knowledge that
   extends/improves the functionality provided to the student (e.g., algorithm
   optimization, new methods to perform the task, etc.).
 
