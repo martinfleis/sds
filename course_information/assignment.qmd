@@ -56,6 +56,8 @@ Czech) but also code and its outputs, the following requirements are specified:
 
 The rest of the word count is assumed to be consumed by code.
 
+Treat this is guidelines but do not hesitate to deviate if you think it will help the narrative.
+
 ::: {.content-visible when-profile='sds4sg'}
 You have two options regarding topics. The first one is to work on your data on the
 topic of your choice, while the second is a semi-defined task if you prefer that.

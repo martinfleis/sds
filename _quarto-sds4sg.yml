@@ -23,6 +23,7 @@ website:
           - introduction/concepts.qmd
           - introduction/hands_on.qmd
           - introduction/exercise.qmd
+          - introduction/quiz.qmd
       - section: "Open Data Science"
         contents:
           - data_wrangling/concepts.qmd
@@ -68,11 +69,11 @@ website:
           - regression/concepts.qmd
           - regression/hands_on.qmd
           - regression/exercise.qmd
-      # - section: "Non-linear regression"
-      #   contents:
-      #     - classification/concepts.qmd
-      #     - classification/hands_on.qmd
-      #     - classification/exercise.qmd
+      - section: "Non-linear regression"
+        contents:
+          - tree_regression/concepts.qmd
+          - tree_regression/hands_on.qmd
+          - tree_regression/exercise.qmd
       - section: "Classification"
         contents:
           - classification/concepts.qmd

@@ -253,7 +253,7 @@ Python
 
 ::: {.r-fit-text .absolute top=39%}
 ::: {.content-visible when-profile='sds4sg'}
-11 lessons in 13 weeks
+12 lessons in 12 weeks
 :::
 ::: {.content-visible when-profile='micro'}
 10 lessons in 5 days
@@ -269,7 +269,7 @@ Python
 #### 3 lessons on exploratory data analysis {.fragment .fade-in}
 
 ::: {.content-visible when-profile='sds4sg'}
-#### 5 lessons on data science techniques {.fragment .fade-in}
+#### 6 lessons on data science techniques {.fragment .fade-in}
 :::
 ::: {.content-visible when-profile='micro'}
 #### 4 lessons on data science techniques {.fragment .fade-in}
@@ -303,9 +303,11 @@ Raster data
 
 Interpolation
 
-Regression
+Linear regression
 
-[Machine learning]{.content-visible when-profile='sds4sg'}
+[Non-linear regression]{.content-visible when-profile='sds4sg'}
+
+[Classification]{.content-visible when-profile='sds4sg'}
 :::
 
 ::::
@@ -359,7 +361,9 @@ martinfleischmann.net/sds[/micro]{.content-visible when-profile='micro'}
 ---
 
 
-## Assignment
+## Evaluation
+
+### Exercises {.fragment .fade-in}
 
 ::: {.fragment .fade-in}
 ### Computational essay

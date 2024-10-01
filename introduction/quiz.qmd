@@ -57,3 +57,267 @@ No. They have a different meaning.
 
 ::::
 :::::
+
+:::::{.question}
+What symbol is used in Markdown to create a level 2 heading?
+
+::::{.choices}
+
+:::{.choice}
+`#`
+:::
+
+:::{.choice .correct-choice}
+`##`
+:::
+
+:::{.choice}
+`2.`
+:::
+
+:::{.choice}
+`====`
+:::
+
+::::
+:::::
+
+:::::{.question}
+How do you create an unordered list in Markdown?
+
+::::{.choices}
+
+:::{.choice .correct-choice}
+By using `*`,`+`, or `-`
+:::
+
+:::{.choice}
+By using `1.`, `2.`, `3.`
+:::
+
+:::{.choice}
+By using `#`
+:::
+
+:::{.choice}
+By using `>`
+:::
+
+::::
+:::::
+
+:::::{.question}
+Which of the following will correctly italicize text in Markdown?
+
+::::{.choices}
+
+:::{.choice .correct-choice}
+`_italic_`
+:::
+
+:::{.choice .correct-choice}
+`*italic*`
+:::
+
+:::{.choice}
+`**italic**`
+:::
+
+:::{.choice}
+`~~italic~~`
+:::
+
+::::
+:::::
+
+:::::{.question}
+How do you create a link in Markdown?
+
+::::{.choices}
+
+:::{.choice .correct-choice}
+`[Link](URL)`
+:::
+
+:::{.choice}
+`<a href="URL">Link</a>`
+:::
+
+:::{.choice}
+`(Link)[URL]`
+:::
+
+:::{.choice}
+`[URL](Link)`
+:::
+
+::::
+:::::
+
+:::::{.question}
+Which Markdown syntax is used to create a blockquote?
+
+::::{.choices}
+
+:::{.choice .correct-choice}
+`>`
+:::
+
+:::{.choice}
+`#`
+:::
+
+:::{.choice}
+`*`
+:::
+
+:::{.choice}
+`---`
+:::
+
+::::
+:::::
+
+:::::{.question}
+How would you format text in Markdown to be bold?
+
+::::{.choices}
+
+:::{.choice}
+`*bold*`
+:::
+
+:::{.choice .correct-choice}
+`**bold**`
+:::
+
+:::{.choice}
+`~~bold~~`
+:::
+
+:::{.choice}
+`_bold_`
+:::
+
+::::
+:::::
+
+:::::{.question}
+Which of the following is the correct way to create a horizontal rule in Markdown?
+
+::::{.choices}
+
+:::{.choice .correct-choice}
+`---`
+:::
+
+:::{.choice .correct-choice}
+`***`
+:::
+
+:::{.choice .correct-choice}
+`___`
+:::
+
+:::{.choice}
+`~~~`
+:::
+
+::::
+:::::
+
+:::::{.question}
+What is the correct syntax for adding an image in Markdown?
+
+::::{.choices}
+
+:::{.choice .correct-choice}
+`![Alt Text](URL)`
+:::
+
+:::{.choice}
+`[Image](URL)`
+:::
+
+:::{.choice}
+`<img src="URL" alt="Alt Text">`
+:::
+
+:::{.choice}
+`{Image|URL}`
+:::
+
+::::
+:::::
+
+:::::{.question}
+How do you escape special characters (like * or _) in Markdown to display them as plain text?
+
+::::{.choices}
+
+:::{.choice .correct-choice}
+Add a backslash `\` before them
+:::
+
+:::{.choice}
+Add a `#` before them
+:::
+
+:::{.choice}
+Wrap them in `<>`
+:::
+
+:::{.choice}
+Put them in double square brackets `[[ ]]`
+:::
+
+::::
+:::::
+
+:::::{.question}
+How do you start a Jupyter Lab interface from the SDS environment?
+
+::::{.choices}
+
+:::{.choice .correct-choice}
+`pixi run jupyter lab`
+:::
+
+:::{.choice}
+`jupyter start`
+:::
+
+:::{.choice}
+`pixi run jupyter-lab`
+:::
+
+:::{.choice}
+`pixi run lab --run`
+:::
+
+::::
+:::::
+
+:::::{.question}
+How to execute a cell without using a mouse?
+
+::::{.choices}
+
+:::{.choice}
+[Enter]{.keystroke}
+:::
+
+:::{.choice}
+[Space]{.keystroke}
+:::
+
+:::{.choice .correct-choice}
+[Shift]{.keystroke}+[Enter]{.keystroke}
+:::
+
+:::{.choice}
+[Alt]{.keystroke}+[Enter]{.keystroke}
+:::
+
+::::
+:::::

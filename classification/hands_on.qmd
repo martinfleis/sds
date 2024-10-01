@@ -1,5 +1,5 @@
 ---
-title: "Classification and regression"
+title: "Classification in space"
 format:
   html: default
   ipynb: default
