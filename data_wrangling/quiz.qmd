@@ -1,0 +1,202 @@
+---
+title: "Quiz on Data Wrangling and Pandas"
+filters:
+  - naquiz
+---
+
+Check how much you remember from previous sections by answering the questions below.
+
+:::::{.question}
+What is data wrangling?
+
+::::{.choices}
+
+:::{.choice .correct-choice}
+A method of cleaning and transforming raw data.
+:::
+
+:::{.choice}
+An algorithm used to visualize data.
+:::
+
+:::{.choice}
+A data storage technique.
+:::
+
+:::{.choice}
+A type of statistical modeling.
+:::
+
+::::
+:::::
+
+:::::{.question}
+What is the primary purpose of a Jupyter notebook?
+
+::::{.choices}
+
+:::{.choice}
+To store large datasets.
+:::
+
+:::{.choice .correct-choice}
+To provide an interactive environment for coding and documentation.
+:::
+
+:::{.choice}
+To create graphic designs.
+:::
+
+:::{.choice}
+To manage machine learning models.
+:::
+
+
+
+::::
+:::::
+
+:::::{.question}
+What does "munging" refer to in data science?
+
+::::{.choices}
+
+:::{.choice}
+A process of building machine learning models.
+:::
+
+:::{.choice}
+A technique for visualizing data.
+:::
+
+:::{.choice .correct-choice}
+Cleaning and preparing data for analysis
+:::
+
+:::{.choice}
+A method of organizing files in a database.
+:::
+
+::::
+:::::
+
+:::::{.question}
+Which of the following is NOT a strategy to handle missing data in a dataset?
+
+::::{.choices}
+
+:::{.choice}
+Removing rows with missing data.
+:::
+
+:::{.choice}
+Filling missing data with a constant value.
+:::
+
+:::{.choice}
+Ignoring the missing data.
+:::
+
+:::{.choice .correct-choice}
+Adding random data to fill the gaps.
+:::
+
+::::
+:::::
+
+:::::{.question}
+Which of the following methods in pandas is used to check for missing values in a dataset?
+
+::::{.choices}
+
+:::{.choice .correct-choice}
+df.isnull()
+:::
+
+:::{.choice}
+df.fillna()
+:::
+
+:::{.choice}
+df.dropna()
+:::
+
+:::{.choice}
+df.notnull()
+:::
+
+::::
+:::::
+
+:::::{.question}
+13.	You want to load a CSV file into a pandas DataFrame. Which command would you use??
+
+::::{.choices}
+
+:::{.choice .correct-choice}
+pd.read_csv('file.csv')
+:::
+
+:::{.choice}
+pd.load_csv('file.csv')
+:::
+
+:::{.choice}
+pd.open_csv('file.csv')
+:::
+
+:::{.choice}
+pd.readfile('file.csv')
+:::
+
+::::
+:::::
+
+:::::{.question}
+What does the following code do in a pandas DataFrame? df['column'].astype(float)
+
+::::{.choices}
+
+:::{.choice}
+Changes the entire DataFrame to float type.
+:::
+
+:::{.choice .correct-choice}
+Changes the datatype of a specific column to float.
+:::
+
+:::{.choice}
+Deletes the column named 'column'.
+:::
+
+:::{.choice}
+Changes the column index to float numbers.
+:::
+
+::::
+:::::
+
+:::::{.question}
+What is the purpose of the inplace=True argument in pandas functions?
+
+::::{.choices}
+
+:::{.choice}
+It returns a copy of the DataFrame with changes applied.
+:::
+
+:::{.choice .correct-choice}
+It allows the changes to be made directly on the DataFrame without creating a copy.
+:::
+
+:::{.choice}
+It reverts the DataFrame to its original state before changes were applied.
+:::
+
+:::{.choice}
+It return the DataFrame in the output.
+:::
+
+::::
+:::::
+
