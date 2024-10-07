@@ -32,7 +32,7 @@ jobs:
                 version: pre-release
 
           - name: Setup micromamba
-            uses: mamba-org/setup-micromamba@v1
+            uses: mamba-org/setup-micromamba@v2
             with:
               environment-file: environment.yml
               micromamba-version: "latest"
