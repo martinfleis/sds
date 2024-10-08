@@ -1,0 +1,250 @@
+---
+title: "Quiz on pandas"
+filters:
+  - naquiz
+---
+
+Check how much you remember from previous sections by answering the questions below.
+
+:::::{.question}
+**What is data wrangling?**
+
+::::{.choices}
+
+:::{.choice .correct-choice}
+A method of cleaning and transforming raw data.
+:::
+
+:::{.choice}
+An algorithm used to visualize data.
+:::
+
+:::{.choice}
+A data storage technique.
+:::
+
+:::{.choice}
+A type of statistical modeling.
+:::
+
+::::
+:::::
+
+:::::{.question}
+**What does "munging" refer to in data science?**
+
+::::{.choices}
+
+:::{.choice}
+A process of building machine learning models.
+:::
+
+:::{.choice}
+A technique for visualizing data.
+:::
+
+:::{.choice .correct-choice}
+Cleaning and preparing data for analysis
+:::
+
+:::{.choice}
+A method of organizing files in a database.
+:::
+
+::::
+:::::
+
+:::::{.question}
+**Which of the following is NOT an ideal strategy to handle missing data in a dataset?**
+
+::::{.choices}
+
+:::{.choice}
+Removing rows with missing data.
+:::
+
+:::{.choice}
+Filling missing data with a constant value.
+:::
+
+:::{.choice}
+Ignoring the missing data.
+:::
+
+:::{.choice .correct-choice}
+Adding random data to fill the gaps.
+:::
+
+::::
+:::::
+
+:::::{.question}
+**Which of the following methods in pandas is used to check for missing values in a dataset?**
+
+::::{.choices}
+
+:::{.choice .correct-choice}
+`df.isnull()`
+:::
+
+:::{.choice}
+`df.fillna()`
+:::
+
+:::{.choice}
+`df.dropna()`
+:::
+
+:::{.choice}
+`df.notnull()`
+:::
+
+::::
+:::::
+
+:::::{.question}
+**You want to load a CSV file into a pandas DataFrame. Which function would you use?**
+
+::::{.choices}
+
+:::{.choice .correct-choice}
+`pd.read_csv('file.csv')`
+:::
+
+:::{.choice}
+`pd.load_csv('file.csv')`
+:::
+
+:::{.choice}
+`pd.open_csv('file.csv')`
+:::
+
+:::{.choice}
+`pd.read_file('file.csv')`
+:::
+
+::::
+:::::
+
+:::::{.question}
+**What does** `df['column'].astype(float)` **do in a pandas DataFrame?**
+
+::::{.choices}
+
+:::{.choice}
+Changes the entire DataFrame to float type.
+:::
+
+:::{.choice .correct-choice}
+Changes the datatype of a specific column to float.
+:::
+
+:::{.choice}
+Deletes the column named `'column'`.
+:::
+
+:::{.choice}
+Changes the column index to float numbers.
+:::
+
+::::
+:::::
+
+:::::{.question}
+**What does the `float` datatype represents?**
+
+::::{.choices}
+
+:::{.choice}
+A sequence of Unicode characters.
+:::
+
+:::{.choice .correct-choice}
+A number with decimal places.
+:::
+
+:::{.choice}
+A number without decimal places.
+:::
+
+:::{.choice}
+Any arbitrary object.
+:::
+
+::::
+:::::
+
+:::::{.question}
+**Which of these conditions does NOT describe a tidy data frame?**
+
+::::{.choices}
+
+:::{.choice}
+Each observation forms a row.
+:::
+
+:::{.choice .correct-choice}
+Each column contains only non-missing values.
+:::
+
+:::{.choice}
+Each variable forms a column.
+:::
+
+:::{.choice}
+Each type of observational unit forms a table.
+:::
+
+::::
+:::::
+
+:::::{.question}
+**Which package is used by pandas for plotting?**
+
+::::{.choices}
+
+:::{.choice}
+`seaborn`
+:::
+
+:::{.choice}
+`pyplot`
+:::
+
+:::{.choice .correct-choice}
+`matplotlib`
+:::
+
+:::{.choice}
+`hvplot`
+:::
+
+::::
+:::::
+
+
+
+:::::{.question}
+**What does** `df.loc[:, "cat":"dog"]` **do?**
+
+::::{.choices}
+
+:::{.choice}
+Selects all rows and columns `"cat"` and `"dog"`.
+:::
+
+:::{.choice}
+Selects all columns and rows `"cat"` and `"dog"`.
+:::
+
+:::{.choice}
+Selects all columns and all rows between rows `"cat"` and `"dog"`.
+:::
+
+:::{.choice .correct-choice}
+Selects all rows and all columns bewtween columns `"cat"` and `"dog"`.
+:::
+
+::::
+:::::
+
