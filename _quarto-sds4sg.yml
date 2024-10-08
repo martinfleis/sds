@@ -29,6 +29,7 @@ website:
           - data_wrangling/concepts.qmd
           - data_wrangling/hands_on.qmd
           - data_wrangling/exercise.qmd
+          - data_wrangling/quiz.qmd
       - section: "Spatial data"
         contents:
           - geographic_data/concepts.qmd
