@@ -1,0 +1,250 @@
+---
+title: "Quiz on geopandas"
+filters:
+  - naquiz
+---
+
+Check how much you remember from previous sections by answering the questions below.
+
+:::::{.question}
+**What is the primary purpose of `geopandas` in Python?**
+
+::::{.choices}
+
+:::{.choice}
+To handle time series data.
+:::
+
+:::{.choice.correct-choice}
+To manage geospatial data with geometry support.
+:::
+
+:::{.choice}
+To visualize large datasets.
+:::
+
+:::{.choice}
+To improve data processing speed.
+:::
+
+::::
+:::::
+
+:::::{.question}
+**How does a `GeoDataFrame` differ from a `DataFrame`?**
+
+::::{.choices}
+
+:::{.choice}
+It supports indexing.
+:::
+
+:::{.choice}
+It is faster for processing.
+:::
+
+:::{.choice .correct-choice}
+It includes a geometry column with spatial data types.
+:::
+
+:::{.choice}
+It can only contain geometric data and cannot hold any other types of data.
+:::
+
+::::
+:::::
+
+:::::{.question}
+**Which of the following is NOT a common geometry type supported by `geopandas`?**
+
+::::{.choices}
+
+:::{.choice}
+Polygon
+:::
+
+:::{.choice}
+`Point`
+:::
+
+:::{.choice .correct-choice}
+`Surface`
+:::
+
+:::{.choice}
+`LineString`
+:::
+
+::::
+:::::
+
+:::::{.question}
+**Which file format is most commonly associated with multi-layer geospatial data in `geopandas`?**
+
+::::{.choices}
+
+:::{.choice}
+CSV.
+:::
+
+:::{.choice}
+JSON.
+:::
+
+:::{.choice}
+Shapefile.
+:::
+
+:::{.choice .correct-choice}
+GeoPackage.
+:::
+
+::::
+:::::
+
+:::::{.question}
+**What does a spatial join operation do in `geopandas`?**
+
+::::{.choices}
+
+:::{.choice}
+Combines non-spatial data based on common columns.
+:::
+
+:::{.choice .correct-choice}
+Merges geometries based on their spatial relationships.
+:::
+
+:::{.choice}
+Creates new geometries by cutting overlapping areas.
+:::
+
+:::{.choice}
+Converts multipolygons into polygons.
+:::
+
+::::
+:::::
+
+:::::{.question}
+**How would you convert a `MultiPolygon` to a `Polygon` in `geopandas` if the geometry is multipart?**
+
+::::{.choices}
+
+:::{.choice .correct-choice}
+`explode()`
+:::
+
+:::{.choice}
+`to_single()`
+:::
+
+:::{.choice}
+`unary_union()`
+:::
+
+:::{.choice}
+`dissolve()`
+:::
+
+::::
+:::::
+
+:::::{.question}
+**If two `GeoDataFrames` have different CRSs, what must be done before performing a spatial join?**
+
+::::{.choices}
+
+:::{.choice}
+Ensure they have the same columns.
+:::
+
+:::{.choice}
+Only keep the geometries and delete all attributes.
+:::
+
+:::{.choice .correct-choice}
+Reproject them to the same CRS.
+:::
+
+:::{.choice}
+Convert one `GeoDataFrame` to a `DataFrame`.
+:::
+
+::::
+:::::
+
+:::::{.question}
+**How would you reproject a `GeoDataFrame` called `gdf` to EPSG:3857?**
+
+::::{.choices .correct-choice}
+
+:::{.choice}
+`gdf.to_crs(3857)`.
+:::
+
+:::{.choice}
+`gdf.convert_crs(epsg=3857)`.
+:::
+
+:::{.choice}
+`gdf.crs(epsg=3857)`.
+:::
+
+:::{.choice}
+`gdf.to_epsg(3857)`.
+:::
+
+::::
+:::::
+
+:::::{.question}
+**What is the primary difference in the result between the `plot()` and `explore()` functions in geopandas**
+
+::::{.choices}
+
+:::{.choice}
+`plot()` is used for visualizing non-spatial data, while `explore()` is only for spatial data.
+:::
+
+:::{.choice}
+Both `plot()` and `explore()` create static maps, but `explore()` uses different color schemes.
+:::
+
+:::{.choice}
+`plot()` can only be used for polygons, while `explore()` can handle all geometry types.
+:::
+
+:::{.choice.correct-choice}
+`plot()` creates a static map, while `explore()` creates an interactive map that allows zooming and panning.
+:::
+
+::::
+:::::
+
+
+
+:::::{.question}
+**Which of the following statements correctly describes the difference between a spatial join and a spatial predicate in `geopandas`**
+
+::::{.choices}
+
+:::{.choice}
+A spatial join filters data based on attribute values, while a spatial predicate performs calculations on geometric data.
+:::
+
+:::{.choice}
+A spatial join can only be performed on polygon geometries, whereas a spatial predicate can be applied to any geometry type (points, lines, or polygons).
+:::
+
+:::{.choice .correct-choice}
+A spatial join combines two `GeoDataFrames` based on a spatial relationship, while a spatial predicate is a function that returns a boolean value based on the relationship between geometries.
+:::
+
+:::{.choice}
+A spatial join outputs a new `GeoDataFrame` with merged attributes, while a spatial predicate modifies the original GeoDataFrames by adding new geometric properties.
+:::
+
+::::
+:::::
+
