@@ -582,8 +582,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h2 class="anchored" data-anchor-id="data-preparation">Data Preparation</h2>
 <p>You will load two datasets. One with the price data and the other with the boundaries of municipal districts. Below are the links to both. Your first task is to figure out how to load them as two <code>GeoDataFrames</code>, one called <code>price</code> and the other called <code>districts</code>.</p>
 <ul>
-<li><a href="https://geoportalpraha.cz/data-a-sluzby/2ac56261d90941ce8018cd2a6def5689_0">The link to the price dataset</a></li>
-<li><a href="https://geoportalpraha.cz/data-a-sluzby/7cfe7ced3b254dcfa91f4a333a39e027_0">The link to the districts dataset</a></li>
+<li><a href="https://martinfleischmann.net/sds/geographic_data/data/SED_CenovaMapa_p_shp.zip">The link to the price dataset</a></li>
+<li><a href="https://martinfleischmann.net/sds/geographic_data/data/MAP_MESTSKECASTI_P_shp.zip">The link to the districts dataset</a></li>
 </ul>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
@@ -597,27 +597,7 @@ Tip
 </div>
 <div id="callout-1" class="callout-1-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<p>You have two options: either download and read from disk or pass the URL of the actual file to <code>geopandas.read_file</code>. Pay attention to file formats (open are better than proprietary) and projections.</p>
-</div>
-</div>
-</div>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Backup data
-</div>
-<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
-</div>
-<div id="callout-2" class="callout-2-contents callout-collapse collapse">
-<div class="callout-body-container callout-body">
-<p>If the links do not work, please <a href="https://github.com/martinfleis/sds/issues/new">report it</a> and use the backup:</p>
-<ul>
-<li><a href="https://martinfleischmann.net/sds/geographic_data/data/SED_CenovaMapa_p_shp.zip">price dataset</a></li>
-<li><a href="https://martinfleischmann.net/sds/geographic_data/data/MAP_MESTSKECASTI_P_shp.zip">districts dataset</a></li>
-</ul>
+<p>You have two options: either download and read from disk or pass the URL of the actual file to <code>geopandas.read_file</code>.</p>
 </div>
 </div>
 </div>
@@ -637,7 +617,7 @@ Backup data
 <li>Can you change the transparency of polygons?</li>
 </ul>
 <div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -646,7 +626,7 @@ Tip
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-3" class="callout-3-contents callout-collapse collapse">
+<div id="callout-2" class="callout-2-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <ul>
 <li>Colormap is controlled via the <code>cmap=</code> keyword.</li>
@@ -664,20 +644,20 @@ Tip
 <ul>
 <li>Create a convex hull around each polygon in <code>price</code>.</li>
 <li>Calculate the area of these convex hulls.</li>
-<li>Find the 20% smallest convex hulls in the <code>GeoDataFrame</code>. Create a new object (e.g.&nbsp;<code>smallest</code>) only with them.</li>
-<li>Create a multi-layer map of Prague where the smallest areas are coloured in one colour, and the rest appear in black.</li>
+<li>Find the convex hulls with an area between 40th a 60th percentile in the GeoDataFrame. Create a new object (e.g.&nbsp;<code>average</code>) only with them.</li>
+<li>Create a multi-layer map of Prague where the smallest areas are coloured in one colour, and the rest appear in another. Try making it legible enough.</li>
 </ul>
 </section>
 <section id="joining" class="level2">
 <h2 class="anchored" data-anchor-id="joining">Joining</h2>
-<p>Join the two <code>GeoDataFrame</code> using <code>.sjoin()</code> or <code>.overlay()</code> methods.</p>
+<p>Join the two <code>GeoDataFrame</code> using <code>.sjoin()</code> or <code>.overlay()</code> methods to get data per district.</p>
 <ul>
 <li>Is the mean price higher in Praha 3 or Praha 6?</li>
 <li>Which district is the cheapest?</li>
 <li>What is the difference between the cheapest and the most expensive one?</li>
 </ul>
 <div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -686,7 +666,7 @@ Tip
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-4" class="callout-4-contents callout-collapse collapse">
+<div id="callout-3" class="callout-3-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>You may need to use <code>.groupby()</code> after joining.</p>
 <p>For those of you who don’t speak Czech, the district names are encoded in the <code>"NAZEV_1"</code> column.</p>
