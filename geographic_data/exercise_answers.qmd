@@ -19,8 +19,8 @@ import contextily as ctx
 Download data.
 
 ```py
-price = gpd.read_file("SED_CUR_SED_CENOVAMAPA_P.zip")
-districts = gpd.read_file("MAP_CUR_MAP_MESTSKECASTI_P.zip")
+price = gpd.read_file("https://martinfleischmann.net/sds/geographic_data/data/SED_CenovaMapa_p_shp.zip")
+districts = gpd.read_file("https://martinfleischmann.net/sds/geographic_data/data/MAP_MESTSKECASTI_P_shp.zip")
 ```
 
 ```py
@@ -61,31 +61,19 @@ Calculate the area of these convex hulls.
 price["hull_area"] = price["hull"].area
 ```
 
-Find the 20% smallest convex hulls in the GeoDataFrame. Create a new object (e.g. smallest) only with them.
+Find the convex hulls with an area between 40th a 60th percentile in the GeoDataFrame. Create a new object (e.g. `average`) only with them.
 
 ```py
-total_length = len(price)  # get total length
-twenty_percent = total_length / 5  # get the length of 20%
-twenty_percent
+min_bound = price["hull_area"].quantile(.4)
+max_bound = price["hull_area"].quantile(.6)
+average = price.loc[(price["hull_area"] > min_bound) & (price["hull_area"] < max_bound)]
 ```
 
-You can either type it in:
+Create a multi-layer map of Prague where the smallest areas are coloured in one colour, and the rest appear in another. Try making it legible enough.
 
 ```py
-smallest = price.sort_values("hull_area").iloc[:1889]
-```
-
-Or convert the `float` to `int` and use it programmatically.
-
-```py
-smallest = price.sort_values("hull_area").iloc[:int(twenty_percent)]
-```
-
-Create a multi-layer map of Prague where the smallest areas are coloured in one colour, and the rest appear in black. _(I need to revise this task, the result is not great...)_
-
-```py
-ax = price.plot(color="black")
-smallest.plot(ax=ax, color="red")
+ax = price.plot(color="lightgray")
+average.plot(color="red", ax=ax)
 ```
 
 Join the two GeoDataFrame using .sjoin() or .overlay() methods.
@@ -101,7 +89,7 @@ sorted_price = price_w_district.groupby("NAZEV_MC")["CENA"].mean().sort_values()
 sorted_price
 ```
 
-From the Series above, you can read that Praha 3 is more expensive than Praha 6.
+From the Series above, you can read that Praha 3 is more expensive than Praha 6. Or you can do it programmatically :).
 
 Which district is the cheapest?
 
