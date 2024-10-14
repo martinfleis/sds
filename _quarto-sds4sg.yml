@@ -35,6 +35,7 @@ website:
           - geographic_data/concepts.qmd
           - geographic_data/hands_on.qmd
           - geographic_data/exercise.qmd
+          - geographic_data/quiz.qmd
       - section: "Spatial weights"
         contents:
           - spatial_graphs/concepts.qmd
