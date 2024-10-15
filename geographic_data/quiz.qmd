@@ -215,7 +215,7 @@ Both `plot()` and `explore()` create static maps, but `explore()` uses different
 `plot()` can only be used for polygons, while `explore()` can handle all geometry types.
 :::
 
-:::{.choice.correct-choice}
+:::{.choice .correct-choice}
 `plot()` creates a static map, while `explore()` creates an interactive map that allows zooming and panning.
 :::
 
@@ -223,9 +223,8 @@ Both `plot()` and `explore()` create static maps, but `explore()` uses different
 :::::
 
 
-
 :::::{.question}
-**Which of the following statements correctly describes the difference between a spatial join and a spatial predicate in `geopandas`**
+**Which of the following statements correctly describes the difference between a spatial join and a spatial predicate in `geopandas`?**
 
 ::::{.choices}
 
