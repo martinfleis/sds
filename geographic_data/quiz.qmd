@@ -60,11 +60,11 @@ It can only contain geometric data and cannot hold any other types of data.
 ::::{.choices}
 
 :::{.choice}
-Polygon
+`Polygon`
 :::
 
 :::{.choice}
-`Point`
+`GeometryCollection`
 :::
 
 :::{.choice .correct-choice}
@@ -79,24 +79,24 @@ Polygon
 :::::
 
 :::::{.question}
-**Which file format is most commonly associated with multi-layer geospatial data in `geopandas`?**
+**Which file format is most commonly associated with multi-layer geospatial data?**
 
 ::::{.choices}
 
 :::{.choice}
-CSV.
+CSV
 :::
 
 :::{.choice}
-JSON.
+GeoJSON
 :::
 
 :::{.choice}
-Shapefile.
+Shapefile
 :::
 
 :::{.choice .correct-choice}
-GeoPackage.
+GeoPackage
 :::
 
 ::::
@@ -112,7 +112,7 @@ Combines non-spatial data based on common columns.
 :::
 
 :::{.choice .correct-choice}
-Merges geometries based on their spatial relationships.
+Merges data based on their spatial relationships.
 :::
 
 :::{.choice}
@@ -140,7 +140,7 @@ Converts multipolygons into polygons.
 :::
 
 :::{.choice}
-`unary_union()`
+`union_all()`
 :::
 
 :::{.choice}
@@ -188,7 +188,7 @@ Convert one `GeoDataFrame` to a `DataFrame`.
 :::
 
 :::{.choice}
-`gdf.crs(epsg=3857)`.
+`gdf.set_crs(epsg=3857)`.
 :::
 
 :::{.choice}
