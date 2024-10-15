@@ -15,7 +15,7 @@ Check how much you remember from previous sections by answering the questions be
 To handle time series data.
 :::
 
-:::{.choice.correct-choice}
+:::{.choice .correct-choice}
 To manage geospatial data with geometry support.
 :::
 
@@ -225,7 +225,7 @@ Both `plot()` and `explore()` create static maps, but `explore()` uses different
 
 
 :::::{.question}
-**Which of the following statements correctly describes the difference between a spatial join and a spatial predicate in `geopandas`**
+**Which of the following statements correctly describes the difference between a spatial join and a spatial predicate in `geopandas`?**
 
 ::::{.choices}
 
