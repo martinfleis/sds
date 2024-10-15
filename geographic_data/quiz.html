@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Spatial data old and new – Spatial Data Science for Social Geography</title>
+<title>Quiz on GeoPandas – Spatial Data Science for Social Geography</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,27 +20,7 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-/* CSS for citations */
-div.csl-bib-body { }
-div.csl-entry {
-  clear: both;
-  margin-bottom: 0em;
-}
-.hanging-indent div.csl-entry {
-  margin-left:2em;
-  text-indent:-2em;
-}
-div.csl-left-margin {
-  min-width:2em;
-  float:left;
-}
-div.csl-right-inline {
-  margin-left:2em;
-  padding-left:1em;
-}
-div.csl-indent {
-  margin-left: 2em;
-}</style>
+</style>
 
 
 <script src="../site_libs/quarto-nav/quarto-nav.js"></script>
@@ -50,8 +30,8 @@ div.csl-indent {
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<link href="../geographic_data/hands_on.html" rel="next">
-<link href="../data_wrangling/quiz.html" rel="prev">
+<link href="../spatial_graphs/concepts.html" rel="next">
+<link href="../geographic_data/exercise.html" rel="prev">
 <link href="../_assets/favicon.png" rel="icon" type="image/png">
 <script src="../site_libs/quarto-html/quarto.js"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
@@ -64,6 +44,7 @@ div.csl-indent {
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
 <link href="../site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../site_libs/quarto-contrib/alpine-3.12/buttons.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -94,7 +75,7 @@ div.csl-indent {
 
 
 <link rel="stylesheet" href="../_assets/styles.css">
-<meta name="twitter:title" content="Spatial data old and new – Spatial Data Science for Social Geography">
+<meta name="twitter:title" content="Quiz on GeoPandas – Spatial Data Science for Social Geography">
 <meta name="twitter:description" content="">
 <meta name="twitter:card" content="summary">
 </head>
@@ -108,7 +89,7 @@ div.csl-indent {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../geographic_data/concepts.html">Spatial data</a></li><li class="breadcrumb-item"><a href="../geographic_data/concepts.html">Spatial data old and new</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../geographic_data/concepts.html">Spatial data</a></li><li class="breadcrumb-item"><a href="../geographic_data/quiz.html">Quiz on GeoPandas</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -245,7 +226,7 @@ div.csl-indent {
       <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../geographic_data/concepts.html" class="sidebar-item-text sidebar-link active">
+  <a href="../geographic_data/concepts.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Spatial data old and new</span></a>
   </div>
 </li>
@@ -263,7 +244,7 @@ div.csl-indent {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../geographic_data/quiz.html" class="sidebar-item-text sidebar-link">
+  <a href="../geographic_data/quiz.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Quiz on GeoPandas</span></a>
   </div>
 </li>
@@ -535,21 +516,15 @@ div.csl-indent {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">On this page</h2>
-   
-  <ul>
-  
-  </ul>
-<div class="toc-actions"><ul><li><a href="https://github.com/martinfleis/sds/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></nav>
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
+        
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../geographic_data/concepts.html">Spatial data</a></li><li class="breadcrumb-item"><a href="../geographic_data/concepts.html">Spatial data old and new</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../geographic_data/concepts.html">Spatial data</a></li><li class="breadcrumb-item"><a href="../geographic_data/quiz.html">Quiz on GeoPandas</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">Spatial data old and new</h1>
+<h1 class="title">Quiz on GeoPandas</h1>
 </div>
 
 
@@ -566,43 +541,221 @@ div.csl-indent {
 </header>
 
 
-<p>Slides from the talk about the nature of <em>old</em> spatial data and <em>new</em> spatial data, adapted from <span class="citation" data-cites="darribas_gds_course">Dani Arribas-Bel (<a href="#ref-darribas_gds_course" role="doc-biblioref">2019</a>)</span>, drawing from the work of <span class="citation" data-cites="Lazer14032014">Lazer et al. (<a href="#ref-Lazer14032014" role="doc-biblioref">2014</a>)</span> and <span class="citation" data-cites="ArribasBel201445">Daniel Arribas-Bel (<a href="#ref-ArribasBel201445" role="doc-biblioref">2014</a>)</span>.</p>
-<iframe class="slide-deck" src="slides.html"></iframe>
-<div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
+<p>Check how much you remember from previous sections by answering the questions below.</p>
+<div class="question">
+<p><strong>What is the primary purpose of <code>geopandas</code> in Python?</strong></p>
+<div class="choices">
+<div x-data="{ answer: '' , clear() { this.answer = '' }}">
+
+<div class="choice">
+<p></p><p><input class="form-check-input" type="radio" x-model="answer" value="no1"> <span id="no1" x-show="answer == $el.id" class="badge">✗</span>To handle time series data.</p><p></p>
 </div>
-<div class="callout-title-container flex-fill">
-Related reading
+<div class="choice.correct-choice">
+<p>To manage geospatial data with geometry support.</p>
+</div>
+<div class="choice">
+<p></p><p><input class="form-check-input" type="radio" x-model="answer" value="no3"> <span id="no3" x-show="answer == $el.id" class="badge">✗</span>To visualize large datasets.</p><p></p>
+</div>
+<div class="choice">
+<p></p><p><input class="form-check-input" type="radio" x-model="answer" value="no4"> <span id="no4" x-show="answer == $el.id" class="badge">✗</span>To improve data processing speed.</p><p></p>
 </div>
 </div>
-<div class="callout-body-container callout-body">
-<p>Parts of the chapter <a href="https://geographicdata.science/book/notebooks/03_spatial_data.html"><em>Spatial Data</em></a> dealing with tabular data from the Geographic Data Science with Python by <span class="citation" data-cites="rey2023geographic">Rey, Arribas-Bel, and Wolf (<a href="#ref-rey2023geographic" role="doc-biblioref">2023</a>)</span>.</p>
+
+</div>
+</div>
+<div class="question">
+<p><strong>How does a <code>GeoDataFrame</code> differ from a <code>DataFrame</code>?</strong></p>
+<div class="choices">
+<div x-data="{ answer: '' , clear() { this.answer = '' }}">
+
+<div class="choice">
+<p></p><p><input class="form-check-input" type="radio" x-model="answer" value="no1"> <span id="no1" x-show="answer == $el.id" class="badge">✗</span>It supports indexing.</p><p></p>
+</div>
+<div class="choice">
+<p></p><p><input class="form-check-input" type="radio" x-model="answer" value="no2"> <span id="no2" x-show="answer == $el.id" class="badge">✗</span>It is faster for processing.</p><p></p>
+</div>
+<div class="choice correct-choice">
+<p></p><p><input class="form-check-input" type="radio" x-model="answer" value="correct"> <span id="correct" x-show="answer == $el.id" class="badge">✓</span>It includes a geometry column with spatial data types.</p><p></p>
+</div>
+<div class="choice">
+<p></p><p><input class="form-check-input" type="radio" x-model="answer" value="no4"> <span id="no4" x-show="answer == $el.id" class="badge">✗</span>It can only contain geometric data and cannot hold any other types of data.</p><p></p>
+</div>
+</div>
+
+</div>
+</div>
+<div class="question">
+<p><strong>Which of the following is NOT a common geometry type supported by <code>geopandas</code>?</strong></p>
+<div class="choices">
+<div x-data="{ answer: '' , clear() { this.answer = '' }}">
+
+<div class="choice">
+<p></p><p><input class="form-check-input" type="radio" x-model="answer" value="no1"> <span id="no1" x-show="answer == $el.id" class="badge">✗</span><code>Polygon</code></p><p></p>
+</div>
+<div class="choice">
+<p></p><p><input class="form-check-input" type="radio" x-model="answer" value="no2"> <span id="no2" x-show="answer == $el.id" class="badge">✗</span><code>GeometryCollection</code></p><p></p>
+</div>
+<div class="choice correct-choice">
+<p></p><p><input class="form-check-input" type="radio" x-model="answer" value="correct"> <span id="correct" x-show="answer == $el.id" class="badge">✓</span><code>Surface</code></p><p></p>
+</div>
+<div class="choice">
+<p></p><p><input class="form-check-input" type="radio" x-model="answer" value="no4"> <span id="no4" x-show="answer == $el.id" class="badge">✗</span><code>LineString</code></p><p></p>
+</div>
+</div>
+
+</div>
+</div>
+<div class="question">
+<p><strong>Which file format is most commonly associated with multi-layer geospatial data?</strong></p>
+<div class="choices">
+<div x-data="{ answer: '' , clear() { this.answer = '' }}">
+
+<div class="choice">
+<p></p><p><input class="form-check-input" type="radio" x-model="answer" value="no1"> <span id="no1" x-show="answer == $el.id" class="badge">✗</span>CSV</p><p></p>
+</div>
+<div class="choice">
+<p></p><p><input class="form-check-input" type="radio" x-model="answer" value="no2"> <span id="no2" x-show="answer == $el.id" class="badge">✗</span>GeoJSON</p><p></p>
+</div>
+<div class="choice">
+<p></p><p><input class="form-check-input" type="radio" x-model="answer" value="no3"> <span id="no3" x-show="answer == $el.id" class="badge">✗</span>Shapefile</p><p></p>
+</div>
+<div class="choice correct-choice">
+<p></p><p><input class="form-check-input" type="radio" x-model="answer" value="correct"> <span id="correct" x-show="answer == $el.id" class="badge">✓</span>GeoPackage</p><p></p>
+</div>
+</div>
+
+</div>
+</div>
+<div class="question">
+<p><strong>What does a spatial join operation do in <code>geopandas</code>?</strong></p>
+<div class="choices">
+<div x-data="{ answer: '' , clear() { this.answer = '' }}">
+
+<div class="choice">
+<p></p><p><input class="form-check-input" type="radio" x-model="answer" value="no1"> <span id="no1" x-show="answer == $el.id" class="badge">✗</span>Combines non-spatial data based on common columns.</p><p></p>
+</div>
+<div class="choice correct-choice">
+<p></p><p><input class="form-check-input" type="radio" x-model="answer" value="correct"> <span id="correct" x-show="answer == $el.id" class="badge">✓</span>Merges data based on their spatial relationships.</p><p></p>
+</div>
+<div class="choice">
+<p></p><p><input class="form-check-input" type="radio" x-model="answer" value="no3"> <span id="no3" x-show="answer == $el.id" class="badge">✗</span>Creates new geometries by cutting overlapping areas.</p><p></p>
+</div>
+<div class="choice">
+<p></p><p><input class="form-check-input" type="radio" x-model="answer" value="no4"> <span id="no4" x-show="answer == $el.id" class="badge">✗</span>Converts multipolygons into polygons.</p><p></p>
+</div>
+</div>
+
+</div>
+</div>
+<div class="question">
+<p><strong>How would you convert a <code>MultiPolygon</code> to a <code>Polygon</code> in <code>geopandas</code> if the geometry is multipart?</strong></p>
+<div class="choices">
+<div x-data="{ answer: '' , clear() { this.answer = '' }}">
+
+<div class="choice correct-choice">
+<p></p><p><input class="form-check-input" type="radio" x-model="answer" value="correct"> <span id="correct" x-show="answer == $el.id" class="badge">✓</span><code>explode()</code></p><p></p>
+</div>
+<div class="choice">
+<p></p><p><input class="form-check-input" type="radio" x-model="answer" value="no2"> <span id="no2" x-show="answer == $el.id" class="badge">✗</span><code>to_single()</code></p><p></p>
+</div>
+<div class="choice">
+<p></p><p><input class="form-check-input" type="radio" x-model="answer" value="no3"> <span id="no3" x-show="answer == $el.id" class="badge">✗</span><code>union_all()</code></p><p></p>
+</div>
+<div class="choice">
+<p></p><p><input class="form-check-input" type="radio" x-model="answer" value="no4"> <span id="no4" x-show="answer == $el.id" class="badge">✗</span><code>dissolve()</code></p><p></p>
+</div>
+</div>
+
+</div>
+</div>
+<div class="question">
+<p><strong>If two <code>GeoDataFrames</code> have different CRSs, what must be done before performing a spatial join?</strong></p>
+<div class="choices">
+<div x-data="{ answer: '' , clear() { this.answer = '' }}">
+
+<div class="choice">
+<p></p><p><input class="form-check-input" type="radio" x-model="answer" value="no1"> <span id="no1" x-show="answer == $el.id" class="badge">✗</span>Ensure they have the same columns.</p><p></p>
+</div>
+<div class="choice">
+<p></p><p><input class="form-check-input" type="radio" x-model="answer" value="no2"> <span id="no2" x-show="answer == $el.id" class="badge">✗</span>Only keep the geometries and delete all attributes.</p><p></p>
+</div>
+<div class="choice correct-choice">
+<p></p><p><input class="form-check-input" type="radio" x-model="answer" value="correct"> <span id="correct" x-show="answer == $el.id" class="badge">✓</span>Reproject them to the same CRS.</p><p></p>
+</div>
+<div class="choice">
+<p></p><p><input class="form-check-input" type="radio" x-model="answer" value="no4"> <span id="no4" x-show="answer == $el.id" class="badge">✗</span>Convert one <code>GeoDataFrame</code> to a <code>DataFrame</code>.</p><p></p>
+</div>
+</div>
+
+</div>
+</div>
+<div class="question">
+<p><strong>How would you reproject a <code>GeoDataFrame</code> called <code>gdf</code> to EPSG:3857?</strong></p>
+<div class="choices correct-choice">
+<div x-data="{ answer: '' , clear() { this.answer = '' }}">
+
+<div class="choice">
+<p></p><p><input class="form-check-input" type="radio" x-model="answer" value="no1"> <span id="no1" x-show="answer == $el.id" class="badge">✗</span><code>gdf.to_crs(3857)</code>.</p><p></p>
+</div>
+<div class="choice">
+<p></p><p><input class="form-check-input" type="radio" x-model="answer" value="no2"> <span id="no2" x-show="answer == $el.id" class="badge">✗</span><code>gdf.convert_crs(epsg=3857)</code>.</p><p></p>
+</div>
+<div class="choice">
+<p></p><p><input class="form-check-input" type="radio" x-model="answer" value="no3"> <span id="no3" x-show="answer == $el.id" class="badge">✗</span><code>gdf.set_crs(epsg=3857)</code>.</p><p></p>
+</div>
+<div class="choice">
+<p></p><p><input class="form-check-input" type="radio" x-model="answer" value="no4"> <span id="no4" x-show="answer == $el.id" class="badge">✗</span><code>gdf.to_epsg(3857)</code>.</p><p></p>
+</div>
+</div>
+
+</div>
+</div>
+<div class="question">
+<p><strong>What is the primary difference in the result between the <code>plot()</code> and <code>explore()</code> functions in geopandas</strong></p>
+<div class="choices">
+<div x-data="{ answer: '' , clear() { this.answer = '' }}">
+
+<div class="choice">
+<p></p><p><input class="form-check-input" type="radio" x-model="answer" value="no1"> <span id="no1" x-show="answer == $el.id" class="badge">✗</span><code>plot()</code> is used for visualizing non-spatial data, while <code>explore()</code> is only for spatial data.</p><p></p>
+</div>
+<div class="choice">
+<p></p><p><input class="form-check-input" type="radio" x-model="answer" value="no2"> <span id="no2" x-show="answer == $el.id" class="badge">✗</span>Both <code>plot()</code> and <code>explore()</code> create static maps, but <code>explore()</code> uses different color schemes.</p><p></p>
+</div>
+<div class="choice">
+<p></p><p><input class="form-check-input" type="radio" x-model="answer" value="no3"> <span id="no3" x-show="answer == $el.id" class="badge">✗</span><code>plot()</code> can only be used for polygons, while <code>explore()</code> can handle all geometry types.</p><p></p>
+</div>
+<div class="choice.correct-choice">
+<p><code>plot()</code> creates a static map, while <code>explore()</code> creates an interactive map that allows zooming and panning.</p>
+</div>
+</div>
+
+</div>
+</div>
+<div class="question">
+<p><strong>Which of the following statements correctly describes the difference between a spatial join and a spatial predicate in <code>geopandas</code></strong></p>
+<div class="choices">
+<div x-data="{ answer: '' , clear() { this.answer = '' }}">
+
+<div class="choice">
+<p></p><p><input class="form-check-input" type="radio" x-model="answer" value="no1"> <span id="no1" x-show="answer == $el.id" class="badge">✗</span>A spatial join filters data based on attribute values, while a spatial predicate performs calculations on geometric data.</p><p></p>
+</div>
+<div class="choice">
+<p></p><p><input class="form-check-input" type="radio" x-model="answer" value="no2"> <span id="no2" x-show="answer == $el.id" class="badge">✗</span>A spatial join can only be performed on polygon geometries, whereas a spatial predicate can be applied to any geometry type (points, lines, or polygons).</p><p></p>
+</div>
+<div class="choice correct-choice">
+<p></p><p><input class="form-check-input" type="radio" x-model="answer" value="correct"> <span id="correct" x-show="answer == $el.id" class="badge">✓</span>A spatial join combines two <code>GeoDataFrames</code> based on a spatial relationship, while a spatial predicate is a function that returns a boolean value based on the relationship between geometries.</p><p></p>
+</div>
+<div class="choice">
+<p></p><p><input class="form-check-input" type="radio" x-model="answer" value="no4"> <span id="no4" x-show="answer == $el.id" class="badge">✗</span>A spatial join outputs a new <code>GeoDataFrame</code> with merged attributes, while a spatial predicate modifies the original GeoDataFrames by adding new geometric properties.</p><p></p>
+</div>
+</div>
+
 </div>
 </div>
 
 
-<div id="quarto-appendix" class="default"><section id="acknowledgements" class="level2 appendix"><h2 class="anchored quarto-appendix-heading">Acknowledgements</h2><div class="quarto-appendix-contents">
 
-<p>This section is derived from <em>A Course on Geographic Data Science</em> by <span class="citation" data-cites="darribas_gds_course">Dani Arribas-Bel (<a href="#ref-darribas_gds_course" role="doc-biblioref">2019</a>)</span>, licensed under CC-BY-SA 4.0.</p>
-
-
-
-</div></section><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
-<div id="ref-darribas_gds_course" class="csl-entry" role="listitem">
-Arribas-Bel, Dani. 2019. <span>“A Course on Geographic Data Science.”</span> <em>The Journal of Open Source Education</em> 2 (14). <a href="https://doi.org/10.21105/jose.00042">https://doi.org/10.21105/jose.00042</a>.
-</div>
-<div id="ref-ArribasBel201445" class="csl-entry" role="listitem">
-Arribas-Bel, Daniel. 2014. <span>“Accidental, Open and Everywhere: Emerging Data Sources for the Understanding of Cities.”</span> <em>Applied Geography</em> 49: 45–53. <a href="https://doi.org/10.1016/j.apgeog.2013.09.012">https://doi.org/10.1016/j.apgeog.2013.09.012</a>.
-</div>
-<div id="ref-Lazer14032014" class="csl-entry" role="listitem">
-Lazer, David, Ryan Kennedy, Gary King, and Alessandro Vespignani. 2014. <span>“The Parable of Google Flu: Traps in Big Data Analysis.”</span> <em>Science</em> 343 (6176): 1203–5. <a href="https://doi.org/10.1126/science.1248506">https://doi.org/10.1126/science.1248506</a>.
-</div>
-<div id="ref-rey2023geographic" class="csl-entry" role="listitem">
-Rey, Sergio, Dani Arribas-Bel, and Levi John Wolf. 2023. <em>Geographic Data Science with Python</em>. Chapman &amp; Hall/CRC Texts in Statistical Science. London, England: Taylor &amp; Francis.
-</div>
-</div></section></div></main> <!-- /main -->
+</main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
@@ -1169,13 +1322,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../data_wrangling/quiz.html" class="pagination-link" aria-label="Quiz on pandas">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Quiz on pandas</span>
+      <a href="../geographic_data/exercise.html" class="pagination-link" aria-label="Learning GeoPandas">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Learning GeoPandas</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../geographic_data/hands_on.html" class="pagination-link" aria-label="Bring in geography">
-        <span class="nav-page-text">Bring in geography</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../spatial_graphs/concepts.html" class="pagination-link" aria-label="Space as math">
+        <span class="nav-page-text">Space as math</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
@@ -1187,7 +1340,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     </div>   
     <div class="nav-footer-center">
 <p>Course material by <a href="https://martinfleischmann.net">Martin Fleischmann</a>. Available under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a>.</p>
-<div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/martinfleis/sds/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></div>
+<div class="toc-actions"><ul><li><a href="https://github.com/martinfleis/sds/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></div>
     <div class="nav-footer-right">
       &nbsp;
     </div>
@@ -1198,4 +1351,5 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 
 
 <script src="../site_libs/quarto-html/zenscroll-min.js"></script>
+<script src="../site_libs/quarto-contrib/alpine-3.12/alpine@3.12.min.js"></script>
 </body></html>
