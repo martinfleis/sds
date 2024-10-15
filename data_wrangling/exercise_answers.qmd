@@ -76,7 +76,7 @@ sns.displot(edinburgh["SIMD2020v2_Rank"])
 **Can you figure out how to create a scatter plot of a relationship between the education and health domain rankings?**
 
 ```{python}
-simd.plot.scatter("SIMD2020_Education_Domain_Rank", "SIMD2020_Health_Domain_Rank" s=.1)
+simd.plot.scatter("SIMD2020_Education_Domain_Rank", "SIMD2020_Health_Domain_Rank", s=.1)
 ```
 
 Or using `seaborn`.
