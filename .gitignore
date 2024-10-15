@@ -179,3 +179,5 @@ data/prague_morphology/prg_primary.csv.gz
 # pixi environments
 .pixi
 *.egg-info
+
+class/
