@@ -630,9 +630,9 @@ Backup data
 <li>Create a contiguity matrix using the Queen criterion</li>
 <li>Let’s focus on Prague (ID <code>891</code> in the table). How many neighbours does it have?</li>
 <li>Reproduce the previous section’s zoom plot with Prague and its neighbours. Can you make that plot as both static and interactive maps?</li>
-<li>Create a block spatial weights matrix where every geometry is connected to other geometries in the NUTS2 region. For that, use the <code>NUTS2_kod</code> column of the table.</li>
+<li>Create a block spatial weights matrix where every geometry is connected to other geometries in the NUTS2 region.</li>
 <li>Create KNN weights with 5 neighbours. Remember that KNN expects point geometry.</li>
-<li>Compare the number of neighbours by geometry for the three weights matrices. Which one has more? Why?</li>
+<li>Compare the number of neighbours by geometry for the three weights matrices. Which one has more? Why? Can you compare distributions of number of neighbors as kde plots?</li>
 </ol>
 </section>
 <section id="spatial-lag" class="level3">
@@ -643,7 +643,7 @@ Backup data
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <ol type="1">
 <li>Measure spatial lag (as mean, so don’t forget to standardise your weights) of the <code>"obyv_31122"</code> column using all weights matrices you have created.</li>
-<li>What is the difference in results for Prague? Do you know why?</li>
+<li>What is the difference in results for Prague? Can you explain why?</li>
 </ol>
 
 
