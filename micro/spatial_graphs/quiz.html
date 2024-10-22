@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Graph here, graph there – Spatial Data Science for Social Geography</title>
+<title>Quiz on spatial graphs – Spatial Data Science in Python</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,61 +20,7 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-/* CSS for syntax highlighting */
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-  }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-}
-/* CSS for citations */
-div.csl-bib-body { }
-div.csl-entry {
-  clear: both;
-  margin-bottom: 0em;
-}
-.hanging-indent div.csl-entry {
-  margin-left:2em;
-  text-indent:-2em;
-}
-div.csl-left-margin {
-  min-width:2em;
-  float:left;
-}
-div.csl-right-inline {
-  margin-left:2em;
-  padding-left:1em;
-}
-div.csl-indent {
-  margin-left: 2em;
-}</style>
+</style>
 
 
 <script src="../site_libs/quarto-nav/quarto-nav.js"></script>
@@ -84,9 +30,7 @@ div.csl-indent {
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<link href="../spatial_graphs/quiz.html" rel="next">
-<link href="../spatial_graphs/hands_on.html" rel="prev">
-<link href="../_assets/favicon.png" rel="icon" type="image/png">
+<link href="../_assets/favicon_micro.png" rel="icon" type="image/png">
 <script src="../site_libs/quarto-html/quarto.js"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -98,6 +42,7 @@ div.csl-indent {
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
 <link href="../site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../site_libs/quarto-contrib/alpine-3.12/buttons.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -128,7 +73,7 @@ div.csl-indent {
 
 
 <link rel="stylesheet" href="../_assets/styles.css">
-<meta name="twitter:title" content="Graph here, graph there – Spatial Data Science for Social Geography">
+<meta name="twitter:title" content="Quiz on spatial graphs – Spatial Data Science in Python">
 <meta name="twitter:description" content="">
 <meta name="twitter:card" content="summary">
 </head>
@@ -142,7 +87,7 @@ div.csl-indent {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../spatial_graphs/concepts.html">Spatial weights</a></li><li class="breadcrumb-item"><a href="../spatial_graphs/exercise.html">Graph here, graph there</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Quiz on spatial graphs</li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -157,7 +102,7 @@ div.csl-indent {
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
       <a href="../index.html" class="sidebar-logo-link">
-      <img src="../_assets/logo.svg" alt="" class="sidebar-logo py-0 d-lg-inline d-none">
+      <img src="../_assets/logo_micro.svg" alt="" class="sidebar-logo py-0 d-lg-inline d-none">
       </a>
       <div class="sidebar-tools-main tools-wide">
     <a href="https://twitter.com/martinfleis" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-twitter"></i></a>
@@ -225,12 +170,6 @@ div.csl-indent {
  <span class="menu-text">Understanding Notebooks</span></a>
   </div>
 </li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../introduction/quiz.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Quiz on Jupyter and Markdown</span></a>
-  </div>
-</li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
@@ -258,12 +197,6 @@ div.csl-indent {
   <div class="sidebar-item-container"> 
   <a href="../data_wrangling/exercise.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Learning pandas</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../data_wrangling/quiz.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Quiz on pandas</span></a>
   </div>
 </li>
       </ul>
@@ -295,23 +228,17 @@ div.csl-indent {
  <span class="menu-text">Learning GeoPandas</span></a>
   </div>
 </li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../geographic_data/quiz.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Quiz on GeoPandas</span></a>
-  </div>
-</li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="false">
  <span class="menu-text">Spatial weights</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../spatial_graphs/concepts.html" class="sidebar-item-text sidebar-link">
@@ -326,14 +253,8 @@ div.csl-indent {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../spatial_graphs/exercise.html" class="sidebar-item-text sidebar-link active">
+  <a href="../spatial_graphs/exercise.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Graph here, graph there</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../spatial_graphs/quiz.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Quiz on spatial graphs</span></a>
   </div>
 </li>
       </ul>
@@ -486,7 +407,7 @@ div.csl-indent {
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-11" role="navigation" aria-expanded="false">
- <span class="menu-text">Linear regression</span></a>
+ <span class="menu-text">Regression</span></a>
           <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-11" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -512,88 +433,20 @@ div.csl-indent {
 </li>
       </ul>
   </li>
-        <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-12" role="navigation" aria-expanded="false">
- <span class="menu-text">Non-linear regression</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-12" role="navigation" aria-expanded="false" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-12" class="collapse list-unstyled sidebar-section depth1 ">  
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../tree_regression/concepts.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Non-linear relationships</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../tree_regression/hands_on.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Decision trees and gradient boosting</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../tree_regression/exercise.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Plant a forest</span></a>
-  </div>
-</li>
-      </ul>
-  </li>
-        <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-13" role="navigation" aria-expanded="false">
- <span class="menu-text">Classification</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-13" role="navigation" aria-expanded="false" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-13" class="collapse list-unstyled sidebar-section depth1 ">  
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../classification/concepts.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Where do I belong?</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../classification/hands_on.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Classification in space</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../classification/exercise.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Predict future</span></a>
-  </div>
-</li>
-      </ul>
-  </li>
     </ul>
     </div>
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">On this page</h2>
-   
-  <ul>
-  <li><a href="#zones-of-suburbanisation" id="toc-zones-of-suburbanisation" class="nav-link active" data-scroll-target="#zones-of-suburbanisation">Zones of suburbanisation</a>
-  <ul class="collapse">
-  <li><a href="#interaction-with-graphs" id="toc-interaction-with-graphs" class="nav-link" data-scroll-target="#interaction-with-graphs">Interaction with Graphs</a></li>
-  <li><a href="#spatial-lag" id="toc-spatial-lag" class="nav-link" data-scroll-target="#spatial-lag">Spatial lag</a></li>
-  </ul></li>
-  </ul>
-<div class="toc-actions"><ul><li><a href="https://github.com/martinfleis/sds/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></nav>
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
+        
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../spatial_graphs/concepts.html">Spatial weights</a></li><li class="breadcrumb-item"><a href="../spatial_graphs/exercise.html">Graph here, graph there</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Graph here, graph there</h1>
+<h1 class="title">Quiz on spatial graphs</h1>
 </div>
 
 
@@ -610,58 +463,200 @@ div.csl-indent {
 </header>
 
 
-<p>It is time to work with spatial weights matrices by yourself.</p>
-<section id="zones-of-suburbanisation" class="level2">
-<h2 class="anchored" data-anchor-id="zones-of-suburbanisation">Zones of suburbanisation</h2>
-<p>You are familiar with Prague from the last section, so let’s zoom out to zones of suburbanisation around Prague and other Czech cities. Head over to the <a href="https://datahub.natur.cuni.cz">DataHub</a> of the Faculty of Science and download the dataset called <a href="https://datahub.natur.cuni.cz/datasets/zóny-rezidenční-suburbanizace-2008-2016/explore">“Zóny rezidenční suburbanizace 2008-2016”</a> containing the zones of residential suburbanisation outlined by <span class="citation" data-cites="ouvrednivcek2019between">Ouřednı́ček, Klsák, and Špačková (<a href="#ref-ouvrednivcek2019between" role="doc-biblioref">2019</a>)</span>. Download the dataset and open it with <code>geopandas</code>. Use <code>"OBJECTID"</code> column as an index (other feasible columns are not unique - they contain duplicated entries).</p>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
+<p>Check how much you remember from previous sections by answering the questions below.</p>
+<div class="question">
+<p><strong>What can a spatial weights matrix represent?</strong></p>
+<div class="choices">
+<div x-data="{ answer: '' , clear() { this.answer = '' }}">
+
+<div class="choice">
+<p></p><p><input class="form-check-input" type="radio" x-model="answer" value="no1"> <span id="no1" x-show="answer == $el.id" class="badge">✗</span>The physical distance between geographic points.</p><p></p>
 </div>
-<div class="callout-title-container flex-fill">
-Backup data
+<div class="choice">
+<p></p><p><input class="form-check-input" type="radio" x-model="answer" value="no2"> <span id="no2" x-show="answer == $el.id" class="badge">✗</span>The number of neighbors for each observation.</p><p></p>
 </div>
-<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+<div class="choice">
+<p></p><p><input class="form-check-input" type="radio" x-model="answer" value="no3"> <span id="no3" x-show="answer == $el.id" class="badge">✗</span>The strength of spatial interaction between observations.</p><p></p>
 </div>
-<div id="callout-1" class="callout-1-contents callout-collapse collapse">
-<div class="callout-body-container callout-body">
-<p>If the link does not work, please <a href="https://github.com/martinfleis/sds/issues/new">report it</a> and use the <a href="https://martinfleischmann.net/sds/spatial_graphs/data/zony_suburbanizace_2008_2016.zip">backup</a>.</p>
+<div class="choice correct-choice">
+<p></p><p><input class="form-check-input" type="radio" x-model="answer" value="correct"> <span id="correct" x-show="answer == $el.id" class="badge">✓</span>All of the above.</p><p></p>
 </div>
 </div>
+
 </div>
-<section id="interaction-with-graphs" class="level3">
-<h3 class="anchored" data-anchor-id="interaction-with-graphs">Interaction with Graphs</h3>
-<ol type="1">
-<li>Create a contiguity matrix using the Queen criterion</li>
-<li>Let’s focus on Prague (ID <code>891</code> in the table). How many neighbours does it have?</li>
-<li>Reproduce the previous section’s zoom plot with Prague and its neighbours. Can you make that plot as both static and interactive maps?</li>
-<li>Create a block spatial weights matrix where every geometry is connected to other geometries in the NUTS2 region.</li>
-<li>Create KNN weights with 5 neighbours. Remember that KNN expects point geometry.</li>
-<li>Compare the number of neighbours by geometry for the three weights matrices. Which one has more? Why? Can you compare distributions of number of neighbors as kde plots?</li>
-</ol>
-</section>
-<section id="spatial-lag" class="level3">
-<h3 class="anchored" data-anchor-id="spatial-lag">Spatial lag</h3>
-<p>Let’s have a look at spatial lag. Before proceeding, you will probably need to pre-process the column with the population (<code>"obyv_31122"</code>) since it comes as <code>string</code>. Assuming the <code>GeoDataFrame</code> is called <code>suburbanisation</code>, you can do the following to cast it to <code>float</code>.</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>suburbanisation[<span class="st">"obyv_31122"</span>] <span class="op">=</span> (</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    suburbanisation[<span class="st">"obyv_31122"</span>].replace(<span class="st">"?"</span>, <span class="va">None</span>).astype(<span class="bu">float</span>)</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<ol type="1">
-<li>Measure spatial lag (as mean, so don’t forget to standardise your weights) of the <code>"obyv_31122"</code> column using all weights matrices you have created.</li>
-<li>What is the difference in results for Prague? Can you explain why?</li>
-</ol>
+</div>
+<div class="question">
+<p><strong>What does contiguity mean in spatial analysis?</strong></p>
+<div class="choices">
+<div x-data="{ answer: '' , clear() { this.answer = '' }}">
+
+<div class="choice">
+<p></p><p><input class="form-check-input" type="radio" x-model="answer" value="no1"> <span id="no1" x-show="answer == $el.id" class="badge">✗</span>A measure of distance between non-adjacent areas.</p><p></p>
+</div>
+<div class="choice">
+<p></p><p><input class="form-check-input" type="radio" x-model="answer" value="no2"> <span id="no2" x-show="answer == $el.id" class="badge">✗</span>A calculation of attribute similarity between spatial units.</p><p></p>
+</div>
+<div class="choice correct-choice">
+<p></p><p><input class="form-check-input" type="radio" x-model="answer" value="correct"> <span id="correct" x-show="answer == $el.id" class="badge">✓</span>The relationship between geographically adjacent areas.</p><p></p>
+</div>
+<div class="choice">
+<p></p><p><input class="form-check-input" type="radio" x-model="answer" value="no4"> <span id="no4" x-show="answer == $el.id" class="badge">✗</span>A method for analyzing data across time.</p><p></p>
+</div>
+</div>
+
+</div>
+</div>
+<div class="question">
+<p><strong>What is a graph in PySAL used for?</strong></p>
+<div class="choices correct-choice">
+<div x-data="{ answer: '' , clear() { this.answer = '' }}">
+
+<div class="choice">
+<p></p><p><input class="form-check-input" type="radio" x-model="answer" value="no1"> <span id="no1" x-show="answer == $el.id" class="badge">✗</span>It is a structure where nodes represent spatial units, and edges represent spatial relationships.</p><p></p>
+</div>
+<div class="choice">
+<p></p><p><input class="form-check-input" type="radio" x-model="answer" value="no2"> <span id="no2" x-show="answer == $el.id" class="badge">✗</span>It represents geographic areas and their attributes.</p><p></p>
+</div>
+<div class="choice">
+<p></p><p><input class="form-check-input" type="radio" x-model="answer" value="no3"> <span id="no3" x-show="answer == $el.id" class="badge">✗</span>It stores geographic coordinates of all points in a dataset.</p><p></p>
+</div>
+<div class="choice">
+<p></p><p><input class="form-check-input" type="radio" x-model="answer" value="no4"> <span id="no4" x-show="answer == $el.id" class="badge">✗</span>It is a structure where nodes represent spatial relationships, and edges represent geometries.</p><p></p>
+</div>
+</div>
+
+</div>
+</div>
+<div class="question">
+<p><strong>What is the difference between Queen, Rook, and Bishop contiguity?</strong></p>
+<div class="choices">
+<div x-data="{ answer: '' , clear() { this.answer = '' }}">
+
+<div class="choice">
+<p></p><p><input class="form-check-input" type="radio" x-model="answer" value="no1"> <span id="no1" x-show="answer == $el.id" class="badge">✗</span>Queen and Rook both consider only shared edges, while Bishop considers both edges and vertices.</p><p></p>
+</div>
+<div class="choice correct-choice">
+<p></p><p><input class="form-check-input" type="radio" x-model="answer" value="correct"> <span id="correct" x-show="answer == $el.id" class="badge">✓</span>Queen considers neighbors that share edges and vertices, Rook considers only shared edges, Bishop considers shared vertices only.</p><p></p>
+</div>
+<div class="choice">
+<p></p><p><input class="form-check-input" type="radio" x-model="answer" value="no3"> <span id="no3" x-show="answer == $el.id" class="badge">✗</span>Queen considers shared edges, Rook shared vertices, and Bishop considers diagonal neighbors.</p><p></p>
+</div>
+<div class="choice">
+<p></p><p><input class="form-check-input" type="radio" x-model="answer" value="no4"> <span id="no4" x-show="answer == $el.id" class="badge">✗</span>Queen considers only shared vertices, Rook considers both edges and vertices, and Bishop considers shared distances.</p><p></p>
+</div>
+</div>
+
+</div>
+</div>
+<div class="question">
+<p><strong>How do k-nearest neighbor (KNN) spatial weights differ from contiguity-based methods?</strong></p>
+<div class="choices">
+<div x-data="{ answer: '' , clear() { this.answer = '' }}">
+
+<div class="choice">
+<p></p><p><input class="form-check-input" type="radio" x-model="answer" value="no1"> <span id="no1" x-show="answer == $el.id" class="badge">✗</span>KNN considers only neighboring regions with shared boundaries.</p><p></p>
+</div>
+<div class="choice correct-choice">
+<p></p><p><input class="form-check-input" type="radio" x-model="answer" value="correct"> <span id="correct" x-show="answer == $el.id" class="badge">✓</span>KNN connects an observation to a fixed number of closest neighbors.</p><p></p>
+</div>
+<div class="choice">
+<p></p><p><input class="form-check-input" type="radio" x-model="answer" value="no3"> <span id="no3" x-show="answer == $el.id" class="badge">✗</span>KNN uses a binary approach for weighting.</p><p></p>
+</div>
+<div class="choice">
+<p></p><p><input class="form-check-input" type="radio" x-model="answer" value="no4"> <span id="no4" x-show="answer == $el.id" class="badge">✗</span>KNN focuses only on Euclidean distance in geographic space.</p><p></p>
+</div>
+</div>
+
+</div>
+</div>
+<div class="question">
+<p><strong>Which of the following statements best describes block weights and how they differ from distance and contiguity weights?</strong></p>
+<div class="choices">
+<div x-data="{ answer: '' , clear() { this.answer = '' }}">
+
+<div class="choice">
+<p></p><p><input class="form-check-input" type="radio" x-model="answer" value="no1"> <span id="no1" x-show="answer == $el.id" class="badge">✗</span>Block weights assign a weight of one to neighboring observations based on their physical distance, while distance weights assign weights according to geographical proximity.</p><p></p>
+</div>
+<div class="choice">
+<p></p><p><input class="form-check-input" type="radio" x-model="answer" value="no2"> <span id="no2" x-show="answer == $el.id" class="badge">✗</span>Block weights define spatial connections through shared boundaries, similar to contiguity weights, making them suitable for polygon analysis.</p><p></p>
+</div>
+<div class="choice">
+<p></p><p><input class="form-check-input" type="radio" x-model="answer" value="no3"> <span id="no3" x-show="answer == $el.id" class="badge">✗</span>Block weights utilize a continuous scale for weights, whereas distance weights only consider categorical group memberships.</p><p></p>
+</div>
+<div class="choice correct-choice">
+<p></p><p><input class="form-check-input" type="radio" x-model="answer" value="correct"> <span id="correct" x-show="answer == $el.id" class="badge">✓</span>Block weights connect observations in the same category with a weight of one, regardless of distance, while distance weights assign weights based on how far apart observations are.</p><p></p>
+</div>
+</div>
+
+</div>
+</div>
+<div class="question">
+<p><strong>What is the key difference between perimeter-weighted contiguity and a distance-weighted distance band?</strong></p>
+<div class="choices">
+<div x-data="{ answer: '' , clear() { this.answer = '' }}">
+
+<div class="choice correct-choice">
+<p></p><p><input class="form-check-input" type="radio" x-model="answer" value="correct"> <span id="correct" x-show="answer == $el.id" class="badge">✓</span>Perimeter-weighted contiguity assigns weights based on the shared perimeter length between neighboring units, while a distance-weighted distance band assigns weights that decrease as the distance between units increases.</p><p></p>
+</div>
+<div class="choice">
+<p></p><p><input class="form-check-input" type="radio" x-model="answer" value="no2"> <span id="no2" x-show="answer == $el.id" class="badge">✗</span>Perimeter-weighted contiguity uses the Euclidean distance between spatial units, while a distance-weighted distance band considers the Manhattan distance.</p><p></p>
+</div>
+<div class="choice">
+<p></p><p><input class="form-check-input" type="radio" x-model="answer" value="no3"> <span id="no3" x-show="answer == $el.id" class="badge">✗</span>Perimeter-weighted contiguity calculates weights based on distance decay functions, while a distance-weighted distance band calculates weights based on the area of each unit.</p><p></p>
+</div>
+<div class="choice">
+<p></p><p><input class="form-check-input" type="radio" x-model="answer" value="no4"> <span id="no4" x-show="answer == $el.id" class="badge">✗</span>Perimeter-weighted contiguity only works for irregular polygons, while a distance-weighted distance band applies only to regular grids.</p><p></p>
+</div>
+</div>
+
+</div>
+</div>
+<div class="question">
+<p><strong>What does the function <code>queen.to_parquet("queen.parquet")</code> do in PySAL?</strong></p>
+<div class="choices">
+<div x-data="{ answer: '' , clear() { this.answer = '' }}">
+
+<div class="choice">
+<p></p><p><input class="form-check-input" type="radio" x-model="answer" value="no1"> <span id="no1" x-show="answer == $el.id" class="badge">✗</span>It converts a spatial weights object into a queen contiguity matrix and displays it.</p><p></p>
+</div>
+<div class="choice">
+<p></p><p><input class="form-check-input" type="radio" x-model="answer" value="no2"> <span id="no2" x-show="answer == $el.id" class="badge">✗</span>It exports a queen contiguity matrix to a CSV file format for analysis.</p><p></p>
+</div>
+<div class="choice correct-choice">
+<p></p><p><input class="form-check-input" type="radio" x-model="answer" value="correct"> <span id="correct" x-show="answer == $el.id" class="badge">✓</span>It saves a queen contiguity weights object as a compressed Parquet file for efficient storage.</p><p></p>
+</div>
+<div class="choice">
+<p></p><p><input class="form-check-input" type="radio" x-model="answer" value="no4"> <span id="no4" x-show="answer == $el.id" class="badge">✗</span>It converts a spatial weights object into a shapefile for geographic data visualization.</p><p></p>
+</div>
+</div>
+
+</div>
+</div>
+<div class="question">
+<p><strong>What is a spatial lag in the context of spatial analysis?</strong></p>
+<div class="choices">
+<div x-data="{ answer: '' , clear() { this.answer = '' }}">
+
+<div class="choice">
+<p></p><p><input class="form-check-input" type="radio" x-model="answer" value="no1"> <span id="no1" x-show="answer == $el.id" class="badge">✗</span>The influence of neighboring observations on the value of a variable at a given location.</p><p></p>
+</div>
+<div class="choice correct-choice">
+<p></p><p><input class="form-check-input" type="radio" x-model="answer" value="correct"> <span id="correct" x-show="answer == $el.id" class="badge">✓</span>The weighted average of a variable in neighboring observations.</p><p></p>
+</div>
+<div class="choice">
+<p></p><p><input class="form-check-input" type="radio" x-model="answer" value="no3"> <span id="no3" x-show="answer == $el.id" class="badge">✗</span>The total distance between all observations and their neighbors.</p><p></p>
+</div>
+<div class="choice">
+<p></p><p><input class="form-check-input" type="radio" x-model="answer" value="no4"> <span id="no4" x-show="answer == $el.id" class="badge">✗</span>The time it takes for spatial relationships to manifest.</p><p></p>
+</div>
+</div>
+
+</div>
+</div>
 
 
 
-</section>
-</section>
-
-<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
-<div id="ref-ouvrednivcek2019between" class="csl-entry" role="listitem">
-Ouřednı́ček, Martin, Adam Klsák, and Petra Špačková. 2019. <span>“In Between City and Village: The Development of Spatial Patterns of Czech Suburbanisation 1997–2016.”</span> <em>Demografie</em> 61 (4): 299–308.
-</div>
-</div></section></div></main> <!-- /main -->
+</main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
@@ -1226,18 +1221,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   }
 });
 </script>
-<nav class="page-navigation">
-  <div class="nav-page nav-page-previous">
-      <a href="../spatial_graphs/hands_on.html" class="pagination-link" aria-label="Spatial weights in PySAL">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Spatial weights in PySAL</span>
-      </a>          
-  </div>
-  <div class="nav-page nav-page-next">
-      <a href="../spatial_graphs/quiz.html" class="pagination-link" aria-label="Quiz on spatial graphs">
-        <span class="nav-page-text">Quiz on spatial graphs</span> <i class="bi bi-arrow-right-short"></i>
-      </a>
-  </div>
-</nav>
 </div> <!-- /content -->
 <footer class="footer">
   <div class="nav-footer">
@@ -1246,7 +1229,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     </div>   
     <div class="nav-footer-center">
 <p>Course material by <a href="https://martinfleischmann.net">Martin Fleischmann</a>. Available under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a>.</p>
-<div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/martinfleis/sds/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></div>
+<div class="toc-actions"><ul><li><a href="https://github.com/martinfleis/sds/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></div>
     <div class="nav-footer-right">
       &nbsp;
     </div>
@@ -1257,4 +1240,5 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 
 
 <script src="../site_libs/quarto-html/zenscroll-min.js"></script>
+<script src="../site_libs/quarto-contrib/alpine-3.12/alpine@3.12.min.js"></script>
 </body></html>
