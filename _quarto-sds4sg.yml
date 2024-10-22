@@ -40,7 +40,7 @@ website:
         contents:
           - spatial_graphs/concepts.qmd
           - spatial_graphs/hands_on.qmd
-          - spatial_graphs/exercise.qmd¨
+          - spatial_graphs/exercise.qmd
           - spatial_graphs/quiz.qmd
       - section: "Exploratory spatial data analysis"
         contents:

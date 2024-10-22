@@ -7,7 +7,7 @@ filters:
 Check how much you remember from previous sections by answering the questions below.
 
 :::::{.question}
-**What does a spatial weights matrix represent?**
+**What can a spatial weights matrix represent?**
 
 ::::{.choices}
 
@@ -19,12 +19,12 @@ The physical distance between geographic points.
 The number of neighbors for each observation.
 :::
 
-:::{.choice .correct-choice}
+:::{.choice}
 The strength of spatial interaction between observations.
 :::
 
-:::{.choice}
-A matrix representing spatial dependence between variables.
+:::{.choice .correct-choice}
+All of the above.
 :::
 
 ::::
@@ -72,7 +72,7 @@ It stores geographic coordinates of all points in a dataset.
 :::
 
 :::{.choice}
-It calculates statistical metrics for each geographic area.
+It is a structure where nodes represent spatial relationships, and edges represent geometries.
 :::
 
 ::::
