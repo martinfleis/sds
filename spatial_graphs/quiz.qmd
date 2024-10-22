@@ -1,0 +1,224 @@
+---
+title: "Quiz on spatial graphs"
+filters:
+  - naquiz
+---
+
+Check how much you remember from previous sections by answering the questions below.
+
+:::::{.question}
+**What can a spatial weights matrix represent?**
+
+::::{.choices}
+
+:::{.choice}
+The physical distance between geographic points.
+:::
+
+:::{.choice}
+The number of neighbors for each observation.
+:::
+
+:::{.choice}
+The strength of spatial interaction between observations.
+:::
+
+:::{.choice .correct-choice}
+All of the above.
+:::
+
+::::
+:::::
+
+:::::{.question}
+**What does contiguity mean in spatial analysis?**
+
+::::{.choices}
+
+:::{.choice}
+A measure of distance between non-adjacent areas.
+:::
+
+:::{.choice}
+A calculation of attribute similarity between spatial units.
+:::
+
+:::{.choice .correct-choice}
+The relationship between geographically adjacent areas.
+:::
+
+:::{.choice}
+A method for analyzing data across time.
+:::
+
+::::
+:::::
+
+:::::{.question}
+**What is a graph in PySAL used for?**
+
+::::{.choices .correct-choice}
+
+:::{.choice}
+It is a structure where nodes represent spatial units, and edges represent spatial relationships.
+:::
+
+:::{.choice}
+It represents geographic areas and their attributes.
+:::
+
+:::{.choice}
+It stores geographic coordinates of all points in a dataset.
+:::
+
+:::{.choice}
+It is a structure where nodes represent spatial relationships, and edges represent geometries.
+:::
+
+::::
+:::::
+
+:::::{.question}
+**What is the difference between Queen, Rook, and Bishop contiguity?**
+
+::::{.choices}
+
+:::{.choice}
+Queen and Rook both consider only shared edges, while Bishop considers both edges and vertices.
+:::
+
+:::{.choice .correct-choice}
+Queen considers neighbors that share edges and vertices, Rook considers only shared edges, Bishop considers shared vertices only.
+:::
+
+:::{.choice}
+Queen considers shared edges, Rook shared vertices, and Bishop considers diagonal neighbors.
+:::
+
+:::{.choice}
+Queen considers only shared vertices, Rook considers both edges and vertices, and Bishop considers shared distances.
+:::
+
+::::
+:::::
+
+:::::{.question}
+**How do k-nearest neighbor (KNN) spatial weights differ from contiguity-based methods?**
+
+::::{.choices}
+
+:::{.choice}
+KNN considers only neighboring regions with shared boundaries.
+:::
+
+:::{.choice .correct-choice}
+KNN connects an observation to a fixed number of closest neighbors.
+:::
+
+:::{.choice}
+KNN uses a binary approach for weighting.
+:::
+
+:::{.choice}
+KNN focuses only on Euclidean distance in geographic space.
+:::
+
+::::
+:::::
+
+:::::{.question}
+**Which of the following statements best describes block weights and how they differ from distance and contiguity weights?**
+
+::::{.choices}
+
+:::{.choice}
+Block weights assign a weight of one to neighboring observations based on their physical distance, while distance weights assign weights according to geographical proximity.
+:::
+
+:::{.choice}
+Block weights define spatial connections through shared boundaries, similar to contiguity weights, making them suitable for polygon analysis.
+:::
+
+:::{.choice}
+Block weights utilize a continuous scale for weights, whereas distance weights only consider categorical group memberships.
+:::
+
+:::{.choice .correct-choice}
+Block weights connect observations in the same category with a weight of one, regardless of distance, while distance weights assign weights based on how far apart observations are.
+:::
+
+::::
+:::::
+
+:::::{.question}
+**What is the key difference between perimeter-weighted contiguity and a distance-weighted distance band?**
+
+::::{.choices}
+
+:::{.choice .correct-choice}
+Perimeter-weighted contiguity assigns weights based on the shared perimeter length between neighboring units, while a distance-weighted distance band assigns weights that decrease as the distance between units increases.
+:::
+
+:::{.choice}
+Perimeter-weighted contiguity uses the Euclidean distance between spatial units, while a distance-weighted distance band considers the Manhattan distance.
+:::
+
+:::{.choice}
+Perimeter-weighted contiguity calculates weights based on distance decay functions, while a distance-weighted distance band calculates weights based on the area of each unit.
+:::
+
+:::{.choice}
+Perimeter-weighted contiguity only works for irregular polygons, while a distance-weighted distance band applies only to regular grids.
+:::
+
+::::
+:::::
+
+
+:::::{.question}
+**What does the function `queen.to_parquet("queen.parquet")` do in PySAL?**
+
+::::{.choices}
+
+:::{.choice}
+It converts a spatial weights object into a queen contiguity matrix and displays it.
+:::
+
+:::{.choice}
+It exports a queen contiguity matrix to a CSV file format for analysis.
+:::
+
+:::{.choice .correct-choice}
+It saves a queen contiguity weights object as a compressed Parquet file for efficient storage.
+:::
+
+:::{.choice}
+It converts a spatial weights object into a shapefile for geographic data visualization.
+:::
+
+::::
+:::::
+
+:::::{.question}
+**What is a spatial lag in the context of spatial analysis?**
+
+::::{.choices}
+
+:::{.choice}
+The influence of neighboring observations on the value of a variable at a given location.
+:::
+
+:::{.choice  .correct-choice}
+The weighted average of a variable in neighboring observations.
+:::
+
+:::{.choice}
+The total distance between all observations and their neighbors.
+:::
+
+:::{.choice}
+The time it takes for spatial relationships to manifest.
+:::
+
+::::
+:::::
