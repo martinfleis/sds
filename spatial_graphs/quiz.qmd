@@ -160,7 +160,8 @@ Perimeter-weighted contiguity assigns weights based on the shared perimeter leng
 :::
 
 :::{.choice}
-Perimeter-weighted contiguity uses the Euclidean distance between spatial units, while a distance-weighted distance band considers the Manhattan distance.:::
+Perimeter-weighted contiguity uses the Euclidean distance between spatial units, while a distance-weighted distance band considers the Manhattan distance.
+:::
 
 :::{.choice}
 Perimeter-weighted contiguity calculates weights based on distance decay functions, while a distance-weighted distance band calculates weights based on the area of each unit.
@@ -192,7 +193,7 @@ It saves a queen contiguity weights object as a compressed Parquet file for effi
 :::
 
 :::{.choice}
-t converts a spatial weights object into a shapefile for geographic data visualization.
+It converts a spatial weights object into a shapefile for geographic data visualization.
 :::
 
 ::::
