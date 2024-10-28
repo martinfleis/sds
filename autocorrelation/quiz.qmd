@@ -1,0 +1,250 @@
+---
+title: "Quiz on spatial autocorrelation"
+filters:
+  - naquiz
+---
+
+Check how much you remember from previous sections by answering the questions below.
+
+:::::{.question}
+**What is the MAIN concept behind spatial autocorrelation**
+
+::::{.choices}
+
+:::{.choice}
+The correlation between two distinct variables.
+:::
+
+:::{.choice}
+Random distribution of values over space.
+:::
+
+:::{.choice .correct-choice}
+The similarity of values between observations as a function of their location.
+:::
+
+:::{.choice}
+The study of time-series data.
+:::
+
+::::
+:::::
+
+:::::{.question}
+**What does positive spatial autocorrelation indicate?**
+
+::::{.choices}
+
+:::{.choice}
+Values change randomly over space.
+:::
+
+:::{.choice}
+Dissimilar values are grouped together.
+:::
+
+:::{.choice .correct-choice}
+Similar values tend to cluster together in similar locations
+:::
+
+:::{.choice}
+Locations are independent of values.
+:::
+
+::::
+:::::
+
+:::::{.question}
+** In spatial autocorrelation, what is meant by "negative spatial autocorrelation"?**
+
+::::{.choices}
+
+:::{.choice .correct-choice}
+Values in one location tend to be opposite in surrounding locations.
+:::
+
+:::{.choice}
+Values are randomly distributed.
+:::
+
+:::{.choice}
+Values in one location are unrelated to others.
+:::
+
+:::{.choice}
+Values in one location are similar to others nearby.
+:::
+
+::::
+:::::
+
+:::::{.question}
+**Which plot is commonly used to represent spatial autocorrelation?**
+
+::::{.choices}
+
+:::{.choice}
+Scatter plot.
+:::
+
+:::{.choice .correct-choice}
+Moran's plot.
+:::
+
+:::{.choice}
+Bar chart.
+:::
+
+:::{.choice}
+Histogram.
+:::
+
+::::
+:::::
+
+:::::{.question}
+**In the context of spatial autocorrelation, what does the term "weights matrices" refer to?**
+
+::::{.choices}
+
+:::{.choice}
+A method for calculating distances
+:::
+
+:::{.choice}
+A statistical test for correlation
+:::
+
+:::{.choice}
+A type of random matrix
+:::
+
+:::{.choice .correct-choice}
+A representation of spatial relationships between geometries
+:::
+
+::::
+:::::
+
+
+
+:::::{.question}
+**What is the main difference between Join Counts and Moran’s I?**
+
+::::{.choices}
+
+:::{.choice}
+Join Counts measure spatial autocorrelation for continuous data, while Moran’s I is used for binary or categorical data.
+:::
+
+:::{.choice .correct-choice}
+Moran’s I calculates spatial autocorrelation for continuous data, whereas Join Counts are used for binary or categorical data.
+:::
+
+:::{.choice}
+Both Join Counts and Moran’s I measure spatial randomness in continuous data.
+:::
+
+:::{.choice}
+Moran’s I detects only positive spatial autocorrelation, while Join Counts measure negative autocorrelation.
+:::
+
+::::
+:::::
+
+:::::{.question}
+**Which of the following describes the Global Moran’s I statistic?**
+
+::::{.choices}
+
+:::{.choice}
+It detects the relationship between binary spatial patterns.
+:::
+
+:::{.choice .correct-choice}
+It measures overall spatial autocorrelation across the entire dataset.
+:::
+
+:::{.choice}
+It calculates the probability of random spatial clustering.
+:::
+
+:::{.choice}
+It identifies clusters in local neighborhoods.
+:::
+
+::::
+:::::
+
+:::::{.question}
+**What does a Moran’s plot represent?**
+
+::::{.choices}
+
+:::{.choice}
+The relationship between two different variables over time.
+:::
+
+:::{.choice}
+The distribution of categorical data across locations.
+:::
+
+:::{.choice}
+The level of spatial randomness in a dataset.
+:::
+
+:::{.choice .correct-choice}
+The relationship between the spatial lag of a variable and its original values, indicating spatial autocorrelation.
+:::
+
+::::
+:::::
+
+
+:::::{.question}
+**In the context of Moran’s I, what does the p-value represent?**
+
+::::{.choices}
+
+:::{.choice}
+The strength and direction of spatial autocorrelation in the dataset.
+:::
+
+:::{.choice}
+The absolute magnitude of spatial correlation between variables.
+:::
+
+:::{.choice}
+The measure of distance between neighboring points.
+:::
+
+:::{.choice .correct-choice}
+The probability that the observed spatial pattern is due to random chance
+:::
+
+::::
+:::::
+
+:::::{.question}
+**What is the main goal of LISA (Local Indicators of Spatial Association)?**
+
+::::{.choices}
+
+:::{.choice}
+To assess the significance of Moran's I value.
+:::
+
+:::{.choice .correct-choice}
+To identify clusters or outliers in local areas within the dataset
+:::
+
+:::{.choice}
+To calculate the spatial autocorrelation across the entire dataset.
+:::
+
+:::{.choice}
+To perform a regression analysis on spatial data.
+:::
+
+::::
+:::::
