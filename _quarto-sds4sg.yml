@@ -53,6 +53,7 @@ website:
           - point_patterns/concepts.qmd
           - point_patterns/hands_on.qmd
           - point_patterns/exercise.qmd
+          - point_patterns/quiz.qmd
       - section: "Clustering"
         contents:
           - clustering/concepts.qmd
