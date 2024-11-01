@@ -1,0 +1,249 @@
+---
+title: "Quiz on point patterns"
+filters:
+  - naquiz
+---
+
+Check how much you remember from previous sections by answering the questions below.
+
+:::::{.question}
+**In point pattern analysis, which of the following is a common task?**
+
+::::{.choices}
+
+:::{.choice}
+Visualizing data in tables.
+:::
+
+:::{.choice}
+Filtering irrelevant data from datasets.
+:::
+
+:::{.choice .correct-choice}
+Analyzing spatial clustering or dispersion of events.
+:::
+
+:::{.choice}
+Calculating the correlation between variables.
+:::
+
+::::
+:::::
+
+:::::{.question}
+**What does the snippet of code accomplishes `crime[["x", "y"]] = crime.get_coordinates()`?**
+
+::::{.choices}
+
+:::{.choice}
+Loads crime data and adds columns for year and severity.
+:::
+
+:::{.choice}
+Plots crime data on a map.
+:::
+
+:::{.choice .correct-choice}
+Adds point coordinates as columns.
+:::
+
+:::{.choice}
+Analyzes crime clusters in a specific area.
+:::
+
+::::
+:::::
+
+:::::{.question}
+**Which scenario typically indicates “clustering” in the point pattern?**
+
+::::{.choices}
+
+:::{.choice}
+Points are distributed uniformly across the area.
+:::
+
+:::{.choice}
+Points are found mostly at random locations.
+:::
+
+:::{.choice}
+Points are equally spaced from each other.
+:::
+
+:::{.choice .correct-choice}
+Points are concentrated in specific areas, forming dense regions.
+:::
+
+::::
+:::::
+
+:::::{.question}
+**In spatial analysis, binning often refers to:**
+
+::::{.choices}
+
+:::{.choice .correct-choice}
+Grouping data points based on their geographic proximity into grid cells.
+:::
+
+:::{.choice}
+Dividing continuous data into categories for visual simplification.
+:::
+
+:::{.choice}
+Aggregating data points by time intervals.
+:::
+
+:::{.choice}
+Filtering out outliers from a dataset.
+:::
+
+::::
+:::::
+
+:::::{.question}
+**Kernel Density Estimation (KDE) is primarily used to:**
+
+::::{.choices}
+
+:::{.choice}
+Predict future data points based on trends.
+:::
+
+:::{.choice .correct-choice}
+Generate density surfaces to represent the concentration of points in space.
+:::
+
+:::{.choice}
+Divide the dataset into equal-sized bins.
+:::
+
+:::{.choice}
+Identify the central point of a data distribution.
+:::
+
+::::
+:::::
+
+:::::{.question}
+**Centrography involves calculating which of the following?**
+
+::::{.choices}
+
+:::{.choice}
+The number of clusters within a spatial dataset.
+:::
+
+:::{.choice .correct-choice}
+The central tendency and dispersion of a spatial point pattern.
+:::
+
+:::{.choice}
+The distance between all points and their nearest neighbor.
+:::
+
+:::{.choice}
+The density of points within a given radius.
+:::
+
+::::
+:::::
+
+:::::{.question}
+**Quadrat statistics in point pattern analysis involve:**
+
+::::{.choices}
+
+:::{.choice .correct-choice}
+Dividing the study area into smaller units to test spatial randomness.
+:::
+
+:::{.choice}
+Calculating the average distance between all points.
+:::
+
+:::{.choice}
+Visualizing data points on a hexagonal grid.
+:::
+
+:::{.choice}
+Finding clusters within high-density areas only.
+:::
+
+::::
+:::::
+
+:::::{.question}
+**What characteristic of DBSCAN makes it well-suited for spatial data analysis?**
+
+::::{.choices}
+
+:::{.choice}
+It requires only the number of clusters as input.
+:::
+
+:::{.choice .correct-choice}
+Its logic can be easily mapped to geographical coordinates.
+:::
+
+:::{.choice}
+It calculates the exact center of each cluster.
+:::
+
+:::{.choice}
+Each type of observational unit forms a table.
+:::
+
+::::
+:::::
+
+:::::{.question}
+**Ripley’s G-function in point pattern analysis is commonly used to measure:**
+
+::::{.choices}
+
+:::{.choice .correct-choice}
+The cumulative distribution of distances from randomly chosen points to their nearest neighbors.
+:::
+
+:::{.choice}
+The average distance between all points in a spatial distribution.
+:::
+
+:::{.choice}
+The center point of all data points.
+:::
+
+:::{.choice}
+The density of clusters in a study area.
+:::
+
+::::
+:::::
+
+
+
+:::::{.question}
+**Ripley’s F-function measures:**
+
+::::{.choices}
+
+:::{.choice}
+The frequency of clusters within a spatial region.
+:::
+
+:::{.choice}
+The density of events over an area.
+:::
+
+:::{.choice}
+The central tendency and dispersion of points.
+:::
+
+:::{.choice .correct-choice}
+The cumulative distribution of distances from randomly located points to the nearest observed event.
+:::
+
+::::
+:::::
