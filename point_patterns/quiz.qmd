@@ -7,7 +7,7 @@ filters:
 Check how much you remember from previous sections by answering the questions below.
 
 :::::{.question}
-**In point pattern analysis, which of the following is a common purpose?**
+**In point pattern analysis, which of the following is a common task?**
 
 ::::{.choices}
 
@@ -31,7 +31,7 @@ Calculating the correlation between variables.
 :::::
 
 :::::{.question}
-**what does the snippet of code accomplishes `crime[["x", "y"]] = crime.get_coordinates()`?**
+**What does the snippet of code accomplishes `crime[["x", "y"]] = crime.get_coordinates()`?**
 
 ::::{.choices}
 
@@ -44,7 +44,7 @@ Plots crime data on a map.
 :::
 
 :::{.choice .correct-choice}
-Loads crime data and adds coordinates as columns.
+Adds point coordinates as columns.
 :::
 
 :::{.choice}
@@ -55,7 +55,7 @@ Analyzes crime clusters in a specific area.
 :::::
 
 :::::{.question}
-Which scenario typically indicates “clustering” in the point pattern?**
+**Which scenario typically indicates “clustering” in the point pattern?**
 
 ::::{.choices}
 
@@ -136,7 +136,7 @@ The number of clusters within a spatial dataset.
 :::
 
 :::{.choice .correct-choice}
-The central tendency and dispersion of a spatial point set.
+The central tendency and dispersion of a spatial point pattern.
 :::
 
 :::{.choice}
@@ -175,7 +175,8 @@ Finding clusters within high-density areas only.
 :::::
 
 :::::{.question}
-**What characteristic of DBSCAN makes it well-suited for spatial data analysis?
+**What characteristic of DBSCAN makes it well-suited for spatial data analysis?**
+
 ::::{.choices}
 
 :::{.choice}
@@ -183,8 +184,7 @@ It requires only the number of clusters as input.
 :::
 
 :::{.choice .correct-choice}
-It does not require a specified number of clusters and identifies noise points.
-
+Its logic can be easily mapped to geographical coordinates.
 :::
 
 :::{.choice}
