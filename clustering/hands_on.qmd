@@ -66,7 +66,7 @@ from sklearn import cluster
 
 In this session, you will be working with another dataset you should already
 be familiar with - the Scottish Index of Multiple Deprivation. This time, you will focus
-only on the area of Glasgow City prepared for this course.
+only on the area of Edinburgh prepared for this course.
 
 ### Scottish Index of Multiple Deprivation
 
@@ -74,7 +74,7 @@ As always, the table can be read from the site:
 
 ```{python}
 simd = gpd.read_file(
-    "https://martinfleischmann.net/sds/clustering/data/glasgow_simd_2020.gpkg"
+    "./data/edinburgh_simd_2020.gpkg"
 )
 ```
 
@@ -130,7 +130,7 @@ simd[["IncRankv2", "geometry"]].explore("IncRankv2", tiles="CartoDB Positron", t
 
 You can see a decent degree of spatial variation between different sub-ranks. Even
 though you only have seven variables, it is very hard to "mentally overlay" all of them
-to come up with an overall assessment of the nature of each part of Glasgow. For
+to come up with an overall assessment of the nature of each part of Edinburgh. For
 bivariate correlations, a useful tool is the correlation matrix plot, available in
 `seaborn`:
 
@@ -145,8 +145,8 @@ relationship between the ranks?* *Is health correlated with income?* However, so
 this is not enough and you are interested in more sophisticated questions that are truly
 multivariate and, in these cases, the figure above cannot help us. For example, it is
 not straightforward to answer questions like: *what are the main characteristics of the
-South of Glasgow?* *What areas are similar to the core of the city?* *Are the East and
-West of Glasgow similar in terms of deprivation levels?* For these kinds of
+South of Edinburgh?* *What areas are similar to the core of the city?* *Are the East and
+West of Edinburgh similar in terms of deprivation levels?* For these kinds of
 multi-dimensional questions -involving multiple variables at the same time- you require
 a truly multidimensional method like statistical clustering.
 
@@ -159,7 +159,7 @@ algorithm that takes as input a set of attributes and returns the group ("labels
 terminology) each observation belongs to. Depending on the particular algorithm
 employed, additional parameters, such as the desired number of clusters employed or more
 advanced tuning parameters (e.g. bandwith, radius, etc.), also need to be entered as
-inputs. For your classification of SIMD in Glasgow, you will start with one of the most
+inputs. For your classification of SIMD in Edinburgh, you will start with one of the most
 popular clustering algorithms: K-means. This technique only requires as input the
 observation attributes and the final number of groups that you want it to cluster the
 observations into. In your case, you will use five to begin with as this will allow us
@@ -434,6 +434,15 @@ mapped and the title:
 ```{python}
 simd[["agg_5", 'geometry']].explore("agg_5", categorical=True, tiles="CartoDB Positron")
 ```
+
+::: {.callout-note}
+# Optimal number of clusters
+
+Five might not be the optimal number of classes when we deal with regionalisation as two
+regions of the same characteristics may have to be disconneted. Therefore, the number of
+clusters will typically be a bit higher than in the non-spatial case. Test yourself what
+should be the optimal number here.
+:::
 
 ### Extracting the region boundaries
 
