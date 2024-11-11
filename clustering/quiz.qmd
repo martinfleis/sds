@@ -236,7 +236,7 @@ It automatically determines the optimal number of clusters
 :::
 
 :::{.choice .correct-choice}
-It automatically determines the optimal number of clusters
+It builds a hierarchy of clusters that can be interpreted at different levels.
 :::
 
 :::{.choice}
