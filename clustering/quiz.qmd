@@ -11,6 +11,7 @@ Check how much you remember from previous sections by answering the questions be
 
 ::::{.choices}
 
+:::{.choice}
 To increase the number of variables in the dataset.
 :::
 
@@ -28,6 +29,7 @@ To focus on a single variable for analysis.
 
 ::::
 :::::
+
 
 :::::{.question}
 **Which of the following clustering methods assigns each observation to the nearest centroid?**
