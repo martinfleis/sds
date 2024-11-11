@@ -59,6 +59,7 @@ website:
           - clustering/concepts.qmd
           - clustering/hands_on.qmd
           - clustering/exercise.qmd
+          - clustering/quiz.qmd
       - section: "Raster data"
         contents:
           - raster_data/concepts.qmd
