@@ -11,7 +11,7 @@ Check how much you remember from previous sections by answering the questions be
 
 ::::{.choices}
 
-To increase the number of variables in the datase.
+To increase the number of variables in the dataset.
 :::
 
 :::{.choice .correct-choice}
@@ -102,7 +102,7 @@ Spatially lagged clustering
 :::::
 
 :::::{.question}
-**What is the primary purpose of standardizing variables before applying a clustering algorithm like k-means?**
+**What is the primary purpose of standardizing variables before applying a clustering algorithm like K-means?**
 
 ::::{.choices}
 
@@ -133,26 +133,26 @@ To ensure all variables contribute equally to the distance calculations.
 ::::{.choices}
 
 :::{.choice}
-The time-based patterns within the dataset
+The time-based patterns within the dataset.
 :::
 
 :::{.choice .correct-choice}
-The similarity of values for specific attributes or variables
+The similarity of values for specific attributes or variables.
 :::
 
 :::{.choice}
-The hierarchical relationships between categories
+The hierarchical relationships between categories.
 :::
 
 :::{.choice}
-The geographic location of the data points
+The geographic location of the data points.
 :::
 
 ::::
 :::::
 
 :::::{.question}
-**In k-means clustering, the number of clusters (k) is typically:**
+**In K-means clustering, the number of clusters (k) is typically:**
 
 ::::{.choices}
 
@@ -176,12 +176,12 @@ Based on the number of columns in the dataset.
 :::::
 
 :::::{.question}
-**What is a key limitation of k-means clustering when applied to spatial data?**
+**What is a key limitation of K-means clustering when applied to spatial data?**
 
 ::::{.choices}
 
 :::{.choice}
-K-means cannot handle datasets with more than 10,000 points
+K-means cannot handle datasets with more than 10,000 points.
 :::
 
 :::{.choice}
@@ -193,7 +193,7 @@ K-means does not consider spatial proximity between points.
 :::
 
 :::{.choice}
-K-means works only with time-series data
+K-means works only with time-series data.
 :::
 
 ::::
@@ -273,24 +273,24 @@ To generate a histogram for each variable in the dataset.
 :::::
 
 :::::{.question}
-** What is the key difference between spatially lagged k-means and spatially constrained clustering (regionalization)?**
+**What is the key difference between spatially lagged K-means and spatially constrained clustering (regionalization)?**
 
 ::::{.choices}
 
 :::{.choice}
-Spatially lagged k-means enforces spatial contiguity,  while spatially constrained clustering allows non-contiguous areas to be grouped together.
+Spatially lagged K-means enforces spatial contiguity,  while spatially constrained clustering allows non-contiguous areas to be grouped together.
 :::
 
 :::{.choice}
-Spatially constrained clustering uses hierarchical methods, while spatially lagged k-means uses distance-based methods.
+Spatially constrained clustering uses hierarchical methods, while spatially lagged K-means uses distance-based methods.
 :::
 
 :::{.choice .correct-choice}
-Spatially lagged k-means focuses on clustering based on both attributes and spatial relationships, while spatially constrained clustering ensures that neighboring areas are grouped into the same cluster.
+Spatially lagged K-means focuses on clustering based on both attributes and spatial relationships, while spatially constrained clustering ensures that neighboring areas are grouped into the same cluster.
 :::
 
 :::{.choice}
-Spatially lagged k-means requires prior knowledge of the number of clusters, while spatially constrained clustering automatically determines the number of clusters.
+Spatially lagged K-means requires prior knowledge of the number of clusters, while spatially constrained clustering automatically determines the number of clusters.
 :::
 
 ::::
