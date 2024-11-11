@@ -435,6 +435,15 @@ mapped and the title:
 simd[["agg_5", 'geometry']].explore("agg_5", categorical=True, tiles="CartoDB Positron")
 ```
 
+::: {.callout-note}
+# Optimal number of clusters
+
+Five might not be the optimal number of classes when we deal with regionalisation as two
+regions of the same characteristics may have to be disconneted. Therefore, the number of
+clusters will typically be a bit higher than in the non-spatial case. Test yourself what
+should be the optimal number here.
+:::
+
 ### Extracting the region boundaries
 
 With this result, you may want to extract the boundaries of the regions, rather than
