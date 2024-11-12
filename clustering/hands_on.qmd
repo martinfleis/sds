@@ -56,6 +56,7 @@ be imported as `sklearn`.
 
 ```{python}
 import geopandas as gpd
+import pandas as pd
 import seaborn as sns
 from libpysal import graph
 from sklearn import cluster
@@ -74,7 +75,7 @@ As always, the table can be read from the site:
 
 ```{python}
 simd = gpd.read_file(
-    "./data/edinburgh_simd_2020.gpkg"
+    "https://martinfleischmann.net/sds/clustering/data/edinburgh_simd_2020.gpkg"
 )
 ```
 
@@ -84,14 +85,14 @@ Instead of reading the file directly off the web, it is possible to download it 
 store it on your computer, and read it locally. To do that, you can follow these steps:
 
 1. Download the file by right-clicking on
-[this link](https://martinfleischmann.net/sds/clustering/data/glasgow_simd_2020.gpkg)
+[this link](https://martinfleischmann.net/sds/clustering/data/edinburgh_simd_2020.gpkg)
 and saving the file
 2. Place the file in the same folder as the notebook where you intend to read it
 3. Replace the code in the cell above with:
 
 ```python
 simd = gpd.read_file(
-    "glasgow_simd_2020.gpkg",
+    "edinburgh_simd_2020.gpkg",
 )
 ```
 :::
@@ -279,6 +280,57 @@ When interpreting the values, remember that a lower value represents higher depr
 While the results seem plausible and there are ways of interpreting them, you haven't
 used any spatial methods.
 
+### Selecting the optimal number of clusters
+
+K-means (and a lot of other algorithms) requires a number of clusters as an input argument.
+But how do you know what is the right number? A priori, you usually dont. That is why
+the clustering tasks normally contains a step aiming at determining the optimal number
+of classes. The most common method is a so-called "elbow method".
+
+The main prinicple is simple. You do clustering for a range of options, typically from 2
+to $n$. Here, you can test all the options between 2 and 15, for example. For each result,
+you measure some metric of cluster fit. The simple elbow method is using inertia, which
+is a sum of squared distances of samples to their closest cluster center. But you can
+also use other metrics like [Silhouette score](https://scikit-learn.org/1.5/modules/generated/sklearn.metrics.silhouette_score.html#sklearn.metrics.silhouette_score)
+or [Calinski-Harabasz score](https://scikit-learn.org/1.5/modules/generated/sklearn.metrics.calinski_harabasz_score.html).
+
+Loop over the options and save inertias per each option.
+```{python}
+inertias = {}  # <1>
+
+for k in range(2, 15):  # <2>
+    kmeans = cluster.KMeans(n_clusters=k, random_state=42)  # <3>
+    kmeans.fit(simd[subranks])
+    inertias[k] = kmeans.inertia_  # <4>
+```
+1. Create an empty dictionary to hold the results computed in the loop.
+2. Loop over a range of values from two to fifteen.
+3. Generate clustering result for each `k`.
+4. Save the inertia value to the dictionary.
+
+Now you can create the _elbow plot_. On the resulting curve, you shall be looking for an
+"elbow", a point where the inertia stops decreasing "fast enough", i.e. where the additional
+cluster does not bring much to the model. In this case, it would be eithher 4 or 6.
+
+```{python}
+# | fig-cap: Elbow plot
+_ = pd.Series(inertias).plot()
+```
+
+::: {.callout-tip}
+# Check the 'optimal' result
+
+Now that you know the optimal number, check how it looks on the map and what is the main
+difference between 5, picked randomly, and the value derived from the elbow plot.
+:::
+
+The issue with the elbow plot is that the detection of the optimal number tends to be
+ambiguous but thanks to its simplicity, it is used anyway. However, there is a range of
+other methods that may provide a better understanding of cluster behaviour, like a
+[clustergram](https://clustergram.readthedocs.io/en/stable/) or a
+[silhouette analysis](https://scikit-learn.org/stable/auto_examples/cluster/plot_kmeans_silhouette_analysis.html),
+both of which are out of scope of this material.
+
 ## Spatially-lagged clustering
 
 K-means (in its standard implementation) does not have a way of including of spatial
@@ -335,7 +387,8 @@ subranks_spatial
 ```
 1. With arrays like `pandas.Series`, this would perform element-wise addition. With `list`s, this combines them together.
 
-Initialise a new clustering model.
+Initialise a new clustering model. Again, you could use the elbow or other methods to
+determine the optimal number. Note that it may be different than before.
 
 ```{python}
 kmeans5_lag = cluster.KMeans(n_clusters=5, random_state=42)
@@ -439,9 +492,10 @@ simd[["agg_5", 'geometry']].explore("agg_5", categorical=True, tiles="CartoDB Po
 # Optimal number of clusters
 
 Five might not be the optimal number of classes when we deal with regionalisation as two
-regions of the same characteristics may have to be disconneted. Therefore, the number of
+regions of the same characteristics may have to be disconnected. Therefore, the number of
 clusters will typically be a bit higher than in the non-spatial case. Test yourself what
-should be the optimal number here.
+should be the optimal number here. Note that `AgglomerativeClustering` does not contain
+`inertia_` property so you will need to derive some metric yourself.
 :::
 
 ### Extracting the region boundaries
@@ -482,3 +536,4 @@ and some other extensions.
 This section is derived from _A Course on Geographic Data Science_ by
 @darribas_gds_course, licensed under CC-BY-SA 4.0. The code was updated. The text was slightly adapted
 to accommodate a different dataset, the module change, and the inclusion of spatially lagged K-means.
+
