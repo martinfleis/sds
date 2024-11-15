@@ -65,6 +65,7 @@ website:
           - raster_data/concepts.qmd
           - raster_data/hands_on.qmd
           - raster_data/exercise.qmd
+          - raster_data/quiz.qmd
       - section: "Interpolation"
         contents:
           - interpolation/concepts.qmd
