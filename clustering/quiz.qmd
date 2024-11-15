@@ -1,0 +1,299 @@
+---
+title: "Quiz on spatial autocorrelation"
+filters:
+  - naquiz
+---
+
+Check how much you remember from previous sections by answering the questions below.
+
+:::::{.question}
+**What is the purpose of clustering in multivariate analysis**
+
+::::{.choices}
+
+:::{.choice}
+To increase the number of variables in the dataset.
+:::
+
+:::{.choice .correct-choice}
+To reduce the complexity by grouping similar observations.
+:::
+
+:::{.choice}
+To eliminate irrelevant variables from the dataset.
+:::
+
+:::{.choice}
+To focus on a single variable for analysis.
+:::
+
+::::
+:::::
+
+
+:::::{.question}
+**Which of the following clustering methods assigns each observation to the nearest centroid?**
+
+::::{.choices}
+
+:::{.choice}
+Agglomerative clustering
+:::
+
+:::{.choice}
+DBSCAN
+:::
+
+:::{.choice .correct-choice}
+K-means
+:::
+
+:::{.choice}
+Spectral clustering
+:::
+
+::::
+:::::
+
+:::::{.question}
+**Regionalization refers to:**
+
+::::{.choices}
+
+:::{.choice}
+Dividing a country into equal-sized regions for data analysis.
+:::
+
+:::{.choice .correct-choice}
+Aggregating small geographic units into larger regions based on attribute and spatial similarity.
+:::
+
+:::{.choice}
+Reducing the dimensionality of non-geographic data.
+:::
+
+:::{.choice}
+Assigning each data point to a predefined region without considering clustering.
+:::
+
+::::
+:::::
+
+:::::{.question}
+**Which clustering method is most suitable when we want to ensure that neighboring geographic units are more likely to be in the same cluster?**
+
+::::{.choices}
+
+:::{.choice}
+K-means
+:::
+
+:::{.choice}
+Spectral clustering
+:::
+
+:::{.choice}
+Agglomerative hierarchical clustering
+:::
+
+:::{.choice .correct-choice}
+Spatially lagged clustering
+:::
+
+::::
+:::::
+
+:::::{.question}
+**What is the primary purpose of standardizing variables before applying a clustering algorithm like K-means?**
+
+::::{.choices}
+
+:::{.choice}
+To normalize the dataset to only include integer values.
+:::
+
+:::{.choice}
+To remove outliers from the dataset.
+:::
+
+:::{.choice}
+To reduce the number of variables.
+:::
+
+:::{.choice .correct-choice}
+To ensure all variables contribute equally to the distance calculations.
+:::
+
+::::
+:::::
+
+
+
+:::::{.question}
+**Attribute-based clustering focuses on which aspect of the dataset?**
+
+::::{.choices}
+
+:::{.choice}
+The time-based patterns within the dataset.
+:::
+
+:::{.choice .correct-choice}
+The similarity of values for specific attributes or variables.
+:::
+
+:::{.choice}
+The hierarchical relationships between categories.
+:::
+
+:::{.choice}
+The geographic location of the data points.
+:::
+
+::::
+:::::
+
+:::::{.question}
+**In K-means clustering, the number of clusters (k) is typically:**
+
+::::{.choices}
+
+:::{.choice}
+Determined automatically by the algorithm.
+:::
+
+:::{.choice .correct-choice}
+Specified by the user.
+:::
+
+:::{.choice}
+Based on the number of rows in the dataset.
+:::
+
+:::{.choice}
+Based on the number of columns in the dataset.
+:::
+
+::::
+:::::
+
+:::::{.question}
+**What is a key limitation of K-means clustering when applied to spatial data?**
+
+::::{.choices}
+
+:::{.choice}
+K-means cannot handle datasets with more than 10,000 points.
+:::
+
+:::{.choice}
+K-means requires all variables to be categorical.
+:::
+
+:::{.choice .correct-choice}
+K-means does not consider spatial proximity between points.
+:::
+
+:::{.choice}
+K-means works only with time-series data.
+:::
+
+::::
+:::::
+
+
+:::::{.question}
+**In spatially lagged clustering, which of the following statements is true?**
+
+::::{.choices}
+
+:::{.choice}
+It focuses on clustering attributes regardless of spatial proximity.
+:::
+
+:::{.choice}
+It is a form of hierarchical clustering.
+:::
+
+:::{.choice}
+It creates non-overlapping clusters of equal size.
+:::
+
+:::{.choice .correct-choice}
+It considers the relationship between a location and its neighbors.
+:::
+
+::::
+:::::
+
+:::::{.question}
+**What is the main advantage of agglomerative clustering?**
+
+::::{.choices}
+
+:::{.choice}
+It automatically determines the optimal number of clusters
+:::
+
+:::{.choice .correct-choice}
+It builds a hierarchy of clusters that can be interpreted at different levels.
+:::
+
+:::{.choice}
+To works best with geographic data.
+:::
+
+:::{.choice}
+It requires very little computational power.
+:::
+
+::::
+:::::
+
+:::::{.question}
+**What is the purpose of this code `_ = sns.pairplot(simd[subranks])`?**
+
+::::{.choices}
+
+:::{.choice .correct-choice}
+To visualize bivariate correlations between the sub-ranks using scatter plots.
+:::
+
+:::{.choice}
+To display the spatial distribution of the sub-ranks on a map.
+:::
+
+:::{.choice}
+To overlay different layers of geographic information.
+:::
+
+:::{.choice}
+To generate a histogram for each variable in the dataset.
+:::
+
+::::
+:::::
+
+:::::{.question}
+**What is the key difference between spatially lagged K-means and spatially constrained clustering (regionalization)?**
+
+::::{.choices}
+
+:::{.choice}
+Spatially lagged K-means enforces spatial contiguity,  while spatially constrained clustering allows non-contiguous areas to be grouped together.
+:::
+
+:::{.choice}
+Spatially constrained clustering uses hierarchical methods, while spatially lagged K-means uses distance-based methods.
+:::
+
+:::{.choice .correct-choice}
+Spatially lagged K-means focuses on clustering based on both attributes and spatial relationships, while spatially constrained clustering ensures that neighboring areas are grouped into the same cluster.
+:::
+
+:::{.choice}
+Spatially lagged K-means requires prior knowledge of the number of clusters, while spatially constrained clustering automatically determines the number of clusters.
+:::
+
+::::
+:::::

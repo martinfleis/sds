@@ -7,11 +7,11 @@ aliases:
 
 This course is assessed based on work during the semester and a final assignment - a computational essay.
 
-<!-- ::: {.callout-important}
+::: {.callout-important}
 # Office hours
 
-Students enrolled in `MZ340V17` can book a slot to discuss the assignment via [cal.com/martinfleis/sds](https://cal.com/martinfleis/sds). The slots are available two weeks ahead and must be booked at least a day in advance.
-::: -->
+Students enrolled in `MZ340V17` can book a slot to discuss the assignment via [cal.com/martinfleis/office-hours](https://cal.com/martinfleis/office-hours) with Martin or via [cal.com/brazdanna](https://cal.com/brazdanna) with Anna. The slots are available two weeks ahead and must be booked at least a day in advance.
+:::
 
 ## Structure of the final mark
 
