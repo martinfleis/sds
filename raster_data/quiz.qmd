@@ -11,11 +11,11 @@ Check how much you remember from previous sections by answering the questions be
 
 ::::{.choices}
 
-:::{.choice .correct-choice}
+:::{.choice}
 There is no difference. Both pandas Series, and xarray DataArray are 2-dimensional.
 :::
 
-:::{.choice}
+:::{.choice .correct-choice}
 A pandas Series is 1-dimensional, while xarray DataArray can handle N-dimensional arrays.
 :::
 
@@ -60,19 +60,19 @@ Accessing online maps from OpenStreetMap.
 ::::{.choices}
 
 :::{.choice}
-Points are distributed uniformly across the area.
+To convert raster data to vector data.
 :::
 
 :::{.choice}
-Points are found mostly at random locations.
+Dividing large datasets into smaller ones for easier analysis.
 :::
 
 :::{.choice}
-Points are equally spaced from each other.
+To manually tune visual parameters for large datasets.
 :::
 
 :::{.choice .correct-choice}
-Points are concentrated in specific areas, forming dense regions.
+To visualize large datasets quickly and flexibly.
 :::
 
 ::::
@@ -136,7 +136,7 @@ It merges different DataFrames based on a common index.
 :::
 
 :::{.choice .correct-choice}
-It concatenates multiple xarray DataArrays into a single DataArray along a specified dimension.
+It concatenates multiple xarray DataArrays or datasets into a single DataArray dor a ataset along a specified dimension.
 :::
 
 :::{.choice}
