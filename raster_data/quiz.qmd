@@ -180,19 +180,19 @@ Summarizing raster data values within the boundaries of specified areas.
 ::::{.choices}
 
 :::{.choice}
-geopandas
+`geopandas`
 :::
 
 :::{.choice}
-contextilly
+`contextilly`
 :::
 
 :::{.choice .correct-choice}
-osmnx
+`osmnx`
 :::
 
 :::{.choice}
-rioxarray
+`rioxarray`
 :::
 
 ::::
