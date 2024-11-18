@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Predict future – Spatial Data Science for Social Geography</title>
+<title>Quiz on raster data – Spatial Data Science in Python</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -30,8 +30,7 @@ ul.task-list li input[type="checkbox"] {
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<link href="../classification/hands_on.html" rel="prev">
-<link href="../_assets/favicon.png" rel="icon" type="image/png">
+<link href="../_assets/favicon_micro.png" rel="icon" type="image/png">
 <script src="../site_libs/quarto-html/quarto.js"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -43,6 +42,7 @@ ul.task-list li input[type="checkbox"] {
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
 <link href="../site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../site_libs/quarto-contrib/alpine-3.12/buttons.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -71,38 +71,9 @@ ul.task-list li input[type="checkbox"] {
 }</script>
 <style>html{ scroll-behavior: smooth; }</style>
 
-  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
-
-<script type="text/javascript">
-const typesetMath = (el) => {
-  if (window.MathJax) {
-    // MathJax Typeset
-    window.MathJax.typeset([el]);
-  } else if (window.katex) {
-    // KaTeX Render
-    var mathElements = el.getElementsByClassName("math");
-    var macros = [];
-    for (var i = 0; i < mathElements.length; i++) {
-      var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN") {
-        window.katex.render(texText.data, mathElements[i], {
-          displayMode: mathElements[i].classList.contains('display'),
-          throwOnError: false,
-          macros: macros,
-          fleqn: false
-        });
-      }
-    }
-  }
-}
-window.Quarto = {
-  typesetMath
-};
-</script>
 
 <link rel="stylesheet" href="../_assets/styles.css">
-<meta name="twitter:title" content="Predict future – Spatial Data Science for Social Geography">
+<meta name="twitter:title" content="Quiz on raster data – Spatial Data Science in Python">
 <meta name="twitter:description" content="">
 <meta name="twitter:card" content="summary">
 </head>
@@ -116,7 +87,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../classification/concepts.html">Classification</a></li><li class="breadcrumb-item"><a href="../classification/exercise.html">Predict future</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Quiz on raster data</li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -131,7 +102,7 @@ window.Quarto = {
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
       <a href="../index.html" class="sidebar-logo-link">
-      <img src="../_assets/logo.svg" alt="" class="sidebar-logo py-0 d-lg-inline d-none">
+      <img src="../_assets/logo_micro.svg" alt="" class="sidebar-logo py-0 d-lg-inline d-none">
       </a>
       <div class="sidebar-tools-main tools-wide">
     <a href="https://twitter.com/martinfleis" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-twitter"></i></a>
@@ -199,12 +170,6 @@ window.Quarto = {
  <span class="menu-text">Understanding Notebooks</span></a>
   </div>
 </li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../introduction/quiz.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Quiz on Jupyter and Markdown</span></a>
-  </div>
-</li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
@@ -232,12 +197,6 @@ window.Quarto = {
   <div class="sidebar-item-container"> 
   <a href="../data_wrangling/exercise.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Learning pandas</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../data_wrangling/quiz.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Quiz on pandas</span></a>
   </div>
 </li>
       </ul>
@@ -269,12 +228,6 @@ window.Quarto = {
  <span class="menu-text">Learning GeoPandas</span></a>
   </div>
 </li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../geographic_data/quiz.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Quiz on GeoPandas</span></a>
-  </div>
-</li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
@@ -302,12 +255,6 @@ window.Quarto = {
   <div class="sidebar-item-container"> 
   <a href="../spatial_graphs/exercise.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Graph here, graph there</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../spatial_graphs/quiz.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Quiz on spatial graphs</span></a>
   </div>
 </li>
       </ul>
@@ -339,12 +286,6 @@ window.Quarto = {
  <span class="menu-text">Does it correlate?</span></a>
   </div>
 </li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../autocorrelation/quiz.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Quiz on spatial autocorrelation</span></a>
-  </div>
-</li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
@@ -372,12 +313,6 @@ window.Quarto = {
   <div class="sidebar-item-container"> 
   <a href="../point_patterns/exercise.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Is there a pattern?</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../point_patterns/quiz.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Quiz on point patterns</span></a>
   </div>
 </li>
       </ul>
@@ -409,12 +344,6 @@ window.Quarto = {
  <span class="menu-text">Find me a cluster</span></a>
   </div>
 </li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../clustering/quiz.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Quiz on spatial autocorrelation</span></a>
-  </div>
-</li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
@@ -442,12 +371,6 @@ window.Quarto = {
   <div class="sidebar-item-container"> 
   <a href="../raster_data/exercise.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Learning xarray</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../raster_data/quiz.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Quiz on raster data</span></a>
   </div>
 </li>
       </ul>
@@ -484,7 +407,7 @@ window.Quarto = {
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-11" role="navigation" aria-expanded="false">
- <span class="menu-text">Linear regression</span></a>
+ <span class="menu-text">Regression</span></a>
           <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-11" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -510,86 +433,20 @@ window.Quarto = {
 </li>
       </ul>
   </li>
-        <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-12" role="navigation" aria-expanded="false">
- <span class="menu-text">Non-linear regression</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-12" role="navigation" aria-expanded="false" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-12" class="collapse list-unstyled sidebar-section depth1 ">  
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../tree_regression/concepts.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Non-linear relationships</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../tree_regression/hands_on.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Decision trees and gradient boosting</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../tree_regression/exercise.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Plant a forest</span></a>
-  </div>
-</li>
-      </ul>
-  </li>
-        <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-13" role="navigation" aria-expanded="true">
- <span class="menu-text">Classification</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-13" role="navigation" aria-expanded="true" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-13" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../classification/concepts.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Where do I belong?</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../classification/hands_on.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Classification in space</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../classification/exercise.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text">Predict future</span></a>
-  </div>
-</li>
-      </ul>
-  </li>
     </ul>
     </div>
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">On this page</h2>
-   
-  <ul>
-  <li><a href="#continue-with-classficiation" id="toc-continue-with-classficiation" class="nav-link active" data-scroll-target="#continue-with-classficiation">Continue with classficiation</a></li>
-  <li><a href="#explore-regression" id="toc-explore-regression" class="nav-link" data-scroll-target="#explore-regression">Explore regression</a></li>
-  <li><a href="#effect-of-hyperparameters-advanced" id="toc-effect-of-hyperparameters-advanced" class="nav-link" data-scroll-target="#effect-of-hyperparameters-advanced">Effect of hyperparameters (advanced)</a></li>
-  </ul>
-<div class="toc-actions"><ul><li><a href="https://github.com/martinfleis/sds/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></nav>
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
+        
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../classification/concepts.html">Classification</a></li><li class="breadcrumb-item"><a href="../classification/exercise.html">Predict future</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Predict future</h1>
+<h1 class="title">Quiz on raster data</h1>
 </div>
 
 
@@ -606,35 +463,177 @@ window.Quarto = {
 </header>
 
 
-<!-- Playing with scikit-learn. -->
-<p>In this part, you will not start anything new but will continue working with the data from Prague from the previous section and get a bit deeper into the problem. Not everything has been covered in class, so consult the documentation, Google, or your favourite LLM.</p>
-<section id="continue-with-classficiation" class="level2">
-<h2 class="anchored" data-anchor-id="continue-with-classficiation">Continue with classficiation</h2>
-<p>Let’s try to explore the classification problem a bit further.</p>
-<ol type="1">
-<li>Try different combinations of independent variables.
-<ul>
-<li>Does it make sense to combine proximity variables with spatial heterogeneity? Test that.</li>
-<li>Contrary to what you may expect, removing some variables with low importance helps the performance. Is this the case in our situation?</li>
-<li>Find the best combination of variables. How far can you push accuracy?</li>
-</ul></li>
-<li>Test other ML models.
-<ul>
-<li>Check what happens when you use different models than random forest. Compare the same input using different models, like <code>HistGradientBoostingClassifier</code>, <code>DecisionTreeClassifier</code>, or <code>AdaBoostClassifier</code>. Which one is the best when using the default hyperparameters?</li>
-</ul></li>
-<li>Pick your favourite model and find high and low prediction certainty clusters.</li>
-</ol>
-</section>
-<section id="explore-regression" class="level2">
-<h2 class="anchored" data-anchor-id="explore-regression">Explore regression</h2>
-<p>Try using the techniques of spatial augmentation on the regression model predicting price outlined at the end of the last section. Combine all you think may help. What is the best <span class="math inline">\(R^2\)</span> you can get? You can even optionally compare the result with the performance of Geographically Weighted Regression on the same problem (but do not try to fit it on the full dataset :)).</p>
-</section>
-<section id="effect-of-hyperparameters-advanced" class="level2">
-<h2 class="anchored" data-anchor-id="effect-of-hyperparameters-advanced">Effect of hyperparameters (advanced)</h2>
-<p>You’ve been using the default model parameters. Can you figure out a way of fine-tuning them? Have a look at this <a href="https://scikit-learn.org/stable/modules/grid_search.html">resource</a> and Google and try to fine-tune one of the models you’ve worked with. Does the change of parameters like the number of estimators affect the result in any way? How important do you think it is?</p>
+<p>Check how much you remember from previous sections by answering the questions below.</p>
+<div class="question">
+<p><strong>What is the key difference between a pandas Series and an xarray DataArray?</strong></p>
+<div class="choices">
+<div x-data="{ answer: '' , clear() { this.answer = '' }}">
+
+<div class="choice">
+<p></p><p><input class="form-check-input" type="radio" x-model="answer" value="no1"> <span id="no1" x-show="answer == $el.id" class="badge">✗</span>There is no difference. Both pandas Series, and xarray DataArray are 2-dimensional.</p><p></p>
+</div>
+<div class="choice correct-choice">
+<p></p><p><input class="form-check-input" type="radio" x-model="answer" value="correct"> <span id="correct" x-show="answer == $el.id" class="badge">✓</span>A pandas Series is 1-dimensional, while xarray DataArray can handle N-dimensional arrays.</p><p></p>
+</div>
+<div class="choice">
+<p></p><p><input class="form-check-input" type="radio" x-model="answer" value="no3"> <span id="no3" x-show="answer == $el.id" class="badge">✗</span>A pandas Series can store multiple data types, while xarray DataArray cannot.</p><p></p>
+</div>
+<div class="choice">
+<p></p><p><input class="form-check-input" type="radio" x-model="answer" value="no4"> <span id="no4" x-show="answer == $el.id" class="badge">✗</span>A pandas Series cannot have an index, while xarray DataArray can.</p><p></p>
+</div>
+</div>
+
+</div>
+</div>
+<div class="question">
+<p><strong>Which of the following is xarray mainly used for?</strong></p>
+<div class="choices">
+<div x-data="{ answer: '' , clear() { this.answer = '' }}">
+
+<div class="choice">
+<p></p><p><input class="form-check-input" type="radio" x-model="answer" value="no1"> <span id="no1" x-show="answer == $el.id" class="badge">✗</span>Creating 2D plots of geospatial data.</p><p></p>
+</div>
+<div class="choice correct-choice">
+<p></p><p><input class="form-check-input" type="radio" x-model="answer" value="correct"> <span id="correct" x-show="answer == $el.id" class="badge">✓</span>Handling multi-dimensional arrays of data, particularly in scientific computing.</p><p></p>
+</div>
+<div class="choice">
+<p></p><p><input class="form-check-input" type="radio" x-model="answer" value="no3"> <span id="no3" x-show="answer == $el.id" class="badge">✗</span>Extracting statistical data from raster images.</p><p></p>
+</div>
+<div class="choice">
+<p></p><p><input class="form-check-input" type="radio" x-model="answer" value="no4"> <span id="no4" x-show="answer == $el.id" class="badge">✗</span>Accessing online maps from OpenStreetMap.</p><p></p>
+</div>
+</div>
+
+</div>
+</div>
+<div class="question">
+<p><strong>What is the primary purpose of the <code>datashader</code> package?</strong></p>
+<div class="choices">
+<div x-data="{ answer: '' , clear() { this.answer = '' }}">
+
+<div class="choice">
+<p></p><p><input class="form-check-input" type="radio" x-model="answer" value="no1"> <span id="no1" x-show="answer == $el.id" class="badge">✗</span>To convert raster data to vector data.</p><p></p>
+</div>
+<div class="choice">
+<p></p><p><input class="form-check-input" type="radio" x-model="answer" value="no2"> <span id="no2" x-show="answer == $el.id" class="badge">✗</span>Dividing large datasets into smaller ones for easier analysis.</p><p></p>
+</div>
+<div class="choice">
+<p></p><p><input class="form-check-input" type="radio" x-model="answer" value="no3"> <span id="no3" x-show="answer == $el.id" class="badge">✗</span>To manually tune visual parameters for large datasets.</p><p></p>
+</div>
+<div class="choice correct-choice">
+<p></p><p><input class="form-check-input" type="radio" x-model="answer" value="correct"> <span id="correct" x-show="answer == $el.id" class="badge">✓</span>To visualize large datasets quickly and flexibly.</p><p></p>
+</div>
+</div>
+
+</div>
+</div>
+<div class="question">
+<p><strong>What does the <code>.rio.clip()</code> method do in the context of xarray?</strong></p>
+<div class="choices">
+<div x-data="{ answer: '' , clear() { this.answer = '' }}">
+
+<div class="choice">
+<p></p><p><input class="form-check-input" type="radio" x-model="answer" value="no1"> <span id="no1" x-show="answer == $el.id" class="badge">✗</span>It clips vector data based on raster bounds.</p><p></p>
+</div>
+<div class="choice">
+<p></p><p><input class="form-check-input" type="radio" x-model="answer" value="no2"> <span id="no2" x-show="answer == $el.id" class="badge">✗</span>To download raster data from remote servers.</p><p></p>
+</div>
+<div class="choice">
+<p></p><p><input class="form-check-input" type="radio" x-model="answer" value="no3"> <span id="no3" x-show="answer == $el.id" class="badge">✗</span>It extracts specific coordinates from a raster.</p><p></p>
+</div>
+<div class="choice correct-choice">
+<p></p><p><input class="form-check-input" type="radio" x-model="answer" value="correct"> <span id="correct" x-show="answer == $el.id" class="badge">✓</span>It crops a raster dataset to the extent of a geometry.</p><p></p>
+</div>
+</div>
+
+</div>
+</div>
+<div class="question">
+<p><strong>How does the <code>.sel()</code> method work in xarray?</strong></p>
+<div class="choices">
+<div x-data="{ answer: '' , clear() { this.answer = '' }}">
+
+<div class="choice">
+<p></p><p><input class="form-check-input" type="radio" x-model="answer" value="no1"> <span id="no1" x-show="answer == $el.id" class="badge">✗</span>It selects specific values from a dataset based on index positions.</p><p></p>
+</div>
+<div class="choice correct-choice">
+<p></p><p><input class="form-check-input" type="radio" x-model="answer" value="correct"> <span id="correct" x-show="answer == $el.id" class="badge">✓</span>It selects a subset of data along specified dimensions using label-based indexing.</p><p></p>
+</div>
+<div class="choice">
+<p></p><p><input class="form-check-input" type="radio" x-model="answer" value="no3"> <span id="no3" x-show="answer == $el.id" class="badge">✗</span>It merges different datasets into a single DataArray.</p><p></p>
+</div>
+<div class="choice">
+<p></p><p><input class="form-check-input" type="radio" x-model="answer" value="no4"> <span id="no4" x-show="answer == $el.id" class="badge">✗</span>It reprojects raster data to a new coordinate reference system.</p><p></p>
+</div>
+</div>
+
+</div>
+</div>
+<div class="question">
+<p><strong>What does the <code>xr.concat()</code> function do in the xarray package?</strong></p>
+<div class="choices">
+<div x-data="{ answer: '' , clear() { this.answer = '' }}">
+
+<div class="choice">
+<p></p><p><input class="form-check-input" type="radio" x-model="answer" value="no1"> <span id="no1" x-show="answer == $el.id" class="badge">✗</span>It merges different DataFrames based on a common index.</p><p></p>
+</div>
+<div class="choice correct-choice">
+<p></p><p><input class="form-check-input" type="radio" x-model="answer" value="correct"> <span id="correct" x-show="answer == $el.id" class="badge">✓</span>It concatenates multiple xarray DataArrays or Datasets into a single DataArray or a Dataset along a specified dimension.</p><p></p>
+</div>
+<div class="choice">
+<p></p><p><input class="form-check-input" type="radio" x-model="answer" value="no3"> <span id="no3" x-show="answer == $el.id" class="badge">✗</span>It concatenates multiple xarray DataArrays into a single DataArray along a specified dimension.</p><p></p>
+</div>
+<div class="choice">
+<p></p><p><input class="form-check-input" type="radio" x-model="answer" value="no4"> <span id="no4" x-show="answer == $el.id" class="badge">✗</span>It extracts statistical summaries from raster data.</p><p></p>
+</div>
+</div>
+
+</div>
+</div>
+<div class="question">
+<p><strong>What are zonal statistics used for?</strong></p>
+<div class="choices">
+<div x-data="{ answer: '' , clear() { this.answer = '' }}">
+
+<div class="choice">
+<p></p><p><input class="form-check-input" type="radio" x-model="answer" value="no1"> <span id="no1" x-show="answer == $el.id" class="badge">✗</span>Calculating pixel values for specific locations in a raster.</p><p></p>
+</div>
+<div class="choice">
+<p></p><p><input class="form-check-input" type="radio" x-model="answer" value="no2"> <span id="no2" x-show="answer == $el.id" class="badge">✗</span>Merging multiple rasters into one.</p><p></p>
+</div>
+<div class="choice">
+<p></p><p><input class="form-check-input" type="radio" x-model="answer" value="no3"> <span id="no3" x-show="answer == $el.id" class="badge">✗</span>Resampling raster data to a different resolution.</p><p></p>
+</div>
+<div class="choice correct-choice">
+<p></p><p><input class="form-check-input" type="radio" x-model="answer" value="correct"> <span id="correct" x-show="answer == $el.id" class="badge">✓</span>Summarizing raster data values within the boundaries of specified areas.</p><p></p>
+</div>
+</div>
+
+</div>
+</div>
+<div class="question">
+<p><strong>What tool can be used to download administrative boundary data from OpenStreetMap in Python?</strong></p>
+<div class="choices">
+<div x-data="{ answer: '' , clear() { this.answer = '' }}">
+
+<div class="choice">
+<p></p><p><input class="form-check-input" type="radio" x-model="answer" value="no1"> <span id="no1" x-show="answer == $el.id" class="badge">✗</span><code>geopandas</code></p><p></p>
+</div>
+<div class="choice">
+<p></p><p><input class="form-check-input" type="radio" x-model="answer" value="no2"> <span id="no2" x-show="answer == $el.id" class="badge">✗</span><code>contextilly</code></p><p></p>
+</div>
+<div class="choice correct-choice">
+<p></p><p><input class="form-check-input" type="radio" x-model="answer" value="correct"> <span id="correct" x-show="answer == $el.id" class="badge">✓</span><code>osmnx</code></p><p></p>
+</div>
+<div class="choice">
+<p></p><p><input class="form-check-input" type="radio" x-model="answer" value="no4"> <span id="no4" x-show="answer == $el.id" class="badge">✗</span><code>rioxarray</code></p><p></p>
+</div>
+</div>
+
+</div>
+</div>
 
 
-</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -1201,15 +1200,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   }
 });
 </script>
-<nav class="page-navigation">
-  <div class="nav-page nav-page-previous">
-      <a href="../classification/hands_on.html" class="pagination-link" aria-label="Classification in space">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Classification in space</span>
-      </a>          
-  </div>
-  <div class="nav-page nav-page-next">
-  </div>
-</nav>
 </div> <!-- /content -->
 <footer class="footer">
   <div class="nav-footer">
@@ -1218,7 +1208,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     </div>   
     <div class="nav-footer-center">
 <p>Course material by <a href="https://martinfleischmann.net">Martin Fleischmann</a>. Available under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a>.</p>
-<div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/martinfleis/sds/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></div>
+<div class="toc-actions"><ul><li><a href="https://github.com/martinfleis/sds/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></div>
     <div class="nav-footer-right">
       &nbsp;
     </div>
@@ -1229,4 +1219,5 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 
 
 <script src="../site_libs/quarto-html/zenscroll-min.js"></script>
+<script src="../site_libs/quarto-contrib/alpine-3.12/alpine@3.12.min.js"></script>
 </body></html>
