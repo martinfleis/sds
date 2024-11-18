@@ -136,7 +136,7 @@ It merges different DataFrames based on a common index.
 :::
 
 :::{.choice .correct-choice}
-It concatenates multiple xarray DataArrays or Datasets into a single DataArray dor a Dataset along a specified dimension.
+It concatenates multiple xarray DataArrays or Datasets into a single DataArray or a Dataset along a specified dimension.
 :::
 
 :::{.choice}
