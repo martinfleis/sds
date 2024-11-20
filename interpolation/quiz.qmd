@@ -85,7 +85,7 @@ By creating a linear function between the source and target geometries.
 ::::{.choices}
 
 :::{.choice .correct-choice}
-Preserve the original data's volume while smoothing sharp boundaries
+Preserve the original data's volume while smoothing sharp boundaries.
 :::
 
 :::{.choice}
