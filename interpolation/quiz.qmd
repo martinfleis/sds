@@ -49,7 +49,7 @@ Clustering algorithm.
 :::
 
 :::{.choice}
-Implementing Voronou tessellation
+Implementing Voronoi tessellation.
 :::
 
 ::::
