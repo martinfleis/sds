@@ -232,19 +232,19 @@ Implementing hierarchical grids for efficient analysis.
 ::::{.choices}
 
 :::{.choice}
-A theoretical model of spatial dependence.
+A theoretical model or a mathematical function of spatial dependence.
 :::
 
 :::{.choice}
-A type of spatial correlation coefficient.
+A measure of spatial density of sample points across a study area.
 :::
 
 :::{.choice}
-A kriging method used for spatial interpolation.
+Best-fit model for predicting values in unsampled areas.
 :::
 
 :::{.choice .correct-choice}
-A plot of semivariance against lag distance based on observed data.
+A plot of the semivariance between pairs of sample points as a function of distance, showing the degree of spatial relationship.
 :::
 
 ::::
