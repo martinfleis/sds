@@ -1,0 +1,251 @@
+---
+title: "Quiz on interpolation"
+filters:
+  - naquiz
+---
+
+Check how much you remember from previous sections by answering the questions below.
+
+:::::{.question}
+**What is the H3 grid?**
+
+::::{.choices}
+
+:::{.choice}
+A type of mapping that uses rectangles for spatial operations.
+:::
+
+:::{.choice .correct-choice}
+A hexagonal hierarchical grid that enables efficient spatial operations.
+:::
+
+:::{.choice}
+A linear interpolation method based on grid coordinates.
+:::
+
+:::{.choice}
+A spherical coordinate system used for geospatial data.
+:::
+
+::::
+:::::
+
+
+:::::{.question}
+**What is the primary purpose of the tobler package in PySAL?**
+
+::::{.choices}
+
+:::{.choice}
+Creating experimental variograms.
+:::
+
+:::{.choice .correct-choice}
+Performing areal interpolation.
+:::
+
+:::{.choice}
+Clustering algorithm.
+:::
+
+:::{.choice}
+Implementing Voronou tessellation
+:::
+
+::::
+:::::
+
+:::::{.question}
+**How does simple areal interpolation redistribute values?**
+
+::::{.choices}
+
+:::{.choice}
+Based on the population density of the source geometries.
+:::
+
+:::{.choice .correct-choice}
+Based on the proportion of area shared between source and target polygons.
+:::
+
+:::{.choice}
+Using nearest neighbor values for interpolation.
+:::
+
+:::{.choice}
+By creating a linear function between the source and target geometries.
+:::
+
+::::
+:::::
+
+:::::{.question}
+**What does Pycnophylactic interpolation aim to achieve?**
+
+::::{.choices}
+
+:::{.choice .correct-choice}
+Preserve the original data's volume while smoothing sharp boundaries
+:::
+
+:::{.choice}
+Use spatial lag for better autocorrelation analysis.
+:::
+
+:::{.choice}
+Handle missing values using distance-weighted regression.
+:::
+
+:::{.choice}
+Allocate values proportionally to distances.
+:::
+
+::::
+:::::
+
+:::::{.question}
+**What does an experimental semivariogram represent in spatial statistics?**
+
+::::{.choices}
+
+:::{.choice .correct-choice}
+Point-based interpolation estimates values at unmeasured locations, while grid-based interpolation averages values over spatial units.
+:::
+
+:::{.choice}
+Point-based interpolation only uses nearest neighbor methods, while grid-based interpolation uses kriging.
+:::
+
+:::{.choice}
+Point-based interpolation is limited to continuous data, while grid-based interpolation works only for categorical data.
+:::
+
+:::{.choice}
+Point-based interpolation requires a dense sampling network, while grid-based interpolation does not.
+:::
+
+::::
+:::::
+
+:::::{.question}
+**What is the result of nearest interpolation?**
+
+::::{.choices}
+
+:::{.choice}
+A weighted average of neighboring values.
+:::
+
+:::{.choice}
+A continuous surface based on autocorrelation.
+:::
+
+:::{.choice}
+A spherical interpolation of point distances.
+:::
+
+:::{.choice .correct-choice}
+A Voronoi tessellation representing nearest point values
+:::
+
+::::
+:::::
+
+
+
+:::::{.question}
+**What distinguishes KNN interpolation from distance-weighted KNN?**
+
+::::{.choices}
+
+:::{.choice}
+KNN only uses spatial autocorrelation, while distance-weighted KNN considers lag.
+:::
+
+:::{.choice}
+KNN is based on variograms, while distance-weighted KNN uses kriging.
+:::
+
+:::{.choice .correct-choice}
+Distance-weighted KNN assigns weights inversely proportional to the distance.
+:::
+
+:::{.choice}
+Distance-weighted KNN uses only the closest neighbor.
+:::
+
+::::
+:::::
+
+:::::{.question}
+**What is distance-based regression?**
+
+::::{.choices}
+
+:::{.choice}
+A method that uses only the nearest point for predictions.
+:::
+
+:::{.choice .correct-choice}
+A regression method based on points within a specified distance radius.
+:::
+
+:::{.choice}
+An interpolation technique based on spatial autocorrelation models.
+:::
+
+:::{.choice}
+A combination of areal and point interpolation methods.
+:::
+
+::::
+:::::
+
+:::::{.question}
+**What is ordinary kriging known for?**
+
+::::{.choices}
+
+:::{.choice}
+Using simple averages for point interpolation.
+:::
+
+:::{.choice}
+Assigning weights inversely proportional to distances only.
+:::
+
+:::{.choice .correct-choice}
+Combining geographical proximity with spatial autocorrelation patterns.
+:::
+
+:::{.choice}
+Implementing hierarchical grids for efficient analysis.
+:::
+
+::::
+:::::
+
+
+:::::{.question}
+**What does an experimental semivariogram represent in spatial statistics?**
+
+::::{.choices}
+
+:::{.choice}
+A theoretical model of spatial dependence.
+:::
+
+:::{.choice}
+A type of spatial correlation coefficient.
+:::
+
+:::{.choice}
+A kriging method used for spatial interpolation.
+:::
+
+:::{.choice .correct-choice}
+A plot of semivariance against lag distance based on observed data.
+:::
+
+::::
+:::::
