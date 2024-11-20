@@ -1,0 +1,199 @@
+---
+title: "Quiz on raster data"
+filters:
+  - naquiz
+---
+
+Check how much you remember from previous sections by answering the questions below.
+
+:::::{.question}
+**What is the key difference between a pandas Series and an xarray DataArray?**
+
+::::{.choices}
+
+:::{.choice}
+There is no difference. Both pandas Series, and xarray DataArray are 2-dimensional.
+:::
+
+:::{.choice .correct-choice}
+A pandas Series is 1-dimensional, while xarray DataArray can handle N-dimensional arrays.
+:::
+
+:::{.choice}
+A pandas Series can store multiple data types, while xarray DataArray cannot.
+:::
+
+:::{.choice}
+A pandas Series cannot have an index, while xarray DataArray can.
+:::
+
+::::
+:::::
+
+:::::{.question}
+**Which of the following is xarray mainly used for?**
+
+::::{.choices}
+
+:::{.choice}
+Creating 2D plots of geospatial data.
+:::
+
+:::{.choice .correct-choice}
+Handling multi-dimensional arrays of data, particularly in scientific computing.
+:::
+
+:::{.choice}
+Extracting statistical data from raster images.
+:::
+
+:::{.choice}
+Accessing online maps from OpenStreetMap.
+:::
+
+::::
+:::::
+
+:::::{.question}
+**What is the primary purpose of the `datashader` package?**
+
+::::{.choices}
+
+:::{.choice}
+To convert raster data to vector data.
+:::
+
+:::{.choice}
+Dividing large datasets into smaller ones for easier analysis.
+:::
+
+:::{.choice}
+To manually tune visual parameters for large datasets.
+:::
+
+:::{.choice .correct-choice}
+To visualize large datasets quickly and flexibly.
+:::
+
+::::
+:::::
+
+:::::{.question}
+**What does the `.rio.clip()` method do in the context of xarray?**
+
+::::{.choices}
+
+:::{.choice}
+It clips vector data based on raster bounds.
+:::
+
+:::{.choice}
+To download raster data from remote servers.
+:::
+
+:::{.choice}
+It extracts specific coordinates from a raster.
+:::
+
+:::{.choice .correct-choice}
+It crops a raster dataset to the extent of a geometry.
+:::
+
+::::
+:::::
+
+:::::{.question}
+**How does the `.sel()` method work in xarray?**
+
+::::{.choices}
+
+:::{.choice}
+It selects specific values from a dataset based on index positions.
+:::
+
+:::{.choice .correct-choice}
+It selects a subset of data along specified dimensions using label-based indexing.
+:::
+
+:::{.choice}
+It merges different datasets into a single DataArray.
+:::
+
+:::{.choice}
+It reprojects raster data to a new coordinate reference system.
+:::
+
+::::
+:::::
+
+:::::{.question}
+**What does the `xr.concat()` function do in the xarray package?**
+
+::::{.choices}
+
+:::{.choice}
+It merges different DataFrames based on a common index.
+:::
+
+:::{.choice .correct-choice}
+It concatenates multiple xarray DataArrays or Datasets into a single DataArray or a Dataset along a specified dimension.
+:::
+
+:::{.choice}
+It concatenates multiple xarray DataArrays into a single DataArray along a specified dimension.
+:::
+
+:::{.choice}
+It extracts statistical summaries from raster data.
+:::
+
+::::
+:::::
+
+:::::{.question}
+**What are zonal statistics used for?**
+
+::::{.choices}
+
+:::{.choice}
+Calculating pixel values for specific locations in a raster.
+:::
+
+:::{.choice}
+Merging multiple rasters into one.
+:::
+
+:::{.choice}
+Resampling raster data to a different resolution.
+:::
+
+:::{.choice .correct-choice}
+Summarizing raster data values within the boundaries of specified areas.
+:::
+
+::::
+:::::
+
+:::::{.question}
+**What tool can be used to download administrative boundary data from OpenStreetMap in Python?**
+
+::::{.choices}
+
+:::{.choice}
+`geopandas`
+:::
+
+:::{.choice}
+`contextilly`
+:::
+
+:::{.choice .correct-choice}
+`osmnx`
+:::
+
+:::{.choice}
+`rioxarray`
+:::
+
+::::
+:::::
