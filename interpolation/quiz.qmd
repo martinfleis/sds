@@ -145,7 +145,7 @@ A spherical interpolation of point distances.
 :::
 
 :::{.choice .correct-choice}
-A Voronoi tessellation representing nearest point values
+A Voronoi tessellation representing nearest point values.
 :::
 
 ::::
