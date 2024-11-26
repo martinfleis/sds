@@ -32,7 +32,7 @@ A spherical coordinate system used for geospatial data.
 
 
 :::::{.question}
-**What is the primary purpose of the tobler package in PySAL?**
+**What is the primary purpose of the `tobler` package in PySAL?**
 
 ::::{.choices}
 
@@ -98,30 +98,6 @@ Handle missing values using distance-weighted regression.
 
 :::{.choice}
 Allocate values proportionally to distances.
-:::
-
-::::
-:::::
-
-:::::{.question}
-**What does an experimental semivariogram represent in spatial statistics?**
-
-::::{.choices}
-
-:::{.choice .correct-choice}
-Point-based interpolation estimates values at unmeasured locations, while grid-based interpolation averages values over spatial units.
-:::
-
-:::{.choice}
-Point-based interpolation only uses nearest neighbor methods, while grid-based interpolation uses kriging.
-:::
-
-:::{.choice}
-Point-based interpolation is limited to continuous data, while grid-based interpolation works only for categorical data.
-:::
-
-:::{.choice}
-Point-based interpolation requires a dense sampling network, while grid-based interpolation does not.
 :::
 
 ::::
