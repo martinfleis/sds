@@ -71,6 +71,7 @@ website:
           - interpolation/concepts.qmd
           - interpolation/hands_on.qmd
           - interpolation/exercise.qmd
+          - interpolation/quiz.qmd
       - section: "Linear regression"
         contents:
           - regression/concepts.qmd
