@@ -8,3 +8,75 @@ format: html
 
 This section is currently in works. Come back later.
 :::
+
+
+```{python}
+import geopandas as gpd
+import matplotlib.pyplot as plt
+import numpy as np
+import pandas as pd
+import shapely
+from libpysal import graph
+from sklearn import ensemble, metrics, model_selection
+```
+
+```{python}
+exekuce = pd.read_csv('data/czechia_executions_q3_2024.csv')
+```
+
+```{python}
+elections = gpd.read_file(
+    "https://martinfleischmann.net/sds/autocorrelation/data/cz_elections_2023.gpkg"
+)
+elections = elections.set_index("name")
+elections.head()
+```
+
+```{python}
+education = pd.read_csv(
+    "https://martinfleischmann.net/sds/regression/data/education.csv"
+)
+education.head()
+```
+
+```{python}
+executions_data = elections.merge(education, left_on="nationalCode", right_on="uzemi_kod").merge(exekuce, left_on="nationalCode", right_on='kod_obce')
+executions_data.head()
+```
+
+```{python}
+executions_data.explore('podil_osob_v_exekuci')
+```
+
+```{python}
+variables = [
+    # 'AndrejBabis',
+    'without_education', 'undetermined',
+       'incomplete_primary_education',
+       'lower_secondary_and_secondary_education', 'further_education',
+       'post_maturita_studies', 'bachelors_degree', 'doctoral_degree',
+       'masters_degree', 'higher_vocational_education',
+       'higher_vocational_education_in_a_conservatory', 'primary_education',
+       'complete_secondary_vocational_education',
+       'complete_secondary_general_education'
+]
+```
+
+```{python}
+independent = executions_data[variables]
+X_train, X_test, y_train, y_test = model_selection.train_test_split(
+    independent, executions_data["PetrPavel"], test_size=0.2, random_state=0
+)
+```
+
+```{python}
+basic_model = ensemble.RandomForestRegressor(random_state=0, n_jobs=-1)
+basic_model.fit(X_train, y_train)
+```
+
+```{python}
+pred = basic_model.predict(X_test)
+
+r_squared = metrics.r2_score(pred, y_test)
+r_squared
+```
