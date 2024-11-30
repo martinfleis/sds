@@ -1,6 +1,9 @@
 ---
-title: "Decision trees and gradient boosting"
-format: html
+title: "Spatial evaluation and model architecture"
+format:
+  html: default
+  ipynb: default
+jupyter: sds
 ---
 
 ::: {.callout-caution}
@@ -17,12 +20,18 @@ import numpy as np
 import pandas as pd
 import shapely
 from libpysal import graph
-from sklearn import ensemble, metrics, model_selection
+import esda
+import pyinterpolate
+from sklearn import ensemble, svm, metrics, model_selection, tree
 ```
 
+Predicitng the ratio of people with an execution.
+
 ```{python}
-exekuce = pd.read_csv('data/czechia_executions_q3_2024.csv')
+executions = pd.read_csv('data/czechia_executions_q3_2024.csv')
 ```
+
+Based on election results.
 
 ```{python}
 elections = gpd.read_file(
@@ -32,6 +41,8 @@ elections = elections.set_index("name")
 elections.head()
 ```
 
+And education profile.
+
 ```{python}
 education = pd.read_csv(
     "https://martinfleischmann.net/sds/regression/data/education.csv"
@@ -39,44 +50,494 @@ education = pd.read_csv(
 education.head()
 ```
 
+Plus average age and proportio of divorced ppl in the population.
+
 ```{python}
-executions_data = elections.merge(education, left_on="nationalCode", right_on="uzemi_kod").merge(exekuce, left_on="nationalCode", right_on='kod_obce')
+age_divorces = pd.read_csv(
+    "data/cz_age_divorces_2021.csv"
+)
+age_divorces.head()
+```
+
+
+Merge all together.
+
+```{python}
+executions_data = (
+    elections
+    .merge(executions, left_on="nationalCode", right_on='kod_obce')
+    .merge(education, left_on="nationalCode", right_on="uzemi_kod")
+    .merge(age_divorces, left_on="nationalCode", right_on="uzemi_kod")
+    )
 executions_data.head()
 ```
 
+Check the target
+
 ```{python}
-executions_data.explore('podil_osob_v_exekuci')
+executions_data.plot(
+    'podil_osob_v_exekuci',
+    legend=True,
+    vmax=30,
+).set_axis_off()
 ```
+
+Select independent
 
 ```{python}
 variables = [
-    # 'AndrejBabis',
-    'without_education', 'undetermined',
-       'incomplete_primary_education',
-       'lower_secondary_and_secondary_education', 'further_education',
-       'post_maturita_studies', 'bachelors_degree', 'doctoral_degree',
-       'masters_degree', 'higher_vocational_education',
-       'higher_vocational_education_in_a_conservatory', 'primary_education',
-       'complete_secondary_vocational_education',
-       'complete_secondary_general_education'
+    'AndrejBabis',
+    'undetermined',
+    'masters_degree',
+    'primary_education',
+    'mean_age',
+    'divorced',
 ]
 ```
 
 ```{python}
+fig, axs = plt.subplots(3, 2)
+for variable, ax in zip(variables, axs.flatten()):
+    executions_data.plot(
+        variable,
+        ax=ax,
+        cmap='magma',
+        legend=True,
+        legend_kwds=dict(shrink=0.5),
+    )
+    ax.set_title(variable, fontdict={'fontsize': 8})
+    ax.set_axis_off()
+```
+
+## Machine learning 101
+
+```{python}
 independent = executions_data[variables]
+target = executions_data["podil_osob_v_exekuci"]
+```
+
+### Train-test split
+
+Theory or random train-test split
+
+```{python}
 X_train, X_test, y_train, y_test = model_selection.train_test_split(
-    independent, executions_data["PetrPavel"], test_size=0.2, random_state=0
+    independent, target, test_size=0.2, random_state=0
+)
+X_train.head()
+```
+
+```{python}
+X_train.shape, X_test.shape
+```
+
+### Training
+
+Define the model and train on the traning sample.
+
+```{python}
+basic_model = ensemble.RandomForestRegressor(n_jobs=-1, random_state=0)
+basic_model.fit(X_train, y_train)
+```
+
+### Predicting
+
+Predict the values on the test sample.
+
+```{python}
+pred_test = basic_model.predict(X_test)
+pred_test
+```
+
+### Evaluation
+
+Eval theory
+
+#### R-squared
+
+```{python}
+r2 = metrics.r2_score(y_test, pred_test)
+r2
+```
+
+#### MAE
+
+```{python}
+mean_absolute_error = metrics.mean_absolute_error(y_test, pred_test)
+mean_absolute_error
+```
+
+#### RMSE
+
+```{python}
+rmse = metrics.root_mean_squared_error(y_test, pred_test)
+rmse
+```
+
+```{python}
+summary = f"""\
+Evaluation metrics
+==================
+Random Forest:
+  R2:   {round(r2, 3)}
+  MAE:  {round(mean_absolute_error, 3)}
+  RMSE: {round(rmse, 3)}
+"""
+print(summary)
+```
+
+## Cross validation
+
+```{python}
+executions_data.assign(
+    pred_test=pd.Series(pred_test, index=X_test.index)
+).plot("pred_test", legend=True).set_axis_off()
+```
+
+```{python}
+pred_cross_val = model_selection.cross_val_predict(
+    basic_model,
+    independent,
+    target,
+    n_jobs=-1,
 )
 ```
 
 ```{python}
-basic_model = ensemble.RandomForestRegressor(random_state=0, n_jobs=-1)
-basic_model.fit(X_train, y_train)
+executions_data.plot(pred_cross_val, legend=True).set_axis_off()
 ```
 
 ```{python}
-pred = basic_model.predict(X_test)
+r2_cross_val = metrics.r2_score(
+    target, pred_cross_val
+)
+mae_cross_val = metrics.mean_absolute_error(
+    target, pred_cross_val
+)
+rmse_cross_val = metrics.root_mean_squared_error(
+    target, pred_cross_val
+)
 
-r_squared = metrics.r2_score(pred, y_test)
-r_squared
+summary += f"""\
+Random Forest (k-fold metrics):
+  R2:   {round(r2_cross_val, 3)}
+  MAE:  {round(mae_cross_val, 3)}
+  RMSE: {round(rmse_cross_val, 3)}
+"""
+print(summary)
+```
+
+
+### Residuals
+
+```{python}
+residuals = (target - pred_cross_val)
+```
+```{python}
+minmax = residuals.abs().std()
+executions_data.plot(
+    residuals,
+    vmin=-minmax * 5,
+    vmax=minmax * 5,
+    cmap="RdBu",
+    legend=True,
+).set_axis_off()
+```
+
+## Spatial evaluation
+
+### Spatially stratified metrics
+
+Let's see how the global metrics differ regionally
+
+```{python}
+executions_data['prediction'] = pred_cross_val
+```
+
+Group by "okres" and check the metric within each one. Better to measure metrics derived from real values than R2 as the latter is not well comparable across different datasets.
+
+```{python}
+grouped = executions_data.groupby("okres")[["podil_osob_v_exekuci", "prediction"]]
+
+block_mae = grouped.apply(
+    lambda group: metrics.mean_absolute_error(
+        group["podil_osob_v_exekuci"], group["prediction"]
+    )
+)
+block_rmse = grouped.apply(
+    lambda group: metrics.root_mean_squared_error(
+        group["podil_osob_v_exekuci"], group["prediction"]
+    )
+)
+```
+
+```{python}
+block_mae.head()
+```
+
+Concat and merge
+
+```{python}
+spatial_metrics = pd.concat([block_mae, block_rmse], axis=1)
+spatial_metrics.columns = ["block_mae", "block_rmse"]
+spatial_metrics.head(3)
+```
+
+```{python}
+executions_data = executions_data.merge(
+    spatial_metrics, left_on="okres", right_index=True
+)
+executions_data.head(3)
+```
+
+Plot
+
+```{python}
+fig, axs = plt.subplots(2, 1)
+for i, metric in enumerate(['block_mae', 'block_rmse']):
+    executions_data.plot(metric, ax=axs[i], legend=True, cmap='cividis')
+    axs[i].set_title(metric, fontdict={'fontsize': 8})
+    axs[i].set_axis_off()
+```
+
+```{python}
+distance25km = graph.Graph.build_knn(
+    executions_data.set_geometry(executions_data.centroid), 100
+).assign_self_weight()
+
+executions_data["spatial_mae"] = distance25km.apply(
+    executions_data[["podil_osob_v_exekuci", "prediction"]],
+    lambda df: metrics.mean_absolute_error(
+        df["podil_osob_v_exekuci"], df["prediction"]
+    ),
+)
+executions_data["spatial_rmse"] = distance25km.apply(
+    executions_data[["podil_osob_v_exekuci", "prediction"]],
+    lambda df: metrics.root_mean_squared_error(
+        df["podil_osob_v_exekuci"], df["prediction"]
+    ),
+)
+```
+
+```{python}
+fig, axs = plt.subplots(2, 1)
+for i, metric in enumerate(['spatial_mae', 'spatial_rmse']):
+    executions_data.plot(metric, ax=axs[i], legend=True, cmap='cividis')
+    axs[i].set_title(metric, fontdict={'fontsize': 8})
+    axs[i].set_axis_off()
+```
+
+### Spatial dependency of error
+
+#### Variogram
+
+Check the spread of autocorrelation - how far does it go?
+
+Data prep.
+
+```{python}
+input_data = np.hstack(
+    [
+        executions_data.centroid.get_coordinates(),
+        residuals.abs().values.reshape(-1, 1),
+    ]
+)
+```
+
+Variogram using pyinterpolate.
+
+```{python}
+exp_semivar = pyinterpolate.build_experimental_variogram(
+    input_array=input_data,
+    step_size=10_000,  # <1>
+    max_range=490_000, # <2>
+)
+```
+
+Plot.
+
+```{python}
+exp_semivar.plot()
+```
+
+Explain
+
+#### LISA on residuals
+
+```{python}
+distance10km = graph.Graph.build_distance_band(
+    executions_data.set_geometry(executions_data.centroid), 10_000
+)
+```
+
+Consistenly overpredicted and consistently underpredicting
+```{python}
+moran = esda.Moran_Local(residuals, distance10km)
+moran.explore(executions_data, tiles="CartoDB Positron")
+```
+
+Consistently correct snd consistently wrong
+
+```{python}
+moran_abs = esda.Moran_Local(residuals.abs(), distance10km)
+moran_abs.explore(executions_data, tiles="CartoDB Positron")
+```
+
+
+## Spatial leakage
+
+Spatial dependency may cause leakage between test and train. Spatially stratified k-fold cross validation is here to help.
+
+```{python}
+rook = graph.Graph.build_contiguity(executions_data)
+
+for variable in variables + ['podil_osob_v_exekuci']:
+    morans_i = esda.Moran(executions_data[variable], rook)
+    print(f"Moran's I of {variable} is {morans_i.I:.2f} with the  p-value of {morans_i.p_sim}.")
+```
+
+```{python}
+kf = model_selection.KFold(n_splits=5, shuffle=True)
+
+splits = kf.split(
+    independent,
+    target,
+)
+split_label = np.empty(len(independent), dtype=float)
+for i, (train, test) in enumerate(splits):
+    split_label[test] = i
+
+executions_data.plot(
+    split_label, categorical=True, legend=True, cmap="Set3"
+).set_axis_off()
+```
+
+Group k-fold.
+
+```{python}
+gkf = model_selection.GroupKFold(n_splits=5)
+```
+
+```{python}
+splits = gkf.split(
+    independent,
+    target,
+    groups=executions_data["okres"],
+)
+split_label = np.empty(len(independent), dtype=float)
+for i, (train, test) in enumerate(splits):
+    split_label[test] = i
+
+executions_data.plot(
+    split_label, categorical=True, legend=True, cmap="Set3"
+).set_axis_off()
+```
+
+Cross-val prediction on group k-fold
+
+```{python}
+rf_spatial_cv = ensemble.RandomForestRegressor(random_state=0, n_jobs=-1)
+
+pred_spatial_cv = model_selection.cross_val_predict(
+    rf_spatial_cv,
+    independent,
+    target,
+    groups=executions_data["okres"],
+    cv=gkf,
+    n_jobs=-1,
+)
+```
+
+Evaluate
+
+```{python}
+r2_spatial_cv = metrics.r2_score(target, pred_spatial_cv)
+mae_spatial_cv = metrics.mean_absolute_error(target, pred_spatial_cv)
+rmse_spatial_cv = metrics.root_mean_squared_error(target, pred_spatial_cv)
+
+summary += f"""\
+Random Forest with spatial cross-validation (k-fold):
+  R2:   {round(r2_spatial_cv, 3)}
+  MAE:  {round(mae_spatial_cv, 3)}
+  RMSE: {round(rmse_spatial_cv, 3)}
+"""
+print(summary)
+```
+
+## Model comparison
+
+RF is not the only model.
+
+Check perf of out-of-the-shelf Gradient Boosted Tree for a comparison.
+
+```{python}
+boosted_tree = ensemble.GradientBoostingRegressor()
+pred_boosted_tree = model_selection.cross_val_predict(
+    boosted_tree,
+    independent,
+    target,
+    groups=executions_data.okres,
+    cv=gkf,
+)
+
+r2_boosted_tree = metrics.r2_score(target, pred_boosted_tree)
+mae_boosted_tree = metrics.mean_absolute_error(target, pred_boosted_tree)
+rmse_boosted_tree = metrics.root_mean_squared_error(target, pred_boosted_tree)
+
+summary += f"""\
+Gradient Boosted Tree with spatial cross-validation (k-fold):
+  R2:   {round(r2_boosted_tree, 3)}
+  MAE:  {round(mae_boosted_tree, 3)}
+  RMSE: {round(rmse_boosted_tree, 3)}
+"""
+print(summary)
+```
+
+### Hyper-parameter tuning
+
+```{python}
+
+param_grid = {
+    "loss": ["squared_error", "absolute_error"],
+    "learning_rate": [0.01, 0.05, 0.1, 0.15, 0.2],
+}
+
+X_train, X_test, y_train, y_test = model_selection.train_test_split(
+    independent, target, test_size=0.2, random_state=0
+)
+
+boosted_tree = ensemble.GradientBoostingRegressor(random_state=0)
+
+grid_search = model_selection.GridSearchCV(boosted_tree, param_grid)
+grid_search.fit(X_train, y_train)
+```
+
+```{python}
+params = grid_search.cv_results_['params']
+mean_scores = grid_search.cv_results_['mean_test_score']
+
+grid_search_results = pd.DataFrame(params)
+grid_search_results['mean_score'] = mean_scores
+grid_search_results.sort_values('mean_score', ascending=False)
+```
+
+## Feature importance
+
+What is driving the results?
+
+Get the best model.
+
+```{python}
+best_model = grid_search.best_estimator_
+```
+
+Extract the feature importance.
+
+```{python}
+feature_importance = pd.Series(best_model.feature_importances_, index=variables)
+feature_importance.sort_values()
+```
+
+```{python}
+feature_importance.sort_values().plot.bar()
 ```
