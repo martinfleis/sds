@@ -8,6 +8,13 @@ aliases:
   - ../chapter_09/hands_on.html
 ---
 
+```{python}
+# | echo: false
+import warnings
+
+warnings.filterwarnings("ignore", category=SyntaxWarning)
+```
+
 In your life as a spatial data scientist, you will find yourself in a situation where
 you have plenty of data to work with, just linked to different geometries or representing
 slightly different locations that you need. When this happens, you need to _interpolate_

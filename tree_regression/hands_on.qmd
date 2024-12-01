@@ -6,6 +6,13 @@ format:
 jupyter: sds
 ---
 
+```{python}
+# | echo: false
+import warnings
+
+warnings.filterwarnings("ignore", category=SyntaxWarning)
+```
+
 Linear regression, covered in the previous chapter, is often seen as an entry method to
 enter the world of supervised machine learning. However, not every phenomenon can be
 explained using a linear relationship, and not everything is a regression. For the
