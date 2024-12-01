@@ -28,14 +28,14 @@ sure you will find one that suits you.
 :::
 
 ```{python}
+import esda
 import geopandas as gpd
 import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
-from libpysal import graph
-import esda
 import pyinterpolate
-from sklearn import ensemble, svm, metrics, model_selection
+from libpysal import graph
+from sklearn import ensemble, metrics, model_selection, svm
 ```
 
 ## Data
@@ -50,7 +50,9 @@ from [mapazadluzeni.cz](https://www.mapazadluzeni.cz) by PAQ Research. The CSV i
 slightly pre-processed to contain only relevant information.
 
 ```{python}
-executions = pd.read_csv("data/czechia_executions_q3_2024.csv")
+executions = pd.read_csv(
+    "https://martinfleischmann.net/sds/tree_regression/data/czechia_executions_q3_2024.csv"
+)
 executions.head()
 ```
 
@@ -104,7 +106,7 @@ the population.
 
 ```{python}
 age_divorces = pd.read_csv(
-    "data/cz_age_divorces_2021.csv"
+    "https://martinfleischmann.net/sds/tree_regression/data/cz_age_divorces_2021.csv"
 )
 age_divorces.head()
 ```
