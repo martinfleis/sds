@@ -5,14 +5,8 @@ aliases:
   - ../chapter_11/concepts.html
 ---
 
-<!-- - intro to supervised ML -->
+::: {.callout-caution}
+# Work in progress
 
-Slides from the talk introducing the generic concepts of machine learning, explaining decision trees, and outlining ways of incorporating spatial dimension into the formula.
-
-```{=html}
-<iframe class="slide-deck" src="slides.html"></iframe>
-```
-
-## Acknowledgements {.appendix}
-
-The slides embed _A visual introduction to machine learning_ by Stephanie Yee and Tony Chu, available from [http://www.r2d3.us/visual-intro-to-machine-learning-part-1/](http://www.r2d3.us/visual-intro-to-machine-learning-part-1/).
+This section is currently in works. Come back later.
+:::
