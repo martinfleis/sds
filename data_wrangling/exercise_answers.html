@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.6.37">
+<meta name="generator" content="quarto-1.6.39">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -70,12 +70,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-8be6eb1f3fc0fed20679d32b6e34e37a.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-72398e7afd5ddfc0817a08fc63b2d3e3.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-e8fb9d25728d58bfeac61b497e4a6629.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-57a92833092fd6dc0d7710b6bdfff9c5.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-ac055df147e8bfe9ce5bfa5b46eecb8e.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../site_libs/bootstrap/bootstrap-dark-6eb07e0924b601969271c32242c069f6.min.css" rel="prefetch" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../site_libs/bootstrap/bootstrap-89c465c254dc7890db84bc709cd644d4.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-aea73f76631d35e417eb8d06f8d60748.min.css" rel="prefetch" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -542,7 +542,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../tree_regression/hands_on.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Decision trees and gradient boosting</span></a>
+ <span class="menu-text">Spatial evaluation and model architecture</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -613,18 +613,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 <p>Here is one way of getting the solution. There are others, feel free to share yours.</p>
-<div id="b7095214" class="cell" data-execution_count="1">
+<div id="62e4ce37" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="1303ef42" class="cell" data-execution_count="2">
+<div id="ca5f2578" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>url <span class="op">=</span> <span class="st">"https://www.gov.scot/binaries/content/documents/govscot/publications/statistics/2020/01/scottish-index-of-multiple-deprivation-2020-ranks-and-domain-ranks/documents/scottish-index-of-multiple-deprivation-2020-ranks-and-domain-ranks/scottish-index-of-multiple-deprivation-2020-ranks-and-domain-ranks/govscot%3Adocument/SIMD%2B2020v2%2B-%2Branks.xlsx"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="f9ae97f2" class="cell" data-execution_count="3">
+<div id="7c55c75c" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>simd <span class="op">=</span> pd.read_excel(url, sheet_name<span class="op">=</span><span class="st">"SIMD 2020v2 ranks"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p><strong>Which data zone is the most deprived (lowest ranking?) Which council area is it?</strong></p>
-<div id="d5adf9c0" class="cell" data-execution_count="4">
+<div id="1893a4bb" class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>simd.sort_values(<span class="st">"SIMD2020v2_Rank"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="4">
 <div>
@@ -834,18 +834,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <p>You can read the value from the table or extract it using <code>iloc</code>, which works like <code>loc</code> but based on a position.</p>
-<div id="04836eb1" class="cell" data-execution_count="5">
+<div id="0b174425" class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>simd.sort_values(<span class="st">"SIMD2020v2_Rank"</span>).iloc[<span class="dv">0</span>][<span class="st">"Council_area"</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="5">
 <pre><code>'Inverclyde'</code></pre>
 </div>
 </div>
 <p><strong>Can you add a column with a proportion of the working age population in each data zone?</strong></p>
-<div id="1a0d4270" class="cell" data-execution_count="6">
+<div id="7519f757" class="cell" data-execution_count="6">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>simd[<span class="st">"working_proportion"</span>] <span class="op">=</span> simd[<span class="st">"Working_age_population"</span>] <span class="op">/</span> simd[<span class="st">"Total_population"</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p><strong>Which council area is, on average, the least deprived based on the Income domain?</strong></p>
-<div id="1a5fac4b" class="cell" data-execution_count="7">
+<div id="167e498f" class="cell" data-execution_count="7">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>simd.groupby(<span class="st">"Council_area"</span>)[<span class="st">"SIMD2020v2_Income_Domain_Rank"</span>].mean().sort_values(ascending<span class="op">=</span><span class="va">False</span>).head(<span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="7">
 <pre><code>Council_area
@@ -854,14 +854,14 @@ Name: SIMD2020v2_Income_Domain_Rank, dtype: float64</code></pre>
 </div>
 </div>
 <p><strong>What is the total population of the “Glasgow City” council?</strong></p>
-<div id="19ed5759" class="cell" data-execution_count="8">
+<div id="dff788d4" class="cell" data-execution_count="8">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>simd.groupby(<span class="st">"Council_area"</span>)[<span class="st">"Total_population"</span>].<span class="bu">sum</span>()[<span class="st">"Glasgow City"</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="8">
 <pre><code>621020</code></pre>
 </div>
 </div>
 <p><strong>Can you plot the ranking distribution in “Glasgow City”? How does it compare to the “City of Edinburgh”?</strong></p>
-<div id="1a466448" class="cell" data-execution_count="9">
+<div id="632193a9" class="cell" data-execution_count="9">
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>glasgow <span class="op">=</span> simd.query(<span class="st">"Council_area == 'Glasgow City'"</span>)</span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>glasgow[<span class="st">"SIMD2020v2_Rank"</span>].plot.hist()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
@@ -872,7 +872,7 @@ Name: SIMD2020v2_Income_Domain_Rank, dtype: float64</code></pre>
 </div>
 </div>
 </div>
-<div id="8ab62d5f" class="cell" data-execution_count="10">
+<div id="959028e5" class="cell" data-execution_count="10">
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>edinburgh <span class="op">=</span> simd.query(<span class="st">"Council_area == 'City of Edinburgh'"</span>)</span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>edinburgh[<span class="st">"SIMD2020v2_Rank"</span>].plot.hist()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
@@ -884,7 +884,7 @@ Name: SIMD2020v2_Income_Domain_Rank, dtype: float64</code></pre>
 </div>
 </div>
 <p>Or using <code>seaborn</code>.</p>
-<div id="e0b76466" class="cell" data-execution_count="11">
+<div id="fd5e4c85" class="cell" data-execution_count="11">
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>sns.displot(glasgow[<span class="st">"SIMD2020v2_Rank"</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
@@ -894,7 +894,7 @@ Name: SIMD2020v2_Income_Domain_Rank, dtype: float64</code></pre>
 </div>
 </div>
 </div>
-<div id="5de1a03e" class="cell" data-execution_count="12">
+<div id="cf1f9bd3" class="cell" data-execution_count="12">
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>sns.displot(edinburgh[<span class="st">"SIMD2020v2_Rank"</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
@@ -905,7 +905,7 @@ Name: SIMD2020v2_Income_Domain_Rank, dtype: float64</code></pre>
 </div>
 </div>
 <p><strong>Can you figure out how to create a scatter plot of a relationship between the education and health domain rankings?</strong></p>
-<div id="50c29a0e" class="cell" data-execution_count="13">
+<div id="c01a8fe9" class="cell" data-execution_count="13">
 <div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>simd.plot.scatter(<span class="st">"SIMD2020_Education_Domain_Rank"</span>, <span class="st">"SIMD2020_Health_Domain_Rank"</span>, s<span class="op">=</span><span class="fl">.1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
@@ -916,7 +916,7 @@ Name: SIMD2020v2_Income_Domain_Rank, dtype: float64</code></pre>
 </div>
 </div>
 <p>Or using <code>seaborn</code>.</p>
-<div id="469330f8" class="cell" data-execution_count="14">
+<div id="97360f03" class="cell" data-execution_count="14">
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>sns.scatterplot(x<span class="op">=</span><span class="st">"SIMD2020_Education_Domain_Rank"</span>, y<span class="op">=</span><span class="st">"SIMD2020_Health_Domain_Rank"</span>, data<span class="op">=</span>simd)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
