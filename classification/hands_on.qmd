@@ -8,14 +8,12 @@ aliases:
   - ../chapter_11/hands_on.html
 ---
 
-Linear regression, covered in the previous chapter, is often seen as an entry method to enter
-the world of supervised machine learning. However, not every phenomenon can be explained
-using a linear relationship, and not everything is a regression. For the former, you need
-to use methods that have a bit more complicated math behind them (but often the same
-Python API). For the latter, you will often need to look for classification models. Both
-of these options are covered in this chapter, which will outline methods of introducing
-spatial dimension to commonly used machine learning models. To a degree, it is a continuation
-of the work covered last time, but there are some new things here and there.
+As with regressions, both linear and non-linear, classification belongs to the realm of
+supervised machine learning. Right now, you should now how to deal with prediction of
+continuous variables and how to evaluate the model performance using the spatial dimension.
+In this chapter, you will learn how to predict categorical variables - classes, while outlining
+methods of introducing spatial dimension to commonly used machine learning models and make use
+of space to train much better model than without it.
 
 ::: {.callout-important }
 # This is not an introduction to ML
@@ -141,15 +139,8 @@ independent.head(2)
 
 ### Train-test split
 
-Some data are used to train the model, but the same data cannot be used for evaluation.
-The models tend to learn those exact values, and the performance metrics derived from
-training data show a much higher score than the model can on unseen data. One way around
-this is to split the dataset into two parts - `train` and `test`. The `train` part is used to
-train the model. However, the `test` part is left out of training and is later
-used to evaluate performance without worrying that any of the data points were seen by the model before.
-
-`scikit-learn` offers handy function to split the data into train and test parts, dealing
-with both dependent and independent variables at the same time.
+You already know what train-test split is from the last session. The same code used for
+regression can be used for classification (now).
 
 ```{python}
 X_train, X_test, y_train, y_test = model_selection.train_test_split( # <1>
@@ -162,12 +153,9 @@ mean.
 
 ### Random Forest Classifier
 
-While there is a large number of ML models available, your goal today is not to understand which ML model is better
-and how to fine-tune it but how to include the spatial dimension in them. So, let's not complicate
-the situation and stick to one of the common models - [random forest](https://en.wikipedia.org/wiki/Random_forest).
-
-Random forest classifier is implemented within the `ensemble` module of the `scikit-learn` and
-has the API you should already be familiar with. Get the training data and fit the baseline
+As the last time, let's not overcomplicate your life with overview of various model architectures.
+The goal of today is to learn how to include the spatial dimension in them and that is the same for
+most of them. Pick a random forest classifier and fit the baseline
 model without thinking about space and geography at all.
 
 ```{python}
@@ -176,7 +164,7 @@ model.fit(X_train, y_train)  # <2>
 ```
 1. `n_jobs=-1` specifies that the algorithm should use all available cores. Otherwise, it runs in a single thread only.
 2. The first argument is a 2-D array of independent variables, and the second is a 1-D array of labels
-you want to predict. You could potentially change
+you want to predict.
 
 #### Prediction
 
@@ -251,19 +239,8 @@ spatial distribution of each of them.
 
 ### Cross-validated prediction
 
-Now, if you want to plot the predicted labels on a map, you can do that reliably only
-for the test sample. The training sample was seen by the model and would not be representative
-of model capabilities. Nevertheless, you can create a map using the complete sample, just
-not using exactly the same model for all its parts. Welcome cross-validated prediction.
-
-Cross-validated (CV) prediction splits the dataset (before you divided it into train and test)
-into a small number of parts and trains a separate model to predict labels for each of
-them. In the example below, it creates four equally-sized parts and then takes three of
-them as _train_ part to train a model that is used to predict labels on the fourth one.
-Then, it switches the one that is left out and repeats the process until there are labels for
-every part. The resulting labels should not contain any data leakage between train and test
-samples. However, as described below, that is not always the case when dealing with
-spatial data.
+To get a full map, we need to use cross-validated prediction once again. For the detailed
+explanation see the previous chapter on non-linear regression.
 
 ```{python}
 # | fig-cap: Predicted labels
@@ -296,24 +273,15 @@ does not represent space reliably and may need some adaptations.
 
 ## Spatial cross-validation
 
-When dividing the data into _train_ and _test_ parts, you are trying to eliminate data
-leakage, which happens when information from one set makes its way to the other. The evaluation
-affected by leakage then indicates better results than the reality is. This works well
-for most of data, but not so much for spatial data. Tobler's first law of geography, which
-says that nearby things are similar, breaks the assumption of no leakage. Two points that
-are right next to each other in space, one
-randomly allocated to the _train_ part and the other to the _test_ part, are not statistically
-independent. You can assume that they will be similar, and this similarity caused by the spatial
-proximity comes with a potential data leakage.
+The same discussed in the regression chapter applies to classification. Spaital leakage caused by spatial dependency is a real problem and needs to be mitigated.
 
-Spatial CV mitigates the issue by including a spatial dimension in the train-test split.
-The aim is to divide the whole study area into smaller regions and allocate whole regions
-to train and test splits. You can do that based on many criteria, but it is handy to have
+You can do that based on many criteria, but it is handy to have
 a variable representing those regions as the `"basic_settlement_unit"` column in your
 DataFrame.
 
 With a categorical column indicating groups, you can use the `StratifiedGroupKFold` class
-from the `scikit-learn` to create the folds.
+from the `scikit-learn` to create the folds. Stratified K-fold not only ensures that the
+data is split by groups but also that there is a roughly equal proportion of classes within each split.
 
 ```{python}
 gkf = model_selection.StratifiedGroupKFold(n_splits=5)  # <1>
@@ -983,90 +951,6 @@ Not bad at all. More than 75% of buildings were correctly classified using only 
 you were given in the beginning and geography. Just note that since the evaluation based
 on the full dataset is done based on a different sample of data than all those above, the values
 are not entirely comparable.
-
-::: {.callout-caution}
-# Self-study topic
-
-The part below will not be covered in the class. It contains an introduction to regression
-models using the `scikit-learn`. You will need it to complete the exercise. However, since this is the
-final session of the course, it is time to let you learn by yourself.
-:::
-
-## Regression
-
-Classification problems are only one part of ML. The other big chunk focuses on regression
-problems, where your target variable is not a class but a value. Consider the rent price
-or air pollution levels if I use the abovementioned examples. All of what was covered above
-applies nearly equally to regression models, except evaluation methods. But
-all of the spatial components remain the same.
-
-Below is an example of a regression model using random forest trying to estimate the rent
-price based on the same set of independent variables used in the classification task above.
-
-Split to train and test parts is the same. The same would also be the application of
-spatial cross-validation if you wanted to go in that direction.
-
-```{python}
-independent = training_sample_price[independent_variables]
-X_train, X_test, y_train, y_test = model_selection.train_test_split(
-    independent, training_sample_price["CENA"], test_size=0.25, random_state=0
-)
-```
-
-The API of regression models mirrors the API of classification models. There are no
-surprises waiting for you there.
-
-```{python}
-price_model = ensemble.RandomForestRegressor(random_state=0, n_jobs=-1)
-price_model.fit(X_train, y_train)
-```
-
-The evaluation is different in the selection of metrics. You, obviously, cannot use
-the accuracy or Cohen's kappa score, but you can use $R^2$ or mean absolute error (among many others).
-
-```{python}
-pred = price_model.predict(X_test)
-
-r_squared = metrics.r2_score(pred, y_test)
-mae = metrics.mean_absolute_error(pred, y_test)
-
-summary = f"""
-Evaluation metrics
-==================
-Basic model:
-  R2:                   {round(r_squared, 3)}
-  Mean absolute error:  {round(mae, 3)}
-"""
-print(summary)
-```
-
-Cross-validated prediction is the same as you know from above.
-
-```{python}
-predicted = model_selection.cross_val_predict(
-    price_model, independent, training_sample_price["CENA"], cv=4, n_jobs=-1
-)
-```
-
-The result allows you to compute residuals. The rest is up to you.
-
-```{python}
-# | fig-cap: Residuals of the regression model
-residuals = training_sample_price["CENA"] - predicted
-
-maximum = np.max(np.abs(residuals))
-ax = training_sample_price.plot(
-    residuals,
-    figsize=(9, 9),
-    markersize=0.5,
-    cmap="RdBu",
-    legend=True,
-    vmin=-maximum,
-    vmax=maximum,
-    legend_kwds={"shrink": 0.5},
-)
-ax.set_axis_off()
-```
 
 ::: {.callout-tip}
 # Additional reading
