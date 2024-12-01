@@ -7,7 +7,7 @@ aliases:
 
 <!-- Playing with scikit-learn. -->
 
-In this part, you will not start anything new but will continue working with the data from Prague from the previous section and get a bit deeper into the problem. Not everything has been covered in class, so consult the documentation, Google, or your favourite LLM.
+In this part, you will not start anything new but will continue working with the data from Prague from the previous section and get a bit deeper into the problem. Not everything has been covered in class, so consult the documentation when unsure.
 
 ## Continue with classficiation
 
@@ -20,11 +20,4 @@ Let's try to explore the classification problem a bit further.
 2. Test other ML models.
     - Check what happens when you use different models than random forest. Compare the same input using different models, like `HistGradientBoostingClassifier`, `DecisionTreeClassifier`, or `AdaBoostClassifier`. Which one is the best when using the default hyperparameters?
 3. Pick your favourite model and find high and low prediction certainty clusters.
-
-## Explore regression
-
-Try using the techniques of spatial augmentation on the regression model predicting price outlined at the end of the last section. Combine all you think may help. What is the best $R^2$ you can get? You can even optionally compare the result with the performance of Geographically Weighted Regression on the same problem (but do not try to fit it on the full dataset :)).
-
-## Effect of hyperparameters (advanced)
-
-You've been using the default model parameters. Can you figure out a way of fine-tuning them? Have a look at this [resource](https://scikit-learn.org/stable/modules/grid_search.html) and Google and try to fine-tune one of the models you've worked with. Does the change of parameters like the number of estimators affect the result in any way? How important do you think it is?
+4. Fine tune the models using grid search.
