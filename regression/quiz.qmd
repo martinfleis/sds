@@ -1,0 +1,152 @@
+---
+title: "Quiz on regression"
+filters:
+  - naquiz
+---
+
+Check how much you remember from previous sections by answering the questions below.
+
+:::::{.question}
+**What is the primary purpose of using spatial regression models in geographic data analysis?**
+
+::::{.choices}
+
+:::{.choice}
+To eliminate random variables from a model.
+:::
+
+:::{.choice}
+To predict outcomes without considering geographic variations.
+:::
+
+:::{.choice .correct-choice}
+To incorporate the spatial dimension and analyze the influence of location on the dependent variable.
+:::
+
+:::{.choice}
+To avoid using regression altogether in geographic studies.
+:::
+
+::::
+:::::
+
+:::::{.question}
+**In the OLS linear regression model, what does $\alpha$ represent?**
+
+::::{.choices}
+
+:::{.choice}
+The coefficient for the independent variable.
+:::
+
+:::{.choice}
+The predicted value.
+:::
+
+:::{.choice .correct-choice}
+The intercept, or constant, in the model.
+:::
+
+:::{.choice}
+The residual error.
+:::
+
+::::
+:::::
+
+:::::{.question}
+**Which of the following describes geographically weighted regression (GWR)?**
+
+::::{.choices}
+
+:::{.choice}
+A regression model that assumes global homogeneity in variable relationships.
+:::
+
+:::{.choice}
+A method that produces a single global estimate for variable relationships.
+:::
+
+:::{.choice}
+A regression model used exclusively for time-series data.
+:::
+
+:::{.choice .correct-choice}
+A method that examines how relationships between dependent and independent variables vary across geographic locations.
+:::
+
+::::
+:::::
+
+:::::{.question}
+**In a spatial fixed effects model, what is the purpose of including variables such as *districts*?**
+
+::::{.choices}
+
+:::{.choice}
+To improve the performance of the OLS model by creating spatial clusters.
+:::
+
+:::{.choice}
+To apply temporal weighting to the regression model.
+:::
+
+:::{.choice}
+To fix the $\beta$ coefficients across all locations.
+:::
+
+:::{.choice .correct-choice}
+To allow the intercept to vary geographically.
+:::
+
+::::
+:::::
+
+:::::{.question}
+**What is the primary advantage of using Geographically Weighted Regression (GWR) over a standard OLS regression?**
+
+::::{.choices}
+
+:::{.choice}
+GWR is faster than OLS.
+:::
+
+:::{.choice}
+GWR creates a global model for the entire dataset.
+:::
+
+:::{.choice .correct-choice}
+GWR can model local variations and geographic heterogeneity in relationships.
+:::
+
+:::{.choice}
+GWR requires fewer variables to perform well.
+:::
+
+::::
+:::::
+
+:::::{.question}
+**When residuals from a regression model exhibit spatial autocorrelation, this indicates:**
+
+::::{.choices}
+
+:::{.choice}
+The residuals are randomly distributed across space.
+:::
+
+:::{.choice}
+The model perfectly explains the variance in the dependent variable.
+:::
+
+:::{.choice}
+There is no spatial heterogeneity in the model.
+:::
+
+:::{.choice .correct-choice}
+The residuals have a spatial pattern that may suggest spatial heterogeneity.
+:::
+
+::::
+:::::
+

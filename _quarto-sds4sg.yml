@@ -77,6 +77,7 @@ website:
           - regression/concepts.qmd
           - regression/hands_on.qmd
           - regression/exercise.qmd
+          - regression/quiz.qmd
       - section: "Non-linear regression"
         contents:
           - tree_regression/concepts.qmd
