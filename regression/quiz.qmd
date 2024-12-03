@@ -20,18 +20,18 @@ To predict outcomes without considering geographic variations.
 :::
 
 :::{.choice .correct-choice}
-To incorporate the spatial dimension and analyze the influence of location on the dependent variable
+To incorporate the spatial dimension and analyze the influence of location on the dependent variable.
 :::
 
 :::{.choice}
-To avoid using regression altogether in geographic studies
+To avoid using regression altogether in geographic studies.
 :::
 
 ::::
 :::::
 
 :::::{.question}
-**In a standard linear regression model, what does the term α represent?**
+**In the OLS linear regression model, what does $\alpha$ represent?**
 
 ::::{.choices}
 
@@ -79,7 +79,7 @@ A method that examines how relationships between dependent and independent varia
 :::::
 
 :::::{.question}
-**In a spatial fixed effects model, what is the purpose of including a variables such as *districts*?**
+**In a spatial fixed effects model, what is the purpose of including variables such as *districts*?**
 
 ::::{.choices}
 
@@ -92,11 +92,11 @@ To apply temporal weighting to the regression model.
 :::
 
 :::{.choice}
-To fix the β coefficients across all locations.
+To fix the $\beta$ coefficients across all locations.
 :::
 
 :::{.choice .correct-choice}
-To allow the intercept (α) to vary geographically.
+To allow the intercept to vary geographically.
 :::
 
 ::::
@@ -108,7 +108,7 @@ To allow the intercept (α) to vary geographically.
 ::::{.choices}
 
 :::{.choice}
-GWR is faster than OLS
+GWR is faster than OLS.
 :::
 
 :::{.choice}
@@ -116,7 +116,7 @@ GWR creates a global model for the entire dataset.
 :::
 
 :::{.choice .correct-choice}
-GWR can model local variations and geographic heterogeneity in relationships
+GWR can model local variations and geographic heterogeneity in relationships.
 :::
 
 :::{.choice}
@@ -144,7 +144,7 @@ There is no spatial heterogeneity in the model.
 :::
 
 :::{.choice .correct-choice}
-The residuals have a spatial pattern that may suggest spatial dependence.
+The residuals have a spatial pattern that may suggest spatial heterogeneity.
 :::
 
 ::::
