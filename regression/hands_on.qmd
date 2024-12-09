@@ -8,6 +8,13 @@ aliases:
   - ../chapter_10/hands_on.html
 ---
 
+```{python}
+# | echo: false
+import warnings
+
+warnings.filterwarnings("ignore", category=SyntaxWarning)
+```
+
 When trying to determine the effect of some (independent) variables on the outcome of phenomena (dependent variable), you often
 use regression to model such an outcome and understand the influence each of the variables has in the model.
 With spatial regression, it is the same. You just need to use the spatial dimension in a
