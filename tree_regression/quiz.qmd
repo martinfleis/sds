@@ -1,0 +1,247 @@
+---
+title: "Quiz on non-linear regression"
+filters:
+  - naquiz
+---
+
+Check how much you remember from previous sections by answering the questions below.
+
+:::::{.question}
+**Which of the following best describes the difference between a linear and non-linear model in machine learning??**
+
+::::{.choices}
+
+:::{.choice .correct-choice}
+A linear model assumes a direct proportionality between the input and output variables, while a non-linear model does not.
+:::
+
+:::{.choice}
+Linear models are more accurate than non-linear models in all cases.
+:::
+
+:::{.choice}
+Non-linear models always involve more complex mathematical calculations than linear models.
+:::
+
+:::{.choice}
+A non-linear model cannot be used for regression problems.
+:::
+
+::::
+:::::
+
+:::::{.question}
+**What is the purpose of splitting a dataset into training and testing sets?**
+
+::::{.choices}
+
+:::{.choice .correct-choice}
+To avoid overfitting by using different data for model training and evaluation.
+:::
+
+:::{.choice}
+To ensure that the model sees all the data at least once.
+:::
+
+:::{.choice}
+To reduce the size of the dataset to make the model run faster.
+:::
+
+:::{.choice}
+To increase the accuracy of the predictions by using smaller datasets.
+:::
+
+::::
+:::::
+
+:::::{.question}
+**Which of the following steps is performed immediately after training a machine learning model?**
+
+::::{.choices}
+
+:::{.choice}
+Splitting the dataset.
+:::
+
+:::{.choice}
+Evaluating the model using the test set.
+:::
+
+:::{.choice}
+Fine-tuning the model.
+:::
+
+:::{.choice .correct-choice}
+Predicting on unseen data.
+:::
+
+::::
+:::::
+
+:::::{.question}
+**If a regression model has an R² score of 0.85, what does this indicate about the model's performance?**
+
+::::{.choices}
+
+:::{.choice}
+The model has an error rate of 85%.
+:::
+
+:::{.choice}
+The model is overfitting the training data.
+:::
+
+:::{.choice}
+The model's predictions are accurate by 85% on average.
+:::
+
+:::{.choice .correct-choice}
+The model explains 85% of the variance in the target variable.
+:::
+
+::::
+:::::
+
+:::::{.question}
+**Which of the following evaluation metrics penalizes large prediction errors more heavily?**
+
+::::{.choices}
+
+:::{.choice}
+Mean Absolute Error (MAE)
+:::
+
+:::{.choice}
+R-squared (R²)
+:::
+
+:::{.choice .correct-choice}
+Root Mean Squared Error (RMSE)
+:::
+
+:::{.choice}
+None of the above
+:::
+
+::::
+:::::
+
+:::::{.question}
+**What is the main benefit of using cross-validation over a simple train-test split?**
+
+::::{.choices}
+
+:::{.choice}
+Cross-validation ensures that the model will be 100% accurate.
+:::
+
+:::{.choice .correct-choice}
+Cross-validation helps to better estimate model performance by using multiple training-test splits.
+:::
+
+:::{.choice}
+Cross-validation makes the training process faster.
+:::
+
+:::{.choice}
+Cross-validation can only be used for linear models.
+:::
+
+::::
+:::::
+
+:::::{.question}
+**What is the main reason for computing spatially stratified metrics in model evaluation?**
+
+::::{.choices}
+
+:::{.choice}
+To get global evaluation scores for the entire dataset.
+:::
+
+:::{.choice .correct-choice}
+To account for regional differences and compute performance metrics for each geographical subset.
+:::
+
+:::{.choice}
+To increase the accuracy of the model's predictions.
+:::
+
+:::{.choice}
+To ensure that the model is overfitting.
+:::
+
+::::
+:::::
+
+:::::{.question}
+**What does the term "spatial leakage" refer to in spatial cross-validation?**
+
+::::{.choices}
+
+:::{.choice}
+The leakage of information between temporal datasets.
+:::
+
+:::{.choice .correct-choice}
+When spatial proximity between training and test sets violates the assumption of independence.
+:::
+
+:::{.choice}
+The leakage of features from test data into the training data.
+:::
+
+:::{.choice}
+The violation of model performance evaluation due to overfitting.
+:::
+
+::::
+:::::
+
+:::::{.question}
+**In a Local Indicators of Spatial Association (LISA) analysis, what does a "High-High" cluster of residuals indicate?**
+
+::::{.choices}
+
+:::{.choice}
+A region with consistently high error rates.
+:::
+
+:::{.choice}
+A region with over-predicted values.
+:::
+
+:::{.choice .correct-choice}
+A region where the model consistently under-predicts.
+:::
+
+:::{.choice}
+A region with low error rates.
+:::
+
+::::
+:::::
+
+:::::{.question}
+**What does feature importance represent in tree-based models such as Gradient Boosting or Random Forest?**
+
+::::{.choices}
+
+:::{.choice}
+The statistical significance of each feature.
+:::
+
+:::{.choice}
+The accuracy of each feature’s predictions.
+:::
+
+:::{.choice}
+The raw coefficients assigned to each feature.
+:::
+
+:::{.choice .correct-choice}
+The relative contribution of each feature in reducing the model's loss function.
+:::
+
+::::
+:::::
