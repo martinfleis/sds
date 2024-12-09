@@ -83,6 +83,7 @@ website:
           - tree_regression/concepts.qmd
           - tree_regression/hands_on.qmd
           - tree_regression/exercise.qmd
+          - tree_regression/quiz.qmd
       - section: "Classification"
         contents:
           - classification/concepts.qmd
