@@ -3,8 +3,35 @@ title: "Plant a forest"
 format: html
 ---
 
-::: {.callout-caution}
-# Work in progress
+## Hedonic prices in Busan
 
-This section is currently in works. Come back later.
+You will investigate the association between green amenities and property prices in a metropolitan city. The dataset was obtained from [https://zenodo.org/records/11092589](https://zenodo.org/records/11092589). The provided data file contains a total of 2.404 observations with 18 variables, retrieved from the Korea Transport Database, Statistics Korea, Ministry of Land, Infrastructure and Transport, and the Spatial Information Portal. Specifically, the green index is quantified using a large amount of Google street view images, obtained from the download tool (https://svd360.istreetview.com/).
+
+Here is the URL for the CSV you should use.
+
+```py
+url = "https://martinfleischmann.net/sds/tree_regression/data/prices_data.csv"
+```
+
+1. Load the data and convert it to a geodataframe, make sure you have the correct local projection.
+
+::: {.callout-tip collapse="true"}
+# Hint
+
+You can get the local UTM zone.
+
+```py
+GeoDataFrame.estimate_utm_crs()
+```
+
 :::
+
+2. The target variable is 'Property Prices'. Choose at least five independent variables that you think will be good predictors of the target variable.
+3. Prepare you data for modeling - split it into training and testing sets.
+4. Try to fit a linear regression model and compare it with a tree based model of your choice, is there a difference?
+5. Cross validate your model and evaluate its performance. Plot the residuals.
+6. Perform spatial evaluation using the `"hex_id"`.
+7. Compare blocked spatial metrics based on `"hex_id"` with the smoothed spatial metrics using graph.
+8. Check the spread of the asummed auotocorrelation using variogram.
+9. Perform LISA on the residuals - locate underpriced and overpriced properties, and clusters of consistently correct and consistently wrong locations.
+10. Build a model which avoids spatial leakage using the `"hex_id"` and tune its hyperparameters. Is the performace different from the previous models? Which features are important in this model?
