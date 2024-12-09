@@ -693,7 +693,7 @@ This is not an introduction to ML
 <p>Note that this material does not aim to cover an introduction to machine learning thoroughly. There are other, much better materials for that. One of them can be <a href="https://scikit-learn.org/stable/user_guide.html">scikit-learn’s User guide</a>, but I am sure you will find one that suits you.</p>
 </div>
 </div>
-<div id="716262e0" class="cell" data-execution_count="1">
+<div id="acdc76dc" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> geopandas <span class="im">as</span> gpd</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
@@ -718,7 +718,7 @@ Caution
 <p>The dataset contains ~140k points, so I don’t recommend using <code>explore()</code> on all of it.</p>
 </div>
 </div>
-<div id="ef3196a5" class="cell" data-execution_count="2">
+<div id="ec693552" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>building_data <span class="op">=</span> gpd.read_file(</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="st">"https://martinfleischmann.net/sds/classification/data/prg_building_locations.gpkg"</span>,</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>)</span>
@@ -840,7 +840,7 @@ Alternative
 </div>
 </div>
 <p>The original taxonomy has been re-classified to provide eight types of urban development shown in the figure below.</p>
-<div id="e4f2c8fe" class="cell" data-execution_count="3">
+<div id="6bb49e56" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="annotated-cell-3"><pre class="sourceCode python code-annotation-code code-with-copy code-annotated"><code class="sourceCode python"><span id="annotated-cell-3-1"><a href="#annotated-cell-3-1" aria-hidden="true" tabindex="-1"></a>ax <span class="op">=</span> building_data.plot(</span>
 <a class="code-annotation-anchor" data-target-cell="annotated-cell-3" data-target-annotation="1" onclick="event.preventDefault();">1</a><span id="annotated-cell-3-2" class="code-annotation-target"><a href="#annotated-cell-3-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">"cluster"</span>, legend<span class="op">=</span><span class="va">True</span>, figsize<span class="op">=</span>(<span class="dv">9</span>, <span class="dv">9</span>), markersize<span class="op">=</span><span class="fl">0.005</span></span>
 <span id="annotated-cell-3-3"><a href="#annotated-cell-3-3" aria-hidden="true" tabindex="-1"></a>)</span>
@@ -863,7 +863,7 @@ Alternative
 </div>
 </div>
 <p>List the columns containing some numerical value and save it as a variable. There are six of them out of the original few hundred.</p>
-<div id="27598311" class="cell" data-execution_count="4">
+<div id="5a4f036e" class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>independent_variables <span class="op">=</span> [</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">"floor_area_ratio"</span>,</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">"height"</span>,</span>
@@ -874,7 +874,7 @@ Alternative
 <span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>It may be helpful to understand the spatial distribution of each of them to know what to expect, and build an intuition about their relationship with the classification above.</p>
-<div id="19bb4bf5" class="cell" data-execution_count="5">
+<div id="05c6b4b0" class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>fig, axs <span class="op">=</span> plt.subplots(<span class="dv">3</span>, <span class="dv">2</span>, figsize<span class="op">=</span>(<span class="dv">9</span>, <span class="dv">9</span>))</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>axs <span class="op">=</span> axs.flatten()</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i, var <span class="kw">in</span> <span class="bu">enumerate</span>(independent_variables):</span>
@@ -898,7 +898,7 @@ Alternative
 <h3 class="anchored" data-anchor-id="data-preparation">Data preparation</h3>
 <p>The dataset contains a bit over 140k points. While more data tend to bring additional performance to ML models, the relationship is far from linear, and you often get nearly as performant models using just a fraction of data. Moreover, it takes longer to train on more data :).</p>
 <p>Select a random sample of 20k points you will work with. You can later test for yourself how big of an effect the size of the sample has.</p>
-<div id="754d2f1b" class="cell" data-execution_count="6">
+<div id="6615d1a5" class="cell" data-execution_count="6">
 <div class="sourceCode cell-code" id="annotated-cell-6"><pre class="sourceCode python code-annotation-code code-with-copy code-annotated"><code class="sourceCode python"><a class="code-annotation-anchor" data-target-cell="annotated-cell-6" data-target-annotation="1" onclick="event.preventDefault();">1</a><span id="annotated-cell-6-1" class="code-annotation-target"><a href="#annotated-cell-6-1" aria-hidden="true" tabindex="-1"></a>training_sample <span class="op">=</span> building_data.sample(<span class="dv">20_000</span>, random_state<span class="op">=</span><span class="dv">0</span>)</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-annotation">
 <dl class="code-annotation-container-grid">
@@ -910,7 +910,7 @@ Alternative
 </div>
 </div>
 <p>From the sample, extract the <code>DataFrame</code> with just the independent variables for the simplicity.</p>
-<div id="26e9f44b" class="cell" data-execution_count="7">
+<div id="30b0b9db" class="cell" data-execution_count="7">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>independent <span class="op">=</span> training_sample[independent_variables]</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>independent.head(<span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="7">
@@ -958,7 +958,7 @@ Alternative
 <section id="train-test-split" class="level3">
 <h3 class="anchored" data-anchor-id="train-test-split">Train-test split</h3>
 <p>You already know what train-test split is from the last session. The same code used for regression can be used for classification (now).</p>
-<div id="ef9e535a" class="cell" data-execution_count="8">
+<div id="4c90b349" class="cell" data-execution_count="8">
 <div class="sourceCode cell-code" id="annotated-cell-8"><pre class="sourceCode python code-annotation-code code-with-copy code-annotated"><code class="sourceCode python"><a class="code-annotation-anchor" data-target-cell="annotated-cell-8" data-target-annotation="1" onclick="event.preventDefault();">1</a><span id="annotated-cell-8-1" class="code-annotation-target"><a href="#annotated-cell-8-1" aria-hidden="true" tabindex="-1"></a>X_train, X_test, y_train, y_test <span class="op">=</span> model_selection.train_test_split(</span>
 <span id="annotated-cell-8-2"><a href="#annotated-cell-8-2" aria-hidden="true" tabindex="-1"></a>    independent, training_sample[<span class="st">"cluster"</span>], test_size<span class="op">=</span><span class="fl">0.25</span>, random_state<span class="op">=</span><span class="dv">0</span></span>
 <span id="annotated-cell-8-3"><a href="#annotated-cell-8-3" aria-hidden="true" tabindex="-1"></a>)</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -975,7 +975,7 @@ Alternative
 <section id="random-forest-classifier" class="level3">
 <h3 class="anchored" data-anchor-id="random-forest-classifier">Random Forest Classifier</h3>
 <p>As the last time, let’s not overcomplicate your life with overview of various model architectures. The goal of today is to learn how to include the spatial dimension in them and that is the same for most of them. Pick a random forest classifier and fit the baseline model without thinking about space and geography at all.</p>
-<div id="af74dc59" class="cell" data-execution_count="9">
+<div id="505fc561" class="cell" data-execution_count="9">
 <div class="sourceCode cell-code" id="annotated-cell-9"><pre class="sourceCode python code-annotation-code code-with-copy code-annotated"><code class="sourceCode python"><a class="code-annotation-anchor" data-target-cell="annotated-cell-9" data-target-annotation="1" onclick="event.preventDefault();">1</a><span id="annotated-cell-9-1" class="code-annotation-target"><a href="#annotated-cell-9-1" aria-hidden="true" tabindex="-1"></a>model <span class="op">=</span> ensemble.RandomForestClassifier(random_state<span class="op">=</span><span class="dv">0</span>, n_jobs<span class="op">=-</span><span class="dv">1</span>)</span>
 <a class="code-annotation-anchor" data-target-cell="annotated-cell-9" data-target-annotation="2" onclick="event.preventDefault();">2</a><span id="annotated-cell-9-2" class="code-annotation-target"><a href="#annotated-cell-9-2" aria-hidden="true" tabindex="-1"></a>model.fit(X_train, y_train)</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-annotation">
@@ -1401,7 +1401,7 @@ div.sk-label-container:hover .sk-estimator-doc-link.fitted:hover,
 <section id="prediction" class="level4">
 <h4 class="anchored" data-anchor-id="prediction">Prediction</h4>
 <p>The trained model can be directly used to predict the classes (type of development in this case). Using the test portion of data, you can get the predicted label:</p>
-<div id="b6003a44" class="cell" data-execution_count="10">
+<div id="2c99919a" class="cell" data-execution_count="10">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>pred <span class="op">=</span> model.predict(X_test)</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>pred</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="10">
@@ -1411,7 +1411,7 @@ div.sk-label-container:hover .sk-estimator-doc-link.fitted:hover,
 </div>
 </div>
 <p>Or probabilities for every single class. The class prediction above just involves selecting the one with the maximum probability.</p>
-<div id="a9bb2df8" class="cell" data-execution_count="11">
+<div id="ebe83ffd" class="cell" data-execution_count="11">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>proba <span class="op">=</span> model.predict_proba(X_test)</span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>proba</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="11">
@@ -1425,7 +1425,7 @@ div.sk-label-container:hover .sk-estimator-doc-link.fitted:hover,
 </div>
 </div>
 <p>Both outputs are numpy arrays, but the probabilities would be especially helpful to see as a <code>DataFrame</code> with column names representing class names. Those are available as <code>.classes_</code>:</p>
-<div id="cade0b7e" class="cell" data-execution_count="12">
+<div id="317ecd5d" class="cell" data-execution_count="12">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>model.classes_</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="12">
 <pre><code>array(['fringe development', 'grids', 'housing estates',
@@ -1434,7 +1434,7 @@ div.sk-label-container:hover .sk-estimator-doc-link.fitted:hover,
 </div>
 </div>
 <p>You can quickly combine it all with the original index to get a <code>DataFrame</code> of probabilities.</p>
-<div id="bcdf4529" class="cell" data-execution_count="13">
+<div id="4395e7c7" class="cell" data-execution_count="13">
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>pd.DataFrame(proba, columns<span class="op">=</span>model.classes_, index<span class="op">=</span>X_test.index)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="13">
 <div>
@@ -1587,7 +1587,7 @@ div.sk-label-container:hover .sk-estimator-doc-link.fitted:hover,
 <section id="evaluation" class="level4">
 <h4 class="anchored" data-anchor-id="evaluation">Evaluation</h4>
 <p>Now comes the evaluation part. Normally, you are interested in a number of performance metrics capturing how good the model is. Among the most common ones are <em>accuracy</em> and <em>Cohen’s kappa score</em>. Accuracy captures the fraction of correct predictions, i.e., how many labels in the predicted array equal the known labels. <a href="https://en.wikipedia.org/wiki/Cohen%27s_kappa">Kappa score</a> It is seen as a more robust metric but not straightforwardly interpretable.</p>
-<div id="1e389184" class="cell" data-execution_count="14">
+<div id="066c62fa" class="cell" data-execution_count="14">
 <div class="sourceCode cell-code" id="annotated-cell-14"><pre class="sourceCode python code-annotation-code code-with-copy code-annotated"><code class="sourceCode python"><a class="code-annotation-anchor" data-target-cell="annotated-cell-14" data-target-annotation="1" onclick="event.preventDefault();">1</a><span id="annotated-cell-14-1" class="code-annotation-target"><a href="#annotated-cell-14-1" aria-hidden="true" tabindex="-1"></a>accuracy <span class="op">=</span> metrics.accuracy_score(pred, y_test)</span>
 <span id="annotated-cell-14-2"><a href="#annotated-cell-14-2" aria-hidden="true" tabindex="-1"></a>kappa <span class="op">=</span> metrics.cohen_kappa_score(pred, y_test)</span>
 <span id="annotated-cell-14-3"><a href="#annotated-cell-14-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1623,7 +1623,7 @@ Basic model:
 </div>
 <p>The results are not bad, considering the limited amount of information provided in independent variables. Around 58% of labels are correctly predicted.</p>
 <p>Apart from the model performance, you can also evaluate how important each of the independent variables for the result is using the <code>.feature_importances_</code> metric. Again, wrapping it in a pandas object is useful to get feature names alongside the values.</p>
-<div id="f1dd2091" class="cell" data-execution_count="15">
+<div id="90fb38e5" class="cell" data-execution_count="15">
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>pd.Series(model.feature_importances_, index<span class="op">=</span>model.feature_names_in_).sort_values()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="15">
 <pre><code>compactness                    0.125213
@@ -1641,7 +1641,7 @@ dtype: float64</code></pre>
 <section id="cross-validated-prediction" class="level3">
 <h3 class="anchored" data-anchor-id="cross-validated-prediction">Cross-validated prediction</h3>
 <p>To get a full map, we need to use cross-validated prediction once again. For the detailed explanation see the previous chapter on non-linear regression.</p>
-<div id="039a9d3d" class="cell" data-execution_count="16">
+<div id="c5bc73f7" class="cell" data-execution_count="16">
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>predicted <span class="op">=</span> model_selection.cross_val_predict(</span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>    model, independent, training_sample[<span class="st">"cluster"</span>], cv<span class="op">=</span><span class="dv">4</span>, n_jobs<span class="op">=-</span><span class="dv">1</span></span>
 <span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>)</span>
@@ -1658,7 +1658,7 @@ dtype: float64</code></pre>
 </div>
 </div>
 <p>What CV-prediction allows to not only plot the labels but importantly to plot the spatial pattern of errors.</p>
-<div id="54494bda" class="cell" data-execution_count="17">
+<div id="99183885" class="cell" data-execution_count="17">
 <div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>ax <span class="op">=</span> training_sample.plot(</span>
 <span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>    predicted <span class="op">==</span> training_sample[<span class="st">"cluster"</span>],</span>
 <span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>    categorical<span class="op">=</span><span class="va">True</span>,</span>
@@ -1685,7 +1685,7 @@ dtype: float64</code></pre>
 <p>The same discussed in the regression chapter applies to classification. Spaital leakage caused by spatial dependency is a real problem and needs to be mitigated.</p>
 <p>You can do that based on many criteria, but it is handy to have a variable representing those regions as the <code>"basic_settlement_unit"</code> column in your DataFrame.</p>
 <p>With a categorical column indicating groups, you can use the <code>StratifiedGroupKFold</code> class from the <code>scikit-learn</code> to create the folds. Stratified K-fold not only ensures that the data is split by groups but also that there is a roughly equal proportion of classes within each split.</p>
-<div id="2896a04e" class="cell" data-execution_count="18">
+<div id="584d2f7d" class="cell" data-execution_count="18">
 <div class="sourceCode cell-code" id="annotated-cell-18"><pre class="sourceCode python code-annotation-code code-with-copy code-annotated"><code class="sourceCode python"><a class="code-annotation-anchor" data-target-cell="annotated-cell-18" data-target-annotation="1" onclick="event.preventDefault();">1</a><span id="annotated-cell-18-1" class="code-annotation-target"><a href="#annotated-cell-18-1" aria-hidden="true" tabindex="-1"></a>gkf <span class="op">=</span> model_selection.StratifiedGroupKFold(n_splits<span class="op">=</span><span class="dv">5</span>)</span>
 <a class="code-annotation-anchor" data-target-cell="annotated-cell-18" data-target-annotation="2" onclick="event.preventDefault();">2</a><span id="annotated-cell-18-2" class="code-annotation-target"><a href="#annotated-cell-18-2" aria-hidden="true" tabindex="-1"></a>splits <span class="op">=</span> gkf.split(</span>
 <span id="annotated-cell-18-3"><a href="#annotated-cell-18-3" aria-hidden="true" tabindex="-1"></a>    training_sample,</span>
@@ -1706,7 +1706,7 @@ dtype: float64</code></pre>
 </div>
 </div>
 <p>The <code>splits</code> variable now contains an iterator - an object we can loop through that gives you train and test parts for each split. You can easily extract the labels indicating the splits:</p>
-<div id="33347198" class="cell" data-execution_count="19">
+<div id="cb833684" class="cell" data-execution_count="19">
 <div class="sourceCode cell-code" id="annotated-cell-19"><pre class="sourceCode python code-annotation-code code-with-copy code-annotated"><code class="sourceCode python"><a class="code-annotation-anchor" data-target-cell="annotated-cell-19" data-target-annotation="1" onclick="event.preventDefault();">1</a><span id="annotated-cell-19-1" class="code-annotation-target"><a href="#annotated-cell-19-1" aria-hidden="true" tabindex="-1"></a>split_label <span class="op">=</span> np.empty(<span class="bu">len</span>(training_sample), dtype<span class="op">=</span><span class="bu">float</span>)</span>
 <a class="code-annotation-anchor" data-target-cell="annotated-cell-19" data-target-annotation="2" onclick="event.preventDefault();">2</a><span id="annotated-cell-19-2" class="code-annotation-target"><a href="#annotated-cell-19-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i, (train, test) <span class="kw">in</span> <span class="bu">enumerate</span>(splits):</span>
 <a class="code-annotation-anchor" data-target-cell="annotated-cell-19" data-target-annotation="3" onclick="event.preventDefault();">3</a><span id="annotated-cell-19-3" class="code-annotation-target"><a href="#annotated-cell-19-3" aria-hidden="true" tabindex="-1"></a>    split_label[test] <span class="op">=</span> i</span>
@@ -1733,7 +1733,7 @@ dtype: float64</code></pre>
 </div>
 </div>
 <p>With the labels extracted from <code>StratifiedGroupKFold</code>, you can plot the splits on a map.</p>
-<div id="847c3960" class="cell" data-execution_count="20">
+<div id="149a18fb" class="cell" data-execution_count="20">
 <div class="sourceCode cell-code" id="annotated-cell-20"><pre class="sourceCode python code-annotation-code code-with-copy code-annotated"><code class="sourceCode python"><a class="code-annotation-anchor" data-target-cell="annotated-cell-20" data-target-annotation="1" onclick="event.preventDefault();">1</a><span id="annotated-cell-20-1" class="code-annotation-target"><a href="#annotated-cell-20-1" aria-hidden="true" tabindex="-1"></a>ax <span class="op">=</span> training_sample.plot(</span>
 <span id="annotated-cell-20-2"><a href="#annotated-cell-20-2" aria-hidden="true" tabindex="-1"></a>  <span class="st">"split"</span>, categorical<span class="op">=</span><span class="va">True</span>, figsize<span class="op">=</span>(<span class="dv">9</span>, <span class="dv">9</span>), markersize<span class="op">=</span><span class="fl">0.1</span>, legend<span class="op">=</span><span class="va">True</span></span>
 <span id="annotated-cell-20-3"><a href="#annotated-cell-20-3" aria-hidden="true" tabindex="-1"></a>)</span>
@@ -1763,7 +1763,7 @@ dtype: float64</code></pre>
 </div>
 </div>
 <p>With the new, and arguably better train-test, split, you can create new training and evaluation data. You can use the split with the label <code>0</code> as a test part and the rest as a train part.</p>
-<div id="1f957c51" class="cell" data-execution_count="21">
+<div id="d12650a9" class="cell" data-execution_count="21">
 <div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>train <span class="op">=</span> training_sample[<span class="st">"split"</span>] <span class="op">!=</span> <span class="dv">0</span></span>
 <span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>X_train <span class="op">=</span> independent.loc[train]</span>
 <span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>y_train <span class="op">=</span> training_sample[<span class="st">"cluster"</span>].loc[train]</span>
@@ -1773,7 +1773,7 @@ dtype: float64</code></pre>
 <span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a>y_test <span class="op">=</span> training_sample[<span class="st">"cluster"</span>].loc[test]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>New data require a new model.</p>
-<div id="7ef6ee8b" class="cell" data-execution_count="22">
+<div id="9db24e83" class="cell" data-execution_count="22">
 <div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>rf_spatial_cv <span class="op">=</span> ensemble.RandomForestClassifier(random_state<span class="op">=</span><span class="dv">0</span>, n_jobs<span class="op">=-</span><span class="dv">1</span>)</span>
 <span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>rf_spatial_cv.fit(X_train, y_train)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="22">
@@ -2185,7 +2185,7 @@ div.sk-label-container:hover .sk-estimator-doc-link.fitted:hover,
 </div>
 </div>
 <p>And its evaluation. Just use <code>+=</code> to add to the existing summary.</p>
-<div id="c4a1207d" class="cell" data-execution_count="23">
+<div id="7beb3cb4" class="cell" data-execution_count="23">
 <div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>pred <span class="op">=</span> rf_spatial_cv.predict(X_test)</span>
 <span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>accuracy_spatial_cv <span class="op">=</span> metrics.accuracy_score(pred, y_test)</span>
@@ -2224,12 +2224,12 @@ Basic model with spatial cross-validation:
 <h4 class="anchored" data-anchor-id="point-density">Point density</h4>
 <p>There are methods of map synthesis that work directly with existing values, and there are those that look solely at the spatial distribution of your data. One example of the latter is a measurement of point density (number of neighbors within a distance band).</p>
 <p>You should already know how to do that using the <code>graph</code> module of <code>libpysal</code>. Create a <code>Graph</code> and extract its cardinalities (the number of neighbors).</p>
-<div id="742d9315" class="cell" data-execution_count="24">
+<div id="d8778de6" class="cell" data-execution_count="24">
 <div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>distance_200 <span class="op">=</span> graph.Graph.build_distance_band(training_sample, <span class="dv">200</span>)</span>
 <span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>training_sample[<span class="st">"points_in_200m"</span>] <span class="op">=</span> distance_200.cardinalities</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Let’s check if the result has some meaningful spatial pattern.</p>
-<div id="5dbf2e17" class="cell" data-execution_count="25">
+<div id="a6a64a28" class="cell" data-execution_count="25">
 <div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>ax <span class="op">=</span> training_sample.plot(<span class="st">"points_in_200m"</span>, figsize<span class="op">=</span>(<span class="dv">9</span>, <span class="dv">9</span>), markersize<span class="op">=</span><span class="fl">0.1</span>)</span>
 <span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>ax.set_axis_off()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
@@ -2242,7 +2242,7 @@ Basic model with spatial cross-validation:
 </div>
 </div>
 <p>It is not a strong one, but there are clear pockets of the higher point density, so this new column can help with the prediction accuracy. Create a new set of independent variables, including the new one, and generate new training and evaluation data.</p>
-<div id="a4ba57cb" class="cell" data-execution_count="26">
+<div id="544e6ee8" class="cell" data-execution_count="26">
 <div class="sourceCode cell-code" id="annotated-cell-26"><pre class="sourceCode python code-annotation-code code-with-copy code-annotated"><code class="sourceCode python"><span id="annotated-cell-26-1"><a href="#annotated-cell-26-1" aria-hidden="true" tabindex="-1"></a>independent_proximity <span class="op">=</span> training_sample[</span>
 <a class="code-annotation-anchor" data-target-cell="annotated-cell-26" data-target-annotation="1" onclick="event.preventDefault();">1</a><span id="annotated-cell-26-2" class="code-annotation-target"><a href="#annotated-cell-26-2" aria-hidden="true" tabindex="-1"></a>    independent_variables <span class="op">+</span> [<span class="st">"points_in_200m"</span>]</span>
 <span id="annotated-cell-26-3"><a href="#annotated-cell-26-3" aria-hidden="true" tabindex="-1"></a>]</span>
@@ -2262,7 +2262,7 @@ Basic model with spatial cross-validation:
 </div>
 </div>
 <p>The rest is simply rinse and repeat. Create the model and train it on new data.</p>
-<div id="7c583fd1" class="cell" data-execution_count="27">
+<div id="11e16c19" class="cell" data-execution_count="27">
 <div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>rf_proximity <span class="op">=</span> ensemble.RandomForestClassifier(random_state<span class="op">=</span><span class="dv">0</span>, n_jobs<span class="op">=-</span><span class="dv">1</span>)</span>
 <span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>rf_proximity.fit(X_train, y_train)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="27">
@@ -2674,7 +2674,7 @@ div.sk-label-container:hover .sk-estimator-doc-link.fitted:hover,
 </div>
 </div>
 <p>And evaluate it in the same way as before.</p>
-<div id="5f111710" class="cell" data-execution_count="28">
+<div id="4983a068" class="cell" data-execution_count="28">
 <div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>pred <span class="op">=</span> rf_proximity.predict(X_test)</span>
 <span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>accuracy_proximity <span class="op">=</span> metrics.accuracy_score(pred, y_test)</span>
@@ -2702,7 +2702,7 @@ Points within 200m (spatial CV):
 </div>
 </div>
 <p>Remember that your baseline model is the <em>Basic model with spatial cross-validation</em>. Compared to that, the performance of the new model is a bit better, especially when looking at Cohen’s kappa. It seems that the point density brings some value. You can check how important it is compared to the original variables.</p>
-<div id="c5cdc8ba" class="cell" data-execution_count="29">
+<div id="5535d4b4" class="cell" data-execution_count="29">
 <div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>pd.Series(</span>
 <span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>    rf_proximity.feature_importances_, index<span class="op">=</span>rf_proximity.feature_names_in_</span>
 <span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>).sort_values()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -2731,7 +2731,7 @@ dtype: float64</code></pre>
 <span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a>    .geometry.item()</span>
 <span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>With the point, you can measure the distance from every building in the training sample and use the resulting column as another independent variable.</p>
-<div id="61fafef3" class="cell" data-execution_count="31">
+<div id="6497c707" class="cell" data-execution_count="31">
 <div class="sourceCode cell-code" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>training_sample[<span class="st">"distance_to_old_town"</span>] <span class="op">=</span> training_sample.distance(old_town_square)</span>
 <span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>ax <span class="op">=</span> training_sample.plot(<span class="st">"distance_to_old_town"</span>, figsize<span class="op">=</span>(<span class="dv">9</span>, <span class="dv">9</span>), markersize<span class="op">=</span><span class="fl">0.1</span>)</span>
@@ -2746,7 +2746,7 @@ dtype: float64</code></pre>
 </div>
 </div>
 <p>Now simply add it to the <code>DataFrame</code> representing independent variables and the rest is the same.</p>
-<div id="37a3e7b7" class="cell" data-execution_count="32">
+<div id="6f018fc8" class="cell" data-execution_count="32">
 <div class="sourceCode cell-code" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>independent_distance <span class="op">=</span> training_sample[</span>
 <span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>    independent_variables <span class="op">+</span> [<span class="st">"points_in_200m"</span>, <span class="st">"distance_to_old_town"</span>]</span>
 <span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>]</span>
@@ -2758,7 +2758,7 @@ dtype: float64</code></pre>
 <span id="cb32-9"><a href="#cb32-9" aria-hidden="true" tabindex="-1"></a>y_test <span class="op">=</span> training_sample[<span class="st">"cluster"</span>].loc[test]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Get a new, hopefully better model.</p>
-<div id="451dd5b6" class="cell" data-execution_count="33">
+<div id="7511eb5b" class="cell" data-execution_count="33">
 <div class="sourceCode cell-code" id="cb33"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>rf_distance <span class="op">=</span> ensemble.RandomForestClassifier(random_state<span class="op">=</span><span class="dv">0</span>, n_jobs<span class="op">=-</span><span class="dv">1</span>)</span>
 <span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>rf_distance.fit(X_train, y_train)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="33">
@@ -3170,7 +3170,7 @@ div.sk-label-container:hover .sk-estimator-doc-link.fitted:hover,
 </div>
 </div>
 <p>And check if the new variable makes a difference.</p>
-<div id="d79b318e" class="cell" data-execution_count="34">
+<div id="c87be96c" class="cell" data-execution_count="34">
 <div class="sourceCode cell-code" id="cb34"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>pred <span class="op">=</span> rf_distance.predict(X_test)</span>
 <span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a>accuracy_distance <span class="op">=</span> metrics.accuracy_score(pred, y_test)</span>
@@ -3201,7 +3201,7 @@ Distance to Old Town Sq + above (spatial CV):
 </div>
 </div>
 <p>That is quite a decent bump in performance! It seems that the distance to the city centre is not bad in explaining the development typology. Check how important it is within the model.</p>
-<div id="6604afb2" class="cell" data-execution_count="35">
+<div id="2b75cc3b" class="cell" data-execution_count="35">
 <div class="sourceCode cell-code" id="cb36"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>pd.Series(</span>
 <span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>    rf_distance.feature_importances_, index<span class="op">=</span>rf_distance.feature_names_in_</span>
 <span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a>).sort_values()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -3223,7 +3223,7 @@ dtype: float64</code></pre>
 <h3 class="anchored" data-anchor-id="map-matching">Map matching</h3>
 <p>In other cases, you can make use of other data and link it to existing data. When you join the data based on spatial operation, you can talk about map matching. You can measure a number of points of interest in the vicinity of each location, <a href="../raster_data/hands_on.html#extracting-values-for-locations-with-xvec">link the data from rasters</a>, <a href="../interpolation/hands_on.html#point-interpolation">interpolate them from point patterns</a> or <a href="../interpolation/hands_on.html#areal-interpolation-and-dasymetric-mapping">from polygons to other polygons</a>. By now, you should know all that, so there’s no need to go into detail. Sticking to a simple case, map matching can also be done using a spatial join.</p>
 <p>Load the price data you worked with in the Learning GeoPandas chapter.</p>
-<div id="9451cb5c" class="cell" data-execution_count="36">
+<div id="be40b021" class="cell" data-execution_count="36">
 <div class="sourceCode cell-code" id="annotated-cell-36"><pre class="sourceCode python code-annotation-code code-with-copy code-annotated"><code class="sourceCode python"><span id="annotated-cell-36-1"><a href="#annotated-cell-36-1" aria-hidden="true" tabindex="-1"></a>price <span class="op">=</span> gpd.read_file(</span>
 <span id="annotated-cell-36-2"><a href="#annotated-cell-36-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">"https://martinfleischmann.net/sds/geographic_data/data/SED_CenovaMapa_p_shp.zip"</span>,</span>
 <span id="annotated-cell-36-3"><a href="#annotated-cell-36-3" aria-hidden="true" tabindex="-1"></a>)</span>
@@ -3291,14 +3291,14 @@ dtype: float64</code></pre>
 </div>
 </div>
 <p>Before any spatial joins, check the CRS.</p>
-<div id="aae2d5ff" class="cell" data-execution_count="37">
+<div id="da850ecb" class="cell" data-execution_count="37">
 <div class="sourceCode cell-code" id="cb38"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>price.crs.equals(training_sample.crs)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="37">
 <pre><code>False</code></pre>
 </div>
 </div>
 <p>And, like in this case, don’t forget to re-project geometries in case of a CRS mismatch. Then you can go ahead with the spatial join.</p>
-<div id="4fd35a63" class="cell" data-execution_count="38">
+<div id="aee7b64f" class="cell" data-execution_count="38">
 <div class="sourceCode cell-code" id="annotated-cell-38"><pre class="sourceCode python code-annotation-code code-with-copy code-annotated"><code class="sourceCode python"><span id="annotated-cell-38-1"><a href="#annotated-cell-38-1" aria-hidden="true" tabindex="-1"></a>price <span class="op">=</span> price.to_crs(training_sample.crs)</span>
 <span id="annotated-cell-38-2"><a href="#annotated-cell-38-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="annotated-cell-38-3"><a href="#annotated-cell-38-3" aria-hidden="true" tabindex="-1"></a>training_sample_price <span class="op">=</span> training_sample.sjoin(</span>
@@ -3382,7 +3382,7 @@ dtype: float64</code></pre>
 </div>
 </div>
 <p>You can prepare data for a model with price included.</p>
-<div id="ba1d41fa" class="cell" data-execution_count="39">
+<div id="9ab91a78" class="cell" data-execution_count="39">
 <div class="sourceCode cell-code" id="annotated-cell-39"><pre class="sourceCode python code-annotation-code code-with-copy code-annotated"><code class="sourceCode python"><span id="annotated-cell-39-1"><a href="#annotated-cell-39-1" aria-hidden="true" tabindex="-1"></a>independent_proximity_price <span class="op">=</span> training_sample_price[</span>
 <span id="annotated-cell-39-2"><a href="#annotated-cell-39-2" aria-hidden="true" tabindex="-1"></a>    independent_variables <span class="op">+</span> [<span class="st">"points_in_200m"</span>, <span class="st">"distance_to_old_town"</span>, <span class="st">"CENA"</span>]</span>
 <span id="annotated-cell-39-3"><a href="#annotated-cell-39-3" aria-hidden="true" tabindex="-1"></a>]</span>
@@ -3404,7 +3404,7 @@ dtype: float64</code></pre>
 </div>
 </div>
 <p>The rest, you know. First the model.</p>
-<div id="9b3a8817" class="cell" data-execution_count="40">
+<div id="9cb6b9d2" class="cell" data-execution_count="40">
 <div class="sourceCode cell-code" id="cb40"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>rf_distance_price <span class="op">=</span> ensemble.RandomForestClassifier(random_state<span class="op">=</span><span class="dv">0</span>, n_jobs<span class="op">=-</span><span class="dv">1</span>)</span>
 <span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a>rf_distance_price.fit(X_train, y_train)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="40">
@@ -3816,7 +3816,7 @@ div.sk-label-container:hover .sk-estimator-doc-link.fitted:hover,
 </div>
 </div>
 <p>Then, the evaluation.</p>
-<div id="044d75cd" class="cell" data-execution_count="41">
+<div id="5e4fef3f" class="cell" data-execution_count="41">
 <div class="sourceCode cell-code" id="cb41"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a>pred <span class="op">=</span> rf_distance_price.predict(X_test)</span>
 <span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a>accuracy_distance_price <span class="op">=</span> metrics.accuracy_score(pred, y_test)</span>
@@ -3850,7 +3850,7 @@ Price + above (spatial CV):
 </div>
 </div>
 <p>Another improvement. It seems that price is not that critical, but is surely brings some value.</p>
-<div id="6af45570" class="cell" data-execution_count="42">
+<div id="40cc2a92" class="cell" data-execution_count="42">
 <div class="sourceCode cell-code" id="cb43"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a>pd.Series(</span>
 <span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a>    rf_distance_price.feature_importances_, index<span class="op">=</span>rf_distance_price.feature_names_in_</span>
 <span id="cb43-3"><a href="#cb43-3" aria-hidden="true" tabindex="-1"></a>).sort_values()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -3877,7 +3877,7 @@ dtype: float64</code></pre>
 <h3 class="anchored" data-anchor-id="include-spatially-lagged-variables-in-the-model">Include spatially lagged variables in the model</h3>
 <p>The simplest way of incorporating spatial dependence to a generic ML model is to add variables to your set of independent variables capturing spatial dependence through spatial lag.</p>
 <p>Use the spatial weights matrix created above and generate a spatial lag of all independent variables.</p>
-<div id="47d0943e" class="cell" data-execution_count="43">
+<div id="401ba05e" class="cell" data-execution_count="43">
 <div class="sourceCode cell-code" id="annotated-cell-43"><pre class="sourceCode python code-annotation-code code-with-copy code-annotated"><code class="sourceCode python"><a class="code-annotation-anchor" data-target-cell="annotated-cell-43" data-target-annotation="1" onclick="event.preventDefault();">1</a><span id="annotated-cell-43-1" class="code-annotation-target"><a href="#annotated-cell-43-1" aria-hidden="true" tabindex="-1"></a>distance_200_row <span class="op">=</span> distance_200.transform(<span class="st">"r"</span>)</span>
 <a class="code-annotation-anchor" data-target-cell="annotated-cell-43" data-target-annotation="2" onclick="event.preventDefault();">2</a><span id="annotated-cell-43-2" class="code-annotation-target"><a href="#annotated-cell-43-2" aria-hidden="true" tabindex="-1"></a>lagged_variables <span class="op">=</span> []</span>
 <a class="code-annotation-anchor" data-target-cell="annotated-cell-43" data-target-annotation="3" onclick="event.preventDefault();">3</a><span id="annotated-cell-43-3" class="code-annotation-target"><a href="#annotated-cell-43-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> var <span class="kw">in</span> independent_variables:</span>
@@ -3989,7 +3989,7 @@ dtype: float64</code></pre>
 </div>
 </div>
 <p>It may be interesting to assess the effect of spatial dependence without the variables added above. Combine original independent variables with the new lagged and prepare new training data.</p>
-<div id="ff7ddda0" class="cell" data-execution_count="44">
+<div id="f9ea3b96" class="cell" data-execution_count="44">
 <div class="sourceCode cell-code" id="cb45"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a>independent_lag <span class="op">=</span> training_sample[independent_variables <span class="op">+</span> lagged_variables]</span>
 <span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb45-3"><a href="#cb45-3" aria-hidden="true" tabindex="-1"></a>X_train <span class="op">=</span> independent_lag.loc[train]</span>
@@ -3999,7 +3999,7 @@ dtype: float64</code></pre>
 <span id="cb45-7"><a href="#cb45-7" aria-hidden="true" tabindex="-1"></a>y_test <span class="op">=</span> training_sample[<span class="st">"cluster"</span>].loc[test]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Fit the new model, which should be able to use spatial dependence.</p>
-<div id="24438255" class="cell" data-execution_count="45">
+<div id="cb907511" class="cell" data-execution_count="45">
 <div class="sourceCode cell-code" id="cb46"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a>rf_lag_200m <span class="op">=</span> ensemble.RandomForestClassifier(random_state<span class="op">=</span><span class="dv">0</span>, n_jobs<span class="op">=-</span><span class="dv">1</span>)</span>
 <span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a>rf_lag_200m.fit(X_train, y_train)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="45">
@@ -4411,7 +4411,7 @@ div.sk-label-container:hover .sk-estimator-doc-link.fitted:hover,
 </div>
 </div>
 <p>And check how significant an effect it has on the model performance.</p>
-<div id="ce14a7aa" class="cell" data-execution_count="46">
+<div id="7bb2db2e" class="cell" data-execution_count="46">
 <div class="sourceCode cell-code" id="cb47"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a>pred <span class="op">=</span> rf_lag_200m.predict(X_test)</span>
 <span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb47-3"><a href="#cb47-3" aria-hidden="true" tabindex="-1"></a>accuracy_lag <span class="op">=</span> metrics.accuracy_score(pred, y_test)</span>
@@ -4448,7 +4448,7 @@ Spatial dependence - lagged model (spatial CV):
 </div>
 </div>
 <p>That is surely not negligible, considering that no other data were needed.</p>
-<div id="07cd1ff6" class="cell" data-execution_count="47">
+<div id="c3b127b3" class="cell" data-execution_count="47">
 <div class="sourceCode cell-code" id="cb49"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a>pd.Series(</span>
 <span id="cb49-2"><a href="#cb49-2" aria-hidden="true" tabindex="-1"></a>    rf_lag_200m.feature_importances_, index<span class="op">=</span>rf_lag_200m.feature_names_in_</span>
 <span id="cb49-3"><a href="#cb49-3" aria-hidden="true" tabindex="-1"></a>).sort_values()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -4479,7 +4479,7 @@ dtype: float64</code></pre>
 <p>Including the x and y (or longitude and latitude) coordinates of your geometries is a clever way of capturing the spatial heterogeneity in the model. The location serves as a proxy for any unexplained variance of a spatial nature. It does not help you with interpretation, as coordinates do not explain anything.</p>
 <p>The model will also struggle to generalise outside of the original spatial extent. So while a model trained on Prague using the original set of variables could be easily used in any other Czech city, like Brno, the model that includes coordinates would have no idea how to interpret the values it would see in Brno. Use with caution.</p>
 <p>Technically, it is dead simple. You just include coordinates as another two columns.</p>
-<div id="3d2c2f83" class="cell" data-execution_count="48">
+<div id="af749314" class="cell" data-execution_count="48">
 <div class="sourceCode cell-code" id="cb51"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a>training_sample[[<span class="st">"x"</span>, <span class="st">"y"</span>]] <span class="op">=</span> training_sample.get_coordinates()</span>
 <span id="cb51-2"><a href="#cb51-2" aria-hidden="true" tabindex="-1"></a>training_sample.head(<span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="48">
@@ -4570,7 +4570,7 @@ dtype: float64</code></pre>
 </div>
 </div>
 <p>To check the effect of spatial heterogeneity compared to the baseline model, create new training data with the original variables and coordinates on top.</p>
-<div id="2ac82ae0" class="cell" data-execution_count="49">
+<div id="728ab3e8" class="cell" data-execution_count="49">
 <div class="sourceCode cell-code" id="cb52"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a>independent_coordinates <span class="op">=</span> training_sample[independent_variables <span class="op">+</span> [<span class="st">"x"</span>, <span class="st">"y"</span>]]</span>
 <span id="cb52-2"><a href="#cb52-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb52-3"><a href="#cb52-3" aria-hidden="true" tabindex="-1"></a>X_train <span class="op">=</span> independent_coordinates.loc[train]</span>
@@ -4580,7 +4580,7 @@ dtype: float64</code></pre>
 <span id="cb52-7"><a href="#cb52-7" aria-hidden="true" tabindex="-1"></a>y_test <span class="op">=</span> training_sample[<span class="st">"cluster"</span>].loc[test]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Train the model.</p>
-<div id="4ae2c166" class="cell" data-execution_count="50">
+<div id="10702eb4" class="cell" data-execution_count="50">
 <div class="sourceCode cell-code" id="cb53"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a>rf_coordinates <span class="op">=</span> ensemble.RandomForestClassifier(random_state<span class="op">=</span><span class="dv">0</span>, n_jobs<span class="op">=-</span><span class="dv">1</span>)</span>
 <span id="cb53-2"><a href="#cb53-2" aria-hidden="true" tabindex="-1"></a>rf_coordinates.fit(X_train, y_train)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="50">
@@ -4992,7 +4992,7 @@ div.sk-label-container:hover .sk-estimator-doc-link.fitted:hover,
 </div>
 </div>
 <p>And evaluate its performance.</p>
-<div id="f76db1db" class="cell" data-execution_count="51">
+<div id="224b3841" class="cell" data-execution_count="51">
 <div class="sourceCode cell-code" id="cb54"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a>pred <span class="op">=</span> rf_coordinates.predict(X_test)</span>
 <span id="cb54-2"><a href="#cb54-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb54-3"><a href="#cb54-3" aria-hidden="true" tabindex="-1"></a>accuracy_coordinates <span class="op">=</span> metrics.accuracy_score(pred, y_test)</span>
@@ -5032,7 +5032,7 @@ Spatial heterogeneity - coordinates (spatial CV):
 </div>
 </div>
 <p>There indeed is some degree of spatial heterogeneity, but its effect is not that strong as that of spatial dependence.</p>
-<div id="0e6fe0af" class="cell" data-execution_count="52">
+<div id="e15ea6c3" class="cell" data-execution_count="52">
 <div class="sourceCode cell-code" id="cb56"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a>pd.Series(</span>
 <span id="cb56-2"><a href="#cb56-2" aria-hidden="true" tabindex="-1"></a>    rf_coordinates.feature_importances_, index<span class="op">=</span>rf_coordinates.feature_names_in_</span>
 <span id="cb56-3"><a href="#cb56-3" aria-hidden="true" tabindex="-1"></a>).sort_values()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -5054,7 +5054,7 @@ dtype: float64</code></pre>
 <section id="heterogeneity-and-dependence" class="level2">
 <h2 class="anchored" data-anchor-id="heterogeneity-and-dependence">Heterogeneity and dependence</h2>
 <p>You can try to combine the effects of heterogeneity and dependence within a single model as each seems to help when used separately.</p>
-<div id="014bced8" class="cell" data-execution_count="53">
+<div id="ffdf377c" class="cell" data-execution_count="53">
 <div class="sourceCode cell-code" id="cb58"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a>independent_coordinates <span class="op">=</span> training_sample[</span>
 <span id="cb58-2"><a href="#cb58-2" aria-hidden="true" tabindex="-1"></a>    independent_variables <span class="op">+</span> lagged_variables <span class="op">+</span> [<span class="st">"x"</span>, <span class="st">"y"</span>]</span>
 <span id="cb58-3"><a href="#cb58-3" aria-hidden="true" tabindex="-1"></a>]</span>
@@ -5066,7 +5066,7 @@ dtype: float64</code></pre>
 <span id="cb58-9"><a href="#cb58-9" aria-hidden="true" tabindex="-1"></a>y_test <span class="op">=</span> training_sample[<span class="st">"cluster"</span>].loc[test]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Let’s consider this a final model of the day.</p>
-<div id="b64191bd" class="cell" data-execution_count="54">
+<div id="83daaf75" class="cell" data-execution_count="54">
 <div class="sourceCode cell-code" id="cb59"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb59-1"><a href="#cb59-1" aria-hidden="true" tabindex="-1"></a>rf_het_dep <span class="op">=</span> ensemble.RandomForestClassifier(random_state<span class="op">=</span><span class="dv">0</span>, n_jobs<span class="op">=-</span><span class="dv">1</span>)</span>
 <span id="cb59-2"><a href="#cb59-2" aria-hidden="true" tabindex="-1"></a>rf_het_dep.fit(X_train, y_train)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="54">
@@ -5478,7 +5478,7 @@ div.sk-label-container:hover .sk-estimator-doc-link.fitted:hover,
 </div>
 </div>
 <p>The final evaluation:</p>
-<div id="e901969d" class="cell" data-execution_count="55">
+<div id="d30f86a7" class="cell" data-execution_count="55">
 <div class="sourceCode cell-code" id="cb60"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb60-1"><a href="#cb60-1" aria-hidden="true" tabindex="-1"></a>pred <span class="op">=</span> rf_het_dep.predict(X_test)</span>
 <span id="cb60-2"><a href="#cb60-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb60-3"><a href="#cb60-3" aria-hidden="true" tabindex="-1"></a>accuracy_het_dep <span class="op">=</span> metrics.accuracy_score(pred, y_test)</span>
@@ -5521,7 +5521,7 @@ Spatial dependence + heterogeneity (spatial CV):
 </div>
 </div>
 <p>This seems to be the best model so far. Keep in mind that variables coming from the feature engineering section are not included here, so there still may be some space for an improvement.</p>
-<div id="f95a71d9" class="cell" data-execution_count="56">
+<div id="0d48e2e6" class="cell" data-execution_count="56">
 <div class="sourceCode cell-code" id="cb62"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb62-1"><a href="#cb62-1" aria-hidden="true" tabindex="-1"></a>pd.Series(</span>
 <span id="cb62-2"><a href="#cb62-2" aria-hidden="true" tabindex="-1"></a>    rf_het_dep.feature_importances_, index<span class="op">=</span>rf_het_dep.feature_names_in_</span>
 <span id="cb62-3"><a href="#cb62-3" aria-hidden="true" tabindex="-1"></a>).sort_values()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -5548,7 +5548,7 @@ dtype: float64</code></pre>
 <h3 class="anchored" data-anchor-id="prediction-on-the-whole-dataset">Prediction on the whole dataset</h3>
 <p>If you consider <code>rf_het_dep</code> a final model you are happy with, you can check how it performs on the full dataset, not only on the sample of 20k observations used above.</p>
 <p>First, you will need all the variables computed for the full dataset.</p>
-<div id="aea74740" class="cell" data-execution_count="57">
+<div id="2daf344b" class="cell" data-execution_count="57">
 <div class="sourceCode cell-code" id="cb64"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb64-1"><a href="#cb64-1" aria-hidden="true" tabindex="-1"></a>distance_200_all <span class="op">=</span> graph.Graph.build_distance_band(building_data, <span class="dv">200</span>).transform(<span class="st">"r"</span>)</span>
 <span id="cb64-2"><a href="#cb64-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> var <span class="kw">in</span> independent_variables:</span>
 <span id="cb64-3"><a href="#cb64-3" aria-hidden="true" tabindex="-1"></a>    building_data[<span class="ss">f"</span><span class="sc">{</span>var<span class="sc">}</span><span class="ss">_lag"</span>] <span class="op">=</span> distance_200_all.lag(building_data[var])</span>
@@ -5556,7 +5556,7 @@ dtype: float64</code></pre>
 <span id="cb64-5"><a href="#cb64-5" aria-hidden="true" tabindex="-1"></a>building_data[[<span class="st">"x"</span>, <span class="st">"y"</span>]] <span class="op">=</span> building_data.get_coordinates()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Then, you can use the model for inference. First, check the probabilities.</p>
-<div id="5c0c8b12" class="cell" data-execution_count="58">
+<div id="94d5f48e" class="cell" data-execution_count="58">
 <div class="sourceCode cell-code" id="cb65"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb65-1"><a href="#cb65-1" aria-hidden="true" tabindex="-1"></a>probabilities <span class="op">=</span> rf_het_dep.predict_proba(</span>
 <span id="cb65-2"><a href="#cb65-2" aria-hidden="true" tabindex="-1"></a>    building_data[independent_variables <span class="op">+</span> lagged_variables <span class="op">+</span> [<span class="st">"x"</span>, <span class="st">"y"</span>]]</span>
 <span id="cb65-3"><a href="#cb65-3" aria-hidden="true" tabindex="-1"></a>)</span>
@@ -5572,7 +5572,7 @@ dtype: float64</code></pre>
 </div>
 </div>
 <p>Plotting class-based probabilities allows you to visualise the likelihood that each observation (building in our case) belonging to each class.</p>
-<div id="f4e4ad93" class="cell" data-execution_count="59">
+<div id="a8b1da27" class="cell" data-execution_count="59">
 <div class="sourceCode cell-code" id="cb67"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb67-1"><a href="#cb67-1" aria-hidden="true" tabindex="-1"></a>fig, axs <span class="op">=</span> plt.subplots(<span class="dv">4</span>, <span class="dv">2</span>, figsize<span class="op">=</span>(<span class="dv">9</span>, <span class="dv">14</span>))</span>
 <span id="cb67-2"><a href="#cb67-2" aria-hidden="true" tabindex="-1"></a>axs <span class="op">=</span> axs.flatten()</span>
 <span id="cb67-3"><a href="#cb67-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i, ax <span class="kw">in</span> <span class="bu">enumerate</span>(axs):</span>
@@ -5591,7 +5591,7 @@ dtype: float64</code></pre>
 </div>
 </div>
 <p>Plotting the maximum probability assigned to an observation regardless of class is also useful. This can be seen as a proxy of the certainty of a model and allows you to identify areas where the model works well and has no issue picking up the correct class and those where it struggles.</p>
-<div id="026ebe38" class="cell" data-execution_count="60">
+<div id="344790b1" class="cell" data-execution_count="60">
 <div class="sourceCode cell-code" id="cb68"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb68-1"><a href="#cb68-1" aria-hidden="true" tabindex="-1"></a>building_data.plot(</span>
 <span id="cb68-2"><a href="#cb68-2" aria-hidden="true" tabindex="-1"></a>    probabilities.<span class="bu">max</span>(axis<span class="op">=</span><span class="dv">1</span>), markersize<span class="op">=</span><span class="fl">0.01</span>, cmap<span class="op">=</span><span class="st">"cividis_r"</span>, figsize<span class="op">=</span>(<span class="dv">9</span>, <span class="dv">9</span>)</span>
 <span id="cb68-3"><a href="#cb68-3" aria-hidden="true" tabindex="-1"></a>).set_axis_off()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -5605,13 +5605,13 @@ dtype: float64</code></pre>
 </div>
 </div>
 <p>If you want just a label, it is easier to use the <code>predict()</code> method instead.</p>
-<div id="20a96e79" class="cell" data-execution_count="61">
+<div id="925b5b37" class="cell" data-execution_count="61">
 <div class="sourceCode cell-code" id="cb69"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb69-1"><a href="#cb69-1" aria-hidden="true" tabindex="-1"></a>predicted_class <span class="op">=</span> rf_het_dep.predict(</span>
 <span id="cb69-2"><a href="#cb69-2" aria-hidden="true" tabindex="-1"></a>    building_data[independent_variables <span class="op">+</span> lagged_variables <span class="op">+</span> [<span class="st">"x"</span>, <span class="st">"y"</span>]]</span>
 <span id="cb69-3"><a href="#cb69-3" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>The predicted labels allow you to check the spatial pattern of errors as you did earlier.</p>
-<div id="9b404ce5" class="cell" data-execution_count="62">
+<div id="6b472231" class="cell" data-execution_count="62">
 <div class="sourceCode cell-code" id="cb70"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb70-1"><a href="#cb70-1" aria-hidden="true" tabindex="-1"></a>building_data.plot(</span>
 <span id="cb70-2"><a href="#cb70-2" aria-hidden="true" tabindex="-1"></a>    predicted_class <span class="op">==</span> building_data[<span class="st">"cluster"</span>],</span>
 <span id="cb70-3"><a href="#cb70-3" aria-hidden="true" tabindex="-1"></a>    categorical<span class="op">=</span><span class="va">True</span>,</span>
@@ -5630,7 +5630,7 @@ dtype: float64</code></pre>
 </div>
 </div>
 <p>Finally, you may be interested in the performance of the model on the full dataset.</p>
-<div id="34ac9791" class="cell" data-execution_count="63">
+<div id="96037ed8" class="cell" data-execution_count="63">
 <div class="sourceCode cell-code" id="cb71"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb71-1"><a href="#cb71-1" aria-hidden="true" tabindex="-1"></a>accuracy_all <span class="op">=</span> metrics.accuracy_score(predicted_class, building_data[<span class="st">"cluster"</span>])</span>
 <span id="cb71-2"><a href="#cb71-2" aria-hidden="true" tabindex="-1"></a>kappa_all <span class="op">=</span> metrics.cohen_kappa_score(predicted_class, building_data[<span class="st">"cluster"</span>])</span>
 <span id="cb71-3"><a href="#cb71-3" aria-hidden="true" tabindex="-1"></a></span>

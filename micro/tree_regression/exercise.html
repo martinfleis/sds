@@ -20,6 +20,40 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -73,6 +107,7 @@ ul.task-list li input[type="checkbox"] {
 
 <link rel="stylesheet" href="../_assets/styles.css">
 <meta name="twitter:title" content="Plant a forest – Spatial Data Science in Python">
+<meta name="twitter:description" content="">
 <meta name="twitter:card" content="summary">
 </head>
 
@@ -436,8 +471,14 @@ ul.task-list li input[type="checkbox"] {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#hedonic-prices-in-busan" id="toc-hedonic-prices-in-busan" class="nav-link active" data-scroll-target="#hedonic-prices-in-busan">Hedonic prices in Busan</a></li>
+  </ul>
+<div class="toc-actions"><ul><li><a href="https://github.com/martinfleis/sds/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -461,21 +502,45 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<div class="callout callout-style-default callout-caution callout-titled">
-<div class="callout-header d-flex align-content-center">
+<section id="hedonic-prices-in-busan" class="level2">
+<h2 class="anchored" data-anchor-id="hedonic-prices-in-busan">Hedonic prices in Busan</h2>
+<p>You will investigate the association between green amenities and property prices in a metropolitan city. The dataset was obtained from <a href="https://zenodo.org/records/11092589">https://zenodo.org/records/11092589</a>. The provided data file contains a total of 2.404 observations with 18 variables, retrieved from the Korea Transport Database, Statistics Korea, Ministry of Land, Infrastructure and Transport, and the Spatial Information Portal. Specifically, the green index is quantified using a large amount of Google street view images, obtained from the download tool (https://svd360.istreetview.com/).</p>
+<p>Here is the URL for the CSV you should use.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>url <span class="op">=</span> <span class="st">"https://martinfleischmann.net/sds/tree_regression/data/prices_data.csv"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ol type="1">
+<li>Load the data and convert it to a geodataframe, make sure you have the correct local projection.</li>
+</ol>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Work in progress
+Hint
 </div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
+<div id="callout-1" class="callout-1-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<p>This section is currently in works. Come back later.</p>
+<p>You can get the local UTM zone.</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>GeoDataFrame.estimate_utm_crs()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
+</div>
+<ol start="2" type="1">
+<li>The target variable is ‘Property Prices’. Choose at least five independent variables that you think will be good predictors of the target variable.</li>
+<li>Prepare you data for modeling - split it into training and testing sets.</li>
+<li>Try to fit a linear regression model and compare it with a tree based model of your choice, is there a difference?</li>
+<li>Cross validate your model and evaluate its performance. Plot the residuals.</li>
+<li>Perform spatial evaluation using the <code>"hex_id"</code>.</li>
+<li>Compare blocked spatial metrics based on <code>"hex_id"</code> with the smoothed spatial metrics using graph.</li>
+<li>Check the spread of the asummed auotocorrelation using variogram.</li>
+<li>Perform LISA on the residuals - locate underpriced and overpriced properties, and clusters of consistently correct and consistently wrong locations.</li>
+<li>Build a model which avoids spatial leakage using the <code>"hex_id"</code> and tune its hyperparameters. Is the performace different from the previous models? Which features are important in this model?</li>
+</ol>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -1047,7 +1112,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     </div>   
     <div class="nav-footer-center">
 <p>Course material by <a href="https://martinfleischmann.net">Martin Fleischmann</a>. Available under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a>.</p>
-<div class="toc-actions"><ul><li><a href="https://github.com/martinfleis/sds/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></div>
+<div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/martinfleis/sds/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></div>
     <div class="nav-footer-right">
       &nbsp;
     </div>
