@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Jupyter – Spatial Data Science in Python</title>
+<title>Quiz on non-linear regression – Spatial Data Science in Python</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,40 +20,6 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-/* CSS for syntax highlighting */
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-  }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-}
 </style>
 
 
@@ -64,8 +30,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<link href="../introduction/exercise.html" rel="next">
-<link href="../introduction/concepts.html" rel="prev">
 <link href="../_assets/favicon_micro.png" rel="icon" type="image/png">
 <script src="../site_libs/quarto-html/quarto.js"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
@@ -78,6 +42,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="../site_libs/bootstrap/bootstrap-89c465c254dc7890db84bc709cd644d4.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
 <link href="../site_libs/bootstrap/bootstrap-dark-aea73f76631d35e417eb8d06f8d60748.min.css" rel="prefetch" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../site_libs/quarto-contrib/alpine-3.12/buttons.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -106,41 +71,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 }</script>
 <style>html{ scroll-behavior: smooth; }</style>
 
-  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
-
-<script type="text/javascript">
-const typesetMath = (el) => {
-  if (window.MathJax) {
-    // MathJax Typeset
-    window.MathJax.typeset([el]);
-  } else if (window.katex) {
-    // KaTeX Render
-    var mathElements = el.getElementsByClassName("math");
-    var macros = [];
-    for (var i = 0; i < mathElements.length; i++) {
-      var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN") {
-        window.katex.render(texText.data, mathElements[i], {
-          displayMode: mathElements[i].classList.contains('display'),
-          throwOnError: false,
-          macros: macros,
-          fleqn: false
-        });
-      }
-    }
-  }
-}
-window.Quarto = {
-  typesetMath
-};
-</script>
 
 <link rel="stylesheet" href="../_assets/styles.css">
-<meta name="twitter:title" content="Jupyter – Spatial Data Science in Python">
+<meta name="twitter:title" content="Quiz on non-linear regression – Spatial Data Science in Python">
 <meta name="twitter:description" content="">
-<meta name="twitter:image" content="../_assets/figures/introduction/terminal.png">
-<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:card" content="summary">
 </head>
 
 <body class="nav-sidebar floating">
@@ -152,7 +87,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../introduction/concepts.html">Introduction</a></li><li class="breadcrumb-item"><a href="../introduction/hands_on.html">Jupyter</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Quiz on non-linear regression</li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -210,13 +145,13 @@ window.Quarto = {
         <li class="px-0"><hr class="sidebar-divider hi "></li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false">
  <span class="menu-text">Introduction</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../introduction/concepts.html" class="sidebar-item-text sidebar-link">
@@ -225,7 +160,7 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../introduction/hands_on.html" class="sidebar-item-text sidebar-link active">
+  <a href="../introduction/hands_on.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Jupyter</span></a>
   </div>
 </li>
@@ -503,30 +438,15 @@ window.Quarto = {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">On this page</h2>
-   
-  <ul>
-  <li><a href="#shell" id="toc-shell" class="nav-link active" data-scroll-target="#shell">Shell</a>
-  <ul class="collapse">
-  <li><a href="#terminal-and-command-line" id="toc-terminal-and-command-line" class="nav-link" data-scroll-target="#terminal-and-command-line">Terminal and Command line</a></li>
-  </ul></li>
-  <li><a href="#jupyter-notebook-and-jupyter-lab" id="toc-jupyter-notebook-and-jupyter-lab" class="nav-link" data-scroll-target="#jupyter-notebook-and-jupyter-lab">Jupyter Notebook and Jupyter Lab</a>
-  <ul class="collapse">
-  <li><a href="#markdown" id="toc-markdown" class="nav-link" data-scroll-target="#markdown">Markdown</a></li>
-  <li><a href="#notebook-essentials" id="toc-notebook-essentials" class="nav-link" data-scroll-target="#notebook-essentials">Notebook essentials</a></li>
-  </ul></li>
-  
-  </ul>
-<div class="toc-actions"><ul><li><a href="https://github.com/martinfleis/sds/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div><div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="hands_on.ipynb" download="hands_on.ipynb"><i class="bi bi-journal-code"></i>Jupyter</a></li></ul></div></nav>
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
+        
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../introduction/concepts.html">Introduction</a></li><li class="breadcrumb-item"><a href="../introduction/hands_on.html">Jupyter</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Jupyter</h1>
+<h1 class="title">Quiz on non-linear regression</h1>
 </div>
 
 
@@ -543,340 +463,221 @@ window.Quarto = {
 </header>
 
 
-<p>Welcome to the first <strong>hands-on</strong> section of the course. You will familiarise yourself with the tools you will be using, ensure that all works as it should, and prepare for some Python code.</p>
-<div class="callout callout-style-default callout-important callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Do you have Python ready?
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Before you start, ensure you have carefully read and followed the instructions <a href="../course_information/infrastructure.html">outlined in the Infrastructure section</a> and have a working installation of Python and some Jupyter Notebook IDE, either via Jupyter Lab (recommended) or on Google Colab.</p>
-</div>
-</div>
-<section id="shell" class="level2">
-<h2 class="anchored" data-anchor-id="shell">Shell</h2>
-<p>Spatial Data Science depends on code, and coding environments can be unfriendly to an average user. People designing the tools are often computer scientists or have a strong knowledge of CS-related environments. It means we sometimes need to deal with tools that look a bit scary, like a Terminal or a Command line. Below is a brief introduction to the tools you will need for this course.</p>
-<section id="terminal-and-command-line" class="level3">
-<h3 class="anchored" data-anchor-id="terminal-and-command-line">Terminal and Command line</h3>
-<p>Depending on your operating system, you will have either Terminal (macOS, Linux) or Command Prompt application installed. It will look like this:</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="../_assets/figures/introduction/terminal.png" class="img-fluid figure-img"></p>
-<figcaption>Terminal on macOS</figcaption>
-</figure>
-</div>
-<p>Terminal (and Command Prompt or Command line, but we will refer to all as the terminal for simplicity) is used to interact with applications that do not have any graphic interface or with the apps that do have one, but you want to use them programmatically. The terminal usage is straightforward. Let’s start with a few examples.</p>
-<ol type="1">
-<li>Create a folder (or maybe you already have) to store files for this course.</li>
-<li>Download this notebook by clicking on the <span class="keystroke">Jupyter</span> option on the right side of this page and move the notebook to the folder.</li>
-</ol>
-<p>You want to see a list of files and folders you have in the folder. First, you need to navigate to the folder. For that, you can use the <code>cd</code> command, which stands for <span class="accent">c</span>hange <span class="accent">d</span>irectory.</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> courses/sds/</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Let’s assume that you have the folder with course material in the folder called <code>sds</code> in another folder called <code>courses</code>. The full command is then composed of the <code>cd</code> part, saying <em>set the current directory to…</em> and waits for the parameter, which is a path to the folder in this case - <code>courses/sds/</code>.</p>
-<p>Once in the correct folder, you can use another command, <code>ls</code>, which stands for <span class="accent">l</span>i<span class="accent">s</span>t and allows you to list the contents of the current directory.</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>The output would look like this:</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="../_assets/figures/introduction/ls.png" class="img-fluid figure-img"></p>
-<figcaption>Output of the <code>ls</code> command.</figcaption>
-</figure>
-</div>
-<p>You can also pass a parameter <code>-l</code>, specifying that you want a long listing including attributes.</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span> <span class="at">-l</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>That changes the output to this:</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="../_assets/figures/introduction/ls-l.png" class="img-fluid figure-img"></p>
-<figcaption>Output of the <code>ls -l</code> command.</figcaption>
-</figure>
-</div>
-<p>The syntax is always the same, starting with the app name and then followed by parameters.</p>
-</section>
-</section>
-<section id="jupyter-notebook-and-jupyter-lab" class="level2">
-<h2 class="anchored" data-anchor-id="jupyter-notebook-and-jupyter-lab">Jupyter Notebook and Jupyter Lab</h2>
-<p>While you can interact with Python from the terminal, it is inconvenient. Instead, you will use Jypyter Notebooks and Jupyter Lab. Jupyter Notebooks are documents that allow you to mix text and code, execute small pieces of code one at a time and include graphical outputs of your code. Jupyter Lab is a handy interface that allows you to work with multiple notebooks and switch between your Python environments created with Pixi.</p>
-<p>It is time to say goodbye to the terminal and start Jupyter Lab.</p>
-<p>First, avigate to the template folder. Then you can start Lab using:</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">pixi</span> run jupyter lab</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>This command should open your browser and load the Jupyter Lab interface.</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="../_assets/figures/introduction/lab.png" class="img-fluid figure-img"></p>
-<figcaption>Jupyter Lab interface</figcaption>
-</figure>
-</div>
-<p>In the launcher, we can create a new Notebook by clicking on the Python logo representing our current environment. If you have more of them, you will see them there, as well as other environments using different programming languages like R or Julia.</p>
-<p>The notebook is composed of cells. This is a cell:</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="../_assets/figures/introduction/cell.png" class="img-fluid figure-img"></p>
-<figcaption>Jupyter Notebook cell</figcaption>
-</figure>
-</div>
-<p>Cells can contain either code or text. A typical notebook is then a series of cells where some include text describing what is happening while others contain the code, either waiting for execution or already executed. The cells with the executed code may also contain outputs.</p>
-<p>You can start with simple math that Python can do natively. Run the following code cell. To do that, you can either click the “play” button on top or hit <span class="keystroke">Shift</span> + <span class="keystroke">Enter</span>:</p>
-<div id="3bb9c8e6" class="cell" data-execution_count="2">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span> <span class="op">+</span> <span class="dv">1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="1">
-<pre><code>2</code></pre>
-</div>
-</div>
-<p>You now have a code cell with the output. Jupyter Lab automatically created a new cell. Change its type to <code>Markdown</code> and write a short text describing what the cell above does.</p>
-<section id="markdown" class="level3">
-<h3 class="anchored" data-anchor-id="markdown">Markdown</h3>
-<p>Text cells can be formatted using the <a href="https://www.markdownguide.org">Markdown</a> syntax. Markdown is a way of using plain text to write documents that can later be formatted by a rendering engine (Jupyter Lab is the rendering engine in this case). Unlike <span class="math inline">\(\LaTeX\)</span>, it is very lightweight.</p>
-<p>In a cell of a Markdown type, you can:</p>
-<div class="tabset-margin-container"></div><div class="panel-tabset">
-<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true" aria-current="page">Markdown</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false">Render</a></li></ul>
-<div class="tab-content">
-<div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
-<pre><code>- create
-- simple
-- lists</code></pre>
-</div>
-<div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
-<ul>
-<li>create</li>
-<li>simple</li>
-<li>lists</li>
-</ul>
-</div>
-</div>
-</div>
-<p>If you need numbering, you can:</p>
-<div class="tabset-margin-container"></div><div class="panel-tabset">
-<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-2-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-1" role="tab" aria-controls="tabset-2-1" aria-selected="true">Markdown</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-2" role="tab" aria-controls="tabset-2-2" aria-selected="false">Render</a></li></ul>
-<div class="tab-content">
-<div id="tabset-2-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-2-1-tab">
-<pre><code>1. create
-2. numbered
-3. lists
-    1. or nested
-    2. lists within lists
-4. that may continue below</code></pre>
-</div>
-<div id="tabset-2-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-2-tab">
-<ol type="1">
-<li>create</li>
-<li>numbered</li>
-<li>lists
-<ol type="1">
-<li>or nested</li>
-<li>lists within lists</li>
-</ol></li>
-<li>that may continue below</li>
-</ol>
-</div>
-</div>
-</div>
-<p>You can also include links:</p>
-<div class="tabset-margin-container"></div><div class="panel-tabset">
-<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-3-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-1" role="tab" aria-controls="tabset-3-1" aria-selected="true">Markdown</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-3-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-2" role="tab" aria-controls="tabset-3-2" aria-selected="false">Render</a></li></ul>
-<div class="tab-content">
-<div id="tabset-3-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-3-1-tab">
-<pre><code>Wrap a word that shall be a [link](https://github.com) in square brackets followed by
-round brackets with the URL.</code></pre>
-</div>
-<div id="tabset-3-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-3-2-tab">
-<p>Wrap a word that shall be a <a href="https://github.com">link</a> in square brackets followed by round brackets with the URL.</p>
-</div>
-</div>
-</div>
-<p>Or include images, using a very similar syntax.</p>
-<div class="tabset-margin-container"></div><div class="panel-tabset">
-<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-4-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-4-1" role="tab" aria-controls="tabset-4-1" aria-selected="true">Markdown</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-4-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-4-2" role="tab" aria-controls="tabset-4-2" aria-selected="false">Render</a></li></ul>
-<div class="tab-content">
-<div id="tabset-4-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-4-1-tab">
-<pre><code>![Alt text describing the figure (optional)](https://imgs.xkcd.com/comics/standards.png)</code></pre>
-</div>
-<div id="tabset-4-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-4-2-tab">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="https://imgs.xkcd.com/comics/standards.png" class="img-fluid figure-img"></p>
-<figcaption>Alt text describing the figure (optional)</figcaption>
-</figure>
-</div>
-</div>
-</div>
-</div>
-<p>Markdown has a few flavours, which are often compatible but some marks are unique to distinct flavours. You can therefore write <em>italic</em> using underscores <code>_italic_</code> or using stars <code>*italic*</code> around the text you want to adapt. The same applies to <strong>bold</strong>, with two underscores or stars <code>**bold**</code>.</p>
-<p>You can further include mathematical formulas using <span class="math inline">\(\LaTeX\)</span>. Either using the inline syntax <code>$e = mc^2$</code> which renders as <span class="math inline">\(e = mc^2\)</span> or as a proper formula:</p>
-<div class="tabset-margin-container"></div><div class="panel-tabset">
-<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-5-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-5-1" role="tab" aria-controls="tabset-5-1" aria-selected="true">Markdown</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-5-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-5-2" role="tab" aria-controls="tabset-5-2" aria-selected="false">Render</a></li></ul>
-<div class="tab-content">
-<div id="tabset-5-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-5-1-tab">
-<pre><code>$$
-I = \frac N W \frac {\sum_{i=1}^N \sum_{j=1}^N w_{ij}(x_i-\bar x) (x_j-\bar x)} {\sum_{i=1}^N (x_i-\bar x)^2}
-$$</code></pre>
-</div>
-<div id="tabset-5-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-5-2-tab">
-<p><span class="math display">\[
-I = \frac N W \frac {\sum_{i=1}^N \sum_{j=1}^N w_{ij}(x_i-\bar x) (x_j-\bar x)} {\sum_{i=1}^N (x_i-\bar x)^2}
-\]</span></p>
-</div>
-</div>
-</div>
-<p>Markdown can also do tables, like this one:</p>
-<div class="tabset-margin-container"></div><div class="panel-tabset">
-<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-6-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-6-1" role="tab" aria-controls="tabset-6-1" aria-selected="true">Markdown</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-6-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-6-2" role="tab" aria-controls="tabset-6-2" aria-selected="false">Render</a></li></ul>
-<div class="tab-content">
-<div id="tabset-6-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-6-1-tab">
-<pre><code>| Language | Year |
-| -------- | ---- |
-| Python   | 1991 |
-| R        | 1993 |
-| Julia    | 2012 |
-| Rust     | 2015 |</code></pre>
-</div>
-<div id="tabset-6-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-6-2-tab">
-<table class="caption-top table">
-<thead>
-<tr class="header">
-<th>Language</th>
-<th>Year</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>Python</td>
-<td>1991</td>
-</tr>
-<tr class="even">
-<td>R</td>
-<td>1993</td>
-</tr>
-<tr class="odd">
-<td>Julia</td>
-<td>2012</td>
-</tr>
-<tr class="even">
-<td>Rust</td>
-<td>2015</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
-</div>
-<p>For structuring the documents, Markdown offers up to six levels of headings.</p>
-<div class="tabset-margin-container"></div><div class="panel-tabset">
-<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-7-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-7-1" role="tab" aria-controls="tabset-7-1" aria-selected="true">Markdown</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-7-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-7-2" role="tab" aria-controls="tabset-7-2" aria-selected="false">Render</a></li></ul>
-<div class="tab-content">
-<div id="tabset-7-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-7-1-tab">
-<pre><code># Heading level 1
+<p>Check how much you remember from previous sections by answering the questions below.</p>
+<div class="question">
+<p><strong>Which of the following best describes the difference between a linear and non-linear model in machine learning??</strong></p>
+<div class="choices">
+<div x-data="{ answer: '' , clear() { this.answer = '' }}">
 
-### Heading level 3
+<div class="choice correct-choice">
+<p></p><p><input class="form-check-input" type="radio" x-model="answer" value="correct"> <span id="correct" x-show="answer == $el.id" class="badge">✓</span>A linear model assumes a direct proportionality between the input and output variables, while a non-linear model does not.</p><p></p>
+</div>
+<div class="choice">
+<p></p><p><input class="form-check-input" type="radio" x-model="answer" value="no2"> <span id="no2" x-show="answer == $el.id" class="badge">✗</span>Linear models are more accurate than non-linear models in all cases.</p><p></p>
+</div>
+<div class="choice">
+<p></p><p><input class="form-check-input" type="radio" x-model="answer" value="no3"> <span id="no3" x-show="answer == $el.id" class="badge">✗</span>Non-linear models always involve more complex mathematical calculations than linear models.</p><p></p>
+</div>
+<div class="choice">
+<p></p><p><input class="form-check-input" type="radio" x-model="answer" value="no4"> <span id="no4" x-show="answer == $el.id" class="badge">✗</span>A non-linear model cannot be used for regression problems.</p><p></p>
+</div>
+</div>
 
-##### Heading level 5
-</code></pre>
-</div>
-<div id="tabset-7-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-7-2-tab">
-<section id="heading-level-1" class="level1">
-<h1>Heading level 1</h1>
-<section id="heading-level-3" class="level3">
-<h3 class="anchored" data-anchor-id="heading-level-3">Heading level 3</h3>
-<section id="heading-level-5" class="level5">
-<h5 class="anchored" data-anchor-id="heading-level-5">Heading level 5</h5>
-</section>
-</section>
-</section>
 </div>
 </div>
+<div class="question">
+<p><strong>What is the purpose of splitting a dataset into training and testing sets?</strong></p>
+<div class="choices">
+<div x-data="{ answer: '' , clear() { this.answer = '' }}">
+
+<div class="choice correct-choice">
+<p></p><p><input class="form-check-input" type="radio" x-model="answer" value="correct"> <span id="correct" x-show="answer == $el.id" class="badge">✓</span>To avoid overfitting by using different data for model training and evaluation.</p><p></p>
 </div>
-<p>While you can also use basic HTML within Markdown (the cell is rendered in the browser anyway), please try to avoid doing so and stick to vanilla Markdown if possible. The inclusion of HTML tends to break some rendering engines and alter the expected visual style of the resulting document.</p>
-</section>
-<section id="notebook-essentials" class="level3">
-<h3 class="anchored" data-anchor-id="notebook-essentials">Notebook essentials</h3>
-<p>Jupyter Notebooks are great and have a lot of built-in features that can improve your quality of life.</p>
-<section id="execution" class="level4">
-<h4 class="anchored" data-anchor-id="execution">Execution</h4>
-<p>While you can run the code cell by clicking on the ▶ button on the top, try creating muscle memory for <span class="keystroke">Shift</span> + <span class="keystroke">Enter</span> instead. You’ll be much faster.</p>
-</section>
-<section id="tab-completion" class="level4">
-<h4 class="anchored" data-anchor-id="tab-completion">Tab completion</h4>
-<p>Learn to use <span class="keystroke">Tab</span>. It provides you with all possible actions you can do after loading in a library <strong>and</strong> it is used for automatic autocompletion. Try hitting <span class="keystroke">Tab</span> while writing the code below.</p>
-<div id="552e70a7" class="cell" data-execution_count="3">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> math</span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>math.pi</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="2">
-<pre><code>3.141592653589793</code></pre>
+<div class="choice">
+<p></p><p><input class="form-check-input" type="radio" x-model="answer" value="no2"> <span id="no2" x-show="answer == $el.id" class="badge">✗</span>To ensure that the model sees all the data at least once.</p><p></p>
+</div>
+<div class="choice">
+<p></p><p><input class="form-check-input" type="radio" x-model="answer" value="no3"> <span id="no3" x-show="answer == $el.id" class="badge">✗</span>To reduce the size of the dataset to make the model run faster.</p><p></p>
+</div>
+<div class="choice">
+<p></p><p><input class="form-check-input" type="radio" x-model="answer" value="no4"> <span id="no4" x-show="answer == $el.id" class="badge">✗</span>To increase the accuracy of the predictions by using smaller datasets.</p><p></p>
 </div>
 </div>
-<p>As you have noticed, Jupyter gives you options on what you can import or use. It also remembers all the variables so you don’t have to type them next time.</p>
-<div id="c29d0c33" class="cell" data-execution_count="4">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>variable_name_that_got_super_long <span class="op">=</span> <span class="dv">42</span></span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span> <span class="op">+</span> variable_name_that_got_super_long</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="3">
-<pre><code>43</code></pre>
+
 </div>
 </div>
-</section>
-<section id="contextual-help" class="level4">
-<h4 class="anchored" data-anchor-id="contextual-help">Contextual help</h4>
-<p>Each Python function comes with documentation. You can fetch and display it directly in the Notebook using <span class="keystroke">Shift</span> + <span class="keystroke">Tab</span>. Try using it in the cell below.</p>
-<div id="dea28c2a" class="cell" data-execution_count="5">
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>math.sin(math.pi)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="4">
-<pre><code>1.2246467991473532e-16</code></pre>
+<div class="question">
+<p><strong>Which of the following steps is performed immediately after training a machine learning model?</strong></p>
+<div class="choices">
+<div x-data="{ answer: '' , clear() { this.answer = '' }}">
+
+<div class="choice">
+<p></p><p><input class="form-check-input" type="radio" x-model="answer" value="no1"> <span id="no1" x-show="answer == $el.id" class="badge">✗</span>Splitting the dataset.</p><p></p>
+</div>
+<div class="choice">
+<p></p><p><input class="form-check-input" type="radio" x-model="answer" value="no2"> <span id="no2" x-show="answer == $el.id" class="badge">✗</span>Evaluating the model using the test set.</p><p></p>
+</div>
+<div class="choice">
+<p></p><p><input class="form-check-input" type="radio" x-model="answer" value="no3"> <span id="no3" x-show="answer == $el.id" class="badge">✗</span>Fine-tuning the model.</p><p></p>
+</div>
+<div class="choice correct-choice">
+<p></p><p><input class="form-check-input" type="radio" x-model="answer" value="correct"> <span id="correct" x-show="answer == $el.id" class="badge">✓</span>Predicting on unseen data.</p><p></p>
 </div>
 </div>
-</section>
-<section id="cell-mode" class="level4">
-<h4 class="anchored" data-anchor-id="cell-mode">Cell mode</h4>
-<p>Each cell can be either in the <em>edit</em> mode or in the <em>command</em> mode. Edit mode allows you to change the contents of the cell. In the case of code cells, it looks nearly the same as the command mode but in the case of Markdown cells, edit mode shows the plain text with the Markdown syntax while the command mode shows the rendered text. You can enter the edit mode by hitting <span class="keystroke">Enter</span>.</p>
-<p>Command mode moves you away from editing individual cells and allows you to use keyboard shortcuts to manipulate the notebook. You can enter the command mode by hitting <span class="keystroke">Esc</span>.</p>
-</section>
-<section id="shortcuts" class="level4">
-<h4 class="anchored" data-anchor-id="shortcuts">Shortcuts</h4>
-<p>When you are in command mode, you can use a wide range of keyboard shortcuts. For example:</p>
-<ul>
-<li><span class="keystroke">A</span> creates a new cell above the selected one.</li>
-<li><span class="keystroke">B</span> creates a new cell below the selected one.</li>
-<li><span class="keystroke">C</span> copies the selected cell, while <span class="keystroke">V</span> pastes it below.</li>
-<li><span class="keystroke">D</span> + <span class="keystroke">D</span> deletes the cell.</li>
-<li><span class="keystroke">M</span> changes the cell type to Markdown.</li>
-<li><span class="keystroke">Y</span> changes the cell type to code.</li>
-<li><span class="keystroke">Ctrl</span> + <span class="keystroke">Shift</span> + <span class="keystroke">C</span> / <span class="keystroke">Cmd</span> + <span class="keystroke">Shift</span> + <span class="keystroke">C</span> opens a command palette.</li>
-</ul>
-</section>
-<section id="i-am-stuck" class="level4">
-<h4 class="anchored" data-anchor-id="i-am-stuck">I am stuck!</h4>
-<p>Things may get stuck or break completely. When that happens:</p>
-<ul>
-<li>first, try <code>Kernel</code> &gt; <code>Interrupt</code> -&gt; your cell should stop running</li>
-<li>if that does not help -&gt; <code>Kernel</code> &gt; <code>Restart</code> -&gt; restart your notebook</li>
-</ul>
-<div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Python basics
+
 </div>
 </div>
-<div class="callout-body-container callout-body">
-<p>This course won’t cover the very basics of Python. You may be able to catch it along the way but if you prefer more explicit material, have a look at <em><a href="https://geo-python-site.readthedocs.io/en/latest/notebooks/L1/a-taste-of-python.html">A taste of Python</a></em> section of the <em><a href="https://geo-python-site.readthedocs.io">Geo-Python</a> course</em> by D. Whipp, H. Tenkanen, V. Heikinheimo, H. Aagesen, and C. Fink.</p>
+<div class="question">
+<p><strong>If a regression model has an R² score of 0.85, what does this indicate about the model’s performance?</strong></p>
+<div class="choices">
+<div x-data="{ answer: '' , clear() { this.answer = '' }}">
+
+<div class="choice">
+<p></p><p><input class="form-check-input" type="radio" x-model="answer" value="no1"> <span id="no1" x-show="answer == $el.id" class="badge">✗</span>The model has an error rate of 85%.</p><p></p>
+</div>
+<div class="choice">
+<p></p><p><input class="form-check-input" type="radio" x-model="answer" value="no2"> <span id="no2" x-show="answer == $el.id" class="badge">✗</span>The model is overfitting the training data.</p><p></p>
+</div>
+<div class="choice">
+<p></p><p><input class="form-check-input" type="radio" x-model="answer" value="no3"> <span id="no3" x-show="answer == $el.id" class="badge">✗</span>The model’s predictions are accurate by 85% on average.</p><p></p>
+</div>
+<div class="choice correct-choice">
+<p></p><p><input class="form-check-input" type="radio" x-model="answer" value="correct"> <span id="correct" x-show="answer == $el.id" class="badge">✓</span>The model explains 85% of the variance in the target variable.</p><p></p>
 </div>
 </div>
-</section>
-</section>
-</section>
+
+</div>
+</div>
+<div class="question">
+<p><strong>Which of the following evaluation metrics penalizes large prediction errors more heavily?</strong></p>
+<div class="choices">
+<div x-data="{ answer: '' , clear() { this.answer = '' }}">
+
+<div class="choice">
+<p></p><p><input class="form-check-input" type="radio" x-model="answer" value="no1"> <span id="no1" x-show="answer == $el.id" class="badge">✗</span>Mean Absolute Error (MAE)</p><p></p>
+</div>
+<div class="choice">
+<p></p><p><input class="form-check-input" type="radio" x-model="answer" value="no2"> <span id="no2" x-show="answer == $el.id" class="badge">✗</span>R-squared (R²)</p><p></p>
+</div>
+<div class="choice correct-choice">
+<p></p><p><input class="form-check-input" type="radio" x-model="answer" value="correct"> <span id="correct" x-show="answer == $el.id" class="badge">✓</span>Root Mean Squared Error (RMSE)</p><p></p>
+</div>
+<div class="choice">
+<p></p><p><input class="form-check-input" type="radio" x-model="answer" value="no4"> <span id="no4" x-show="answer == $el.id" class="badge">✗</span>None of the above</p><p></p>
+</div>
+</div>
+
+</div>
+</div>
+<div class="question">
+<p><strong>What is the main benefit of using cross-validation over a simple train-test split?</strong></p>
+<div class="choices">
+<div x-data="{ answer: '' , clear() { this.answer = '' }}">
+
+<div class="choice">
+<p></p><p><input class="form-check-input" type="radio" x-model="answer" value="no1"> <span id="no1" x-show="answer == $el.id" class="badge">✗</span>Cross-validation ensures that the model will be 100% accurate.</p><p></p>
+</div>
+<div class="choice correct-choice">
+<p></p><p><input class="form-check-input" type="radio" x-model="answer" value="correct"> <span id="correct" x-show="answer == $el.id" class="badge">✓</span>Cross-validation helps to better estimate model performance by using multiple training-test splits.</p><p></p>
+</div>
+<div class="choice">
+<p></p><p><input class="form-check-input" type="radio" x-model="answer" value="no3"> <span id="no3" x-show="answer == $el.id" class="badge">✗</span>Cross-validation makes the training process faster.</p><p></p>
+</div>
+<div class="choice">
+<p></p><p><input class="form-check-input" type="radio" x-model="answer" value="no4"> <span id="no4" x-show="answer == $el.id" class="badge">✗</span>Cross-validation can only be used for linear models.</p><p></p>
+</div>
+</div>
+
+</div>
+</div>
+<div class="question">
+<p><strong>What is the main reason for computing spatially stratified metrics in model evaluation?</strong></p>
+<div class="choices">
+<div x-data="{ answer: '' , clear() { this.answer = '' }}">
+
+<div class="choice">
+<p></p><p><input class="form-check-input" type="radio" x-model="answer" value="no1"> <span id="no1" x-show="answer == $el.id" class="badge">✗</span>To get global evaluation scores for the entire dataset.</p><p></p>
+</div>
+<div class="choice correct-choice">
+<p></p><p><input class="form-check-input" type="radio" x-model="answer" value="correct"> <span id="correct" x-show="answer == $el.id" class="badge">✓</span>To account for regional differences and compute performance metrics for each geographical subset.</p><p></p>
+</div>
+<div class="choice">
+<p></p><p><input class="form-check-input" type="radio" x-model="answer" value="no3"> <span id="no3" x-show="answer == $el.id" class="badge">✗</span>To increase the accuracy of the model’s predictions.</p><p></p>
+</div>
+<div class="choice">
+<p></p><p><input class="form-check-input" type="radio" x-model="answer" value="no4"> <span id="no4" x-show="answer == $el.id" class="badge">✗</span>To ensure that the model is overfitting.</p><p></p>
+</div>
+</div>
+
+</div>
+</div>
+<div class="question">
+<p><strong>What does the term “spatial leakage” refer to in spatial cross-validation?</strong></p>
+<div class="choices">
+<div x-data="{ answer: '' , clear() { this.answer = '' }}">
+
+<div class="choice">
+<p></p><p><input class="form-check-input" type="radio" x-model="answer" value="no1"> <span id="no1" x-show="answer == $el.id" class="badge">✗</span>The leakage of information between temporal datasets.</p><p></p>
+</div>
+<div class="choice correct-choice">
+<p></p><p><input class="form-check-input" type="radio" x-model="answer" value="correct"> <span id="correct" x-show="answer == $el.id" class="badge">✓</span>When spatial proximity between training and test sets violates the assumption of independence.</p><p></p>
+</div>
+<div class="choice">
+<p></p><p><input class="form-check-input" type="radio" x-model="answer" value="no3"> <span id="no3" x-show="answer == $el.id" class="badge">✗</span>The leakage of features from test data into the training data.</p><p></p>
+</div>
+<div class="choice">
+<p></p><p><input class="form-check-input" type="radio" x-model="answer" value="no4"> <span id="no4" x-show="answer == $el.id" class="badge">✗</span>The violation of model performance evaluation due to overfitting.</p><p></p>
+</div>
+</div>
+
+</div>
+</div>
+<div class="question">
+<p><strong>In a Local Indicators of Spatial Association (LISA) analysis, what does a “High-High” cluster of residuals indicate?</strong></p>
+<div class="choices">
+<div x-data="{ answer: '' , clear() { this.answer = '' }}">
+
+<div class="choice">
+<p></p><p><input class="form-check-input" type="radio" x-model="answer" value="no1"> <span id="no1" x-show="answer == $el.id" class="badge">✗</span>A region with consistently high error rates.</p><p></p>
+</div>
+<div class="choice">
+<p></p><p><input class="form-check-input" type="radio" x-model="answer" value="no2"> <span id="no2" x-show="answer == $el.id" class="badge">✗</span>A region with over-predicted values.</p><p></p>
+</div>
+<div class="choice correct-choice">
+<p></p><p><input class="form-check-input" type="radio" x-model="answer" value="correct"> <span id="correct" x-show="answer == $el.id" class="badge">✓</span>A region where the model consistently under-predicts.</p><p></p>
+</div>
+<div class="choice">
+<p></p><p><input class="form-check-input" type="radio" x-model="answer" value="no4"> <span id="no4" x-show="answer == $el.id" class="badge">✗</span>A region with low error rates.</p><p></p>
+</div>
+</div>
+
+</div>
+</div>
+<div class="question">
+<p><strong>What does feature importance represent in tree-based models such as Gradient Boosting or Random Forest?</strong></p>
+<div class="choices">
+<div x-data="{ answer: '' , clear() { this.answer = '' }}">
+
+<div class="choice">
+<p></p><p><input class="form-check-input" type="radio" x-model="answer" value="no1"> <span id="no1" x-show="answer == $el.id" class="badge">✗</span>The statistical significance of each feature.</p><p></p>
+</div>
+<div class="choice">
+<p></p><p><input class="form-check-input" type="radio" x-model="answer" value="no2"> <span id="no2" x-show="answer == $el.id" class="badge">✗</span>The accuracy of each feature’s predictions.</p><p></p>
+</div>
+<div class="choice">
+<p></p><p><input class="form-check-input" type="radio" x-model="answer" value="no3"> <span id="no3" x-show="answer == $el.id" class="badge">✗</span>The raw coefficients assigned to each feature.</p><p></p>
+</div>
+<div class="choice correct-choice">
+<p></p><p><input class="form-check-input" type="radio" x-model="answer" value="correct"> <span id="correct" x-show="answer == $el.id" class="badge">✓</span>The relative contribution of each feature in reducing the model’s loss function.</p><p></p>
+</div>
+</div>
+
+</div>
+</div>
 
 
-<div id="quarto-appendix" class="default"><section id="acknowledgements" class="level2 appendix"><h2 class="anchored quarto-appendix-heading">Acknowledgements</h2><div class="quarto-appendix-contents">
 
-<p>The Jupyter Notebook section is inspired by <a href="https://github.com/jorisvandenbossche/DS-python-data-analysis"><em>Data manipulation, analysis and visualisation in Python</em></a> by Joris Van den Bossche and Stijn Van Hoey licensed under CC-BY 4.0.</p>
-
-
-</div></section></div></main> <!-- /main -->
+</main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
@@ -1438,18 +1239,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   }
 });
 </script>
-<nav class="page-navigation">
-  <div class="nav-page nav-page-previous">
-      <a href="../introduction/concepts.html" class="pagination-link" aria-label="What is Spatial Data Science?">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">What is Spatial Data Science?</span>
-      </a>          
-  </div>
-  <div class="nav-page nav-page-next">
-      <a href="../introduction/exercise.html" class="pagination-link" aria-label="Understanding Notebooks">
-        <span class="nav-page-text">Understanding Notebooks</span> <i class="bi bi-arrow-right-short"></i>
-      </a>
-  </div>
-</nav>
 </div> <!-- /content -->
 <footer class="footer">
   <div class="nav-footer">
@@ -1458,7 +1247,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     </div>   
     <div class="nav-footer-center">
 <p>Course material by <a href="https://martinfleischmann.net">Martin Fleischmann</a>. Available under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a>.</p>
-<div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/martinfleis/sds/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></div>
+<div class="toc-actions"><ul><li><a href="https://github.com/martinfleis/sds/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></div>
     <div class="nav-footer-right">
       &nbsp;
     </div>
@@ -1469,4 +1258,5 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 
 
 <script src="../site_libs/quarto-html/zenscroll-min.js"></script>
+<script src="../site_libs/quarto-contrib/alpine-3.12/alpine@3.12.min.js"></script>
 </body></html>
