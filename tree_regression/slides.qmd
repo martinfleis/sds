@@ -60,7 +60,7 @@ format:
 #### Mean squared error {.fragment .fade-in}
 #### ... {.fragment .fade-in}
 
-## Evaluation methods
+<!-- ## Evaluation methods
 
 ### Classification {.fragment .fade-in}
 #### Confusion matrix {.fragment .fade-in}
@@ -87,7 +87,7 @@ format:
 #### Cohen's kappa score {.fragment .fade-in}
 #### Precision {.fragment .fade-in}
 #### Recall {.fragment .fade-in}
-#### ... {.fragment .fade-in}
+#### ... {.fragment .fade-in} -->
 
 # Spatial?
 
@@ -114,6 +114,7 @@ Spatial dimension is squeezed in<br>non-spatial models and methods.
 
 ---
 
+<!--
 ### Spatial feature engineering
 #### Map synthesis {.fragment .fade-in}
 #### Proximity {.fragment .fade-in}
@@ -124,8 +125,9 @@ Spatial dimension is squeezed in<br>non-spatial models and methods.
 ### Spatial effects
 #### Dependence {.fragment .fade-in}
 #### Heterogeneity {.fragment .fade-in}
-
 ---
+-->
+
 
 ::: {.r-fit-text .absolute top=25%}
 import sklearn
