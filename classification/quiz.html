@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Quiz on regression – Spatial Data Science for Social Geography</title>
+<title>Quiz on classification – Spatial Data Science for Social Geography</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -30,8 +30,7 @@ ul.task-list li input[type="checkbox"] {
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<link href="../tree_regression/concepts.html" rel="next">
-<link href="../regression/exercise.html" rel="prev">
+<link href="../classification/exercise.html" rel="prev">
 <link href="../_assets/favicon.png" rel="icon" type="image/png">
 <script src="../site_libs/quarto-html/quarto.js"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
@@ -73,38 +72,9 @@ ul.task-list li input[type="checkbox"] {
 }</script>
 <style>html{ scroll-behavior: smooth; }</style>
 
-  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
-
-<script type="text/javascript">
-const typesetMath = (el) => {
-  if (window.MathJax) {
-    // MathJax Typeset
-    window.MathJax.typeset([el]);
-  } else if (window.katex) {
-    // KaTeX Render
-    var mathElements = el.getElementsByClassName("math");
-    var macros = [];
-    for (var i = 0; i < mathElements.length; i++) {
-      var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN") {
-        window.katex.render(texText.data, mathElements[i], {
-          displayMode: mathElements[i].classList.contains('display'),
-          throwOnError: false,
-          macros: macros,
-          fleqn: false
-        });
-      }
-    }
-  }
-}
-window.Quarto = {
-  typesetMath
-};
-</script>
 
 <link rel="stylesheet" href="../_assets/styles.css">
-<meta name="twitter:title" content="Quiz on regression – Spatial Data Science for Social Geography">
+<meta name="twitter:title" content="Quiz on classification – Spatial Data Science for Social Geography">
 <meta name="twitter:description" content="">
 <meta name="twitter:card" content="summary">
 </head>
@@ -118,7 +88,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../regression/concepts.html">Linear regression</a></li><li class="breadcrumb-item"><a href="../regression/quiz.html">Quiz on regression</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../classification/concepts.html">Classification</a></li><li class="breadcrumb-item"><a href="../classification/quiz.html">Quiz on classification</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -491,13 +461,13 @@ window.Quarto = {
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-11" role="navigation" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-11" role="navigation" aria-expanded="false">
  <span class="menu-text">Linear regression</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-11" role="navigation" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-11" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-11" class="collapse list-unstyled sidebar-section depth1 show">  
+      <ul id="quarto-sidebar-section-11" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../regression/concepts.html" class="sidebar-item-text sidebar-link">
@@ -518,7 +488,7 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../regression/quiz.html" class="sidebar-item-text sidebar-link active">
+  <a href="../regression/quiz.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Quiz on regression</span></a>
   </div>
 </li>
@@ -561,13 +531,13 @@ window.Quarto = {
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-13" role="navigation" aria-expanded="false">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-13" role="navigation" aria-expanded="true">
  <span class="menu-text">Classification</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-13" role="navigation" aria-expanded="false" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-13" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-13" class="collapse list-unstyled sidebar-section depth1 ">  
+      <ul id="quarto-sidebar-section-13" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../classification/concepts.html" class="sidebar-item-text sidebar-link">
@@ -588,7 +558,7 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../classification/quiz.html" class="sidebar-item-text sidebar-link">
+  <a href="../classification/quiz.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Quiz on classification</span></a>
   </div>
 </li>
@@ -605,9 +575,9 @@ window.Quarto = {
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../regression/concepts.html">Linear regression</a></li><li class="breadcrumb-item"><a href="../regression/quiz.html">Quiz on regression</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../classification/concepts.html">Classification</a></li><li class="breadcrumb-item"><a href="../classification/quiz.html">Quiz on classification</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">Quiz on regression</h1>
+<h1 class="title">Quiz on classification</h1>
 </div>
 
 
@@ -626,126 +596,126 @@ window.Quarto = {
 
 <p>Check how much you remember from previous sections by answering the questions below.</p>
 <div class="question">
-<p><strong>What is the primary purpose of using spatial regression models in geographic data analysis?</strong></p>
+<p><strong>Which of the following statements best describes the difference between a Random Forest Regressor and a Random Forest Classifier?</strong></p>
 <div class="choices">
 <div x-data="{ answer: '' , clear() { this.answer = '' }}">
 
-<div class="choice">
-<p></p><p><input class="form-check-input" type="radio" x-model="answer" value="no1"> <span id="no1" x-show="answer == $el.id" class="badge">✗</span>To eliminate random variables from a model.</p><p></p>
-</div>
-<div class="choice">
-<p></p><p><input class="form-check-input" type="radio" x-model="answer" value="no2"> <span id="no2" x-show="answer == $el.id" class="badge">✗</span>To predict outcomes without considering geographic variations.</p><p></p>
-</div>
 <div class="choice correct-choice">
-<p></p><p><input class="form-check-input" type="radio" x-model="answer" value="correct"> <span id="correct" x-show="answer == $el.id" class="badge">✓</span>To incorporate the spatial dimension and analyze the influence of location on the dependent variable.</p><p></p>
+<p></p><p><input class="form-check-input" type="radio" x-model="answer" value="correct"> <span id="correct" x-show="answer == $el.id" class="badge">✓</span>A Random Forest Regressor is used for continuous values, whereas a Random Forest Classifier is used for discrete categories.</p><p></p>
 </div>
 <div class="choice">
-<p></p><p><input class="form-check-input" type="radio" x-model="answer" value="no4"> <span id="no4" x-show="answer == $el.id" class="badge">✗</span>To avoid using regression altogether in geographic studies.</p><p></p>
+<p></p><p><input class="form-check-input" type="radio" x-model="answer" value="no2"> <span id="no2" x-show="answer == $el.id" class="badge">✗</span>A Random Forest Regressor predicts discrete categories, while a Random Forest Classifier predicts continuous values.</p><p></p>
+</div>
+<div class="choice">
+<p></p><p><input class="form-check-input" type="radio" x-model="answer" value="no3"> <span id="no3" x-show="answer == $el.id" class="badge">✗</span>Both Random Forest Regressor and Classifier handle categorical data only.</p><p></p>
+</div>
+<div class="choice">
+<p></p><p><input class="form-check-input" type="radio" x-model="answer" value="no4"> <span id="no4" x-show="answer == $el.id" class="badge">✗</span>A Random Forest Classifier only outputs probability distributions.</p><p></p>
 </div>
 </div>
 
 </div>
 </div>
 <div class="question">
-<p><strong>In the OLS linear regression model, what does <span class="math inline">\(\alpha\)</span> represent?</strong></p>
+<p><strong>Cohen’s Kappa is used to measure the agreement between predicted and actual classifications. What is a major advantage of using Kappa over simple accuracy?</strong></p>
 <div class="choices">
 <div x-data="{ answer: '' , clear() { this.answer = '' }}">
 
-<div class="choice">
-<p></p><p><input class="form-check-input" type="radio" x-model="answer" value="no1"> <span id="no1" x-show="answer == $el.id" class="badge">✗</span>The coefficient for the independent variable.</p><p></p>
-</div>
-<div class="choice">
-<p></p><p><input class="form-check-input" type="radio" x-model="answer" value="no2"> <span id="no2" x-show="answer == $el.id" class="badge">✗</span>The predicted value.</p><p></p>
-</div>
 <div class="choice correct-choice">
-<p></p><p><input class="form-check-input" type="radio" x-model="answer" value="correct"> <span id="correct" x-show="answer == $el.id" class="badge">✓</span>The intercept, or constant, in the model.</p><p></p>
+<p></p><p><input class="form-check-input" type="radio" x-model="answer" value="correct"> <span id="correct" x-show="answer == $el.id" class="badge">✓</span>Kappa accounts for imbalances in class distributions by considering chance agreement.</p><p></p>
 </div>
 <div class="choice">
-<p></p><p><input class="form-check-input" type="radio" x-model="answer" value="no4"> <span id="no4" x-show="answer == $el.id" class="badge">✗</span>The residual error.</p><p></p>
+<p></p><p><input class="form-check-input" type="radio" x-model="answer" value="no2"> <span id="no2" x-show="answer == $el.id" class="badge">✗</span>Kappa only focuses on true positives and ignores false negatives.</p><p></p>
+</div>
+<div class="choice">
+<p></p><p><input class="form-check-input" type="radio" x-model="answer" value="no3"> <span id="no3" x-show="answer == $el.id" class="badge">✗</span>Kappa automatically adjusts for overfitting in the model.</p><p></p>
+</div>
+<div class="choice">
+<p></p><p><input class="form-check-input" type="radio" x-model="answer" value="no4"> <span id="no4" x-show="answer == $el.id" class="badge">✗</span>Kappa increases as the number of classes increases, regardless of model performance.</p><p></p>
 </div>
 </div>
 
 </div>
 </div>
 <div class="question">
-<p><strong>Which of the following describes geographically weighted regression (GWR)?</strong></p>
+<p><strong>Which of the following is a correct method for performing spatial cross-validation in a spatial machine learning model?</strong></p>
 <div class="choices">
 <div x-data="{ answer: '' , clear() { this.answer = '' }}">
 
 <div class="choice">
-<p></p><p><input class="form-check-input" type="radio" x-model="answer" value="no1"> <span id="no1" x-show="answer == $el.id" class="badge">✗</span>A regression model that assumes global homogeneity in variable relationships.</p><p></p>
+<p></p><p><input class="form-check-input" type="radio" x-model="answer" value="no1"> <span id="no1" x-show="answer == $el.id" class="badge">✗</span>Randomly split the dataset into training and test sets without considering the geographic locations of data points.</p><p></p>
 </div>
 <div class="choice">
-<p></p><p><input class="form-check-input" type="radio" x-model="answer" value="no2"> <span id="no2" x-show="answer == $el.id" class="badge">✗</span>A method that produces a single global estimate for variable relationships.</p><p></p>
-</div>
-<div class="choice">
-<p></p><p><input class="form-check-input" type="radio" x-model="answer" value="no3"> <span id="no3" x-show="answer == $el.id" class="badge">✗</span>A regression model used exclusively for time-series data.</p><p></p>
+<p></p><p><input class="form-check-input" type="radio" x-model="answer" value="no2"> <span id="no2" x-show="answer == $el.id" class="badge">✗</span>Use K-fold cross-validation by randomly assigning data points to folds, regardless of spatial proximity.</p><p></p>
 </div>
 <div class="choice correct-choice">
-<p></p><p><input class="form-check-input" type="radio" x-model="answer" value="correct"> <span id="correct" x-show="answer == $el.id" class="badge">✓</span>A method that examines how relationships between dependent and independent variables vary across geographic locations.</p><p></p>
+<p></p><p><input class="form-check-input" type="radio" x-model="answer" value="correct"> <span id="correct" x-show="answer == $el.id" class="badge">✓</span>Ensure that training and test sets are drawn from spatially distinct regions, avoiding overlap between geographically close observations.</p><p></p>
+</div>
+<div class="choice">
+<p></p><p><input class="form-check-input" type="radio" x-model="answer" value="no4"> <span id="no4" x-show="answer == $el.id" class="badge">✗</span>Use a single train-test split based on temporal ordering rather than spatial separation.</p><p></p>
 </div>
 </div>
 
 </div>
 </div>
 <div class="question">
-<p><strong>In a spatial fixed effects model, what is the purpose of including variables such as <em>districts</em>?</strong></p>
+<p><strong>Which of the following is an example of feature engineering in spatial data analysis?</strong></p>
 <div class="choices">
 <div x-data="{ answer: '' , clear() { this.answer = '' }}">
 
 <div class="choice">
-<p></p><p><input class="form-check-input" type="radio" x-model="answer" value="no1"> <span id="no1" x-show="answer == $el.id" class="badge">✗</span>To improve the performance of the OLS model by creating spatial clusters.</p><p></p>
+<p></p><p><input class="form-check-input" type="radio" x-model="answer" value="no1"> <span id="no1" x-show="answer == $el.id" class="badge">✗</span>Using <code>train_test_split</code> to split your dataset.</p><p></p>
 </div>
 <div class="choice">
-<p></p><p><input class="form-check-input" type="radio" x-model="answer" value="no2"> <span id="no2" x-show="answer == $el.id" class="badge">✗</span>To apply temporal weighting to the regression model.</p><p></p>
+<p></p><p><input class="form-check-input" type="radio" x-model="answer" value="no2"> <span id="no2" x-show="answer == $el.id" class="badge">✗</span>Visualizing the distribution of data points on a map.</p><p></p>
 </div>
 <div class="choice">
-<p></p><p><input class="form-check-input" type="radio" x-model="answer" value="no3"> <span id="no3" x-show="answer == $el.id" class="badge">✗</span>To fix the <span class="math inline">\(\beta\)</span> coefficients across all locations.</p><p></p>
+<p></p><p><input class="form-check-input" type="radio" x-model="answer" value="no3"> <span id="no3" x-show="answer == $el.id" class="badge">✗</span>Reducing the number of independent variables to improve model training speed.</p><p></p>
 </div>
 <div class="choice correct-choice">
-<p></p><p><input class="form-check-input" type="radio" x-model="answer" value="correct"> <span id="correct" x-show="answer == $el.id" class="badge">✓</span>To allow the intercept to vary geographically.</p><p></p>
+<p></p><p><input class="form-check-input" type="radio" x-model="answer" value="correct"> <span id="correct" x-show="answer == $el.id" class="badge">✓</span>Measuring the distance between geographic points to generate a proximity variable.</p><p></p>
 </div>
 </div>
 
 </div>
 </div>
 <div class="question">
-<p><strong>What is the primary advantage of using Geographically Weighted Regression (GWR) over a standard OLS regression?</strong></p>
+<p><strong>What does spatial dependence in a dataset imply?</strong></p>
 <div class="choices">
 <div x-data="{ answer: '' , clear() { this.answer = '' }}">
 
 <div class="choice">
-<p></p><p><input class="form-check-input" type="radio" x-model="answer" value="no1"> <span id="no1" x-show="answer == $el.id" class="badge">✗</span>GWR is faster than OLS.</p><p></p>
+<p></p><p><input class="form-check-input" type="radio" x-model="answer" value="no1"> <span id="no1" x-show="answer == $el.id" class="badge">✗</span>The model predictions in one region depend on the values from distant, unrelated regions.</p><p></p>
 </div>
 <div class="choice">
-<p></p><p><input class="form-check-input" type="radio" x-model="answer" value="no2"> <span id="no2" x-show="answer == $el.id" class="badge">✗</span>GWR creates a global model for the entire dataset.</p><p></p>
+<p></p><p><input class="form-check-input" type="radio" x-model="answer" value="no2"> <span id="no2" x-show="answer == $el.id" class="badge">✗</span>Spatial dependence means that the dataset is temporally autocorrelated.</p><p></p>
 </div>
 <div class="choice correct-choice">
-<p></p><p><input class="form-check-input" type="radio" x-model="answer" value="correct"> <span id="correct" x-show="answer == $el.id" class="badge">✓</span>GWR can model local variations and geographic heterogeneity in relationships.</p><p></p>
+<p></p><p><input class="form-check-input" type="radio" x-model="answer" value="correct"> <span id="correct" x-show="answer == $el.id" class="badge">✓</span>Observations that are closer together tend to have similar values due to their spatial proximity.</p><p></p>
 </div>
 <div class="choice">
-<p></p><p><input class="form-check-input" type="radio" x-model="answer" value="no4"> <span id="no4" x-show="answer == $el.id" class="badge">✗</span>GWR requires fewer variables to perform well.</p><p></p>
+<p></p><p><input class="form-check-input" type="radio" x-model="answer" value="no4"> <span id="no4" x-show="answer == $el.id" class="badge">✗</span>The closer two points are, the less likely they are to have similar values.</p><p></p>
 </div>
 </div>
 
 </div>
 </div>
 <div class="question">
-<p><strong>When residuals from a regression model exhibit spatial autocorrelation, this indicates:</strong></p>
+<p><strong>Which of the following best defines spatial heterogeneity?</strong></p>
 <div class="choices">
 <div x-data="{ answer: '' , clear() { this.answer = '' }}">
 
 <div class="choice">
-<p></p><p><input class="form-check-input" type="radio" x-model="answer" value="no1"> <span id="no1" x-show="answer == $el.id" class="badge">✗</span>The residuals are randomly distributed across space.</p><p></p>
-</div>
-<div class="choice">
-<p></p><p><input class="form-check-input" type="radio" x-model="answer" value="no2"> <span id="no2" x-show="answer == $el.id" class="badge">✗</span>The model perfectly explains the variance in the dependent variable.</p><p></p>
-</div>
-<div class="choice">
-<p></p><p><input class="form-check-input" type="radio" x-model="answer" value="no3"> <span id="no3" x-show="answer == $el.id" class="badge">✗</span>There is no spatial heterogeneity in the model.</p><p></p>
+<p></p><p><input class="form-check-input" type="radio" x-model="answer" value="no1"> <span id="no1" x-show="answer == $el.id" class="badge">✗</span>The tendency for variables to be uniformly distributed across space.</p><p></p>
 </div>
 <div class="choice correct-choice">
-<p></p><p><input class="form-check-input" type="radio" x-model="answer" value="correct"> <span id="correct" x-show="answer == $el.id" class="badge">✓</span>The residuals have a spatial pattern that may suggest spatial heterogeneity.</p><p></p>
+<p></p><p><input class="form-check-input" type="radio" x-model="answer" value="correct"> <span id="correct" x-show="answer == $el.id" class="badge">✓</span>The variation in relationships between variables in different locations.</p><p></p>
+</div>
+<div class="choice">
+<p></p><p><input class="form-check-input" type="radio" x-model="answer" value="no3"> <span id="no3" x-show="answer == $el.id" class="badge">✗</span>The spatial uniformity in the feature importance of a model.</p><p></p>
+</div>
+<div class="choice">
+<p></p><p><input class="form-check-input" type="radio" x-model="answer" value="no4"> <span id="no4" x-show="answer == $el.id" class="badge">✗</span>The lack of correlation between variables at different locations.</p><p></p>
 </div>
 </div>
 
@@ -1318,14 +1288,11 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../regression/exercise.html" class="pagination-link" aria-label="Fit that model">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Fit that model</span>
+      <a href="../classification/exercise.html" class="pagination-link" aria-label="Predict future">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Predict future</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../tree_regression/concepts.html" class="pagination-link" aria-label="Non-linear relationships">
-        <span class="nav-page-text">Non-linear relationships</span> <i class="bi bi-arrow-right-short"></i>
-      </a>
   </div>
 </nav>
 </div> <!-- /content -->
