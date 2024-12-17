@@ -12,7 +12,7 @@ Check how much you remember from previous sections by answering the questions be
 ::::{.choices}
 
 :::{.choice .correct-choice}
-A Random Forest Regressor outputs continuous values, whereas a Random Forest Classifier outputs discrete categories.
+A Random Forest Regressor is used for continuous values, whereas a Random Forest Classifier is used for discrete categories.
 :::
 
 :::{.choice}
@@ -24,7 +24,7 @@ Both Random Forest Regressor and Classifier handle categorical data only.
 :::
 
 :::{.choice}
-A Random Forest Classifier outputs probability distributions.
+A Random Forest Classifier only outputs probability distributions.
 :::
 
 ::::
