@@ -89,6 +89,7 @@ website:
           - classification/concepts.qmd
           - classification/hands_on.qmd
           - classification/exercise.qmd
+          - classification/quiz.qmd
   # announcement:
   #   icon: bell-fill
   #   dismissable: true
