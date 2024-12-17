@@ -1,0 +1,155 @@
+---
+title: "Quiz on classification"
+filters:
+  - naquiz
+---
+
+Check how much you remember from previous sections by answering the questions below.
+
+:::::{.question}
+**Which of the following statements best describes the difference between a Random Forest Regressor and a Random Forest Classifier?**
+
+::::{.choices}
+
+:::{.choice .correct-choice}
+A Random Forest Regressor is used for continuous values, whereas a Random Forest Classifier is used for discrete categories.
+:::
+
+:::{.choice}
+A Random Forest Regressor predicts discrete categories, while a Random Forest Classifier predicts continuous values.
+:::
+
+:::{.choice}
+Both Random Forest Regressor and Classifier handle categorical data only.
+:::
+
+:::{.choice}
+A Random Forest Classifier only outputs probability distributions.
+:::
+
+::::
+:::::
+
+:::::{.question}
+**Cohen’s Kappa is used to measure the agreement between predicted and actual classifications. What is a major advantage of using Kappa over simple accuracy?**
+
+::::{.choices}
+
+:::{.choice .correct-choice}
+Kappa accounts for imbalances in class distributions by considering chance agreement.
+:::
+
+:::{.choice}
+Kappa only focuses on true positives and ignores false negatives.
+:::
+
+:::{.choice}
+Kappa automatically adjusts for overfitting in the model.
+:::
+
+:::{.choice}
+Kappa increases as the number of classes increases, regardless of model performance.
+:::
+
+::::
+:::::
+
+
+:::::{.question}
+**Which of the following is a correct method for performing spatial cross-validation in a spatial machine learning model?**
+
+::::{.choices}
+
+:::{.choice}
+Randomly split the dataset into training and test sets without considering the geographic locations of data points.
+:::
+
+:::{.choice}
+Use K-fold cross-validation by randomly assigning data points to folds, regardless of spatial proximity.
+:::
+
+:::{.choice .correct-choice}
+Ensure that training and test sets are drawn from spatially distinct regions, avoiding overlap between geographically close observations.
+:::
+
+:::{.choice}
+Use a single train-test split based on temporal ordering rather than spatial separation.
+:::
+
+::::
+:::::
+
+:::::{.question}
+**Which of the following is an example of feature engineering in spatial data analysis?**
+
+::::{.choices}
+
+:::{.choice}
+Using `train_test_split` to split your dataset.
+:::
+
+:::{.choice}
+Visualizing the distribution of data points on a map.
+:::
+
+:::{.choice}
+Reducing the number of independent variables to improve model training speed.
+:::
+
+:::{.choice .correct-choice}
+Measuring the distance between geographic points to generate a proximity variable.
+:::
+
+::::
+:::::
+
+
+:::::{.question}
+**What does spatial dependence in a dataset imply?**
+
+::::{.choices}
+
+:::{.choice}
+The model predictions in one region depend on the values from distant, unrelated regions.
+:::
+
+:::{.choice}
+Spatial dependence means that the dataset is temporally autocorrelated.
+:::
+
+:::{.choice .correct-choice}
+Observations that are closer together tend to have similar values due to their spatial proximity.
+:::
+
+:::{.choice}
+The closer two points are, the less likely they are to have similar values.
+:::
+
+::::
+:::::
+
+:::::{.question}
+**Which of the following best defines spatial heterogeneity?**
+
+::::{.choices}
+
+:::{.choice}
+The tendency for variables to be uniformly distributed across space.
+:::
+
+:::{.choice .correct-choice}
+The variation in relationships between variables in different locations.
+:::
+
+:::{.choice}
+The spatial uniformity in the feature importance of a model.
+:::
+
+:::{.choice}
+The lack of correlation between variables at different locations.
+:::
+
+::::
+:::::
+
+
