@@ -2,7 +2,7 @@ name: sds
 channels:
   - conda-forge
 dependencies:
-  - python ==3.12.*
+  - python ==3.13.*
   # to run the code
   - astropy >=6
   - contextily >=1.6
@@ -22,10 +22,9 @@ dependencies:
   - pyarrow >=17
   - pyinterpolate >=0.5
   - pyogrio >=0.9
-  - rasterio <1.4.0
+  - rasterio >=1.4.0
   - rioxarray >=0.17
-  - rasterio >=1.3
-  - scikit-learn
+  - scikit-learn >=1.6
   - seaborn >=0.13
   - spglm >=1.1
   - spreg >=1.4
