@@ -2,7 +2,7 @@ name: sds
 channels:
   - conda-forge
 dependencies:
-  - python ==3.13.*
+  - python ==3.12.*
   # to run the code
   - astropy >=6
   - contextily >=1.6
