@@ -7,7 +7,7 @@ dependencies:
   - astropy >=6
   - contextily >=1.6
   - datashader >=0.16
-  - esda >=2.6
+  - esda >=2.7
   - geocube >=0.5
   - geopandas >=1.0
   - geopy >=2.4
