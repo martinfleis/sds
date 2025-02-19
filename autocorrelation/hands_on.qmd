@@ -569,9 +569,31 @@ lisa.explore(
 2. You can specify a custom threshold of significance.
 
 ::: {.callout-tip collapse="true"}
+# Static plot
+
+The same map can be also plotted statically:
+
+```{python}
+#| fig-cap: Local clusters of LISA.
+_ = lisa.plot(
+  elections,   # <1>
+  crit_value=0.05,  # <2>
+)
+```
+:::
+
+You can also use use the `plot_scatter()` method to get a Moran Plot linking the clusters
+to the scatterplot.
+
+```{python}
+#| fig-cap: Moran Plot with the local clusters highlighted.
+_ = lisa.plot_scatter()
+```
+
+::: {.callout-tip collapse="true"}
 # Plotting LISA manually
 
-If you want to create a static plot or have more control over what is being displayed and how each component is
+If you want to have more control over what is being displayed and how each component is
 presented, you can "cook" the plot by hand. The same will apply to interactive maps:
 
 ```{python}
