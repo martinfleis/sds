@@ -242,7 +242,7 @@ The `elections` dataset does not contain any boolean variable, but it is easy to
 one representing whether Petr Pavel lost in a municipality or not.
 
 ```{python}
-elections["PP_winner"] = (elections["PetrPavel"] < 50).astype(int)  # <1>
+elections["PP_lost"] = (elections["PetrPavel"] < 50).astype(int)  # <1>
 elections.head()
 ```
 1. Get a mask with True and False values (`elections["PetrPavel"] > 50`) and convert it to 1 and 0, which is what Join Counts expect.
@@ -251,7 +251,7 @@ You will be dealing with data that looks something like this now:
 
 ```{python}
 # | fig-cap: Boolean representation of the result
-_ = elections.plot("PP_winner", cmap="binary", linewidth=.1, edgecolor="grey")
+_ = elections.plot("PP_lost", cmap="binary", linewidth=.1, edgecolor="grey")
 ```
 
 Since you are looking for spatial autocorrelation, you can already guess this will be a
@@ -271,7 +271,7 @@ to binary. You can then measure the statistics using the `Join_Counts` class fro
 
 ```{python}
 jc = esda.Join_Counts(              # <1>
-    elections["PP_winner"],         # <2>
+    elections["PP_lost"],         # <2>
     contiguity              # <3>
 )
 ```
