@@ -256,7 +256,7 @@ Python
 12 lessons in 12 weeks
 :::
 ::: {.content-visible when-profile='micro'}
-10 lessons in 5 days
+10 lessons in 10 days
 :::
 :::
 

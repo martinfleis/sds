@@ -90,10 +90,10 @@ website:
           - classification/hands_on.qmd
           - classification/exercise.qmd
           - classification/quiz.qmd
-  # announcement:
-  #   icon: bell-fill
-  #   dismissable: true
-  #   content: "A standalone version of this course is now open for **[registrations](https://is.cuni.cz/studium/eng/prijimacky/index.php?do=detail_kurz_mc&cid=10752)** for the August 2024 iteration. See the [details](https://martinfleischmann.net/sds/micro/)."
-  #   type: primary
+  announcement:
+    icon: bell-fill
+    dismissable: true
+    content: "A standalone version of this course is now open for **[registrations](https://is.cuni.cz/studium/eng/prijimacky/index.php?do=detail_kurz_mc&cid=11189)** for the September 2025 iteration. See the [details](https://martinfleischmann.net/sds/micro/)."
+    type: primary
 
 
