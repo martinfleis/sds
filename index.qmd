@@ -79,7 +79,7 @@ A basic understanding of Python is required. Understanding of data analysis usin
 ## Course structure
 
 
-[The material is planned for 12 weeks, with one session per week.]{.content-visible when-profile='sds4sg'}[The material is planned for 5 days with two 3-hour sessions per day. ]{.content-visible when-profile='micro'} Each session
+[The material is planned for 12 weeks, with one session per week.]{.content-visible when-profile='sds4sg'}[The material is planned for 2 weeks of teaching 2-hour session per day. There is a one week gap between week 1 and week 2.]{.content-visible when-profile='micro'} Each session
 is divided into three parts - _Concepts_, _Hands-on_ and _Exercise_, following the model
 proposed by @darribas_gds_course. _Concepts_ have the form of a lecture covering conceptual
 aspects of the day's topic, providing necessary theoretical background before digging into code. This part can be nicknamed ["I do"]{.accent}.
