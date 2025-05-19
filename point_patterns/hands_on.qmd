@@ -419,7 +419,7 @@ Ripley's $G$ is an iterative algorithm. It measures how many points have the nea
 
 ```{python}
 g_test = pointpats.distance_statistics.g_test(
-    accidents[["x", "y"]].values,
+    accidents,
     support=200,                    # <1>
     keep_simulations=True,          # <2>
     hull=concave_hull.item(),               # <3>
@@ -474,7 +474,7 @@ Another part of the Ripley's alphabet is the $F$ function. It is similar as $G$ 
 
 ```{python}
 f_test = pointpats.distance_statistics.f_test(
-    accidents[["x", "y"]].values,
+    accidents,
     support=200,
     keep_simulations=True,
     hull=concave_hull.item(),
