@@ -539,32 +539,21 @@ of observations that are nearby, like all the cases above, but the model is more
 takes into account geographical proximity, but also the spatial arrangement of observations
 and the pattern of autocorrelation. As such, it can be seen as the most robust of the presented options.
 
-You will use the package `pyinterpolate` to do kriging. It requires all input data in a
-single `numpy.ndarray` composed of coordinates and values.
+You will use the package `pyinterpolate` to do kriging.
 
-```{python}
-input_data = np.hstack( # <1>
-    [homes_coordinates, two_bed_homes.price_lag.values.reshape(-1, 1)] # <2>
-)
-input_data
-```
-1. Use the `np.hstack` function to _horizontally stack_ the arrays together.
-2. `two_bed_homes.price_lag.values` gives you an underlying array of lagged prices. But
-it needs to be shaped differently for `hstack` than it is. `reshape(-1, 1)` fixes that.
-Try exploring what happens independently.
-
-The `input_data` is now an array `pyinterpolate` expects. The first step is to build an
+The first step is to build an
 experimental variogram based on the data and a couple of parameters.
 
 ```{python}
 exp_semivar = pyinterpolate.build_experimental_variogram(
-    input_array=input_data,
-    step_size=100,  # <1>
-    max_range=5000, # <2>
+    two_bed_homes[['geometry', 'price_lag']],
+    step_size=100,  # <2>
+    max_range=5000, # <3>
 )
 ```
-1. `step_size` is the distance between lags within each point in included in the calculations.
-2. `max_range` is the maximum range of analysis.
+1. Pass a subset with point geometry and a column to be interpolated.
+2. `step_size` is the distance between lags within each point in included in the calculations.
+3. `max_range` is the maximum range of analysis.
 
 The result can be plotted and explored using the `plot()` method. The experimental variogram
 is a plot that shows how the semivariance between pairs of sample points changes with distance.
@@ -580,23 +569,19 @@ exp_semivar.plot()
 ```
 
 Next, you need to build a theoretical semivariogram based on the experimental variogram.
+`pyinterpolate` will test multiple models and their parameters and attempts to find the best one representing
+the data given the experimentatal semivariogram. Check the documentation of the function
+to learn how to customize the output.
 
 ```{python}
 semivar = pyinterpolate.build_theoretical_variogram(
     experimental_variogram=exp_semivar, # <1>
-    model_name='linear',    # <2>
-    sill=exp_semivar.variance,  # <3>
-    rang=5000,  # <4>
 )
 ```
-1. The first input is the experimental variogram from the previous step.
-2. Type of model used in kriging. `"linear"` will be the fastest but may not be the best.
-3. `sill` captures the value at which dissimilarity is close to its maximum if the model is bounded. You can pass the variance from the experimental variogram.
-4. The semivariogram range is the distance at which spatial correlation exists. It shouldn't be set at a distance larger than half of the study extent.
+1. The main input is the experimental variogram from the previous step.
 
 Again, you can plot the result. The theoretical variogram is a model or a mathematical
 function that is fitted to the experimental variogram.
-
 
 ```{python}
 # | fig-cap: Theoretical semivariogram
@@ -604,46 +589,47 @@ function that is fitted to the experimental variogram.
 semivar.plot()
 ```
 
-You can see that the linear model does not precisely follow the experimental semivariances.
+You can can try check how other models would look like, apart from the one selected automatically.
+
 Let's try another option.
 
 ```{python}
-semivar_spherical = pyinterpolate.build_theoretical_variogram(
+semivar_linear = pyinterpolate.build_theoretical_variogram(
     experimental_variogram=exp_semivar,
-    model_name='spherical',    # <1>
+    models_group='linear',    # <1>
     sill=exp_semivar.variance,
     rang=2500, # <2>
 )
 ```
-1. Change the model type to spherical.
+1. Change the model type to linear.
 2. Change the range of the semivariogram to get a better fit.
 
 Let's see if it is a bit better.
 
 ```{python}
-# | fig-cap: Theoretical semivariogram using spherical model
+# | fig-cap: Theoretical semivariogram using linear model
 # | classes: variogram
-semivar_spherical.plot()
+semivar_linear.plot()
 ```
+
+It is typically not but you may have other reasons to change it (e.g. performance).
 
 Now you are ready to use kriging to interpolate data on your grid.
 
 ```{python}
-ordinary_kriging = pyinterpolate.kriging(
-    observations=input_data,    # <1>
-    theoretical_model=semivar_spherical,  # <2>
-    points=grid_coordinates.values, # <3>
-    how="ok",   # <4>
-    no_neighbors=10,    # <5>
-    show_progress_bar=False,    # <6>
+ordinary_kriging = pyinterpolate.interpolate_points(
+    theoretical_model=semivar,  # <1>
+    known_locations=two_bed_homes[['geometry', 'price_lag']],    # <2>
+    unknown_locations=grid_10.centroid, # <3>
+    no_neighbors=10,    # <3>
+    progress_bar=False  # <5>
 )
 ```
-1. Input data representing Airbnb data, both coordinates and values.
-2. Theoretical semivariogram.
-3. Coordinates of the grid to interpolate on. Use `.values` to extract the underlying `numpy.ndarray` from the `DataFrame`.
-4. Type of kriging. `"ok"` is for ordinary kriging, `"sk"` would stand for simple kriging.
-5. The number of the nearest neighbours used for interpolation.
-6. Whether to show a progress bar or not. Feel free to use `True` but it breaks the website :).
+1. Theoretical semivariogram.
+2. Input data representing Airbnb data, as used above.
+3. Points or coordinates of the grid to interpolate on.
+4. The number of the nearest neighbours used for interpolation.
+5. Whether to show a progress bar or not. Feel free to use `True` but it breaks the website :).
 
 The resulting `ordinary_kriging` is a numpy.ndarray with four columns representing predicted value, variance error, x, and y.
 You can select the first one and assign it as a column.
