@@ -617,21 +617,23 @@ It is typically not but you may have other reasons to change it (e.g. performanc
 Now you are ready to use kriging to interpolate data on your grid.
 
 ```{python}
-ordinary_kriging = pyinterpolate.ordinary_kriging(
+ordinary_kriging = pyinterpolate.interpolate_points(
     theoretical_model=semivar,  # <1>
     known_locations=two_bed_homes[['geometry', 'price_lag']],    # <2>
-    unknown_location=grid_10.centroid.iloc[0], # <3>
-    no_neighbors=10,    # <5>
+    unknown_locations=grid_10.centroid, # <3>
+    no_neighbors=10,    # <3>
+    progress_bar=False  # <5>
 )
 ```
 1. Theoretical semivariogram.
 2. Input data representing Airbnb data, as used above.
 3. Points or coordinates of the grid to interpolate on.
-5. The number of the nearest neighbours used for interpolation.
+4. The number of the nearest neighbours used for interpolation.
+5. Whether to show a progress bar or not. Feel free to use `True` but it breaks the website :).
 
 The resulting `ordinary_kriging` is a tuple with four values representing predicted value, variance error, x, and y.
 You can select the first one and assign it as a column.
-<!-- TODO: this is now broken as above assumes scalar location now for some reason -->
+
 ```{python}
 grid_10["ordinary_kriging"] = ordinary_kriging[:, 0]
 ```
