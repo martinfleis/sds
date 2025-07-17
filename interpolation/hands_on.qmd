@@ -621,7 +621,7 @@ ordinary_kriging = pyinterpolate.interpolate_points(
     theoretical_model=semivar,  # <1>
     known_locations=two_bed_homes[['geometry', 'price_lag']],    # <2>
     unknown_locations=grid_10.centroid, # <3>
-    no_neighbors=10,    # <3>
+    no_neighbors=10,    # <4>
     progress_bar=False  # <5>
 )
 ```
