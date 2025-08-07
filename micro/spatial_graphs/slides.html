@@ -7,8 +7,8 @@
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
 <link href="../site_libs/quarto-html/light-border.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
-  <meta name="generator" content="quarto-1.7.32">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-ea385d0e468b0dd5ea5bf0780b1290d9.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+  <meta name="generator" content="quarto-1.7.33">
 
   <title>Spatial Data Science in Python – Space as math</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -202,24 +202,69 @@ w_{N1} &amp; \dots &amp; \dots &amp; 0
 </section>
 <section class="slide level2">
 
-
-<img data-src="slides_files/figure-revealjs/cell-3-output-1.png" class="r-stretch quarto-figure-center"><p class="caption">Starting with some polygons…</p></section>
+<div id="cc2b71ae" class="cell" data-execution_count="3">
+<div class="cell-output cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="slides_files/figure-revealjs/cell-3-output-1.png" width="912" height="576"></p>
+<figcaption>Starting with some polygons…</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</section>
 <section class="slide level2">
 
-
-<img data-src="slides_files/figure-revealjs/cell-4-output-1.png" class="r-stretch quarto-figure-center"><p class="caption">Focus on this one. Which are its neighbours?</p></section>
+<div id="b600b122" class="cell" data-execution_count="4">
+<div class="cell-output cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="slides_files/figure-revealjs/cell-4-output-1.png" width="912" height="576"></p>
+<figcaption>Focus on this one. Which are its neighbours?</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</section>
 <section class="slide level2">
 
-
-<img data-src="slides_files/figure-revealjs/cell-5-output-1.png" class="r-stretch quarto-figure-center"><p class="caption">Based on (rook) contiguity, these.</p></section>
+<div id="24b2e0ac" class="cell" data-execution_count="5">
+<div class="cell-output cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="slides_files/figure-revealjs/cell-5-output-1.png" width="912" height="576"></p>
+<figcaption>Based on (rook) contiguity, these.</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</section>
 <section class="slide level2">
 
-
-<img data-src="slides_files/figure-revealjs/cell-6-output-1.png" class="r-stretch quarto-figure-center"><p class="caption">Here is a complete graph.</p></section>
+<div id="87facf3c" class="cell" data-execution_count="6">
+<div class="cell-output cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="slides_files/figure-revealjs/cell-6-output-1.png" width="912" height="576"></p>
+<figcaption>Here is a complete graph.</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</section>
 <section class="slide level2">
 
-
-<img data-src="slides_files/figure-revealjs/cell-7-output-1.png" class="r-stretch quarto-figure-center"><p class="caption">Here is a complete graph.</p></section>
+<div id="a7003c62" class="cell" data-execution_count="7">
+<div class="cell-output cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="slides_files/figure-revealjs/cell-7-output-1.png" width="912" height="576"></p>
+<figcaption>Here is a complete graph.</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</section>
 <section id="distance" class="slide level2">
 <h2>Distance</h2>
 <h3 id="two-geometries-are-considered-neighbours-if-they-lie-within-a-set-threshold-from-each-other"><span class="fragment fade-in">Two geometries are considered neighbours</span> <span class="fragment fade-in">if they lie within a set threshold from each other</span></h3>
@@ -227,20 +272,56 @@ w_{N1} &amp; \dots &amp; \dots &amp; 0
 </section>
 <section class="slide level2">
 
-
-<img data-src="slides_files/figure-revealjs/cell-8-output-1.png" class="r-stretch quarto-figure-center"><p class="caption">Everything within a distance is a neighbour.</p></section>
+<div id="31a355a3" class="cell" data-execution_count="8">
+<div class="cell-output cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="slides_files/figure-revealjs/cell-8-output-1.png" width="912" height="576"></p>
+<figcaption>Everything within a distance is a neighbour.</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</section>
 <section class="slide level2">
 
-
-<img data-src="slides_files/figure-revealjs/cell-9-output-1.png" class="r-stretch quarto-figure-center"><p class="caption">Just like this.</p></section>
+<div id="16ba7845" class="cell" data-execution_count="9">
+<div class="cell-output cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="slides_files/figure-revealjs/cell-9-output-1.png" width="912" height="576"></p>
+<figcaption>Just like this.</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</section>
 <section class="slide level2">
 
-
-<img data-src="slides_files/figure-revealjs/cell-10-output-1.png" class="r-stretch quarto-figure-center"><p class="caption">Here is a complete graph. A bit denser.</p></section>
+<div id="88eece86" class="cell" data-execution_count="10">
+<div class="cell-output cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="slides_files/figure-revealjs/cell-10-output-1.png" width="912" height="576"></p>
+<figcaption>Here is a complete graph. A bit denser.</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</section>
 <section class="slide level2">
 
-
-<img data-src="slides_files/figure-revealjs/cell-11-output-1.png" class="r-stretch quarto-figure-center"><p class="caption">Here is a complete graph. A bit denser.</p></section>
+<div id="111e27ec" class="cell" data-execution_count="11">
+<div class="cell-output cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="slides_files/figure-revealjs/cell-11-output-1.png" width="912" height="576"></p>
+<figcaption>Here is a complete graph. A bit denser.</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</section>
 <section id="distance-1" class="slide level2">
 <h2>Distance</h2>
 <h3 id="a-geometry-is-considered-a-neighbour-if-it-is-no-further-than-k-1-others"><span class="fragment fade-in">A geometry is considered a neighbour</span> <span class="fragment fade-in">if it is no further than K-1 others</span></h3>
@@ -248,52 +329,151 @@ w_{N1} &amp; \dots &amp; \dots &amp; 0
 </section>
 <section class="slide level2">
 
-
-<img data-src="slides_files/figure-revealjs/cell-12-output-1.png" class="r-stretch quarto-figure-center"><p class="caption">Only a set number of nearest geometries are neighbours.</p></section>
+<div id="b6f84d87" class="cell" data-execution_count="12">
+<div class="cell-output cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="slides_files/figure-revealjs/cell-12-output-1.png" width="912" height="576"></p>
+<figcaption>Only a set number of nearest geometries are neighbours.</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</section>
 <section class="slide level2">
 
-
-<img data-src="slides_files/figure-revealjs/cell-13-output-1.png" class="r-stretch quarto-figure-center"><p class="caption">In this case <span class="math inline">\(k=5\)</span>.</p></section>
+<div id="28ed8565" class="cell" data-execution_count="13">
+<div class="cell-output cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="slides_files/figure-revealjs/cell-13-output-1.png" width="912" height="576"></p>
+<figcaption>In this case <span class="math inline">\(k=5\)</span>.</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</section>
 <section class="slide level2">
 
-
-<img data-src="slides_files/figure-revealjs/cell-14-output-1.png" class="r-stretch quarto-figure-center"><p class="caption">And a graph.</p></section>
+<div id="d94da9a9" class="cell" data-execution_count="14">
+<div class="cell-output cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="slides_files/figure-revealjs/cell-14-output-1.png" width="912" height="576"></p>
+<figcaption>And a graph.</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</section>
 <section class="slide level2">
 
-
-<img data-src="slides_files/figure-revealjs/cell-15-output-1.png" class="r-stretch quarto-figure-center"><p class="caption">And a graph.</p></section>
+<div id="cb2244c1" class="cell" data-execution_count="15">
+<div class="cell-output cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="slides_files/figure-revealjs/cell-15-output-1.png" width="912" height="576"></p>
+<figcaption>And a graph.</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</section>
 <section class="slide level2">
 
-
-<img data-src="slides_files/figure-revealjs/cell-16-output-1.png" class="r-stretch quarto-figure-center"><p class="caption">This would be the same with <span class="math inline">\(k=1\)</span>.</p></section>
+<div id="4aec7689" class="cell" data-execution_count="16">
+<div class="cell-output cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="slides_files/figure-revealjs/cell-16-output-1.png" width="912" height="576"></p>
+<figcaption>This would be the same with <span class="math inline">\(k=1\)</span>.</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</section>
 <section class="slide level2">
 
-
-<img data-src="slides_files/figure-revealjs/cell-17-output-1.png" class="r-stretch quarto-figure-center"><p class="caption">This would be the same with <span class="math inline">\(k=1\)</span>.</p></section>
+<div id="ea3e4b21" class="cell" data-execution_count="17">
+<div class="cell-output cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="slides_files/figure-revealjs/cell-17-output-1.png" width="912" height="576"></p>
+<figcaption>This would be the same with <span class="math inline">\(k=1\)</span>.</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</section>
 <section id="block-contiguityregions" class="slide level2">
 <h2>Block contiguity/regions</h2>
 <h3 id="two-geometries-are-considered-neighbours-if-they-belong-to-the-same-group"><span class="fragment fade-in">Two geometries are considered neighbours</span> <span class="fragment fade-in">if they belong to the same group</span></h3>
 </section>
 <section class="slide level2">
 
-
-<img data-src="slides_files/figure-revealjs/cell-18-output-1.png" class="r-stretch quarto-figure-center"><p class="caption">Let’s assume five regions.</p></section>
+<div id="37f12168" class="cell" data-execution_count="18">
+<div class="cell-output cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="slides_files/figure-revealjs/cell-18-output-1.png" width="912" height="576"></p>
+<figcaption>Let’s assume five regions.</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</section>
 <section class="slide level2">
 
-
-<img data-src="slides_files/figure-revealjs/cell-19-output-1.png" class="r-stretch quarto-figure-center"><p class="caption">Let’s assume four regions. Each polygon belongs to one.</p></section>
+<div id="c4c64378" class="cell" data-execution_count="19">
+<div class="cell-output cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="slides_files/figure-revealjs/cell-19-output-1.png" width="912" height="576"></p>
+<figcaption>Let’s assume four regions. Each polygon belongs to one.</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</section>
 <section class="slide level2">
 
-
-<img data-src="slides_files/figure-revealjs/cell-20-output-1.png" class="r-stretch quarto-figure-center"><p class="caption">All geometries within a region are neighbours.</p></section>
+<div id="abc030f6" class="cell" data-execution_count="20">
+<div class="cell-output cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="slides_files/figure-revealjs/cell-20-output-1.png" width="912" height="576"></p>
+<figcaption>All geometries within a region are neighbours.</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</section>
 <section class="slide level2">
 
-
-<img data-src="slides_files/figure-revealjs/cell-21-output-1.png" class="r-stretch quarto-figure-center"><p class="caption">Graph forms isolated components.</p></section>
+<div id="205dfd8d" class="cell" data-execution_count="21">
+<div class="cell-output cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="slides_files/figure-revealjs/cell-21-output-1.png" width="912" height="576"></p>
+<figcaption>Graph forms isolated components.</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</section>
 <section class="slide level2">
 
-
-<img data-src="slides_files/figure-revealjs/cell-22-output-1.png" class="r-stretch quarto-figure-center"><p class="caption">Graph forms isolated components.</p></section></section>
+<div id="5f218ea1" class="cell" data-execution_count="22">
+<div class="cell-output cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="slides_files/figure-revealjs/cell-22-output-1.png" width="912" height="576"></p>
+<figcaption>Graph forms isolated components.</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</section></section>
 <section>
 <section id="graph-routines" class="title-slide slide level1 center">
 <h1>Graph routines</h1>
@@ -304,31 +484,85 @@ w_{N1} &amp; \dots &amp; \dots &amp; 0
 </section>
 <section class="slide level2">
 
-
-<img data-src="slides_files/figure-revealjs/cell-23-output-1.png" class="r-stretch quarto-figure-center"><p class="caption">Let’s bring back contiguity.</p></section>
+<div id="824b432f" class="cell" data-execution_count="23">
+<div class="cell-output cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="slides_files/figure-revealjs/cell-23-output-1.png" width="912" height="576"></p>
+<figcaption>Let’s bring back contiguity.</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</section>
 <section class="slide level2">
 
-
-<img data-src="slides_files/figure-revealjs/cell-24-output-1.png" class="r-stretch quarto-figure-center"><p class="caption">Order 2 of contiguity</p></section>
+<div id="1ef0a9df" class="cell" data-execution_count="24">
+<div class="cell-output cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="slides_files/figure-revealjs/cell-24-output-1.png" width="912" height="576"></p>
+<figcaption>Order 2 of contiguity</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</section>
 <section class="slide level2">
 
-
-<img data-src="slides_files/figure-revealjs/cell-25-output-1.png" class="r-stretch quarto-figure-center"><p class="caption">Order 3 of contiguity</p></section>
+<div id="9bd9be6f" class="cell" data-execution_count="25">
+<div class="cell-output cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="slides_files/figure-revealjs/cell-25-output-1.png" width="912" height="576"></p>
+<figcaption>Order 3 of contiguity</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</section>
 <section class="slide level2">
 
-
-<img data-src="slides_files/figure-revealjs/cell-26-output-1.png" class="r-stretch quarto-figure-center"><p class="caption">Order 4 of contiguity</p></section>
+<div id="f5cd5536" class="cell" data-execution_count="26">
+<div class="cell-output cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="slides_files/figure-revealjs/cell-26-output-1.png" width="912" height="576"></p>
+<figcaption>Order 4 of contiguity</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</section>
 <section id="component-analysis" class="slide level2">
 <h2>Component analysis</h2>
 </section>
 <section class="slide level2">
 
-
-<img data-src="slides_files/figure-revealjs/cell-27-output-1.png" class="r-stretch quarto-figure-center"><p class="caption">Let’s bring back KNN with <span class="math inline">\(k=1\)</span>.</p></section>
+<div id="71fa2d4d" class="cell" data-execution_count="27">
+<div class="cell-output cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="slides_files/figure-revealjs/cell-27-output-1.png" width="912" height="576"></p>
+<figcaption>Let’s bring back KNN with <span class="math inline">\(k=1\)</span>.</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</section>
 <section class="slide level2">
 
-
-<img data-src="slides_files/figure-revealjs/cell-28-output-1.png" class="r-stretch quarto-figure-center"><p class="caption">You can identify connected components.</p></section></section>
+<div id="75baf3d3" class="cell" data-execution_count="28">
+<div class="cell-output cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="slides_files/figure-revealjs/cell-28-output-1.png" width="912" height="576"></p>
+<figcaption>You can identify connected components.</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</section></section>
 <section>
 <section id="weights-are-not-always-binary" class="title-slide slide level1 center">
 <h1>Weights are not always binary</h1>
@@ -336,16 +570,43 @@ w_{N1} &amp; \dots &amp; \dots &amp; 0
 </section>
 <section class="slide level2">
 
-
-<img data-src="slides_files/figure-revealjs/cell-29-output-1.png" class="r-stretch quarto-figure-center"><p class="caption">Look at 20 nearest neighbours.</p></section>
+<div id="232191e4" class="cell" data-execution_count="29">
+<div class="cell-output cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="slides_files/figure-revealjs/cell-29-output-1.png" width="912" height="576"></p>
+<figcaption>Look at 20 nearest neighbours.</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</section>
 <section class="slide level2">
 
-
-<img data-src="slides_files/figure-revealjs/cell-30-output-1.png" class="r-stretch quarto-figure-center"><p class="caption">The closer a neighbour is, the higher the weight it has.</p></section>
+<div id="b71f8b20" class="cell" data-execution_count="30">
+<div class="cell-output cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="slides_files/figure-revealjs/cell-30-output-1.png" width="912" height="576"></p>
+<figcaption>The closer a neighbour is, the higher the weight it has.</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</section>
 <section class="slide level2">
 
-
-<img data-src="slides_files/figure-revealjs/cell-31-output-1.png" class="r-stretch quarto-figure-center"><p class="caption">time to code</p><div class="r-fit-text absolute fragment fade-in" style="top: 35%; ">
+<div id="bc65ded1" class="cell" data-execution_count="31">
+<div class="cell-output cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="slides_files/figure-revealjs/cell-31-output-1.png" width="912" height="611"></p>
+<figcaption>time to code</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<div class="r-fit-text absolute fragment fade-in" style="top: 35%; ">
 <p>from libpysal import graph</p>
 </div>
 
