@@ -174,20 +174,19 @@ Centrography aims to provide a summary of the pattern. What is the general locat
 of _tendency_, _dispersion_ and _extent_.
 
 The tendency can be reflected by the centre of mass represented usually as the mean or median of point
-coordinates. PySAL has a module dedicated to point patterns called `pointpats`, that allows you to measure these easily, just based on an array of X and Y coordinates.
+coordinates. PySAL has a module dedicated to point patterns called `pointpats`, that allows you to measure these easily, just based on a GeoPandas object with point geometry or an array of X and Y coordinates.
 
 ```{python}
-mean_center = pointpats.centrography.mean_center(accidents[["x", "y"]])   # <1>
-med_center = pointpats.centrography.euclidean_median(accidents[["x", "y"]])
+mean_center = pointpats.centrography.mean_center(accidents)
+med_center = pointpats.centrography.euclidean_median(accidents)
 ```
-1. Passing a subset with two columns qualifies as an array of coordinates.
 
 On some occasions, you may want to take into account some external variables apart from
 the geographical location of each point. Simply because not every accident is as serious as the other. You can use `weighted_mean_center` to measure mean weighted by any arbitrary value. In the case of accidents, you may be interested in mean weighted by the number of injured people.
 
 ```{python}
 weighted_mean = pointpats.centrography.weighted_mean_center(
-    accidents[["x", "y"]], accidents["lehce_zran_os"]           # <1>
+    accidents, accidents["lehce_zran_os"]           # <1>
 )
 ```
 1. Column `"lehce_zran_os"` represents the number of people with minor injuries resulting from each accident.
@@ -196,13 +195,14 @@ What you get back for each of these are coordinates of a single point that is, t
 representative of the pattern.
 
 ```{python}
-weighted_mean
+weighted_mean.x, weighted_mean.y
 ```
 
 Dispersion can be reflected by the standard deviation or, better, by the ellipse based on the standard deviations in both directions since you are dealing with two-dimensional data. The `pointpats.centrography` can also do that, giving you back the semi-major and semi-minor axes and their rotation.
 
 ```{python}
-major, minor, rotation = pointpats.centrography.ellipse(accidents[["x", "y"]])
+ellipse = pointpats.centrography.ellipse(accidents)
+ellipse
 ```
 
 You can then use the information in any way you like, but it is likely that you will want
@@ -214,28 +214,22 @@ to plot the results of centrography on a map. The plot is a bit more complicated
 f, ax = plt.subplots()
 accidents.plot(ax=ax, markersize=0.05)
 
-ax.scatter(*mean_center, color="k", marker="o", label="Mean Center", alpha=0.8) # <1>
-ax.scatter(*med_center, color="r", marker="o", label="Median Center", alpha=0.8) # <1>
+ax.scatter(*mean_center.xy, color="k", marker="o", label="Mean Center", alpha=0.8) # <1>
+ax.scatter(*med_center.xy, color="r", marker="o", label="Median Center", alpha=0.8) # <1>
 ax.scatter(                                 # <1>
-    *weighted_mean,                         # <1>
+    *weighted_mean.xy,                         # <1>
     color="pink",                           # <1>
     marker="o",                             # <1>
     label="Weighted Mean Center",           # <1>
     alpha=0.8                               # <1>
 )                                           # <1>
 
-ellipse = patches.Ellipse(  # <2>
-    xy=mean_center,  # <3>
-    width=major * 2,  # <4>
-    height=minor * 2, # <4>
-    angle=np.rad2deg(rotation),  # <5>
-    facecolor="none",
-    edgecolor="red",
-    linestyle="--",
-    label="Std. Ellipse",
+gpd.GeoSeries([ellipse.boundary], crs=accidents.crs).plot(
+    ax=ax,
+    color="red",
+    linestyle="--"
 )
-ax.add_patch(ellipse)   # <6>
-ax.legend(loc="upper left")             # <7>
+ax.legend(loc="upper left")             # <3>
 
 contextily.add_basemap(
     ax=ax,
@@ -245,12 +239,8 @@ contextily.add_basemap(
 plt.xticks(rotation=90);
 ```
 1. Plot 3 scatters, each with one point only to mark centres of mass.
-2. Plot ellipse using dedicated patch class from `matplotlib.patches`.
-3. Use mean centre as the centre of the ellipse.
-4. `major` represent half of the width, while `minor`, half of the height.
-5. `angle` is required in degrees. You have radians now, so use `np.rad2deg` to convert.
-6. Add `ellipse` to the plot axis.
-7. Add legend to the upper left corner.
+2. Plot `ellipse` to the plot axis as a GeoSeries.
+3. Add legend to the upper left corner.
 
 You can see that in this specific case, all three ways of computing centre of the mass are within a short distance from each other, suggesting the dataset is pretty balanced. A similar conclusion can be made based on the shape of the ellipse, which nearly resembles a circle.
 
@@ -275,14 +265,14 @@ for ax in axs:
 Focus on the ellipse. What does it say about the patterns? How does it change and why?
 
 ```{python}
-mean_center_day = pointpats.centrography.mean_center(day[["x", "y"]])
-mean_center_night = pointpats.centrography.mean_center(night[["x", "y"]])
+mean_center_day = pointpats.centrography.mean_center(day)
+mean_center_night = pointpats.centrography.mean_center(night)
 
-major_day, minor_day, rotation_day = pointpats.centrography.ellipse(
-    day[["x", "y"]]
+ellipse_day = pointpats.centrography.ellipse(
+    day
 )
-major_night, minor_night, rotation_night = pointpats.centrography.ellipse(
-    night[["x", "y"]]
+ellipse_night = pointpats.centrography.ellipse(
+    night
 )
 ```
 
@@ -294,31 +284,19 @@ Compare the two ellipses visually on a map.
 f, ax = plt.subplots()
 accidents.plot(ax=ax, markersize=0.05)
 
-ax.scatter(*mean_center_day, color="red", marker="o", label="Mean Center [Day]", alpha=0.8)
-ellipse = patches.Ellipse(
-    xy=mean_center_day,
-    width=major_day * 2,
-    height=minor_day * 2,
-    angle=np.rad2deg(rotation_day),
-    facecolor="none",
-    edgecolor="red",
-    linestyle="--",
-    label="Std. Ellipse [Day]",
+ax.scatter(*mean_center_day.xy, color="red", marker="o", label="Mean Center [Day]", alpha=0.8)
+gpd.GeoSeries([ellipse_day.boundary], crs=accidents.crs).plot(
+    ax=ax,
+    color="red",
+    linestyle="--"
 )
-ax.add_patch(ellipse)
 
-ax.scatter(*mean_center_night, color="blue", marker="o", label="Mean Center [Night]", alpha=0.8)
-ellipse = patches.Ellipse(
-    xy=mean_center_night,
-    width=major_night * 2,
-    height=minor_night * 2,
-    angle=np.rad2deg(rotation_night),
-    facecolor="none",
-    edgecolor="blue",
-    linestyle="--",
-    label="Std. Ellipse [Night]",
+ax.scatter(*mean_center_night.xy, color="blue", marker="o", label="Mean Center [Night]", alpha=0.8)
+gpd.GeoSeries([ellipse_night.boundary], crs=accidents.crs).plot(
+    ax=ax,
+    color="blue",
+    linestyle="--"
 )
-ax.add_patch(ellipse)
 
 ax.legend(loc="upper left")
 
@@ -349,10 +327,10 @@ Point patterns can be random but more often then not, they are not random. You m
 Imagine a grid overlaid over the map, similar to those you can use for visualisation. Each of them contains a certain number of points of the pattern. Quadrat statistics "examine the evenness of the distribution over cells using a $\chi^2$ statistical test common in the analysis of contingency tables." [@rey2023geographic]. It compares the actual distribution of points in cells to that, that would be present if the points were allocated randomly.
 
 `pointpats` allows you to compute the statistics using the `QStatistic` class,  which takes
-the array of coordinates and some optional parameters specifying the details.
+any GeoPandas object of points or an array of coordinates and some optional parameters specifying the details.
 
 ```{python}
-qstat = pointpats.QStatistic(accidents[["x", "y"]].values, nx=6, ny=6)  # <1>
+qstat = pointpats.QStatistic(accidents, nx=6, ny=6)  # <1>
 ```
 1. `nx` and `ny` specify the number of cells along the x and y axis, respectively. The default is 3.
 
