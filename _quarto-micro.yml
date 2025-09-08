@@ -19,51 +19,61 @@ website:
           - introduction/concepts.qmd
           - introduction/hands_on.qmd
           - introduction/exercise.qmd
+          - introduction/quiz.qmd
       - section: "Open Data Science"
         contents:
           - data_wrangling/concepts.qmd
           - data_wrangling/hands_on.qmd
           - data_wrangling/exercise.qmd
+          - data_wrangling/quiz.qmd
       - section: "Spatial data"
         contents:
           - geographic_data/concepts.qmd
           - geographic_data/hands_on.qmd
           - geographic_data/exercise.qmd
+          - geographic_data/quiz.qmd
       - section: "Spatial weights"
         contents:
           - spatial_graphs/concepts.qmd
           - spatial_graphs/hands_on.qmd
           - spatial_graphs/exercise.qmd
+          - spatial_graphs/quiz.qmd
       - section: "Exploratory spatial data analysis"
         contents:
           - autocorrelation/concepts.qmd
           - autocorrelation/hands_on.qmd
           - autocorrelation/exercise.qmd
+          - autocorrelation/quiz.qmd
       - section: "Point patterns"
         contents:
           - point_patterns/concepts.qmd
           - point_patterns/hands_on.qmd
           - point_patterns/exercise.qmd
+          - point_patterns/quiz.qmd
       - section: "Clustering"
         contents:
           - clustering/concepts.qmd
           - clustering/hands_on.qmd
           - clustering/exercise.qmd
+          - clustering/quiz.qmd
       - section: "Raster data"
         contents:
           - raster_data/concepts.qmd
           - raster_data/hands_on.qmd
           - raster_data/exercise.qmd
+          - raster_data/quiz.qmd
       - section: "Interpolation"
         contents:
           - interpolation/concepts.qmd
           - interpolation/hands_on.qmd
           - interpolation/exercise.qmd
+          - interpolation/quiz.qmd
       - section: "Regression"
         contents:
           - regression/concepts.qmd
           - regression/hands_on.qmd
           - regression/exercise.qmd
+          - regression/quiz.qmd
   # announcement:
   #   icon: bell-fill
   #   dismissable: true
