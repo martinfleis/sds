@@ -56,6 +56,7 @@ be imported as `sklearn`.
 
 ```{python}
 import geopandas as gpd
+import matplotlib.pyplot as plt
 import pandas as pd
 import seaborn as sns
 from libpysal import graph
@@ -276,6 +277,25 @@ k5_means.T  # <2>
 1. Use `groupby` to calculate mean per each sub-rank.
 2. Transpose the table so it is not too wide
 
+You can also explore the nature of each cluster using boxplots.
+
+```{python}
+fig, axes = plt.subplots(1, 5, figsize=(10, 3), sharey=True) # <1>
+
+for i, ax in enumerate(axes): # <2>
+    ax.set_title(f'Cluster {i}')
+    ax.tick_params(axis='x', rotation=90) # <3>
+    
+    sns.boxplot( # <4>
+        data=simd.loc[simd['kmeans_5'] == i, subranks],
+        ax=ax
+    )
+```
+1. Use `subplots` to create figure with multiple plots, `sharey` means that the plots will share the y-axis.
+2. `enumerate` adds a counter to an iterable, giving you both the index and the item in each loop iteration.
+3. `tick_params` changes the appearance of ticks.
+4. `boxplot` shows the distribution of data with quartiles.
+
 When interpreting the values, remember that a lower value represents higher deprivation.
 While the results seem plausible and there are ways of interpreting them, you haven't
 used any spatial methods.
@@ -415,6 +435,27 @@ simd[["kmeans_5_lagged", 'geometry']].explore("kmeans_5_lagged", categorical=Tru
 Comparing the spatially-lagged clusters with the original results shows that the new
 clusters are much more homogenous spatially, delineating relatively compact regions of
 data zones.
+
+Now you can compare the nature of spatially-lagged clusters with the original clusters.
+
+```{python}
+fig, axes = plt.subplots(5, 2, figsize=(5, 15), sharey=True, sharex=True)
+
+for k in range(5): # <1>
+
+    cluster_data = simd.loc[simd['kmeans_5'] == k, subranks]
+    cluster_lagged = simd.loc[simd['kmeans_5_lagged'] == k, subranks]
+
+
+    sns.boxplot(data=cluster_data, ax=axes[k, 0])
+    axes[k, 0].set_title(f'Cluster {k}')
+    axes[k, 0].tick_params(axis='x', rotation=90)
+
+    sns.boxplot(data=cluster_lagged, ax=axes[k, 1])
+    axes[k, 1].set_title(f'Cluster {k} (lagged)')
+    axes[k, 1].tick_params(axis='x', rotation=90)
+```
+1. In this case we use the `range` function for looping as we now have 5 rows and 2 columns of plots.
 
 As you have seen, the essence of this approach is to group areas based on a purely
 statistical basis: *where* each area is located is irrelevant for the label it receives
