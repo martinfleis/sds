@@ -5,13 +5,15 @@ aliases:
   - ../chapter_00/assignment.html
 ---
 
-This course is assessed based on work during the semester and a final assignment - a computational essay.
+This course is assessed based on[work during the semester and]{.content-visible when-profile='sds4sg'} a final assignment - a computational essay.
 
 ::: {.callout-important}
 # Office hours
 
 Students enrolled in `MZ340V17` can book a slot to discuss the assignment via [cal.com/martinfleis/office-hours](https://cal.com/martinfleis/office-hours) with Martin or via [cal.com/brazdanna](https://cal.com/brazdanna) with Anna. The slots are available two weeks ahead and must be booked at least a day in advance.
 :::
+
+::: {.content-visible when-profile='sds4sg'}
 
 ## Structure of the final mark
 
@@ -26,6 +28,8 @@ will be some time to finish it during the class but it is not expected to be fin
 the class. For each exercise submitted within one week, student will receive 2 points.
 The correctness is not verified, we just want to see that you put some effort in it.
 Submission needs to happen via GitHub Classroom.
+
+:::
 
 ## Computational essay
 
@@ -186,6 +190,13 @@ The essay is primarily evaluated on a point scale of 0-76:
 
 Additional point deductions may happen in case of issues in the code or text. Note that
 the documentation should be formatted using Markdown syntax, not HTML.
+
+::: {.content-visible when-profile='micro'}
+To successfully complete the class, a
+minimum of 30 points in total is required.
+:::
+
+## Use of generative AI
 
 ::: {.content-visible when-profile='sds4sg'}
 To successfully complete the class, a
