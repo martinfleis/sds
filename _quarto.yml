@@ -43,7 +43,7 @@ website:
     style: floating
     collapse-level: 1
     tools:
-      - icon: twitter
-        href: https://twitter.com/martinfleis
+      - icon: mastodon
+        href: https://fosstodon.org/@martinfleis
       - icon: github
         href: https://github.com/martinfleis/sds

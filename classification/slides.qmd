@@ -1,0 +1,88 @@
+---
+title: Spatial ML
+format:
+    revealjs:
+        theme: [default, ../_assets/reveal.scss]
+        logo: ../_assets/logo.svg
+        menu: false
+        transition: slide
+        navigation-mode: linear
+        controls-layout: edges
+        width: 1400
+        height: 900
+---
+
+### Supervised
+
+#### Classification problems {.fade-in}
+#### Regression problems {.fade-in}
+#### ... {.fade-in}
+
+## Models
+
+#### Linear regression {.fade-in}
+#### Logistic regression {.fade-in}
+#### Decision trees {.fade-in}
+#### Random forest {.fade-in}
+#### Gradient-boosted trees {.fade-in}
+#### Neural networks {.fade-in}
+
+## Workflow
+
+#### Split to train and test parts {.fade-in}
+#### Fit the model {.fade-in}
+#### Evaluate {.fade-in}
+
+##### (data standardisation) {.fade-in}
+##### Hyper-parameter tuning {.fade-in}
+##### Data augmentation {.fade-in}
+
+## Evaluation methods
+
+### Classification {.fragment .fade-in}
+#### Confusion matrix {.fragment .fade-in}
+
+---
+
+::: {.r-fit-text}
+
+|        | Cat   | Dog   | Ant   | Fly    |
+|--------|-------|-------|-------|--------|
+| Cat    | 45    | 5     | 2     | 0      |
+| Dog    | 3     | 40    | 5     | 2      |
+| Ant    | 1     | 2     | 38    | 4      |
+| Fly    | 0     | 1     | 3     | 46     |
+
+:::
+---
+
+## Evaluation methods
+
+### Classification
+#### Confusion matrix
+#### Accuracy {.fragment .fade-in}
+#### Cohen's kappa score {.fragment .fade-in}
+#### Precision {.fragment .fade-in}
+#### Recall {.fragment .fade-in}
+#### ... {.fragment .fade-in}
+
+# Spatial dimension in ML
+
+---
+
+### Spatial feature engineering
+#### Map synthesis {.fragment .fade-in}
+#### Proximity {.fragment .fade-in}
+#### Map matching {.fragment .fade-in}
+
+---
+
+### Spatial effects
+#### Dependence {.fragment .fade-in}
+#### Heterogeneity {.fragment .fade-in}
+---
+
+
+::: {.r-fit-text .absolute top=25%}
+import sklearn
+:::

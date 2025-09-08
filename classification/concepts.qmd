@@ -5,8 +5,8 @@ aliases:
   - ../chapter_11/concepts.html
 ---
 
-::: {.callout-caution}
-# Work in progress
+Slides from the talk extendning the knowledge of machine learning to classification tasak and outlining ways of incorporating spatial dimension into the formula.
 
-This section is currently in works. Come back later.
-:::
+```{=html}
+<iframe class="slide-deck" src="slides.html"></iframe>
+```

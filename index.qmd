@@ -15,19 +15,23 @@ The course is taught in person at Charles University in Prague from October 2023
 The course Spatial Data Science in Python introduces data science and computational analysis
 using open source tools written in the Python programming language.
 
-The course is provided by Charles University as a standalone micro-credentials certification and is taught __online__ every August. The
+The course is provided by Charles University as a standalone micro-credentials certification and is taught __online__ , typically once a year. The
 course is open to anyone.
 
 <!-- ::: {.callout-important}
-# Course registration for 2024 is now open
+# Course registration for 2025 is now open
 
-The course will happen between 12.8. - 16.8. with 6 teaching hours a day. The fee for 2024 is 15,000 CZK (approximately €600).
-Registration is open until August 9.
+The first block of classes is scheduled for **September 8 - 12**, and the second block for **September 22 - 26**, each day from 16:00 to 18:00 CEST (Prague time zone). The fee for 2025 is 7,500 CZK (approximately €300). Registration is open until August 31.
 
-Please enroll via the [university portal](https://is.cuni.cz/studium/eng/prijimacky/index.php?do=detail_kurz_mc&cid=10752).
+Please enroll via the [university portal](https://is.cuni.cz/studium/eng/prijimacky/index.php?do=detail_kurz_mc&cid=11189).
 
 In case of any questions, please contact the course lead directly at [martin.fleischmann@natur.cuni.cz](mailto:martin.fleischmann@natur.cuni.cz).
 ::: -->
+::: {.callout-important}
+# Course registration for 2025 is now closed
+
+In case of any questions, please contact the course lead directly at [martin.fleischmann@natur.cuni.cz](mailto:martin.fleischmann@natur.cuni.cz).
+:::
 :::
 
 ## Aims
@@ -74,13 +78,13 @@ Previous experience in programming or computer science is preferable. A positive
 :::
 
 ::: {.content-visible when-profile='micro'}
-A basic understanding of Python is required. Understanding of data analysis using `pandas` is not expected but certainly helps.
+A basic understanding of Python is required. Understanding of data analysis using `pandas` is not required but certainly helps.
 :::
 
 ## Course structure
 
 
-[The material is planned for 12 weeks, with one session per week.]{.content-visible when-profile='sds4sg'}[The material is planned for 5 days with two 3-hour sessions per day. ]{.content-visible when-profile='micro'} Each session
+[The material is planned for 12 weeks, with one session per week.]{.content-visible when-profile='sds4sg'}[The material is planned for 2 weeks of teaching 2-hour session per day. There is a one week gap between week 1 and week 2.]{.content-visible when-profile='micro'} Each session
 is divided into three parts - _Concepts_, _Hands-on_ and _Exercise_, following the model
 proposed by @darribas_gds_course. _Concepts_ have the form of a lecture covering conceptual
 aspects of the day's topic, providing necessary theoretical background before digging into code. This part can be nicknamed ["I do"]{.accent}.

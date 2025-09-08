@@ -13,7 +13,7 @@ It's time to explore some point patterns.
 Your task is to explore the locations of Airbnb listings in Prague, downloaded from the [Inside Airbnb](http://insideairbnb.com/get-the-data) portal. The dataset is available in CSV from this URL.
 
 ```{python}
-url = "http://data.insideairbnb.com/czech-republic/prague/prague/2023-06-24/data/listings.csv.gz"
+url = "http://data.insideairbnb.com/czech-republic/prague/prague/2024-12-22/data/listings.csv.gz"
 ```
 
 ::: {.callout-note collapse="true"}

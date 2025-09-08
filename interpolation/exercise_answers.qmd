@@ -68,7 +68,7 @@ interpolated.explore('DZName_Drumchapel North - 05', tiles='CartoDB Positron', t
 ## Point interpolation
 
 ```py
-url = ("http://data.insideairbnb.com/czech-republic/prague/prague/2023-06-24"
+url = ("http://data.insideairbnb.com/czech-republic/prague/prague/2024-12-22"
        "/data/listings.csv.gz"
       )
 ```

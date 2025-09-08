@@ -18,7 +18,7 @@ import contextily
 Read the data and create a GeoDataFrame projected to S-JTSK / Krovak East North (EPSG:5514).
 
 ```py
-url = "http://data.insideairbnb.com/czech-republic/prague/prague/2023-06-24/data/listings.csv.gz"
+url = "http://data.insideairbnb.com/czech-republic/prague/prague/2024-12-22/data/listings.csv.gz"
 airbnb = pd.read_csv(url)
 airbnb = gpd.GeoDataFrame(
     airbnb,

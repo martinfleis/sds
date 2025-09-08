@@ -201,8 +201,7 @@ pd.DataFrame(proba, columns=model.classes_, index=X_test.index)
 Now comes the evaluation part. Normally, you are interested in a number of performance
 metrics capturing how good the model is. Among the most common ones are _accuracy_ and
 _Cohen's kappa score_. Accuracy captures the fraction of correct predictions, i.e., how many labels
-in the predicted array equal the known labels. [Kappa score](https://en.wikipedia.org/wiki/Cohen%27s_kappa)
-It is seen as a more robust metric but not straightforwardly interpretable.
+in the predicted array equal the known labels. [Kappa score](https://en.wikipedia.org/wiki/Cohen%27s_kappa) is seen as a more robust metric but not straightforwardly interpretable.
 
 ```{python}
 accuracy = metrics.accuracy_score(pred, y_test) # <1>

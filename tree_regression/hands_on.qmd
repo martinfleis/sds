@@ -598,28 +598,30 @@ input_data = np.hstack(
 )
 ```
 
-1.  Use absolute value of residuals to assess the autocorrelation of model
-    *imprecision*, irrespective of the direction.
+
 
 Build the variogram, ideally covering the width of the whole country.
 
 ```{python}
 exp_semivar = pyinterpolate.build_experimental_variogram(
-    input_array=input_data,
+    executions_data.assign(residuals=residuals.abs()).set_geometry(   # <1>
+        executions_data.centroid
+    )[["geometry", "residuals"]],
     step_size=10_000,  # <1>
-    max_range=490_000, # <2>
+    max_range=490_000,  # <2>
 )
 ```
-
-1.  Step size set to 10km.
-2.  Max range is 490km, which is the rough width of the dataset.
+1.  Use absolute value of residuals to assess the autocorrelation of model
+    *imprecision*, irrespective of the direction.
+2.  Step size set to 10km.
+3.  Max range is 490km, which is the rough width of the dataset.
 
 With the built semivariogram, you can explore its plot.
 
 ```{python}
 # | fig-cap: Semivariogram of the prediction error
 # | classes: variogram
-exp_semivar.plot(plot_covariance=False)
+exp_semivar.plot(covariance=False)
 ```
 
 The semivariance tends to grow nearly across the whole range, indicating that the
