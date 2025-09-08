@@ -291,7 +291,7 @@ for i, ax in enumerate(axes): # <2>
         ax=ax
     )
 ```
-1. Use `subplots` to create figure with multiple plots, `sharey` means that the plots will share the labels of y axes.
+1. Use `subplots` to create figure with multiple plots, `sharey` means that the plots will share the y-axis.
 2. `enumerate` adds a counter to an iterable, giving you both the index and the item in each loop iteration.
 3. `tick_params` changes the appearance of ticks.
 4. `boxplot` shows the distribution of data with quartiles.
