@@ -196,8 +196,6 @@ To successfully complete the class, a
 minimum of 30 points in total is required.
 :::
 
-## Use of generative AI
-
 ::: {.content-visible when-profile='sds4sg'}
 To successfully complete the class, a
 minimum of 40 points in total is required. The expected relationship between the score
