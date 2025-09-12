@@ -55,7 +55,7 @@ Locations are independent of values.
 :::::
 
 :::::{.question}
-** In spatial autocorrelation, what is meant by "negative spatial autocorrelation"?**
+**In spatial autocorrelation, what is meant by "negative spatial autocorrelation"?**
 
 ::::{.choices}
 
