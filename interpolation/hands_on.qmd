@@ -327,7 +327,7 @@ shows higher levels of autocorrelation, hence using the spatial lag will be bene
 
 ```{python}
 # | classes: explore
-knn = graph.Graph.build_kernel(two_bed_homes, k=10).transform("r") # <1>
+knn = graph.Graph.build_knn(two_bed_homes, k=10).transform("r") # <1>
 two_bed_homes["price_lag"] = knn.lag(two_bed_homes.price_float)
 two_bed_homes.explore("price_lag", tiles="CartoDB Positron")
 ```
