@@ -447,11 +447,16 @@ palais = gpd.GeoSeries.from_xy(
 ).to_crs(buildings.crs)
 ```
 
-Geocoding:
+::: {.callout-tip collapse="true"}
+# Use geocoding to get the geometry
+
+The code above uses known coordinates. If you don't know them but know the address and a name
+of a place, you can use the built-in geocoding capabilities in `geopandas`:
 
 ```py
 palais = gpd.tools.geocode("Grand Palais, Paris").to_crs(buildings.crs)
 ```
+:::
 
 Then create a virtual straight line connecting the Arc de Triomphe and Grand Palais. Here comes one of those cases when you use
 `shapely` directly.
@@ -513,9 +518,29 @@ Another overlay operation is spatial join. This does not alter geometry but attr
 Load the data capturing boundaries of Parisian Arrondissements (districts).
 
 ```{python}
-arrondissements = gpd.read_file('data/arrondissements.geojson')
+arrondissements = gpd.read_file(
+    'https://martinfleischmann.net/sds/geographic_data/data/arrondissements.geojson'
+)
 arrondissements.head(2)
 ```
+
+::: {.callout-note collapse="true"}
+## Alternative
+Instead of reading the file directly off the web, it is possible to download it manually,
+store it on your computer, and read it locally. To do that, you can follow these steps:
+
+1. Download the file by right-clicking on
+[this link](https://martinfleischmann.net/sds/geographic_data/data/arrondissements.geojson)
+and saving the file
+2. Place the file in the same folder as the notebook where you intend to read it
+3. Replace the code in the cell above with:
+
+```python
+arrondissements = gpd.read_file(
+    "arrondissements.geojson",
+)
+```
+:::
 
 For any spatial overlay, you need to ensure that both layers share the CRS.
 
