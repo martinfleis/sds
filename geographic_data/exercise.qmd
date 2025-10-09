@@ -57,8 +57,8 @@ Practice using geometric methods and properties `GeoDataFrame` offers.
 
 - Create a convex hull around each polygon in `price`.
 - Calculate the area of these convex hulls.
-- Find the convex hulls with an area between 40th a 60th percentile in the GeoDataFrame. Create a new object (e.g. `average`) only with them.
-- Create a multi-layer map of Prague where the smallest areas are coloured in one colour, and the rest appear in another. Try making it legible enough.
+- Find the convex hulls with an area between 30th a 70th percentile in the GeoDataFrame. Create a new object (e.g. `average`) only with them.
+- Create a multi-layer map of Prague where the areas within these percentiles are coloured in one colour, and the rest appear in another. Try making it legible enough.
 
 
 ## Joining
