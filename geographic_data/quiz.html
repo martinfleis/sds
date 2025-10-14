@@ -772,8 +772,8 @@ ul.task-list li input[type="checkbox"] {
 <div class="choice">
 <p></p><p><input class="form-check-input" type="radio" x-model="answer" value="no1"> <span id="no1" x-show="answer == $el.id" class="badge">✗</span>To handle time series data.</p><p></p>
 </div>
-<div class="choice.correct-choice">
-<p>To manage geospatial data with geometry support.</p>
+<div class="choice correct-choice">
+<p></p><p><input class="form-check-input" type="radio" x-model="answer" value="correct"> <span id="correct" x-show="answer == $el.id" class="badge">✓</span>To manage geospatial data with geometry support.</p><p></p>
 </div>
 <div class="choice">
 <p></p><p><input class="form-check-input" type="radio" x-model="answer" value="no3"> <span id="no3" x-show="answer == $el.id" class="badge">✗</span>To visualize large datasets.</p><p></p>
@@ -913,11 +913,11 @@ ul.task-list li input[type="checkbox"] {
 </div>
 <div class="question">
 <p><strong>How would you reproject a <code>GeoDataFrame</code> called <code>gdf</code> to EPSG:3857?</strong></p>
-<div class="choices correct-choice">
+<div class="choices">
 <div x-data="{ answer: '' , clear() { this.answer = '' }}">
 
-<div class="choice">
-<p></p><p><input class="form-check-input" type="radio" x-model="answer" value="no1"> <span id="no1" x-show="answer == $el.id" class="badge">✗</span><code>gdf.to_crs(3857)</code>.</p><p></p>
+<div class="choice correct-choice">
+<p></p><p><input class="form-check-input" type="radio" x-model="answer" value="correct"> <span id="correct" x-show="answer == $el.id" class="badge">✓</span><code>gdf.to_crs(3857)</code>.</p><p></p>
 </div>
 <div class="choice">
 <p></p><p><input class="form-check-input" type="radio" x-model="answer" value="no2"> <span id="no2" x-show="answer == $el.id" class="badge">✗</span><code>gdf.convert_crs(epsg=3857)</code>.</p><p></p>
