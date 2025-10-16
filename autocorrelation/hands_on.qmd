@@ -475,7 +475,7 @@ would show a random one.
 
 ### Correlogram
 
-The outcome of the spatial autocorrellation assessment is heavily dependent on the spatial
+The outcome of the spatial autocorrelation assessment is heavily dependent on the spatial
 weights matrix that is used to represent spatial relations. It will look different for
 Queen contiguity and for k-nearest neighbor graph of 100 neighbors. It will look differently
 when using small distance band compared to a large one. Each of these is individually valid
@@ -486,18 +486,17 @@ of "neighbourhoods".
 This property can be used to gain insights into the spatial extent of autocorrelation
 and assessment of its change as we change the distance within which we consider other
 geometries as neighbors. For that, we use a concept of correlogram, which is similar
-to variogram you may know, but shows the change of the autocorrellation index depending
-on the change of the extend used to generate distance-based (KNN or band) weights.
+to variogram you may know, but shows the change of the autocorrelation index depending
+on the change of the extent used to generate distance-based (KNN or band) weights.
 
-Given the data used here cover the entirety of Czechia, the distances to test would need adapt
-to such scale. Easier option is to use KNN definition of distance.
+Given the data used here covers the entirety of Czechia, the distances to test would need reflect such scale. An easier option is to use the KNN definition of distance.
 
 ```{python}
 k = [5, 10, 25, 50, 75, 100, 250, 500, 1000]  # <1>
 ```
 1. Define options of number of nearest neighbors to test. We can leave this to the function but it defaults to 50 options which may take a while.
 
-Fitting a correlogram happens in a single function that returns table of autocorrelation statistics.
+Fitting a correlogram happens in a single function that returns a table of autocorrelation statistics.
 
 ```{python}
 correlogram = esda.correlogram(
@@ -514,8 +513,7 @@ correlogram = esda.correlogram(
 
 The correlogram returns a DataFrame that contains all the information you may possibly
 want. However, in most cases, you are interested in the actual value of the index. By
-default, `esda.correlogram` uses Moran's $I$, with the index being accessible as
-`correlogram.I`.
+default, `esda.correlogram` uses Moran's $I$, with the index being accessible as `correlogram.I`.
 
 ```{python}
 correlogram.I
