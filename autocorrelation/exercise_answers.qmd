@@ -8,7 +8,7 @@ jupyter: sds
 Here is one way of getting the solution. There are others, feel free to share yours.
 
 
-```{python}
+```py
 import geopandas as gpd
 import esda
 import matplotlib.pyplot as plt
@@ -19,7 +19,7 @@ from libpysal import graph
 
 Read it as a `GeoDataFrame` and assign a column you think would be the best as an index.
 
-```{python}
+```py
 simd = gpd.read_file("https://maps.gov.scot/ATOM/shapefiles/SG_SIMD_2020.zip")
 simd = simd.set_index("DataZone")
 ```
@@ -30,37 +30,37 @@ If you check the Excel file in the zip above, you will learn that a column LANam
 
 Since the string may be something else than "Glasgow", let's find out the right one. You can list all unique names in the LAName column.
 
-```{python}
+```py
 simd.LAName.unique()
 ```
 
 From that you can see that the right string is 'Glasgow City'. You can use that directly. But if you'd like to know the programmatic way (you can ask chatGPT to explain the code if you need):
 
-```{python}
+```py
 glasgow_name = simd.LAName[simd.LAName.str.contains('Glasgow')].unique()[0]
 glasgow_name
 ```
 
-```{python}
+```py
 glasgow = simd[simd.LAName == "Glasgow City"]
 ```
 
 Create contiguity weights based on the reduced dataset.
 
-```{python}
+```py
 contiguity = graph.Graph.build_contiguity(glasgow)
 ```
 
 Create a binary variable from `"Rankv2"` encoding areas with rank above city-wide mean.
 
-```{python}
+```py
 mean_rank = glasgow["Rankv2"].mean()
 glasgow["better_half"] = glasgow["Rankv2"] > mean_rank
 ```
 
 Measure Join Counts statistic on your new variable.
 
-```{python}
+```py
 jc = esda.Join_Counts(
     glasgow["better_half"],
     contiguity,
@@ -69,7 +69,7 @@ jc = esda.Join_Counts(
 
 Let's print the results i a nice way. Using a multi-line f-string (google!):
 
-```{python}
+```py
 print(f"""BB: {jc.bb}
 WW: {jc.ww}
 BW: {jc.bw}
@@ -82,19 +82,19 @@ p_sim BB: {jc.p_sim_bb}
 
 Visualise the main `"Rankv2"` with a Moran Plot
 
-```{python}
+```py
 glasgow['rank_std'] = (
     glasgow["Rankv2"] - glasgow["Rankv2"].mean()
 ) / glasgow["Rankv2"].std()
 ```
 
-```{python}
+```py
 contiguity_r = contiguity.transform("r")
 
 glasgow['rank_lag'] = contiguity_r.lag(glasgow['rank_std'])
 ```
 
-```{python}
+```py
 f, ax = plt.subplots(figsize=(6, 6))
 sns.regplot(
     x="rank_std",
@@ -110,21 +110,21 @@ ax.axhline(0, c="black", alpha=0.5)
 
 Calculate Moran's $I$
 
-```{python}
+```py
 mi = esda.Moran(glasgow['rank_std'], contiguity_r)
 ```
 
-```{python}
+```py
 mi.I
 ```
 
-```{python}
+```py
 mi.p_sim
 ```
 
 Correlogram
 
-```{python}
+```py
 correlogram = esda.correlogram(
   geometry=glasgow.centroid,
   variable=glasgow["Rankv2"],
@@ -133,7 +133,7 @@ correlogram = esda.correlogram(
 
 Plot
 
-```{python}
+```py
 ax = correlogram.I.plot()
 ax.set_xlabel("Distance [m]")
 _ = ax.set_ylabel("Moran's I")
@@ -141,25 +141,25 @@ _ = ax.set_ylabel("Moran's I")
 
 Calculate LISA statistics for the areas
 
-```{python}
+```py
 lisa = esda.Moran_Local(glasgow['rank_std'], contiguity_r)
 ```
 
 Make a map of significant clusters at the 5%
 
-```{python}
+```py
 lisa.explore(glasgow)
 ```
 
 Create cluster maps for significance levels 1%
 
-```{python}
+```py
 lisa.explore(glasgow, crit_value=.01)
 ```
 
 Create cluster maps for significance levels 10%;
 
-```{python}
+```py
 lisa.explore(glasgow, crit_value=.1)
 ```
 
@@ -168,7 +168,7 @@ lisa.explore(glasgow, crit_value=.1)
 
 You can use a trick of simply overlaying them.
 
-```{python}
+```py
 m = lisa.explore(glasgow, crit_value=.1, tiles="CartoDB Positron")
 lisa.explore(glasgow, m=m)
 lisa.explore(glasgow, crit_value=.01, m=m)
@@ -176,7 +176,7 @@ lisa.explore(glasgow, crit_value=.01, m=m)
 
 But that probably won't cut it in most cases. So it is time for a composed multi-layer plot.
 
-```{python}
+```py
 glasgow["labels_001"] = lisa.get_cluster_labels(0.01)
 glasgow["labels_005"] = lisa.get_cluster_labels()
 glasgow["labels_01"] = lisa.get_cluster_labels(0.1)
@@ -200,7 +200,7 @@ glasgow.loc[(glasgow["labels_001"] == "High-Low")].plot(ax=ax, color="#fdae61", 
 
 Same can be done for interactive mapping.
 
-```{python}
+```py
 # m = glasgow.loc[(glasgow["labels_01"] == "High-High")].explore(color="#d7191c", opacity=.8, tiles="CartoDB Positron")
 # glasgow.loc[(glasgow["labels_01"] == "Low-Low")].explore(m=m, color="#2c7bb6", opacity=.8)
 # glasgow.loc[(glasgow["labels_01"] == "Low-High")].explore(m=m, color="#abd9e9", opacity=.8)
