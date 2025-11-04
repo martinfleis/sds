@@ -758,7 +758,7 @@ ul.task-list li input[type="checkbox"] {
 </div>
 </div>
 <div class="question">
-<p><strong>What is the difference between Queen, Rook, and Bishop contiguity?</strong></p>
+<p><strong>What is the difference between Queen, and Rook, and Bishop contiguity?</strong></p>
 <div class="choices">
 <div x-data="{ answer: '' , clear() { this.answer = '' }}">
 
@@ -766,7 +766,7 @@ ul.task-list li input[type="checkbox"] {
 <p></p><p><input class="form-check-input" type="radio" x-model="answer" value="no1"> <span id="no1" x-show="answer == $el.id" class="badge">✗</span>Queen and Rook both consider only shared edges, while Bishop considers both edges and vertices.</p><p></p>
 </div>
 <div class="choice correct-choice">
-<p></p><p><input class="form-check-input" type="radio" x-model="answer" value="correct"> <span id="correct" x-show="answer == $el.id" class="badge">✓</span>Queen considers neighbors that share edges and vertices, Rook considers only shared edges, Bishop considers shared vertices only.</p><p></p>
+<p></p><p><input class="form-check-input" type="radio" x-model="answer" value="correct"> <span id="correct" x-show="answer == $el.id" class="badge">✓</span>Queen considers neighbors that share at least a vertex, Rook considers only shared edges, Bishop considers shared vertices only that are not part of shared edges.</p><p></p>
 </div>
 <div class="choice">
 <p></p><p><input class="form-check-input" type="radio" x-model="answer" value="no3"> <span id="no3" x-show="answer == $el.id" class="badge">✗</span>Queen considers shared edges, Rook shared vertices, and Bishop considers diagonal neighbors.</p><p></p>
