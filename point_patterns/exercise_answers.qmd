@@ -86,10 +86,10 @@ airbnb.info()
 Measure mean, median, and mean weighted by a column of your choice.
 
 ```py
-mean_center = pointpats.centrography.mean_center(airbnb[["x", "y"]])
-med_center = pointpats.centrography.euclidean_median(airbnb[["x", "y"]])
+mean_center = pointpats.centrography.mean_center(airbnb)
+med_center = pointpats.centrography.euclidean_median(airbnb)
 weighted_mean = pointpats.centrography.weighted_mean_center(
-    airbnb[["x", "y"]], airbnb["calculated_host_listings_count"]
+    airbnb, airbnb["calculated_host_listings_count"]
 )
 ```
 
@@ -99,10 +99,10 @@ Can you plot them on a map?
 f, ax = plt.subplots()
 airbnb.plot(ax=ax, markersize=0.005, color="grey")
 
-ax.scatter(*mean_center, color="k", marker="o", label="Mean Center", alpha=0.8)
-ax.scatter(*med_center, color="r", marker="o", label="Median Center", alpha=0.8)
+ax.scatter(*mean_center.xy, color="k", marker="o", label="Mean Center", alpha=0.8)
+ax.scatter(*med_center.xy, color="r", marker="o", label="Median Center", alpha=0.8)
 ax.scatter(
-    *weighted_mean,
+    *weighted_mean.xy,
     color="pink",
     marker="o",
     label="Weighted Mean Center",
@@ -122,7 +122,7 @@ plt.xticks(rotation=90);
 Measure quadrat statistic
 
 ```py
-qstat = pointpats.QStatistic(airbnb[["x", "y"]].values, nx=6, ny=6)
+qstat = pointpats.QStatistic(airbnb, nx=6, ny=6)
 ```
 
 ```py
@@ -142,7 +142,7 @@ plt.xticks(rotation=90);
 How does it change when you change the grid size?
 
 ```py
-qstat = pointpats.QStatistic(airbnb[["x", "y"]].values, nx=12, ny=10)
+qstat = pointpats.QStatistic(airbnb, nx=12, ny=10)
 ```
 
 ```py
@@ -175,7 +175,7 @@ plt.xticks(rotation=90);
 
 ```py
 g_test = pointpats.distance_statistics.g_test(
-    airbnb[["x", "y"]].values,
+    airbnb,
     support=200,
     keep_simulations=True,
     hull=concave_hull.item(),
@@ -213,7 +213,7 @@ ax.set_xlim(0, 500);
 
 ```py
 f_test = pointpats.distance_statistics.f_test(
-    airbnb[["x", "y"]].values,
+    airbnb,
     support=200,
     keep_simulations=True,
     hull=concave_hull.item(),
