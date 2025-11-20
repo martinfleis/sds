@@ -98,13 +98,13 @@ elections = elections.set_index("name")
 elections.head()
 ```
 
-Second set of independent variables are reflecting population profile. 
-It is a subset from census, containing information about education, employment, living conditions, 
+Second set of independent variables are reflecting population profile.
+It is a subset from census, containing information about education, employment, living conditions,
 average age and other population characteristics.
 
 ```{python}
 population = pd.read_csv(
-    "https://martinfleischmann.net/sds/regression/data/census_data.csv"
+    "./data/census_data.csv"
 )
 population.head()
 ```
@@ -152,13 +152,13 @@ age and divorced rate.
 ```{python}
 independent_variables = [
     'AndrejBabis',
-    'without_education', 
+    'without_education',
     'undetermined',
-    'divorced', 
+    'divorced',
     'mean_age',
     "res_outside_units",
-    'single_households', 
-    'no_religion', 
+    'single_households',
+    'no_religion',
     'unemployed'
 ]
 ```
@@ -229,7 +229,7 @@ X_train.shape, X_test.shape
 
 While there is a large number of ML models available, your goal at the moment is to
 understand which ML model is better and how to fine-tune it but mainly, how to evaluate it using
-the spatial dimension. 
+the spatial dimension.
 
 At the beginning, it is always a good idea to check the performace of a linear model.
 So lets try Linear Regression, which we trained last lesson, but this time implementing it within the `linear_model` module of the
@@ -264,9 +264,9 @@ $R^2$ is a measure you should already be familiar with from the previous session
 linear regression. It expresses the proportion of variation of the target variable that
 could be predicted from the independent variables.
 
-It is always good to check both training and testing score to see if our model is overfitting. 
-Overfitting means creating a model that memorizes the training set so closely that the model makes 
-accurate predictions for training data but not for new data. 
+It is always good to check both training and testing score to see if our model is overfitting.
+Overfitting means creating a model that memorizes the training set so closely that the model makes
+accurate predictions for training data but not for new data.
 
 ```{python}
 print("LR train R2 score:", lr_model.score(X_train, y_train))
@@ -274,7 +274,7 @@ print("LR test R2 score:", lr_model.score(X_test, y_test))
 ```
 
 This baseline model is able to explain about 57% of variation, and gives similar results for training and testing,
- which means it is not overfitting. Not bad, but lets see, if we can use a non-linear model to get a better results. 
+ which means it is not overfitting. Not bad, but lets see, if we can use a non-linear model to get a better results.
  Let's not complicate the situation and stick to one of the
 common models - [random forest](https://en.wikipedia.org/wiki/Random_forest).
 
@@ -318,7 +318,7 @@ print("RF test R2 score:", rf_model.score(X_test, y_test))
 ```
 
 This random forest model is able to explain about 65% of variation, which is 8% better than the linear model.
-But we can see that there is a big difference between the training and testing score, meaning that our model makes 
+But we can see that there is a big difference between the training and testing score, meaning that our model makes
 accurate predictions for training data but is not able to generalize on new data.
 
 ### Model Tuning
@@ -350,7 +350,7 @@ print("Tunerd RF test R2 score:", tuned_rf_model.score(X_test, y_test))
 The tuned random forest model is able to explain about 65% of variation, and is much better in generalizing.
  The difference between training and testing score is much smaller.
 
-As mentioned above $R^2$ is not the only score we can get from the models. So let's checkout the 
+As mentioned above $R^2$ is not the only score we can get from the models. So let's checkout the
  *mean absolute error* and *root mean squared error*.
 
 #### Mean absolute error
@@ -882,7 +882,7 @@ print("BT train R2 score:", boosted_tree.score(X_train, y_train))
 print("BT test R2 score:", boosted_tree.score(X_test, y_test))
 ```
 
-As you can see, the gradient boosted tree over-performs the random forest model, and even without 
+As you can see, the gradient boosted tree over-performs the random forest model, and even without
 hyper-parameter tuning does not overfit. So let use it on our data using the spatial cross-validation.
 
 ```{python}
@@ -912,7 +912,7 @@ While the gradient boosted tree over-performs the random forest model, using the
 
 ### Hyper-parameter tuning
 
-When searching for an optimal model, you shall test different hyper-parameters. Let's test the performance 
+When searching for an optimal model, you shall test different hyper-parameters. Let's test the performance
 of a sequence of models comparing different way of measuring the loss and different learning rates.
 
 ```{python}
