@@ -79,7 +79,7 @@ It is a structure where nodes represent spatial relationships, and edges represe
 :::::
 
 :::::{.question}
-**What is the difference between Queen, Rook, and Bishop contiguity?**
+**What is the difference between Queen, and Rook, and Bishop contiguity?**
 
 ::::{.choices}
 
@@ -88,7 +88,7 @@ Queen and Rook both consider only shared edges, while Bishop considers both edge
 :::
 
 :::{.choice .correct-choice}
-Queen considers neighbors that share edges and vertices, Rook considers only shared edges, Bishop considers shared vertices only.
+Queen considers neighbors that share at least a vertex, Rook considers only shared edges, Bishop considers shared vertices only that are not part of shared edges.
 :::
 
 :::{.choice}

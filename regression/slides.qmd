@@ -151,6 +151,7 @@ single model across space is too restrictive
 #### Kernel type {.fragment .fade-in}
 #### Kernel size {.fragment .fade-in}
 #### Kernel shape {.fragment .fade-in}
+
 ---
 
 ![Illustration of a kernel by Fotheringham et al. (2002, p.44)](figures/bandwidth.png)

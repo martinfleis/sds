@@ -122,6 +122,23 @@ mi.I
 mi.p_sim
 ```
 
+Correlogram
+
+```py
+correlogram = esda.correlogram(
+  geometry=glasgow.centroid,
+  variable=glasgow["Rankv2"],
+)
+```
+
+Plot
+
+```py
+ax = correlogram.I.plot()
+ax.set_xlabel("Distance [m]")
+_ = ax.set_ylabel("Moran's I")
+```
+
 Calculate LISA statistics for the areas
 
 ```py

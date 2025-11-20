@@ -90,7 +90,7 @@ elections = gpd.read_file(
 )
 elections = elections.set_index("name") # <1>
 elections.explore(                      # <2>
-    "PetrPavel",                       # <3>
+    "PetrPavel",                        # <3>
     cmap="coolwarm",                    # <4>
     vmin=0,                             # <5>
     vmax=100,                           # <5>
@@ -472,6 +472,78 @@ seem to be positively correlated over space. In terms of your initial goal to fi
 spatial structure in the attitude towards elections, this view seems to align: if the
 vote had no such structure; it should not show a pattern over space -technically, it
 would show a random one.
+
+### Correlogram
+
+The outcome of the spatial autocorrelation assessment is heavily dependent on the spatial
+weights matrix that is used to represent spatial relations. It will look different for
+Queen contiguity and for k-nearest neighbor graph of 100 neighbors. It will look differently
+when using small distance band compared to a large one. Each of these is individually valid
+and the fact that they are different does not make one more "correct" than the other.
+The difference reflects the different degree of spatial similarity at different definitions
+of "neighbourhoods".
+
+This property can be used to gain insights into the spatial extent of autocorrelation
+and assessment of its change as we change the distance within which we consider other
+geometries as neighbors. For that, we use a concept of correlogram, which is similar
+to variogram you may know, but shows the change of the autocorrelation index depending
+on the change of the extent used to generate distance-based (KNN or band) weights.
+
+Given the data used here covers the entirety of Czechia, the distances to test would need reflect such scale. An easier option is to use the KNN definition of distance.
+
+```{python}
+k = [5, 10, 25, 50, 75, 100, 250, 500, 1000]  # <1>
+```
+1. Define options of number of nearest neighbors to test. We can leave this to the function but it defaults to 50 options which may take a while.
+
+Fitting a correlogram happens in a single function that returns a table of autocorrelation statistics.
+
+```{python}
+correlogram = esda.correlogram(
+  geometry=elections.representative_point(),               # <1>
+  variable=elections["PetrPavel"],  # <2>
+  support=k,   # <3>
+  distance_type="knn",   # <4>
+)
+```
+1. Geometry needs to be represented as points.
+2. Variable is your array of election results as above.
+3. Support reflects list of values at which to compute the autocorrelation statistic.
+4. Distance type can be either `"band"` for distance band (in meters) or `"knn"` for K-nearest neighbours.
+
+The correlogram returns a DataFrame that contains all the information you may possibly
+want. However, in most cases, you are interested in the actual value of the index. By
+default, `esda.correlogram` uses Moran's $I$, with the index being accessible as `correlogram.I`.
+
+```{python}
+correlogram.I
+```
+
+The correlogram is then a visualisation of the curve defined by this Series.
+
+```{python}
+#| fig-cap: Correlogram of Moran's I
+ax = correlogram.I.plot()
+ax.set_xlabel("K-nearest neighbors")
+_ = ax.set_ylabel("Moran's I")
+```
+
+You can read from the figure that while there is a relatively high spatial autocorrelation
+when considering a small number of nearest neighbours, it very quickly falls down as you
+consider larger neighbourhoods, showcasing the spatial extent of it.
+
+::: {.callout-tip}
+# Correlogram is not only Moran's $I$
+
+The correlogram can be used to show Moran's $I$ or any other autocorrlation statistic,
+like Geary's $C$ or Getis-Ord's $G$. You can also fit a non-parametric curve to
+estimate spatial autocorrelation as a function of distance, using
+[LOWESS smoother](https://en.wikipedia.org/wiki/Local_regression). This can be
+interpreted as the correlation between observations separated by *approximately*
+the distance on the horizontal axis. See the
+[documentation](https://github.com/pysal/esda/blob/main/notebooks/correlogram.ipynb) for
+details.
+:::
 
 ## Local Spatial autocorrelation
 

@@ -11,39 +11,39 @@ Here is one way of getting the solution. There are others, feel free to
 share yours.
 
 
-```py
+```{python}
 import geopandas as gpd
 import contextily as ctx
 ```
 
 Download data.
 
-```py
+```{python}
 price = gpd.read_file("https://martinfleischmann.net/sds/geographic_data/data/SED_CenovaMapa_p_shp.zip")
 districts = gpd.read_file("https://martinfleischmann.net/sds/geographic_data/data/MAP_MESTSKECASTI_P_shp.zip")
 ```
 
-```py
+```{python}
 price["CENA"] = price["CENA"].replace("N", None).astype('float')
 ```
 
 - Plot the price.
 - Plot boundaries on top. Try different colours to get a nice combination of colours.
 - Show a legend.
-- Use CartoDB Voyager or CartoDB Dark Matter basemap.
+- Use CartoDB Voyager or CartoDB Dark Matter basemap. Can you do that in a static plot as well?
 - Can you figure out how to change the colormap?
 - Can you change the transparency of polygons?
 
 Interactive:
 
-```py
+```{python}
 m = price.explore("CENA", legend=True, tiles="CartoDB Voyager", cmap="plasma", style_kwds={"fillOpacity": .5})
 districts.boundary.explore(m=m, color="red")
 ```
 
 Static:
 
-```py
+```{python}
 ax = price.plot("CENA", legend=True, cmap="plasma", alpha=.5)
 districts.boundary.plot(ax=ax, color="red")
 ctx.add_basemap(ax=ax, crs=price.crs, source="CartoDB Voyager")
@@ -51,40 +51,40 @@ ctx.add_basemap(ax=ax, crs=price.crs, source="CartoDB Voyager")
 
 Create a convex hull around each polygon in price.
 
-```py
+```{python}
 price["hull"] = price.convex_hull
 ```
 
 Calculate the area of these convex hulls.
 
-```py
+```{python}
 price["hull_area"] = price["hull"].area
 ```
 
-Find the convex hulls with an area between 40th a 60th percentile in the GeoDataFrame. Create a new object (e.g. `average`) only with them.
+Find the convex hulls with an area between 30th a 70th percentile in the GeoDataFrame. Create a new object (e.g. `average`) only with them.
 
-```py
-min_bound = price["hull_area"].quantile(.4)
-max_bound = price["hull_area"].quantile(.6)
+```{python}
+min_bound = price["hull_area"].quantile(.3)
+max_bound = price["hull_area"].quantile(.7)
 average = price.loc[(price["hull_area"] > min_bound) & (price["hull_area"] < max_bound)]
 ```
 
-Create a multi-layer map of Prague where the smallest areas are coloured in one colour, and the rest appear in another. Try making it legible enough.
+Create a multi-layer map of Prague where the areas within these percentiles are coloured in one colour, and the rest appear in another. Try making it legible enough.
 
-```py
+```{python}
 ax = price.plot(color="lightgray")
 average.plot(color="red", ax=ax)
 ```
 
 Join the two GeoDataFrame using .sjoin() or .overlay() methods.
 
-```py
+```{python}
 price_w_district = price.sjoin(districts)
 ```
 
 Is the mean price higher in Praha 3 or Praha 6?
 
-```py
+```{python}
 sorted_price = price_w_district.groupby("NAZEV_MC")["CENA"].mean().sort_values()
 sorted_price
 ```
@@ -95,13 +95,13 @@ Which district is the cheapest?
 
 Again, you can read that it is Praha-Přední Kopanina. But if you want to get that programmatically, you will need to access the index.
 
-```py
+```{python}
 sorted_price.idxmin()
 ```
 
 What is the difference between the cheapest and the most expensive one?
 
-```py
+```{python}
 sorted_price.max() - sorted_price.min()
 ```
 

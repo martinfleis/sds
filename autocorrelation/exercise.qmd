@@ -41,6 +41,11 @@ With the data prepared like this:
 - Calculate Moran's $I$
 - *What conclusions can you reach from the Moran Plot and Moran's I? What's the main spatial pattern? Does it agree with Join counts?*
 
+### Correlogram
+
+- Generate a correlogram of autocorrelation of `"Rankv2"`.
+- *What can you tell about the spatial extent of autocorrelation?*
+
 ## Local spatial autocorrelation
 
 Now that you have a good sense of the overall pattern in the SIMD dataset, let's move to the local scale:

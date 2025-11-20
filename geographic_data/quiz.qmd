@@ -15,7 +15,7 @@ Check how much you remember from previous sections by answering the questions be
 To handle time series data.
 :::
 
-:::{.choice.correct-choice}
+:::{.choice .correct-choice}
 To manage geospatial data with geometry support.
 :::
 
@@ -177,9 +177,9 @@ Convert one `GeoDataFrame` to a `DataFrame`.
 :::::{.question}
 **How would you reproject a `GeoDataFrame` called `gdf` to EPSG:3857?**
 
-::::{.choices .correct-choice}
+::::{.choices}
 
-:::{.choice}
+:::{.choice .correct-choice}
 `gdf.to_crs(3857)`.
 :::
 
