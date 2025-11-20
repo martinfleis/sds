@@ -99,14 +99,13 @@ elections.head()
 ```
 
 Second set of independent variables are reflecting population profile.
-It is a subset from census, containing information about education, employment, living conditions,
-average age and other population characteristics.
+It is a subset from census, containing information about education, employment, living conditions, average age and other population characteristics.
 
 ```{python}
-population = pd.read_csv(
+census_data = pd.read_csv(
     "./data/census_data.csv"
 )
-population.head()
+census_data.head()
 ```
 
 
@@ -121,8 +120,6 @@ executions_data = (
     elections.merge(executions, right_on = "kod_obce", left_on="nationalCode")
     .merge(census_data, on="kod_obce")
 )
-)
-
 executions_data.head()
 ```
 
@@ -247,7 +244,7 @@ executions. Normally, you do the prediction using the unseen portion of the data
 the train-test split.
 
 ```{python}
-pred_test = basic_model.predict(X_test)
+pred_test = lr_model.predict(X_test)
 pred_test
 ```
 
@@ -274,8 +271,8 @@ print("LR test R2 score:", lr_model.score(X_test, y_test))
 ```
 
 This baseline model is able to explain about 57% of variation, and gives similar results for training and testing,
- which means it is not overfitting. Not bad, but lets see, if we can use a non-linear model to get a better results.
- Let's not complicate the situation and stick to one of the
+which means it is not overfitting (linear regression cannot really overfit). Not bad, but lets see, if we can use a non-linear model to get a better results.
+Let's not complicate the situation and stick to one of the
 common models - [random forest](https://en.wikipedia.org/wiki/Random_forest).
 
 
@@ -343,12 +340,14 @@ pred_test = tuned_rf_model.predict(X_test)
 ### Evaluation
 
 ```{python}
-print("Tuned RF train R2 score:", tuned_rf_model.score(X_train, y_train))
-print("Tunerd RF test R2 score:", tuned_rf_model.score(X_test, y_test))
+r2_train = tuned_rf_model.score(X_train, y_train)
+r2_test = tuned_rf_model.score(X_test, y_test)
+
+print(f"Tuned RF train R2 score: {r2_train}")
+print(f"Tuned RF test R2 score: {r2_test}")
 ```
 
-The tuned random forest model is able to explain about 65% of variation, and is much better in generalizing.
- The difference between training and testing score is much smaller.
+The tuned random forest model is able to explain about 65% of variation, and is much better in generalizing. The difference between training and testing score is much smaller.
 
 As mentioned above $R^2$ is not the only score we can get from the models. So let's checkout the
  *mean absolute error* and *root mean squared error*.
@@ -387,7 +386,7 @@ summary = f"""\
 Evaluation metrics
 ==================
 Random Forest:
-  R2:   {round(r2, 3)}
+  R2:   {round(r2_test, 3)}
   MAE:  {round(mean_absolute_error, 3)}
   RMSE: {round(rmse, 3)}
 """ # <1>
@@ -428,7 +427,7 @@ not always the case when dealing with spatial data.
 
 ```{python}
 pred_cross_val = model_selection.cross_val_predict(
-    basic_model,
+    tuned_rf_model,
     independent,
     target,
     n_jobs=-1,
@@ -524,13 +523,13 @@ bit easier, assign the cross-validated prediction as a new column.
 executions_data["prediction"] = pred_cross_val
 ```
 
-Using `groupby`, you can group the data by `"okres"` and check the metric within each
+Using `groupby`, you can group the data by `"kod_okresu"` and check the metric within each
 one. Better to measure metrics derived from real values than $R^2$ as the latter is not
 well comparable across different datasets (each *okres* would be its own dataset in this
 logic).
 
 ```{python}
-grouped = executions_data.groupby("okres")[  # <1>
+grouped = executions_data.groupby("nazev_okresu")[  # <1>
     ["podil_osob_v_exekuci", "prediction"]   # <1>
 ] # <1>
 
@@ -546,7 +545,7 @@ block_rmse = grouped.apply(
 )
 ```
 
-1.  Group by `"okres"` and selected a subset of relevant columns to work on.
+1.  Group by `"kod_okresu"` and selected a subset of relevant columns to work on.
 2.  Use `apply` together with the *lambda* function defined on the fly to pass the
     relevant columns of each group as parameters of the metric function.
 
@@ -570,7 +569,7 @@ columns as they are much shorter - only one value per *okres*. You need to merge
 
 ```{python}
 executions_data = executions_data.merge(
-    spatial_metrics, left_on="okres", right_index=True
+    spatial_metrics, left_on="nazev_okresu", right_index=True
 )
 executions_data.head(3)
 ```
@@ -788,7 +787,7 @@ executions_data.plot(
 Spatial cross-validation mitigates the issue by including a spatial dimension in the
 train-test split. The aim is to divide the whole study area into smaller regions and
 allocate whole regions to train and test splits. You can do that based on many criteria,
-but it is handy to have a variable representing those regions as the `"okres"` column in
+but it is handy to have a variable representing those regions as the `"kod_okresu"` column in
 your DataFrame.
 
 Instead of using `KFold`, use `GroupKFold`, which ensures that observations are
@@ -805,7 +804,7 @@ Generate the same visualisation as above, with one difference - specifying the g
 # | fig-cap: Allocation of polygons to k folds under spatial sampling
 splits = gkf.split(
     independent,
-    groups=executions_data["okres"], # <1>
+    groups=executions_data["kod_okresu"], # <1>
 )
 split_label = np.empty(len(independent), dtype=float)
 for i, (train, test) in enumerate(splits):
@@ -816,7 +815,7 @@ executions_data.plot(
 ).set_axis_off()
 ```
 
-1.  Use the `"okres"` column as an indication of groups that shall not be broken.
+1.  Use the `"kod_okresu"` column as an indication of groups that shall not be broken.
 
 Cross-validated prediction can then be performed using these splits, ensuring that the
 spatial leakage between test and train is limited in each fold.
@@ -833,7 +832,7 @@ pred_spatial_cv = model_selection.cross_val_predict(
     rf_spatial_cv,
     independent,
     target,
-    groups=executions_data["okres"], # <1>
+    groups=executions_data["kod_okresu"], # <1>
     cv=gkf, # <2>
     n_jobs=-1,
 )
@@ -890,7 +889,7 @@ pred_boosted_tree = model_selection.cross_val_predict(
     boosted_tree,
     independent,
     target,
-    groups=executions_data.okres,
+    groups=executions_data.kod_okresu,
     cv=gkf,
 )
 
@@ -926,7 +925,7 @@ boosted_tree = ensemble.GradientBoostingRegressor(random_state=0)  # <2>
 grid_search = model_selection.GridSearchCV( # <3>
     boosted_tree, param_grid, cv=gkf # <3>
 ) # <3>
-grid_search.fit(independent, target, groups=executions_data.okres) # <4>
+grid_search.fit(independent, target, groups=executions_data.kod_okresu) # <4>
 ```
 
 1.  Specify the parameters for a grid search. Since we have two dimensions here (loss
