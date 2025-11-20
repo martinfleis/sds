@@ -42,7 +42,7 @@ import numpy as np
 import pandas as pd
 import pyinterpolate
 from libpysal import graph
-from sklearn import ensemble, metrics, model_selection, svm
+from sklearn import ensemble, linear_model, metrics, model_selection
 ```
 
 ## Data
@@ -98,25 +98,16 @@ elections = elections.set_index("name")
 elections.head()
 ```
 
-Second set of independent variables are reflecting education profile. It is the same
-dataset you have used last week. This time, you will use only a subset though.
+Second set of independent variables are reflecting population profile. It is a subset from census, containing information about education, employment, living conditions, average age and other population characteristics.
 
 ```{python}
-education = pd.read_csv(
-    "https://martinfleischmann.net/sds/regression/data/education.csv"
+population = pd.read_csv(
+    "https://martinfleischmann.net/sds/regression/data/census_data.csv"
 )
-education.head()
+population.head()
 ```
 
-On top of that, you will use the average population age and a proportion of divorced in
-the population.
 
-```{python}
-age_divorces = pd.read_csv(
-    "https://martinfleischmann.net/sds/tree_regression/data/cz_age_divorces_2021.csv"
-)
-age_divorces.head()
-```
 
 Given each dataset is in its own (Geo)DataFrame now, the first thing is to merge them
 together to have a single GeoDataFrame to work with throughout the notebook. Each of
@@ -125,11 +116,11 @@ the data together.
 
 ```{python}
 executions_data = (
-    elections
-    .merge(executions, left_on="nationalCode", right_on="kod_obce")
-    .merge(education, left_on="nationalCode", right_on="uzemi_kod")
-    .merge(age_divorces, left_on="nationalCode", right_on="uzemi_kod")
-    )
+    elections.rename(columns={"nationalCode": "kod_obce"})
+    .merge(executions, on="kod_obce")
+    .merge(census_data, on="kod_obce")
+)
+
 executions_data.head()
 ```
 
@@ -158,12 +149,15 @@ age and divorced rate.
 
 ```{python}
 independent_variables = [
-    "AndrejBabis",
-    "undetermined",
-    "masters_degree",
-    "primary_education",
-    "mean_age",
-    "divorced",
+    'AndrejBabis',
+    'without_education', 
+    'undetermined',
+    'divorced', 
+    'mean_age',
+    "res_outside_units",
+    'single_households', 
+    'no_religion', 
+    'unemployed'
 ]
 ```
 
@@ -172,7 +166,7 @@ executions.
 
 ```{python}
 # | fig-cap: Spatial distribution of independent variables
-fig, axs = plt.subplots(3, 2)
+fig, axs = plt.subplots(3, 3)
 for variable, ax in zip(independent_variables, axs.flatten()):
     executions_data.plot(
         variable,
@@ -231,18 +225,62 @@ X_train.shape, X_test.shape
 
 ### Training
 
-While there is a large number of ML models available, your goal at the moment is not to
-understand which ML model is better and how to fine-tune it but how to evaluate it using
-the spatial dimension. So, let's not complicate the situation and stick to one of the
+While there is a large number of ML models available, your goal at the moment is to
+understand which ML model is better and how to fine-tune it but mainly,how to evaluate it using
+the spatial dimension. 
+
+At the beginning, it is always a good idea to check the performace of a linear model. So lets try Linear Regression, which we trained last lesson, but this time implementing it within the `linear_model` module of the
+`scikit-learn` library.
+
+```{python}
+lr_model = ensemble.RandomForestRegressor()
+lr_model.fit(X_train, y_train)
+```
+
+### Predicting
+
+The trained model can be directly used to predict the value, the proportion of
+executions. Normally, you do the prediction using the unseen portion of the data from
+the train-test split.
+
+```{python}
+pred_test = basic_model.predict(X_test)
+pred_test
+```
+
+### Evaluation
+
+Evaluation is usually composed a series of measurements comparing the expected and
+predicted values and assessing how close the result is. Regression problems typically
+use $R^2$, *mean absolute error*, or *root mean squared error* among others. Let's stick
+to these three for now. All are directly implemented in scikit-learn.
+
+#### R-squared
+
+$R^2$ is a measure you should already be familiar with from the previous session on
+linear regression. It expresses the proportion of variation of the target variable that
+could be predicted from the independent variables.
+
+### Overfitting
+
+It is always good to check both training and testing score to see if our model is overfitting. Overfitting means creating a model that memorizes the training set so closely that the model makes accurate predictions for training data but not for new data. 
+
+```{python}
+print("LR train R2 score:", lr_model.score(X_train, y_train))
+print("RF test R2 score:", lr_model.score(X_test, y_test))
+```
+
+This baseline model is able to explain about 57% of variation, and gives similar results for training and testing, which means it is not overfitting. Not bad, but lets see, if can can use a non-linear model to get a better results. Let's not complicate the situation and stick to one of the
 common models - [random forest](https://en.wikipedia.org/wiki/Random_forest).
+
 
 Random forest regressor is implemented within the `ensemble` module of the
 `scikit-learn` and has the API you should already be familiar with. Get the training
 data and fit the baseline model.
 
 ```{python}
-basic_model = ensemble.RandomForestRegressor(n_jobs=-1, random_state=0)
-basic_model.fit(X_train, y_train)
+rf_model = ensemble.RandomForestRegressor(n_jobs=-1, random_state=0)
+rf_model.fit(X_train, y_train)
 ```
 
 1.  `n_jobs=-1` specifies that the algorithm should use all available cores. Otherwise,
@@ -258,33 +296,51 @@ executions. Normally, you do the prediction using the unseen portion of the data
 the train-test split.
 
 ```{python}
-pred_test = basic_model.predict(X_test)
+pred_test = rf_model.predict(X_test)
 pred_test
 ```
 
 The output is a simple numpy array aligned with the values from `X_test`. What this
 array is mostly used for is the model evaluation.
 
-### Evaluation
+### Overfitting
 
-Evaluation is usually composed a series of measurements comparing the expected and
-predicted values and assessing how close the result is. Regression problems typically
-use $R^2$, *mean absolute error*, or *root mean squared error* among others. Let's stick
-to these three for now. All are directly implemented in scikit-learn.
-
-#### R-squared
-
-$R^2$ is a measure you should already be familiar with from the previous session on
-linear regression. It expresses the proportion of variation of the target variable that
-could be predicted from the independent variables.
+Again, Random Forest, like any other model is prone to overfitting, so lets check the results.
 
 ```{python}
-r2 = metrics.r2_score(y_test, pred_test)
-r2
+print("RF train R2 score:", rf_model.score(X_train, y_train))
+print("RF test R2 score:", rf_model.score(X_test, y_test))
 ```
 
-This baseline model is able to explain about 56% of variation. Not bad, given the
-limited data and no fine-tuning.
+This random forest model is able to explain about 65% of variation, which is 8% better than the linear model. But we can see that there is a big difference between the training and testing score, meaning that our model makes accurate predictions for training data but is not able to generalize on new data.
+
+### Model Tuning
+
+While Random Forest is a robust model, fine-tuning its hyperparameters such as the maximum depth and,  minimum number of samples required to split an internal node or minimum number of samples per leaf can improve its prediction and performance.
+
+```{python}
+tuned_rf_model = ensemble.RandomForestRegressor(
+    max_depth=10,
+    min_samples_split=10,
+    min_samples_leaf=5,
+    n_jobs=-1,
+    random_state=0)
+
+tuned_rf_model.fit(X_train, y_train)
+pred_test = tuned_rf_model.predict(X_test)
+```
+
+### Evaluation
+
+```{python}
+print("Tuned RF train R2 score:", tuned_rf_model.score(X_train, y_train))
+print("Tunerd RF test R2 score:", tuned_rf_model.score(X_test, y_test))
+```
+
+The tuned random forest model is able to explain about 65% of variation, and is much better in generalizing. The difference between training and testing score is much smaller.
+
+As mentioned above $R^2$ is not the only score we can get from the models. So let's checkout the 
+ *mean absolute error* and *root mean squared error*.
 
 #### Mean absolute error
 
@@ -297,7 +353,7 @@ mean_absolute_error = metrics.mean_absolute_error(y_test, pred_test)
 mean_absolute_error
 ```
 
-Here, you can observe that the error is about 1.6% on average. But given the average
+Here, you can observe that the error is about 1.53% on average. But given the average
 rate of executions is 4.95%, it is quite a bit of spread.
 
 #### Root mean squared error
@@ -755,7 +811,12 @@ Cross-validated prediction can then be performed using these splits, ensuring th
 spatial leakage between test and train is limited in each fold.
 
 ```{python}
-rf_spatial_cv = ensemble.RandomForestRegressor(random_state=0, n_jobs=-1)
+rf_spatial_cv = ensemble.RandomForestRegressor(
+    max_depth=10,
+    min_samples_split=10,
+    min_samples_leaf=5,
+    n_jobs=-1,
+    random_state=0)
 
 pred_spatial_cv = model_selection.cross_val_predict(
     rf_spatial_cv,
@@ -798,11 +859,21 @@ evaluation, let's have a look at some other models than Random Forest.
 
 The API of them all will be mostly the same but note that some (like support vector
 regressor for example), may need data standardisation. For a comparison, check the
-performance of out-of-the-shelf Gradient Boosted Tree on our data using the spatial
-cross-validation.
+performance of out-of-the-shelf Gradient Boosted Tree.
 
 ```{python}
 boosted_tree = ensemble.GradientBoostingRegressor()
+boosted_tree.fit(X_train, y_train)
+```
+
+```{python}
+print("BT train R2 score:", boosted_tree.score(X_train, y_train))
+print("BT test R2 score:", boosted_tree.score(X_test, y_test))
+```
+
+As you can see, the gradient boosted tree over-performs the random forest model, and even weithout hyper-parameter tunig does not overfit. So let use it  on our data using the spatial cross-validation.
+
+```{python}
 pred_boosted_tree = model_selection.cross_val_predict(
     boosted_tree,
     independent,
@@ -824,14 +895,12 @@ Gradient Boosted Tree with spatial cross-validation (k-fold):
 print(summary)
 ```
 
-As you can see, the gradient boosted tree over-performs the random forest model.
-However, using the default parameters may not yield the optimal model.
+
+While the gradient boosted tree over-performs the random forest model, using the default parameters may not yield the optimal model.
 
 ### Hyper-parameter tuning
 
-When searching for an optimal model, you shall test different hyper-parameters. Let's
-stick to the gradient boosted tree for now and test the performance of a sequence of
-models comparing different way of measuring the loss and different learning rates.
+When searching for an optimal model, you shall test different hyper-parameters. Let's test the performance of a sequence of models comparing different way of measuring the loss and different learning rates.
 
 ```{python}
 param_grid = {  # <1>
@@ -906,7 +975,7 @@ feature_importance.sort_values()
 1.  Extract feature importance and wrap them into a Series indexed by variable names for
     easier interpretation.
 
-Two out of the six independent variables account for mode than 66% of the model
+Two out of the six independent variables account for mode than 60% of the model
 performance. Let's see that visually.
 
 ```{python}
@@ -914,9 +983,9 @@ performance. Let's see that visually.
 feature_importance.sort_values(ascending=False).plot.bar()
 ```
 
-The rate of divorces playing a role is a bit expected. What is really interesting is
+The unemployment rate playing a role is a bit expected. What is really interesting is
 that the most important variable is the proportion of population with *undetermined*
-education level. While many other types of information are coming from various national
+education level. While some other types of information are coming from various national
 registries, the education is likely dependent on the information provided during the
 Census. And it seems, that people who struggle with executions do not trust the
 government enough, to provide such a basic data.
