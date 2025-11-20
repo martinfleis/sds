@@ -98,7 +98,9 @@ elections = elections.set_index("name")
 elections.head()
 ```
 
-Second set of independent variables are reflecting population profile. It is a subset from census, containing information about education, employment, living conditions, average age and other population characteristics.
+Second set of independent variables are reflecting population profile. 
+It is a subset from census, containing information about education, employment, living conditions, 
+average age and other population characteristics.
 
 ```{python}
 population = pd.read_csv(
@@ -116,9 +118,9 @@ the data together.
 
 ```{python}
 executions_data = (
-    elections.rename(columns={"nationalCode": "kod_obce"})
-    .merge(executions, on="kod_obce")
+    elections.merge(executions, right_on = "kod_obce", left_on="nationalCode")
     .merge(census_data, on="kod_obce")
+)
 )
 
 executions_data.head()
@@ -226,14 +228,15 @@ X_train.shape, X_test.shape
 ### Training
 
 While there is a large number of ML models available, your goal at the moment is to
-understand which ML model is better and how to fine-tune it but mainly,how to evaluate it using
+understand which ML model is better and how to fine-tune it but mainly, how to evaluate it using
 the spatial dimension. 
 
-At the beginning, it is always a good idea to check the performace of a linear model. So lets try Linear Regression, which we trained last lesson, but this time implementing it within the `linear_model` module of the
+At the beginning, it is always a good idea to check the performace of a linear model.
+So lets try Linear Regression, which we trained last lesson, but this time implementing it within the `linear_model` module of the
 `scikit-learn` library.
 
 ```{python}
-lr_model = ensemble.RandomForestRegressor()
+lr_model = linear_model.LinearRegression()
 lr_model.fit(X_train, y_train)
 ```
 
@@ -261,16 +264,18 @@ $R^2$ is a measure you should already be familiar with from the previous session
 linear regression. It expresses the proportion of variation of the target variable that
 could be predicted from the independent variables.
 
-### Overfitting
-
-It is always good to check both training and testing score to see if our model is overfitting. Overfitting means creating a model that memorizes the training set so closely that the model makes accurate predictions for training data but not for new data. 
+It is always good to check both training and testing score to see if our model is overfitting. 
+Overfitting means creating a model that memorizes the training set so closely that the model makes 
+accurate predictions for training data but not for new data. 
 
 ```{python}
 print("LR train R2 score:", lr_model.score(X_train, y_train))
-print("RF test R2 score:", lr_model.score(X_test, y_test))
+print("LR test R2 score:", lr_model.score(X_test, y_test))
 ```
 
-This baseline model is able to explain about 57% of variation, and gives similar results for training and testing, which means it is not overfitting. Not bad, but lets see, if can can use a non-linear model to get a better results. Let's not complicate the situation and stick to one of the
+This baseline model is able to explain about 57% of variation, and gives similar results for training and testing,
+ which means it is not overfitting. Not bad, but lets see, if we can use a non-linear model to get a better results. 
+ Let's not complicate the situation and stick to one of the
 common models - [random forest](https://en.wikipedia.org/wiki/Random_forest).
 
 
@@ -305,18 +310,22 @@ array is mostly used for is the model evaluation.
 
 ### Overfitting
 
-Again, Random Forest, like any other model is prone to overfitting, so lets check the results.
+Again, random forest, like most of the models is prone to overfitting, so lets check the results.
 
 ```{python}
 print("RF train R2 score:", rf_model.score(X_train, y_train))
 print("RF test R2 score:", rf_model.score(X_test, y_test))
 ```
 
-This random forest model is able to explain about 65% of variation, which is 8% better than the linear model. But we can see that there is a big difference between the training and testing score, meaning that our model makes accurate predictions for training data but is not able to generalize on new data.
+This random forest model is able to explain about 65% of variation, which is 8% better than the linear model.
+But we can see that there is a big difference between the training and testing score, meaning that our model makes 
+accurate predictions for training data but is not able to generalize on new data.
 
 ### Model Tuning
 
-While Random Forest is a robust model, fine-tuning its hyperparameters such as the maximum depth and,  minimum number of samples required to split an internal node or minimum number of samples per leaf can improve its prediction and performance.
+While random forest is a robust model, fine-tuning its hyperparameters such as the maximum depth and,
+ minimum number of samples required to split an internal node or minimum number of samples per leaf can improve
+  its prediction and performance. For more information check out the documentation.
 
 ```{python}
 tuned_rf_model = ensemble.RandomForestRegressor(
@@ -324,7 +333,8 @@ tuned_rf_model = ensemble.RandomForestRegressor(
     min_samples_split=10,
     min_samples_leaf=5,
     n_jobs=-1,
-    random_state=0)
+    random_state=0,
+)
 
 tuned_rf_model.fit(X_train, y_train)
 pred_test = tuned_rf_model.predict(X_test)
@@ -337,7 +347,8 @@ print("Tuned RF train R2 score:", tuned_rf_model.score(X_train, y_train))
 print("Tunerd RF test R2 score:", tuned_rf_model.score(X_test, y_test))
 ```
 
-The tuned random forest model is able to explain about 65% of variation, and is much better in generalizing. The difference between training and testing score is much smaller.
+The tuned random forest model is able to explain about 65% of variation, and is much better in generalizing.
+ The difference between training and testing score is much smaller.
 
 As mentioned above $R^2$ is not the only score we can get from the models. So let's checkout the 
  *mean absolute error* and *root mean squared error*.
@@ -871,7 +882,8 @@ print("BT train R2 score:", boosted_tree.score(X_train, y_train))
 print("BT test R2 score:", boosted_tree.score(X_test, y_test))
 ```
 
-As you can see, the gradient boosted tree over-performs the random forest model, and even weithout hyper-parameter tunig does not overfit. So let use it  on our data using the spatial cross-validation.
+As you can see, the gradient boosted tree over-performs the random forest model, and even without 
+hyper-parameter tuning does not overfit. So let use it on our data using the spatial cross-validation.
 
 ```{python}
 pred_boosted_tree = model_selection.cross_val_predict(
@@ -900,7 +912,8 @@ While the gradient boosted tree over-performs the random forest model, using the
 
 ### Hyper-parameter tuning
 
-When searching for an optimal model, you shall test different hyper-parameters. Let's test the performance of a sequence of models comparing different way of measuring the loss and different learning rates.
+When searching for an optimal model, you shall test different hyper-parameters. Let's test the performance 
+of a sequence of models comparing different way of measuring the loss and different learning rates.
 
 ```{python}
 param_grid = {  # <1>
