@@ -498,14 +498,12 @@ admin_level_9 = ox.features_from_place("Budapest", {"admin_level": "9"})    # <1
 districts = admin_level_9[admin_level_9.geom_type == "Polygon"][    # <2>
     ["name", "name:en", "geometry"]     # <3>
 ]
-districts["key"] = range(len(districts))    # <4>
-districts = districts.to_crs(pop_density.rio.crs)  #<5>
+districts = districts.to_crs(pop_density.rio.crs)  #<4>
 ```
 1. Use `features_from_place` to download features from Budapest. But filter only those tagged with the `admin_level` equal to 9.
 2. Filter only polygons. The `GeoDataFrame` coming from `osmnx` also contains many LineStrings.
 3. Retain only three columns that may be useful.
-4. Create a new column with a _key_ - an integer value unique to each observation. That will be useful later.
-5. Ensure the geometry uses the same CRS as the grid.
+4. Ensure the geometry uses the same CRS as the grid.
 
 ### Plotting raster and vector together
 
