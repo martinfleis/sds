@@ -1,10 +1,9 @@
-[project]
+[workspace]
 authors = ["Martin Fleischmann <martin@martinfleischmann.net>"]
 channels = ["conda-forge"]
 description = "A course on spatial data science in Python"
 name = "sds"
 platforms = ["win-64", "linux-64", "osx-64", "osx-arm64"]
-version = "24.10"
 
 [tasks]
 

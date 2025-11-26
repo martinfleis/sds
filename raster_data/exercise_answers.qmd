@@ -5,7 +5,7 @@ format: html
 
 One solution. You may have yours.
 
-```{python}
+```py
 import datashader as ds
 import geopandas as gpd
 import rioxarray
@@ -17,7 +17,7 @@ from geocube.api.core import make_geocube
 
 Load `KEN_population_v2_0_gridded.tif` and `KEN_building_class_metrics_v1_0_residential_count.tif` files.
 
-```{python}
+```py
 population = rioxarray.open_rasterio(
     "/Users/martin/Downloads/KEN_population_v2_0_gridded 2/KEN_population_v2_0_gridded.tif",
     masked=True
@@ -30,7 +30,7 @@ buildings = rioxarray.open_rasterio(
 
 Plot at least one of them in their full extent.
 
-```{python}
+```py
 canvas = ds.Canvas(plot_width=600, plot_height=600)
 agg = canvas.raster(population.sel(band=1))
 agg.plot(cmap="cividis")
@@ -38,7 +38,7 @@ agg.plot(cmap="cividis")
 
 Clip them both to the extent of the `"Mombasa"` functional urban area from GHSL.
 
-```{python}
+```py
 fua_url = (
     "https://martinfleischmann.net/sds/raster_data/data/"
     "GHS_FUA_UCDB2015_GLOBE_R2019A_54009_1K_V1_0.zip"
@@ -48,7 +48,7 @@ fuas = gpd.read_file(p)
 mombasa = fuas.query("eFUA_name == 'Mombasa'")
 ```
 
-```{python}
+```py
 population_mombasa = population.rio.clip(
     mombasa.to_crs(population.rio.crs).geometry
 )
@@ -59,50 +59,50 @@ buildings_mombasa = buildings.rio.clip(
 
 What is the maximum population per hectare in Mombasa?
 
-```{python}
+```py
 population_mombasa.max()
 ```
 
 Reproject one to match the other.
 
-```{python}
+```py
 buildings_aligned = buildings_mombasa.rio.reproject_match(population_mombasa)
 ```
 
  Normalise the population with the building count.
 
-```{python}
+```py
 norm_pop = population_mombasa / buildings_aligned
 ```
 
-```{python}
+```py
 norm_pop.sel(band=1).plot()
 ```
 
 Save the result as a GeoTIFF.
 
-```{python}
+```py
 norm_pop.rio.to_raster("normalised_population.tif")
 ```
 
 If you have time, you can also figure out how many buildings are per district in Mombasa. Those are in OpenStreetMap as `admin_level==6`.
 
-```{python}
+```py
 admin = ox.features_from_place("Mombasa", {"admin_level": "6"})
 districts = admin[admin.geom_type == "Polygon"][
     ["name", "geometry"]
 ]
 ```
 
-```{python}
+```py
 districts
 ```
 
-```{python}
+```py
 buildings_aligned = buildings_aligned.sel(band=1).squeeze()
 ```
 
-```{python}
+```py
 zonal_stats = buildings_aligned.drop_vars("spatial_ref").xvec.zonal_stats(
     geometry=districts.geometry.to_crs(buildings_aligned.rio.crs),
     x_coords="x",
@@ -112,17 +112,17 @@ zonal_stats = buildings_aligned.drop_vars("spatial_ref").xvec.zonal_stats(
 zonal_stats
 ```
 
-```{python}
+```py
 f, ax = zonal_stats.xvec.plot(figsize=(12, 12))
 ```
 
 Extract values for 100 random points from each Mombasa district.
 
-```{python}
+```py
 points = districts.sample_points(100).explode(index_parts=True)
 ```
 
-```{python}
+```py
 points_w_value = population_mombasa.xvec.extract_points(
     points=points.to_crs(population_mombasa.rio.crs),
     x_coords="x",
@@ -131,7 +131,7 @@ points_w_value = population_mombasa.xvec.extract_points(
 points_dataframe = points_w_value.xvec.to_geopandas()
 ```
 
-```{python}
+```py
 points_dataframe.plot(1, markersize=0.1)
 ```
 
