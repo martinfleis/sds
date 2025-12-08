@@ -107,6 +107,7 @@ Spatial dimension is squeezed in<br>non-spatial models and methods.
 
 ### Data leakage
 #### Spatial cross-validation {.fragment .fade-in}
+
 ---
 
 ### Spatial evaluation
