@@ -103,7 +103,7 @@ It is a subset from census, containing information about education, employment, 
 
 ```{python}
 census_data = pd.read_csv(
-    "./data/census_data.csv"
+    "https://martinfleischmann.net/sds/tree_regression/data/census_data.csv"
 )
 census_data.head()
 ```
