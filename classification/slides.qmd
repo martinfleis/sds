@@ -54,6 +54,7 @@ format:
 | Fly    | 0     | 1     | 3     | 46     |
 
 :::
+
 ---
 
 ## Evaluation methods
@@ -80,6 +81,7 @@ format:
 ### Spatial effects
 #### Dependence {.fragment .fade-in}
 #### Heterogeneity {.fragment .fade-in}
+
 ---
 
 
