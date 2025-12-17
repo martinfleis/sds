@@ -181,3 +181,4 @@ data/prague_morphology/prg_primary.csv.gz
 *.egg-info
 
 class/
+**/*.quarto_ipynb

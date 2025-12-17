@@ -7,6 +7,7 @@ title: Areal interpolation
 ```py
 import pandas as pd
 import geopandas as gpd
+import httpx
 import tobler
 import pyinterpolate
 import numpy as np
@@ -22,7 +23,9 @@ from scipy import interpolate
 ## Scottish index of multiple deprivation
 
 ```py
-simd = gpd.read_file('/Users/martin/Downloads/SG_SIMD_2020.zip')
+url = "https://maps.gov.scot/ATOM/shapefiles/SG_SIMD_2020.zip"
+r = httpx.get(url, verify=False)
+simd = gpd.read_file(r.content)
 ```
 
 ```py
