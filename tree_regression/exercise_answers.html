@@ -1095,11 +1095,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Build the variogram, ideally covering the width of the whole city.</p>
 <div id="da1a38e8" class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>exp_semivar <span class="op">=</span> pyinterpolate.build_experimental_variogram(</span>
-<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>    input_array<span class="op">=</span>input_data,</span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>    ds<span class="op">=</span>input_data,</span>
 <span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>    step_size<span class="op">=</span><span class="dv">500</span>,</span>
 <span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a>    max_range<span class="op">=</span><span class="dv">20000</span>,</span>
 <span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb28-6"><a href="#cb28-6" aria-hidden="true" tabindex="-1"></a>exp_semivar.plot(plot_covariance<span class="op">=</span><span class="va">False</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb28-6"><a href="#cb28-6" aria-hidden="true" tabindex="-1"></a>exp_semivar.plot()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>The semivariance tends to grow nearly across the whole range, indicating that the autocorrelation does not disappear when considering larger distances. The results clearly suggests that the model has a troubles with spatial heterogeneity of the relationship between independent variables and the target one.</p>
 </section>
