@@ -738,11 +738,11 @@ ul.task-list li input[type="checkbox"] {
 </div>
 <div class="question">
 <p><strong>What is a graph in PySAL used for?</strong></p>
-<div class="choices correct-choice">
+<div class="choices">
 <div x-data="{ answer: '' , clear() { this.answer = '' }}">
 
-<div class="choice">
-<p></p><p><input class="form-check-input" type="radio" x-model="answer" value="no1"> <span id="no1" x-show="answer == $el.id" class="badge">✗</span>It is a structure where nodes represent spatial units, and edges represent spatial relationships.</p><p></p>
+<div class="choice correct-choice">
+<p></p><p><input class="form-check-input" type="radio" x-model="answer" value="correct"> <span id="correct" x-show="answer == $el.id" class="badge">✓</span>It is a structure where nodes represent spatial units, and edges represent spatial relationships.</p><p></p>
 </div>
 <div class="choice">
 <p></p><p><input class="form-check-input" type="radio" x-model="answer" value="no2"> <span id="no2" x-show="answer == $el.id" class="badge">✗</span>It represents geographic areas and their attributes.</p><p></p>
