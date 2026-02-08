@@ -57,9 +57,9 @@ A method for analyzing data across time.
 :::::{.question}
 **What is a graph in PySAL used for?**
 
-::::{.choices .correct-choice}
+::::{.choices}
 
-:::{.choice}
+:::{.choice .correct-choice}
 It is a structure where nodes represent spatial units, and edges represent spatial relationships.
 :::
 
