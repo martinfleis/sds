@@ -341,7 +341,7 @@ the concept of spatial autocorrelation, and it is a good application of spatial 
 matrices and the spatial lag. In essence, it is a standard scatter plot in which a given
 variable (`area`, for example) is plotted against *its own* spatial lag. Usually, a
 fitted line is added to include more information. In order to easily compare different
-scatter plots and spot outlier observations, it ismcommon practice to standardise the
+scatter plots and spot outlier observations, it is common practice to standardise the
 values of the variable before computing its spatial lag and plotting it. Let's have a
 look at what it looks like in this case based on the standardised values you made above.
 
@@ -535,7 +535,7 @@ consider larger neighbourhoods, showcasing the spatial extent of it.
 ::: {.callout-tip}
 # Correlogram is not only Moran's $I$
 
-The correlogram can be used to show Moran's $I$ or any other autocorrlation statistic,
+The correlogram can be used to show Moran's $I$ or any other autocorrelation statistic,
 like Geary's $C$ or Getis-Ord's $G$. You can also fit a non-parametric curve to
 estimate spatial autocorrelation as a function of distance, using
 [LOWESS smoother](https://en.wikipedia.org/wiki/Local_regression). This can be
