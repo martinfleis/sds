@@ -20,12 +20,6 @@ website:
           - introduction/hands_on.qmd
           - introduction/exercise.qmd
           - introduction/quiz.qmd
-      - section: "Open Data Science"
-        contents:
-          - data_wrangling/concepts.qmd
-          - data_wrangling/hands_on.qmd
-          - data_wrangling/exercise.qmd
-          - data_wrangling/quiz.qmd
       - section: "Spatial data"
         contents:
           - geographic_data/concepts.qmd
@@ -56,12 +50,6 @@ website:
           - clustering/hands_on.qmd
           - clustering/exercise.qmd
           - clustering/quiz.qmd
-      - section: "Raster data"
-        contents:
-          - raster_data/concepts.qmd
-          - raster_data/hands_on.qmd
-          - raster_data/exercise.qmd
-          - raster_data/quiz.qmd
       - section: "Interpolation"
         contents:
           - interpolation/concepts.qmd
@@ -74,8 +62,35 @@ website:
           - regression/hands_on.qmd
           - regression/exercise.qmd
           - regression/quiz.qmd
-  # announcement:
-  #   icon: bell-fill
-  #   dismissable: true
-  #   content: "**[Registration](https://is.cuni.cz/studium/eng/prijimacky/index.php?do=detail_kurz_mc&cid=10752)** for the August 2024 iteration of the course is now open."
-  #   type: primary
+      - section: "Non-linear regression"
+        contents:
+          - tree_regression/concepts.qmd
+          - tree_regression/hands_on.qmd
+          - tree_regression/exercise.qmd
+          - tree_regression/quiz.qmd
+      - section: "Classification"
+        contents:
+          - classification/concepts.qmd
+          - classification/hands_on.qmd
+          - classification/exercise.qmd
+          - classification/quiz.qmd
+      - text: "---"
+      - section: "Additional material"
+        contents:
+        - section: "Open Data Science"
+          contents:
+            - data_wrangling/concepts.qmd
+            - data_wrangling/hands_on.qmd
+            - data_wrangling/exercise.qmd
+            - data_wrangling/quiz.qmd
+        - section: "Raster data"
+          contents:
+            - raster_data/concepts.qmd
+            - raster_data/hands_on.qmd
+            - raster_data/exercise.qmd
+            - raster_data/quiz.qmd
+  announcement:
+    icon: bell-fill
+    dismissable: true
+    content: "**[Registration](https://is.cuni.cz/studium/eng/prijimacky/index.php?do=detail_kurz_mc&cid=12557)** for the May 2026 iteration of the course is now open."
+    type: primary

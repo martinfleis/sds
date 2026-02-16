@@ -209,7 +209,10 @@ and a final mark (potential change will be discussed ahead):
 
 ## Use of generative AI
 
-You are free to use any tool available to you. Please keep in mind the outcome of the
+The use of generative AI like Claude, Gemini or ChatGPT is heavily discouraged if you
+want to learn. Our experience and that of other shows, that those who rely on these
+tools too much will not learn what they hoped they would.
+See the outcome of the
 following experiment decribed by [Esther Shein](https://cacm.acm.org/news/the-impact-of-ai-on-computer-science-education/):
 
 > Last fall, Eric Klopfer decided to conduct an experiment in his undergraduate computer science class at the Massachusetts Institute of Technology (MIT). He divided the class into three groups and gave them a programming task to solve in the Fortran language, which none of them knew.
@@ -219,6 +222,8 @@ following experiment decribed by [Esther Shein](https://cacm.acm.org/news/the-im
 > Then, the students were tested on how they solved the problem from memory, and the tables turned. The ChatGPT group “remembered nothing, and they all failed,” recalled Klopfer, a professor and director of the MIT Scheller Teacher Education Program and The Education Arcade.
 >
 > Meanwhile, half of the Code Llama group passed the test. The group that used Google? Every student passed.
+
+We will deduce points for evident use of AI.
 
 ## Acknowledgements {.appendix}
 
