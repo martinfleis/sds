@@ -118,7 +118,7 @@ Barcelona.
 Head to the [Open Data BCN](https://opendata-ajuntament.barcelona.cat/data/en/dataset)
 data service of Barcelona's City Hall and download data reflecting two aspects (two
 variables) of the population structure of the city at the level of census areas (_Secció
-censal_ in Spanish), find relevant geometry, and link them together.
+censal_ in Catalan), find relevant geometry, and link them together.
 
 1. Explore the spatial distribution of the data using choropleths. Comment on the
    details of your maps and interpret the results.
