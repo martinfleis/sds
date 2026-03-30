@@ -2,13 +2,16 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.8.27">
+<meta name="generator" content="quarto-1.9.36">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
 <title>Spatial data old and new – Spatial Data Science in Python</title>
 <style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
 div.columns{display: flex; gap: min(4vw, 1.5em);}
@@ -24,7 +27,6 @@ ul.task-list li input[type="checkbox"] {
 div.csl-bib-body { }
 div.csl-entry {
   clear: both;
-  margin-bottom: 0em;
 }
 .hanging-indent div.csl-entry {
   margin-left:2em;
@@ -55,19 +57,18 @@ div.csl-indent {
 <link href="../_assets/favicon_micro.png" rel="icon" type="image/png">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-2a367172f4fe7d9182ebf8e09f85cb4e.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-7fb59815a1c41eec7c034637f0c35ff0.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-2a367172f4fe7d9182ebf8e09f85cb4e.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-e5c0da90bde570b7566f6217e7c63da7.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-cea25e2310d9ee8b66de880732a0fbab.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-e5c0da90bde570b7566f6217e7c63da7.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-64aecfdaf28a2a0e0d48c81b82caff02.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../site_libs/bootstrap/bootstrap-dark-eea294e0f30f5f4779076c4894dc1d37.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="../site_libs/bootstrap/bootstrap-64aecfdaf28a2a0e0d48c81b82caff02.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-6849cb8dfaf9bcbc449dfe90edcf7fb7.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-f9f633a5bdbf9b04c3a0371bb2db7bae.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../site_libs/bootstrap/bootstrap-6849cb8dfaf9bcbc449dfe90edcf7fb7.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -803,7 +804,7 @@ div.csl-indent {
 </header>
 
 
-<p>Slides from the talk about the nature of <em>old</em> spatial data and <em>new</em> spatial data, adapted from <span class="citation" data-cites="darribas_gds_course">Dani Arribas-Bel (<a href="#ref-darribas_gds_course" role="doc-biblioref">2019</a>)</span>, drawing from the work of <span class="citation" data-cites="lazer2017data">Lazer and Radford (<a href="#ref-lazer2017data" role="doc-biblioref">2017</a>)</span> and <span class="citation" data-cites="ArribasBel201445">Daniel Arribas-Bel (<a href="#ref-ArribasBel201445" role="doc-biblioref">2014</a>)</span>.</p>
+<p>Slides from the talk about the nature of <em>old</em> spatial data and <em>new</em> spatial data, adapted from <span class="citation" data-cites="darribas_gds_course">Arribas-Bel (<a href="#ref-darribas_gds_course" role="doc-biblioref">2019</a>)</span>, drawing from the work of <span class="citation" data-cites="lazer2017data">Lazer and Radford (<a href="#ref-lazer2017data" role="doc-biblioref">2017</a>)</span> and <span class="citation" data-cites="ArribasBel201445">Arribas-Bel (<a href="#ref-ArribasBel201445" role="doc-biblioref">2014</a>)</span>.</p>
 <iframe class="slide-deck" src="slides.html"></iframe>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -815,18 +816,18 @@ div.csl-indent {
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Parts of the chapter <a href="https://geographicdata.science/book/notebooks/03_spatial_data.html"><em>Spatial Data</em></a> dealing with tabular data from the Geographic Data Science with Python by <span class="citation" data-cites="rey2023geographic">Rey, Arribas-Bel, and Wolf (<a href="#ref-rey2023geographic" role="doc-biblioref">2023</a>)</span>.</p>
+<p>Parts of the chapter <a href="https://geographicdata.science/book/notebooks/03_spatial_data.html"><em>Spatial Data</em></a> dealing with tabular data from the Geographic Data Science with Python by <span class="citation" data-cites="rey2023geographic">Rey et al. (<a href="#ref-rey2023geographic" role="doc-biblioref">2023</a>)</span>.</p>
 </div>
 </div>
 
 
 <div id="quarto-appendix" class="default"><section id="acknowledgements" class="level2 appendix"><h2 class="anchored quarto-appendix-heading">Acknowledgements</h2><div class="quarto-appendix-contents">
 
-<p>This section is derived from <em>A Course on Geographic Data Science</em> by <span class="citation" data-cites="darribas_gds_course">Dani Arribas-Bel (<a href="#ref-darribas_gds_course" role="doc-biblioref">2019</a>)</span>, licensed under CC-BY-SA 4.0.</p>
+<p>This section is derived from <em>A Course on Geographic Data Science</em> by <span class="citation" data-cites="darribas_gds_course">Arribas-Bel (<a href="#ref-darribas_gds_course" role="doc-biblioref">2019</a>)</span>, licensed under CC-BY-SA 4.0.</p>
 
 
 
-</div></section><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
+</div></section><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" role="list">
 <div id="ref-darribas_gds_course" class="csl-entry" role="listitem">
 Arribas-Bel, Dani. 2019. <span>“A Course on Geographic Data Science.”</span> <em>The Journal of Open Source Education</em> 2 (14). <a href="https://doi.org/10.21105/jose.00042">https://doi.org/10.21105/jose.00042</a>.
 </div>
@@ -837,7 +838,7 @@ Arribas-Bel, Daniel. 2014. <span>“Accidental, Open and Everywhere: Emerging Da
 Lazer, David, and Jason Radford. 2017. <span>“Data Ex Machina: Introduction to Big Data.”</span> <em>Annual Review of Sociology</em> 43 (1): 19–39.
 </div>
 <div id="ref-rey2023geographic" class="csl-entry" role="listitem">
-Rey, Sergio, Dani Arribas-Bel, and Levi John Wolf. 2023. <em>Geographic Data Science with Python</em>. Chapman &amp; Hall/CRC Texts in Statistical Science. London, England: Taylor &amp; Francis.
+Rey, Sergio, Dani Arribas-Bel, and Levi John Wolf. 2023. <em>Geographic Data Science with Python</em>. Chapman &amp; Hall/CRC Texts in Statistical Science. Taylor &amp; Francis.
 </div>
 </div></section></div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
