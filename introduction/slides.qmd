@@ -264,7 +264,7 @@ Python
 
 ### Structure
 
-#### 3 lessons on basics {.fragment .fade-in}
+#### 2 lessons on basics {.fragment .fade-in}
 
 #### 3 lessons on exploratory data analysis {.fragment .fade-in}
 
@@ -272,7 +272,7 @@ Python
 #### 6 lessons on data science techniques {.fragment .fade-in}
 :::
 ::: {.content-visible when-profile='micro'}
-#### 4 lessons on data science techniques {.fragment .fade-in}
+#### 5 lessons on data science techniques {.fragment .fade-in}
 :::
 ---
 
@@ -282,8 +282,6 @@ Python
 
 ::: {.column width="33%"}
 Introduction
-
-Open Data Science
 
 Spatial data
 :::
@@ -299,15 +297,13 @@ Point patterns
 ::: {.column width="33%" .fragment .fade-in}
 Clustering
 
-Raster data
-
 Interpolation
 
 Linear regression
 
-[Non-linear regression]{.content-visible when-profile='sds4sg'}
+Non-linear regression
 
-[Classification]{.content-visible when-profile='sds4sg'}
+Classification
 :::
 
 ::::
@@ -422,31 +418,6 @@ code
 
 ## Use of generative AI
 
----
-
-::: {.r-fit-text}
-It can be helpful but be cautious.
-:::
-
-::: {.r-fit-text .fragment .fade-in}
-Helps more advanced users than beginners.
-:::
-
-::: {.r-fit-text .fragment .fade-in}
-Can produce erroneous code.
-:::
-
-::: {.r-fit-text .fragment .fade-in}
-Often results in too verbose and inefficient code.
-:::
-
-::: {.r-fit-text .fragment .fade-in}
-Does not pick up the latest changes.
-:::
-
-::: {.r-fit-text .fragment .fade-in}
-Acknowledge if used for the final assignment.
-:::
 
 # Contact
 
