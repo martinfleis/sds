@@ -8,7 +8,7 @@ platforms = ["win-64", "linux-64", "osx-64", "osx-arm64"]
 [tasks]
 
 [dependencies]
-python = "3.12.*"
+python = "3.14.*"
 astropy = ">=6"
 contextily = ">=1.6"
 datashader = ">=0.16"
@@ -16,6 +16,7 @@ esda = ">=2.6"
 geocube = ">=0.5"
 geopandas = ">=1.0"
 geopy = ">=2.4"
+gwlearn = ">=0.2.0"
 h3-py = ">=3.7"
 httpx = ">=0.27"
 libpysal = ">=4.12.0"
