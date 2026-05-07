@@ -2,7 +2,7 @@ name: sds
 channels:
   - conda-forge
 dependencies:
-  - python ==3.12.*
+  - python ==3.14.*
   # to run the code
   - astropy >=6
   - contextily >=1.6
@@ -11,6 +11,7 @@ dependencies:
   - geocube >=0.5
   - geopandas >=1.0
   - geopy >=2.4
+  - gwlearn >=0.2.0
   - h3-py >=3.7
   - httpx >=0.27
   - libpysal >=4.12.0
