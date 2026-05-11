@@ -359,7 +359,9 @@ martinfleischmann.net/sds[/micro]{.content-visible when-profile='micro'}
 
 ## Evaluation
 
+::: {.content-visible when-profile='sds4sg'}
 ### Exercises {.fragment .fade-in}
+:::
 
 ::: {.fragment .fade-in}
 ### Computational essay
