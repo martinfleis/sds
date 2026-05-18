@@ -62,7 +62,7 @@ The rest of the word count is assumed to be consumed by code.
 
 Treat this is guidelines but do not hesitate to deviate if you think it will help the narrative.
 
-::: {.content-visible when-profile='sds4sg'}
+
 You have two options regarding topics. The first one is to work on your data on the
 topic of your choice, while the second is a semi-defined task if you prefer that.
 
@@ -73,13 +73,9 @@ already have or can gather from openly available sources.
 
 The requirement is to cover:
 
-1. Initial data exploration and visualisation[^1]
-2. Exploration of a degree of randomness of data (e.g. spatial autocorrelation, point pattern analysis)[^2]
-3. At least one other technique of your choice (clustering, interpolation, regression, prediction)[^3]
-
-[^1]: Based on sessions [Introduction](../introduction/hands_on.qmd) - [Spatial data](../geographic_data/hands_on.qmd).
-[^2]: Based on sessions [Spatial weights](../spatial_graphs/hands_on.qmd) - [Point patterns](../point_patterns/hands_on.qmd).
-[^3]: Based on sessions [Clustering](../clustering/hands_on.qmd) - [Machine learning](../classification/hands_on.qmd).
+1. Initial data exploration and visualisation
+2. Exploration of a degree of randomness of data (e.g. spatial autocorrelation, point pattern analysis)
+3. At least one other technique of your choice (clustering, interpolation, regression, prediction)
 
 Consult the second option to get a better sense of the extent.
 
@@ -88,15 +84,18 @@ Consult the second option to get a better sense of the extent.
 
 If you decide to define your own task, the topic and the extent need to be approved by
 the tutor. Essays on custom topics without prior approval will not be accepted and will
-be marked with 0%. Reach out via Discord or email to get approval.
+be marked with 0%. Reach out via email to get an approval.
 :::
+
+::: {.content-visible when-profile='sds4sg'}
 
 This option is recommended for students of Master's and Postgraduate courses enrolled in
 `MZ340V17`.
 
+:::
+
 The second option is more defined but still leaves some space for your creativity.
 
-:::
 
 ### A Barcelona case
 
