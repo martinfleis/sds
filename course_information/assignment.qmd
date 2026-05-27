@@ -140,7 +140,9 @@ The other two options share the basics:
 
 - Download listings for Barcelona from
   [Inside Airbnb](http://insideairbnb.com/get-the-data). You have already used Airbnb
-  data before in the course, so you can refer to the code used there.
+  data before in the course, so you can refer to the code used there. Note that you may need to
+  use data from the archive as the recent versions do not include information about the
+  price of each listing.
 - Barcelona is known for its issue with Airbnb density. Visualise the data appropriately
   and discuss why you have taken your specific approach.
 
