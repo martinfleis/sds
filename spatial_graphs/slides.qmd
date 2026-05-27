@@ -9,7 +9,7 @@ format:
         navigation-mode: linear
         controls-layout: edges
         code-fold: true
-jupyter: sds
+jupyter: python3
 ---
 ```{python}
 #| echo: false

@@ -1,7 +1,7 @@
 ---
 title: "Find me a cluster"
 format: html
-jupyter: sds
+jupyter: python3
 aliases:
   - ../chapter_07/exercise.html
 ---

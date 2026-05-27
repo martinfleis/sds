@@ -2,8 +2,11 @@
 title: "Clustering and regionalisation"
 format:
   html: default
-  ipynb: default
-jupyter: sds
+  ipynb:
+    execute:
+      enabled: false
+      output: false
+jupyter: python3
 aliases:
   - ../chapter_07/hands_on.html
 ---
@@ -285,7 +288,7 @@ fig, axes = plt.subplots(1, 5, figsize=(10, 3), sharey=True) # <1>
 for i, ax in enumerate(axes): # <2>
     ax.set_title(f'Cluster {i}')
     ax.tick_params(axis='x', rotation=90) # <3>
-    
+
     sns.boxplot( # <4>
         data=simd.loc[simd['kmeans_5'] == i, subranks],
         ax=ax
@@ -577,4 +580,3 @@ and some other extensions.
 This section is derived from _A Course on Geographic Data Science_ by
 @darribas_gds_course, licensed under CC-BY-SA 4.0. The code was updated. The text was slightly adapted
 to accommodate a different dataset, the module change, and the inclusion of spatially lagged K-means.
-

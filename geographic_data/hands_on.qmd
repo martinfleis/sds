@@ -2,8 +2,11 @@
 title: "Bring in geography"
 format:
   html: default
-  ipynb: default
-jupyter: sds
+  ipynb:
+    execute:
+      enabled: false
+      output: false
+jupyter: python3
 aliases:
   - ../chapter_03/hands_on.html
 ---

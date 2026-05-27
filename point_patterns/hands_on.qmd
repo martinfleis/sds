@@ -2,8 +2,12 @@
 title: "Point pattern analysis"
 format:
   html: default
-  ipynb: default
-jupyter: sds
+  ipynb:
+    code-annotations: false
+    execute:
+      enabled: false
+      output: false
+jupyter: python3
 aliases:
   - ../chapter_06/hands_on.html
 ---
@@ -224,10 +228,10 @@ ax.scatter(                                 # <1>
     alpha=0.8                               # <1>
 )                                           # <1>
 
-gpd.GeoSeries([ellipse.boundary], crs=accidents.crs).plot(
-    ax=ax,
-    color="red",
-    linestyle="--"
+gpd.GeoSeries([ellipse.boundary], crs=accidents.crs).plot(  # <2>
+    ax=ax,                                                  # <2>
+    color="red",                                            # <2>
+    linestyle="--"                                          # <2>
 )
 ax.legend(loc="upper left")             # <3>
 

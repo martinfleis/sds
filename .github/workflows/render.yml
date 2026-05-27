@@ -30,10 +30,6 @@ jobs:
             run: |
               pixi run python -c "import geopandas; geopandas.show_versions();"
 
-          - name: Register kernel
-            run: |
-              pixi run python -m ipykernel install --user --name sds
-
           - name: Render Book project
             run: |
                 pixi run quarto render

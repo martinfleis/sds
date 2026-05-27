@@ -8,7 +8,7 @@ format:
         transition: slide
         navigation-mode: linear
         controls-layout: edges
-jupyter: sds
+jupyter: python3
 
 ---
 

@@ -2,8 +2,11 @@
 title: "Spatial interpolation"
 format:
   html: default
-  ipynb: default
-jupyter: sds
+  ipynb:
+    execute:
+      enabled: false
+      output: false
+jupyter: python3
 aliases:
   - ../chapter_09/hands_on.html
 ---
@@ -546,7 +549,7 @@ experimental variogram based on the data and a couple of parameters.
 
 ```{python}
 exp_semivar = pyinterpolate.build_experimental_variogram(
-    two_bed_homes[['geometry', 'price_lag']],
+    two_bed_homes[['geometry', 'price_lag']],  # <1>
     step_size=100,  # <2>
     max_range=5000, # <3>
 )

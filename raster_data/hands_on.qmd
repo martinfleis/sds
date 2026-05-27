@@ -2,8 +2,11 @@
 title: "Population as a raster grid"
 format:
   html: default
-  ipynb: default
-jupyter: sds
+  ipynb:
+    execute:
+      enabled: false
+      output: false
+jupyter: python3
 aliases:
   - ../chapter_08/hands_on.html
 ---

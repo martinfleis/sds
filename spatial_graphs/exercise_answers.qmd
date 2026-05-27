@@ -2,8 +2,11 @@
 title: 'Graph here, graph there'
 format:
   html: default
-  ipynb: default
-jupyter: sds
+  ipynb:
+    execute:
+      enabled: false
+      output: false
+jupyter: python3
 ---
 
 Here is one way of getting the solution. There are others, feel free to share yours.

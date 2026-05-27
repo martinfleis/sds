@@ -8,7 +8,7 @@ format:
         transition: fade
         navigation-mode: linear
         controls-layout: edges
-jupyter: sds
+jupyter: python3
 ---
 
 > Everything should be made as simple as possible, but not simpler

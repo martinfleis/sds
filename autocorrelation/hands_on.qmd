@@ -2,8 +2,12 @@
 title: "Spatial autocorrelation"
 format:
   html: default
-  ipynb: default
-jupyter: sds
+  ipynb:
+    code-annotations: false
+    execute:
+      enabled: false
+      output: false
+jupyter: python3
 aliases:
   - ../chapter_05/hands_on.html
 ---
