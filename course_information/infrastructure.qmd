@@ -9,18 +9,12 @@ on students' machines using solely open-source software.
 
 ## Communication
 
-Students enrolled in the course at Charles University will be invited to a dedicated
-[Discord server for online discussion]{.content-visible when-profile='sds4sg'}[Microsoft Teams team facilitating both asynchronous discussion and synchronous teaching]{.content-visible when-profile='micro'}. Students are encouraged to use the platform to seek
-help from peers, share thoughts and tips, and other meaningful contributions the rest of the
-group can benefit from. Learn from the mistakes of the others.
-
-The tutor will be part of the discussion forum but the priority is to help each other,
-rather than seek guidance outside of class.
+Students enrolled in the course at Charles University will be using a dedicated
+[Moodle course]{.content-visible when-profile='sds4sg'}[Microsoft Teams team facilitating both asynchronous discussion and synchronous teaching]{.content-visible when-profile='micro'}.
 
 ## Code management and submissions
 
-The course will be using GitHub Classroom. Each student will have their own code repository
-managed by the Classroom which will eventually contain all submissions. Part of the repository
+The course will be using materials gradually released at this website. In the beginning, the students are expected to download a folder and work locally within it. Part of the folder
 will be a definition of the software stack.
 
 ## Software stack
@@ -36,25 +30,13 @@ The basics will be explained in the first lesson.
 
 The main tool dealing with the setup of the coding environment used in this course is [Pixi](https://pixi.sh). Go to Pixi website, and follow the [installation instructions](https://pixi.sh/latest/#installation) to install it on your machines.
 
-### 2. Install Github Desktop
+### 2. Get the folder and install the environment
 
-To manage the repositories and Git, the easiest option is to use [GitHub Desktop](https://github.com/apps/desktop). Get it installed.
+Download the folder available at [https://martinfleischmann.net/sds/spatial-data-science.zip](https://martinfleischmann.net/sds/spatial-data-science.zip) and unzip at a preferred location. The folder contains
+the definition of the environment.
 
-### 3. Ensure you have a GitHub account
-
-To use GitHub Classroom, you will need a GitHub account. Get one on [github.com](https://github.com) if you don't have it already.
-
-### 4. Accept the assignment in the GitHub Classroom
-
-You have received a link with the invitation to accept the assignment. Click on it. You may need to authorise GitHub Classroom with GitHub.
-
-### 5. Get the repository and install the environment
-
-GitHub Classroom automatically created a repository you should be using during this course. The repository contains
-the definition of the environment and a placeholder structure for your work.
-
-1. Clone the repository to a location on your machine where you'd like to store the files for this course.
-2. Use Powershell or Terminal to navigate to the folder.
+1. Download the folder to a location on your machine where you'd like to store the files for this course.
+2. Use Powershell (Windows) or Terminal (macOS, Linux) to navigate to the folder. Do this by typing `cd ` and dragging and dropping the folder to the shell window. Then hit [Enter]{.keystroke}.
 4. Install the enviroment using `pixi install`.
 5. Start the Jupyter Lab interface using `pixi run jupyter lab`.
 

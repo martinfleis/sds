@@ -3,9 +3,6 @@ project:
   output-dir: ./_site_micro
 
 website:
-  favicon: _assets/favicon_micro.png
-  sidebar:
-    logo: _assets/logo_micro.svg
     contents:
       - section: "Course information"
         contents:

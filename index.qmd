@@ -4,11 +4,11 @@ format: "html"
 ---
 
 ::: {.content-visible when-profile='sds4sg'}
-The course Spatial Data Science for Social Geography introduces data science and computational analysis
+The course Spatial Data Science introduces data science and computational analysis
 using open source tools written in the Python programming language to the curriculum of
 students of geography.
 
-The course is taught in person at Charles University in Prague from October 2023 under the code `MZ340V17`.
+The course is taught in person at Charles University in Prague under the code `MZ340R18`.
 :::
 
 ::: {.content-visible when-profile='micro'}
@@ -94,7 +94,7 @@ _Exercise_ is a set of tasks to be performed by students individually, with
 occasional guidance by the lecturer. So we finish the session with ["You do"]{.accent}.
 
 For enrolled students, the course will finish with a written
-assignment in the form of a computational essay. See the
+assignment in the form of a computational essay followed by an oral defence. See the
 [Assignment](course_information/assignment.qmd) section for details.
 
 ## Literature

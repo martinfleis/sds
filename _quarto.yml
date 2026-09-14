@@ -1,10 +1,12 @@
 project:
   type: website
-  title: "Spatial Data Science for Social Geography"
+  title: "Spatial Data Science"
   resources:
     - "*/slides/*"
     - "!_site_micro/"
     - "!_site/"
+  post-render:
+    - ./make_pixi_zip.sh
 
 lang: en
 
@@ -39,9 +41,11 @@ website:
   search:
     location: sidebar
     type: overlay
+  favicon: _assets/favicon_micro.png
   sidebar:
     style: floating
     collapse-level: 1
+    logo: _assets/logo_micro.svg
     tools:
       - icon: mastodon
         href: https://fosstodon.org/@martinfleis

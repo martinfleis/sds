@@ -1,5 +1,5 @@
 project:
-  title: "Spatial Data Science for Social Geography"
+  title: "Spatial Data Science"
   output-dir: ./_site
   resources:
     - environment.yml
