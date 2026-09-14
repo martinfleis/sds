@@ -3,6 +3,7 @@ project:
   output-dir: ./_site_micro
 
 website:
+  sidebar:
     contents:
       - section: "Course information"
         contents:
