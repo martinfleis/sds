@@ -85,9 +85,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting-eec68b17241c1efd3eae2de50d816e3e.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-fabea4065c2e160f735cc44641123dd8.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../site_libs/bootstrap/bootstrap-dark-a60a5b9013d380e84788c59f9eacbc2a.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="../site_libs/bootstrap/bootstrap-fabea4065c2e160f735cc44641123dd8.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-4e3e548394be62a308746756a8c9efdc.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-3a407810d55adf3606d811a388182761.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../site_libs/bootstrap/bootstrap-4e3e548394be62a308746756a8c9efdc.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -799,10 +799,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#software-stack" id="toc-software-stack" class="nav-link" data-scroll-target="#software-stack">Software stack</a>
   <ul class="collapse">
   <li><a href="#install-pixi" id="toc-install-pixi" class="nav-link" data-scroll-target="#install-pixi">1. Install Pixi</a></li>
-  <li><a href="#install-github-desktop" id="toc-install-github-desktop" class="nav-link" data-scroll-target="#install-github-desktop">2. Install Github Desktop</a></li>
-  <li><a href="#ensure-you-have-a-github-account" id="toc-ensure-you-have-a-github-account" class="nav-link" data-scroll-target="#ensure-you-have-a-github-account">3. Ensure you have a GitHub account</a></li>
-  <li><a href="#accept-the-assignment-in-the-github-classroom" id="toc-accept-the-assignment-in-the-github-classroom" class="nav-link" data-scroll-target="#accept-the-assignment-in-the-github-classroom">4. Accept the assignment in the GitHub Classroom</a></li>
-  <li><a href="#get-the-repository-and-install-the-environment" id="toc-get-the-repository-and-install-the-environment" class="nav-link" data-scroll-target="#get-the-repository-and-install-the-environment">5. Get the repository and install the environment</a></li>
+  <li><a href="#get-the-folder-and-install-the-environment" id="toc-get-the-folder-and-install-the-environment" class="nav-link" data-scroll-target="#get-the-folder-and-install-the-environment">2. Get the folder and install the environment</a></li>
   <li><a href="#closing-and-reopening-jupyter-lab" id="toc-closing-and-reopening-jupyter-lab" class="nav-link" data-scroll-target="#closing-and-reopening-jupyter-lab">Closing and reopening Jupyter Lab</a></li>
   <li><a href="#plan-b-with-google-colab" id="toc-plan-b-with-google-colab" class="nav-link" data-scroll-target="#plan-b-with-google-colab">Plan B with Google Colab</a></li>
   <li><a href="#troubleshooting" id="toc-troubleshooting" class="nav-link" data-scroll-target="#troubleshooting">Troubleshooting</a></li>
@@ -836,12 +833,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>The course does not use any university-specific resources. It is designed to run entirely on students’ machines using solely open-source software.</p>
 <section id="communication" class="level2">
 <h2 class="anchored" data-anchor-id="communication">Communication</h2>
-<p>Students enrolled in the course at Charles University will be invited to a dedicated <span>Microsoft Teams team facilitating both asynchronous discussion and synchronous teaching</span>. Students are encouraged to use the platform to seek help from peers, share thoughts and tips, and other meaningful contributions the rest of the group can benefit from. Learn from the mistakes of the others.</p>
-<p>The tutor will be part of the discussion forum but the priority is to help each other, rather than seek guidance outside of class.</p>
+<p>Students enrolled in the course at Charles University will be using a dedicated <span>Microsoft Teams team facilitating both asynchronous discussion and synchronous teaching</span>.</p>
 </section>
 <section id="code-management-and-submissions" class="level2">
 <h2 class="anchored" data-anchor-id="code-management-and-submissions">Code management and submissions</h2>
-<p>The course will be using GitHub Classroom. Each student will have their own code repository managed by the Classroom which will eventually contain all submissions. Part of the repository will be a definition of the software stack.</p>
+<p>The course will be using materials gradually released at this website. In the beginning, the students are expected to download a folder and work locally within it. Part of the folder will be a definition of the software stack.</p>
 </section>
 <section id="software-stack" class="level2">
 <h2 class="anchored" data-anchor-id="software-stack">Software stack</h2>
@@ -851,24 +847,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h3 class="anchored" data-anchor-id="install-pixi">1. Install Pixi</h3>
 <p>The main tool dealing with the setup of the coding environment used in this course is <a href="https://pixi.sh">Pixi</a>. Go to Pixi website, and follow the <a href="https://pixi.sh/latest/#installation">installation instructions</a> to install it on your machines.</p>
 </section>
-<section id="install-github-desktop" class="level3">
-<h3 class="anchored" data-anchor-id="install-github-desktop">2. Install Github Desktop</h3>
-<p>To manage the repositories and Git, the easiest option is to use <a href="https://github.com/apps/desktop">GitHub Desktop</a>. Get it installed.</p>
-</section>
-<section id="ensure-you-have-a-github-account" class="level3">
-<h3 class="anchored" data-anchor-id="ensure-you-have-a-github-account">3. Ensure you have a GitHub account</h3>
-<p>To use GitHub Classroom, you will need a GitHub account. Get one on <a href="https://github.com">github.com</a> if you don’t have it already.</p>
-</section>
-<section id="accept-the-assignment-in-the-github-classroom" class="level3">
-<h3 class="anchored" data-anchor-id="accept-the-assignment-in-the-github-classroom">4. Accept the assignment in the GitHub Classroom</h3>
-<p>You have received a link with the invitation to accept the assignment. Click on it. You may need to authorise GitHub Classroom with GitHub.</p>
-</section>
-<section id="get-the-repository-and-install-the-environment" class="level3">
-<h3 class="anchored" data-anchor-id="get-the-repository-and-install-the-environment">5. Get the repository and install the environment</h3>
-<p>GitHub Classroom automatically created a repository you should be using during this course. The repository contains the definition of the environment and a placeholder structure for your work.</p>
+<section id="get-the-folder-and-install-the-environment" class="level3">
+<h3 class="anchored" data-anchor-id="get-the-folder-and-install-the-environment">2. Get the folder and install the environment</h3>
+<p>Download the folder available at <a href="https://martinfleischmann.net/sds/spatial-data-science.zip">https://martinfleischmann.net/sds/spatial-data-science.zip</a> and unzip at a preferred location. The folder contains the definition of the environment.</p>
 <ol type="1">
-<li>Clone the repository to a location on your machine where you’d like to store the files for this course.</li>
-<li>Use Powershell or Terminal to navigate to the folder.</li>
+<li>Download the folder to a location on your machine where you’d like to store the files for this course.</li>
+<li>Use Powershell (Windows) or Terminal (macOS, Linux) to navigate to the folder. Do this by typing <code>cd</code> and dragging and dropping the folder to the shell window. Then hit <span class="keystroke">Enter</span>.</li>
 <li>Install the enviroment using <code>pixi install</code>.</li>
 <li>Start the Jupyter Lab interface using <code>pixi run jupyter lab</code>.</li>
 </ol>
