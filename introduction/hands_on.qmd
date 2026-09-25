@@ -24,66 +24,6 @@ working installation of Python and some Jupyter Notebook IDE, either via Jupyter
 (recommended) or on Google Colab.
 :::
 
-## Shell
-
-Spatial Data Science depends on code, and coding environments can be unfriendly to
-an average user. People designing the tools are often computer scientists or have a strong
-knowledge of CS-related environments. It means we sometimes need to deal with tools
-that look a bit scary, like a Terminal or a Command line. Below is a brief introduction
-to the tools you will need for this course.
-
-### Terminal and Command line
-
-Depending on your operating system, you will have either Terminal (macOS, Linux) or
-Command Prompt application installed. It will look like this:
-
-![Terminal on macOS](../_assets/figures/introduction/terminal.png)
-
-Terminal (and Command Prompt or Command line, but we will refer to all as the terminal for simplicity) is
-used to interact with applications that do not have any graphic interface or with
-the apps that do have one, but you want to use them programmatically. The terminal usage
-is straightforward. Let's start with a few examples.
-
-1. Create a folder (or maybe you already have) to store files for this course.
-2. Download this notebook by clicking on the [Jupyter]{.keystroke} option on the right
-   side of this page and move the notebook to the folder.
-
-You want to see a list of files and folders you have in the folder. First, you need to navigate to
-the folder. For that, you can use the `cd` command, which stands for [c]{.accent}hange
-[d]{.accent}irectory.
-
-```sh
-cd courses/sds/
-```
-
-Let's assume that you have the folder with course material in the folder called `sds` in
-another folder called `courses`. The full command is then composed of the `cd` part,
-saying *set the current directory to...* and waits for the parameter, which is a path
-to the folder in this case - `courses/sds/`.
-
-Once in the correct folder, you can use another command, `ls`, which stands for [l]{.accent}i[s]{.accent}t
-and allows you to list the contents of the current directory.
-
-```sh
-ls
-```
-
-The output would look like this:
-
-![Output of the `ls` command.](../_assets/figures/introduction/ls.png)
-
-You can also pass a parameter `-l`, specifying that you want a long listing including attributes.
-
-```sh
-ls -l
-```
-
-That changes the output to this:
-
-![Output of the `ls -l` command.](../_assets/figures/introduction/ls-l.png)
-
-The syntax is always the same, starting with the app name and then followed by parameters.
-
 ## Jupyter Notebook and Jupyter Lab
 
 While you can interact with Python from the terminal, it is inconvenient. Instead, you
@@ -92,9 +32,9 @@ you to mix text and code, execute small pieces of code one at a time and include
 graphical outputs of your code. Jupyter Lab is a handy interface that allows you to work
 with multiple notebooks and switch between your Python environments created with Pixi.
 
-It is time to say goodbye to the terminal and start Jupyter Lab.
-
-First, avigate to the template folder. Then you can start Lab using:
+First, navigate to the your folder that contains the Pixi environment (use `ls` command 
+followed by the path. You can also drag-and-drop the folder to the shell). 
+Then you can start Lab using:
 
 ```sh
 pixi run jupyter lab
@@ -366,7 +306,7 @@ Things may get stuck or break completely. When that happens:
 # Python basics
 
 This course won't cover the very basics of Python. You may be able to catch it along the
-way but if you prefer more explicit material, have a look at _[A taste of Python](https://geo-python-site.readthedocs.io/en/latest/notebooks/L1/a-taste-of-python.html)_ section of the _[Geo-Python](https://geo-python-site.readthedocs.io) course_ by D. Whipp, H. Tenkanen, V. Heikinheimo, H. Aagesen, and C. Fink.
+way but if you prefer more explicit material, have a look at the _[Basic programming concepts](https://pythongis.org/part1/chapter-02/index.html)_ chapter of the _[Introduction to Python for Geographic Data Analysis](https://pythongis.org/index.html) book by H. Tenkanen, V. Heikinheimo and  D. Whipp.
 :::
 
 ## Acknowledgements {.appendix}

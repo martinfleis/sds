@@ -264,7 +264,7 @@ Python
 
 ### Structure
 
-#### 2 lessons on basics {.fragment .fade-in}
+#### 3 lessons on basics {.fragment .fade-in}
 
 #### 3 lessons on exploratory data analysis {.fragment .fade-in}
 
@@ -283,6 +283,8 @@ Python
 ::: {.column width="33%"}
 Introduction
 
+Open Data Science
+
 Spatial data
 :::
 
@@ -296,6 +298,8 @@ Point patterns
 
 ::: {.column width="33%" .fragment .fade-in}
 Clustering
+
+Dimensionality reduction
 
 Interpolation
 
@@ -334,23 +338,14 @@ martinfleischmann.net/sds[/micro]{.content-visible when-profile='micro'}
 
 ::: {.content-visible when-profile='sds4sg'}
 
-### Discord
+### Moodle
 
-
----
-
-![](discord.png){.center}
 
 :::
 ::: {.content-visible when-profile='micro'}
 
 ### Teams
 
-<!--
----
-
-![](discord.png){.center}
--->
 
 :::
 
@@ -360,11 +355,11 @@ martinfleischmann.net/sds[/micro]{.content-visible when-profile='micro'}
 ## Evaluation
 
 ::: {.content-visible when-profile='sds4sg'}
-### Exercises {.fragment .fade-in}
+### Exercises -> credit {.fragment .fade-in}
 :::
 
 ::: {.fragment .fade-in}
-### Computational essay
+### Computational essay -> exam
 
 An essay whose narrative is supported by code and its results, which are part of the essay.
 :::
@@ -403,6 +398,17 @@ equivalent
 code
 :::
 
+---
+
+### Two-part exam
+
+::: {.r-fit-text}
+essay
+:::
+
+::: {.r-fit-text .fragment .fade-in}
+oral defense
+:::
 
 ## Topic
 
@@ -410,7 +416,7 @@ code
 ### Define your task {.fragment .fade-in}
 :::
 
-### A Barcelona case {.fragment .fade-in}
+### A pre-defined task {.fragment .fade-in}
 
 ---
 
@@ -424,5 +430,3 @@ code
 # Contact
 
 martin.fleischmann@natur.cuni.cz
-
-[Discord!]{.content-visible when-profile='sds4sg'}

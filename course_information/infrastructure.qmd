@@ -10,7 +10,7 @@ on students' machines using solely open-source software.
 ## Communication
 
 Students enrolled in the course at Charles University will be using a dedicated
-[Moodle course]{.content-visible when-profile='sds4sg'}[Microsoft Teams team facilitating both asynchronous discussion and synchronous teaching]{.content-visible when-profile='micro'}.
+[[Moodle course](https://dl2.cuni.cz/course/view.php?id=6455) for submissions and information sharing]{.content-visible when-profile='sds4sg'}[Microsoft Teams team facilitating both asynchronous discussion and synchronous teaching]{.content-visible when-profile='micro'}.
 
 ## Code management and submissions
 
@@ -24,7 +24,68 @@ you can run it in the browser and install it in a myriad ways. This course uses
 what is considered a standard for **scientific** computing based on two key components -
 a package manager (you will be using `Pixi`) and an interface (Jupyter Lab).
 
-The basics will be explained in the first lesson.
+::: {.callout-note collapse="true"}
+# Shell 101
+
+Spatial Data Science depends on code, and coding environments can be unfriendly to
+an average user. People designing the tools are often computer scientists or have a strong
+knowledge of CS-related environments. It means we sometimes need to deal with tools
+that look a bit scary, like a Terminal or a Powershell. Below is a brief introduction
+to the tools you will need for this course.
+
+### Terminal and Command line
+
+Depending on your operating system, you will have either Terminal (macOS, Linux) or
+Command Prompt application installed. It will look like this:
+
+![Terminal on macOS](../_assets/figures/introduction/terminal.png)
+
+Terminal (and Powershell, but we will refer to all as the terminal for simplicity) is
+used to interact with applications that do not have any graphic interface or with
+the apps that do have one, but you want to use them programmatically. The terminal usage
+is straightforward. Let's start with a few examples.
+
+1. Create a folder (or maybe you already have) to store files for this course.
+2. Download this notebook by clicking on the [Jupyter]{.keystroke} option on the right
+   side of this page and move the notebook to the folder.
+
+You want to see a list of files and folders you have in the folder. First, you need to navigate to
+the folder. For that, you can use the `cd` command, which stands for [c]{.accent}hange
+[d]{.accent}irectory.
+
+```sh
+cd courses/sds/
+```
+
+Let's assume that you have the folder with course material in the folder called `sds` in
+another folder called `courses`. The full command is then composed of the `cd` part,
+saying *set the current directory to...* and waits for the parameter, which is a path
+to the folder in this case - `courses/sds/`.
+
+Once in the correct folder, you can use another command, `ls`, which stands for [l]{.accent}i[s]{.accent}t
+and allows you to list the contents of the current directory.
+
+```sh
+ls
+```
+
+The output would look like this:
+
+![Output of the `ls` command.](../_assets/figures/introduction/ls.png)
+
+You can also pass a parameter `-l`, specifying that you want a long listing including attributes.
+
+```sh
+ls -l
+```
+
+That changes the output to this:
+
+![Output of the `ls -l` command.](../_assets/figures/introduction/ls-l.png)
+
+The syntax is always the same, starting with the app name and then followed by parameters.
+
+:::
 
 ### 1. Install Pixi
 
@@ -188,8 +249,8 @@ You should never use `conda install` in the base environment. Remember to always
 
 If you are unable to install an environment using the instructions above, you can follow
 the course using [Google Colab](https://colab.research.google.com). You will just need to install the required packages to
-your Colab environment. Reach out in class or via [Discord]{.content-visible when-profile='sds4sg'}[Teams]{.content-visible when-profile='micro'} if you need to set it up.
+your Colab environment. Reach out if you need to set it up.
 
 ### Troubleshooting
 
-In case of any issues related to environment creation, reach out in the class or via [Discord]{.content-visible when-profile='sds4sg'}[Teams]{.content-visible when-profile='micro'}.
+In case of any issues related to environment creation, reach out in the class or via [[Moodle](https://dl2.cuni.cz/course/view.php?id=6455) forum]{.content-visible when-profile='sds4sg'}[Teams]{.content-visible when-profile='micro'}.

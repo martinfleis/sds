@@ -7,9 +7,7 @@ project:
     - "*/data/*"
 
 website:
-  favicon: _assets/favicon.png
   sidebar:
-    logo: _assets/logo.svg
     contents:
       - section: "Course information"
         contents:
@@ -60,12 +58,6 @@ website:
           - clustering/hands_on.qmd
           - clustering/exercise.qmd
           - clustering/quiz.qmd
-      - section: "Raster data"
-        contents:
-          - raster_data/concepts.qmd
-          - raster_data/hands_on.qmd
-          - raster_data/exercise.qmd
-          - raster_data/quiz.qmd
       - section: "Interpolation"
         contents:
           - interpolation/concepts.qmd
@@ -90,6 +82,15 @@ website:
           - classification/hands_on.qmd
           - classification/exercise.qmd
           - classification/quiz.qmd
+      - text: "---"
+      - section: "Additional material"
+        contents:
+        - section: "Raster data"
+          contents:
+            - raster_data/concepts.qmd
+            - raster_data/hands_on.qmd
+            - raster_data/exercise.qmd
+            - raster_data/quiz.qmd
   # announcement:
   #   icon: bell-fill
   #   dismissable: true
