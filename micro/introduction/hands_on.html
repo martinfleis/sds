@@ -85,9 +85,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting-eec68b17241c1efd3eae2de50d816e3e.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-4e3e548394be62a308746756a8c9efdc.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../site_libs/bootstrap/bootstrap-dark-3a407810d55adf3606d811a388182761.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="../site_libs/bootstrap/bootstrap-4e3e548394be62a308746756a8c9efdc.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-890e724bda93909e956a4665dfdee808.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-643ae288b17e0d299958815a035452d0.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../site_libs/bootstrap/bootstrap-890e724bda93909e956a4665dfdee808.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -149,7 +149,7 @@ window.Quarto = {
 <link rel="stylesheet" href="../_assets/styles.css">
 <meta name="twitter:title" content="Jupyter – Spatial Data Science in Python">
 <meta name="twitter:description" content="">
-<meta name="twitter:image" content="../_assets/figures/introduction/terminal.png">
+<meta name="twitter:image" content="../_assets/figures/introduction/lab.png">
 <meta name="twitter:card" content="summary_large_image">
 </head>
 
@@ -823,11 +823,7 @@ window.Quarto = {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#shell" id="toc-shell" class="nav-link active" data-scroll-target="#shell">Shell</a>
-  <ul class="collapse">
-  <li><a href="#terminal-and-command-line" id="toc-terminal-and-command-line" class="nav-link" data-scroll-target="#terminal-and-command-line">Terminal and Command line</a></li>
-  </ul></li>
-  <li><a href="#jupyter-notebook-and-jupyter-lab" id="toc-jupyter-notebook-and-jupyter-lab" class="nav-link" data-scroll-target="#jupyter-notebook-and-jupyter-lab">Jupyter Notebook and Jupyter Lab</a>
+  <li><a href="#jupyter-notebook-and-jupyter-lab" id="toc-jupyter-notebook-and-jupyter-lab" class="nav-link active" data-scroll-target="#jupyter-notebook-and-jupyter-lab">Jupyter Notebook and Jupyter Lab</a>
   <ul class="collapse">
   <li><a href="#markdown" id="toc-markdown" class="nav-link" data-scroll-target="#markdown">Markdown</a></li>
   <li><a href="#notebook-essentials" id="toc-notebook-essentials" class="nav-link" data-scroll-target="#notebook-essentials">Notebook essentials</a></li>
@@ -873,53 +869,11 @@ window.Quarto = {
 <p>Before you start, ensure you have carefully read and followed the instructions <a href="../course_information/infrastructure.html">outlined in the Infrastructure section</a> and have a working installation of Python and some Jupyter Notebook IDE, either via Jupyter Lab (recommended) or on Google Colab.</p>
 </div>
 </div>
-<section id="shell" class="level2">
-<h2 class="anchored" data-anchor-id="shell">Shell</h2>
-<p>Spatial Data Science depends on code, and coding environments can be unfriendly to an average user. People designing the tools are often computer scientists or have a strong knowledge of CS-related environments. It means we sometimes need to deal with tools that look a bit scary, like a Terminal or a Command line. Below is a brief introduction to the tools you will need for this course.</p>
-<section id="terminal-and-command-line" class="level3">
-<h3 class="anchored" data-anchor-id="terminal-and-command-line">Terminal and Command line</h3>
-<p>Depending on your operating system, you will have either Terminal (macOS, Linux) or Command Prompt application installed. It will look like this:</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="../_assets/figures/introduction/terminal.png" class="img-fluid figure-img"></p>
-<figcaption>Terminal on macOS</figcaption>
-</figure>
-</div>
-<p>Terminal (and Command Prompt or Command line, but we will refer to all as the terminal for simplicity) is used to interact with applications that do not have any graphic interface or with the apps that do have one, but you want to use them programmatically. The terminal usage is straightforward. Let’s start with a few examples.</p>
-<ol type="1">
-<li>Create a folder (or maybe you already have) to store files for this course.</li>
-<li>Download this notebook by clicking on the <span class="keystroke">Jupyter</span> option on the right side of this page and move the notebook to the folder.</li>
-</ol>
-<p>You want to see a list of files and folders you have in the folder. First, you need to navigate to the folder. For that, you can use the <code>cd</code> command, which stands for <span class="accent">c</span>hange <span class="accent">d</span>irectory.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> courses/sds/</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Let’s assume that you have the folder with course material in the folder called <code>sds</code> in another folder called <code>courses</code>. The full command is then composed of the <code>cd</code> part, saying <em>set the current directory to…</em> and waits for the parameter, which is a path to the folder in this case - <code>courses/sds/</code>.</p>
-<p>Once in the correct folder, you can use another command, <code>ls</code>, which stands for <span class="accent">l</span>i<span class="accent">s</span>t and allows you to list the contents of the current directory.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>The output would look like this:</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="../_assets/figures/introduction/ls.png" class="img-fluid figure-img"></p>
-<figcaption>Output of the <code>ls</code> command.</figcaption>
-</figure>
-</div>
-<p>You can also pass a parameter <code>-l</code>, specifying that you want a long listing including attributes.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span> <span class="at">-l</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>That changes the output to this:</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="../_assets/figures/introduction/ls-l.png" class="img-fluid figure-img"></p>
-<figcaption>Output of the <code>ls -l</code> command.</figcaption>
-</figure>
-</div>
-<p>The syntax is always the same, starting with the app name and then followed by parameters.</p>
-</section>
-</section>
 <section id="jupyter-notebook-and-jupyter-lab" class="level2">
 <h2 class="anchored" data-anchor-id="jupyter-notebook-and-jupyter-lab">Jupyter Notebook and Jupyter Lab</h2>
 <p>While you can interact with Python from the terminal, it is inconvenient. Instead, you will use Jypyter Notebooks and Jupyter Lab. Jupyter Notebooks are documents that allow you to mix text and code, execute small pieces of code one at a time and include graphical outputs of your code. Jupyter Lab is a handy interface that allows you to work with multiple notebooks and switch between your Python environments created with Pixi.</p>
-<p>It is time to say goodbye to the terminal and start Jupyter Lab.</p>
-<p>First, avigate to the template folder. Then you can start Lab using:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">pixi</span> run jupyter lab</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>First, navigate to the your folder that contains the Pixi environment (use <code>ls</code> command followed by the path. You can also drag-and-drop the folder to the shell). Then you can start Lab using:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">pixi</span> run jupyter lab</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>This command should open your browser and load the Jupyter Lab interface.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -937,8 +891,8 @@ window.Quarto = {
 </div>
 <p>Cells can contain either code or text. A typical notebook is then a series of cells where some include text describing what is happening while others contain the code, either waiting for execution or already executed. The cells with the executed code may also contain outputs.</p>
 <p>You can start with simple math that Python can do natively. Run the following code cell. To do that, you can either click the “play” button on top or hit <span class="keystroke">Shift</span> + <span class="keystroke">Enter</span>:</p>
-<div id="762db406" class="cell" data-execution_count="2">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span> <span class="op">+</span> <span class="dv">1</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div id="ed4a62fd" class="cell" data-execution_count="2">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span> <span class="op">+</span> <span class="dv">1</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="1">
 <pre><code>2</code></pre>
 </div>
@@ -1117,18 +1071,18 @@ I = \frac N W \frac {\sum_{i=1}^N \sum_{j=1}^N w_{ij}(x_i-\bar x) (x_j-\bar x)} 
 <section id="tab-completion" class="level4">
 <h4 class="anchored" data-anchor-id="tab-completion">Tab completion</h4>
 <p>Learn to use <span class="keystroke">Tab</span>. It provides you with all possible actions you can do after loading in a library <strong>and</strong> it is used for automatic autocompletion. Try hitting <span class="keystroke">Tab</span> while writing the code below.</p>
-<div id="c4ed1a04" class="cell" data-execution_count="3">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> math</span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>math.pi</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div id="45f89114" class="cell" data-execution_count="3">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> math</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>math.pi</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="2">
 <pre><code>3.141592653589793</code></pre>
 </div>
 </div>
 <p>As you have noticed, Jupyter gives you options on what you can import or use. It also remembers all the variables so you don’t have to type them next time.</p>
-<div id="d1a37a00" class="cell" data-execution_count="4">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>variable_name_that_got_super_long <span class="op">=</span> <span class="dv">42</span></span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span> <span class="op">+</span> variable_name_that_got_super_long</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div id="b1c22647" class="cell" data-execution_count="4">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>variable_name_that_got_super_long <span class="op">=</span> <span class="dv">42</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span> <span class="op">+</span> variable_name_that_got_super_long</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="3">
 <pre><code>43</code></pre>
 </div>
@@ -1137,8 +1091,8 @@ I = \frac N W \frac {\sum_{i=1}^N \sum_{j=1}^N w_{ij}(x_i-\bar x) (x_j-\bar x)} 
 <section id="contextual-help" class="level4">
 <h4 class="anchored" data-anchor-id="contextual-help">Contextual help</h4>
 <p>Each Python function comes with documentation. You can fetch and display it directly in the Notebook using <span class="keystroke">Shift</span> + <span class="keystroke">Tab</span>. Try using it in the cell below.</p>
-<div id="37b90cf3" class="cell" data-execution_count="5">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>math.sin(math.pi)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div id="0e4ce5a9" class="cell" data-execution_count="5">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>math.sin(math.pi)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="4">
 <pre><code>1.2246467991473532e-16</code></pre>
 </div>
@@ -1179,7 +1133,7 @@ I = \frac N W \frac {\sum_{i=1}^N \sum_{j=1}^N w_{ij}(x_i-\bar x) (x_j-\bar x)} 
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>This course won’t cover the very basics of Python. You may be able to catch it along the way but if you prefer more explicit material, have a look at <em><a href="https://geo-python-site.readthedocs.io/en/latest/notebooks/L1/a-taste-of-python.html">A taste of Python</a></em> section of the <em><a href="https://geo-python-site.readthedocs.io">Geo-Python</a> course</em> by D. Whipp, H. Tenkanen, V. Heikinheimo, H. Aagesen, and C. Fink.</p>
+<p>This course won’t cover the very basics of Python. You may be able to catch it along the way but if you prefer more explicit material, have a look at the <em><a href="https://pythongis.org/part1/chapter-02/index.html">Basic programming concepts</a></em> chapter of the _<a href="https://pythongis.org/index.html">Introduction to Python for Geographic Data Analysis</a> book by H. Tenkanen, V. Heikinheimo and D. Whipp.</p>
 </div>
 </div>
 </section>
