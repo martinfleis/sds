@@ -37,7 +37,7 @@ grid = tobler.util.h3fy(glasgow, resolution=8)
 ```
 
 ```py
-m = glasgow.boundary.explore(tiles="CartoDB Positron")
+m = glasgow.boundary.explore(tiles="OpenStreetMap HOT")
 grid.boundary.explore(m=m, color='red')
 ```
 
@@ -150,7 +150,7 @@ nearest
 ```py
 grid['nearest'] = nearest
 ax = grid.plot('nearest', legend=True, figsize=(15,15), cmap='viridis', alpha=.5)
-contextily.add_basemap(ax=ax, crs=grid.crs, source="CartoDB Positron")
+contextily.add_basemap(ax=ax, crs=grid.crs, source="OpenStreetMap HOT")
 ```
 
 ```py
@@ -174,7 +174,7 @@ grid['KNN_uniform'] = price_on_grid
 
 ```py
 ax = grid.plot('KNN_uniform', legend=True, figsize=(15,15), cmap='viridis', alpha=.5)
-contextily.add_basemap(ax=ax, crs=grid.crs, source="CartoDB Positron")
+contextily.add_basemap(ax=ax, crs=grid.crs, source="OpenStreetMap HOT")
 ```
 
 ```py
@@ -200,7 +200,7 @@ grid['KNN_distance'] = price_on_grid
 
 ```py
 ax = grid.plot('KNN_distance', legend=True, figsize=(15,15), cmap='viridis', alpha=.5)
-contextily.add_basemap(ax=ax, crs=grid.crs, source="CartoDB Positron")
+contextily.add_basemap(ax=ax, crs=grid.crs, source="OpenStreetMap HOT")
 ```
 
 ```py
@@ -213,7 +213,7 @@ interpolation_radius.fit(
 grid['radius'] = interpolation_radius.predict(grid_coordinates)
 
 ax = grid.plot('radius', legend=True, figsize=(15,15), cmap='viridis', alpha=.5)
-contextily.add_basemap(ax=ax, crs=grid.crs, source="CartoDB Positron")
+contextily.add_basemap(ax=ax, crs=grid.crs, source="OpenStreetMap HOT")
 ```
 
 ## Krigging
@@ -264,13 +264,13 @@ grid["ordinary_kriging"] = ordinary_kriging[:, 0]
 
 ```py
 ax = grid.plot('ordinary_kriging', legend=True, figsize=(15,15), cmap='viridis', alpha=.5)
-contextily.add_basemap(ax=ax, crs=grid.crs, source="CartoDB Positron")
+contextily.add_basemap(ax=ax, crs=grid.crs, source="OpenStreetMap HOT")
 ```
 
 ```py
 grid["variance_error"] = ordinary_kriging[:, 1]
 ax = grid.plot('variance_error', legend=True, figsize=(15,15), cmap='inferno_r', alpha=.5)
-contextily.add_basemap(ax=ax, crs=grid.crs, source="CartoDB Positron")
+contextily.add_basemap(ax=ax, crs=grid.crs, source="OpenStreetMap HOT")
 ```
 
 

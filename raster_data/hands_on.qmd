@@ -468,7 +468,7 @@ Check the result on a map to verify that all worked as expected.
 
 ```{python}
 #| classes: explore
-location_data.explore("density", cmap="cividis_r", tiles="CartoDB Positron")
+location_data.explore("density", cmap="cividis_r", tiles="OpenStreetMap HOT")
 ```
 
 ::: {.callout-note}
@@ -579,7 +579,7 @@ Check the result on a map to verify that all worked as expected. Get mean densit
 
 ```{python}
 #| classes: explore
-zones.loc[("mean", 'density')].explore("stats", cmap="cividis_r", tiles="CartoDB Positron")
+zones.loc[("mean", 'density')].explore("stats", cmap="cividis_r", tiles="OpenStreetMap HOT")
 ```
 
 ::: {.callout-tip}

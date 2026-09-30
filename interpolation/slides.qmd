@@ -59,7 +59,7 @@ from one set to the other
 ---
 
 ```{python}
-m = tracts.explore(tiles="CartoDB positron", tooltip=False)
+m = tracts.explore(tiles="OpenStreetMap HOT", tooltip=False)
 zip_codes.boundary.explore(m=m, color="red")
 ```
 

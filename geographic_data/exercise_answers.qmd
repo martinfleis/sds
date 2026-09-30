@@ -33,7 +33,7 @@ price["CENA"] = price["CENA"].replace("N", None).astype('float')
 - Plot the price.
 - Plot boundaries on top. Try different colours to get a nice combination of colours.
 - Show a legend.
-- Use CartoDB Voyager or CartoDB Dark Matter basemap. Can you do that in a static plot as well?
+- Use non-default basemap. Can you do that in a static plot as well?
 - Can you figure out how to change the colormap?
 - Can you change the transparency of polygons?
 

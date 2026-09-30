@@ -239,7 +239,7 @@ Let's visualise the results.
 
 ```{python}
 #| fig-cap: LISA clusters
-lisa.explore(elections_data, prefer_canvas=True, tiles="CartoDB Positron")
+lisa.explore(elections_data, prefer_canvas=True, tiles="OpenStreetMap HOT")
 ```
 The outcome of LISA shows large clusters of both underpredicted (High-High) and overpredicted (Low-Low) areas. The underpredicted are mostly in central Bohemia around Prague and in the mountains near the borders, where the ski resorts are. Putting aside the central areas for a bit, the explanation of underprediction in mountains is relatively straightforward. The education data are linked to the residents of each municipality. The people who voted in a municipality do not necessarily need to match with residents. It is known that more affluent population groups, who are more likely to go to a ski resort, voted overwhelmingly for Pavel. And since the elections were in winter, a lot of them likely voted in ski resorts, affecting the outcome of the model.
 

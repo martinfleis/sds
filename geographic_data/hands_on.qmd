@@ -375,14 +375,14 @@ You can also layer multiple geometry layers on top of each other. You just need 
 
 ```{python}
 #| classes: explore
-m = buildings.explore(tiles="CartoDB Positron", popup=True, tooltip=False)  # <1>
+m = buildings.explore(tiles="OpenStreetMap HOT", popup=True, tooltip=False)  # <1>
 street_edges.explore(m=m, color="black")                                    # <2>
 street_nodes.explore(m=m, color="pink")                                     # <3>
 arc.explore(m=m, marker_type="marker")                                      # <4>
 m.save("paris-map.html")                                                    # <5>
 m
 ```
-1. Create a base map (`m`) based on `buildings`. `tiles="CartoDB Positron` specifies which background tiles shall be used, `popup=True` enables pop-up (shows data on click) and `tooltip=False` disables tooltip (shows data on hover).
+1. Create a base map (`m`) based on `buildings`. `tiles="OpenStreetMap HOT"` specifies which background tiles shall be used, `popup=True` enables pop-up (shows data on click) and `tooltip=False` disables tooltip (shows data on hover).
 2. Passing `m=m` ensures that both `GeoDataFrames` are shown on the same map.
 3. `color="pink"` specifies the geometries' colour if no data is shown.
 4. `marker_type="marker"` specifies how points are shown on the map. Here, you want to use `"marker"`.
@@ -437,7 +437,7 @@ There is, so you can map it. The array can be passed directly to `plot`, no need
 
 ```{python}
 # | fig-cap: Buildings that contain Arc de Triomphe point location
-ax = buildings.plot(contains_arc, legend=True, cmap='coolwarm')
+ax = buildings.plot(contains_arc, legend=True)
 ```
 
 Get a point representing a location of another important building within the dataset - Grand Palais. As above, you can generate it directly from coordinates or using geocoding.

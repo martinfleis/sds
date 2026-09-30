@@ -130,7 +130,7 @@ the one below to build your intuition about what is going to happen.
 
 ```{python}
 #| classes: explore
-simd[["IncRankv2", "geometry"]].explore("IncRankv2", tiles="CartoDB Positron", tooltip=False)
+simd[["IncRankv2", "geometry"]].explore("IncRankv2", tiles="OpenStreetMap HOT", tooltip=False)
 ```
 
 You can see a decent degree of spatial variation between different sub-ranks. Even
@@ -214,7 +214,7 @@ classification you have just performed. For this, you will use a unique values
 choropleth, which will automatically assign a different colour to each category:
 
 ```{python}
-simd[["kmeans_5", 'geometry']].explore("kmeans_5", categorical=True, tiles="CartoDB Positron")
+simd[["kmeans_5", 'geometry']].explore("kmeans_5", categorical=True, tiles="OpenStreetMap HOT")
 ```
 
 The map above represents the geographical distribution of the five categories created by
@@ -432,7 +432,7 @@ simd["kmeans_5_lagged"] = kmeans5_lag.labels_
 And explore as a map.
 
 ```{python}
-simd[["kmeans_5_lagged", 'geometry']].explore("kmeans_5_lagged", categorical=True, tiles="CartoDB Positron")
+simd[["kmeans_5_lagged", 'geometry']].explore("kmeans_5_lagged", categorical=True, tiles="OpenStreetMap HOT")
 ```
 
 Comparing the spatially-lagged clusters with the original results shows that the new
@@ -529,7 +529,7 @@ snippet is exactly the same as before, only replacing the name of the variable t
 mapped and the title:
 
 ```{python}
-simd[["agg_5", 'geometry']].explore("agg_5", categorical=True, tiles="CartoDB Positron")
+simd[["agg_5", 'geometry']].explore("agg_5", categorical=True, tiles="OpenStreetMap HOT")
 ```
 
 ::: {.callout-note}
@@ -562,7 +562,7 @@ simd_regions
 
 
 ```{python}
-simd_regions.reset_index().explore("agg_5", categorical=True, tiles="CartoDB Positron")
+simd_regions.reset_index().explore("agg_5", categorical=True, tiles="OpenStreetMap HOT")
 ```
 
 ::: {.callout-tip}

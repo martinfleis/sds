@@ -169,7 +169,7 @@ lisa.explore(glasgow, crit_value=.1)
 You can use a trick of simply overlaying them.
 
 ```py
-m = lisa.explore(glasgow, crit_value=.1, tiles="CartoDB Positron")
+m = lisa.explore(glasgow, crit_value=.1, tiles="OpenStreetMap HOT")
 lisa.explore(glasgow, m=m)
 lisa.explore(glasgow, crit_value=.01, m=m)
 ```
@@ -201,7 +201,7 @@ glasgow.loc[(glasgow["labels_001"] == "High-Low")].plot(ax=ax, color="#fdae61", 
 Same can be done for interactive mapping.
 
 ```py
-# m = glasgow.loc[(glasgow["labels_01"] == "High-High")].explore(color="#d7191c", opacity=.8, tiles="CartoDB Positron")
+# m = glasgow.loc[(glasgow["labels_01"] == "High-High")].explore(color="#d7191c", opacity=.8, tiles="OpenStreetMap HOT")
 # glasgow.loc[(glasgow["labels_01"] == "Low-Low")].explore(m=m, color="#2c7bb6", opacity=.8)
 # glasgow.loc[(glasgow["labels_01"] == "Low-High")].explore(m=m, color="#abd9e9", opacity=.8)
 # glasgow.loc[(glasgow["labels_01"] == "High-Low")].explore(m=m, color="#fdae61", opacity=.8)

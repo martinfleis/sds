@@ -720,7 +720,7 @@ are consistently under-predicted.
 
 ```{python}
 moran = esda.Moran_Local(residuals, distance10km)
-moran.explore(executions_data, tiles="CartoDB Positron")
+moran.explore(executions_data, tiles="OpenStreetMap HOT")
 ```
 
 High-High clusters are those that are consistently under-predicted while Low-Low are
@@ -731,7 +731,7 @@ consistently correct and consistently wrong locations.
 
 ```{python}
 moran_abs = esda.Moran_Local(residuals.abs(), distance10km)
-moran_abs.explore(executions_data, tiles="CartoDB Positron")
+moran_abs.explore(executions_data, tiles="OpenStreetMap HOT")
 ```
 
 This time, High-High captures clusters of high error rates, while Low-Low areas of low

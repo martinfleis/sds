@@ -51,7 +51,7 @@ hb = ax.hexbin(
 contextily.add_basemap(
     ax=ax,
     crs=airbnb.crs,
-    source="CartoDB Positron",
+    source="OpenStreetMap HOT",
 )
 # Add colorbar
 plt.colorbar(hb)
@@ -75,7 +75,7 @@ pointpats.plot_density(
 contextily.add_basemap(
     ax=ax,
     crs=airbnb.crs,
-    source="CartoDB Positron",
+    source="OpenStreetMap HOT",
 )
 ```
 
@@ -114,7 +114,7 @@ ax.legend(loc="upper left")
 contextily.add_basemap(
     ax=ax,
     crs=airbnb.crs,
-    source="CartoDB Positron No Labels",
+    source="OpenStreetMap HOT",
 )
 plt.xticks(rotation=90);
 ```
@@ -134,7 +134,7 @@ ax = qstat.plot()
 contextily.add_basemap(
     ax=ax,
     crs=airbnb.crs,
-    source="CartoDB Positron No Labels",
+    source="OpenStreetMap HOT",
 )
 plt.xticks(rotation=90);
 ```
@@ -154,7 +154,7 @@ ax = qstat.plot()
 contextily.add_basemap(
     ax=ax,
     crs=airbnb.crs,
-    source="CartoDB Positron No Labels",
+    source="OpenStreetMap HOT",
 )
 plt.xticks(rotation=90);
 ```

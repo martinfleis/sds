@@ -45,7 +45,7 @@ to download any dataset:
 accidents = gpd.read_file(
     "https://martinfleischmann.net/sds/point_patterns/data/brno_pedestrian_accidents.gpkg"
 )
-accidents.explore("rok", tiles="CartoDB Positron", cmap="magma_r")  # <1>
+accidents.explore("rok", tiles="OpenStreetMap HOT", cmap="magma_r")  # <1>
 ```
 1. `"rok"` is a column with the year in which an accident occurred. The variables are in Czech.
 
@@ -88,7 +88,7 @@ made for scatterplots. `seaborn` is able to give you a scatter plot with histogr
 # | fig-cap: Enhanced scatter plot
 axs = sns.jointplot(x="x", y="y", data=accidents, s=1)                      # <1>
 contextily.add_basemap(                                                     # <2>
-    ax=axs.ax_joint, crs=accidents.crs, source="CartoDB Positron No Labels" # <2>
+    ax=axs.ax_joint, crs=accidents.crs, source="OpenStreetMap HOT" # <2>
 )                                                                           # <2>
 plt.xticks(rotation=90);                                                    # <3>
 ```
@@ -130,7 +130,7 @@ hb = ax.hexbin(                         # <3>
 contextily.add_basemap(
     ax=ax,
     crs=accidents.crs,
-    source="CartoDB Positron No Labels",
+    source="OpenStreetMap HOT",
 )
 # Add colorbar
 plt.colorbar(hb)                        # <5>
@@ -165,7 +165,7 @@ pointpats.plot_density(
 contextily.add_basemap(
     ax=ax,
     crs=accidents.crs,
-    source="CartoDB Positron No Labels",
+    source="OpenStreetMap HOT",
 )
 ```
 1. `n_levels` specifies the number of contour lines to show.
@@ -238,7 +238,7 @@ ax.legend(loc="upper left")             # <3>
 contextily.add_basemap(
     ax=ax,
     crs=accidents.crs,
-    source="CartoDB Positron No Labels",
+    source="OpenStreetMap HOT",
 )
 plt.xticks(rotation=90);
 ```
@@ -307,7 +307,7 @@ ax.legend(loc="upper left")
 contextily.add_basemap(
     ax=ax,
     crs=accidents.crs,
-    source="CartoDB Positron No Labels",
+    source="OpenStreetMap HOT",
 )
 plt.xticks(rotation=90);
 ```
@@ -359,7 +359,7 @@ ax = qstat.plot()
 contextily.add_basemap(
     ax=ax,
     crs=accidents.crs,
-    source="CartoDB Positron No Labels",
+    source="OpenStreetMap HOT",
 )
 plt.xticks(rotation=90);
 ```
@@ -529,7 +529,7 @@ clusters.plot(ax=ax, markersize=.05, color='red')
 contextily.add_basemap(
     ax=ax,
     crs=accidents.crs,
-    source="CartoDB Positron No Labels",
+    source="OpenStreetMap HOT",
 )
 plt.xticks(rotation=90);
 ```
@@ -559,7 +559,7 @@ accidents[accidents["cluster"] != -1].plot(
 contextily.add_basemap(
     ax=ax,
     crs=accidents.crs,
-    source="CartoDB Positron No Labels",
+    source="OpenStreetMap HOT",
 )
 plt.xticks(rotation=90);
 ```
