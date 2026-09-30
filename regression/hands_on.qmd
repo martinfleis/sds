@@ -30,12 +30,13 @@ spatial variables in standard linear regression to geographically weighted regre
 import esda
 import geopandas as gpd
 import matplotlib.pyplot as plt
-import mgwr
 import numpy as np
 import pandas as pd
 import seaborn as sns
 import statsmodels.formula.api as sm
 from libpysal import graph
+from sklearn import metrics
+from spml import linear_model, search
 ```
 
 ## Data
@@ -363,71 +364,67 @@ Illustrations of kernels. Reproduced from Fotheringham et al. [-@fotheringham200
 
 With kernels being the core of the GWR method, their specification significantly affects the resulting model. You can specify three parameters:
 
-- **Kernel shape**: The shape of the curve formed by the kernel. In `mgwr` package used here, `"bisquare"`, `"gaussian"`,  and `"exponential"` kernels are supported.
+- **Kernel shape**: The shape of the curve formed by the kernel. In `spml` package used here, a range of kernels like `"bisquare"`, `"gaussian"`,  and `"exponential"` are supported.
 - **Kernel size**: The bandwidth distance specifying how large is the moving window.
 - **Bandwidth adaptivity**: Bandwidth can be either fixed, specified by the metric distance, where the moving window is essentially formed as a buffer around a point, or adaptive, specified by the number of nearest neighbours.
 
 The details of the implications of the choices are beyond the scope of this lesson but are discussed in-depth by @fotheringham2002geographically.
 
-### Fixed bandwidth
+### Adaptive bandwidth
 
-The method can be illustrated on a GWR using a fixed bandwidth and the default bi-square kernel.
+The method can be illustrated on a GWR using a adaptive bandwidth and the default bi-square kernel.
 
 #### Bandwidth selection
 
-You may have some theoretically defined bandwidth (e.g. you know that you want to consider only locations closer than 25 km) or use cross-validation to find the optimal bandwidth programmatically. CV can be an expensive procedure as the selection procedure fits models based on different bandwidths and compares residuals to choose the one where those are minimised. `mgwr` has the `mgwr.sel_bw.Sel_BW` function that helps you with the search. But before using it (or any other `mgwr` function), you need to prepare the data in the correct form.
-
-As mentioned above, the GWR assumes point locations as those are well-defined within the distance search (unlike polygons), so you need to extract centroids from geometries and get their coordinates.
+You may have some theoretically defined bandwidth (e.g. you know that you want to consider only locations closer than 25 km) or use cross-validation to find the optimal bandwidth programmatically. CV can be an expensive procedure as the selection procedure fits models based on different bandwidths and compares residuals to choose the one where those are minimised. `spml` has the `search.BandwidthSearch` functionality that helps you with the search. This step may take some time (probably minutes).
 
 ```{python}
-coords = elections_data.centroid.get_coordinates().values # <1>
-coords
-```
-1. Create centroids, extract their coordinates and the underlying numpy array instead of a DataFrame.
-
-Since `mgwr` is designed to work with numpy objects rather than pandas, extract both dependent and independent variables as arrays.
-
-```{python}
-y = elections_data[f"PetrPavel"].values.reshape(-1, 1) # <1>
-X = elections_data[independent_names[1:]].values # <2>
-```
-1. Get a column, extract its numpy representation and reshape it to an expected shape. The array should be two-dimensional.
-2. Get a subset of columns and their array. Notice the omission of the first independent variable (`[1:]`). Unlike `statsmodels`, `mgwr` is not able to automatically deal with the interaction effects of independent variables while having an intercept. You therefore drop the first category and use the intercept in its place.
-
-With the data ready, you can identify the optimal bandwidth. This step may take some time (probably minutes).
-
-```{python}
-sel_bw = mgwr.sel_bw.Sel_BW(coords, y, X, fixed=True)  # <1>
-bw = sel_bw.search() # <2>
-bw
-```
-1. Pass in coordinates, an array with dependent variable, an array with independent variables, and specify that you want a fixed bandwidth (in meters).
-2. Initiate the search routine.
-
-The optimal fixed bandwidth seems to be a bit more than 34 kilometres. You can pass it to the `GWR` function and fit the regression.
-
-```{python}
-fixed_bandwidth = mgwr.gwr.GWR(
-    coords, y, X, bw=bw, fixed=True, name_x=independent_names[1:]  # <1>
+bandwidth = search.BandwidthSearch(
+    linear_model.GWLinearRegression,  # <1>
 )
-results = fixed_bandwidth.fit()  # <2>
+bandwidth.fit(
+    X=elections_data[independent_names],
+    y=elections_data["PetrPavel"],
+    geometry=elections_data.centroid,  # <2>
+)
+bandwidth.optimal_bandwidth_  # <3>
 ```
-1. Pass the data and bandwidth, specify that the bandwidth is fixed and optionally pass the names of each independent variable to be used in the report.
-2. Fit the regression and save its results.
+1. Define the model you intend to use.
+2. Pass in geometry to provide locations for observations. That is the only difference from the scikit-learn's API we used above.
+3. Show the optimal bandwidth value.
 
-As before, you can use a summary method.
 
 ```{python}
-results.summary()
+bandwidth.scores_.sort_index().plot()
 ```
 
-The function fits GWR but also OLS for comparison and prints its results under the Global Regression Results section. You can see that the performance matches the first model done with `statsmodels` above. The performance of the GWR based on the adjusted $R^2$ is 0.651, another improvement over the fixed effects OLS model. It is probably as good as it can be given the data on education can explain only a part of the election behaviour.
+The optimal adaptive bandwidth seems to be 237 neighbors. You can pass it to the `GWLinearRegression` class and fit the regression.
+
+```{python}
+gw_regression = linear_model.GWLinearRegression(
+    bandwidth=bandwidth.optimal_bandwidth_,
+)
+gw_regression.fit(
+    X=elections_data[independent_names],
+    y=elections_data["PetrPavel"],
+    geometry=elections_data.centroid,
+)
+```
+
+$R^2$ is not computed automatically but can be measured using scikit-learn's `metrics` module, which contains most of the other performance metrics we may be interested in. We need to provide the true value and the predicted one, which is available in the model. 
+
+```{python}
+metrics.r2_score(elections_data["PetrPavel"], gw_regression.pred_)
+```
+
+The performance of the GWR based on the $R^2$ is 0.71, another improvement over the fixed effects OLS model. It is probably as good as it can be given the data on education can explain only a part of the election behaviour.
+
 
 Apart from the global $R^2$, GWR can report $R^2$ per geometry, giving us further insights into where education is the driver of the election result and where you need to look for other causes.
 
 ```{python}
 #| fig-cap: Local $R^2$
-elections_data["local_r2"] = results.localR2 # <1>
+elections_data["local_r2"] = gw_regression.local_r2_ # <1>
 elections_data.plot("local_r2", legend=True, vmin=0, vmax=1).set_axis_off() # <2>
 ```
 1. Extract the array of local $R^2$ and assign it as a column.
@@ -445,7 +442,7 @@ elections_data.plot(
     ols.predict(elections_data), legend=True, cmap="coolwarm", ax=axs[0]
 )
 elections_data.plot(
-    results.predy.flatten(), legend=True, cmap="coolwarm", vmin=0, vmax=100, ax=axs[1]
+    gw_regression.pred_, legend=True, cmap="coolwarm", vmin=0, vmax=100, ax=axs[1]
 ).set_axis_off()
 
 elections_data.plot(
@@ -489,55 +486,23 @@ axs[0].set_axis_off()
 axs[1].set_axis_off()
 ```
 
-Apart from localised $R^2$, GWR also contains localised $\beta_k$ coefficients. While you can plot them directly (they are available as `results.params`), you should also understand whether the coefficients are statistically significant. For that, you first need to understand what is the critical value of $t$. It is reported in the summary above but not available as an attribute.
-
-The `results` object contains the adjusted alpha values for 0.1, 0.05 and 0.01 levels of significance:
-
-```{python}
-results.adj_alpha
-```
-
-You can use the selected alpha value together with the `results.critical_tval()` method to get the critical value of $t$.
-
-```{python}
-sig95 = results.adj_alpha[1] # <1>
-critical_t = results.critical_tval(alpha=sig95) # <2>
-critical_t
-```
-1. Select 0.05 level of significance.
-2. Derive $t$.
-
-If a coefficient estimate has an absolute value of $t$ greater than 3.33, then it is statistically significant. You can use this level to mask out the coefficients on the maps below making a distinction between significant and non-significant values.
-
-```{python}
-#| fig-cap: Local coefficients
-significant = np.abs(results.tvalues) > critical_t
-
-fig, axs = plt.subplots(4, 3, figsize=(9, 9))
-axs = axs.flatten()
-for i, name in enumerate(independent_names[1:-1]):
-    significant_mask = significant[:, i + 1]
-    elections_data.plot(results.params[:, i + 1], cmap="plasma", ax=axs[i])
-    elections_data[~significant_mask].plot(color="white", ax=axs[i], alpha=.9)
-    axs[i].set_title(name[:20], fontdict={'fontsize': 8})
-    axs[i].set_axis_off()
-```
-
-It seems that the coefficients are significant only in some areas, so you need to be careful when drawing conclusions here. This can be due to a lack of relationship or a small sample size. Try for yourself how the significance changes if you increase the bandwidth. But be careful as too large a bandwidth may miss regional differences and a bandwidth that would cover the whole country would be equal to the OLS model.
-
 ::: {.callout-tip}
-### Adaptive bandwidth
+### Fixed bandwidth
 
-If you'd like to use the adaptive bandwidth, you can use same tools. Just specify `fixed=False` in both `Sel_BW` and `GWR`.
+If you'd like to use the fixed bandwidth, you can use same tools. Just specify `fixed=True` in both bandwidth selection and model fitting.
 
 ```py
-sel_bw = mgwr.sel_bw.Sel_BW(coords, y, X, fixed=False)
-bw = sel_bw.search()
+bandwidth = search.BandwidthSearch(
+    linear_model.GWLinearRegression,
+    fixed=True,
+)
 ```
 
 ```py
-adaptive = mgwr.gwr.GWR(coords, y, X, bw=bw, fixed=False, name_x=independent_names[1:])
-results_adaptive = adaptive.fit()
+gw_regression = linear_model.GWLinearRegression(
+    bandwidth=bandwidth.optimal_bandwidth_,
+    fixed=True,
+)
 ```
 :::
 
