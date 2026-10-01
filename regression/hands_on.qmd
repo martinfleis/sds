@@ -33,7 +33,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
 import seaborn as sns
-import statsmodels.formula.api as sm
+import statsmodels.api as sm
 from libpysal import graph
 from sklearn import metrics
 from spml import linear_model, search
@@ -117,27 +117,27 @@ While this course is not formula-heavy, in this case, it is useful to use the fo
 
 $$y_{i}=\alpha+\beta _{1}\ x_{i1}+\beta _{2}\ x_{i2}+\cdots +\beta _{p}\ x_{ip}+\varepsilon _{i}$$
 
-where $\epsilon_{i}$ represents unobserved random variables and $\alpha$ represents an intercept - a constant. You know the $y_i$, all of the $x_i$ and try to estimate the coefficients. In Python, you can run linear regression using implementations from more than one package (e.g., `statsmodels`, `scikit-learn`, `spreg`). This course covers `statsmodels` approach as it has a nice API to work with.
+where $\epsilon_{i}$ represents unobserved random variables and $\alpha$ represents an intercept - a constant. You know the $y_i$, all of the $x_i$ and try to estimate the coefficients. In Python, you can run linear regression using implementations from more than one package (e.g., `statsmodels`, `scikit-learn`, `spreg`). This course covers `statsmodels` approach as it offers additional insights over `scikit-learn`.
 
-First, you need a list of names of independent variables. That is equal to column names without a few of the columns that represent other data.
+First, you need to define independent variables. That is equal to education data without a few of the columns that represent other data.
 
 ```{python}
-independent_names = education.columns.drop(["uzemi_kod", "okres"])
-independent_names
+independent = education.drop(columns=["uzemi_kod", "okres"])
+independent.head(3)
 ```
 
-`statsmodels` (above imported as `sm`) offers an intuitive formula API to define the linear regression.
+`statsmodels` (above imported as `sm`) offers an intuitive API to define the linear regression. In our case, we also need to include an intercept, by adding a constant. We also need to avoid perfect multi-collinearity as our education variables sum up to one.
 
 ```{python}
-formula = f"PetrPavel ~ {' + '.join(independent_names)}"  # <1>
-formula
+X = sm.add_constant(independent.drop(columns='without_education'))
+X.head(3)
 ```
-1. In the formula, specify the dependent variable (`"PetrPavel"`) as a function of (`"~"`) independent variables (`"undetermined + incomplete_primary_education + ..."`).
 
-With the formula ready, you can fit the model and estimate all betas and $\varepsilon$.
+
+ With the data ready, you can fit the model and estimate all betas and $\varepsilon$.
 
 ```{python}
-ols = sm.ols(formula, data=elections_data).fit()
+ols = sm.OLS(elections_data["PetrPavel"], X).fit()
 ```
 
 The `ols` object offers a handy `summary()` function providing most of the results from the fitting in one place.
@@ -155,8 +155,8 @@ It is clear that education composition has a significant effect on the outcome o
 Start with the visualisation of the prediction the OLS model produces using the coefficients shown above.
 
 ```{python}
-predicted = ols.predict(elections_data)  # <1>
-predicted.head()
+predicted = ols.predict()  # <1>
+predicted
 ```
 1. Use the `predict()` method with the original data to get the prediction using the model.
 
@@ -282,11 +282,24 @@ _ = plt.xticks(rotation=90) # <7>
 There are clear differences among these geographies, with a gradient between median -16.5 and 8.3. In a model that does not show spatial heterogeneity across higher-level geographies like these, all medians would be close to zero. This is positive information as it indicates, that we can encode these geographies in the model as a spatial proxy. Using `statsmodels`, you can adapt the equation and include `"okres"` as a dummy variable.
 
 ```{python}
-formula_fe = f"PetrPavel ~ {' + '.join(independent_names)} + okres - 1"  # <1>
-ols_fe = sm.ols(formula_fe, data=elections_data).fit() # <2>
+dummy = pd.get_dummies(elections_data['okres'])  # <1>
+X = pd.concat(  # <2>
+    [ # <2>
+        independent.drop(columns='without_education'), # <2>
+        dummy, # <2>
+    ], # <2>
+    axis='columns', # <2>
+) # <2>
 ```
-1. Add `+ okres - 1`, where `- 1` means that you're fitting a model without an intercept. Since you are now including a categorical variable _okres_, that will be converted to a dummy one, `statsmodels` would otherwise drop the first level (_okres_) to use as a reference represented by the intercept. The resulting coefficients would then reflect the difference between the intercept and the value for each _okres_. By omitting the intercept, the coefficient can be directly interpreted as $\alpha$.
-2. Fit the OLS model using the new formula.
+1. Create dummy variables from the `'okres'` categories. Since you are now including a categorical variable _okres_, we don't need an intecept as the dummy variable takes its role. By omitting the intercept, the coefficient can be directly interpreted as spatially varying $\alpha$.
+2. Join the dummies together with original data.
+
+Fit the OLS model using the new data.
+
+```{python}
+ols_fe = sm.OLS(elections_data["PetrPavel"], X).fit() # <2>
+```
+
 
 Since every unique value in the `"okres"` column is now treated as a unique variable the summary is a bit longer than before.
 
@@ -295,37 +308,26 @@ Since every unique value in the `"okres"` column is now treated as a unique vari
 ols_fe.summary()
 ```
 
-The coefficients for each of the values of the categorical variable `"okres"` are considered spatial fixed effects. You can extract just those from the model by getting the `.params` `Series` and filtering it.
+The coefficients for each of the values of the categorical variable `"okres"` are considered spatial fixed effects. They represent the _starting point_ for the regression in that region. You can extract just those from the model by getting the `.params` `Series` and filtering it.
 
 ```{python}
-fixed_effects = ols_fe.params.filter(like="okres")  # <1>
+fixed_effects = ols_fe.params["Benešov":]  # <1>
 fixed_effects.head()
 ```
-1. `ols_fe.params` is a `pandas.Series` that can be filtered based on the index using the `filter()` method.
-
-You can see that if you want to join this Series to the original DataFrame, you need to extract the names of each _okres_ from within the square brackets.
-
-```{python}
-fixed_effects.index = fixed_effects.index.str.strip( # <1>
-    "okres["
-).str.strip("]") # <2>
-fixed_effects.head()
-```
-1. Use the `.str` accessor that enables you to use string methods on a Series and _strip_ the strings of the specified characters.
-2. Use it again to strip the closing bracket.
+1. `ols_fe.params` is a `pandas.Series` that can be sliced.
 
 The resulting Series can be merged with the `elections_data`, allowing us to map the spatial fixed effects.
 
 ```{python}
 #| fig-cap: Fixed effect per okres
-max_effect = fixed_effects.abs().max() # <1>
+max_effect = (fixed_effects - 50).abs().max() # <1>
 elections_data.merge( # <2>
     fixed_effects.to_frame("fixed_effect"), # <3>
     left_on="okres", # <4>
     right_index=True, # <5>
     how="left", # <6>
 ).plot( # <7>
-    "fixed_effect", legend=True, vmin=-max_effect, vmax=max_effect, cmap="PRGn" # <8>
+    "fixed_effect", legend=True, vmin=50-max_effect, vmax=50+max_effect, cmap="PRGn" # <8>
 ).set_axis_off()
 ```
 1. Identify the maximum fixed effect value based on absolute value to specify `vmin` and `vmax` values of the colormap.
@@ -383,7 +385,7 @@ bandwidth = search.BandwidthSearch(
     linear_model.GWLinearRegression,  # <1>
 )
 bandwidth.fit(
-    X=elections_data[independent_names],
+    X=independent.drop(columns='without_education'),
     y=elections_data["PetrPavel"],
     geometry=elections_data.centroid,  # <2>
 )
@@ -405,7 +407,7 @@ gw_regression = linear_model.GWLinearRegression(
     bandwidth=bandwidth.optimal_bandwidth_,
 )
 gw_regression.fit(
-    X=elections_data[independent_names],
+    X=independent.drop(columns='without_education'),
     y=elections_data["PetrPavel"],
     geometry=elections_data.centroid,
 )
@@ -439,7 +441,7 @@ You can use the new GWR model and compare its predicted results with the OLS don
 #| fig-cap: OLS prediction, GWR prediction, and the actual outcome
 f, axs = plt.subplots(3, 1, figsize=(7, 14))
 elections_data.plot(
-    ols.predict(elections_data), legend=True, cmap="coolwarm", ax=axs[0]
+    ols.predict(), legend=True, cmap="coolwarm", ax=axs[0]
 )
 elections_data.plot(
     gw_regression.pred_, legend=True, cmap="coolwarm", vmin=0, vmax=100, ax=axs[1]
@@ -472,7 +474,7 @@ elections_data.plot(
     ax=axs[0],
 )
 elections_data.plot(
-    results.resid_response.flatten(),
+    gw_regression.resid_,
     legend=True,
     cmap="RdBu",
     vmin=-max_residual,
