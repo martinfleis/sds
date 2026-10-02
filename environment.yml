@@ -28,6 +28,7 @@ dependencies:
   - scikit-learn >=1.6
   - seaborn >=0.13
   - spglm >=1.1
+  - spml >=0.2
   - spreg >=1.4
   - statsmodels >=0.14
   - tobler >=0.11.3

@@ -97,7 +97,7 @@ Download the folder available at [https://martinfleischmann.net/sds/spatial-data
 the definition of the environment.
 
 1. Download the folder to a location on your machine where you'd like to store the files for this course.
-2. Use Powershell (Windows) or Terminal (macOS, Linux) to navigate to the folder. Do this by typing `cd ` and dragging and dropping the folder to the shell window. Then hit [Enter]{.keystroke}.
+2. Use Powershell (Windows) or Terminal (macOS, Linux) to navigate to the folder. Do this by typing `cd`, adding space, and dragging and dropping the folder to the shell window (e.g. `cd /Users/waldo/spatial-data-science`). Then hit [Enter]{.keystroke}.
 4. Install the enviroment using `pixi install`.
 5. Start the Jupyter Lab interface using `pixi run jupyter lab`.
 

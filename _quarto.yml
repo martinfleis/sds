@@ -6,7 +6,7 @@ project:
     - "!_site_micro/"
     - "!_site/"
   post-render:
-    - ./make_pixi_zip.sh
+    - python make_pixi_zip.py
 
 lang: en
 
