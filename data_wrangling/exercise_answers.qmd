@@ -21,7 +21,7 @@ url = "https://www.gov.scot/binaries/content/documents/govscot/publications/stat
 ```
 
 ```{python}
-simd = pd.read_excel(url, sheet_name="SIMD 2020v2 ranks")
+simd = pd.read_excel(url, sheet_name="SIMD 2020v2 ranks", engine="openpyxl")
 ```
 
 **Which data zone is the most deprived (lowest ranking?) Which council area is it?**

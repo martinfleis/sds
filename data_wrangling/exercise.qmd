@@ -40,7 +40,7 @@ To read the proper sheet, you need to specify `sheet_name` to `read_excel`. `pan
 the file for you and open it as a `DataFrame`.
 
 ```{python}
-simd = pd.read_excel(url, sheet_name="SIMD 2020v2 ranks")
+simd = pd.read_excel(url, sheet_name="SIMD 2020v2 ranks", engine="openpyxl")
 ```
 
 ::: {.callout-note collapse="true"}
