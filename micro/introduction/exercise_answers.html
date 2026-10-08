@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.10.18">
+<meta name="generator" content="quarto-1.10.19">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -78,9 +78,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-eec68b17241c1efd3eae2de50d816e3e.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-25dec783d6e1d11f8e0bba9e4fbb47f4.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-eec68b17241c1efd3eae2de50d816e3e.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-9bbf5fa004a0676d7f26111dc3fdfdb2.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-a80805fb9204df0454a85aec670eb5fe.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-9bbf5fa004a0676d7f26111dc3fdfdb2.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="../site_libs/bootstrap/bootstrap-890e724bda93909e956a4665dfdee808.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
@@ -791,10 +791,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#background" id="toc-background" class="nav-link active" data-scroll-target="#background">Background</a>
-  <ul class="collapse">
-  <li><a href="#three-forms-of-spatial-interpolation." id="toc-three-forms-of-spatial-interpolation." class="nav-link" data-scroll-target="#three-forms-of-spatial-interpolation.">Three forms of spatial interpolation.</a></li>
-  </ul></li>
+  <li><a href="#background" id="toc-background" class="nav-link active" data-scroll-target="#background">Background</a></li>
   <li><a href="#foundation" id="toc-foundation" class="nav-link" data-scroll-target="#foundation">Foundation</a></li>
   <li><a href="#controversy" id="toc-controversy" class="nav-link" data-scroll-target="#controversy">Controversy</a></li>
   <li><a href="#play-with-the-math-module-to-build-muscle-memory" id="toc-play-with-the-math-module-to-build-muscle-memory" class="nav-link" data-scroll-target="#play-with-the-math-module-to-build-muscle-memory">Play with the <code>math</code> module to build muscle memory</a></li>
@@ -826,6 +823,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <p><em>From Wikipedia, the free encyclopedia</em></p>
 <p>The&nbsp;<strong>First Law of Geography</strong>, according to&nbsp;<a href="https://en.wikipedia.org/wiki/Waldo_Tobler">Waldo Tobler</a>, is “<a href="https://en.wikiquote.org/wiki/Waldo_Tobler">everything is related to everything else, but near things are more related than distant things.</a>”<a href="https://en.wikipedia.org/wiki/Tobler's_first_law_of_geography#cite_note-Tobler1-1">[1]</a>&nbsp;This first law is the foundation of the fundamental concepts of&nbsp;<a href="https://en.wikipedia.org/wiki/Spatial_dependence">spatial dependence</a>&nbsp;and&nbsp;<a href="https://en.wikipedia.org/wiki/Spatial_autocorrelation">spatial autocorrelation</a>&nbsp;and is utilized specifically for the&nbsp;<a href="https://en.wikipedia.org/wiki/Inverse_distance_weighting">inverse distance weighting</a>&nbsp;method for&nbsp;<a href="https://en.wikipedia.org/wiki/Spatial_interpolation">spatial interpolation</a>&nbsp;and to support the&nbsp;<a href="https://en.wikipedia.org/wiki/Regionalized_variable_theory">regionalized variable theory</a>&nbsp;for&nbsp;<a href="https://en.wikipedia.org/wiki/Kriging">kriging</a>.<a href="https://en.wikipedia.org/wiki/Tobler's_first_law_of_geography#cite_note-2">[2]</a>&nbsp;The first law of geography is the fundamental assumption used in all&nbsp;<a href="https://en.wikipedia.org/wiki/Spatial_analysis">spatial analysis</a>.<a href="https://en.wikipedia.org/wiki/Tobler's_first_law_of_geography#cite_note-ref1-3">[3]</a></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://upload.wikimedia.org/wikipedia/commons/b/b9/Waldo_Tobler_2007.jpg" class="img-fluid figure-img"></p>
+<figcaption>Waldo</figcaption>
+</figure>
+</div>
 <section id="background" class="level2">
 <h2 class="anchored" data-anchor-id="background">Background</h2>
 <p>Tobler first presented his seminal idea during a meeting of the&nbsp;<a href="https://en.wikipedia.org/wiki/International_Geographical_Union">International Geographical Union</a>’s Commission on Qualitative Methods held in 1969 and later published by him in 1970 in his publication “A Computer Movie Simulating Urban Growth in the Detroit Region”.<a href="https://en.wikipedia.org/wiki/Tobler's_first_law_of_geography#cite_note-Tobler1-1">[1]</a>&nbsp;In this paper Tobler created a model of the population growth in Detroit, and was discussing variables included within the model, and Tobler was probably not extremely serious when he originally invoked the first law and instead was explaining limitations brought about by computers of the 1970s.<a href="https://en.wikipedia.org/wiki/Tobler's_first_law_of_geography#cite_note-Tobler1-1">[1]</a><a href="https://en.wikipedia.org/wiki/Tobler's_first_law_of_geography#cite_note-ref1-3">[3]</a>&nbsp;He certainly did not think it would be as prominent in geography as it is today.<a href="https://en.wikipedia.org/wiki/Tobler's_first_law_of_geography#cite_note-ref1-3">[3]</a>&nbsp;Though simple in its presentation, this idea is profound. Without it, “the full range of conditions anywhere on the Earth’s surface could be packed within any small area. There would be no regions of approximately homogeneous conditions to be described by giving attributes to area objects. Topographic surfaces would vary chaotically, with infinite slopes everywhere, and the contours of such surfaces would be infinitely dense and contorted. Spatial analysis, and indeed life itself, would be impossible.”<a href="https://en.wikipedia.org/wiki/Tobler's_first_law_of_geography#cite_note-4">[4]</a></p>
@@ -836,27 +839,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>“The phenomenon external to an area of interest affects what goes on inside.”</p>
 <p>— Waldo Tobler</p>
 </blockquote>
-<section id="three-forms-of-spatial-interpolation." class="level3">
-<h3 class="anchored" data-anchor-id="three-forms-of-spatial-interpolation.">Three forms of spatial interpolation.</h3>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/27/Interpolation-nearest.svg/360px-Interpolation-nearest.svg.png" class="img-fluid figure-img"></p>
-<figcaption>Nearest neighbor</figcaption>
-</figure>
-</div>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/dd/Interpolation-bilinear.svg/360px-Interpolation-bilinear.svg.png" class="img-fluid figure-img"></p>
-<figcaption>Bilinear</figcaption>
-</figure>
-</div>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f5/Interpolation-bicubic.svg/360px-Interpolation-bicubic.svg.png" class="img-fluid figure-img"></p>
-<figcaption>Bicubic</figcaption>
-</figure>
-</div>
-</section>
 </section>
 <section id="foundation" class="level2">
 <h2 class="anchored" data-anchor-id="foundation">Foundation</h2>
