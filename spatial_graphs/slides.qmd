@@ -610,13 +610,18 @@ regions.plot(color="#f84260", ax=ax, alpha=1)
 regions.boundary.plot(linewidth=.8, edgecolor="w", ax=ax)
 regions.iloc[[centre]].plot(ax=ax, color="#25b497")
 regions.centroid.plot(ax=ax, color="k", markersize=5)
+import matplotlib.patheffects as path_effects
+
 
 lines = []
 vals = []
 for nei in kernel10[centre].index:
     lines.append(LineString([regions.centroid.iloc[centre], regions.centroid.iloc[nei]]))
     vals.append(kernel10[centre][nei])
-gpd.GeoDataFrame({"w":vals}, geometry=lines).plot(ax=ax, color="k", linewidth=np.array(vals)**3 * 2000, alpha=.5)
+
+v = np.array(vals)
+v = v - v.min()
+gpd.GeoDataFrame({"w":vals}, geometry=lines).plot(ax=ax, color="k", linewidth=(v / v.max() * 20), alpha=.5, path_effects=[path_effects.Stroke(capstyle="round")])
 
 ax.set_axis_off();
 ```
