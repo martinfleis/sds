@@ -10,7 +10,7 @@
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting-bf27225e3a48a9273f3daa8f8e829971.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
   <meta name="generator" content="quarto-1.10.19">
 
-  <title>Spatial Data Science in Python – Spatial data old and new</title>
+  <title>Spatial Data Science in Python – Open source inside out</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
@@ -127,7 +127,7 @@
       margin-right: 0; 
     }
   </style>
-<meta name="twitter:title" content="Spatial data old and new – Spatial Data Science in Python">
+<meta name="twitter:title" content="Open source inside out – Spatial Data Science in Python">
 <meta name="twitter:card" content="summary">
 </head>
 <body class="quarto-light">
@@ -135,184 +135,471 @@
     <div class="slides">
 
 <section id="title-slide" class="quarto-title-block center">
-  <h1 class="title">Spatial data old and new</h1>
+  <h1 class="title">Open source inside out</h1>
 
 <div class="quarto-title-authors">
 </div>
 
 </section>
-<section>
-<section id="good-old-data" class="title-slide slide level1 center">
-<h1>Good Old Data</h1>
-
-</section>
-<section id="what-is-good-about-it" class="slide level2">
-<h2>What is good about it?</h2>
-</section>
-<section class="slide level2">
-
-<h3 id="collected-for-the-purpose">Collected for the purpose</h3>
-<div class="r-fit-text fragment fade-in">
-<p>carefully designed</p>
-</div>
-</section>
-<section class="slide level2">
-
-<h3 id="detailed-in-information">Detailed in information</h3>
-<div class="r-fit-text fragment fade-in">
-<p>rich profiles</p>
-</div>
-</section>
-<section class="slide level2">
-
-<h3 id="high-quality">High quality</h3>
-<div class="r-fit-text fragment fade-in">
-<p>precise methods</p>
-</div>
-</section>
-<section id="what-is-less-good-about-it" class="slide level2">
-<h2>What is less good about it?</h2>
-</section>
-<section class="slide level2">
-
-<h3 id="massive-enterprises">Massive enterprises</h3>
-<div class="r-fit-text fragment fade-in">
-<p>costly</p>
-</div>
-</section>
-<section class="slide level2">
-
-<h3 id="coarse-in-resolution">Coarse in resolution</h3>
-<div class="r-fit-text fragment fade-in">
-<p>privacy-led aggregation</p>
-</div>
-</section>
-<section class="slide level2">
-
-<h3 id="slow">Slow</h3>
-<div class="r-fit-text fragment fade-in">
-<p>more details are less frequent</p>
-</div>
-</section>
-<section id="examples" class="slide level2">
-<h2>Examples</h2>
-<div class="fragment fade-in">
-<p>Decennial census (and census geographies)</p>
-</div>
-<div class="fragment fade-in">
-<p>Longitudinal surveys</p>
-</div>
-<div class="fragment fade-in">
-<p>Customly collected surveys, interviews, etc.</p>
-</div>
-<div class="fragment fade-in">
-<p>Economic indicators</p>
-</div>
-</section></section>
-<section>
-<section id="new-forms-of-data" class="title-slide slide level1 center">
-<h1>New Forms of Data</h1>
-<div class="fragment fade-in">
-<p>Tied into the (geo-)data revolution, new sources are appearing.</p>
-</div>
-</section>
-<section class="slide level2">
-
-<h3 id="accidental">Accidental</h3>
-<div class="fragment fade-in">
-<p>Created for different purposes but available for analysis as a side effect</p>
-</div>
-</section>
-<section class="slide level2">
-
-<h3 id="diverse">Diverse</h3>
-<div class="fragment fade-in">
-<p>nature</p>
-</div>
-<div class="fragment fade-in">
-<p>resolution</p>
-</div>
-<div class="fragment fade-in">
-<p>quality</p>
-</div>
-</section>
-<section class="slide level2">
-
-<h3 id="detailed">Detailed</h3>
-<div class="fragment fade-in">
-<p>Potentially, much more <strong>detailed</strong></p>
-</div>
-<div class="fragment fade-in">
-<p>in both space and time</p>
-</div>
-</section>
-<section id="how-to-categorise-them" class="slide level2">
-<h2>How to categorise them?</h2>
-<div class="r-fit-text fragment fade-in">
-<p>There are different ways</p>
-</div>
-</section>
-<section id="lazer-radford-2017" class="slide level2">
-<h2>Lazer &amp; Radford (2017)</h2>
-<div class="fragment fade-in">
-<p>Digital life <span class="fragment fade-in">(Twitter/X, Facebook, Wikipedia…)</span></p>
-</div>
-<div class="fragment fade-in">
-<p>Digital traces <span class="fragment fade-in">(record of digital actions (CDRs, metadata…))</span></p>
-</div>
-<div class="fragment fade-in">
-<p>Digitalised life <span class="fragment fade-in">(non intrinsically digital life in digital form (Government records, web…))</span></p>
-</div>
-</section>
-<section id="arribas-bel-2014" class="slide level2">
-<h2>Arribas-Bel (2014)</h2>
-<div class="fragment fade-in">
-<p>Bottom up <span class="fragment fade-in">(“Citizens as sensors”)</span></p>
-</div>
-<div class="fragment fade-in">
-<p>Intermediate <span class="fragment fade-in">(Digital businesses/businesses going digital)</span></p>
-</div>
-<div class="fragment fade-in">
-<p>Top down <span class="fragment fade-in">(Open Government Data)</span></p>
-</div>
-</section>
-<section id="opportunities" class="slide level2">
-<h2>Opportunities</h2>
-<div class="fragment fade-in">
-<p>Massive, passive</p>
-</div>
-<div class="fragment fade-in">
-<p>Nowcasting</p>
-</div>
-<div class="fragment fade-in">
-<p>Data on social systems</p>
-</div>
-<div class="fragment fade-in">
-<p>Natural and field experiments (“always-on” observatory of human behaviour)</p>
-</div>
-<div class="fragment fade-in">
-<p>Making big data small</p>
-</div>
-</section>
-<section id="challenges" class="slide level2">
-<h2>Challenges</h2>
-<div class="fragment fade-in">
-<p>Bias</p>
-</div>
-<div class="fragment fade-in">
-<p>Technical barriers</p>
-</div>
-<div class="fragment fade-in">
-<p>Methodological “mismatch”</p>
-</div>
-</section>
 <section class="slide level2">
 
 <div class="r-fit-text">
-<p>Old or new?</p>
+<p>momepy geopandas xyzservices neatnet libpysal</p>
 </div>
-<div class="r-fit-text fragment fade-in">
-<p>Old and new!</p>
+<div class="r-fit-text fragment">
+<p>pyinterpolate xvec clustergram contextily spopt</p>
+</div>
+<div class="r-fit-text fragment">
+<p>geoplanar dask-geopandas mapclassify pointpats</p>
+</div>
+<div class="r-fit-text fragment">
+<p>shapely giddy inequality esda splot folium tobler</p>
+</div>
+<div class="r-fit-text fragment">
+<p>branca pyogrio mgwr osmnx spaghetti spherely</p>
+</div>
+<div class="r-fit-text fragment">
+<p>access matplotlib pandas holoviews geoplot</p>
+</div>
+<div class="r-fit-text fragment">
+<p>greedy topojson legendgram movingpandas</p>
+</div>
+</section>
+<section>
+<section id="what-is-open-source" class="title-slide slide level1 question center">
+<h1>What is open source</h1>
+<div class="r-fit-text fragment">
+<p><span class="fragment">free</span> open source software</p>
+</div>
+</section>
+<section id="free" class="slide level2">
+<h2>Free</h2>
+<blockquote>
+<p><span class="fragment">Think <em>free</em> as in <em>free speech</em></span><span class="fragment">, not <em>free beer</em>.</span></p>
+</blockquote>
+<p><span class="fragment">Richard Stallman</span></p>
+</section>
+<section class="slide level2">
+
+<div class="r-fit-text absolute" style="top: 35%; ">
+<p>FOSS is inherently political.</p>
+</div>
+</section>
+<section class="slide level2">
+
+
+<img data-src="figures/psf.png" class="center_image r-stretch"></section>
+<section class="slide level2">
+
+<div class="r-fit-text absolute" style="top: 35%; ">
+<p>FOSS is also very diverse.</p>
+</div>
+</section>
+<section class="slide level2">
+
+
+<img data-src="https://imgs.xkcd.com/comics/dependency.png" class="center_image r-stretch"></section></section>
+<section>
+<section id="inside-of-foss" class="title-slide slide level1 center">
+<h1>Inside of FOSS</h1>
+
+</section>
+<section class="slide level2">
+
+
+<img data-src="figures/all_stars.png" class="center_image r-stretch"></section>
+<section id="momepy" class="slide level2">
+<h2>momepy</h2>
+</section>
+<section class="slide level2">
+
+<p><img data-src="figures/momepy_repo.png" class="center_image"></p>
+
+<aside><div>
+<p>github.com/pysal/momepy</p>
+</div></aside></section>
+<section class="slide level2">
+
+<div class="r-fit-text absolute" style="top: 35%; ">
+<p>A toolkit for urban morphology in Python.</p>
+</div>
+<div class="r-fit-text absolute fragment" style="top: 55%; ">
+<p>An outcome of my PhD.</p>
+</div>
+</section>
+<section class="slide level2">
+
+
+<img data-src="figures/momepy_stars.png" class="center_image r-stretch"></section>
+<section class="slide level2">
+
+<h3 id="motivation">Motivation</h3>
+<p>Science</p>
+</section>
+<section class="slide level2">
+
+<h3 id="life-of-a-project">Life of a project</h3>
+</section>
+<section class="slide level2">
+
+<div class="r-fit-text absolute" style="top: 30%; ">
+<p>Bus factor</p>
+</div>
+</section>
+<section class="slide level2">
+
+<h3 id="joining-pysal-federation-in-2021">Joining PySAL federation in 2021</h3>
+</section>
+<section class="slide level2">
+
+<h3 id="who">Who</h3>
+<p>Martin</p>
+<p><span class="fragment">Martin + James (maintenance)</span></p>
+<p><span class="fragment">Martin + Krasen + James (maintenance)</span></p>
+</section>
+<section class="slide level2">
+
+
+<img data-src="figures/momepy_contrib.png" class="center_image r-stretch"></section>
+<section class="slide level2">
+
+<h3 id="current-status">Current status</h3>
+<p><span class="fragment">Actively developed</span></p>
+<p><span class="fragment">Reaching stability</span></p>
+<p><span class="fragment">Planned 1.0 (stable) release</span></p>
+</section>
+<section id="pysal" class="slide level2">
+<h2>PySAL</h2>
+</section>
+<section class="slide level2">
+
+<p><img data-src="figures/pysal_repo.png" class="center_image"></p>
+
+<aside><div>
+<p>github.com/pysal/pysal</p>
+</div></aside></section>
+<section class="slide level2">
+
+<p><img data-src="figures/pysal_repos.png" class="center_image"></p>
+
+<aside><div>
+<p>github.com/pysal</p>
+</div></aside></section>
+<section class="slide level2">
+
+<div class="r-fit-text absolute" style="top: 35%; ">
+<p>Python Spatial Analysis Library</p>
+</div>
+<div class="r-fit-text absolute fragment" style="top: 55%; ">
+<p>A federation of scientific packages.</p>
+</div>
+</section>
+<section class="slide level2">
+
+
+<img data-src="figures/pysal_stars.png" class="center_image r-stretch"></section>
+<section class="slide level2">
+
+<h3 id="motivation-1">Motivation</h3>
+<p>Science</p>
+</section>
+<section class="slide level2">
+
+<h3 id="life-of-a-project-1">Life of a project</h3>
+<h4 id="years-ago">± 20 years ago</h4>
+<p><span class="fragment">Rey and Anselin created PySAL as a single package</span></p>
+<p><span class="fragment">Support for development through scientific grants</span></p>
+</section>
+<section class="slide level2">
+
+<h3 id="split-into-a-federation-2018">Split into a federation 2018</h3>
+<p><span class="fragment">PySAL 2.0</span></p>
+</section>
+<section class="slide level2">
+
+<h3 id="who-1">Who</h3>
+
+<img data-src="figures/pysal_team1.png" class="center_image r-stretch"></section>
+<section class="slide level2">
+
+<h3 id="who-2">Who</h3>
+
+<img data-src="figures/pysal_team2.png" class="center_image r-stretch"></section>
+<section class="slide level2">
+
+<h3 id="who-3">Who</h3>
+
+<img data-src="figures/pysal_team3.png" class="center_image r-stretch"></section>
+<section class="slide level2">
+
+<h3 id="who-4">Who</h3>
+
+<img data-src="figures/pysal_team4.png" class="center_image r-stretch"></section>
+<section class="slide level2">
+
+
+<img data-src="figures/libpysal_contrib.png" class="center_image r-stretch"></section>
+<section class="slide level2">
+
+
+<img data-src="figures/tobler_contrib.png" class="center_image r-stretch"></section>
+<section class="slide level2">
+
+
+<img data-src="figures/spaghetti_contrib.png" class="center_image r-stretch"></section>
+<section class="slide level2">
+
+<h3 id="current-status-1">Current status</h3>
+<p><span class="fragment">Actively developed</span></p>
+<p><span class="fragment">Stable</span></p>
+<p><span class="fragment">Strong developer base</span></p>
+<p><span class="fragment">Archival of some subpackages</span></p>
+</section>
+<section id="splot" class="slide level2">
+<h2>splot</h2>
+</section>
+<section class="slide level2">
+
+<p><img data-src="figures/splot_repo.png" class="center_image"></p>
+
+<aside><div>
+<p>github.com/pysal/splot</p>
+</div></aside></section>
+<section class="slide level2">
+
+<div class="r-fit-text absolute" style="top: 35%; ">
+<p>Lightweight plotting for geospatial analysis in PySAL</p>
+</div>
+<div class="r-fit-text absolute fragment" style="top: 55%; ">
+<p>Google Summer of Code project</p>
+</div>
+</section>
+<section class="slide level2">
+
+
+<img data-src="figures/splot_stars.png" class="center_image r-stretch"></section>
+<section class="slide level2">
+
+<h3 id="motivation-2">Motivation</h3>
+<p>Science visualisation (nice to have)</p>
+</section>
+<section class="slide level2">
+
+<h3 id="life-of-a-project-2">Life of a project</h3>
+<p><span class="fragment">Stefanie Lumnitz released 1.0 in 2018</span></p>
+<p><span class="fragment">Search for a maintainer</span></p>
+<p><span class="fragment">Decision to archive in 2025</span></p>
+</section>
+<section class="slide level2">
+
+<div class="r-fit-text absolute" style="top: 35%; ">
+<p>cut into pieces and distribute them</p>
+</div>
+</section>
+<section class="slide level2">
+
+<p><img data-src="figures/splot_1.png" class="center_image"></p>
+
+<aside><div>
+<p>autocorrelation plotting moved to <code>esda</code>, where statistics is computed</p>
+</div></aside></section>
+<section class="slide level2">
+
+<p><img data-src="figures/splot_2.png" class="center_image"></p>
+
+<aside><div>
+<p>graph plotting moved to <code>libpysal</code>, where graph objects are defined</p>
+</div></aside></section>
+<section class="slide level2">
+
+<h3 id="who-5">Who</h3>
+</section>
+<section class="slide level2">
+
+
+<img data-src="figures/splot_contrib.png" class="center_image r-stretch"></section>
+<section class="slide level2">
+
+<h3 id="current-status-2">Current status</h3>
+<p><span class="fragment">Scheduled for archival with a deprecation period</span></p>
+<p><span class="fragment">Functionality moved elsewhere, but with a different API</span></p>
+</section>
+<section id="pygeos" class="slide level2">
+<h2>pygeos</h2>
+</section>
+<section class="slide level2">
+
+<p><img data-src="figures/pygeos_repo.png" class="center_image"></p>
+
+<aside><div>
+<p>github.com/pygeos/pygeos</p>
+</div></aside></section>
+<section class="slide level2">
+
+<div class="r-fit-text absolute" style="top: 35%; ">
+<p>C/Python library with vectorized geometry functions</p>
+</div>
+<div class="r-fit-text absolute fragment" style="top: 55%; ">
+<p>Replaced Shapely to become Shapely</p>
+</div>
+</section>
+<section class="slide level2">
+
+
+<img data-src="figures/pygeos_stars.png" class="center_image r-stretch"></section>
+<section class="slide level2">
+
+<h3 id="motivation-3">Motivation</h3>
+<p>Performance</p>
+</section>
+<section class="slide level2">
+
+<h3 id="life-of-a-project-3">Life of a project</h3>
+<h4 id="section">2019</h4>
+<p><span class="fragment">Shapely is a bottleneck</span></p>
+<p><span class="fragment">Let’s wrap GEOS to keep loops in C</span></p>
+</section>
+<section class="slide level2">
+
+<h3 id="optionally-supported-in-geopandas-in-2020">Optionally supported in GeoPandas in 2020</h3>
+<p><span class="fragment">Shapely was no longer needed</span></p>
+<p><span class="fragment">Huge transition effort would be needed</span></p>
+</section>
+<section class="slide level2">
+
+<h3 id="pygeos-merged-into-shapely-in-2021">PyGEOS merged into Shapely in 2021</h3>
+<p><span class="fragment">Shapely 2.0 was PyGEOS with backwards compatibility</span></p>
+</section>
+<section class="slide level2">
+
+<div class="r-fit-text absolute" style="top: 35%; ">
+<p>merge into another project</p>
+</div>
+</section>
+<section class="slide level2">
+
+<h3 id="who-6">Who</h3>
+</section>
+<section class="slide level2">
+
+
+<img data-src="figures/pygeos_contrib.png" class="center_image r-stretch"></section>
+<section class="slide level2">
+
+<h3 id="current-status-3">Current status</h3>
+<p><span class="fragment">Code consumed by Shapely</span></p>
+<p><span class="fragment">PyGEOS no longer maintained</span></p>
+</section>
+<section id="geoplot" class="slide level2">
+<h2>geoplot</h2>
+</section>
+<section class="slide level2">
+
+<p><img data-src="figures/geoplot_repo.png" class="center_image"></p>
+
+<aside><div>
+<p>github.com/ResidentMario/geoplot</p>
+</div></aside></section>
+<section class="slide level2">
+
+<div class="r-fit-text absolute" style="top: 35%; ">
+<p>High-level geospatial data visualization library for Python</p>
+</div>
+<div class="r-fit-text absolute fragment" style="top: 55%; ">
+<p>Abandoned</p>
+</div>
+</section>
+<section class="slide level2">
+
+
+<img data-src="figures/geoplot_stars.png" class="center_image r-stretch"></section>
+<section class="slide level2">
+
+<h3 id="motivation-4">Motivation</h3>
+<p>Cool visualisation</p>
+</section>
+<section class="slide level2">
+
+<h3 id="life-of-a-project-4">Life of a project</h3>
+<p><span class="fragment">Released in 2017 by Aleksey Bilogur</span></p>
+<p><span class="fragment">Part of GeoPandas documentation since 2018</span></p>
+<p><span class="fragment">Discussion to merge with the GeoPandas project</span></p>
+</section>
+<section class="slide level2">
+
+<div class="r-fit-text absolute" style="top: 35%; ">
+<p>abandoned in 2022</p>
+</div>
+</section>
+<section class="slide level2">
+
+<div class="r-fit-text absolute" style="top: 35%; ">
+<p>code no longer works*</p>
+</div>
+
+<aside><div>
+<p>* with current version of its dependencies</p>
+</div></aside></section>
+<section class="slide level2">
+
+<h3 id="who-7">Who</h3>
+</section>
+<section class="slide level2">
+
+
+<img data-src="figures/geoplot_contrib.png" class="center_image r-stretch"></section>
+<section class="slide level2">
+
+<div class="r-fit-text absolute" style="top: 35%; ">
+<p>unresolved bus factor</p>
+</div>
+</section>
+<section class="slide level2">
+
+<div class="r-fit-text absolute" style="top: 35%; ">
+<p>geoplot lacked contributors</p>
+</div>
+</section></section>
+<section>
+<section id="a-contributor" class="title-slide slide level1 center">
+<h1>A contributor</h1>
+
+</section>
+<section class="slide level2">
+
+<div class="r-fit-text absolute" style="top: 45%; ">
+<p>someone who writes code</p>
+</div>
+<div class="r-fit-text absolute fragment" style="top: 0%; ">
+<p>not only</p>
+</div>
+</section>
+<section id="a-contributor-1" class="slide level2">
+<h2>A contributor</h2>
+<div class="columns">
+<div class="column">
+<p><span class="fragment">Development</span></p>
+<p><span class="fragment">Maintenance</span></p>
+<p><span class="fragment">Documentation</span></p>
+<p><span class="fragment">Discussion</span></p>
+<p><span class="fragment">Q&amp;A</span></p>
+<p><span class="fragment">Proposals and ideas</span></p>
+</div><div class="column">
+<p><span class="fragment">Triage</span></p>
+<p><span class="fragment">Teaching</span></p>
+<p><span class="fragment">Bug reports</span></p>
+<p><span class="fragment">Community management</span></p>
+<p><span class="fragment">Blog posts</span></p>
+<p><span class="fragment">…</span></p>
+</div></div>
+</section>
+<section class="slide level2">
+
+<div class="r-fit-text absolute" style="top: 5%; ">
+<p>are you a contributor?</p>
+</div>
+<div class="r-fit-text absolute fragment" style="top: 30%; ">
+<p>will you become one?</p>
 </div>
 
 
