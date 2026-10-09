@@ -2,10 +2,10 @@
 title: Learning pandas
 format:
   html: default
-  ipynb:
-    execute:
-      enabled: false
-      output: false
+  ipynb: default
+execute:
+  enabled: false
+  output: false
 jupyter: python3
 ---
 
@@ -21,7 +21,7 @@ url = "https://www.gov.scot/binaries/content/documents/govscot/publications/stat
 ```
 
 ```{python}
-simd = pd.read_excel(url, sheet_name="SIMD 2020v2 ranks", engine="openpyxl")
+simd = pd.read_excel(url, sheet_name="SIMD 2020v2 ranks")
 ```
 
 **Which data zone is the most deprived (lowest ranking?) Which council area is it?**

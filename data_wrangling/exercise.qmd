@@ -2,10 +2,10 @@
 title: "Learning pandas"
 format:
   html: default
-  ipynb:
-    execute:
-      enabled: false
-      output: false
+  ipynb: default
+execute:
+  enabled: false
+  output: false
 jupyter: python3
 aliases:
   - ../chapter_02/exercise.html
@@ -40,7 +40,7 @@ To read the proper sheet, you need to specify `sheet_name` to `read_excel`. `pan
 the file for you and open it as a `DataFrame`.
 
 ```{python}
-simd = pd.read_excel(url, sheet_name="SIMD 2020v2 ranks", engine="openpyxl")
+simd = pd.read_excel(url, sheet_name="SIMD 2020v2 ranks")
 ```
 
 ::: {.callout-note collapse="true"}
@@ -77,10 +77,6 @@ simd = pd.read_excel(
 :::
 
 And you should be good to go!
-
-```{python}
-simd.head()
-```
 
 ## Learn about Scotland
 
