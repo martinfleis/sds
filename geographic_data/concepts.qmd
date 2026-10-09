@@ -1,11 +1,11 @@
 ---
-title: "Spatial data old and new"
+title: "Open source inside out"
 format: html
 aliases:
   - ../chapter_03/concepts.html
 ---
 
-Slides from the talk about the nature of _old_ spatial data and _new_ spatial data, adapted from @darribas_gds_course, drawing from the work of @lazer2017data and @ArribasBel201445.
+Get a bit of insight into how free and open source software actually works.
 
 ```{=html}
 <iframe class="slide-deck" src="slides.html"></iframe>
@@ -17,8 +17,3 @@ Slides from the talk about the nature of _old_ spatial data and _new_ spatial da
 Parts of the chapter [_Spatial Data_](https://geographicdata.science/book/notebooks/03_spatial_data.html) dealing with tabular data from
 the Geographic Data Science with Python by @rey2023geographic.
 :::
-
-## Acknowledgements {.appendix}
-
-This section is derived from _A Course on Geographic Data Science_ by
-@darribas_gds_course, licensed under CC-BY-SA 4.0.

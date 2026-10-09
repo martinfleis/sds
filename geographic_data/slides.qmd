@@ -1,5 +1,5 @@
 ---
-title: "Spatial data old and new"
+title: "Open source inside out"
 format:
     revealjs:
         theme: [default, ../_assets/reveal.scss]
@@ -10,189 +10,520 @@ format:
         controls-layout: edges
 ---
 
-# Good Old Data
-
-## What is good about it?
-
----
-
-### Collected for the purpose
-
-::: {.r-fit-text .fragment .fade-in}
-carefully designed
-:::
-
----
-
-### Detailed in information
-
-::: {.r-fit-text .fragment .fade-in}
-rich profiles
-:::
-
----
-
-### High quality
-
-::: {.r-fit-text .fragment .fade-in}
-precise methods
-:::
-
-
-## What is less good about it?
-
----
-
-### Massive enterprises
-
-::: {.r-fit-text .fragment .fade-in}
-costly
-:::
-
----
-
-### Coarse in resolution
-
-::: {.r-fit-text .fragment .fade-in}
-privacy-led aggregation
-:::
-
----
-
-### Slow
-
-::: {.r-fit-text .fragment .fade-in}
-more details are less frequent
-:::
-
-
-## Examples
-
-::: {.fragment .fade-in}
-Decennial census (and census geographies)
-:::
-::: {.fragment .fade-in}
-Longitudinal surveys
-:::
-::: {.fragment .fade-in}
-Customly collected surveys, interviews, etc.
-:::
-::: {.fragment .fade-in}
-Economic indicators
-:::
-
-
-# New Forms of Data
-
-::: {.fragment .fade-in}
-Tied into the (geo-)data revolution, new sources are appearing.
-:::
-
----
-
-### Accidental
-
-::: {.fragment .fade-in}
-Created for different purposes but available for analysis as a side effect
-:::
-
----
-
-### Diverse
-
-::: {.fragment .fade-in}
-nature
-:::
-::: {.fragment .fade-in}
-resolution
-:::
-::: {.fragment .fade-in}
-quality
-:::
-
----
-
-### Detailed
-
-::: {.fragment .fade-in}
-Potentially, much more **detailed**
-:::
-
-::: {.fragment .fade-in}
-in both space and time
-:::
-
-## How to categorise them?
-
-::: {.r-fit-text .fragment .fade-in}
-There are different ways
-:::
-
-
-## Lazer & Radford (2017)
-
-::: {.fragment .fade-in}
-Digital life [(Twitter/X, Facebook, Wikipedia...)]{.fragment .fade-in}
-:::
-::: {.fragment .fade-in}
-Digital traces [(record of digital actions (CDRs, metadata...))]{.fragment .fade-in}
-:::
-::: {.fragment .fade-in}
-Digitalised life [(non intrinsically digital life in digital form (Government
-  records, web...))]{.fragment .fade-in}
-:::
-
-## Arribas-Bel (2014)
-
-::: {.fragment .fade-in}
-Bottom up [("Citizens as sensors")]{.fragment .fade-in}
-:::
-
-::: {.fragment .fade-in}
-Intermediate [(Digital businesses/businesses going digital)]{.fragment .fade-in}
-:::
-
-::: {.fragment .fade-in}
-Top down [(Open Government Data)]{.fragment .fade-in}
-:::
-
-
-## Opportunities
-
-::: {.fragment .fade-in}
-Massive, passive
-:::
-::: {.fragment .fade-in}
-Nowcasting
-:::
-::: {.fragment .fade-in}
-Data on social systems
-:::
-::: {.fragment .fade-in}
-Natural and field experiments ("always-on" observatory of human behaviour)
-:::
-::: {.fragment .fade-in}
-Making big data small
-:::
-
-## Challenges
-
-::: {.fragment .fade-in}
-Bias
-:::
-::: {.fragment .fade-in}
-Technical barriers
-:::
-::: {.fragment .fade-in}
-Methodological "mismatch"
-:::
-
----
-
 ::: {.r-fit-text}
-Old or new?
+momepy geopandas xyzservices neatnet libpysal
+:::
+::: {.r-fit-text .fragment}
+pyinterpolate xvec clustergram contextily spopt
+:::
+::: {.r-fit-text .fragment}
+geoplanar dask-geopandas mapclassify pointpats
+:::
+::: {.r-fit-text .fragment}
+shapely giddy inequality esda splot folium tobler
+:::
+::: {.r-fit-text .fragment}
+ branca pyogrio mgwr osmnx spaghetti spherely
+:::
+::: {.r-fit-text .fragment}
+access matplotlib pandas holoviews geoplot
+:::
+::: {.r-fit-text .fragment}
+greedy topojson legendgram movingpandas
 :::
 
-::: {.r-fit-text .fragment .fade-in}
-Old and new!
+# What is open source {.question}
+
+::: {.r-fit-text .fragment}
+[free]{.fragment} open source software
+:::
+
+## Free
+
+> [Think *free* as in *free speech*]{.fragment}[, not *free beer*.]{.fragment}
+
+[Richard Stallman]{.fragment}
+
+---
+
+::: {.r-fit-text .absolute top=35%}
+FOSS is inherently political.
+:::
+
+---
+
+![](figures/psf.png){.center_image}
+
+---
+
+::: {.r-fit-text .absolute top=35%}
+FOSS is also very diverse.
+:::
+
+---
+
+![](https://imgs.xkcd.com/comics/dependency.png){.center_image}
+
+# Inside of FOSS
+
+---
+
+![](figures/all_stars.png){.center_image}
+
+
+## momepy
+
+---
+
+![](figures/momepy_repo.png){.center_image}
+
+::: {.aside}
+github.com/pysal/momepy
+:::
+
+---
+
+::: {.r-fit-text .absolute top=35%}
+A toolkit for urban morphology in Python.
+:::
+
+::: {.r-fit-text .absolute top=55% .fragment}
+An outcome of my PhD.
+:::
+
+---
+
+![](figures/momepy_stars.png){.center_image}
+
+---
+
+### Motivation
+
+Science
+
+---
+
+### Life of a project
+
+---
+
+::: {.r-fit-text .absolute top=30%}
+Bus factor
+:::
+
+---
+
+### Joining PySAL federation in 2021
+
+---
+
+### Who
+
+Martin
+
+[Martin + James (maintenance)]{.fragment}
+
+[Martin + Krasen + James (maintenance)]{.fragment}
+
+---
+
+![](figures/momepy_contrib.png){.center_image}
+
+---
+
+### Current status
+
+[Actively developed]{.fragment}
+
+[Reaching stability]{.fragment}
+
+[Planned 1.0 (stable) release]{.fragment}
+
+## PySAL
+
+---
+
+![](figures/pysal_repo.png){.center_image}
+
+::: {.aside}
+github.com/pysal/pysal
+:::
+
+---
+
+![](figures/pysal_repos.png){.center_image}
+
+::: {.aside}
+github.com/pysal
+:::
+
+---
+
+::: {.r-fit-text .absolute top=35%}
+Python Spatial Analysis Library
+:::
+
+::: {.r-fit-text .absolute top=55% .fragment}
+A federation of scientific packages.
+:::
+
+---
+
+![](figures/pysal_stars.png){.center_image}
+
+---
+
+### Motivation
+
+Science
+
+---
+
+### Life of a project
+
+#### ± 20 years ago
+
+[Rey and Anselin created PySAL as a single package]{.fragment}
+
+[Support for development through scientific grants]{.fragment}
+
+---
+
+### Split into a federation 2018
+
+[PySAL 2.0]{.fragment}
+
+---
+
+### Who
+
+![](figures/pysal_team1.png){.center_image}
+
+---
+
+### Who
+
+![](figures/pysal_team2.png){.center_image}
+
+---
+
+### Who
+
+![](figures/pysal_team3.png){.center_image}
+
+---
+
+### Who
+
+![](figures/pysal_team4.png){.center_image}
+
+---
+
+![](figures/libpysal_contrib.png){.center_image}
+
+---
+
+![](figures/tobler_contrib.png){.center_image}
+
+---
+
+![](figures/spaghetti_contrib.png){.center_image}
+
+---
+
+### Current status
+
+[Actively developed]{.fragment}
+
+[Stable]{.fragment}
+
+[Strong developer base]{.fragment}
+
+[Archival of some subpackages]{.fragment}
+
+## splot
+
+---
+
+![](figures/splot_repo.png){.center_image}
+
+::: {.aside}
+github.com/pysal/splot
+:::
+
+---
+
+::: {.r-fit-text .absolute top=35%}
+Lightweight plotting for geospatial analysis in PySAL
+:::
+
+::: {.r-fit-text .absolute top=55% .fragment}
+Google Summer of Code project
+:::
+
+---
+
+![](figures/splot_stars.png){.center_image}
+
+---
+
+### Motivation
+
+Science visualisation (nice to have)
+
+---
+
+### Life of a project
+
+[Stefanie Lumnitz released 1.0 in 2018]{.fragment}
+
+[Search for a maintainer]{.fragment}
+
+[Decision to archive in 2025]{.fragment}
+
+---
+
+::: {.r-fit-text .absolute top=35%}
+cut into pieces and distribute them
+:::
+
+---
+
+![](figures/splot_1.png){.center_image}
+
+::: {.aside}
+autocorrelation plotting moved to `esda`, where statistics is computed
+:::
+
+---
+
+![](figures/splot_2.png){.center_image}
+
+::: {.aside}
+graph plotting moved to `libpysal`, where graph objects are defined
+:::
+
+---
+
+### Who
+
+---
+
+![](figures/splot_contrib.png){.center_image}
+
+---
+
+### Current status
+
+[Scheduled for archival with a deprecation period]{.fragment}
+
+[Functionality moved elsewhere, but with a different API]{.fragment}
+
+## pygeos
+
+---
+
+![](figures/pygeos_repo.png){.center_image}
+
+::: {.aside}
+github.com/pygeos/pygeos
+:::
+
+---
+
+::: {.r-fit-text .absolute top=35%}
+C/Python library with vectorized geometry functions
+:::
+
+::: {.r-fit-text .absolute top=55% .fragment}
+Replaced Shapely to become Shapely
+:::
+
+---
+
+![](figures/pygeos_stars.png){.center_image}
+
+---
+
+### Motivation
+
+Performance
+
+---
+
+### Life of a project
+
+#### 2019
+
+[Shapely is a bottleneck]{.fragment}
+
+[Let's wrap GEOS to keep loops in C]{.fragment}
+
+---
+
+### Optionally supported in GeoPandas in 2020
+
+[Shapely was no longer needed]{.fragment}
+
+[Huge transition effort would be needed]{.fragment}
+
+---
+
+### PyGEOS merged into Shapely in 2021
+
+[Shapely 2.0 was PyGEOS with backwards compatibility]{.fragment}
+
+---
+
+::: {.r-fit-text .absolute top=35%}
+merge into another project
+:::
+
+---
+
+### Who
+
+---
+
+![](figures/pygeos_contrib.png){.center_image}
+
+---
+
+### Current status
+
+[Code consumed by Shapely]{.fragment}
+
+[PyGEOS no longer maintained]{.fragment}
+
+## geoplot
+
+---
+
+![](figures/geoplot_repo.png){.center_image}
+
+::: {.aside}
+github.com/ResidentMario/geoplot
+:::
+
+---
+
+::: {.r-fit-text .absolute top=35%}
+High-level geospatial data visualization library for Python
+:::
+
+::: {.r-fit-text .absolute top=55% .fragment}
+Abandoned
+:::
+
+---
+
+![](figures/geoplot_stars.png){.center_image}
+
+---
+
+### Motivation
+
+Cool visualisation
+
+---
+
+### Life of a project
+
+[Released in 2017 by Aleksey Bilogur]{.fragment}
+
+[Part of GeoPandas documentation since 2018]{.fragment}
+
+[Discussion to merge with the GeoPandas project]{.fragment}
+
+---
+
+::: {.r-fit-text .absolute top=35%}
+abandoned in 2022
+:::
+
+---
+
+::: {.r-fit-text .absolute top=35%}
+code no longer works*
+:::
+
+::: {.aside}
+\* with current version of its dependencies
+:::
+
+---
+
+### Who
+
+---
+
+![](figures/geoplot_contrib.png){.center_image}
+
+---
+
+::: {.r-fit-text .absolute top=35%}
+unresolved bus factor
+:::
+
+---
+
+::: {.r-fit-text .absolute top=35%}
+geoplot lacked contributors
+:::
+
+# A contributor
+
+---
+
+::: {.r-fit-text .absolute top=45%}
+someone who writes code
+:::
+
+::: {.r-fit-text .absolute top=0% .fragment}
+not only
+:::
+
+## A contributor
+
+::: {.columns}
+::: {.column}
+[Development]{.fragment}
+
+[Maintenance]{.fragment}
+
+[Documentation]{.fragment}
+
+[Discussion]{.fragment}
+
+[Q&A]{.fragment}
+
+[Proposals and ideas]{.fragment}
+
+:::
+
+::: {.column}
+
+[Triage]{.fragment}
+
+[Teaching]{.fragment}
+
+[Bug reports]{.fragment}
+
+[Community management]{.fragment}
+
+[Blog posts]{.fragment}
+
+[...]{.fragment}
+
+:::
+:::
+
+---
+
+::: {.r-fit-text .absolute top=5%}
+are you a contributor?
+:::
+
+::: {.r-fit-text .absolute top=30% .fragment}
+will you become one?
 :::
