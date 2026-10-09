@@ -45,7 +45,7 @@ website:
   sidebar:
     style: floating
     collapse-level: 1
-    logo: _assets/logo_micro.svg
+    logo: _assets/logo.svg
     tools:
       - icon: mastodon
         href: https://fosstodon.org/@martinfleis
