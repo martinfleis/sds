@@ -307,8 +307,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
       <a href="../index.html" class="sidebar-logo-link">
-      <img src="../_assets/logo_micro.svg" alt="" class="sidebar-logo light-content py-0 d-lg-inline d-none">
-      <img src="../_assets/logo_micro.svg" alt="" class="sidebar-logo dark-content py-0 d-lg-inline d-none">
+      <img src="../_assets/logo.svg" alt="" class="sidebar-logo light-content py-0 d-lg-inline d-none">
+      <img src="../_assets/logo.svg" alt="" class="sidebar-logo dark-content py-0 d-lg-inline d-none">
       </a>
       <div class="sidebar-tools-main tools-wide">
     <a href="https://fosstodon.org/@martinfleis" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-mastodon"></i></a>
@@ -813,7 +813,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 <p>Here is one way of getting the solution. There are others, feel free to share yours.</p>
-<div id="b2d721e0" class="cell">
+<div id="e475a6ca" class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> geopandas <span class="im">as</span> gpd</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
@@ -821,72 +821,72 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> libpysal <span class="im">import</span> graph</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<div id="edf03eeb" class="cell">
+<div id="1abd09a3" class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>suburbanisation <span class="op">=</span> gpd.read_file(<span class="st">"/Users/martinfleis/Downloads/zony_suburbanizace_2008_2016_8970316512140498173.zip"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>The <code>obec_kod</code> column is not unique because when a municipality is not contiguous, it is split. Merge them together to get correct boundaries per municipality.</p>
-<div id="b7c0df05" class="cell">
+<div id="d4186dcc" class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>suburbanisation <span class="op">=</span> suburbanisation.dissolve(<span class="st">"obec_kod"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>This has already set the <code>obec_kod</code> as an index, so we can use it.</p>
 <p>Create a contiguity matrix using the queen criterion</p>
-<div id="725e2d78" class="cell">
+<div id="d2e0eabc" class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>queen <span class="op">=</span> graph.Graph.build_contiguity(suburbanisation, rook<span class="op">=</span><span class="va">False</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>Let’s focus on Prague (554782 in the table). How many neighbours does it have?</p>
 <p>One option:</p>
-<div id="ea686260" class="cell">
+<div id="4468b6dd" class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="bu">len</span>(queen[<span class="dv">554782</span>])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>Other option:</p>
-<div id="7d397cf2" class="cell">
+<div id="3358ee51" class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>queen.cardinalities[<span class="dv">554782</span>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>Reproduce the previous section’s zoom plot with Prague and its neighbours. Can you make that plot as both static and interactive maps?</p>
-<div id="29baf6be" class="cell">
+<div id="691067d2" class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>m <span class="op">=</span> suburbanisation.loc[queen[<span class="dv">554782</span>].index].explore(color<span class="op">=</span><span class="st">"#25b497"</span>)</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>suburbanisation.loc[[<span class="dv">554782</span>]].explore(m<span class="op">=</span>m, color<span class="op">=</span><span class="st">"#fa94a5"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>With <code>matplotlib</code>:</p>
-<div id="25cdeb3e" class="cell">
+<div id="154e654f" class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>ax <span class="op">=</span> suburbanisation.loc[queen[<span class="dv">554782</span>].index].plot(color<span class="op">=</span><span class="st">"#25b497"</span>)</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>suburbanisation.loc[[<span class="dv">554782</span>]].plot(ax<span class="op">=</span>ax, color<span class="op">=</span><span class="st">"#fa94a5"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>Create a block spatial weights matrix where every geometry is connected to other geometries in the NUTS2 region. For that, use the NUTS2_kod column of the table.</p>
-<div id="bce98368" class="cell">
+<div id="ad6199f2" class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>nuts <span class="op">=</span> graph.Graph.build_block_contiguity(suburbanisation[<span class="st">"NUTS2_kod"</span>])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>Create KNN weights with 5 neighbours. Remember that KNN expects point geometry.</p>
-<div id="b7cca6c7" class="cell">
+<div id="31ca6d19" class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>knn5 <span class="op">=</span> graph.Graph.build_knn(suburbanisation.set_geometry(suburbanisation.centroid), k<span class="op">=</span><span class="dv">5</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>Compare the number of neighbours by geometry for the three weights matrices. Which one has more? Why?</p>
 <p>For Prague only:</p>
-<div id="d24a9b23" class="cell">
+<div id="b34b67b3" class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>knn5.cardinalities[<span class="dv">554782</span>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<div id="0dca13ec" class="cell">
+<div id="0e4faa9a" class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>nuts.cardinalities[<span class="dv">554782</span>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>Prague is a NUTS2 region by itself. See the data plotted by NUTS2:</p>
-<div id="d3c779c7" class="cell">
+<div id="d7cca681" class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>suburbanisation.plot(<span class="st">"NUTS2_kod"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>For whole data frame</p>
-<div id="a7140358" class="cell">
+<div id="a4fa7681" class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>nuts.cardinalities.mean()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<div id="4ed3d9e8" class="cell">
+<div id="8273302f" class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>knn5.cardinalities.mean()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>Let’s have a look at spatial lag. Before proceeding, you will probably need to pre-process the column with the population (“obyv_31122”) since it comes as string. Assuming the GeoDataFrame is called suburbanisation, you can do the following to cast it to float.</p>
-<div id="11923e6e" class="cell">
+<div id="9114c211" class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>suburbanisation[<span class="st">"obyv_31122"</span>] <span class="op">=</span> (</span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>    suburbanisation[<span class="st">"obyv_31122"</span>].replace(<span class="st">"?"</span>, <span class="va">None</span>).astype(<span class="bu">float</span>)</span>
 <span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>Measure spatial lag (as mean, so don’t forget to standardise your weights) of the “obyv_31122” column using all weights matrices you have created.</p>
-<div id="1092e591" class="cell">
+<div id="e1fae868" class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>queen_r <span class="op">=</span> queen.transform(<span class="st">"R"</span>)</span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>nuts_r <span class="op">=</span> nuts.transform(<span class="st">"R"</span>)</span>
 <span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>knn_r <span class="op">=</span> knn5.transform(<span class="st">"R"</span>)</span>
@@ -899,7 +899,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a>suburbanisation[<span class="st">"knn_lag"</span>] <span class="op">=</span> knn_r.lag(suburbanisation[<span class="st">"obyv_log"</span>])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>What is the difference in results for Prague? Do you know why?</p>
-<div id="d28e4d48" class="cell">
+<div id="5c582397" class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>suburbanisation.loc[<span class="dv">554782</span>, [<span class="st">"queen_lag"</span>, <span class="st">"nuts_lag"</span>, <span class="st">"knn_lag"</span>]]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 
