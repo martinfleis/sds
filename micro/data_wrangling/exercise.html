@@ -64,7 +64,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </style>
 
 
-<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js" integrity="sha384-ZvpUoO/+PpLXR1lu4jmpXWu80pZlYUAfxl5NsBMWOEPSjUn/6Z/hRTt8+pR6L4N2" crossorigin="anonymous"></script><script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
 <script src="../site_libs/quarto-nav/headroom.min.js"></script>
 <script src="../site_libs/clipboard/clipboard.min.js"></script>
 <script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
@@ -115,9 +115,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   }
 }</script>
 <style>html{ scroll-behavior: smooth; }</style>
-<script src="https://cdn.jsdelivr.net/npm/requirejs@2.3.6/require.min.js" integrity="sha384-c9c+LnTbwQ3aujuU7ULEPVvgLs+Fn6fJUvIGTsuu1ZcCf11fiEubah0ttpca4ntM sha384-6V1/AdqZRWk1KAlWbKBlGhN7VG4iE/yAZcO6NZPMF8od0vukrvr0tg4qY6NSrItx" crossorigin="anonymous"></script>
-
-<script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
 
 
 <link rel="stylesheet" href="../_assets/styles.css">
@@ -831,16 +828,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Take a second to download the <a href="https://www.gov.scot/publications/scottish-index-of-multiple-deprivation-2020v2-ranks/">dataset</a> and check its structure in Excel before moving forward.</p>
 <p>You have probably figured out that there are two sheets in this file, and you need to read the second one, called <code>"SIMD 2020v2 ranks"</code>.</p>
 <p>Let’s start by importing <code>pandas</code>.</p>
-<div id="83dbc7d4" class="cell" data-execution_count="2">
+<div id="14c4a321" class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>Since you have the file in your Downloads folder now, you can read it from there. Or you can read it directly from <code>gov.scot</code>.</p>
-<div id="4ad90459" class="cell" data-execution_count="3">
+<div id="d556674d" class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>url <span class="op">=</span> <span class="st">"https://www.gov.scot/binaries/content/documents/govscot/publications/statistics/2020/01/scottish-index-of-multiple-deprivation-2020-ranks-and-domain-ranks/documents/scottish-index-of-multiple-deprivation-2020-ranks-and-domain-ranks/scottish-index-of-multiple-deprivation-2020-ranks-and-domain-ranks/govscot%3Adocument/SIMD%2B2020v2%2B-%2Branks.xlsx"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>To read the proper sheet, you need to specify <code>sheet_name</code> to <code>read_excel</code>. <code>pandas</code> will download the file for you and open it as a <code>DataFrame</code>.</p>
-<div id="1477a387" class="cell" data-execution_count="4">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>simd <span class="op">=</span> pd.read_excel(url, sheet_name<span class="op">=</span><span class="st">"SIMD 2020v2 ranks"</span>, engine<span class="op">=</span><span class="st">"openpyxl"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div id="a0cc83e1" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>simd <span class="op">=</span> pd.read_excel(url, sheet_name<span class="op">=</span><span class="st">"SIMD 2020v2 ranks"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
@@ -873,118 +870,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <p>And you should be good to go!</p>
-<div id="d4f6cc63" class="cell" data-execution_count="5">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>simd.head()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-display" data-execution_count="4">
-<div>
-
-
-<table class="dataframe caption-top table table-sm table-striped small" data-border="1">
-<thead>
-<tr class="header">
-<th data-quarto-table-cell-role="th"></th>
-<th data-quarto-table-cell-role="th">Data_Zone</th>
-<th data-quarto-table-cell-role="th">Intermediate_Zone</th>
-<th data-quarto-table-cell-role="th">Council_area</th>
-<th data-quarto-table-cell-role="th">Total_population</th>
-<th data-quarto-table-cell-role="th">Working_age_population</th>
-<th data-quarto-table-cell-role="th">SIMD2020v2_Rank</th>
-<th data-quarto-table-cell-role="th">SIMD2020v2_Income_Domain_Rank</th>
-<th data-quarto-table-cell-role="th">SIMD2020_Employment_Domain_Rank</th>
-<th data-quarto-table-cell-role="th">SIMD2020_Health_Domain_Rank</th>
-<th data-quarto-table-cell-role="th">SIMD2020_Education_Domain_Rank</th>
-<th data-quarto-table-cell-role="th">SIMD2020_Access_Domain_Rank</th>
-<th data-quarto-table-cell-role="th">SIMD2020_Crime_Domain_Rank</th>
-<th data-quarto-table-cell-role="th">SIMD2020_Housing_Domain_Rank</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<th data-quarto-table-cell-role="th">0</th>
-<td>S01006506</td>
-<td>Culter</td>
-<td>Aberdeen City</td>
-<td>894</td>
-<td>580</td>
-<td>4691</td>
-<td>3936.0</td>
-<td>3220.0</td>
-<td>5174</td>
-<td>5887</td>
-<td>4724</td>
-<td>4664.0</td>
-<td>3248.0</td>
-</tr>
-<tr class="even">
-<th data-quarto-table-cell-role="th">1</th>
-<td>S01006507</td>
-<td>Culter</td>
-<td>Aberdeen City</td>
-<td>793</td>
-<td>470</td>
-<td>4862</td>
-<td>4829.0</td>
-<td>4481.0</td>
-<td>5051</td>
-<td>4384</td>
-<td>2148</td>
-<td>4602.0</td>
-<td>3486.0</td>
-</tr>
-<tr class="odd">
-<th data-quarto-table-cell-role="th">2</th>
-<td>S01006508</td>
-<td>Culter</td>
-<td>Aberdeen City</td>
-<td>624</td>
-<td>461</td>
-<td>5686</td>
-<td>4460.0</td>
-<td>5110.0</td>
-<td>5942</td>
-<td>5915</td>
-<td>4200</td>
-<td>4563.5</td>
-<td>5342.0</td>
-</tr>
-<tr class="even">
-<th data-quarto-table-cell-role="th">3</th>
-<td>S01006509</td>
-<td>Culter</td>
-<td>Aberdeen City</td>
-<td>537</td>
-<td>307</td>
-<td>4332</td>
-<td>3481.0</td>
-<td>3229.0</td>
-<td>3871</td>
-<td>6401</td>
-<td>3982</td>
-<td>5626.0</td>
-<td>4394.5</td>
-</tr>
-<tr class="odd">
-<th data-quarto-table-cell-role="th">4</th>
-<td>S01006510</td>
-<td>Culter</td>
-<td>Aberdeen City</td>
-<td>663</td>
-<td>415</td>
-<td>3913</td>
-<td>3344.0</td>
-<td>3448.0</td>
-<td>3049</td>
-<td>4092</td>
-<td>5588</td>
-<td>3885.0</td>
-<td>3736.0</td>
-</tr>
-</tbody>
-</table>
-
-</div>
-</div>
-</div>
 </section>
 <section id="learn-about-scotland" class="level2">
 <h2 class="anchored" data-anchor-id="learn-about-scotland">Learn about Scotland</h2>
