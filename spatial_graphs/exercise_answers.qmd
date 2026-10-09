@@ -2,17 +2,17 @@
 title: 'Graph here, graph there'
 format:
   html: default
-  ipynb:
-    execute:
-      enabled: false
-      output: false
+  ipynb: default
+execute:
+  enabled: false
+  output: false
 jupyter: python3
 ---
 
 Here is one way of getting the solution. There are others, feel free to share yours.
 
 
-```py
+```{python}
 import geopandas as gpd
 import matplotlib.pyplot as plt
 import seaborn as sns
@@ -21,59 +21,61 @@ import numpy as np
 from libpysal import graph
 ```
 
-```py
-suburbanisation = gpd.read_file("/Users/martin/Downloads/Z%C3%B3ny_reziden%C4%8Dn%C3%AD_suburbanizace_2008-2016.zip")
+```{python}
+suburbanisation = gpd.read_file("/Users/martinfleis/Downloads/zony_suburbanizace_2008_2016_8970316512140498173.zip")
 ```
 
-Set the index. In this case, you can potentially use the default as both are just integers. Note that `"obec_nazev"` is not unique so it will produce erroneous results.
+The `obec_kod` column is not unique because when a municipality is not contiguous, it is split. Merge them together to get correct boundaries per municipality.
 
-```py
-suburbanisation = suburbanisation.set_index("OBJECTID")
+```{python}
+suburbanisation = suburbanisation.dissolve("obec_kod")
 ```
+
+This has already set the `obec_kod` as an index, so we can use it.
 
 Create a contiguity matrix using the queen criterion
 
-```py
+```{python}
 queen = graph.Graph.build_contiguity(suburbanisation, rook=False)
 ```
 
-Let’s focus on Prague (ID 891 in the table). How many neighbours does it have?
+Let’s focus on Prague (554782 in the table). How many neighbours does it have?
 
 One option:
 
-```py
-len(queen[891])
+```{python}
+len(queen[554782])
 ```
 
 Other option:
 
-```py
-queen.cardinalities[891]
+```{python}
+queen.cardinalities[554782]
 ```
 
 Reproduce the previous section’s zoom plot with Prague and its neighbours. Can you make that plot as both static and interactive maps?
 
-```py
-m = suburbanisation.loc[queen[891].index].explore(color="#25b497")
-suburbanisation.loc[[891]].explore(m=m, color="#fa94a5")
+```{python}
+m = suburbanisation.loc[queen[554782].index].explore(color="#25b497")
+suburbanisation.loc[[554782]].explore(m=m, color="#fa94a5")
 ```
 
 With `matplotlib`:
 
-```py
-ax = suburbanisation.loc[queen[891].index].plot(color="#25b497")
-suburbanisation.loc[[891]].plot(ax=ax, color="#fa94a5")
+```{python}
+ax = suburbanisation.loc[queen[554782].index].plot(color="#25b497")
+suburbanisation.loc[[554782]].plot(ax=ax, color="#fa94a5")
 ```
 
 Create a block spatial weights matrix where every geometry is connected to other geometries in the NUTS2 region. For that, use the NUTS2_kod column of the table.
 
-```py
+```{python}
 nuts = graph.Graph.build_block_contiguity(suburbanisation["NUTS2_kod"])
 ```
 
 Create KNN weights with 5 neighbours. Remember that KNN expects point geometry.
 
-```py
+```{python}
 knn5 = graph.Graph.build_knn(suburbanisation.set_geometry(suburbanisation.centroid), k=5)
 ```
 
@@ -81,33 +83,33 @@ Compare the number of neighbours by geometry for the three weights matrices. Whi
 
 For Prague only:
 
-```py
-knn5.cardinalities[891]
+```{python}
+knn5.cardinalities[554782]
 ```
 
-```py
-nuts.cardinalities[891]
+```{python}
+nuts.cardinalities[554782]
 ```
 
 Prague is a NUTS2 region by itself. See the data plotted by NUTS2:
 
-```py
+```{python}
 suburbanisation.plot("NUTS2_kod")
 ```
 
 For whole data frame
 
-```py
+```{python}
 nuts.cardinalities.mean()
 ```
 
-```py
+```{python}
 knn5.cardinalities.mean()
 ```
 
 Let’s have a look at spatial lag. Before proceeding, you will probably need to pre-process the column with the population ("obyv_31122") since it comes as string. Assuming the GeoDataFrame is called suburbanisation, you can do the following to cast it to float.
 
-```py
+```{python}
 suburbanisation["obyv_31122"] = (
     suburbanisation["obyv_31122"].replace("?", None).astype(float)
 )
@@ -115,7 +117,7 @@ suburbanisation["obyv_31122"] = (
 
 Measure spatial lag (as mean, so don’t forget to standardise your weights) of the "obyv_31122" column using all weights matrices you have created.
 
-```py
+```{python}
 queen_r = queen.transform("R")
 nuts_r = nuts.transform("R")
 knn_r = knn5.transform("R")
@@ -130,6 +132,6 @@ suburbanisation["knn_lag"] = knn_r.lag(suburbanisation["obyv_log"])
 
 What is the difference in results for Prague? Do you know why?
 
-```py
-suburbanisation.loc[891, ["queen_lag", "nuts_lag", "knn_lag"]]
+```{python}
+suburbanisation.loc[554782, ["queen_lag", "nuts_lag", "knn_lag"]]
 ```
