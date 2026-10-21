@@ -92,12 +92,12 @@ network.nodes_df.plot(nearest_schools[1], markersize=.01, legend=True)
 
 ```{python}
 art_school = schools.query("TYP_TXT == 'Základní umělecká škola'")
-network.set_pois(category="art_school", max_dist=5000, maxitems=1, x_col=art_school.geometry.x, y_col=art_school.geometry.y)
+network.set_pois(category="art_school", maxdist=5000, maxitems=1, x_col=art_school.geometry.x, y_col=art_school.geometry.y)
 ```
 
 
 ```{python}
-nearest_art_school = network.nearest_pois(distance=5000, "art_school")
+nearest_art_school = network.nearest_pois(distance=5000, category="art_school")
 ```
 
 
@@ -170,9 +170,9 @@ network.nodes_df.plot(pop_mean, markersize=.01, legend=True)
 
 
 ```{python}
-# reset index is a temporary workaround
-travel_cost_graph = graph.Graph.build_travel_cost(prague.set_geometry(prague.centroid), network=network, threshold=2000)
-travel_cost_graph
+# this needs new libpysal
+# travel_cost_graph = graph.Graph.build_travel_cost(prague.set_geometry(prague.centroid), network=network, threshold=2000)
+# travel_cost_graph
 ```
 
 
