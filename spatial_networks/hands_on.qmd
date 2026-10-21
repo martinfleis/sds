@@ -30,9 +30,13 @@ import datetime
 import geopandas as gpd
 import pandarm
 import r5py
+import shapely
 
 from libpysal import graph, kernels
 ```
+
+
+We start with the data reflecting Census areas in Prague as we did in the last session.
 
 ```{python}
 #| classes: explore
@@ -44,144 +48,160 @@ prague.explore()
 ```
 
 
+## Walking through the streets
+
+Typically, you generate a network based on OpenStreetMap data. 
+
 ```py
 network = pandarm.Network.from_gdf(prague, network_type="walk")
 network.save_hdf5("data/prague_walk.h5")
 ```
 
+We can load the one generated using the code above directly.
 
 ```{python}
 network = pandarm.Network.from_hdf5("data/prague_walk.h5")
 ```
 
+```{python}
+# temp fix
+network.crs = prague.crs
+network.edges_df = network.edges_df.set_crs(prague.crs, allow_override=True)
+network.nodes_df = network.nodes_df.set_crs(prague.crs, allow_override=True)
+```
 
-https://geoportalpraha.cz/data-a-sluzby/5d32db18a5d545a79ad3029917984a89
+Second dataset captures locations of schools across Prague, originating from the [GeoPortalPraha.cz](https://geoportalpraha.cz/data-a-sluzby/5d32db18a5d545a79ad3029917984a89).
+
 
 ```{python}
 schools = gpd.read_file('data/schools.zip')
+schools.head()
 ```
 
+Assign schools as Points of Interest to the network.
 
 ```{python}
-# temp fix
-network.crs = schools.crs
-network.edges_df = network.edges_df.set_crs(schools.crs, allow_override=True)
-network.nodes_df = network.nodes_df.set_crs(schools.crs, allow_override=True)
+network.set_pois(category="schools", maxdist=2000, maxitems=5, x_col=schools.geometry.x, y_col=schools.geometry.y)
 ```
 
+### Nearest POIs
 
-```{python}
-network.set_pois("schools", 2000, 5, schools.geometry.x, schools.geometry.y)
-```
-
+Using this, you can find the distance nearest schools.
 
 ```{python}
 nearest_schools = network.nearest_pois(2000, "schools", num_pois=5)
+nearest_schools.head()
 ```
-
 
 ```{python}
-nearest_schools
+# | fig-cap: Distance to the nearest school from every intersection in Prague
+ax = network.nodes_df.plot(nearest_schools[1], markersize=.01, legend=True)
+ax.set_axis_off()
 ```
 
-
-```{python}
-network.nodes_df.plot(nearest_schools[1], markersize=.01, legend=True)
-```
-
+Check for a subset of specific schools only.
 
 ```{python}
 art_school = schools.query("TYP_TXT == 'Základní umělecká škola'")
 network.set_pois(category="art_school", maxdist=5000, maxitems=1, x_col=art_school.geometry.x, y_col=art_school.geometry.y)
 ```
 
+Get the distance to nearest.
 
 ```{python}
-nearest_art_school = network.nearest_pois(distance=5000, category="art_school")
+nearest_art_school = network.nearest_pois(distance=5000, category="art_school", include_poi_ids=True)
+nearest_art_school.head()
 ```
 
 
 ```{python}
-ax = art_school.plot(markersize=1, color='red', zorder=2)
+# | fig-cap: Distance to the nearest art school from every intersection in Prague
+ax = art_school.plot(markersize=1, color='orange', zorder=2)
 network.nodes_df.plot(nearest_art_school[1], markersize=.01, legend=True, ax=ax)
 ax.set_axis_off()
 ```
 
+```{python}
+# | fig-cap: Intersections coloured by the nearest art school
+ax = network.nodes_df.plot(nearest_art_school["poi1"], markersize=.01, categorical=True, cmap="Spectral")
+ax.set_axis_off()
+```
 
-Isochrones
-
+### Isochrones
 
 ```{python}
 art_schoool_nodes = network.get_node_ids(art_school.geometry.x, art_school.geometry.y)
-isochrones = network.nodes_in_range(art_schoool_nodes, radius=1000)
+art_schoool_nodes.head()
 ```
 
 
 ```{python}
+isochrones = network.nodes_in_range(art_schoool_nodes, radius=1000)
 isochrones
 ```
 
-```{python}
-art_schoool_nodes
-```
 
 ```{python}
+#| classes: explore
 network.nodes_df.loc[isochrones["destination"]].dissolve(isochrones["source"].values).concave_hull(ratio=.2).explore()
 ```
 
 ```{python}
-network.nodes_df.loc[isochrones["destination"]].explore(isochrones['length'].values)
+# | fig-cap: Distance to individual intersections forming the isochrone
+ax = network.nodes_df.loc[isochrones["destination"]].plot(isochrones['length'].values, markersize=.1, legend=True)
+ax.set_axis_off()
 ```
 
-Aggregation
+### Network-based aggregations
+
+Assing variables from the census data onto the network.
 
 ```{python}
 node_ids = network.get_node_ids(prague.centroid.x, prague.centroid.y)
 network.set(node_ids, variable=prague["n_people"], name="population")
 ```
 
-
 ```{python}
-pop_1km = network.aggregate(distance=1000, func="sum", decay="linear", name="population")
+pop_1km = network.aggregate(distance=1000, func="sum", decay="flat", name="population")
+pop_1km.head()
 ```
 
 
 ```{python}
-pop_1km
+# | fig-cap: Population within 1km along the street network
+ax = network.nodes_df.plot(pop_1km, markersize=.01, legend=True)
+ax.set_axis_off()
 ```
 
 
 ```{python}
-network.nodes_df.plot(pop_1km, markersize=.01, legend=True)
+# | fig-cap: Average population within 2.5km along the street network (distance-weighted)
+pop_5km = network.aggregate(distance=2500, func="mean", decay="linear", name="population")
+ax = network.nodes_df.plot(pop_5km, markersize=.01, legend=True)
+ax.set_axis_off()
 ```
 
 
-```{python}
-pop_5km = network.aggregate(distance=5000, func="sum", decay="flat", name="population")
-network.nodes_df.plot(pop_5km, markersize=.01, legend=True)
-```
-
-
-```{python}
-pop_mean = network.aggregate(distance=2000, func="mean", decay="flat", name="population")
-network.nodes_df.plot(pop_mean, markersize=.01, legend=True)
-```
-
-
-
-```{python}
+```py
 # this needs new libpysal
-# travel_cost_graph = graph.Graph.build_travel_cost(prague.set_geometry(prague.centroid), network=network, threshold=2000)
-# travel_cost_graph
+travel_cost_graph = graph.Graph.build_travel_cost(prague.centroid, network=network, threshold=2000, kernel="bisquare")
+travel_cost_graph
+```
+
+```py
+#| classes: explore
+lagged_population = travel_cost_graph.lag(prague["n_people"])
+ax = prague.explore(lagged_population)
 ```
 
 
-## r5py
+## Multi-modal movement
 
 https://download.geofabrik.de/europe/czech-republic.html
 
 
 ```{python}
+#| warning: false
 transport_network = r5py.TransportNetwork(
     osm_pbf="data/praha-261020.osm.pbf",
     gtfs=["data/PID_GTFS.zip"],
@@ -190,35 +210,42 @@ transport_network = r5py.TransportNetwork(
 ```
 
 
-Isochrones
+### Isochrones
 
 ```{python}
-origins = art_school.copy()
-origins['id'] = art_school.NAZEV_ZAR
+art_school['id'] = art_school.NAZEV_ZAR
 
 isochrones = r5py.Isochrones(
     transport_network,
-    origins=origins,
+    origins=art_school,
     departure=datetime.datetime(2026, 10, 22, 10, 30),
     transport_modes=[r5py.TransportMode.TRANSIT, r5py.TransportMode.WALK],
     isochrones=[5, 10, 15],
 )
+isochrones
 ```
 
 
 ```{python}
+# | fig-cap: Isochrones of travel time (5, 10 and 15 minutes) around art schools
 isochrones['travel_time'] = isochrones['travel_time'].astype(int)
-isochrones.plot('travel_time', legend=True)
+ax = isochrones.plot('travel_time', legend=True)
+ax.set_axis_off()
 ```
 
-TT matrix
+```{python}
+#| classes: explore
+isochrones["polygons"] = shapely.build_area(isochrones.geometry).set_crs(isochrones.crs)
+isochrones.set_geometry("polygons").explore('travel_time')
+```
+
+### Travel-time matrix
 
 ```{python}
-destinations = prague.loc[["Albertov"]].set_geometry(prague.centroid)
-origins = prague.set_geometry(prague.centroid)
+prague['id'] = prague.index
 
-destinations["id"] = destinations.index
-origins["id"] = origins.index
+origins = prague.set_geometry(prague.centroid)
+destinations = origins.loc[["Albertov"]]
 
 travel_times = r5py.TravelTimeMatrix(
     transport_network,
@@ -236,7 +263,9 @@ travel_times
 
 
 ```{python}
-prague.plot(travel_times.travel_time.values, legend=True)
+# | fig-cap: Travel time to Albertov using public transport or walking
+ax = prague.plot(travel_times.travel_time.values, legend=True)
+ax.set_axis_off()
 ```
 
 Full matrix
@@ -244,8 +273,6 @@ Full matrix
 ```{python}
 destinations = prague.set_geometry(prague.centroid)
 origins = destinations
-
-destinations["id"] = destinations.index
 
 travel_times = r5py.TravelTimeMatrix(
     transport_network,
@@ -298,5 +325,14 @@ transit_graph_weighted["Albertov"]
 
 
 ```{python}
-prague.assign(w=transit_graph_weighted["Albertov"]).plot('w', legend=True)
+# | fig-cap: Spatial interaction weight derived from public transport
+ax = prague.assign(w=transit_graph_weighted["Albertov"]).plot('w', legend=True)
+ax.set_axis_off()
+```
+
+
+```{python}
+#| classes: explore
+lagged_population = transit_graph_weighted.lag(prague["n_people"])
+prague.explore(lagged_population)
 ```
