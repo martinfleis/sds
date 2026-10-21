@@ -1,0 +1,187 @@
+---
+title: "Spatial interaction through networks"
+format:
+  html: default
+  ipynb:
+    execute:
+      enabled: false
+      output: false
+jupyter: python3
+---
+
+
+- get pandarm network
+- assign origins, destinations
+    - origins ZSJ/grid, destinations POIs
+    - grid based origin==destination
+- isochrones
+- number of accessible POIs
+- travel time
+- travel time matrix
+    - conversion to Graph
+    - Graph.build_travel_cost
+
+- get r5py network
+    - replicate above using multimodal data
+
+```{python}
+import geopandas as gpd
+import pandarm
+import r5py
+
+from libpysal import graph
+```
+
+```{python}
+#| classes: explore
+prague = gpd.read_file(
+    "https://martinfleischmann.net/sds/spatial_graphs/data/zsj_prague_2021.gpkg"
+)
+prague = prague.set_index("NAZ_ZSJ") # <1>
+prague.explore()
+```
+
+
+```py
+network = pandarm.Network.from_gdf(prague, network_type="walk")
+network.save_hdf5("data/prague_walk.h5")
+```
+
+
+```{python}
+network = pandarm.Network.from_hdf5("data/prague_walk.h5")
+```
+
+
+https://geoportalpraha.cz/data-a-sluzby/5d32db18a5d545a79ad3029917984a89
+
+```{python}
+schools = gpd.read_file('data/schools.zip')
+```
+
+
+```{python}
+# temp fix
+network.crs = schools.crs
+network.edges_df = network.edges_df.set_crs(schools.crs, allow_override=True)
+network.nodes_df = network.nodes_df.set_crs(schools.crs, allow_override=True)
+```
+
+
+```{python}
+network.set_pois("schools", 2000, 5, schools.geometry.x, schools.geometry.y)
+```
+
+
+```{python}
+nearest_schools = network.nearest_pois(2000, "schools", num_pois=5)
+```
+
+
+```{python}
+nearest_schools
+```
+
+
+```{python}
+network.nodes_df.plot(nearest_schools[1], markersize=.01, legend=True)
+```
+
+
+```{python}
+art_school = schools.query("TYP_TXT == 'Základní umělecká škola'")
+network.set_pois(category="art_school", max_dist=5000, maxitems=1, x_col=art_school.geometry.x, y_col=art_school.geometry.y)
+```
+
+
+```{python}
+nearest_art_school = network.nearest_pois(distance=5000, "art_school")
+```
+
+
+```{python}
+ax = art_school.plot(markersize=1, color='red', zorder=2)
+network.nodes_df.plot(nearest_art_school[1], markersize=.01, legend=True, ax=ax)
+ax.set_axis_off()
+```
+
+
+Isochrones
+
+
+```{python}
+art_schoool_nodes = network.get_node_ids(art_school.geometry.x, art_school.geometry.y)
+isochrones = network.nodes_in_range(art_schoool_nodes, radius=1000)
+```
+
+
+```{python}
+isochrones
+```
+
+```{python}
+art_schoool_nodes
+```
+
+```{python}
+network.nodes_df.loc[isochrones["destination"]].dissolve(isochrones["source"].values).concave_hull(ratio=.2).explore()
+```
+
+```{python}
+network.nodes_df.loc[isochrones["destination"]].explore(isochrones['length'].values)
+```
+
+Aggregation
+
+```{python}
+node_ids = network.get_node_ids(prague.centroid.x, prague.centroid.y)
+network.set(node_ids, variable=prague["n_people"], name="population")
+```
+
+
+```{python}
+pop_1km = network.aggregate(distance=1000, func="sum", decay="linear", name="population")
+```
+
+
+```{python}
+pop_1km
+```
+
+
+```{python}
+network.nodes_df.plot(pop_1km, markersize=.01, legend=True)
+```
+
+
+```{python}
+pop_5km = network.aggregate(distance=5000, func="sum", decay="flat", name="population")
+network.nodes_df.plot(pop_5km, markersize=.01, legend=True)
+```
+
+
+```{python}
+pop_mean = network.aggregate(distance=2000, func="mean", decay="flat", name="population")
+network.nodes_df.plot(pop_mean, markersize=.01, legend=True)
+```
+
+
+
+```{python}
+# reset index is a temporary workaround
+travel_cost_graph = graph.Graph.build_travel_cost(prague.set_geometry(prague.centroid), network=network, threshold=2000)
+travel_cost_graph
+```
+
+
+## r5py
+
+https://download.geofabrik.de/europe/czech-republic.html
+
+
+```{python}
+transport_network = r5py.TransportNetwork(
+    osm_pbf="data/praha-261020.osm.pbf",
+    gtfs=["data/PID_GTFS.zip"],
+)
+```
