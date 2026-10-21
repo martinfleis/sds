@@ -25,11 +25,13 @@ jupyter: python3
     - replicate above using multimodal data
 
 ```{python}
+import datetime
+
 import geopandas as gpd
 import pandarm
 import r5py
 
-from libpysal import graph
+from libpysal import graph, kernels
 ```
 
 ```{python}
@@ -183,5 +185,118 @@ https://download.geofabrik.de/europe/czech-republic.html
 transport_network = r5py.TransportNetwork(
     osm_pbf="data/praha-261020.osm.pbf",
     gtfs=["data/PID_GTFS.zip"],
+    allow_errors=True,
 )
+```
+
+
+Isochrones
+
+```{python}
+origins = art_school.copy()
+origins['id'] = art_school.NAZEV_ZAR
+
+isochrones = r5py.Isochrones(
+    transport_network,
+    origins=origins,
+    departure=datetime.datetime(2026, 10, 22, 10, 30),
+    transport_modes=[r5py.TransportMode.TRANSIT, r5py.TransportMode.WALK],
+    isochrones=[5, 10, 15],
+)
+```
+
+
+```{python}
+isochrones['travel_time'] = isochrones['travel_time'].astype(int)
+isochrones.plot('travel_time', legend=True)
+```
+
+TT matrix
+
+```{python}
+destinations = prague.loc[["Albertov"]].set_geometry(prague.centroid)
+origins = prague.set_geometry(prague.centroid)
+
+destinations["id"] = destinations.index
+origins["id"] = origins.index
+
+travel_times = r5py.TravelTimeMatrix(
+    transport_network,
+    origins=origins,
+    destinations=destinations,
+    departure=datetime.datetime(2026, 10, 22, 10, 30),
+    transport_modes=[
+        r5py.TransportMode.TRANSIT,
+        r5py.TransportMode.WALK,
+    ],
+    snap_to_network=True,
+)
+travel_times
+```
+
+
+```{python}
+prague.plot(travel_times.travel_time.values, legend=True)
+```
+
+Full matrix
+
+```{python}
+destinations = prague.set_geometry(prague.centroid)
+origins = destinations
+
+destinations["id"] = destinations.index
+
+travel_times = r5py.TravelTimeMatrix(
+    transport_network,
+    origins=origins,
+    destinations=destinations,
+    departure=datetime.datetime(2026, 10, 22, 10, 30),
+    transport_modes=[
+        r5py.TransportMode.TRANSIT,
+        r5py.TransportMode.WALK,
+    ],
+    snap_to_network=True,
+    max_time=datetime.timedelta(hours=1),
+)
+travel_times
+```
+
+
+```{python}
+transit_graph = graph.Graph.from_adjacency(
+    adjacency=travel_times.dropna(),
+    focal_col="from_id",
+    neighbor_col="to_id",
+    weight_col="travel_time",
+)
+```
+
+
+```{python}
+transit_graph["Albertov"]
+```
+
+
+```{python}
+travel_times["weights"] = kernels.kernel(travel_times["travel_time"], bandwidth=60, kernel="bisquare")
+travel_times
+```
+
+```{python}
+transit_graph_weighted = graph.Graph.from_adjacency(
+    adjacency=travel_times.dropna(),
+    focal_col="from_id",
+    neighbor_col="to_id",
+    weight_col="weights",
+)
+```
+
+```{python}
+transit_graph_weighted["Albertov"]
+```
+
+
+```{python}
+prague.assign(w=transit_graph_weighted["Albertov"]).plot('w', legend=True)
 ```
