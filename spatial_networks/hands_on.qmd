@@ -15,6 +15,7 @@ In spatial data science, we use [spatial graphs](../spatial_graphs/hands_on.qmd)
 import datetime
 
 import geopandas as gpd
+import matplotlib.pyplot as plt
 import numpy as np
 import pandarm
 import r5py
@@ -51,13 +52,6 @@ We can load the saved file directly with the `pandarm`. Download the [prague_wal
 
 ```{python}
 network = pandarm.Network.from_hdf5("data/prague_walk.h5")
-```
-
-```{python}
-# temp fix
-network.crs = prague.crs
-network.edges_df = network.edges_df.set_crs(prague.crs, allow_override=True)
-network.nodes_df = network.nodes_df.set_crs(prague.crs, allow_override=True)
 ```
 
 The network is, in principle, composed of two GeoDataFrames, one capturing edges (streets) and another one capturing nodes (intersections).
@@ -318,7 +312,7 @@ The entire idea of accessibility from one place to the other through the street 
 travel_cost_graph = graph.Graph.build_travel_cost(
     prague.centroid,  # <1>
     network=network,   # <2>
-    threshold=2000,   # <3>
+    threshold=2400,   # <3>
     kernel="bisquare",  # <4>
 )
 travel_cost_graph
@@ -336,6 +330,13 @@ lagged_population = travel_cost_graph.lag(prague["n_people"])
 prague.explore(lagged_population)
 ```
 
+::: {.callout-tip}
+# Additional information
+
+`pandarm` is a _fork_ of another package named `pandana`, which was abandoned for years (but is in the maintenance mode now). `pandarm` now contains some additional functionality but all the resources that refer to `pandana` apply to `pandarm`. Simply replace `pandana` in the code with `pandarm`.
+
+For more details, you can check the documentation of [pandarm](https://oturns.github.io/pandarm/) and [pandana](https://udst.github.io/pandana/), the [chapter on Accessibility](https://knaaptime.com/urban_analysis/04_access/simple_access.html) from _Urban Analysis & Spatial Science_ book by Eli Knaap.
+:::
 
 ## Multi-modal movement
 
@@ -397,80 +398,94 @@ isochrones["polygons"] = shapely.build_area( # <1>
 ).set_crs(isochrones.crs)  # <2>
 isochrones.set_geometry("polygons").explore('travel_time') # <3>
 ```
-1. Use `shapely.buil_area` to convert linear geometries to areal ones.
+1. Use `shapely.build_area` to convert linear geometries to areal ones.
 2. Set CRS to the resulting geometries as shapely does not pass it through.
 3. Set new polygons as an active geometry and visualise.
 
 ### Travel-time matrix
 
-```{python}
-prague['id'] = prague.index
+The main use case for `r5py` is computation of travel-time matrices. Travel-time marix contains, as the name suggests, travel times through the network between all pairs of provided orgins and destinations. We can illustrate it by computing travel time from all the census areas in our `prague` dataset to Albertov.
 
-origins = prague.set_geometry(prague.centroid)
-destinations = origins.loc[["Albertov"]]
+```{python}
+prague['id'] = prague.index  # <1>
+
+origins = prague.set_geometry(prague.centroid)  # <2>
+destinations = origins.loc[["Albertov"]]  # <3>
 
 travel_times = r5py.TravelTimeMatrix(
     transport_network,
     origins=origins,
     destinations=destinations,
     departure=datetime.datetime(2026, 10, 22, 10, 30),
-    transport_modes=[
-        r5py.TransportMode.TRANSIT,
-        r5py.TransportMode.WALK,
-    ],
-    snap_to_network=True,
+    snap_to_network=True,  # <4>
 )
 travel_times
 ```
+1. Again, each dataset linked to the network needs to have an `id` column.
+2. Snapping to the network requires points, not polygons.
+3. `destinations` are a single-row `GeoDataFrame` in this case.
+4. We want to snap the locations to the network.
 
+Here, the result shows the time needed to reach Albertov from across the city via public transport.
 
 ```{python}
 # | fig-cap: Travel time to Albertov using public transport or walking
-ax = prague.plot(travel_times.travel_time.values, legend=True)
+ax = prague.plot(
+    travel_times.travel_time.values,  # <1>
+    legend=True,
+)
 ax.set_axis_off()
 ```
+1. Using `.values` to pass the underlying `numpy.ndarray` of values. The Series has a different index than `prague` and we want to avoid aligning by index.
 
-Full matrix
+However, this can be built as a full $N*N$ matrix, computing travel time between all pairs of census areas. 
 
 ```{python}
-destinations = prague.set_geometry(prague.centroid)
-origins = destinations
-
 travel_times = r5py.TravelTimeMatrix(
     transport_network,
-    origins=origins,
-    destinations=destinations,
+    origins=origins,  # <1>
+    destinations=origins,   # <1>
     departure=datetime.datetime(2026, 10, 22, 10, 30),
-    transport_modes=[
-        r5py.TransportMode.TRANSIT,
-        r5py.TransportMode.WALK,
-    ],
     snap_to_network=True,
-    max_time=datetime.timedelta(hours=1),
+    max_time=datetime.timedelta(minutes=30),  # <2>
 )
 travel_times
 ```
+1. Both `origins` and `destinations` are the same at this point.
+2. Setting a maximum travel time to 30 minutes, assuming furhter connections as unfeasible.
 
+Given this is a full $N*N$ matrix, we can directly convert it to `Graph`.
 
 ```{python}
 transit_graph = graph.Graph.from_adjacency(
-    adjacency=travel_times.dropna(),
+    adjacency=travel_times.dropna(),  # <1>
     focal_col="from_id",
     neighbor_col="to_id",
     weight_col="travel_time",
 )
+transit_graph
 ```
+1. Dropping missing values which are connectoins that take longer than 30 minutes (`max_time`).
 
+With this, we already know how to work.
 
 ```{python}
 transit_graph["Albertov"]
 ```
 
+One issue which remains, is that the weight is represented in minutes. We can use the `kernels` module of `libpysal` to convert it to an actual useful weight before generating the `Graph`.
 
 ```{python}
-travel_times["weights"] = kernels.kernel(travel_times["travel_time"], bandwidth=60, kernel="bisquare")
+travel_times["weights"] = kernels.kernel(
+    travel_times["travel_time"], 
+    bandwidth=30, 
+    kernel="bisquare",
+    decay=True,
+)
 travel_times
 ```
+
+The code above converts the travel time of 0 to a weight of 1 and a travel time of 30 to a weigth of 0, with a bisquare kernel defining all in between. You can then use the new column as a weight column in the `Graph` construction.
 
 ```{python}
 transit_graph_weighted = graph.Graph.from_adjacency(
@@ -481,20 +496,37 @@ transit_graph_weighted = graph.Graph.from_adjacency(
 )
 ```
 
+See that the weights are now as expected for spatial modelling tasks.
+
 ```{python}
 transit_graph_weighted["Albertov"]
 ```
 
+This can be nicely illustrated on a map. Notice the discontinuity caused by the locations of public transit stops.
 
 ```{python}
 # | fig-cap: Spatial interaction weight derived from public transport
-ax = prague.assign(w=transit_graph_weighted["Albertov"]).plot('w', legend=True)
+ax = prague.assign(weight=transit_graph_weighted["Albertov"]).plot(
+    'weight', legend=True, tiles=True, alpha=.7,
+)
 ax.set_axis_off()
 ```
 
+See the effects of the spatial graph defined in this way on spatial lag of population.
 
 ```{python}
-#| classes: explore
+# | classes: explore
 lagged_population = transit_graph_weighted.lag(prague["n_people"])
+
 prague.explore(lagged_population)
 ```
+
+The main routes of public transport are noticeable in the outcome.
+
+
+::: {.callout-tip}
+# Additional reading
+
+For more resources on how to use `r5py`, you can check the [documentation](https://r5py.readthedocs.io/stable/index.html) or the [tutorial](https://sustainability-gis.readthedocs.io/en/latest/tutorials/r5py_demo.html) written by Henrikki Tenkanen, Christoph Fink & Willem Klumpenhouwer.
+:::
+
