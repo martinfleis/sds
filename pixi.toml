@@ -45,7 +45,7 @@ jupyterlab = ">=4.6.4,<5"
 pip = ">=26.2.1,<27"
 spml = ">=0.2.2,<0.3"
 r5py = ">=1.1.7,<2"
+pandarm = ">=0.0.7,<0.0.8"
 
 [pypi-dependencies]
 kdepy = ">=1.1.12, <2"
-pandarm = ">=0.0.7, <0.0.8"
