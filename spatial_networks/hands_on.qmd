@@ -9,20 +9,7 @@ format:
 jupyter: python3
 ---
 
-
-- get pandarm network
-- assign origins, destinations
-    - origins ZSJ/grid, destinations POIs
-    - grid based origin==destination
-- isochrones
-- number of accessible POIs
-- travel time
-- travel time matrix
-    - conversion to Graph
-    - Graph.build_travel_cost
-
-- get r5py network
-    - replicate above using multimodal data
+In spatial data science, we use [spatial graphs](../spatial_graphs/hands_on.qmd) to reflect the degree of spatial interaction between observations. You already know how to represent interaction based on contiguity, distances or spatial regimes. However, in many contexts (notably urban), the interaction follows spatially restricted movement patterns - like those along street networks. In this session, we will cover it, both as a movement through the streets and the one depending on public transport.
 
 ```{python}
 import datetime
@@ -35,8 +22,7 @@ import shapely
 from libpysal import graph, kernels
 ```
 
-
-We start with the data reflecting Census areas in Prague as we did in the last session.
+We start with the data reflecting Census areas in Prague as we did in the last session. The dataset contains relatively granular spatial units with an information about the population living in each, based on 2021 data.
 
 ```{python}
 #| classes: explore
@@ -46,18 +32,21 @@ prague = gpd.read_file(
 prague = prague.set_index("NAZ_ZSJ") # <1>
 prague.explore()
 ```
+1. Use the name of the census area as an index. This will propagate to the graph itself.
 
 
 ## Walking through the streets
 
-Typically, you generate a network based on OpenStreetMap data. 
+First, we will rely on the `pandarm` package to model interaction reflecting movement (walking, driving, biking) through the streets. 
+
+All parts of the analysis here require you to build a routable network. While you can do that manually from sets of nodes and edges (with edge weights), the most common application is to rely on the street network defined by OpenStreetMap. Given a `GeoDataFrame`, `pandarm` can fetch the data and construct such a network itself, using `pandarm.Network.from_gdf`, as shown below. However, this uses Overpass API, which is currently struggling to keep up the demand (and block bots), so to avoid additional requests, the code below was used to download, construct and save the network to HDF5 file, suitable for multi-component data like this.
 
 ```py
 network = pandarm.Network.from_gdf(prague, network_type="walk")
 network.save_hdf5("data/prague_walk.h5")
 ```
 
-We can load the one generated using the code above directly.
+We can load the saved file directly with the `pandarm`. Download the [prague_walk.h5](https://martinfleischmann.net/sds/spatial_networks/data/prague_walk.h5) file and put it to the folder `data` (or change the path below).
 
 ```{python}
 network = pandarm.Network.from_hdf5("data/prague_walk.h5")
@@ -70,28 +59,63 @@ network.edges_df = network.edges_df.set_crs(prague.crs, allow_override=True)
 network.nodes_df = network.nodes_df.set_crs(prague.crs, allow_override=True)
 ```
 
-Second dataset captures locations of schools across Prague, originating from the [GeoPortalPraha.cz](https://geoportalpraha.cz/data-a-sluzby/5d32db18a5d545a79ad3029917984a89).
+The network is, in principle, composed of two GeoDataFrames, one capturing edges (streets) and another one capturing nodes (intersections).
 
+Edges:
 
 ```{python}
-schools = gpd.read_file('data/schools.zip')
+network.edges_df.head()
+```
+
+Nodes:
+
+```{python}
+network.nodes_df.head()
+```
+
+Nodes have a special role in the `pandarm.Network`, as the analysis outcome is typically linked to node geometry, as we'll see below.
+
+Second dataset used in this session captures locations of public and private schools across Prague, originating from the [GeoPortalPraha.cz](https://geoportalpraha.cz/data-a-sluzby/5d32db18a5d545a79ad3029917984a89). Read the data and familiarise yourself with it.
+
+```{python}
+schools = gpd.read_file(
+    'https://martinfleischmann.net/sds/spatial_networks/data/schools.zip'
+)
 schools.head()
 ```
 
-Assign schools as Points of Interest to the network.
+To work with the school locatoins within the network, we need to assign them onto the network using the `set_pois` (set Points of Interest) method.
 
 ```{python}
-network.set_pois(category="schools", maxdist=2000, maxitems=5, x_col=schools.geometry.x, y_col=schools.geometry.y)
+network.set_pois(
+    category="schools",  # <1>
+    maxdist=2000,  # <2>
+    maxitems=5,  # <3>
+    x_col=schools.geometry.x,  # <4>
+    y_col=schools.geometry.y, # <4>
+)
 ```
+1. Define a name for this category of PoIs. You will be using it later when referring to this pointset.
+2. Define the maximum distance we'll later use in search. Pandarm will use it to avoid expensive computation beyond this threshold.
+3. Define maximum number of nearest items we will try to find later. Again, this is to optimise perfomance.
+4. Pass the locations as arrays of X and Y coordinates. Note that these need to use the same CRS as the network is using.
 
 ### Nearest POIs
 
-Using this, you can find the distance nearest schools.
+Using this, you can find the distance nearest schools. At most, you can find the distance to 5 nearest specified above.
 
 ```{python}
-nearest_schools = network.nearest_pois(2000, "schools", num_pois=5)
+nearest_schools = network.nearest_pois(
+    distance=2000, # <1>
+    category="schools", 
+    num_pois=5,  # <2>
+)
 nearest_schools.head()
 ```
+1. Define the maximum search distance. The algorithm does not look beyond it.
+2. Define number of nearest PoIs to find.
+
+The distance is measured from every single node in the network and can be linked back to the `nodes_df`. That allows you to easily visualise the outcome - the map of distance to the nearest school (of any kind) when walking along the street network.
 
 ```{python}
 # | fig-cap: Distance to the nearest school from every intersection in Prague
@@ -99,52 +123,100 @@ ax = network.nodes_df.plot(nearest_schools[1], markersize=.01, legend=True)
 ax.set_axis_off()
 ```
 
-Check for a subset of specific schools only.
+For a better illustration, lets use  a subset of specific schools only. Filter out `'Základní umělecká škola'` which are art schools.
 
 ```{python}
 art_school = schools.query("TYP_TXT == 'Základní umělecká škola'")
-network.set_pois(category="art_school", maxdist=5000, maxitems=1, x_col=art_school.geometry.x, y_col=art_school.geometry.y)
+network.set_pois(
+    category="art_school", 
+    maxdist=5000,  # <1>
+    maxitems=1,   # <1>
+    x_col=art_school.geometry.x, 
+    y_col=art_school.geometry.y,
+)
 ```
+1. This pointset is sparser, so we might look further to find the nearest one.
+2. We know that we'll be interested only in the most nearest art school.
 
-Get the distance to nearest.
+Get the distances to nearest art school. This time, fetch also the ID of the PoI, not just the distance.
 
 ```{python}
-nearest_art_school = network.nearest_pois(distance=5000, category="art_school", include_poi_ids=True)
+nearest_art_school = network.nearest_pois(
+    distance=5000, 
+    category="art_school", 
+    include_poi_ids=True,
+)
 nearest_art_school.head()
 ```
 
+The resulting DataFrame now contains two columns, first one capturing the distance, and the second one capturing the ID of the nearest school. The ID is an integer position, not the index this time.
 
 ```{python}
 # | fig-cap: Distance to the nearest art school from every intersection in Prague
 ax = art_school.plot(markersize=1, color='orange', zorder=2)
-network.nodes_df.plot(nearest_art_school[1], markersize=.01, legend=True, ax=ax)
+network.nodes_df.plot(
+    nearest_art_school[1], markersize=.01, legend=True, ax=ax,
+)
 ax.set_axis_off()
 ```
+
+The ID column can be used to allocate nodes to the nearest school, similarly as is done in the map below.
 
 ```{python}
 # | fig-cap: Intersections coloured by the nearest art school
-ax = network.nodes_df.plot(nearest_art_school["poi1"], markersize=.01, categorical=True, cmap="Spectral")
+ax = art_school.plot(markersize=1, color='black', zorder=2)
+network.nodes_df.plot(
+    nearest_art_school["poi1"], markersize=.01, categorical=True, cmap="Spectral", ax=ax,
+)
 ax.set_axis_off()
 ```
 
+This is, in principle, a Voronoi tessellation based on the distance along street network rather than a typical Euclidean distance.
+
 ### Isochrones
 
+Since we have started allocated space to locations based on distance, let's stick to it for a bit and explore isochrones. An isochrone delineates an area reachable via the network within a set time or distance. `pandarm` can help us define isochrones relatively easily (though we need to do some manual coding).
+
+We're going to generate isochrones reflecting approximate 15 minute walking distance (~1200 meters) from each art school. To do so, we first need to understand which node in the network is the nearest one to each of our art schools, as the analysis is tied to existing nodes.
+
 ```{python}
-art_schoool_nodes = network.get_node_ids(art_school.geometry.x, art_school.geometry.y)
+art_schoool_nodes = network.get_node_ids(
+    art_school.geometry.x, 
+    art_school.geometry.y,
+)
 art_schoool_nodes.head()
 ```
 
+The resulting series gives as an ID of the node used to represent approximate location of each art school. With this, you can find all other nodes in the specified range, which reflects an isochrone.
 
 ```{python}
 isochrones = network.nodes_in_range(art_schoool_nodes, radius=1000)
 isochrones
 ```
 
+The output DataFrame is not the most used friendly, but you can see that the `source` column contains repeated IDs of source nodes, with all other nodes within the `radius` and an exact distance to them. Getting the isochrones as polygons, is then a simple GeoPandas operation.
+
+```{python}
+isochrones_poly = (
+    network.nodes_df.loc[isochrones["destination"]]  # <1>
+    .dissolve(isochrones["source"].values)  # <2>
+    .concave_hull(ratio=0.2)  # <3>
+)
+isochrones_poly.head()
+```
+1. Get a node geometry per each destination.
+2. Dissolve nodes to a single MultiPoint based on the source ID.
+3. Draw concave hull around each MultiPoint to get the isochrone.
+
+You can now explore the outcome.
 
 ```{python}
 #| classes: explore
-network.nodes_df.loc[isochrones["destination"]].dissolve(isochrones["source"].values).concave_hull(ratio=.2).explore()
+m = isochrones_poly.explore()
+art_school.explore(m=m, color='red')
 ```
+
+If that is of interest, you can furhter analyse and disect the nodes forming the isochrones as they all have the distance. For example, can peel outer nodes to form smaller isochrones without recomputing the routes.
 
 ```{python}
 # | fig-cap: Distance to individual intersections forming the isochrone
@@ -203,8 +275,8 @@ https://download.geofabrik.de/europe/czech-republic.html
 ```{python}
 #| warning: false
 transport_network = r5py.TransportNetwork(
-    osm_pbf="data/praha-261020.osm.pbf",
-    gtfs=["data/PID_GTFS.zip"],
+    osm_pbf="https://martinfleischmann.net/sds/spatial_networks/data/praha-261020.osm.pbf",
+    gtfs=["https://martinfleischmann.net/sds/spatial_networks/data/PID_GTFS.zip"],
     allow_errors=True,
 )
 ```
