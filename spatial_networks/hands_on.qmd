@@ -254,16 +254,16 @@ ax.set_axis_off()
 ```
 
 
-```py
+```{python}
 # this needs new libpysal
 travel_cost_graph = graph.Graph.build_travel_cost(prague.centroid, network=network, threshold=2000, kernel="bisquare")
 travel_cost_graph
 ```
 
-```py
+```{python}
 #| classes: explore
 lagged_population = travel_cost_graph.lag(prague["n_people"])
-ax = prague.explore(lagged_population)
+prague.explore(lagged_population)
 ```
 
 
