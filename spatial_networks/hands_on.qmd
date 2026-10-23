@@ -1,5 +1,5 @@
 ---
-title: "Spatial interaction through networks"
+title: "Spatial acessibility and interaction through networks"
 format:
   html: default
   ipynb:
@@ -15,6 +15,7 @@ In spatial data science, we use [spatial graphs](../spatial_graphs/hands_on.qmd)
 import datetime
 
 import geopandas as gpd
+import numpy as np
 import pandarm
 import r5py
 import shapely
@@ -226,39 +227,108 @@ ax.set_axis_off()
 
 ### Network-based aggregations
 
-Assing variables from the census data onto the network.
+`pandarm` is also well suited for data aggregations along the network. That can capture accessible population, accessible school capacity or similar questions. Our school dataset contains information about the school capacity in the `KAPACITA` column, so we can try to understand how does the capacity affect the access.
+
+We also have population information linked to census output areas, so we can even ask the question of school capacity normalised by the local population.
+
+First, we need to assing variables from onto the network. Since we cannot add additional nodes to the network, we find the nearest existing node to each point with a value and assign the values to nodes.
 
 ```{python}
-node_ids = network.get_node_ids(prague.centroid.x, prague.centroid.y)
-network.set(node_ids, variable=prague["n_people"], name="population")
+art_node_ids = network.get_node_ids(art_school.geometry.x, art_school.geometry.y)  # <1>
+pop_node_ids = network.get_node_ids(prague.centroid.x, prague.centroid.y) # <2>
+
+network.set(art_node_ids, variable=art_school["KAPACITA"], name="art_school_capacity") # <3>
+network.set(pop_node_ids, variable=prague["n_people"], name="population") # <4>
 ```
+1. Get the ID of the nearest node in the network per each art school.
+2. Get the ID of the node nearest to the centroid of each census area.
+3. Assign art school capacity onto the identified nodes.
+4. Assign population counts onto the identified nodes. 
+
+We are interested in the number of spots in an art school within an accessible range per 1000 people. By accessible we mean approximately 30 minutes walking as people are more willing to walk further for specialised needs like this one. However, the furher away we are, the less people are willing to take the trip. We can therefore start with allocating accessible population to each node as a distance-weighted sum.
 
 ```{python}
-pop_1km = network.aggregate(distance=1000, func="sum", decay="flat", name="population")
-pop_1km.head()
+accessible_population = network.aggregate(
+    distance=2400,  # <1>
+    func="sum",   # <2>
+    decay="linear",   # <3>
+    name="population",  # <4>
+)
+accessible_population.head()
+```
+1. 2400 meters is approximately 30 minutes walking.
+2. Specify aggregation function to be `"sum"`. 
+3. Define linear decay to make locations furhter away count less.
+4. Define the name of the variable we're aggregating here.
+
+This aggregation results in a spatial distribution of accessible population highlighting areas of high population density but a relatively smoothed one. 
+
+```{python}
+# | fig-cap: Accessible population within 2.5km along the street network
+ax = network.nodes_df.plot(accessible_population, markersize=.01, legend=True)
+ax.set_axis_off()
 ```
 
+We can now do the same aggregation for the capacity of art schools. Again, using the linear decay to account for difference in willingness to walk with the increasing distance.
+
+```{python}
+accessible_capacity = network.aggregate(
+    distance=2400, 
+    func="sum", 
+    decay="linear", 
+    name="art_school_capacity",
+)
+```
+
+The acessible capacity then takes into the account locations of art schools, their individual capacity and ability to reach them via street network. 
+
+```{python}
+# | fig-cap: Accessible art school capacity within 2.5km along the street network
+ax = art_school.plot(color='red', zorder=2, markersize=2)
+ax = network.nodes_df.plot(accessible_capacity, markersize=.01, legend=True, ax=ax)
+ax.set_axis_off()
+```
+
+Now, we can simply normalise the accessible capacity by accessible population to get an approximation of general art school accessibilty. 
+
+```{python}
+normalised_capacity = (
+    accessible_capacity / accessible_population
+).replace(np.inf, np.nan) * 1000  # <1>
+```
+1. Dividing by zero results in infinity. Replace infinity with missing value. Multiplying by 1000 to get spots per 1000 inhabitants.
+
+The results show hotspots of higher accessibiulity and coldspots of lower one, with some peripheral locations indicating high accessibility, but those schools are quite likely serving a wider suburban region.
 
 ```{python}
 # | fig-cap: Population within 1km along the street network
-ax = network.nodes_df.plot(pop_1km, markersize=.01, legend=True)
+ax = art_school.plot(color='red', zorder=2, markersize=2)
+network.nodes_df.plot(normalised_capacity, markersize=.01, legend=True, vmax=100, ax=ax)
 ax.set_axis_off()
 ```
 
+Keep in mind that this example is an oversimplification as quite often people will travel across the city using public transport, which significantly changes the perception of distance, as we will explore below.
 
-```{python}
-# | fig-cap: Average population within 2.5km along the street network (distance-weighted)
-pop_5km = network.aggregate(distance=2500, func="mean", decay="linear", name="population")
-ax = network.nodes_df.plot(pop_5km, markersize=.01, legend=True)
-ax.set_axis_off()
-```
+### Network interaction graphs
 
+The entire idea of accessibility from one place to the other through the street network can be translated into the spatial weights encoding spatial interaction. `libpysal` has a built-in method to derive such weights from a provided `pandarm` network.
 
 ```{python}
 # this needs new libpysal
-travel_cost_graph = graph.Graph.build_travel_cost(prague.centroid, network=network, threshold=2000, kernel="bisquare")
+travel_cost_graph = graph.Graph.build_travel_cost(
+    prague.centroid,  # <1>
+    network=network,   # <2>
+    threshold=2000,   # <3>
+    kernel="bisquare",  # <4>
+)
 travel_cost_graph
 ```
+1. Points to be snapped to network nodes.
+2. The network that shall be used to extract the distances.
+3. Maximum distance within which two observations are considered neighbours.
+4. Kernel translating the raw network distance to weight.
+
+The resulting `Graph` can be used as any other, for example to derive spatial lag.
 
 ```{python}
 #| classes: explore
@@ -269,47 +339,67 @@ prague.explore(lagged_population)
 
 ## Multi-modal movement
 
-https://download.geofabrik.de/europe/czech-republic.html
+Up until now, we were assuming movement through the street network on foot. However, urban environments are often served by dense networks of public transport, some of which runs on streets but some which does not. To provide more realistic estimation of accessibility and network-based interaction, we shall combine different modes of transport and make full use of public transport. To do so, we need to rely on data capturing public transport schedules in a format named [General Transit Feed Specification (GTFS)](https://gtfs.org). This contains all the information about routes, stops, schedules, transfers, agencies running individual routes and other aspects of public transport systems. For Prague, you [can get](https://pid.cz/o-systemu/opendata/) all this information for two weeks ahead.
 
+`pandarm` cannot model multi-modal movement but we can use another tool - `r5py`. That works similarly to `pandarm` by creating a network object first. Apart from the GTFS data, you need to provide a local extract from OpenStreetMap for `r5py` to use its street network representation to route along. 
 
 ```{python}
 #| warning: false
 transport_network = r5py.TransportNetwork(
-    osm_pbf="https://martinfleischmann.net/sds/spatial_networks/data/praha-261020.osm.pbf",
+    osm_pbf="https://martinfleischmann.net/sds/spatial_networks/data/praha-261020.osm.pbf", # <1>
     gtfs=["https://martinfleischmann.net/sds/spatial_networks/data/PID_GTFS.zip"],
-    allow_errors=True,
+    allow_errors=True,  # <2>
 )
 ```
-
+1. `osm.pbf` file can be downloaded from [Geofabrik](https://download.geofabrik.de/europe/czech-republic.html). This one was.
+2. Prague's GTFS data has apparently some issues of missing names of some stops. We can ignore those.
 
 ### Isochrones
 
+As with `pandarm`, we can delineate isochrones as areas accessible within a given time from one or more origins. The two packages work a bit differently, so the APIs do not match. Nevertheless, the concepts are similar. In `r5py`, getting the isochrones is easier as there is a dedicated way of doing so via `r5py.Isochrones`.
+
+Let's try to define isochrones around art schools in Prague as we did before, this time using public transport information.
+
 ```{python}
-art_school['id'] = art_school.NAZEV_ZAR
+art_school['id'] = art_school.NAZEV_ZAR  # <1>
 
 isochrones = r5py.Isochrones(
     transport_network,
-    origins=art_school,
-    departure=datetime.datetime(2026, 10, 22, 10, 30),
-    transport_modes=[r5py.TransportMode.TRANSIT, r5py.TransportMode.WALK],
-    isochrones=[5, 10, 15],
+    origins=art_school,  # <2>
+    departure=datetime.datetime(2026, 10, 22, 10, 30),  # <3>
+    isochrones=[5, 10, 15],  # <4>
 )
 isochrones
 ```
+1. Each dataset linked to the `r5py` network needs to have `id` column with an unique identifier.
+2. Provide locations of art schools. `r5py` directly understands `GeoPandas` objects, no need to provide coordinates as with `pandarm`.
+3. Specify the time of departure we're modelling as a `datetime` object to 10:30 am on 22nd October 2026. Note that the time needs to be covered by the GTFS data.
+4. Intervals in minutes. For each, there will be one isochrone.
 
+The output is a MultiLineString per each time, proviging boundaries of each isochrone.
 
 ```{python}
 # | fig-cap: Isochrones of travel time (5, 10 and 15 minutes) around art schools
-isochrones['travel_time'] = isochrones['travel_time'].astype(int)
-ax = isochrones.plot('travel_time', legend=True)
+isochrones['travel_time'] = isochrones['travel_time'].astype(int)  # <1>
+ax = isochrones.plot(
+    'travel_time', legend=True, legend_kwds={"label": "Distance [seconds]"},
+)
 ax.set_axis_off()
 ```
+1. Travel time is a TimeDelta object GeoPandas cannot natively plot. Convert it to integer representing seconds.
+
+As you can see above, the isochrones are joined together - we get areas accessible from one or more art schools, not a boundary per school. It is often easier to work with isochrones as Polygons, so let's build areas from these LineStrings.
 
 ```{python}
 #| classes: explore
-isochrones["polygons"] = shapely.build_area(isochrones.geometry).set_crs(isochrones.crs)
-isochrones.set_geometry("polygons").explore('travel_time')
+isochrones["polygons"] = shapely.build_area( # <1>
+    isochrones.geometry 
+).set_crs(isochrones.crs)  # <2>
+isochrones.set_geometry("polygons").explore('travel_time') # <3>
 ```
+1. Use `shapely.buil_area` to convert linear geometries to areal ones.
+2. Set CRS to the resulting geometries as shapely does not pass it through.
+3. Set new polygons as an active geometry and visualise.
 
 ### Travel-time matrix
 
