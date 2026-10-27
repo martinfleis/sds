@@ -832,9 +832,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>network <span class="op">=</span> pandarm.Network.from_gdf(brno.to_crs(<span class="dv">5514</span>), network_type<span class="op">=</span><span class="st">"walk"</span>)</span>
 <span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>network.save_hdf5(<span class="st">"data/brno.h5"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <ul>
-<li>Download data on <a href="https://data.brno.cz/datasets/mestobrno::sportoviště-a-sportovní-kluby-sport-grounds-and-sport-clubs/about">sports grounds in Brno</a> from the official data portal.</li>
+<li>Download data on <a href="https://data.brno.cz/datasets/mestobrno::sportoviště-a-sportovní-kluby-sport-grounds-and-sport-clubs/about">sports grounds in Brno</a> from the official data portal. Filter it to use just the <code>sportoviště</code> category.</li>
 <li>Assess accessibility to the sports grounds by walking along the street network. Which locations are farther from sports grounds, and which are closer?</li>
-<li>Can you identify locations that are within 20 minutes of any sports ground?</li>
+<li>Can you identify locations that are within 10 minutes of any sports ground?</li>
 <li>How many sports grounds can you reach from different parts of the city within 20 minutes?</li>
 <li>Can you build a libpysal Graph encoding network-constrained spatial interaction between sports grounds? What can you tell about the resulting Graph?</li>
 </ul>
@@ -843,7 +843,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h2 class="anchored" data-anchor-id="public-transit">Public transit</h2>
 <ul>
 <li>Download <a href="https://data.brno.cz/datasets/379d2e9a7907460c8ca7fda1f3e84328/about">GTFS data for Brno</a> from the official data portal and the (OSM file from Geofabrik)[https://download.geofabrik.de/europe/czech-republic/jihomoravsky.html].</li>
-<li>Compare how the definition of locations within 20 minutes differs when using public transport.</li>
+<li>Compare how the definition of locations within 10 minutes differs when using public transport.</li>
 <li>Can you capture the distance to all sports grounds from náměstí Svobody in the city centre?</li>
 <li>Build a libpysal Graph encoding interaction between sports grounds based on public transport. How does the Graph differ from the one above?</li>
 </ul>
