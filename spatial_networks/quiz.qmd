@@ -1,0 +1,224 @@
+---
+title: "Quiz on spatial networks"
+filters:
+  - naquiz
+---
+
+Check how much you remember from this section by answering the questions below.
+
+:::::{.question}
+**In a street network, what do nodes and edges usually represent?**
+
+::::{.choices}
+
+:::{.choice .correct-choice}
+Nodes represent intersections, and edges represent street segments connecting them.
+:::
+
+:::{.choice}
+Nodes represent streets, and edges represent the buildings along them.
+:::
+
+:::{.choice}
+Nodes represent travel costs, and edges represent geographic areas.
+:::
+
+:::{.choice}
+Nodes represent destinations, and edges represent travel schedules.
+:::
+
+::::
+:::::
+
+:::::{.question}
+**Why might distance along a street network differ from straight-line distance?**
+
+::::{.choices}
+
+:::{.choice}
+Street-network distance is always shorter because it follows streets.
+:::
+
+:::{.choice .correct-choice}
+The route is constrained by the network, so it may not follow the direct path between two places.
+:::
+
+:::{.choice}
+Straight-line distance accounts for one-way streets, but network distance does not.
+:::
+
+:::{.choice}
+They are always equal when the network is made from OpenStreetMap.
+:::
+
+::::
+:::::
+
+:::::{.question}
+**What does `network.nearest_pois()` return?**
+
+::::{.choices}
+
+:::{.choice}
+The nearest network node to each point of interest.
+:::
+
+:::{.choice}
+The number of points of interest within the search area.
+:::
+
+:::{.choice .correct-choice}
+Distances from network nodes to the nearest point(s) of interest, optionally including their IDs.
+:::
+
+:::{.choice}
+A polygon showing the area around each point of interest.
+:::
+
+::::
+:::::
+
+:::::{.question}
+**What does an isochrone represent?**
+
+::::{.choices}
+
+:::{.choice}
+The shortest route connecting every pair of destinations.
+:::
+
+:::{.choice .correct-choice}
+The area reachable from one or more origins within a specified time or distance.
+:::
+
+:::{.choice}
+The straight-line distance from an origin to its nearest destination.
+:::
+
+:::{.choice}
+The number of network nodes in a geographic area.
+:::
+
+::::
+:::::
+
+:::::{.question}
+**What is the effect of using a linear decay when aggregating values across a network?**
+
+::::{.choices}
+
+:::{.choice}
+It gives more influence to values farther away.
+:::
+
+:::{.choice}
+It removes all values outside the network.
+:::
+
+:::{.choice .correct-choice}
+It gives less influence to values as network distance increases.
+:::
+
+:::{.choice}
+It converts distances into travel times using transit schedules.
+:::
+
+::::
+:::::
+
+:::::{.question}
+**Why might values be assigned to the nearest existing network node?**
+
+::::{.choices}
+
+:::{.choice}
+To ensure every point is exactly on a street intersection.
+:::
+
+:::{.choice .correct-choice}
+Network analyses use network nodes, so assigning values to nearby nodes links the data to the network.
+:::
+
+:::{.choice}
+To convert all values into distances.
+:::
+
+:::{.choice}
+To remove nodes that are not connected to a street.
+:::
+
+::::
+:::::
+
+:::::{.question}
+**What information does GTFS provide for modelling public transport?**
+
+::::{.choices}
+
+:::{.choice}
+Street geometries and road speed limits only.
+:::
+
+:::{.choice}
+Population counts at transit stops.
+:::
+
+:::{.choice .correct-choice}
+Transit routes, stops, schedules, transfers, and related service information.
+:::
+
+:::{.choice}
+The shortest walking route between any two places.
+:::
+
+::::
+:::::
+
+
+:::::{.question}
+**What does a travel-time matrix contain?**
+
+::::{.choices}
+
+:::{.choice .correct-choice}
+Travel times between origin and destination pairs.
+:::
+
+:::{.choice}
+The coordinates of every intersection in the network.
+:::
+
+:::{.choice}
+The number of transit routes serving each origin.
+:::
+
+:::{.choice}
+The polygon boundaries of all reachable areas.
+:::
+
+::::
+:::::
+
+:::::{.question}
+**How can travel times be converted into interaction weights?**
+
+::::{.choices}
+
+:::{.choice}
+Assign the same weight to every pair of places, regardless of travel time.
+:::
+
+:::{.choice}
+Use the straight-line distance between place names.
+:::
+
+:::{.choice .correct-choice}
+Apply a kernel so that shorter travel times receive higher weights and longer times receive lower weights.
+:::
+
+:::{.choice}
+Replace travel times with the number of transit stops in the dataset.
+:::
+
+::::
+:::::

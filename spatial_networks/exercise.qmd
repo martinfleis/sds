@@ -1,0 +1,42 @@
+---
+title: "Accessible Brno"
+format: html
+---
+
+Let's move from the largest city in Czechia to the second largest, Brno.
+
+## Street networks
+
+- Construct a `pandarm.Network` from the provided [HDF5 file](https://martinfleischmann.net/sds/spatial_networks/data/brno.h5). For reference, here is the code used to generate it if you'd like to do that yourself. We are providing the HDF5 file to avoid adding to the load on the Overpass API.
+
+```py
+import osmnx
+import pandarm
+
+brno = osmnx.geocode_to_gdf("Brno, Czechia")
+network = pandarm.Network.from_gdf(brno.to_crs(5514), network_type="walk")
+network.save_hdf5("data/brno.h5")
+```
+
+- Download data on [sports grounds in Brno](https://data.brno.cz/datasets/mestobrno::sportoviště-a-sportovní-kluby-sport-grounds-and-sport-clubs/about) from the official data portal.
+- Assess accessibility to the sports grounds by walking along the street network. Which locations are farther from sports grounds, and which are closer?
+- Can you identify locations that are within 20 minutes of any sports ground?
+- How many sports grounds can you reach from different parts of the city within 20 minutes?
+- Can you build a libpysal Graph encoding network-constrained spatial interaction between sports grounds? What can you tell about the resulting Graph?
+
+## Public transit
+
+- Download [GTFS data for Brno](https://data.brno.cz/datasets/379d2e9a7907460c8ca7fda1f3e84328/about) from the official data portal and the (OSM file from Geofabrik)[https://download.geofabrik.de/europe/czech-republic/jihomoravsky.html].
+- Compare how the definition of locations within 20 minutes differs when using public transport.
+- Can you capture the distance to all sports grounds from náměstí Svobody in the city centre?
+- Build a libpysal Graph encoding interaction between sports grounds based on public transport. How does the Graph differ from the one above?
+
+
+::: {.callout-note collapse="true"}
+# Backup data
+
+If the links do not work, please [report it](https://github.com/martinfleis/sds/issues/new) and use the backup:
+
+- [Sports grounds (CC-BY 4.0, Statutární město Brno)](https://martinfleischmann.net/sds/spatial_networks/data/sportoviste.gpkg)
+- [GTFS from 25 October 2026 (CC-BY 4.0, Statutární město Brno)](https://martinfleischmann.net/sds/spatial_networks/data/gtfs.zip)
+:::
