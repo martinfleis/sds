@@ -1,0 +1,11 @@
+---
+title: "Accessibility graphs"
+format: html
+---
+
+
+Slides from the talk introducing the concepts of graphs representing networks for accessibility assessment.
+
+```{=html}
+<iframe class="slide-deck" src="slides.html"></iframe>
+```

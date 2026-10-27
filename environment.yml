@@ -19,12 +19,14 @@ dependencies:
   - openpyxl >=3.1
   - osmnx >=1.9
   - pandas >=2.2
+  - pandarm >=0.0.7
   - pointpats >=2.4
   - pyarrow >=17
   - pyinterpolate >=0.5
   - pyogrio >=0.9
   - rasterio >=1.4.0
   - rioxarray >=0.17
+  - r5py >=1.1.7
   - scikit-learn >=1.6
   - seaborn >=0.13
   - spglm >=1.1
