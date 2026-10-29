@@ -528,4 +528,6 @@ The main public transport routes are noticeable in the result.
 # Additional reading
 
 For more resources on using `r5py`, you can check the [documentation](https://r5py.readthedocs.io/stable/index.html) or the [tutorial](https://sustainability-gis.readthedocs.io/en/latest/tutorials/r5py_demo.html) written by Henrikki Tenkanen, Christoph Fink and Willem Klumpenhouwer.
+
+A general (lower-level) overview of spatial networks is available in the [_Introduction to Spatial Networks using Python_](https://bgu-geography.com/net/) by Michael Dorman.
 :::
