@@ -17,15 +17,21 @@ import numpy as np
 from libpysal import graph
 import matplotlib.pyplot as plt
 import seaborn as sns
+from geodatasets import get_path
+from esda.moran import Moran, Moran_Local
+from mapclassify import greedy
 
-prague = gpd.read_file(
-    "https://martinfleischmann.net/sds/spatial_graphs/data/zsj_prague_2021.gpkg"
-)
-prague = prague.set_index("NAZ_ZSJ") # <1>
-prague["area"] = np.log(prague.area)
-queen = graph.Graph.build_contiguity(prague, rook=False)
-row_wise_queen = queen.transform("R")
-prague['w_area'] = row_wise_queen.lag(prague["area"])
+south = gpd.read_file(get_path('geoda south'))
+G = graph.Graph.build_contiguity(south.geometry)
+moran_greedy = Moran(greedy(south), G)
+moran_blk60 = Moran(south['BLK60'], G)
+random = np.random.default_rng(0).normal(size=len(south))
+moran_random = Moran(random, G)
+
+
+local_greedy = Moran_Local(greedy(south), G)
+local_blk60 = Moran_Local(south['BLK60'], G)
+local_random = Moran_Local(random, G)
 ```
 
 # Exploratory Spatial Data Analysis
@@ -151,10 +157,29 @@ over space.
 ### Positive
 Similar values close to each other (high-high, low-low)
 
+---
+
+```{python}
+# | fig-cap: Positive spatial autocorrelation (% of Black population in 1960)
+south.plot("BLK60", legend=True).set_axis_off();
+```
+
+---
+
+### Positive
+Similar values close to each other (high-high, low-low)
+
 ::: {.fragment .fade-in}
 ### Negative
 Similar values far from each other (high-low)
 :::
+
+---
+
+```{python}
+#| fig-cap: Negative spatial autocorrelation (greedy colouring)
+south.plot(greedy(south), legend=True).set_axis_off();
+```
 
 ---
 
@@ -166,9 +191,26 @@ How to measure it?
 
 ---
 ```{python}
-#| fig-cap: Moran Plot
-f, ax = plt.subplots(1, figsize=(6, 6))                     # <1>
-sns.regplot(x="area", y="w_area", data=prague, ci=None, ax=ax, marker="."); # <2>
+#| fig-cap: Moran Plot of % of Black population in 1960
+moran_blk60.plot_scatter();
+```
+
+---
+```{python}
+#| fig-cap: Moran Plot of greedy colouring
+moran_greedy.plot_scatter();
+```
+
+---
+```{python}
+#| fig-cap: No spatial autocorrelation (random values)
+south.plot(random, legend=True).set_axis_off();
+```
+
+---
+```{python}
+#| fig-cap: Moran Plot of random values
+moran_random.plot_scatter();
 ```
 
 
@@ -179,6 +221,22 @@ sns.regplot(x="area", y="w_area", data=prague, ci=None, ax=ax, marker="."); # <2
 [Statistically identify the presence of clustering in a variable]{.fragment .fade-in}
 
 [Slope of the Moran plot]{.fragment .fade-in}
+
+---
+
+
+```{python}
+# | fig-cap: Moran's I across three variables
+f, ax = plt.subplots(1, 3, layout="constrained")
+south.plot("BLK60", ax=ax[0])
+south.plot(random, ax=ax[1])
+south.plot(greedy(south), ax=ax[2])
+for a in ax.flat:
+    a.set_axis_off()
+ax[0].set_title(f"Moran's I: {moran_blk60.I:.3f}")
+ax[1].set_title(f"Moran's I: {moran_random.I:.3f}")
+ax[2].set_title(f"Moran's I: {moran_greedy.I:.3f}");
+```
 
 # Local Spatial Autocorrelation
 
@@ -221,6 +279,46 @@ Negative SA (*spatial outliers*)
 
 [Compares the observed map with many randomly generated ones to see how likely
 it is to obtain the observed associations for each location]{.fragment .fade-in}
+
+---
+
+```{python}
+# | fig-cap: LISA of % of Black population in 1960
+f, ax = plt.subplots(1, 2, layout="constrained")
+south.plot("BLK60", ax=ax[0])
+local_blk60.plot(south, ax=ax[1], legend=True, legend_kwds={"frameon": False, "bbox_to_anchor": (1.05, 1), "loc": "upper left"})
+for a in ax.flat:
+    a.set_axis_off()
+```
+
+---
+
+```{python}
+#| fig-cap: Moran Plot of % of Black population in 1960 with highlighted LISA clusters
+local_blk60.plot_scatter();
+```
+
+---
+
+```{python}
+# | fig-cap: LISA of random values
+f, ax = plt.subplots(1, 2, layout="constrained")
+south.plot(random, ax=ax[0])
+local_random.plot(south, ax=ax[1], legend=True, legend_kwds={"frameon": False, "bbox_to_anchor": (1.05, 1), "loc": "upper left"})
+for a in ax.flat:
+    a.set_axis_off()
+```
+
+---
+
+```{python}
+# | fig-cap: LISA of greedy colouring
+f, ax = plt.subplots(1, 2, layout="constrained")
+south.plot(greedy(south), ax=ax[0])
+local_greedy.plot(south, ax=ax[1], legend=True, legend_kwds={"frameon": False, "bbox_to_anchor": (1.05, 1), "loc": "upper left"})
+for a in ax.flat:
+    a.set_axis_off()
+```
 
 ---
 

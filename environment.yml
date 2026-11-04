@@ -37,6 +37,7 @@ dependencies:
   - xarray >=2024.7
   - xvec >=0.3
   - dask-expr >=1
+  - geodatasets
   # infrastructure
   - ipykernel
   - jupyter-cache
