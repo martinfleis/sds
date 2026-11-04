@@ -1,0 +1,219 @@
+---
+title: "Accessible Brno: answers"
+format:
+  html: default
+  ipynb: default
+execute:
+  enabled: false
+  output: false
+jupyter: python3
+---
+
+Here is one way to approach the exercise. Your maps and results may differ depending on the departure time you use.
+
+```{python}
+import datetime
+
+import geopandas as gpd
+import numpy as np
+import pandarm
+import r5py
+
+from libpysal import graph, kernels
+```
+
+
+
+## Street networks
+
+- Construct a `pandarm.Network` from the provided [HDF5 file](https://martinfleischmann.net/sds/spatial_networks/data/brno.h5). For reference, here is the code used to generate it if you'd like to do that yourself. We are providing the HDF5 file to avoid adding to the load on the Overpass API.
+
+```{python}
+network = pandarm.Network.from_hdf5("data/brno.h5")
+```
+
+
+- Download data on [sports grounds in Brno](https://data.brno.cz/datasets/mestobrno::sportoviště-a-sportovní-kluby-sport-grounds-and-sport-clubs/about) from the official data portal. Filter it to use just the `sportoviště` category.
+
+```{python}
+sports = gpd.read_file("data/sportoviste.gpkg").to_crs(network.crs)
+grounds = sports.query("kategorie == 'sportoviště'")
+```
+
+- Assess accessibility to the sports grounds by walking along the street network. Which locations are farther from sports grounds, and which are closer?
+
+```{python}
+network.set_pois(
+    category="sports_grounds",
+    maxdist=1600,
+    maxitems=1,
+    x_col=grounds.geometry.x,
+    y_col=grounds.geometry.y,
+)
+
+nearest_ground = network.nearest_pois(
+    distance=1600,
+    category="sports_grounds",
+)
+
+ax = network.nodes_df.plot(nearest_ground[1], legend=True, markersize=0.1)
+ax.set_axis_off()
+```
+
+
+- Can you identify locations that are within 10 minutes of any sports ground?
+
+```{python}
+ax = network.nodes_df.plot(nearest_ground[1] < 800, legend=True, markersize=0.1)
+ax.set_axis_off()
+```
+
+Or as an isochrone:
+
+
+```{python}
+grounds_nodes = network.get_node_ids(
+    grounds.geometry.x, 
+    grounds.geometry.y,
+)
+isochrones = network.nodes_in_range(grounds_nodes, radius=800)
+isochrones_poly = (
+    network.nodes_df.loc[isochrones["destination"]]  # <1>
+    .dissolve(isochrones["source"].values)  # <2>
+    .concave_hull(ratio=0.2)  # <3>
+)
+isochrones_poly.plot(tiles=True, alpha=.7)
+```
+
+
+
+- How many sports grounds can you reach from different parts of the city within 20 minutes?
+
+```{python}
+network.set(
+    grounds_nodes,
+    variable=np.ones(len(grounds)),
+    name="sports_ground_count",
+)
+
+accessible_grounds = network.aggregate(
+    distance=1600,
+    func="sum",
+    decay="flat",
+    name="sports_ground_count",
+)
+
+ax = network.nodes_df.plot(accessible_grounds, legend=True, markersize=0.1)
+ax.set_axis_off()
+```
+
+- Can you build a libpysal Graph encoding network-constrained spatial interaction between sports grounds? What can you tell about the resulting Graph?
+
+```{python}
+walking_graph = graph.Graph.build_travel_cost(
+    grounds.geometry,
+    network=network,
+    threshold=1600,
+    kernel="bisquare",
+    decay=True
+)
+
+walking_graph.summary()
+```
+
+```{python}
+walking_graph.summary().weights_mean
+```
+
+## Public transit
+
+- Download [GTFS data for Brno](https://data.brno.cz/datasets/379d2e9a7907460c8ca7fda1f3e84328/about) from the official data portal and the (OSM file from Geofabrik)[https://download.geofabrik.de/europe/czech-republic/jihomoravsky.html].
+
+```{python}
+transport_network = r5py.TransportNetwork(
+    osm_pbf="/Users/martinfleis/Downloads/jihomoravsky-261025.osm.pbf",
+    gtfs=["data/gtfs.zip"],
+)
+
+departure = datetime.datetime(2026, 10, 27, 8, 0)
+grounds["id"] = [f"ground_{i}" for i in range(len(grounds))]
+```
+
+- Compare how the definition of locations within 10 minutes differs when using public transport.
+
+```{python}
+transit_isochrones = r5py.Isochrones(
+    transport_network,
+    origins=grounds,
+    departure=departure,
+    isochrones=[10],
+)
+transit_isochrones.plot(tiles=True, alpha=.7)
+```
+
+```{python}
+ax = isochrones_poly.plot(tiles=True, alpha=.7)
+transit_isochrones.to_crs(isochrones_poly.crs).plot(ax=ax, color='red')
+```
+
+
+- Can you capture the distance to all sports grounds from náměstí Svobody in the city centre?
+
+```{python}
+centre = gpd.geocode("Náměstí Svobody, Brno, Czechia", provider="nominatim", user_agent="martinfleis-sds")
+centre["id"] = "namesti-svobody"
+
+from_centre = r5py.TravelTimeMatrix(
+    transport_network,
+    origins=centre,
+    destinations=grounds,
+    departure=departure,
+    snap_to_network=True,
+)
+
+grounds.plot(from_centre.travel_time.values, legend=True, tiles=True).set_axis_off()
+```
+
+- Build a libpysal Graph encoding interaction between sports grounds based on public transport. How does the Graph differ from the one above?
+
+```{python}
+transit_times = r5py.TravelTimeMatrix(
+    transport_network,
+    origins=grounds,
+    destinations=grounds,
+    departure=departure,
+    snap_to_network=True,
+    max_time=datetime.timedelta(minutes=20),
+)
+
+transit_times = transit_times.dropna()
+transit_times["weight"] = kernels.kernel(
+    transit_times["travel_time"],
+    bandwidth=20 * 60,  # get seconds
+    kernel="bisquare",
+    decay=True,
+)
+
+transit_graph = graph.Graph.from_adjacency(
+    adjacency=transit_times,
+    focal_col="from_id",
+    neighbor_col="to_id",
+    weight_col="weight",
+)
+
+transit_graph
+```
+
+```{python}
+grounds.set_index("id")
+```
+
+
+::: {.callout-note collapse="true"}
+# Backup data
+
+If the links do not work, please [report it](https://github.com/martinfleis/sds/issues/new) and use the backup:
+
+- [Sports grounds (CC-BY 4.0, Statutární město Brno)](https://martinfleischmann.net/sds/spatial_networks/data/sportoviste.gpkg)
+- [GTFS from 25 October 2026 (CC-BY 4.0, Statutární město Brno)](https://martinfleischmann.net/sds/spatial_networks/data/gtfs.zip)
+:::
