@@ -787,7 +787,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 <p>Here is one way to approach the exercise. Your maps and results may differ depending on the departure time you use.</p>
-<div id="95eeed3d" class="cell">
+<div id="4fadba90" class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> datetime</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> geopandas <span class="im">as</span> gpd</span>
@@ -802,20 +802,20 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ul>
 <li>Construct a <code>pandarm.Network</code> from the provided <a href="https://martinfleischmann.net/sds/spatial_networks/data/brno.h5">HDF5 file</a>. For reference, here is the code used to generate it if you’d like to do that yourself. We are providing the HDF5 file to avoid adding to the load on the Overpass API.</li>
 </ul>
-<div id="0e43071f" class="cell">
+<div id="a8568c71" class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>network <span class="op">=</span> pandarm.Network.from_hdf5(<span class="st">"data/brno.h5"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <ul>
 <li>Download data on <a href="https://data.brno.cz/datasets/mestobrno::sportoviště-a-sportovní-kluby-sport-grounds-and-sport-clubs/about">sports grounds in Brno</a> from the official data portal. Filter it to use just the <code>sportoviště</code> category.</li>
 </ul>
-<div id="1b72fe5f" class="cell">
+<div id="592cf3f1" class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>sports <span class="op">=</span> gpd.read_file(<span class="st">"data/sportoviste.gpkg"</span>).to_crs(network.crs)</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>grounds <span class="op">=</span> sports.query(<span class="st">"kategorie == 'sportoviště'"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <ul>
 <li>Assess accessibility to the sports grounds by walking along the street network. Which locations are farther from sports grounds, and which are closer?</li>
 </ul>
-<div id="c251fa5f" class="cell">
+<div id="7bf5c4c8" class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>network.set_pois(</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    category<span class="op">=</span><span class="st">"sports_grounds"</span>,</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    maxdist<span class="op">=</span><span class="dv">1600</span>,</span>
@@ -835,12 +835,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ul>
 <li>Can you identify locations that are within 10 minutes of any sports ground?</li>
 </ul>
-<div id="8d5248a7" class="cell">
+<div id="4a6e1187" class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>ax <span class="op">=</span> network.nodes_df.plot(nearest_ground[<span class="dv">1</span>] <span class="op">&lt;</span> <span class="dv">800</span>, legend<span class="op">=</span><span class="va">True</span>, markersize<span class="op">=</span><span class="fl">0.1</span>)</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>ax.set_axis_off()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>Or as an isochrone:</p>
-<div id="f40ceb5a" class="cell">
+<div id="27c2d5a7" class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="annotated-cell-6"><pre class="sourceCode python code-annotation-code code-with-copy"><code class="sourceCode python"><span id="annotated-cell-6-1"><a href="#annotated-cell-6-1" aria-hidden="true" tabindex="-1"></a>grounds_nodes <span class="op">=</span> network.get_node_ids(</span>
 <span id="annotated-cell-6-2"><a href="#annotated-cell-6-2" aria-hidden="true" tabindex="-1"></a>    grounds.geometry.x, </span>
 <span id="annotated-cell-6-3"><a href="#annotated-cell-6-3" aria-hidden="true" tabindex="-1"></a>    grounds.geometry.y,</span>
@@ -856,7 +856,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ul>
 <li>How many sports grounds can you reach from different parts of the city within 20 minutes?</li>
 </ul>
-<div id="6756ffd3" class="cell">
+<div id="383e58f6" class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>network.<span class="bu">set</span>(</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>    grounds_nodes,</span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    variable<span class="op">=</span>np.ones(<span class="bu">len</span>(grounds)),</span>
@@ -876,7 +876,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ul>
 <li>Can you build a libpysal Graph encoding network-constrained spatial interaction between sports grounds? What can you tell about the resulting Graph?</li>
 </ul>
-<div id="306a14f0" class="cell">
+<div id="7d1b55d2" class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>walking_graph <span class="op">=</span> graph.Graph.build_travel_cost(</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>    grounds.geometry,</span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>    network<span class="op">=</span>network,</span>
@@ -887,7 +887,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>walking_graph.summary()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<div id="260074e9" class="cell">
+<div id="87d5ace4" class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>walking_graph.summary().weights_mean</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
@@ -896,7 +896,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ul>
 <li>Download <a href="https://data.brno.cz/datasets/379d2e9a7907460c8ca7fda1f3e84328/about">GTFS data for Brno</a> from the official data portal and the (OSM file from Geofabrik)[https://download.geofabrik.de/europe/czech-republic/jihomoravsky.html].</li>
 </ul>
-<div id="c2d35906" class="cell">
+<div id="378fd788" class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>transport_network <span class="op">=</span> r5py.TransportNetwork(</span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>    osm_pbf<span class="op">=</span><span class="st">"/Users/martinfleis/Downloads/jihomoravsky-261025.osm.pbf"</span>,</span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>    gtfs<span class="op">=</span>[<span class="st">"data/gtfs.zip"</span>],</span>
@@ -908,7 +908,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ul>
 <li>Compare how the definition of locations within 10 minutes differs when using public transport.</li>
 </ul>
-<div id="45926aaf" class="cell">
+<div id="f40b12b6" class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>transit_isochrones <span class="op">=</span> r5py.Isochrones(</span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>    transport_network,</span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>    origins<span class="op">=</span>grounds,</span>
@@ -917,14 +917,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>)</span>
 <span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>transit_isochrones.plot(tiles<span class="op">=</span><span class="va">True</span>, alpha<span class="op">=</span><span class="fl">.7</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<div id="772f2e6c" class="cell">
+<div id="dd392bc5" class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>ax <span class="op">=</span> isochrones_poly.plot(tiles<span class="op">=</span><span class="va">True</span>, alpha<span class="op">=</span><span class="fl">.7</span>)</span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>transit_isochrones.to_crs(isochrones_poly.crs).plot(ax<span class="op">=</span>ax, color<span class="op">=</span><span class="st">'red'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <ul>
 <li>Can you capture the distance to all sports grounds from náměstí Svobody in the city centre?</li>
 </ul>
-<div id="923fa42e" class="cell">
+<div id="3d053e68" class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>centre <span class="op">=</span> gpd.geocode(<span class="st">"Náměstí Svobody, Brno, Czechia"</span>, provider<span class="op">=</span><span class="st">"nominatim"</span>, user_agent<span class="op">=</span><span class="st">"martinfleis-sds"</span>)</span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>centre[<span class="st">"id"</span>] <span class="op">=</span> <span class="st">"namesti-svobody"</span></span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -941,7 +941,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ul>
 <li>Build a libpysal Graph encoding interaction between sports grounds based on public transport. How does the Graph differ from the one above?</li>
 </ul>
-<div id="2cf70430" class="cell">
+<div id="63b34e84" class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>transit_times <span class="op">=</span> r5py.TravelTimeMatrix(</span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>    transport_network,</span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>    origins<span class="op">=</span>grounds,</span>
@@ -968,7 +968,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb13-24"><a href="#cb13-24" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb13-25"><a href="#cb13-25" aria-hidden="true" tabindex="-1"></a>transit_graph</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<div id="b3ff06cb" class="cell">
+<div id="1deec14c" class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>grounds.set_index(<span class="st">"id"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div class="callout callout-style-default callout-note callout-titled">
