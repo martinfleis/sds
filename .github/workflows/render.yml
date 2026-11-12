@@ -6,41 +6,42 @@ on:
 name: Render and Publish
 
 jobs:
-    build-deploy:
-        name: "Build and deploy"
-        runs-on: ubuntu-latest
-        defaults:
-          run:
-            shell: bash -l {0}
-        steps:
-          - name: Check out repository
-            uses: actions/checkout@v7
+  build-deploy:
+    name: "Build and deploy"
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        shell: bash -l {0}
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v7
 
-          - name: Set up Quarto
-            uses: quarto-dev/quarto-actions/setup@v2
-            with:
-                tinytex: false
+      - name: Set up Quarto
+        uses: quarto-dev/quarto-actions/setup@v2
+        with:
+          tinytex: false
+          version: 1.10.19
 
-          - name: Setup Pixi
-            uses: prefix-dev/setup-pixi@v0.11.3
-            with:
-              cache: true
+      - name: Setup Pixi
+        uses: prefix-dev/setup-pixi@v0.11.3
+        with:
+          cache: true
 
-          - name: Check and log the environment
-            run: |
-              pixi run python -c "import geopandas; geopandas.show_versions();"
+      - name: Check and log the environment
+        run: |
+          pixi run python -c "import geopandas; geopandas.show_versions();"
 
-          - name: Render Book project
-            run: |
-                pixi run quarto render
-                pixi run quarto render --profile micro
+      - name: Render Book project
+        run: |
+          pixi run quarto render
+          pixi run quarto render --profile micro
 
-          - name: Move subprojects under a single domain
-            run: |
-                mv _site_micro _site/micro
+      - name: Move subprojects under a single domain
+        run: |
+          mv _site_micro _site/micro
 
-          - name: Deploy
-            uses: peaceiris/actions-gh-pages@v4
-            with:
-              github_token: ${{ secrets.GITHUB_TOKEN }}
-              publish_dir: ./_site
+      - name: Deploy
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./_site
